@@ -1,1 +1,1 @@
-# WeldEvaluation
+# 自動接合評価システム
