@@ -12,8 +12,8 @@ set cwd=%~dp0
 
 @rem Anaconda環境（Python）の呼び出し
 call C:\Users\mine\anaconda3\Scripts\activate.bat
-call conda activate JAMSTEC
-cd "D:\AnacondaProjectFolder\JAMSTEC\HyperSpectrumCamera"
+call conda activate hirotec
+cd "D:\WeldEvaluation\pythona"
 d:
 
 @rem コマンドの実行
