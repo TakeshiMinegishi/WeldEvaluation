@@ -47,8 +47,10 @@ if __name__ == "__main__":
         #random forestを実行
         model = RandomForestClassifier(random_state=1234)
         model.fit(ex_data, predict-1)
+
         #全データの結果を予測
         predict = model.predict(bdata)
+
         #分類させた情報を(height,width)の形に整形
         predict_out = predict.reshape(height,width)
         #.csvの出力ファイルを作成
@@ -59,7 +61,6 @@ if __name__ == "__main__":
         traceback.print_exc()
         #異常終了
         sys.exit(-1)
+
+    #正常終了
     sys.exit()
-
-
-

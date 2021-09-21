@@ -47,8 +47,6 @@ if __name__ == "__main__":
         traceback.print_exc()
         #異常終了
         sys.exit(-1)
+
     #正常終了
     sys.exit()
-
-
-
