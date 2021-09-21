@@ -5,98 +5,55 @@ import traceback
 
 import numpy as np
 from scipy.cluster.hierarchy import dendrogram, linkage, fcluster
+from sklearn.ensemble import RandomForestClassifier
 
-#ヘッダファイルから情報を取得する
-def get_data(input_file):
-    #ヘッダファイルを開く
-    with open(input_file,'r') as f:
-        datalist = f.readlines()
-    #取得した情報から必要な部分を抽出
-    for st in datalist:
-        #改行を取り除く
-        st = st.replace('\n', '')
-        #"="の前後で分ける
-        st = st.split('=')
-        for i, s in enumerate(st):
-            #文字列の両端にある余計な文字(スペースなど)を削除
-            st[i] = s.strip()
-        #得たい情報を以下のifで取得
-        #bands
-        if st[0] == "bands":
-            bands = int(st[1])
-        #data_type
-        if st[0] == "data type":
-            data_type = int(st[1])
-        #lines
-        if st[0] == "lines":
-            height = int(st[1])
-        #samples
-        if st[0] == "samples":
-            width = int(st[1])  
-    return bands,data_type,height,width
+from utils import get_data, get_bndata, get_fileinfo, get_sumple
 
-#バイナリデータを取得
-def get_bndata(bn_file):
-    #バイナリファイルを開く
-    with open(bn_file) as f:
-        recttype = np.dtype(np.float32)
-        bdata = np.fromfile(f,dtype = recttype)
-    #nan(not a number)を0に変換
-    bdata = np.nan_to_num(bdata)
-    #データを-100~100の範囲に収める
-    bdata = np.where(bdata < -100, -100, bdata)
-    bdata = np.where(bdata > 100, 100, bdata)
-    #(bands,height,width)の形に整形
-    bdata = bdata.reshape([bands, height, width])
-    #(bands,height,width)→(height,width,bands)に変形し、(height*width,bands)の形に直す
-    bdata_new = bdata.transpose(1,2,0).reshape(-1,bands)
-    return bdata_new
-
-#ファイルの情報を取得する。(ファイル名・ディレクトリ名)
-def get_fileinfo(f):
-    #ディレクトリを取得
-    dirname = os.path.dirname(f)
-    #ファイル名を取得
-    filename = os.path.basename(f)
-    filestem = os.path.splitext(filename)[0]
-    return filestem, dirname
 
 #処理を実行する
 if __name__ == "__main__":
     #入力ファイル・出力ファイル・クラス数を引数として設定
     parser = argparse.ArgumentParser()
     #入力ファイル
-    parser.add_argument("--input_file", type=str, default="./normalized.hdr")
+    parser.add_argument("--input_file", type=str)
     #出力ファイル
-    parser.add_argument("--output_file", type=str, default="./output/output_dend.csv")
+    parser.add_argument("--output_file", type=str)
     #クラス数
-    parser.add_argument("--num_classes", type=int, default=3)
+    parser.add_argument("--num_classes", type=int)
     args = parser.parse_args()
+
+    #抽出するデータ数を指定
+    num_sample = 2000
 
     try:
         #引数で与えられた入力ファイルのパスを取得し、ヘッダ情報を取得
         input_file = args.input_file
         bands,data_type,height,width = get_data(input_file)
-        
+
         #入力ファイルと同名のバイナリファイルからデータを取得
         #入力ファイルからファイル名を取得
         filestem, dirname = get_fileinfo(input_file)
         #拡張子を.rawに変更
         bn_file = os.path.join(dirname, filestem) + '.raw'
         #データの取得
-        bdata = get_bndata(bn_file)
+        bdata = get_bndata(bn_file, bands, height, width)
+        #データを抽出
+        ex_data = get_sumple(bdata, num_sample)
 
-        #階層的クラスタリングの実行
-        Z = linkage(bdata, method="ward", metric="euclidean")
+        #階層クラスタリングの実行
+        Z = linkage(ex_data, method="ward", metric="euclidean")
         #どのクラスに属しているのかをリストとして取得
-        predict = fcluster(Z, t=args.num_classes, criterion = "maxclust")
-        
+        predict = fcluster(Z, t=args.num_classes, criterion="maxclust")
+        #random forestを実行
+        model = RandomForestClassifier(random_state=1234)
+        model.fit(ex_data, predict-1)
+        #全データの結果を予測
+        predict = model.predict(bdata)
         #分類させた情報を(height,width)の形に整形
         predict_out = predict.reshape(height,width)
-        #クラス番号の開始を0に変更
-        predict_out = predict_out - 1
         #.csvの出力ファイルを作成
         np.savetxt(args.output_file, predict_out, delimiter=',', fmt='%d')
+        print("Done")
     except:
         #エラーの内容を表示
         traceback.print_exc()
