@@ -30,7 +30,6 @@
 #define IDD_GRAPH_WIND                  319
 #define IDD_IMAGE_WIND                  320
 #define IDD_PROGRESS_DLG                321
-#define IDD_SPCT                        324
 #define IDD_SPECTRAL_DLG                324
 #define IDM_PROPUPDATE                  500
 #define IDM_OPRTUPDATE                  501
@@ -94,40 +93,44 @@
 #define IDC_RDO_RESINCLASRESULT         1047
 #define IDC_RDO_METALSCAN               1048
 #define IDC_RDO_METALCLASRESULT         1049
-#define IDC_EDT_TESTNAME                1049
-#define IDC_BTN_SCAN                    1051
-#define IDC_RDO_JOINTRESULTCLASRESULT   1051
-#define IDC_BTN_CANCEL                  1052
-#define IDC_STC_SCANFRAME               1053
-#define IDC_RDO_REGIN                   1054
-#define IDC_RDO_METAL                   1055
-#define IDC_RSO_RESULT                  1056
-#define IDC_STC_TESTNAME                1057
-#define IDC_BTN_REGIST                  1058
-#define IDC_BTN_IMAGEOUT                1059
-#define IDC_STC_WHITEBARANCE            1060
-#define IDC_BTN_WHITEBARANCE            1061
-#define IDC_STC_RESIN_FRAME             1062
-#define IDC_STC_METAL_FRAME             1063
-#define IDC_STC_VIEWCHANGE_FRAME        1064
-#define IDC_RDO_JOINTRESULTSCAN         1065
-#define IDC_STC_REGIN_LABEL             1066
-#define IDC_STC_METAL_LABEL             1067
-#define IDC_STC_JOINTRESULT_LABEL       1068
-#define IDC_EDT_STATUS                  1069
-#define IDC_CMB_JOINRATIO_TARGET_LABEL  1071
-#define IDC_STC_GRAPH                   1072
-#define IDC_STC_GRAPH_WND               1073
-#define IDC_STC_STATUS                  1075
-#define IDC_PRO_STATUS                  1076
+#define IDC_EDT_TESTNAME                1050
+#define IDC_RDO_JOINT_METHOD1           1051
+#define IDC_RDO_JOINT_METHOD2           1052
+#define IDC_BTN_SCAN                    1053
+#define IDC_RDO_JOINTRESULTCLASRESULT   1054
+#define IDC_BTN_CANCEL                  1055
+#define IDC_STC_SCANFRAME               1056
+#define IDC_BTN_JOINTANALIZE            1057
+#define IDC_RDO_REGIN                   1058
+#define IDC_RDO_METAL                   1059
+#define IDC_RSO_RESULT                  1060
+#define IDC_STC_TESTNAME                1061
+#define IDC_BTN_REGIST                  1062
+#define IDC_BTN_IMAGEOUT                1063
+#define IDC_STC_WHITEBARANCE            1064
+#define IDC_BTN_WHITEBARANCE            1065
+#define IDC_STC_RESIN_FRAME             1066
+#define IDC_STC_METAL_FRAME             1067
+#define IDC_STC_VIEWCHANGE_FRAME        1068
+#define IDC_RDO_JOINTRESULTSCAN         1069
+#define IDC_STC_REGIN_LABEL             1070
+#define IDC_STC_METAL_LABEL             1071
+#define IDC_STC_JOINTRESULT_LABEL       1072
+#define IDC_EDT_STATUS                  1073
+#define IDC_STC_JOINT_FRAME             1074
+#define IDC_CMB_JOINRATIO_TARGET_LABEL  1075
+#define IDC_STC_GRAPH                   1076
+#define IDC_STC_GRAPH_WND               1077
+#define IDC_STC_STATUS                  1078
+#define IDC_PRO_STATUS                  1079
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        326
+#define _APS_NEXT_RESOURCE_VALUE        327
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1078
+#define _APS_NEXT_CONTROL_VALUE         1079
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

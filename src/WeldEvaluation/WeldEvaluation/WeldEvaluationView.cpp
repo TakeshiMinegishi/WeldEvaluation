@@ -192,8 +192,8 @@ void CWeldEvaluationView::OnInitialUpdate()
 	m_tabPropaty.InsertItem(propId++,strTitle);
 	strTitle.LoadString(IDS_PROPTAB_METAL);
 	m_tabPropaty.InsertItem(propId++,strTitle);
-//	strTitle.LoadString(IDS_PROPTAB_RESULT);
-//	m_tabPropaty.InsertItem(propId++,strTitle);
+	strTitle.LoadString(IDS_PROPTAB_RESULT);
+	m_tabPropaty.InsertItem(propId++,strTitle);
 	strTitle.LoadString(IDS_PROPTAB_OVERALL);
 	m_tabPropaty.InsertItem(propId++,strTitle);
 
@@ -203,9 +203,9 @@ void CWeldEvaluationView::OnInitialUpdate()
 	bResult = m_PropMetalPage.Create(CPropTabPageParameter::IDD,&m_stcPropTabPageClient);
 	m_PropTab.Add(&m_PropMetalPage);
 	m_PropMetalPage.setPageID(CWeldEvaluationDoc::eMetalSurface);
-//	bResult = m_PropResultPage.Create(CPropTabPageParameter::IDD,&m_stcPropTabPageClient);
-//	m_PropTab.Add(&m_PropResultPage);
-//	m_PropResultPage.setPageID(CWeldEvaluationDoc::eJoiningResult);
+	bResult = m_PropResultPage.Create(CPropTabPageParameter::IDD,&m_stcPropTabPageClient);
+	m_PropTab.Add(&m_PropResultPage);
+	m_PropResultPage.setPageID(CWeldEvaluationDoc::eJoiningResult);
 	bResult = m_PropSettingPage.Create(CPropTabPageSetting::IDD,&m_stcPropTabPageClient);
 	m_PropTab.Add(&m_PropSettingPage);
 	OnTcnSelchangeTabPropaty(NULL, NULL);
@@ -402,7 +402,7 @@ void CWeldEvaluationView::FitItem()
 	m_stcPropTabPageClient.GetClientRect(rect);
 	m_PropResinPage.MoveWindow(rect);
 	m_PropMetalPage.MoveWindow(rect);
-//	m_PropResultPage.MoveWindow(rect);
+	m_PropResultPage.MoveWindow(rect);
 
 	CRect srect;
 	m_PropSettingPage.GetWindowRect(srect);
@@ -479,7 +479,15 @@ void CWeldEvaluationView::OnNMDblclkLstRegistTest(NMHDR *pNMHDR, LRESULT *pResul
 		// Ž÷Ž‰–Ê‰æ‘œ
 		DisplayMode = pDoc->GetDisplayMode(CWeldEvaluationDoc::eResinSurface);
 		OnViewChangeRequest(CWeldEvaluationDoc::eResinSurface, DisplayMode);
-		m_pReginWnd->UpdateWindow();
+		m_pReginWnd->Invalidate();
+		{
+			MSG msg;
+			while (PeekMessage(&msg, m_pReginWnd->m_hWnd, 0, 0, PM_REMOVE)) {
+				TranslateMessage(&msg);
+				DispatchMessage(&msg);
+			}
+		}
+
 		// ‹à‘®–Ê‰æ‘œ
 		DisplayMode = pDoc->GetDisplayMode(CWeldEvaluationDoc::eMetalSurface);
 		OnViewChangeRequest(CWeldEvaluationDoc::eMetalSurface, DisplayMode);
@@ -652,7 +660,7 @@ void CWeldEvaluationView::EnablePropaty(bool bActive)
 {
 	m_PropResinPage.ItemActive(bActive);
 	m_PropMetalPage.ItemActive(bActive);
-//	m_PropResultPage.ItemActive(bActive);
+	m_PropResultPage.ItemActive(bActive);
 	m_PropSettingPage.ItemActive(bActive);
 }
 
@@ -701,14 +709,13 @@ void CWeldEvaluationView::ReloadPropaty(int propatyID)
 			pDlg->LoadParamater(propatyID);
 		}
 		break;
-//	case	2	:
-//		{
-//			CPropTabPageParameter *pDlg = (CPropTabPageParameter *)m_PropTab.GetAt(propatyID);
-//			pDlg->LoadParamater(propatyID);
-//		}
-//		break;
-//	case	3	:
 	case	2	:
+		{
+			CPropTabPageParameter *pDlg = (CPropTabPageParameter *)m_PropTab.GetAt(propatyID);
+			pDlg->LoadParamater(propatyID);
+		}
+		break;
+	case	3	:
 		{
 			CPropTabPageSetting *pDlg = (CPropTabPageSetting *)m_PropTab.GetAt(propatyID);
 			pDlg->LoadParamater();
@@ -908,9 +915,10 @@ LRESULT CWeldEvaluationView::OnViewChangeRequest(WPARAM wparam, LPARAM lparam)
 		}
 	}
 	else {
-		if (pDoc->ExistClassificationResultFile(targetID)) {
+		int type = m_OprtAnalize.GetAnalizeType(targetID);
+		if (pDoc->ExistClassificationResultFile(targetID,type)) {
 			CImage *pImg = pImageWnd->GetImage();
-			if (pDoc->LoadClassificationResultImage(targetID, *pImg)) {
+			if (pDoc->LoadClassificationResultImage(targetID, type, *pImg)) {
 				pImageWnd->Draw();
 			}
 			else {

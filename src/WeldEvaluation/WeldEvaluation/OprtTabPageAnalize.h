@@ -13,6 +13,7 @@ private:
 public:
 	int				m_ResinAnalizeType;			///< 樹脂面解析タイプ
 	int				m_MetalAnalizeType;			///< 金属面解析タイプ
+	int				m_JointAnalizeType;			///< 接合結果解析タイプ
 	int				m_ResinDisplayMode;			///< 樹脂面表示タイプ
 	int				m_MetalDisplayMode;			///< 金属面表示タイプ
 	int				m_ResultDisplayMode;		///< 接合結果表示タイプ
@@ -43,6 +44,9 @@ public:
 	afx_msg void OnBnClickedRdoResinMethod2();
 	afx_msg void OnBnClickedRdoMetalMethod1();
 	afx_msg void OnBnClickedRdoMetalMethod2();
+	afx_msg void OnBnClickedRdoJointMethod1();
+	afx_msg void OnBnClickedRdoJointMethod2();
+	afx_msg void OnBnClickedBtnJointanalize();
 
 private:
 	void ItemEnable(int ItemID, bool bActive);
@@ -51,4 +55,5 @@ public:
 	void ItemActive(bool bActive);
 	void LoadParamater();
 	void ViewModeReset(void);
+	int GetAnalizeType(int ItemID);
 };

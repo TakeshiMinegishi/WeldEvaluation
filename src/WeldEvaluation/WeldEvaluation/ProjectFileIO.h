@@ -16,12 +16,16 @@ private:
 	CString			m_ImageDataRootPath;							///< イメージデータへのルートパス
 
 	CString			m_ResinScanImageFile;							///< 樹脂面スキャン画像ファイル名
-	CString			m_ResinClassificationResultFile;				///< 樹脂面分類結果ファイル名
+	CString			m_ResinDendrogramClassFile;						///< 樹脂面分類結果階層クラスタリングファイル名
+	CString			m_ResinKmeansClassFile;							///< 樹脂面分類結果k-meansファイル名
 
 	CString			m_MetalScanImageFile;							///< 金属面スキャン画像ファイル名
-	CString			m_MetalClassificationResultFile;				///< 金属面分類結果ファイル名
+	CString			m_MetalDendrogramClassFile;						///< 金属面分類結果階層クラスタリングファイル名
+	CString			m_MetalKmeansClassFile;							///< 金属面分類結果k-meansファイル名
 
 	CString			m_ResultScanImageFile;							///< 結果画像スキャン画像ファイル名
+	CString			m_ResultDendrogramClassFile;					///< 結果階層クラスタリングファイル名
+	CString			m_ResultKmeansClassFile;						///< 結果k-meansファイル名
 
 /*
 	int				m_ResinDisplayType;								///< 樹脂画像表示タイプ
@@ -70,20 +74,28 @@ public:
 
 	CString GetResinScanImageFile();
 	bool SetResinScanImageFile(CString fileName);
-	CString GetResinClassificationResultFile();
-	bool SetResinClassificationResultFile(CString fileName);
+	CString GetResinDendrogramClassFile();
+	bool SetResinDendrogramClassFile(CString fileName);
+	CString GetResinKmeansClassFile();
+	bool SetResinKmeansClassFile(CString fileName);
 	int GetResinDisplayType();
 	bool SetResinDisplayType(int displayType);
 
 	CString GetMetalScanImageFile();
 	bool SetMetalScanImageFile(CString fileName);
-	CString GetMetalClassificationResultFile();
-	bool SetMetalClassificationResultFile(CString fileName);
+	CString GetMetalDendrogramClassFile();
+	bool SetMetalDendrogramClassFile(CString fileName);
+	CString GetMetalKmeansClassFile();
+	bool SetMetalKmeansClassFile(CString fileName);
 	int GetMetalDisplayType();
 	bool SetMetalDisplayType(int displayType);
 
 	CString GetResultScanImageFile();
 	bool SetResultScanImageFile(CString fileName);
+	CString GetResultDendrogramClassFile();
+	bool SetResultDendrogramClassFile(CString fileName);
+	CString GetResultKmeansClassFile();
+	bool SetResultKmeansClassFile(CString fileName);
 	int GetResultDisplayType();
 	bool SetResultDisplayType(int displayType);
 

@@ -28,6 +28,7 @@ CGraphWind::CGraphWind(CWnd* pParent /*=NULL*/)
 	m_holMax		= 0.0;			///< 水平方向最大値
 	m_verMin		= 0.0;			///< 垂直方向最小値
 	m_verMax		= 0.0;			///< 垂直方向最立ち
+	m_pBmp			= nullptr;
 }
 
 /// <summary>
@@ -35,6 +36,10 @@ CGraphWind::CGraphWind(CWnd* pParent /*=NULL*/)
 /// </summary>
 CGraphWind::~CGraphWind()
 {
+	if (m_pBmp) {
+		delete m_pBmp;
+		m_pBmp = nullptr;
+	}
 }
 
 /// <summary>
@@ -72,18 +77,48 @@ void CGraphWind::OnPaint()
 	CPaintDC dc(this); // device context for painting
 	// TODO: ここにメッセージ ハンドラー コードを追加します。
 	// 描画メッセージで CDialog::OnPaint() を呼び出さないでください。
-//	CDialog::OnPaint();
+	//	CDialog::OnPaint();
+
 
 	CRect rect;
 	GetClientRect(&rect);
+
+#if true
 	m_DrawArea.top = rect.top + 10;
 	m_DrawArea.left = rect.left + 10;
 	m_DrawArea.bottom = rect.bottom - 10;
 	m_DrawArea.right = rect.right - 10;
 
+	CDC		*pDC = GetDC();
 	CreateBackground(rect);
-	DrawFrame();
-	DrawGraph();
+	DrawFrame(pDC, m_DrawArea);
+	DrawGraph(pDC, m_DrawArea);
+#else
+//	CreateBackground(rect);
+	if (m_pBmp == nullptr) {
+		return;
+	}
+
+	m_DrawArea.top = rect.top + 10;
+	m_DrawArea.left = rect.left + 10;
+	m_DrawArea.bottom = rect.bottom - 10;
+	m_DrawArea.right = rect.right - 10;
+
+	CBitmap *bmp;
+	CDC		*pDC = GetDC();
+	CDC		cDC;				// ビットマップ表示用DC
+	BITMAP	bm;					// ビットマップオブジェクト
+	cDC.CreateCompatibleDC(pDC);
+	if (m_pBmp) {
+		CBitmap *oldBMP = cDC.SelectObject(m_pBmp);
+		m_pBmp->GetBitmap(&bm);
+		pDC->SetStretchBltMode(HALFTONE);
+		pDC->SetStretchBltMode(COLORONCOLOR);
+		pDC->StretchBlt(m_DrawArea.left, m_DrawArea.top, m_DrawArea.Width(), m_DrawArea.Height(), &cDC, 0, 0, bm.bmWidth, bm.bmHeight, SRCCOPY);
+
+		cDC.SelectObject(oldBMP);
+	}
+#endif
 }
 
 /// <summary>
@@ -198,13 +233,11 @@ void CGraphWind::DrawGraph()
 	double hh = 240.0;
 	double hs = (hh - lh) / (double)nGraph;
 
+	COLORREF dcol;
 	double v = 0.0;
-//	int zeroLine = 0;
 	int zeroLine = (int)(m_offset + 0.5)*(nGraph-1);
-//	for (int i = 0; i < nGraph; i++) {
 	for (int i = nGraph-1; i >= 0; i--) {
-			COLORREF dcol;
-		H2RGB((int)(lh + (i*hs)+.5), dcol);
+		H2RGB((int)(hh - (i*hs)+.5), dcol);
 		CPen *graphPen = new CPen;
 		graphPen->CreatePen(PS_SOLID, 1, dcol);
 		dc->SelectObject(graphPen);
@@ -218,7 +251,6 @@ void CGraphWind::DrawGraph()
 		if (v < m_verMin) v = m_verMin;
 		else if (v > m_verMax) v = m_verMax;
 		y = m_DrawArea.bottom -(int)((v+fabs(m_verMin))/resolution +.5);
-//		y-= zeroLine;
 		y += zeroLine;
 		dc->MoveTo(x,y);
 		for (int j = 1; j < nData; j++) {
@@ -236,7 +268,6 @@ void CGraphWind::DrawGraph()
 		}
 		delete graphPen;
 		graphPen = nullptr;
-//		zeroLine += (int)(m_offset + 0.5);
 		zeroLine -= (int)(m_offset + 0.5);
 
 	}
@@ -355,6 +386,135 @@ void CGraphWind::GetVerticalRange(std::vector<std::vector<double>> &data, double
 }
 
 /// <summary>
+/// フレーム描画
+/// </summary>
+void CGraphWind::DrawFrame(CDC *pDC, CRect area)
+{
+	if (!m_bActive) {
+		return;
+	}
+
+	if (pDC == NULL)
+	{
+		return;
+	}
+	CPen* framePen = new CPen;
+	framePen->CreatePen(PS_SOLID, 2, GRAPH_LINE_COLOR);
+	CPen* orgPen = pDC->SelectObject(framePen);
+
+	pDC->MoveTo(area.left, area.top);
+	pDC->LineTo(area.left, area.bottom);
+	pDC->LineTo(area.right, area.bottom);
+
+	pDC->SelectObject(orgPen);
+	delete framePen;
+}
+
+/// <summary>
+/// グラフ描画
+/// </summary>
+void CGraphWind::DrawGraph(CDC *pDC, CRect area)
+{
+	if (!m_bActive) {
+		return;
+	}
+
+	if (pDC == NULL)
+	{
+		return;
+	}
+	if (m_data.size() <= 0) {
+		Erase();
+		return;
+	}
+
+	CRect rect;
+	int W = area.Width();
+	int H = area.Height();
+
+	double band = (double)m_data.size() * m_offset;
+	double hight = m_verMax - m_verMin;
+	double resolution = hight / (double)(H - band);
+	double width = (double)m_data[0].size();
+	double h_resoution = (double)W / width;
+
+	CPen* m_graphPen = new CPen;
+	m_graphPen->CreatePen(PS_SOLID, 1, GRAPH_LINE_COLOR);
+
+	int y, x;
+	CPen* orgPen = pDC->SelectObject(m_graphPen);
+	int nGraph = (int)m_data.size();
+
+	double lh = 100.0;
+	double hh = 240.0;
+	double hs = (hh - lh) / (double)nGraph;
+
+	COLORREF dcol;
+	double v = 0.0;
+	int zeroLine = (int)(m_offset + 0.5)*(nGraph - 1);
+	for (int i = nGraph - 1; i >= 0; i--) {
+		H2RGB((int)(hh - (i*hs) + .5), dcol);
+		CPen *graphPen = new CPen;
+		graphPen->CreatePen(PS_SOLID, 1, dcol);
+		pDC->SelectObject(graphPen);
+
+		int nData = (int)m_data[i].size();
+		if (nData <= 0) {
+			continue;
+		}
+		x = area.left + (int)(0 * h_resoution + .5);
+		v = m_data[i][0];
+		if (v < m_verMin) v = m_verMin;
+		else if (v > m_verMax) v = m_verMax;
+		y = area.bottom - (int)((v + fabs(m_verMin)) / resolution + .5);
+		y += zeroLine;
+		pDC->MoveTo(x, y);
+		for (int j = 1; j < nData; j++) {
+			x = area.left + (int)(j*h_resoution + .5);
+			v = m_data[i][j];
+			if (v < m_verMin) v = m_verMin;
+			else if (v > m_verMax) v = m_verMax;
+			y = area.bottom - (int)((v + fabs(m_verMin)) / resolution + .5);
+			y -= zeroLine;
+			if (y < area.top) {
+				pDC->MoveTo(x, y);
+			}
+			else {
+				pDC->LineTo(x, y);
+			}
+		}
+		delete graphPen;
+		graphPen = nullptr;
+		zeroLine -= (int)(m_offset + 0.5);
+
+	}
+	pDC->SelectObject(orgPen);
+	delete m_graphPen;
+}
+
+void CGraphWind::makeImage(CRect &rect)
+{
+	CDC     *pDC;
+	CRect   Rect;
+	CDC     DC;             // 保存用デバイスコンテキスト
+
+	if (m_pBmp) {
+		delete m_pBmp;
+	}
+	m_pBmp = new CBitmap;
+	pDC = GetDC();
+	DC.CreateCompatibleDC(pDC);
+	m_pBmp->CreateCompatibleBitmap(pDC, rect.Width(), rect.Height());
+	DC.SelectObject(*m_pBmp);
+
+	DrawFrame(pDC, rect);
+	DrawGraph(pDC, rect);
+
+	DeleteObject(DC);
+	ReleaseDC(pDC);
+}
+
+/// <summary>
 /// グラフ描画
 /// </summary>
 /// <param name="data">データ</param>
@@ -362,7 +522,6 @@ void CGraphWind::GetVerticalRange(std::vector<std::vector<double>> &data, double
 /// <param name="AutoRange">自動レンジ</param>
 ///@remark AutoRangeがtrueの場合垂直方向のレンジはデータの（最大値－最小値）*1.2として自動に求める
 ///@remark offsetは垂直方向のグラフ間ゼロ線をずらす為のもの
-
 void CGraphWind::Draw(std::vector<std::vector<double>> &data, double offset/*=0.0*/, bool AutoRange/*=false*/)
 {
 	m_bActive = true;
@@ -372,6 +531,15 @@ void CGraphWind::Draw(std::vector<std::vector<double>> &data, double offset/*=0.
 	}
 	m_offset = offset;
 	m_data = data;
+
+	CRect rect;
+	GetClientRect(&rect);
+	m_DrawArea.top = rect.top + 10;
+	m_DrawArea.left = rect.left + 10;
+	m_DrawArea.bottom = rect.bottom - 10;
+	m_DrawArea.right = rect.right - 10;
+//	makeImage(m_DrawArea);
+
 	OnPaint();
 }
 

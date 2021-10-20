@@ -525,3 +525,14 @@ bool CImageWind::ScanToclient(CPoint &pos)
 	pos = point;
 	return true;
 }
+
+void CImageWind::SetImagePos(CRect &rect)
+{
+	m_imageX		= rect.left;		///< 表示画像X位置
+	m_imageY		= rect.top;			///< 表示画像Y位置
+	m_imageWidth	= rect.Width();		///< 表示画像幅
+	m_imageHeight	= rect.Height();	///< 表示画像高さ
+
+	double		m_zoomRetio;					///< ズーム比
+
+}

@@ -25,6 +25,7 @@ private:
 	double		m_holMax;						///< 水平方向最大値
 	double		m_verMin;						///< 垂直方向最小値
 	double		m_verMax;						///< 垂直方向最立ち
+	CBitmap		*m_pBmp;
 	std::vector<std::vector<double>> m_data;	///< 表示データ
 
 protected:
@@ -41,6 +42,9 @@ private:
 	void DrawGraph();
 	void DrawFrame();
 	void GetVerticalRange(std::vector<std::vector<double>> &data, double &min, double &max);
+	void makeImage(CRect &rect);
+	void DrawFrame(CDC *pDC, CRect area);
+	void DrawGraph(CDC *pDC, CRect area);
 
 public:
 	void SetHolizontalRange(double min, double max);

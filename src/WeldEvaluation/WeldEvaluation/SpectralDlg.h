@@ -13,6 +13,7 @@ private:
 	CWnd				*m_pParemt;						///< 親ウインド
 	CGraphWind			*m_pGraphWnd;					///< グラフウインドへのポインタ
 	CRect				m_orgClientSize;
+	CRect				m_bfClientSize;
 	std::vector<std::vector<double>>	m_data;
 
 public:

@@ -105,13 +105,15 @@ void COprtTabPageSetting::Update()
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
 
-	CString ResinScan	= pDoc->GetResinScanImagePath();
-	CString ResinResult = pDoc->GetResinClassificationResultPath();
+	CString ResinScan		  = pDoc->GetScanImagePath(CWeldEvaluationDoc::eResinSurface);
+	CString ResinKMeansResult = pDoc->GetClassificationResultPath(CWeldEvaluationDoc::eResinSurface, CWeldEvaluationDoc::AnalizeTypeKMeans);
+	CString ResinResult = pDoc->GetClassificationResultPath(CWeldEvaluationDoc::eResinSurface, CWeldEvaluationDoc::AnalizeTypeHiClustering);
 
-	CString MetalScan	= pDoc->GetMetalScanImagePath();
-	CString MetalResult = pDoc->GetMetalClassificationResultPath();
+	CString MetalScan	= pDoc->GetScanImagePath(CWeldEvaluationDoc::eMetalSurface);
+	CString MetalResult = pDoc->GetClassificationResultPath(CWeldEvaluationDoc::eMetalSurface, CWeldEvaluationDoc::AnalizeTypeKMeans);
 
-	CString ClassScan	= pDoc->GetClassScanImagePath();
+	CString ClassScan	= pDoc->GetScanImagePath(CWeldEvaluationDoc::eJoiningResult);
+	CString ClassResult = pDoc->GetClassificationResultPath(CWeldEvaluationDoc::eJoiningResult, CWeldEvaluationDoc::AnalizeTypeKMeans);
 
 	if (!ResinScan.IsEmpty() || !MetalScan.IsEmpty() || !ClassScan.IsEmpty() ||
 		!ResinResult.IsEmpty() || !MetalResult.IsEmpty()) {

@@ -755,6 +755,7 @@ bool CWeldEvaluationDoc::SetAnalysisMethod(int targetID, int AnalysisMethodID)
 //////////////////////////////////////////////////////////////////////////////////
 // プロジェクトデータI/O
 
+#if 0
 /// <summary>
 /// 樹脂面スキャン画像ファイルパスの取得
 /// </summary>
@@ -783,7 +784,6 @@ CString CWeldEvaluationDoc::GetResinClassificationResultPath()
 {
 	CString root = m_ProjectIO.GetImageDataRootPath();
 	CString fname = m_ProjectIO.GetResinClassificationResultFile();
-	fname = fname + _T(".hdr");
 	if (root.IsEmpty() || fname.IsEmpty()) {
 		return _T("");
 	}
@@ -822,7 +822,7 @@ CString CWeldEvaluationDoc::GetMetalScanImagePath()
 CString CWeldEvaluationDoc::GetMetalClassificationResultPath()
 {
 	CString root = m_ProjectIO.GetImageDataRootPath();
-	CString fname = m_ProjectIO.GetMetalClassificationResultFile();
+	CString fname = m_ProjectIO.GetMetalResultFile();
 	if (root.IsEmpty() || fname.IsEmpty()) {
 		return _T("");
 	}
@@ -851,6 +851,28 @@ CString CWeldEvaluationDoc::GetClassScanImagePath()
 		return _T("");
 	}
 	return path;
+}
+#endif
+
+/// <summary>
+/// スキャンイメージファイルパス取得
+/// </summary>
+/// <param name="fileID">ファイル種別ID</param>
+/// <returns>存在する場合はパスを返す、失敗した場合は空文字を返す</returns>
+CString CWeldEvaluationDoc::GetScanImagePath(int fileID)
+{
+	return getScanImageFilePath(fileID);
+}
+
+/// <summary>
+/// 分類結果データファイルパス取得
+/// </summary>
+/// <param name="ScanID">ファイル種別ID</param>
+/// <param name="type">分類種別ID</param>
+/// <returns>存在する場合はパスを返す、失敗した場合は空文字を返す</returns>
+CString CWeldEvaluationDoc::GetClassificationResultPath(int fileID, int type)
+{
+	return getClassificationDataFilePath(fileID, type);
 }
 
 /// <summary>
@@ -1093,11 +1115,12 @@ CString CWeldEvaluationDoc::getScanImageFilePath(int ScanID)
 }
 
 /// <summary>
-/// 結果データファイルパス取得
+/// 分類結果データファイルパス取得
 /// </summary>
-/// <param name="fileID">ファイル種別ID</param>
+/// <param name="ScanID">ファイル種別ID</param>
+/// <param name="type">分類種別ID</param>
 /// <returns>存在する場合はパスを返す、失敗した場合は空文字を返す</returns>
-CString CWeldEvaluationDoc::getResultDataFilePath(int ScanID)
+CString CWeldEvaluationDoc::getClassificationDataFilePath(int ScanID, int type)
 {
 	CString root, name;
 	CString classfile, imagefile;
@@ -1105,13 +1128,28 @@ CString CWeldEvaluationDoc::getResultDataFilePath(int ScanID)
 	root = m_ProjectIO.GetImageDataRootPath();
 	switch (ScanID) {
 	case	eResinSurface:	///< 樹脂
-		name = m_ProjectIO.GetResinClassificationResultFile();
+		if (type == AnalizeTypeKMeans) {
+			name = m_ProjectIO.GetResinDendrogramClassFile();
+		}
+		else {
+			name = m_ProjectIO.GetResinKmeansClassFile();
+		}
 		break;
 	case	eMetalSurface:	///< 金属
-		name = m_ProjectIO.GetMetalClassificationResultFile();
+		if (type == AnalizeTypeKMeans) {
+			name = m_ProjectIO.GetMetalDendrogramClassFile();
+		}
+		else {
+			name = m_ProjectIO.GetMetalKmeansClassFile();
+		}
 		break;
 	case	eJoiningResult:	///< 接合結果
-		name = _T("");
+		if (type == AnalizeTypeKMeans) {
+			name = m_ProjectIO.GetResultDendrogramClassFile();
+		}
+		else {
+			name = m_ProjectIO.GetResultKmeansClassFile();
+		}
 		break;
 	default:
 		return false;
@@ -1125,13 +1163,14 @@ CString CWeldEvaluationDoc::getResultDataFilePath(int ScanID)
 }
 
 /// <summary>
-/// 結果イメージファイルパス取得
+/// 分類結果イメージファイルパス取得
 /// </summary>
-/// <param name="fileID">ファイル種別ID</param>
+/// <param name="ScanID">ファイル種別ID</param>
+/// <param name="type">分類種別ID</param>
 /// <returns>存在する場合はパスを返す、失敗した場合は空文字を返す</returns>
-CString CWeldEvaluationDoc::getResultImageFilePath(int ScanID)
+CString CWeldEvaluationDoc::getClassificationImageFilePath(int ScanID, int type)
 {
-	CString classfile = getResultDataFilePath(ScanID);
+	CString classfile = getClassificationDataFilePath(ScanID,type);
 	if (classfile.IsEmpty()) {
 		return _T("");
 	}
@@ -1206,7 +1245,7 @@ bool CWeldEvaluationDoc::GetSpectralDlgRect(CRect &rect)
 }
 
 /// <summary>
-/// 区間スペクトルダイアログの位置とサイズの設定
+/// 区間スペクトルダイアログの位置とサイズの取得
 /// </summary>
 /// <param name="rect">ウインドの位置とサイズ</param>
 /// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
@@ -1560,19 +1599,46 @@ bool CWeldEvaluationDoc::SaveProject()
 		}
 	}
 
-	// 樹脂面分類結果ファイルがある場合
+	// 樹脂面k-means分類結果ファイルがある場合
 	{
-		if (!SaveClassificationResultFile(eResinSurface)) {
+		if (!SaveClassificationResultFile(eResinSurface, AnalizeTypeKMeans)) {
+			return false;
+		}
+	}
+	// 樹脂面階層クラスタリング分類結果ファイルがある場合
+	{
+		if (!SaveClassificationResultFile(eResinSurface, AnalizeTypeHiClustering)) {
 			return false;
 		}
 	}
 
-	// 金属面分類結果ファイルがある場合
+	// 金属面k-means分類結果ファイルがある場合
 	{
-		if (!SaveClassificationResultFile(eMetalSurface)) {
+		if (!SaveClassificationResultFile(eMetalSurface, AnalizeTypeKMeans)) {
 			return false;
 		}
 	}
+	// 金属面階層クラスタリング分類結果ファイルがある場合
+	{
+		if (!SaveClassificationResultFile(eMetalSurface, AnalizeTypeHiClustering)) {
+			return false;
+		}
+	}
+
+	
+	// 接合結果k-means分類結果ファイルがある場合
+	{
+		if (!SaveClassificationResultFile(eJoiningResult, AnalizeTypeKMeans)) {
+			return false;
+		}
+	}
+	// 接合結果階層クラスタリング分類結果ファイルがある場合
+	{
+		if (!SaveClassificationResultFile(eJoiningResult, AnalizeTypeHiClustering)) {
+			return false;
+		}
+	}
+
 
 	m_ProjectFilePaht = CFileUtil::FilePathCombine(m_ActiveRegisttedTestFolder,ProjectFileName);
 	m_ProjectIO.SetProjectFilePath(m_ProjectFilePaht);
@@ -1750,24 +1816,12 @@ bool CWeldEvaluationDoc::SaveScanImage(int ScanID)
 /// </summary>
 /// <param name="fileID">ファイル種別ID</param>
 /// <returns>存在する場合はtrue、失敗の場合はfalseを返す</returns>
-bool CWeldEvaluationDoc::ExistClassificationResultFile(int fileID)
+bool CWeldEvaluationDoc::ExistClassificationResultFile(int fileID, int type)
 {
 	bool bResult = false;
 	CString name;
 
-	switch (fileID) {
-	case	eResinSurface:	///< 樹脂
-		name = m_ProjectIO.GetResinClassificationResultFile();
-		break;
-	case	eMetalSurface:	///< 金属
-		name = m_ProjectIO.GetMetalClassificationResultFile();
-		break;
-	case	eJoiningResult:	///< 接合結果
-		name = m_ProjectIO.GetResinClassificationResultFile();
-		break;
-	default:
-		return false;
-	}
+	name = getClassificationDataFilePath(fileID, type);
 	if (name.IsEmpty()) {
 		bResult = false;
 	}
@@ -1782,35 +1836,89 @@ bool CWeldEvaluationDoc::ExistClassificationResultFile(int fileID)
 /// </summary>
 /// <param name="ScanID">対象スキャンID</param>
 /// <returns>成功した場合はtrue、失敗の場合はfalseを返す</returns>
-bool CWeldEvaluationDoc::SaveClassificationResultFile(int ScanID)
+bool CWeldEvaluationDoc::SaveClassificationResultFile(int ScanID, int type)
 {
 	CString ProjectName = m_PropatyIO.GetProjectName();
 	CString fileName;
 	switch(ScanID) {
-	case	eResinSurface	:	///< 樹脂
+	case	eResinSurface	:	// 樹脂
+		if (type == AnalizeTypeKMeans) 
 		{
-			fileName.Format(_T("%s_ResinClassification.csv"), (LPCWSTR)ProjectName);
+			fileName = _T("ResinDendrogramClassification.csv");
 			////////////////////////////////////////////////////////////////////
 			//
 			// 保存処理を行う
 			// 保存に成功したらプロジェクトへ登録
 			//
 			////////////////////////////////////////////////////////////////////
-			if (!m_ProjectIO.SetResinClassificationResultFile(fileName)) {
+			if (!m_ProjectIO.SetResinDendrogramClassFile(fileName)) {
+				return false;
+			}
+		}
+		else if (type == AnalizeTypeHiClustering) 
+		{
+			fileName = _T("ResinkmeansClassification.csv");
+			////////////////////////////////////////////////////////////////////
+			//
+			// 保存処理を行う
+			// 保存に成功したらプロジェクトへ登録
+			//
+			////////////////////////////////////////////////////////////////////
+			if (!m_ProjectIO.SetResinKmeansClassFile(fileName)) {
 				return false;
 			}
 		}
 		break;
-	case	eMetalSurface	:	///< 金属
+	case	eMetalSurface	:	// 金属
+		if (type == AnalizeTypeKMeans)
 		{
-			fileName.Format(_T("%s_MetalClassification.csv"), (LPCWSTR)ProjectName);
+			fileName = _T("ResinDendrogramClassification.csv");
 			////////////////////////////////////////////////////////////////////
 			//
 			// 保存処理を行う
 			// 保存に成功したらプロジェクトへ登録
 			//
 			////////////////////////////////////////////////////////////////////
-			if (!m_ProjectIO.SetMetalClassificationResultFile(fileName)) {
+			if (!m_ProjectIO.SetMetalDendrogramClassFile(fileName)) {
+				return false;
+			}
+		}
+		else if (type == AnalizeTypeHiClustering) {
+			fileName = _T("ResinkmeansClassification.csv");
+			////////////////////////////////////////////////////////////////////
+			//
+			// 保存処理を行う
+			// 保存に成功したらプロジェクトへ登録
+			//
+			////////////////////////////////////////////////////////////////////
+			if (!m_ProjectIO.SetMetalKmeansClassFile(fileName)) {
+				return false;
+			}
+		}
+		break;
+	case	eJoiningResult:	// 接合結果
+		if (type == AnalizeTypeKMeans)
+		{
+			fileName = _T("ResinDendrogramClassification.csv");
+			////////////////////////////////////////////////////////////////////
+			//
+			// 保存処理を行う
+			// 保存に成功したらプロジェクトへ登録
+			//
+			////////////////////////////////////////////////////////////////////
+			if (!m_ProjectIO.SetResultDendrogramClassFile(fileName)) {
+				return false;
+			}
+		}
+		else if (type == AnalizeTypeHiClustering) {
+			fileName = _T("ResinkmeansClassification.csv");
+			////////////////////////////////////////////////////////////////////
+			//
+			// 保存処理を行う
+			// 保存に成功したらプロジェクトへ登録
+			//
+			////////////////////////////////////////////////////////////////////
+			if (!m_ProjectIO.SetResultKmeansClassFile(fileName)) {
 				return false;
 			}
 		}
@@ -1921,11 +2029,12 @@ bool CWeldEvaluationDoc::Analize(int targetID, int AnalysisMethodID)
 	// 接合率を求める
 	//
 	////////////////////////////////////////////////////////////////////
-	CString ResultFileName = m_ProjectIO.GetResinClassificationResultFile();
 	CString path;
 	vector<int> data;
 	vector<double> retio;
 	int nClass = 0;
+#if 0
+	CString ResultFileName = m_ProjectIO.GetResinClassificationResultFile();
 
 	if (targetID == eResinSurface) {
 		ResultFileName = m_ProjectIO.GetResinClassificationResultFile();
@@ -1936,11 +2045,25 @@ bool CWeldEvaluationDoc::Analize(int targetID, int AnalysisMethodID)
 	}
 
 	path = CFileUtil::FilePathCombine(m_ActiveRegisttedTestFolder,ResultFileName);
+#else
+	path = getClassificationDataFilePath(targetID, AnalysisMethodID);
+	if (targetID == eResinSurface) {
+		nClass = m_PropatyIO.ResinGetNumberOfClass();
+	}
+	else if (targetID == eMetalSurface) {
+		nClass = m_PropatyIO.MetalGetNumberOfClass();
+	}
+	else if (targetID == eJoiningResult) {
+		nClass = m_PropatyIO.ResultGetNumberOfClass();
+	}
+#endif
 	if (!CWeldEvaluationDoc::getResultFile(path, data)) {
 		return false;
-	} else {
+	}
+	else {
 		if (CalcJoJointRetio(data, nClass, retio)) {
-		} else {
+		}
+		else {
 			return false;
 		}
 	}
@@ -1954,6 +2077,12 @@ bool CWeldEvaluationDoc::Analize(int targetID, int AnalysisMethodID)
 	} else if (targetID == eMetalSurface) {
 		for (int ViewJointRatioNo = 0; ViewJointRatioNo < retio.size(); ViewJointRatioNo++) {
 			if (!MetalSetJointRetio(ViewJointRatioNo,retio[ViewJointRatioNo]*100.0)) {
+				bResult = false;
+			}
+		}
+	} else if (targetID == eMetalSurface) {
+		for (int ViewJointRatioNo = 0; ViewJointRatioNo < retio.size(); ViewJointRatioNo++) {
+			if (!ResultSetJointRetio(ViewJointRatioNo, retio[ViewJointRatioNo] * 100.0)) {
 				bResult = false;
 			}
 		}
@@ -2060,18 +2189,18 @@ void CWeldEvaluationDoc::H2RGB(int h, BYTE &r, BYTE &g, BYTE &b)
 	}
 }
 
-bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, CImage &img, bool renew/* = false*/)
+bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, int type, CImage &img, bool renew/* = false*/)
 {
 	bool bResult = true;
 	CString root, name;
 	CString classfile, imagefile;
 	int nClass = 0;
 
-	classfile = getResultDataFilePath(targetID);
+	classfile = getClassificationDataFilePath(targetID,type);
 	if (!CFileUtil::fileExists(classfile)) {
 		return false;
 	}
-	imagefile = getResultImageFilePath(targetID);
+	imagefile = getClassificationImageFilePath(targetID,type);
 	if (!CFileUtil::fileExists(imagefile)) {
 		vector<int> data;
 		if (!CWeldEvaluationDoc::getResultFile(classfile, data)) {
@@ -2086,7 +2215,7 @@ bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, CImage &img
 				nClass = m_PropatyIO.MetalGetNumberOfClass();
 				break;
 			case	eJoiningResult:	///< 接合結果
-				return false;
+				nClass = m_PropatyIO.ResultGetNumberOfClass();
 				break;
 			default:
 				return false;

@@ -20,6 +20,7 @@ COprtTabPageAnalize::COprtTabPageAnalize(CWnd* pParent /*=NULL*/)
 	: CDialogEx(COprtTabPageAnalize::IDD, pParent)
 	, m_ResinAnalizeType(0)
 	, m_MetalAnalizeType(0)
+	, m_JointAnalizeType(0)
 	, m_ResinDisplayMode(0)
 	, m_MetalDisplayMode(0)
 	, m_ResultDisplayMode(0)
@@ -45,6 +46,7 @@ void COprtTabPageAnalize::DoDataExchange(CDataExchange* pDX)
 	DDX_Radio(pDX, IDC_RDO_RESINSCAN, m_ResinDisplayMode);
 	DDX_Radio(pDX, IDC_RDO_METALSCAN, m_MetalDisplayMode);
 	DDX_Radio(pDX, IDC_RDO_JOINTRESULTSCAN, m_ResultDisplayMode);
+	DDX_Radio(pDX, IDC_RDO_JOINT_METHOD1, m_JointAnalizeType);
 }
 
 
@@ -62,6 +64,9 @@ BEGIN_MESSAGE_MAP(COprtTabPageAnalize, CDialogEx)
 	ON_BN_CLICKED(IDC_RDO_RESIN_METHOD2, &COprtTabPageAnalize::OnBnClickedRdoResinMethod2)
 	ON_BN_CLICKED(IDC_RDO_METAL_METHOD1, &COprtTabPageAnalize::OnBnClickedRdoMetalMethod1)
 	ON_BN_CLICKED(IDC_RDO_METAL_METHOD2, &COprtTabPageAnalize::OnBnClickedRdoMetalMethod2)
+	ON_BN_CLICKED(IDC_RDO_JOINT_METHOD1, &COprtTabPageAnalize::OnBnClickedRdoJointMethod1)
+	ON_BN_CLICKED(IDC_RDO_JOINT_METHOD2, &COprtTabPageAnalize::OnBnClickedRdoJointMethod2)
+	ON_BN_CLICKED(IDC_BTN_JOINTANALIZE, &COprtTabPageAnalize::OnBnClickedBtnJointanalize)
 END_MESSAGE_MAP()
 
 
@@ -154,6 +159,12 @@ void COprtTabPageAnalize::OnBnClickedRdoResinMethod1()
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eResinSurface,CWeldEvaluationDoc::AnalizeTypeKMeans);
+	if (m_ResinDisplayMode == 1) {
+		CFormView *pWnd = (CFormView *)GetParent()->GetParent();
+		if (pWnd) {
+			pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eResinSurface, CWeldEvaluationDoc::DisplayModeResult);
+		}
+	}
 }
 
 /// <summary>
@@ -169,6 +180,12 @@ void COprtTabPageAnalize::OnBnClickedRdoResinMethod2()
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eResinSurface,CWeldEvaluationDoc::AnalizeTypeHiClustering);
+	if (m_ResinDisplayMode == 1) {
+		CFormView *pWnd = (CFormView *)GetParent()->GetParent();
+		if (pWnd) {
+			pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eResinSurface, CWeldEvaluationDoc::DisplayModeResult);
+		}
+	}
 }
 
 /// <summary>
@@ -184,6 +201,12 @@ void COprtTabPageAnalize::OnBnClickedRdoMetalMethod1()
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eMetalSurface,CWeldEvaluationDoc::AnalizeTypeKMeans);
+	if (m_MetalDisplayMode == 1) {
+		CFormView *pWnd = (CFormView *)GetParent()->GetParent();
+		if (pWnd) {
+			pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eMetalSurface, CWeldEvaluationDoc::DisplayModeResult);
+		}
+	}
 }
 
 /// <summary>
@@ -199,7 +222,56 @@ void COprtTabPageAnalize::OnBnClickedRdoMetalMethod2()
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eMetalSurface,CWeldEvaluationDoc::AnalizeTypeHiClustering);
+	if (m_MetalDisplayMode == 1) {
+		CFormView *pWnd = (CFormView *)GetParent()->GetParent();
+		if (pWnd) {
+			pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eMetalSurface, CWeldEvaluationDoc::DisplayModeResult);
+		}
+	}
 }
+
+/// <summary>
+/// 接続結果解析方法k-means選択時処理
+/// </summary>
+void COprtTabPageAnalize::OnBnClickedRdoJointMethod1()
+{
+	int org = m_JointAnalizeType;
+	UpdateData(true);
+	if (org == m_JointAnalizeType) {
+		return;
+	}
+	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
+	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
+	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eJoiningResult, CWeldEvaluationDoc::AnalizeTypeKMeans);
+	if (m_JointAnalizeType == 1) {
+		CFormView *pWnd = (CFormView *)GetParent()->GetParent();
+		if (pWnd) {
+			pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eJoiningResult, CWeldEvaluationDoc::DisplayModeResult);
+		}
+	}
+}
+
+/// <summary>
+/// 接続結果解析方法階層選択時処理
+/// </summary>
+void COprtTabPageAnalize::OnBnClickedRdoJointMethod2()
+{
+	int org = m_JointAnalizeType;
+	UpdateData(true);
+	if (org == m_JointAnalizeType) {
+		return;
+	}
+	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
+	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
+	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eJoiningResult, CWeldEvaluationDoc::AnalizeTypeHiClustering);
+	if (m_JointAnalizeType == 1) {
+		CFormView *pWnd = (CFormView *)GetParent()->GetParent();
+		if (pWnd) {
+			pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eJoiningResult, CWeldEvaluationDoc::DisplayModeResult);
+		}
+	}
+}
+
 
 /// <summary>
 /// 樹脂面分析実施選択時処理
@@ -224,6 +296,19 @@ void COprtTabPageAnalize::OnBnClickedBtnMetalanalize()
 	LPARAM type = m_MetalAnalizeType==0?CWeldEvaluationDoc::AnalizeTypeKMeans:CWeldEvaluationDoc::AnalizeTypeHiClustering;
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
 	if (pWnd->SendMessage(WM_ANALYSE_REQUEST,targetItemID,type) != 0) {
+	}
+}
+
+/// <summary>
+/// 接合結果分析実施選択時処理
+/// </summary>
+void COprtTabPageAnalize::OnBnClickedBtnJointanalize()
+{
+	UpdateData(true);
+	WPARAM targetItemID = CWeldEvaluationDoc::eJoiningResult;
+	LPARAM type = m_JointAnalizeType == 0 ? CWeldEvaluationDoc::AnalizeTypeKMeans : CWeldEvaluationDoc::AnalizeTypeHiClustering;
+	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
+	if (pWnd->SendMessage(WM_ANALYSE_REQUEST, targetItemID, type) != 0) {
 	}
 }
 
@@ -258,11 +343,11 @@ void COprtTabPageAnalize::OnBnClickedRdoResinclasresult()
 		return;
 	}
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
-	if (pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST,CWeldEvaluationDoc::eResinSurface,CWeldEvaluationDoc::AnalizeTypeHiClustering) != 0) {
+	if (pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST,CWeldEvaluationDoc::eResinSurface,CWeldEvaluationDoc::DisplayModeResult) != 0) {
 		m_ResinDisplayMode = org;
 	} else {
 		CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
-		pDoc->SetDisplayMode(CWeldEvaluationDoc::eResinSurface,CWeldEvaluationDoc::AnalizeTypeHiClustering);
+		pDoc->SetDisplayMode(CWeldEvaluationDoc::eResinSurface,CWeldEvaluationDoc::DisplayModeResult);
 	}
 	UpdateData(false);
 }
@@ -298,11 +383,11 @@ void COprtTabPageAnalize::OnBnClickedRdoMetalclasresult()
 		return;
 	}
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
-	if (pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST,CWeldEvaluationDoc::eMetalSurface,CWeldEvaluationDoc::AnalizeTypeHiClustering) != 0) {
+	if (pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST,CWeldEvaluationDoc::eMetalSurface,CWeldEvaluationDoc::DisplayModeResult) != 0) {
 		m_MetalDisplayMode = org;
 	} else {
 		CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
-		pDoc->SetDisplayMode(CWeldEvaluationDoc::eMetalSurface,CWeldEvaluationDoc::AnalizeTypeHiClustering);
+		pDoc->SetDisplayMode(CWeldEvaluationDoc::eMetalSurface,CWeldEvaluationDoc::DisplayModeResult);
 	}
 	UpdateData(false);
 }
@@ -339,11 +424,11 @@ void COprtTabPageAnalize::OnBnClickedRdoJointresultclasresult()
 		return;
 	}
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
-	if (pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST,CWeldEvaluationDoc::eJoiningResult,CWeldEvaluationDoc::AnalizeTypeHiClustering) != 0) {
+	if (pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST,CWeldEvaluationDoc::eJoiningResult,CWeldEvaluationDoc::DisplayModeResult) != 0) {
 		m_ResultDisplayMode = org;
 	} else {
 		CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
-		pDoc->SetDisplayMode(CWeldEvaluationDoc::eJoiningResult,CWeldEvaluationDoc::AnalizeTypeHiClustering);
+		pDoc->SetDisplayMode(CWeldEvaluationDoc::eJoiningResult,CWeldEvaluationDoc::DisplayModeResult);
 	}
 	UpdateData(false);
 }
@@ -357,3 +442,26 @@ void COprtTabPageAnalize::OnBnClickedBtnSectionspectrumdisplay()
 	pViewWnd->PostMessageW(WM_AREA_SPECTRUM_GRAPH_REQUEST,NULL, NULL);
 }
 
+/// <summary>
+/// 解析手法の取得
+/// </summary>
+/// <param name="ItemID">表示ターゲットID</param>
+/// <returns>解析手法を返す</returns>
+int COprtTabPageAnalize::GetAnalizeType(int ItemID)
+{
+	int AnalizeType = 0;
+	UpdateData(true);
+	switch (ItemID) {
+	case		CWeldEvaluationDoc::eResinSurface	:
+		AnalizeType = m_ResinAnalizeType;
+		break;
+	case		CWeldEvaluationDoc::eMetalSurface	:
+		AnalizeType = m_MetalAnalizeType;
+		break;
+	case		CWeldEvaluationDoc::eJoiningResult	:
+		AnalizeType = m_JointAnalizeType;
+		break;
+	}
+	int type = AnalizeType == 0 ? CWeldEvaluationDoc::AnalizeTypeKMeans : CWeldEvaluationDoc::AnalizeTypeHiClustering;
+	return type;
+}

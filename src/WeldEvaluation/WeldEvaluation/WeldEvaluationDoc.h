@@ -94,8 +94,8 @@ private:
 	CString getScanDataPath(int ScanID);
 	CString getScanDataFilePath(int ScanID);
 	CString getScanImageFilePath(int ScanID);
-	CString getResultDataFilePath(int ScanID);
-	CString getResultImageFilePath(int ScanID);
+	CString getClassificationDataFilePath(int ScanID, int type);
+	CString getClassificationImageFilePath(int ScanID, int type);
 	bool CalcJoJointRetio(std::vector<int>data, int nClass, std::vector<double> &retio);
 	std::vector<int> CWeldEvaluationDoc::split(std::string& input, char delimiter, int size= 0);
 	void H2RGB(int h, BYTE &r, BYTE &g, BYTE &b);
@@ -143,13 +143,15 @@ public:
 
 	//////////////////////////////////////////////////////////////////////////////////
 	// プロジェクトデータIO
-	CString GetResinScanImagePath();
-	CString GetResinClassificationResultPath();
+//	CString GetResinScanImagePath();
+//	CString GetResinClassificationResultPath();
 
-	CString GetMetalScanImagePath();
-	CString GetMetalClassificationResultPath();
+//	CString GetMetalScanImagePath();
+//	CString GetMetalClassificationResultPath();
 
-	CString GetClassScanImagePath();
+//	CString GetClassScanImagePath();
+	CString GetScanImagePath(int fileID);
+	CString GetClassificationResultPath(int fileID, int type);
 
 	int		GetDisplayMode(int targetID);
 	bool	SetDisplayMode(int targetID, int DisplayModeID);
@@ -184,8 +186,8 @@ public:
 	bool	IsNew(void);
 	bool	ExistScanFile(int fileID);
 	bool	SaveScanImage(int ScanID);
-	bool	ExistClassificationResultFile(int fileID);
-	bool	SaveClassificationResultFile(int ScanID);
+	bool	ExistClassificationResultFile(int fileID, int type);
+	bool	SaveClassificationResultFile(int ScanID, int type);
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//
@@ -193,7 +195,7 @@ public:
 	void	CalcResultStopRequest();
 
 	bool	LoadScanImage(int targetID, CImage &img, bool renew = false);
-	bool	LoadClassificationResultImage(int targetID, CImage &img, bool renew = false);
+	bool	LoadClassificationResultImage(int targetID, int type, CImage &img, bool renew = false);
 	
 	bool	GetSpectrumData(int ScanID, CPoint &pos, std::vector<double> &data);
 };

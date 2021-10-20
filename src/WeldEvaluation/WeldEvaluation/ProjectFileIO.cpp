@@ -92,12 +92,16 @@ void CProjectFileIO::Initialze()
 	m_ImageDataRootPath								= _T("");	///< イメージデータへのルートパス
 
 	m_ResinScanImageFile							= _T("");	///< 樹脂面スキャン画像ファイル名
-	m_ResinClassificationResultFile					= _T("");	///< 樹脂面分類結果ファイル名
+	m_ResinDendrogramClassFile						= _T("");	///< 樹脂面階層クラスタリング分類結果ファイル名
+	m_ResinKmeansClassFile							= _T("");	///< 樹脂面k-means分類結果ファイル名
 
 	m_MetalScanImageFile							= _T("");	///< 金属面スキャン画像ファイル名
-	m_MetalClassificationResultFile					= _T("");	///< 金属面分類結果ファイル名
+	m_MetalDendrogramClassFile						= _T("");	///< 金属面階層クラスタリング分類結果ファイル名
+	m_MetalKmeansClassFile							= _T("");	///< 金属面k-means分類結果ファイル名
 
-	m_ResultScanImageFile							= _T("");	///< 結果画像スキャン画像ファイル名
+	m_ResultScanImageFile							= _T("");	///< 接合結果画像スキャン画像ファイル名
+	m_ResultDendrogramClassFile						= _T("");	///< 接合結果階層クラスタリング分類結果ファイル名
+	m_ResultKmeansClassFile							= _T("");	///< 接合結果k-means分類結果ファイル名
 
 	m_SpectralGraphPointTarget						= 0;		///< スペクトルグラフ（点指定）の対象
 	m_SpectralGraphPointHolizontalPosition			= 0;		///< スペクトルグラフ（点指定）の水平位置
@@ -181,12 +185,16 @@ bool CProjectFileIO::read(CString path)
 	m_ImageDataRootPath = sys.getString(_T("Common"),_T("image_data_root_path"));							// イメージデータへのルートパス
 
 	m_ResinScanImageFile = sys.getString(_T("ResinSurface"),_T("scan_image_file"));							// 樹脂面スキャン画像ファイル名
-	m_ResinClassificationResultFile = sys.getString(_T("ResinSurface"),_T("classification_result_file"));	// 樹脂面分類結果ファイル名
+	m_ResinDendrogramClassFile = sys.getString(_T("ResinSurface"),_T("dendrogram_classification"));			// 樹脂面分類結果階層クラスタリングファイル名
+	m_ResinKmeansClassFile = sys.getString(_T("ResinSurface"), _T("kmeans_classification"));				// 樹脂面分類結果k-meansファイル名
 
 	m_MetalScanImageFile = sys.getString(_T("MetalSurface"),_T("scan_image_file"));							// 金属面スキャン画像ファイル名
-	m_MetalClassificationResultFile = sys.getString(_T("MetalSurface"),_T("classification_result_file"));	// 金属面分類結果ファイル名
+	m_MetalDendrogramClassFile = sys.getString(_T("MetalSurface"),_T("dendrogram_classification"));			// 金属面分類結果階層クラスタリングファイル名
+	m_MetalKmeansClassFile = sys.getString(_T("MetalSurface"), _T("kmeans_classification"));				// 金属面分類結果k-meansファイル名
 
 	m_ResultScanImageFile = sys.getString(_T("JoiningResult"),_T("scan_image_file"));						// 結果画像スキャン画像ファイル名
+	m_ResultDendrogramClassFile = sys.getString(_T("JoiningResult"), _T("dendrogram_classification"));		// 結果階層クラスタリングファイル名
+	m_ResultKmeansClassFile = sys.getString(_T("JoiningResult"), _T("kmeans_classification"));				// 結果k-meansファイル名
 
 	m_SpectralGraphPointTarget = sys.getInt(_T("SpectralGraphPoint"),_T("target"));							// スペクトルグラフ（点指定）の対象
 	// スペクトルグラフ（点指定）の位置
@@ -237,9 +245,12 @@ bool CProjectFileIO::save(CString path)
 	if (!sys.setString(_T("ResinSurface"),_T("scan_image_file"),m_ResinScanImageFile)) {
 		bResult = false;
 	}
-
-	// 樹脂面分類結果ファイル名
-	if (!sys.setString(_T("ResinSurface"),_T("classification_result_file"),m_ResinClassificationResultFile)) {
+	// 樹脂面階層クラスタリング分類結果ファイル名
+	if (!sys.setString(_T("ResinSurface"),_T("dendrogram_classification"), m_ResinDendrogramClassFile)) {
+		bResult = false;
+	}
+	// 樹脂面k-means分類結果ファイル名
+	if (!sys.setString(_T("ResinSurface"), _T("kmeans_classification"), m_ResinKmeansClassFile)) {
 		bResult = false;
 	}
 
@@ -247,13 +258,25 @@ bool CProjectFileIO::save(CString path)
 	if (!sys.setString(_T("MetalSurface"),_T("scan_image_file"),m_MetalScanImageFile)) {
 		bResult = false;
 	}
-	// 金属面分類結果ファイル名
-	if (!sys.setString(_T("MetalSurface"),_T("classification_result_file"),m_MetalClassificationResultFile)) {
+	// 金属面階層クラスタリング分類結果ファイル名
+	if (!sys.setString(_T("MetalSurface"),_T("dendrogram_classification"), m_MetalDendrogramClassFile)) {
+		bResult = false;
+	}
+	// 金属面k-means分類結果ファイル名
+	if (!sys.setString(_T("MetalSurface"), _T("kmeans_classification"), m_MetalKmeansClassFile)) {
 		bResult = false;
 	}
 
 	// 結果画像スキャン画像ファイル名
 	if (!sys.setString(_T("JoiningResult"),_T("scan_image_file"),m_ResultScanImageFile)) {
+		bResult = false;
+	}
+	// 接合結果階層クラスタリング分類結果ファイル名
+	if (!sys.setString(_T("JoiningResult"), _T("dendrogram_classification"), m_ResultDendrogramClassFile)) {
+		bResult = false;
+	}
+	// 接合結果k-means分類結果ファイル名
+	if (!sys.setString(_T("JoiningResult"), _T("kmeans_classification"), m_ResultKmeansClassFile)) {
 		bResult = false;
 	}
 
@@ -365,22 +388,42 @@ bool CProjectFileIO::SetResinScanImageFile(CString fileName)
 }
 
 /// <summary>
-/// 樹脂面分類結果ファイル名の取得
+/// 樹脂面階層クラスタリング分類結果ファイル名の取得
 /// </summary>
-/// <returns>樹脂面分類結果ファイル名を返す</returns>
-CString CProjectFileIO::GetResinClassificationResultFile()
+/// <returns>樹脂面クラスタリング分類結果ファイル名を返す</returns>
+CString CProjectFileIO::GetResinDendrogramClassFile()
 {
-	return m_ResinClassificationResultFile;
+	return m_ResinDendrogramClassFile;
 }
 
 /// <summary>
-/// 樹脂面分類結果ファイル名の設定
+/// 樹脂面階層クラスタリング分類結果ファイル名の設定
 /// </summary>
-/// <param name="fileName">樹脂面分類結果ファイル名</param>
+/// <param name="fileName">樹脂面階層クラスタリング分類結果ファイル名</param>
 /// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
-bool CProjectFileIO::SetResinClassificationResultFile(CString fileName)
+bool CProjectFileIO::SetResinDendrogramClassFile(CString fileName)
 {
-	m_ResinClassificationResultFile = fileName;
+	m_ResinDendrogramClassFile = fileName;
+	return true;
+}
+
+/// <summary>
+/// 樹脂面k-means分類結果ファイル名の取得
+/// </summary>
+/// <returns>樹脂面k-means分類結果ファイル名を返す</returns>
+CString CProjectFileIO::GetResinKmeansClassFile()
+{
+	return m_ResinKmeansClassFile;
+}
+
+/// <summary>
+/// 樹脂面k-means分類結果ファイル名の設定
+/// </summary>
+/// <param name="fileName">樹脂面k-means分類結果ファイル名</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
+bool CProjectFileIO::SetResinKmeansClassFile(CString fileName)
+{
+	m_ResinKmeansClassFile = fileName;
 	return true;
 }
 
@@ -433,22 +476,42 @@ bool CProjectFileIO::SetMetalScanImageFile(CString fileName)
 }
 
 /// <summary>
-/// 金属面分類結果ファイル名の取得
+/// 金属面階層クラスタリング分類結果ファイル名の取得
 /// </summary>
-/// <returns>金属面分類結果ファイル名を返す</returns>
-CString CProjectFileIO::GetMetalClassificationResultFile()
+/// <returns>金属面階層クラスタリング分類結果ファイル名を返す</returns>
+CString CProjectFileIO::GetMetalDendrogramClassFile()
 {
-	return m_MetalClassificationResultFile;
+	return m_MetalDendrogramClassFile;
 }
 
 /// <summary>
-/// 金属面分類結果ファイル名の設定
+/// 金属面階層クラスタリング分類結果ファイル名の設定
 /// </summary>
-/// <param name="fileName">金属面分類結果ファイル名</param>
+/// <param name="fileName">金属面階層クラスタリング分類結果ファイル名</param>
 /// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
-bool CProjectFileIO::SetMetalClassificationResultFile(CString fileName)
+bool CProjectFileIO::SetMetalDendrogramClassFile(CString fileName)
 {
-	m_MetalClassificationResultFile = fileName;
+	m_MetalDendrogramClassFile = fileName;
+	return true;
+}
+
+/// <summary>
+/// 金属面k-means分類結果ファイル名の取得
+/// </summary>
+/// <returns>金属面分類結果k-meansファイル名を返す</returns>
+CString CProjectFileIO::GetMetalKmeansClassFile()
+{
+	return m_MetalKmeansClassFile;
+}
+
+/// <summary>
+/// 金属面k-means分類結果ファイル名の設定
+/// </summary>
+/// <param name="fileName">金属面分類結果k-meansファイル名</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
+bool CProjectFileIO::SetMetalKmeansClassFile(CString fileName)
+{
+	m_MetalKmeansClassFile = fileName;
 	return true;
 }
 
@@ -481,18 +544,18 @@ bool CProjectFileIO::SetMetalDisplayType(int displayType)
 
 
 /// <summary>
-/// 結果画像スキャン画像ファイル名の取得
+/// 接合結果画像スキャン画像ファイル名の取得
 /// </summary>
-/// <returns>結果画像スキャン画像ファイル名を返す</returns>
+/// <returns>接合結果画像スキャン画像ファイル名を返す</returns>
 CString CProjectFileIO::GetResultScanImageFile()
 {
 	return m_ResultScanImageFile;
 }
 
 /// <summary>
-/// 結果画像スキャン画像ファイル名の設定
+/// 接合結果画像スキャン画像ファイル名の設定
 /// </summary>
-/// <param name="fileName">結果画像スキャン画像ファイル名</param>
+/// <param name="fileName">接合結果画像スキャン画像ファイル名</param>
 /// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CProjectFileIO::SetResultScanImageFile(CString fileName)
 {
@@ -501,9 +564,49 @@ bool CProjectFileIO::SetResultScanImageFile(CString fileName)
 }
 
 /// <summary>
-/// 結果画像表示タイプの取得
+/// 接合結果階層クラスタリング分類ファイル名の取得
 /// </summary>
-/// <returns>結果画像表示タイプを返す</returns>
+/// <returns>接合結果階層クラスタリング分類ファイル名を返す</returns>
+CString CProjectFileIO::GetResultDendrogramClassFile()
+{
+	return m_ResultDendrogramClassFile;
+}
+
+/// <summary>
+/// 接合結果階層クラスタリングフ分類ァイル名の設定
+/// </summary>
+/// <param name="fileName">接合結果階層クラスタリング分類ファイル名</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
+bool CProjectFileIO::SetResultDendrogramClassFile(CString fileName)
+{
+	m_ResultDendrogramClassFile = fileName;
+	return true;
+}
+
+/// <summary>
+/// 接合結果k-meansファイル名の取得
+/// </summary>
+/// <returns>接合結果k-meansファイル名を返す</returns>
+CString CProjectFileIO::GetResultKmeansClassFile()
+{
+	return m_ResultKmeansClassFile;
+}
+
+/// <summary>
+/// 接合結果k-meansファイル名の設定
+/// </summary>
+/// <param name="fileName">接合結果k-meansファイル名</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
+bool CProjectFileIO::SetResultKmeansClassFile(CString fileName)
+{
+	m_ResultKmeansClassFile = fileName;
+	return true;
+}
+
+/// <summary>
+/// 接合結果画像表示タイプの取得
+/// </summary>
+/// <returns>接合結果画像表示タイプを返す</returns>
 int CProjectFileIO::GetResultDisplayType()
 {
 	if (!CFileUtil::fileExists(m_ProjectFilePath)) {
@@ -514,9 +617,9 @@ int CProjectFileIO::GetResultDisplayType()
 }
 
 /// <summary>
-/// 結果画像表示タイプの設定
+/// 接合結果画像表示タイプの設定
 /// </summary>
-/// <param name="displayType">結果画像表示タイプ</param>
+/// <param name="displayType">接合結果画像表示タイプ</param>
 /// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CProjectFileIO::SetResultDisplayType(int displayType)
 {

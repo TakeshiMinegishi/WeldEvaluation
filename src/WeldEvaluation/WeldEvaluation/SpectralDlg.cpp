@@ -77,12 +77,11 @@ BOOL CSpectralDlg::OnInitDialog()
 		CRect rcClientMain;
 		GetClientRect(&rcClientMain);
 		m_orgClientSize = rcClientMain;
-		TRACE(_T("Main  %d, %d\n"), rcClientMain.Width(), rcClientMain.Height());
+		m_bfClientSize  = rcClientMain;
 
 		CRect rcClient;
 		pWnd->GetWindowRect(rcClient);
 		ScreenToClient(rcClient);
-		TRACE(_T("Graph %d, %d\n"), rcClient.Width(), rcClient.Height());
 
 		m_pGraphWnd->MoveWindow(rcClient);
 		pWnd->ShowWindow(SW_HIDE);
@@ -127,6 +126,14 @@ void CSpectralDlg::OnSizing(UINT fwSide, LPRECT pRect)
 {
 	CRect	rect;
 	GetWindowRect(&rect);
+	if (((CRect*)pRect)->Width() < m_orgClientSize.Width()) {
+		pRect->left = rect.left;
+		pRect->right = rect.right;
+	}
+	if (((CRect*)pRect)->Height() < m_orgClientSize.Height()) {
+		pRect->top = rect.top;
+		pRect->bottom = rect.bottom;
+	}
 
 	int deltaWidth = ((CRect*)pRect)->Width() - rect.Width();
 	int deltaHeight = ((CRect*)pRect)->Height() - rect.Height();
@@ -134,27 +141,34 @@ void CSpectralDlg::OnSizing(UINT fwSide, LPRECT pRect)
 	CWnd *pWnd = GetDlgItem(IDC_STC_GRAPH);
 	if (pWnd) {
 		pWnd->GetWindowRect(rect);
+		TRACE(_T(" static rect  (%d, %d) W:%d, H:%d\n"), rect.left, rect.top, rect.Width(), rect.Height());
+
 		int sx = rect.Width() + deltaWidth;
 		int sy = rect.Height() + deltaHeight;
 		::SetWindowPos(pWnd->m_hWnd, NULL, 0, 0, sx, sy, (SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOMOVE));
+		pWnd->GetWindowRect(rect);
+		TRACE(_T(" ->     rect  (%d, %d) W:%d, H:%d\n"), rect.left, rect.top, rect.Width(), rect.Height());
 
 		CRect rcClient;
 		pWnd->GetWindowRect(rcClient);
 		ScreenToClient(rcClient);
 		m_pGraphWnd->MoveWindow(rcClient);
-		pWnd->ShowWindow(SW_HIDE);
-		m_pGraphWnd->ShowWindow(SW_SHOW);
+//		pWnd->ShowWindow(SW_HIDE);
+		m_pGraphWnd->Invalidate();
+//		m_pGraphWnd->ShowWindow(SW_SHOW);
+		m_bfClientSize = CRect(0, 0, 0, 0);
 
-		CRect rcClientMain;
-		GetClientRect(&rcClientMain);
-		m_orgClientSize = rcClientMain;
-		TRACE(_T("OnSizing Main  %d, %d\n"), rcClientMain.Width(), rcClientMain.Height());
-		m_orgClientSize = CRect(0, 0, 0, 0);
+		m_pGraphWnd->GetWindowRect(rcClient);
+		TRACE(_T(" graph rect      (%d, %d) W:%d, H:%d\n"), rcClient.left, rcClient.top, rcClient.Width(), rcClient.Height());
 	}
 	CDialog::OnSizing(fwSide, pRect);
 }
 
-
+/// <summary>
+/// ウインドの作成
+/// </summary>
+/// <param name="lpCreateStruct">CREATESTRUCTオブジェクトへのポインタ</param>
+/// <param name="pRect">成功した場合は0、失敗した場合は0以外を返す</param>
 int CSpectralDlg::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CDialog::OnCreate(lpCreateStruct) == -1)
@@ -163,22 +177,27 @@ int CSpectralDlg::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	return 0;
 }
 
-
+/// <summary>
+/// ウインドサイズの変更
+/// </summary>
+/// <param name="nType">ウインドタイプ</param>
+/// <param name="cx">変更後のウインド幅</param>
+/// <param name="cy">変更後のウインド高さ</param>
 void CSpectralDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CDialog::OnSize(nType, cx, cy);
 
-	if ((m_orgClientSize.Width() == 0) || (m_orgClientSize.Height() == 0)) {
+	if ((m_bfClientSize.Width() == 0) || (m_bfClientSize.Height() == 0)) {
 		return;
 	}
 	TRACE(_T("OnSize %d, %d\n"), cx, cy);
-	TRACE(_T("       %d, %d\n"), m_orgClientSize.Width(), m_orgClientSize.Height());
+	TRACE(_T("       %d, %d\n"), m_bfClientSize.Width(), m_bfClientSize.Height());
 
 
 	CWnd *pWnd = GetDlgItem(IDC_STC_GRAPH);
 	if (pWnd) {
-		int deltaWidth = cx - m_orgClientSize.Width();
-		int deltaHeight = cy - m_orgClientSize.Height();
+		int deltaWidth = cx - m_bfClientSize.Width();
+		int deltaHeight = cy - m_bfClientSize.Height();
 		TRACE(_T("       delta %d, %d\n"), deltaWidth, deltaHeight);
 
 		CRect	rect;
@@ -194,10 +213,15 @@ void CSpectralDlg::OnSize(UINT nType, int cx, int cy)
 
 		CRect rcClientMain;
 		GetClientRect(&rcClientMain);
-		m_orgClientSize = rcClientMain;
+		m_bfClientSize = rcClientMain;
 	}
+	m_pGraphWnd->OnPaint();
 }
 
+/// <summary>
+/// スペクトルグラフの表示
+/// </summary>
+/// <param name="nType">表示データ群</param>
 void CSpectralDlg::draw(std::vector<std::vector<double>> data)
 {
 	m_data = data;

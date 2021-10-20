@@ -72,6 +72,7 @@ public:
 	void Draw();
 	bool clientToScan(CPoint &pos);
 	bool ScanToclient(CPoint &pos);
+	void SetImagePos(CRect &rect);
 
 	CImage *GetImage(bool bDetach = true);
 };
