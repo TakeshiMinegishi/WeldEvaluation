@@ -5,16 +5,20 @@
 
 // CPropTabPageParameter ダイアログ
 
+/// <summary>
+/// プロパティタブ　パラメータ管理クラス
+/// </summary>
 class CPropTabPageParameter : public CDialogEx
 {
 	DECLARE_DYNAMIC(CPropTabPageParameter)
 
 public:
-	int			m_PageID;
-	UINT		m_NumberOfClass;
-	CString		m_JointRatio;
-	CComboBox	m_cmbJoinratioTarget;
-	CString		m_strJoinratioTarget;
+	int			m_PageID;					///< ページID
+	UINT		m_NumberOfClass;			///< 分類数
+	CString		m_JointRatio;				///< 接合割合
+	CComboBox	m_cmbJoinratioTarget;		///< 分類用コンボボックス
+	CString		m_strJoinratioTarget;		///< 選択分類値
+	CStatic		m_stcIDColor;				///< 分類ID色
 
 public:
 	CPropTabPageParameter(CWnd* pParent = NULL);   // 標準コンストラクター
@@ -30,6 +34,7 @@ protected:
 private:
 	void ItemEnable(int ItemID,bool bActive);
 	void UpdateCmbJoinratioTargetLabel();
+	void UpdateIDColor(COLORREF color);
 
 public:
 	afx_msg void OnDeltaposSpinNumofclass(NMHDR *pNMHDR, LRESULT *pResult);

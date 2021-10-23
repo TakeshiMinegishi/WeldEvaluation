@@ -4,9 +4,15 @@
 
 // CStatusDlg ダイアログ
 
+/// <summary>
+/// ステータスダイアログクラス
+/// </summary>
 class CStatusDlg : public CDialogEx
 {
 	DECLARE_DYNAMIC(CStatusDlg)
+
+public:
+	CString m_Status;		///< ステータス
 
 public:
 	CStatusDlg(CWnd* pParent = NULL);   // 標準コンストラクター
@@ -22,7 +28,6 @@ protected:
 
 public:
 	afx_msg void UpdateStatus();
-	CString m_Status;
 
 private:
 	CEdit m_CtrlEditStatus;

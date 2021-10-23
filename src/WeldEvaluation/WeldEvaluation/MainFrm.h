@@ -4,6 +4,9 @@
 
 #pragma once
 
+/// <summary>
+/// CMainFrame クラス
+/// </summary>
 class CMainFrame : public CFrameWnd
 {
 	
@@ -30,7 +33,7 @@ public:
 #endif
 
 protected:  // コントロール バー用メンバー
-	CStatusBar        m_wndStatusBar;
+	CStatusBar        m_wndStatusBar;		///< ステータスバーオブジェクト
 
 // 生成された、メッセージ割り当て関数
 protected:

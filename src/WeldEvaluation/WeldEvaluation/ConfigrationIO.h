@@ -1,4 +1,7 @@
 #pragma once
+/// <summary>
+/// システム設定ファイルIOクラス
+/// </summary>
 class CConfigrationIO
 {
 private:

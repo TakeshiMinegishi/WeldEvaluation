@@ -146,6 +146,13 @@ void CGraphWind::CreateBackground(CRect &bgArea)
 	dc->SelectObject(orgBrush);
 	ReleaseDC(dc);		
 }
+
+/// <summary>
+/// 色相からRGBへの変換
+/// </summary>
+/// <param name="h">色相</param>
+/// <param name="col">RGB値</param>
+/// @remark 彩度、明度は100%で変換
 void CGraphWind::H2RGB(int h, COLORREF &col)
 {
 	BYTE r=0, g=0, b=0;
@@ -468,6 +475,12 @@ void CGraphWind::DrawGraph(CDC *pDC, CRect area)
 		else if (v > m_verMax) v = m_verMax;
 		y = area.bottom - (int)((v + fabs(m_verMin)) / resolution + .5);
 		y += zeroLine;
+		if (y > area.bottom) {
+			y = area.bottom;
+		}
+		else if (y > area.top) {
+			y = area.top;
+		}
 		pDC->MoveTo(x, y);
 		for (int j = 1; j < nData; j++) {
 			x = area.left + (int)(j*h_resoution + .5);

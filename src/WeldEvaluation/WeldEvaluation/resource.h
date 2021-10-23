@@ -123,6 +123,8 @@
 #define IDC_STC_GRAPH_WND               1077
 #define IDC_STC_STATUS                  1078
 #define IDC_PRO_STATUS                  1079
+#define IDC_STC_IDCOLOOR                1079
+#define IDC_STC_IDCOLOR                 1080
 
 // Next default values for new objects
 // 
@@ -130,7 +132,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        327
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1079
+#define _APS_NEXT_CONTROL_VALUE         1081
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

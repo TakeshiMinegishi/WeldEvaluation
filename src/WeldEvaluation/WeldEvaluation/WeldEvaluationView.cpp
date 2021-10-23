@@ -41,11 +41,14 @@ BEGIN_MESSAGE_MAP(CWeldEvaluationView, CFormView)
 	ON_MESSAGE(WM_ANALYSE_REQUEST, OnAnalyzeRequest)
 	ON_MESSAGE(WM_RESIST_REGIST, OnProjectResistRequest)
 	ON_MESSAGE(WM_IMAGE_OUTPUT_REGIST, OnImageOutputRequest)
+	ON_MESSAGE(WM_IMAGE_SCALING, OnImageScaling)
+	ON_MESSAGE(WM_IMAGE_MOVEING, OnImageMoveing)
 	ON_MESSAGE(WM_READ_RESULT_STATUS, OnReadResultFileStatus)
 	ON_MESSAGE(WM_SPECTRUM_GRAPH_REQUEST, OnSpectrumGraphRequest)
 	ON_MESSAGE(WM_AREA_SPECTRUM_GRAPH_REQUEST, OnAreaSpectrumGraphRequest)
 	ON_MESSAGE(WM_SPECTRUME_CLOSE_REQUEST, OnSpectrumeCloseRequest)
 	ON_MESSAGE(WM_AREA_SPECTRUM_GRAPH_SET, OnAreaSpectrumeGraphSet)
+	
 
 	ON_WM_NCDESTROY()
 	ON_WM_DESTROY()
@@ -99,6 +102,11 @@ void CWeldEvaluationView::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BTN_PROP_UPDATE, m_btnPropTabOK);
 }
 
+/// <summary>
+/// ウインド作成前処理
+/// </summary>
+/// <param name="cs">CREATESTRUCT構造体</param>
+/// <returns>作成を継続する場合はTRUE、それ以外はFALSEを返す</returns>
 BOOL CWeldEvaluationView::PreCreateWindow(CREATESTRUCT& cs)
 {
 	// TODO: この位置で CREATESTRUCT cs を修正して Window クラスまたはスタイルを
@@ -107,6 +115,9 @@ BOOL CWeldEvaluationView::PreCreateWindow(CREATESTRUCT& cs)
 	return CFormView::PreCreateWindow(cs);
 }
 
+/// <summary>
+/// 初期化処理
+/// </summary>
 void CWeldEvaluationView::OnInitialUpdate()
 {
 	CFormView::OnInitialUpdate();
@@ -319,16 +330,27 @@ void CWeldEvaluationView::OnInitialUpdate()
 // CWeldEvaluationView 診断
 
 #ifdef _DEBUG
+/// <summary>
+/// オブジェクトの妥当性検査の実施
+/// </summary>
 void CWeldEvaluationView::AssertValid() const
 {
 	CFormView::AssertValid();
 }
 
+/// <summary>
+/// CDumpContextオブジェクトの内容をダンプ
+/// </summary>
+/// <param name="dc">afxDump診断ダンプ コンテキスト</param>
 void CWeldEvaluationView::Dump(CDumpContext& dc) const
 {
 	CFormView::Dump(dc);
 }
 
+/// <summary>
+/// ドキュメントの取得
+/// </summary>
+/// <returns>CWeldEvaluationDocへのポインタを返す</returns>
 CWeldEvaluationDoc* CWeldEvaluationView::GetDocument() const // デバッグ以外のバージョンはインラインです。
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CWeldEvaluationDoc)));
@@ -339,7 +361,12 @@ CWeldEvaluationDoc* CWeldEvaluationView::GetDocument() const // デバッグ以外のバ
 
 // CWeldEvaluationView メッセージ ハンドラー
 
-
+/// <summary>
+/// ウインドサイズの変更
+/// </summary>
+/// <param name="nType">ウインドタイプ</param>
+/// <param name="cx">変更後のウインド幅</param>
+/// <param name="cy">変更後のウインド高さ</param>
 void CWeldEvaluationView::OnSize(UINT nType, int cx, int cy)
 {
 	CFormView::OnSize(nType, cx, cy);
@@ -441,7 +468,6 @@ void CWeldEvaluationView::UpdateRegistFolderList()
 /// <param name="pNMHDR">LPNMITEMACTIVATEオブジェクトへのポインタ</param>
 /// <param name="pResult">結果</param>
 /// <returns>表示モードを返す</returns>
-
 void CWeldEvaluationView::OnNMDblclkLstRegistTest(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
@@ -480,21 +506,16 @@ void CWeldEvaluationView::OnNMDblclkLstRegistTest(NMHDR *pNMHDR, LRESULT *pResul
 		DisplayMode = pDoc->GetDisplayMode(CWeldEvaluationDoc::eResinSurface);
 		OnViewChangeRequest(CWeldEvaluationDoc::eResinSurface, DisplayMode);
 		m_pReginWnd->Invalidate();
-		{
-			MSG msg;
-			while (PeekMessage(&msg, m_pReginWnd->m_hWnd, 0, 0, PM_REMOVE)) {
-				TranslateMessage(&msg);
-				DispatchMessage(&msg);
-			}
-		}
 
 		// 金属面画像
 		DisplayMode = pDoc->GetDisplayMode(CWeldEvaluationDoc::eMetalSurface);
 		OnViewChangeRequest(CWeldEvaluationDoc::eMetalSurface, DisplayMode);
-		m_pMetalWnd->UpdateWindow();
+		m_pReginWnd->Invalidate();
+
 		// 結果画像
 		DisplayMode = pDoc->GetDisplayMode(CWeldEvaluationDoc::eJoiningResult);
 		OnViewChangeRequest(CWeldEvaluationDoc::eJoiningResult, DisplayMode);
+		m_pReginWnd->Invalidate();
 
 		//#######################################################
 		//#
@@ -522,6 +543,11 @@ void CWeldEvaluationView::OnNMDblclkLstRegistTest(NMHDR *pNMHDR, LRESULT *pResul
 // 操作タブ操作関連
 //
 
+/// <summary>
+/// 操作タブ切り替え時処理
+/// </summary>
+/// <param name="pNMHDR"> NMHDR 構造体へのポインター</param>
+/// <param name="pResult">結果</param>
 void CWeldEvaluationView::OnTcnSelchangeTabOperation(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	int	SelIdx;
@@ -568,6 +594,11 @@ void CWeldEvaluationView::OnTcnSelchangeTabOperation(NMHDR *pNMHDR, LRESULT *pRe
 // プロパティタブ操作関連
 //
 
+/// <summary>
+/// プロパティタブ切り替え時処理
+/// </summary>
+/// <param name="pNMHDR"> NMHDR 構造体へのポインター</param>
+/// <param name="pResult">結果</param>
 void CWeldEvaluationView::OnTcnSelchangeTabPropaty(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	int	SelIdx;
@@ -623,6 +654,9 @@ void CWeldEvaluationView::OnTcnSelchangeTabPropaty(NMHDR *pNMHDR, LRESULT *pResu
 	}
 }
 
+/// <summary>
+/// プロパティ更新ボタン押下時処理
+/// </summary>
 void CWeldEvaluationView::OnBnClickedBtnPropUpdate()
 {
 	int SelIdx = -1;
@@ -632,13 +666,21 @@ void CWeldEvaluationView::OnBnClickedBtnPropUpdate()
 	OnUpdateRequestPrpoTab(false,0);
 }
 
-
+/// <summary>
+/// プロパティキャンセルボタン押下時処理
+/// </summary>
 void CWeldEvaluationView::OnBnClickedBtnPropCancel()
 {
 	OnUpdateRequestPrpoTab(false,0);
 	ReloadPropaty(m_SelPropPageId);
 }
 
+/// <summary>
+/// プロパティキャンセルボタン押下時処理
+/// </summary>
+/// <param name="wparam"> 更新フラグ</param>
+/// <param name="lparam"> 未使用</param>
+/// <returns>成功した場合は0、失敗した場合は0以外を返す</returns>
 LRESULT CWeldEvaluationView::OnUpdateRequestPrpoTab(WPARAM wparam, LPARAM lparam)
 {
 	bool bUpdate = (bool)wparam;
@@ -648,6 +690,9 @@ LRESULT CWeldEvaluationView::OnUpdateRequestPrpoTab(WPARAM wparam, LPARAM lparam
 	return 0;
 }
 
+/// <summary>
+/// プロパティ読み込み
+/// </summary>
 void CWeldEvaluationView::LoadPropaty()
 {
 	int iCnt = (int)m_PropTab.GetSize();
@@ -656,6 +701,10 @@ void CWeldEvaluationView::LoadPropaty()
 	}
 }
 
+/// <summary>
+/// プロパティの有効化
+/// </summary>
+/// <param name="bActive"> 有効フラグ</param>
 void CWeldEvaluationView::EnablePropaty(bool bActive)
 {
 	m_PropResinPage.ItemActive(bActive);
@@ -664,6 +713,10 @@ void CWeldEvaluationView::EnablePropaty(bool bActive)
 	m_PropSettingPage.ItemActive(bActive);
 }
 
+/// <summary>
+/// プロパティページの更新
+/// </summary>
+/// <param name="propatyID"> プロパティID</param>
 void CWeldEvaluationView::UpdatePropaty(int propatyID)
 {
 	switch(propatyID) {
@@ -694,6 +747,10 @@ void CWeldEvaluationView::UpdatePropaty(int propatyID)
 	}
 }
 
+/// <summary>
+/// プロパティページの再読込
+/// </summary>
+/// <param name="propatyID"> プロパティID</param>
 void CWeldEvaluationView::ReloadPropaty(int propatyID)
 {
 	switch(propatyID) {
@@ -724,6 +781,9 @@ void CWeldEvaluationView::ReloadPropaty(int propatyID)
 	}
 }
 
+/// <summary>
+/// 設定の読込
+/// </summary>
 void CWeldEvaluationView::LoadSetting()
 {
 	int iCnt = (int)m_OprtTab.GetSize();
@@ -732,11 +792,19 @@ void CWeldEvaluationView::LoadSetting()
 	}
 }
 
+/// <summary>
+/// 設定の有効化
+/// </summary>
+/// <param name="bActive"> 有効フラグ</param>
 void CWeldEvaluationView::EnableSetting(bool bActive)
 {
 
 }
 
+/// <summary>
+/// 設定ページの再読込
+/// </summary>
+/// <param name="settingID"> 設定ページID</param>
 void CWeldEvaluationView::ReloadSetting(int settingID)
 {
 	switch(settingID) {
@@ -771,6 +839,12 @@ void CWeldEvaluationView::ReloadSetting(int settingID)
 // スキャン処理関連
 //
 
+/// <summary>
+/// スキャンの要求
+/// </summary>
+/// <param name="wparam"> スキャンID</param>
+/// <param name="lparam"> スキャン結果</param>
+/// <returns>成功した場合は0、失敗した場合は0以外を返す</returns>
 LRESULT CWeldEvaluationView::OnScanRequest(WPARAM wparam, LPARAM lparam)
 {
 	EnablePropaty(false);
@@ -814,6 +888,12 @@ LRESULT CWeldEvaluationView::OnScanRequest(WPARAM wparam, LPARAM lparam)
 	return 0;
 }
 
+/// <summary>
+/// スキャンの実施
+/// </summary>
+/// <param name="pStatus"> スレッドオブジェクト</param>
+/// <param name="ScanID"> スキャンID</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 {
 	// ダミーの処理
@@ -865,12 +945,146 @@ LRESULT CWeldEvaluationView::OnProjectResistRequest(WPARAM wparam, LPARAM lparam
 /// <summary>
 /// 画像出力要求
 /// </summary>
-// <param name="wparam">未使用</param>
+/// <param name="wparam">未使用</param>
 /// <param name="lparam">未使用</param>
 //// <returns>成功場合は0、失敗場合は-1を返す</returns>
 LRESULT CWeldEvaluationView::OnImageOutputRequest(WPARAM wparam, LPARAM lparam)
 {
 	int iResult = 0;
+	return iResult;
+}
+
+/// <summary>
+/// 画像スケーリング実施通知
+/// </summary>
+/// <param name="wparam">表示ターゲットID</param>
+/// <param name="lparam">画像エリア値</param>
+/// <returns>成功場合は0、失敗場合は-1を返す</returns>
+LRESULT CWeldEvaluationView::OnImageScaling(WPARAM wparam, LPARAM lparam)
+{
+	int iResult = 0;
+#if true
+	int targetID = (int)wparam;
+	CRect *pRect = (CRect *)lparam;
+	if (!CWeldEvaluationView::ImageScaling(targetID, *pRect)) {
+		iResult = -1;
+	}
+#else
+	int targetID = (int)wparam;
+	CRect *pRect = (CRect *)lparam;
+	double scalingRetio = 1.0;
+	CPoint pos,pos1,pos2;
+	CImageWind *pImageWnd1 = nullptr;
+	CImageWind *pImageWnd2 = nullptr;
+	switch (targetID) {
+	case	CWeldEvaluationDoc::eResinSurface:		// 樹脂
+		if (!m_pReginWnd->GetScalingInfo(scalingRetio, pos)) {
+			return -1;
+		}
+		pImageWnd1 = m_pMetalWnd;
+		pImageWnd2 = m_pResultWnd;
+		pos1 = pImageWnd1->ConvertImagePos(pos);
+		pos2 = pos;
+		break;
+	case	CWeldEvaluationDoc::eMetalSurface:		// 金属
+		if (!m_pMetalWnd->GetScalingInfo(scalingRetio, pos)) {
+			return -1;
+		}
+		pImageWnd1 = m_pReginWnd;
+		pImageWnd2 = m_pResultWnd;
+		pos1 = pImageWnd1->ConvertImagePos(pos);
+		pos2 = pImageWnd2->ConvertImagePos(pos);
+		break;
+	case	CWeldEvaluationDoc::eJoiningResult:		// 接合結果
+		if (!m_pResultWnd->GetScalingInfo(scalingRetio, pos)) {
+			return -1;
+		}
+		pImageWnd1 = m_pReginWnd;
+		pImageWnd2 = m_pMetalWnd;
+		pos1 = pos;
+		pos2 = pImageWnd2->ConvertImagePos(pos);
+		break;
+	default:
+		return -1;
+	}
+
+	if (pImageWnd1) {
+		pImageWnd1->MoveImage(pos1.x,pos1.y, pRect->Width(), pRect->Height(), scalingRetio);
+		pImageWnd1->MoveImage(pos1.x, pos1.y, pRect->Width(), pRect->Height(), scalingRetio);
+	}
+	if (pImageWnd2) {
+		pImageWnd2->MoveImage(pos2.x, pos2.y, pRect->Width(), pRect->Height(), scalingRetio);
+		pImageWnd1->MoveImage(pos1.x, pos1.y, pRect->Width(), pRect->Height(), scalingRetio);
+	}
+	TRACE(_T("Pos(%d,%d)->Pos1(%d,%d),Pos2(%d,%d)\n"), pos.x, pos.y, pos1.x, pos1.y, pos2.x, pos2.y);
+#endif
+	return iResult;
+}
+
+/// <summary>
+/// 画像移動通知
+/// </summary>
+/// <param name="wparam">表示ターゲットID</param>
+/// <param name="lparam">画像エリア値</param>
+/// <returns>成功場合は0、失敗場合は-1を返す</returns>
+LRESULT CWeldEvaluationView::OnImageMoveing(WPARAM wparam, LPARAM lparam)
+{
+	int iResult = 0;
+#if true
+	int targetID = (int)wparam;
+	CRect *pRect = (CRect *)lparam;
+	if (!CWeldEvaluationView::ImageScaling(targetID, *pRect)) {
+		iResult = -1;
+	}
+#else
+	int targetID = (int)wparam;
+	CRect *pRect = (CRect *)lparam;
+	double scalingRetio = 1.0;
+	CPoint pos, pos1, pos2;
+	CImageWind *pImageWnd1 = nullptr;
+	CImageWind *pImageWnd2 = nullptr;
+	switch (targetID) {
+	case	CWeldEvaluationDoc::eResinSurface:		// 樹脂
+		if (!m_pReginWnd->GetScalingInfo(scalingRetio, pos)) {
+			return -1;
+		}
+		pImageWnd1 = m_pMetalWnd;
+		pImageWnd2 = m_pResultWnd;
+		pos1 = m_pReginWnd->ConvertImagePos(pos);
+		pos2 = pos;
+		break;
+	case	CWeldEvaluationDoc::eMetalSurface:		// 金属
+		if (!m_pMetalWnd->GetScalingInfo(scalingRetio, pos)) {
+			return -1;
+		}
+		pImageWnd1 = m_pReginWnd;
+		pImageWnd2 = m_pResultWnd;
+		pos1 = m_pMetalWnd->ConvertImagePos(pos);
+		pos2 = m_pMetalWnd->ConvertImagePos(pos);
+		break;
+	case	CWeldEvaluationDoc::eJoiningResult:		// 接合結果
+		if (!m_pResultWnd->GetScalingInfo(scalingRetio, pos)) {
+			return -1;
+		}
+		pImageWnd1 = m_pReginWnd;
+		pImageWnd2 = m_pMetalWnd;
+		pos1 = pos;
+		pos2 = m_pResultWnd->ConvertImagePos(pos);
+		break;
+	default:
+		return -1;
+	}
+
+	if (pImageWnd1) {
+		pImageWnd1->MoveImage(pos1.x, pos1.y, pRect->Width(), pRect->Height(), scalingRetio);
+		pImageWnd1->MoveImage(pos1.x, pos1.y, pRect->Width(), pRect->Height(), scalingRetio);
+	}
+	if (pImageWnd2) {
+		pImageWnd2->MoveImage(pos2.x, pos2.y, pRect->Width(), pRect->Height(), scalingRetio);
+		pImageWnd2->MoveImage(pos2.x, pos2.y, pRect->Width(), pRect->Height(), scalingRetio);
+	}
+	TRACE(_T("Pos(%d,%d)->Pos1(%d,%d),Pos2(%d,%d)\n"),pos.x,pos.y, pos1.x, pos1.y, pos2.x, pos2.y);
+#endif
 	return iResult;
 }
 
@@ -1170,7 +1384,6 @@ LRESULT CWeldEvaluationView::OnAreaSpectrumGraphRequest(WPARAM wparam, LPARAM lp
 	return 0;
 }
 
-
 /// <summary>
 /// 区間スペクトル表示ダイアログのクローズ
 /// </summary>
@@ -1195,6 +1408,12 @@ LRESULT CWeldEvaluationView::OnSpectrumeCloseRequest(WPARAM wparam, LPARAM lpara
 	return 0;
 }
 
+/// <summary>
+/// 区間スペクトル表示ダイアログの設定
+/// </summary>
+/// <param name="wparam">対象ID</param>
+/// <param name="lparam">表示対象画像位置</param>
+/// <returns>成功した場合は0、失敗した場合はそれ以外を返す</returns>
 LRESULT CWeldEvaluationView::OnAreaSpectrumeGraphSet(WPARAM wparam, LPARAM lparam)
 {
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
@@ -1354,8 +1573,13 @@ void CWeldEvaluationView::OnBnClickedBtnNewprj()
 	EnablePropaty(true);
 }
 
-
-
+/// <summary>
+/// マウス移動時処理
+/// </summary>
+/// <param name="nFlags">仮想キーフラグ</param>
+/// <param name="point">カーソル座標</param>
+/// <returns>成功の場合はTRUE、失敗の場合はFALSEを返す</returns>
+/// @remark 仮想キーフラグnFlagsはMK_CONTROL CTRL キー、MK_LBUTTON マウスの左ボタン、MK_MBUTTON マウスの中央ボタン、MK_RBUTTON マウスの右ボタン、MK_SHIFT SHIFT キー
 void CWeldEvaluationView::OnMouseMove(UINT nFlags, CPoint point)
 {
 	// TODO: ここにメッセージ ハンドラー コードを追加するか、既定の処理を呼び出します。
@@ -1365,3 +1589,61 @@ void CWeldEvaluationView::OnMouseMove(UINT nFlags, CPoint point)
 	m_pResultWnd->OnMouseLeave();
 	CFormView::OnMouseMove(nFlags, point);
 }
+
+/// <summary>
+/// 画像のスケーリング・移動
+/// </summary>
+/// <param name="targetID">表示ターゲットID</param>
+/// <param name="rect">画像エリア値</param>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
+bool CWeldEvaluationView::ImageScaling(int targetID, CRect rect)
+{
+	bool bResult = true;
+	double scalingRetio = 1.0;
+	CPoint pos, pos1, pos2;
+	CImageWind *pImageWnd1 = nullptr;
+	CImageWind *pImageWnd2 = nullptr;
+	switch (targetID) {
+	case	CWeldEvaluationDoc::eResinSurface:		// 樹脂
+		if (!m_pReginWnd->GetScalingInfo(scalingRetio, pos)) {
+			return false;
+		}
+		pImageWnd1 = m_pMetalWnd;
+		pImageWnd2 = m_pResultWnd;
+		pos1 = pImageWnd1->ConvertImagePos(pos);
+		pos2 = pos;
+		break;
+	case	CWeldEvaluationDoc::eMetalSurface:		// 金属
+		if (!m_pMetalWnd->GetScalingInfo(scalingRetio, pos)) {
+			return false;
+		}
+		pImageWnd1 = m_pReginWnd;
+		pImageWnd2 = m_pResultWnd;
+		pos1 = pImageWnd1->ConvertImagePos(pos);
+		pos2 = pImageWnd2->ConvertImagePos(pos);
+		break;
+	case	CWeldEvaluationDoc::eJoiningResult:		// 接合結果
+		if (!m_pResultWnd->GetScalingInfo(scalingRetio, pos)) {
+			return false;
+		}
+		pImageWnd1 = m_pReginWnd;
+		pImageWnd2 = m_pMetalWnd;
+		pos1 = pos;
+		pos2 = pImageWnd2->ConvertImagePos(pos);
+		break;
+	default:
+		return false;
+	}
+
+	if (pImageWnd1) {
+		pImageWnd1->MoveImage(pos1.x, pos1.y, rect.Width(), rect.Height(), scalingRetio);
+		pImageWnd1->MoveImage(pos1.x, pos1.y, rect.Width(), rect.Height(), scalingRetio);
+	}
+	if (pImageWnd2) {
+		pImageWnd2->MoveImage(pos2.x, pos2.y, rect.Width(), rect.Height(), scalingRetio);
+		pImageWnd2->MoveImage(pos2.x, pos2.y, rect.Width(), rect.Height(), scalingRetio);
+	}
+	TRACE(_T("Pos(%d,%d)->Pos1(%d,%d),Pos2(%d,%d)\n"), pos.x, pos.y, pos1.x, pos1.y, pos2.x, pos2.y);
+	return bResult;
+}
+

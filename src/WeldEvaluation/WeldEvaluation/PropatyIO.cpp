@@ -34,7 +34,7 @@ CString CPropatyIO::GetParamaterFilePath()
 /// <summary>
 /// パラメータファイルパスの設定
 /// </summary>
-/// <param name="pathname">パラメータファイルパス</param>
+/// <param name="path">パラメータファイルパス</param>
 /// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
 bool CPropatyIO::SetParamaterFilePath(CString path)
 {
@@ -389,6 +389,48 @@ bool CPropatyIO::ResinSetJointRetio(int ViewJointRatioNo, double retio)
 }
 
 /// <summary>
+/// 樹脂面の接合色の取得
+/// </summary>
+/// <param name="ViewJointRatioNo">接合面番号</param>
+/// <returns>樹脂面の接合色を返す</returns>
+COLORREF CPropatyIO::ResinGetJointColor(int ViewJointRatioNo)
+{
+	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
+		return RGB(0, 0, 0);
+	}
+	if (ViewJointRatioNo < 0) {
+		return RGB(0, 0, 0);
+	}
+
+	CString label;
+	label.Format(_T("Joining_Color%03d"), ViewJointRatioNo);
+	CConfigrationIO sys(m_ParamaterFilePath);
+	// 樹脂面 接合色
+	return (COLORREF)(sys.getInt(_T("ResinSurface"), label));
+}
+
+/// <summary>
+/// 樹脂面の接合色の設定
+/// </summary>
+/// <param name="ViewJointRatioNo">接合面番号</param>
+/// <param name="color">樹脂面の接合色</param>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
+bool CPropatyIO::ResinSetJointColor(int ViewJointRatioNo, COLORREF color)
+{
+	if (ViewJointRatioNo < 0) {
+		return false;
+	}
+	CString label;
+	label.Format(_T("Joining_color%03d"), ViewJointRatioNo);
+	CConfigrationIO sys(m_ParamaterFilePath);
+	// 樹脂面 接合色
+	if (!sys.setInt(_T("ResinSurface"), label, (DWORD)color)) {
+		return false;
+	}
+	return true;
+}
+
+/// <summary>
 /// 樹脂面の解析方法の取得
 /// </summary>
 /// <returns>樹脂面の解析方法を返す</returns>
@@ -469,6 +511,48 @@ bool CPropatyIO::MetalSetJointRetio(int ViewJointRatioNo, double retio)
 	label.Format(_T("Joining_ratio%03d"),ViewJointRatioNo);
 	CConfigrationIO sys(m_ParamaterFilePath);
 	if (!sys.setDouble(_T("MetalSurface"),label,retio)) {
+		return false;
+	}
+	return true;
+}
+
+/// <summary>
+/// 金属面の接合色の取得
+/// </summary>
+/// <param name="ViewJointRatioNo">接合面番号</param>
+/// <returns>金属面の接合色を返す</returns>
+COLORREF CPropatyIO::MetalGetJointColor(int ViewJointRatioNo)
+{
+	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
+		return RGB(0, 0, 0);
+	}
+	if (ViewJointRatioNo < 0) {
+		return RGB(0, 0, 0);
+	}
+
+	CString label;
+	label.Format(_T("Joining_Color%03d"), ViewJointRatioNo);
+	CConfigrationIO sys(m_ParamaterFilePath);
+	// 金属面 接合色
+	return (COLORREF)(sys.getInt(_T("MetalSurface"), label));
+}
+
+/// <summary>
+/// 金属面の接合色の設定
+/// </summary>
+/// <param name="ViewJointRatioNo">接合面番号</param>
+/// <param name="color">金属面の接合色</param>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
+bool CPropatyIO::MetalSetJointColor(int ViewJointRatioNo, COLORREF color)
+{
+	if (ViewJointRatioNo < 0) {
+		return false;
+	}
+	CString label;
+	label.Format(_T("Joining_color%03d"), ViewJointRatioNo);
+	CConfigrationIO sys(m_ParamaterFilePath);
+	// 金属面 接合色
+	if (!sys.setInt(_T("MetalSurface"), label, (DWORD)color)) {
 		return false;
 	}
 	return true;
@@ -557,6 +641,48 @@ bool CPropatyIO::ResultSetJointRetio(int ViewJointRatioNo, double retio)
 	label.Format(_T("Joining_ratio%03d"),ViewJointRatioNo);
 	CConfigrationIO sys(m_ParamaterFilePath);
 	if (!sys.setDouble(_T("JoiningResult"),label,retio)) {
+		return false;
+	}
+	return true;
+}
+
+/// <summary>
+/// 接合結果の接合色の取得
+/// </summary>
+/// <param name="ViewJointRatioNo">接合面番号</param>
+/// <returns>接合結果の接合色を返す</returns>
+COLORREF CPropatyIO::ResultGetJointColor(int ViewJointRatioNo)
+{
+	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
+		return RGB(0, 0, 0);
+	}
+	if (ViewJointRatioNo < 0) {
+		return RGB(0, 0, 0);
+	}
+
+	CString label;
+	label.Format(_T("Joining_Color%03d"), ViewJointRatioNo);
+	CConfigrationIO sys(m_ParamaterFilePath);
+	// 接合結果 接合色
+	return (COLORREF)(sys.getInt(_T("JoiningResult"), label));
+}
+
+/// <summary>
+/// 接合結果の接合色の設定
+/// </summary>
+/// <param name="ViewJointRatioNo">接合面番号</param>
+/// <param name="color">接合結果の接合色</param>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
+bool CPropatyIO::ResultSetJointColor(int ViewJointRatioNo, COLORREF color)
+{
+	if (ViewJointRatioNo < 0) {
+		return false;
+	}
+	CString label;
+	label.Format(_T("Joining_color%03d"), ViewJointRatioNo);
+	CConfigrationIO sys(m_ParamaterFilePath);
+	// 接合結果 接合色
+	if (!sys.setInt(_T("JoiningResult"), label, (DWORD)color)) {
 		return false;
 	}
 	return true;

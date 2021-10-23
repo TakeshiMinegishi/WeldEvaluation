@@ -4,6 +4,9 @@
 
 // CPropTabPageSetting ダイアログ
 
+/// <summary>
+/// プロパティタブ　設定ページクラス
+/// </summary>
 class CPropTabPageSetting : public CDialogEx
 {
 	DECLARE_DYNAMIC(CPropTabPageSetting)
@@ -22,18 +25,18 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 private:
-	int			m_MinScrollPos;
-	int			m_MaxScrollPos;
-	int			m_ScrollDelta;
+	int			m_MinScrollPos;					///< スクロール最小値
+	int			m_MaxScrollPos;					///< スクロール最大値
+	int			m_ScrollDelta;					///< スクロール分解脳
 public:
-	CString		m_RegistFolder;
-	CString		m_WBFileName;
-	UINT		m_NumberOfOverridePixel;
-	UINT		m_IntegrationTimeMs;
-	UINT		m_ResolutionHolizontal;
-	UINT		m_ResolutionVertical;
-	CScrollBar	m_sbrSettingDlg;
-	int			m_ScrollBerPos;
+	CString		m_RegistFolder;					///< 登録ふぉふだ
+	CString		m_WBFileName;					///< ホワイトバランスファイル名
+	UINT		m_NumberOfOverridePixel;		///< 重なりピクセル数
+	UINT		m_IntegrationTimeMs;			///< Integration Time
+	UINT		m_ResolutionHolizontal;			///< 水平解像度
+	UINT		m_ResolutionVertical;			///< 垂直解像度
+	CScrollBar	m_sbrSettingDlg;				///< スクロールバー
+	int			m_ScrollBerPos;					///< スクロールバー位置
 
 public:
 	afx_msg void OnBnClickedBunRegfolderFind();
@@ -58,7 +61,6 @@ public:
 	afx_msg void OnEnKillfocusEdtResolutionHolizontal();
 	afx_msg void OnEnKillfocusEdtResolutionVertical();
 	afx_msg void OnEnKillfocusEdtWbfilename();
-	afx_msg void OnNMThemeChangedSbrSetting(NMHDR *pNMHDR, LRESULT *pResult);
 	void FitRect(CRect rect);
 	bool Update(void);
 	afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);

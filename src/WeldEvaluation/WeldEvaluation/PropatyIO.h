@@ -1,6 +1,9 @@
 #pragma once
 #include "ConfigrationIO.h"
 
+/// <summary>
+/// プロパティIOクラス
+/// </summary>
 class CPropatyIO
 {
 public:
@@ -52,6 +55,8 @@ public:
 	bool ResinSetNumberOfClass(UINT nClass);
 	double ResinGetJointRetio(int ViewJointRatioNo);
 	bool ResinSetJointRetio(int ViewJointRatioNo, double retio);
+	COLORREF ResinGetJointColor(int ViewJointRatioNo);
+	bool ResinSetJointColor(int ViewJointRatioNo, COLORREF color);
 	int ResinGetAnalysisMethod();
 	bool ResinSetAnalysisMethod(int method);
 
@@ -59,11 +64,15 @@ public:
 	bool MetalSetNumberOfClass(UINT nClass);
 	double MetalGetJointRetio(int ViewJointRatioNo);
 	bool MetalSetJointRetio(int ViewJointRatioNo, double retio);
+	COLORREF MetalGetJointColor(int ViewJointRatioNo);
+	bool MetalSetJointColor(int ViewJointRatioNo, COLORREF color);
 	int MetalGetAnalysisMethod();
 	bool MetalSetAnalysisMethod(int method);
 
 	UINT ResultGetNumberOfClass(void);
 	bool ResultSetNumberOfClass(UINT nClass);
+	COLORREF ResultGetJointColor(int ViewJointRatioNo);
+	bool ResultSetJointColor(int ViewJointRatioNo, COLORREF color);
 	double ResultGetJointRetio(int ViewJointRatioNo);
 	bool ResultSetJointRetio(int ViewJointRatioNo, double retio);
 

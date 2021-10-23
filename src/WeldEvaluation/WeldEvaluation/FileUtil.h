@@ -3,6 +3,9 @@
 // 名前空間
 using namespace std;
 
+/// <summary>
+/// ファイルユーティリティクラス
+/// </summary>
 class CFileUtil
 {
 public:

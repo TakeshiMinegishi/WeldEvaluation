@@ -23,6 +23,9 @@
 
 #include "afxwin.h"
 
+/// <summary>
+/// 表示フォームクラス
+/// </summary>
 class CWeldEvaluationView : public CFormView
 {
 protected: // シリアル化からのみ作成します。
@@ -128,7 +131,10 @@ public:
 	LRESULT OnAnalyzeRequest(WPARAM wparam, LPARAM lparam);	
 	LRESULT OnProjectResistRequest(WPARAM wparam, LPARAM lparam);	
 	LRESULT OnImageOutputRequest(WPARAM wparam, LPARAM lparam);	
-	LRESULT OnReadResultFileStatus(WPARAM wparam, LPARAM lparam);	
+	LRESULT OnImageScaling(WPARAM wparam, LPARAM lparam);
+	LRESULT OnImageMoveing(WPARAM wparam, LPARAM lparam);
+	bool ImageScaling(int targetID, CRect rect);
+	LRESULT OnReadResultFileStatus(WPARAM wparam, LPARAM lparam);
 	LRESULT OnSpectrumGraphRequest(WPARAM wparam, LPARAM lparam);
 	LRESULT OnAreaSpectrumGraphRequest(WPARAM wparam, LPARAM lparam);
 	LRESULT OnSpectrumeCloseRequest(WPARAM wparam, LPARAM lparam);
@@ -141,6 +147,10 @@ public:
 };
 
 #ifndef _DEBUG  // WeldEvaluationView.cpp のデバッグ バージョン
+/// <summary>
+/// ドキュメントの取得
+/// </summary>
+/// <returns>CWeldEvaluationDocへのポインタを返す</returns>
 inline CWeldEvaluationDoc* CWeldEvaluationView::GetDocument() const
    { return reinterpret_cast<CWeldEvaluationDoc*>(m_pDocument); }
 #endif

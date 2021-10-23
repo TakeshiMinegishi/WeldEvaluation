@@ -70,12 +70,19 @@ BOOL CProgressDlg::OnInitDialog()
 	return TRUE;
 }
 
-
+/// <summary>
+/// タイトルの設定
+/// </summary>
+/// <param name="title">タイトル</param>
 void CProgressDlg::setTitle(CString title)
 {
 	m_title = title;
 }
 
+/// <summary>
+/// ステータスメッセージの設定
+/// </summary>
+/// <param name="Statuslabel">メッセージ</param>
 void CProgressDlg::setlabel(CString Statuslabel)
 {
 	m_label = Statuslabel;
@@ -85,12 +92,22 @@ void CProgressDlg::setlabel(CString Statuslabel)
 	}
 }
 
+/// <summary>
+/// レンジの設定
+/// </summary>
+/// <param name="min">最小値</param>
+/// <param name="max">最立ち</param>
 void CProgressDlg::setRange(UINT min, UINT max)
 {
 	m_rangeMin	= min;
 	m_rangeMax	= max;
 }
 
+/// <summary>
+/// レンジの取得
+/// </summary>
+/// <param name="min">最小値</param>
+/// <param name="max">最大値</param>
 void CProgressDlg::getRange(int &min, int & max)
 {
 	min = m_rangeMin;
@@ -98,11 +115,9 @@ void CProgressDlg::getRange(int &min, int & max)
 }
 
 /// <summary>
-/// キャンセルボタン押下処理
+/// プログレスバー位置の設定
 /// </summary>
-/// <param name="path">解析ファイルパス</param>
-/// <param name="data">解析データ</param>
-/// <returns>成功の場合はtrue、失敗の場合はfalseを返す</returns>
+/// <param name="pos">位置</param>
 void CProgressDlg::setPosition(UINT pos)
 {
 	m_pos		= pos;

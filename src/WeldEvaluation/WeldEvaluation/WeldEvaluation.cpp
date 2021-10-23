@@ -28,6 +28,10 @@ END_MESSAGE_MAP()
 
 // CWeldEvaluationApp コンストラクション
 
+
+/// <summary>
+/// コンストラクタ
+/// </summary>
 CWeldEvaluationApp::CWeldEvaluationApp()
 {
 	// 再起動マネージャーをサポートします
@@ -47,13 +51,16 @@ CWeldEvaluationApp::CWeldEvaluationApp()
 	// ここに InitInstance 中の重要な初期化処理をすべて記述してください。
 }
 
-// 唯一の CWeldEvaluationApp オブジェクトです。
 
-CWeldEvaluationApp theApp;
+
+CWeldEvaluationApp theApp;	///< 唯一の CWeldEvaluationApp オブジェクト
 
 
 // CWeldEvaluationApp 初期化
 
+/// <summary>
+/// インスタンスの初期化
+/// </summary>
 BOOL CWeldEvaluationApp::InitInstance()
 {
 	// アプリケーション マニフェストが visual スタイルを有効にするために、
@@ -131,6 +138,9 @@ BOOL CWeldEvaluationApp::InitInstance()
 	return TRUE;
 }
 
+/// <summary>
+/// インスタンスの破棄
+/// </summary>
 int CWeldEvaluationApp::ExitInstance()
 {
 	//TODO: 追加したリソースがある場合にはそれらも処理してください
@@ -144,6 +154,9 @@ int CWeldEvaluationApp::ExitInstance()
 
 // アプリケーションのバージョン情報に使われる CAboutDlg ダイアログ
 
+/// <summary>
+/// アバウトダイアロググラス
+/// </summary>
 class CAboutDlg : public CDialogEx
 {
 public:
@@ -160,10 +173,17 @@ protected:
 	DECLARE_MESSAGE_MAP()
 };
 
+/// <summary>
+/// コンストラクタ
+/// </summary>
 CAboutDlg::CAboutDlg() : CDialogEx(CAboutDlg::IDD)
 {
 }
 
+/// <summary>
+/// データエクスチェンジ処理
+/// </summary>
+/// <param name="pDX">CDataExchangeオブジェクト</param>
 void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
@@ -173,6 +193,9 @@ BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
 END_MESSAGE_MAP()
 
 // ダイアログを実行するためのアプリケーション コマンド
+/// <summary>
+/// アバウトダイアログ表示
+/// </summary>
 void CWeldEvaluationApp::OnAppAbout()
 {
 	CAboutDlg aboutDlg;

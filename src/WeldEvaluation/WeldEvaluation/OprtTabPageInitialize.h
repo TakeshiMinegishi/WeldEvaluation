@@ -3,6 +3,9 @@
 
 // COprtTabPageInitiaize ダイアログ
 
+/// <summary>
+/// 操作タブ　初期化ページ管理クラス
+/// </summary>
 class COprtTabPageInitialize : public CDialogEx
 {
 	DECLARE_DYNAMIC(COprtTabPageInitialize)

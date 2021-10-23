@@ -11,12 +11,19 @@
 
 IMPLEMENT_DYNAMIC(COprtTabPageInitialize, CDialogEx)
 
+/// <summary>
+/// 初期化コンストラクタ
+/// </summary>
+/// <param name="pParent">親ウインドへのポインタ</param>
 COprtTabPageInitialize::COprtTabPageInitialize(CWnd* pParent /*=NULL*/)
 	: CDialogEx(COprtTabPageInitialize::IDD, pParent)
 {
 
 }
 
+/// <summary>
+/// デストラクタ
+/// </summary>
 COprtTabPageInitialize::~COprtTabPageInitialize()
 {
 }
@@ -63,6 +70,9 @@ void COprtTabPageInitialize::ItemActive(bool bActive)
 }
 
 
+/// <summary>
+/// ホワイトバランスボタン押下時処理
+/// </summary>
 void COprtTabPageInitialize::OnBnClickedBtnWhitebarance()
 {
 	CStatusDlgThread* pThread = DYNAMIC_DOWNCAST(CStatusDlgThread, AfxBeginThread(RUNTIME_CLASS(CStatusDlgThread) , 0, 0, CREATE_SUSPENDED));
@@ -86,6 +96,10 @@ void COprtTabPageInitialize::OnBnClickedBtnWhitebarance()
 	delete pThread;
 }
 
+/// <summary>
+/// ホワイトバランス用画像撮影処理
+/// </summary>
+/// <param name="pStatus">スレッドオブジェクト</param>
 void COprtTabPageInitialize::AddNode(CStatusDlgThread* pStatus)
 {
 	if (!pStatus->m_Valid) {  // キャンセルボタンが押された場合は何もせずに終了
@@ -105,6 +119,9 @@ void COprtTabPageInitialize::AddNode(CStatusDlgThread* pStatus)
 	pStatus->UpdateStatus(buff);
 }
 
+/// <summary>
+/// パラメータの読み込み
+/// </summary>
 void COprtTabPageInitialize::LoadParamater(void)
 {
 }

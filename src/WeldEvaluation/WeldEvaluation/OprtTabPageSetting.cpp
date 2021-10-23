@@ -100,6 +100,9 @@ void COprtTabPageSetting::UpddateResist(bool bEnable, bool bReadMode)
 	ItemEnable(IDC_BTN_REGIST,bEnable);
 }
 
+/// <summary>
+/// XVˆ—
+/// </summary>
 void COprtTabPageSetting::Update()
 {
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();

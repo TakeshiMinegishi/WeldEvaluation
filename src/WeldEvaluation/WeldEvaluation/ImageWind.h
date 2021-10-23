@@ -1,13 +1,17 @@
 #pragma once
 
 
-// CImageWind ダイアログ
-
+/// <summary>
+/// 描画ウインドグラス
+/// </summary>
 class CImageWind : public CDialog
 {
 	DECLARE_DYNAMIC(CImageWind)
 
 public:
+	/// <summary>
+	/// 表示タイプを表す列挙型
+	/// </summary>
 	enum {
 		eResinSurface = 0,	///< 樹脂
 		eMetalSurface = 1,	///< 金属
@@ -24,7 +28,7 @@ private:
 	bool		m_bActive;						///< 画像表示有無
 	CImage		*m_pImg;						///< 表示データ
 	CImage		m_Img;							///< 表示データ
-	CRect		m_DrawArea;						///< 画像表示エリア
+//	CRect		m_DrawArea;						///< 画像表示エリア
 	int			m_Type;							///< 対象タイプ
 	CPoint		m_pLButtonDownosPos;			///< 左ボタン押下位置
 	bool		m_bButtonDown;					///< 左ボタン押下フラグ
@@ -55,10 +59,8 @@ public:
 	afx_msg void OnLButtonDblClk(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
-	afx_msg int OnMouseActivate(CWnd* pDesktopWnd, UINT nHitTest, UINT message);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnMouseLeave();
-	afx_msg BOOL OnSetCursor(CWnd* pWnd, UINT nHitTest, UINT message);
 	afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
 	afx_msg void OnNcDestroy();
 
@@ -73,6 +75,10 @@ public:
 	bool clientToScan(CPoint &pos);
 	bool ScanToclient(CPoint &pos);
 	void SetImagePos(CRect &rect);
+	void Scaling(double ScalingRetio, CPoint pt);
+	bool GetScalingInfo(double &ScalingRetio, CPoint &pt);
+	bool MoveImage(int x, int y, int width, int height, double scaingRetio);
+	CPoint ConvertImagePos(CPoint pos);
 
 	CImage *GetImage(bool bDetach = true);
 };

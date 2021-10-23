@@ -37,6 +37,9 @@ END_MESSAGE_MAP()
 
 // CWeldEvaluationDoc コンストラクション/デストラクション
 
+/// <summary>
+/// コンストラクタ
+/// </summary>
 CWeldEvaluationDoc::CWeldEvaluationDoc()
 {
 	m_ModulePath = CFileUtil::GetModulePath();
@@ -47,6 +50,9 @@ CWeldEvaluationDoc::CWeldEvaluationDoc()
 	m_OpenType					= 0;
 }
 
+/// <summary>
+/// デストラクタ
+/// </summary>
 CWeldEvaluationDoc::~CWeldEvaluationDoc()
 {
 	m_ResinScanData.release();
@@ -54,6 +60,10 @@ CWeldEvaluationDoc::~CWeldEvaluationDoc()
 	m_ResultScanData.release();
 }
 
+/// <summary>
+/// 新規プロジェクト作成
+/// </summary>
+/// <returns>成功した場合はTRUE、失敗した場合はFALSE以外を返す</returns>
 BOOL CWeldEvaluationDoc::OnNewDocument()
 {
 	if (!CDocument::OnNewDocument())
@@ -67,6 +77,10 @@ BOOL CWeldEvaluationDoc::OnNewDocument()
 
 // CWeldEvaluationDoc シリアル化
 
+/// <summary>
+/// シリアライズ
+/// </summary>
+/// <param name="ar">アーカイブオブジェクト</param>
 void CWeldEvaluationDoc::Serialize(CArchive& ar)
 {
 	if (ar.IsStoring())
@@ -136,11 +150,18 @@ void CWeldEvaluationDoc::SetSearchContent(const CString& value)
 // CWeldEvaluationDoc 診断
 
 #ifdef _DEBUG
+/// <summary>
+/// オブジェクトの妥当性検査の実施
+/// </summary>
 void CWeldEvaluationDoc::AssertValid() const
 {
 	CDocument::AssertValid();
 }
 
+/// <summary>
+/// CDumpContextオブジェクトの内容をダンプ
+/// </summary>
+/// <param name="dc">afxDump診断ダンプ コンテキスト</param>
 void CWeldEvaluationDoc::Dump(CDumpContext& dc) const
 {
 	CDocument::Dump(dc);
@@ -470,6 +491,36 @@ bool CWeldEvaluationDoc::ResinSetJointRetio(int ViewJointRatioNo, double retio)
 }
 
 /// <summary>
+/// 樹脂面の接合色の取得
+/// </summary>
+/// <param name="ViewJointRatioNo">接合面番号</param>
+/// <returns>樹脂面の接合色を返す</returns>
+COLORREF CWeldEvaluationDoc::ResinGetJointColor(int ViewJointRatioNo)
+{
+	COLORREF color = RGB(0, 0, 0);
+	if (!m_ActiveRegisttedTestName.IsEmpty()) {
+		color = m_PropatyIO.ResinGetJointColor(ViewJointRatioNo);
+	}
+	return color;
+}
+
+/// <summary>
+/// 樹脂面の接合色の設定
+/// </summary>
+/// <param name="ViewJointRatioNo">接合面番号</param>
+/// <param name="color">設定色</param>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
+bool CWeldEvaluationDoc::ResinSetJointColor(int ViewJointRatioNo, COLORREF color)
+{
+	if (m_ActiveRegisttedTestName.IsEmpty()) {
+		return false;
+	}
+	else {
+		return m_PropatyIO.ResinSetJointColor(ViewJointRatioNo, color);
+	}
+}
+
+/// <summary>
 /// 樹脂面の解析方法の取得
 /// </summary>
 /// <returns>樹脂面の解析方法を返す</returns>
@@ -563,6 +614,36 @@ bool CWeldEvaluationDoc::MetalSetJointRetio(int ViewJointRatioNo,double retio)
 		return false;
 	} else {
 		return m_PropatyIO.MetalSetJointRetio(ViewJointRatioNo,retio);
+	}
+}
+
+/// <summary>
+/// 金属面の接合色の取得
+/// </summary>
+/// <param name="ViewJointRatioNo">接合面番号</param>
+/// <returns>金属面の接合色を返す</returns>
+COLORREF CWeldEvaluationDoc::MetalGetJointColor(int ViewJointRatioNo)
+{
+	COLORREF color = RGB(0, 0, 0);
+	if (!m_ActiveRegisttedTestName.IsEmpty()) {
+		color = m_PropatyIO.MetalGetJointColor(ViewJointRatioNo);
+	}
+	return color;
+}
+
+/// <summary>
+/// 金属面の接合色の設定
+/// </summary>
+/// <param name="ViewJointRatioNo">接合面番号</param>
+/// <param name="color">設定色</param>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
+bool CWeldEvaluationDoc::MetalSetJointColor(int ViewJointRatioNo, COLORREF color)
+{
+	if (m_ActiveRegisttedTestName.IsEmpty()) {
+		return false;
+	}
+	else {
+		return m_PropatyIO.MetalSetJointColor(ViewJointRatioNo, color);
 	}
 }
 
@@ -664,6 +745,36 @@ bool CWeldEvaluationDoc::ResultSetJointRetio(int ViewJointRatioNo, double retio)
 }
 
 /// <summary>
+/// 接合結果の接合色の取得
+/// </summary>
+/// <param name="ViewJointRatioNo">接合面番号</param>
+/// <returns>接合結果の接合色を返す</returns>
+COLORREF CWeldEvaluationDoc::ResultGetJointColor(int ViewJointRatioNo)
+{
+	COLORREF color = RGB(0, 0, 0);
+	if (!m_ActiveRegisttedTestName.IsEmpty()) {
+		color = m_PropatyIO.ResultGetJointColor(ViewJointRatioNo);
+	}
+	return color;
+}
+
+/// <summary>
+/// 接合結果の接合色の設定
+/// </summary>
+/// <param name="ViewJointRatioNo">接合面番号</param>
+/// <param name="color">設定色</param>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
+bool CWeldEvaluationDoc::ResultSetJointColor(int ViewJointRatioNo, COLORREF color)
+{
+	if (m_ActiveRegisttedTestName.IsEmpty()) {
+		return false;
+	}
+	else {
+		return m_PropatyIO.ResultSetJointColor(ViewJointRatioNo, color);
+	}
+}
+
+/// <summary>
 /// 表示モードの取得
 /// </summary>
 /// <param name="targetID">判定素材ID</param>
@@ -735,7 +846,7 @@ int CWeldEvaluationDoc::GetAnalysisMethod(int targetID)
 /// 解析方法の設定
 /// </summary>
 /// <param name="targetID">判定素材ID</param>
-/// <param name="DisplayModeID">解析方法ID</param>
+/// <param name="AnalysisMethodID">解析方法ID</param>
 /// <returns>成功の場合はtrue、失敗の場合はfalseを返す</returns>
 bool CWeldEvaluationDoc::SetAnalysisMethod(int targetID, int AnalysisMethodID)
 {
@@ -867,7 +978,7 @@ CString CWeldEvaluationDoc::GetScanImagePath(int fileID)
 /// <summary>
 /// 分類結果データファイルパス取得
 /// </summary>
-/// <param name="ScanID">ファイル種別ID</param>
+/// <param name="fileID">ファイル種別ID</param>
 /// <param name="type">分類種別ID</param>
 /// <returns>存在する場合はパスを返す、失敗した場合は空文字を返す</returns>
 CString CWeldEvaluationDoc::GetClassificationResultPath(int fileID, int type)
@@ -900,9 +1011,9 @@ bool CWeldEvaluationDoc::SetSpectralGraphPointTarget(UINT targetID)
 /// <param name="holizontal">水平値</param>
 /// <param name="vertical">垂直値</param>
 /// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
-bool CWeldEvaluationDoc::GetSpectralGraphPointPosition(int &holizontal, int &bvertical)
+bool CWeldEvaluationDoc::GetSpectralGraphPointPosition(int &holizontal, int &vertical)
 {
-	return m_ProjectIO.GetSpectralGraphPointPosition(holizontal, bvertical);
+	return m_ProjectIO.GetSpectralGraphPointPosition(holizontal, vertical);
 }
 
 /// <summary>
@@ -911,9 +1022,9 @@ bool CWeldEvaluationDoc::GetSpectralGraphPointPosition(int &holizontal, int &bve
 /// <param name="holizontal">水平値</param>
 /// <param name="vertical">垂直値</param>
 /// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
-bool CWeldEvaluationDoc::SetSpectralGraphPointPosition(int holizontal, int bvertical)
+bool CWeldEvaluationDoc::SetSpectralGraphPointPosition(int holizontal, int vertical)
 {
-	return m_ProjectIO.SetSpectralGraphPointPosition(holizontal, bvertical);
+	return m_ProjectIO.SetSpectralGraphPointPosition(holizontal, vertical);
 }
 
 
@@ -942,9 +1053,9 @@ bool CWeldEvaluationDoc::SetSpectralGraphSectionTarget(UINT targetID)
 /// <param name="holizontal">水平値</param>
 /// <param name="vertical">垂直値</param>
 /// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
-bool CWeldEvaluationDoc::GetSpectralGraphSectionStartPosition(int &holizontal, int &bvertical)
+bool CWeldEvaluationDoc::GetSpectralGraphSectionStartPosition(int &holizontal, int &vertical)
 {
-	return m_ProjectIO.GetSpectralGraphSectionStartPosition(holizontal, bvertical);
+	return m_ProjectIO.GetSpectralGraphSectionStartPosition(holizontal, vertical);
 }
 
 /// <summary>
@@ -953,9 +1064,9 @@ bool CWeldEvaluationDoc::GetSpectralGraphSectionStartPosition(int &holizontal, i
 /// <param name="holizontal">水平値</param>
 /// <param name="vertical">垂直値</param>
 /// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
-bool CWeldEvaluationDoc::SetSpectralGraphSectionStartPosition(int holizontal, int bvertical)
+bool CWeldEvaluationDoc::SetSpectralGraphSectionStartPosition(int holizontal, int vertical)
 {
-	return m_ProjectIO.SetSpectralGraphSectionStartPosition(holizontal, bvertical);
+	return m_ProjectIO.SetSpectralGraphSectionStartPosition(holizontal, vertical);
 }
 
 /// <summary>
@@ -964,9 +1075,9 @@ bool CWeldEvaluationDoc::SetSpectralGraphSectionStartPosition(int holizontal, in
 /// <param name="holizontal">水平値</param>
 /// <param name="vertical">垂直値</param>
 /// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
-bool CWeldEvaluationDoc::GetSpectralGraphSectionEndPosition(int &holizontal, int &bvertical)
+bool CWeldEvaluationDoc::GetSpectralGraphSectionEndPosition(int &holizontal, int &vertical)
 {
-	return m_ProjectIO.GetSpectralGraphSectionEndPosition(holizontal, bvertical);
+	return m_ProjectIO.GetSpectralGraphSectionEndPosition(holizontal, vertical);
 }
 
 /// <summary>
@@ -975,9 +1086,9 @@ bool CWeldEvaluationDoc::GetSpectralGraphSectionEndPosition(int &holizontal, int
 /// <param name="holizontal">水平値</param>
 /// <param name="vertical">垂直値</param>
 /// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
-bool CWeldEvaluationDoc::SetSpectralGraphSectionEndPosition(int holizontal, int bvertical)
+bool CWeldEvaluationDoc::SetSpectralGraphSectionEndPosition(int holizontal, int vertical)
 {
-	return m_ProjectIO.SetSpectralGraphSectionEndPosition(holizontal, bvertical);
+	return m_ProjectIO.SetSpectralGraphSectionEndPosition(holizontal, vertical);
 }
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -1815,6 +1926,7 @@ bool CWeldEvaluationDoc::SaveScanImage(int ScanID)
 /// 分類ファイルの有無判定
 /// </summary>
 /// <param name="fileID">ファイル種別ID</param>
+/// <param name="type">解析タイプ</param>
 /// <returns>存在する場合はtrue、失敗の場合はfalseを返す</returns>
 bool CWeldEvaluationDoc::ExistClassificationResultFile(int fileID, int type)
 {
@@ -1835,6 +1947,7 @@ bool CWeldEvaluationDoc::ExistClassificationResultFile(int fileID, int type)
 /// 分類結果の保存
 /// </summary>
 /// <param name="ScanID">対象スキャンID</param>
+/// <param name="type">解析タイプ</param>
 /// <returns>成功した場合はtrue、失敗の場合はfalseを返す</returns>
 bool CWeldEvaluationDoc::SaveClassificationResultFile(int ScanID, int type)
 {
@@ -2007,7 +2120,7 @@ bool CWeldEvaluationDoc::CalcJoJointRetio(vector<int> data, int nClass, vector<d
 /// 解析の実施
 /// </summary>
 /// <param name="targetID">判定素材ID</param>
-/// <param name="DisplayModeID">解析方法ID</param>
+/// <param name="AnalysisMethodID">解析方法ID</param>
 /// <returns>成功の場合はtrue、失敗の場合はfalseを返す</returns>
 bool CWeldEvaluationDoc::Analize(int targetID, int AnalysisMethodID)
 {
@@ -2094,6 +2207,8 @@ bool CWeldEvaluationDoc::Analize(int targetID, int AnalysisMethodID)
 /// スキャンデータイメージの取得
 /// </summary>
 /// <param name="ScanID">対象スキャンID</param>
+/// <param name="img">取得イメージ</param>
+/// <param name="renew">再読込フラグ</param>
 /// <returns>成功の場合はtrue、失敗の場合はfalseを返す</returns>
 bool CWeldEvaluationDoc::LoadScanImage(int ScanID, CImage &img, bool renew/* = false*/)
 {
@@ -2231,6 +2346,38 @@ bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, int type, C
 			unsigned char * p24Img = new unsigned char[width * height * Bpp];
 			BYTE *ptr = p24Img;
 			unsigned char r, g, b;
+#if true
+			COLORREF *col = new COLORREF[nClass];
+			for (int id = 0; id < nClass; id++) {
+				int h = id * (240 / (nClass - 1));
+				H2RGB(h, r, g, b);
+				col[id] = RGB(r, g, b);
+			}
+
+			switch (targetID) {
+			case	eResinSurface:	///< 樹脂
+				for (int id = 0; id < nClass; id++) {
+					ResinSetJointColor(id, col[id]);
+				}
+				break;
+			case	eMetalSurface:	///< 金属
+				for (int id = 0; id < nClass; id++) {
+					ResinSetJointColor(id, col[id]);
+				}
+				break;
+			case	eJoiningResult:	///< 接合結果
+				for (int id = 0; id < nClass; id++) {
+					ResinSetJointColor(id, col[id]);
+				}
+				break;
+			}
+
+			for (int id = 0; id < data.size(); id++) {
+				*(ptr++) = GetBValue(col[data[id]]);
+				*(ptr++) = GetGValue(col[data[id]]);
+				*(ptr++) = GetRValue(col[data[id]]);
+			}
+#else
 			for (int id = 0; id < data.size(); id++) {
 				int h = data[id] * (240 / (nClass - 1));
 				H2RGB(h, r, g, b);
@@ -2238,6 +2385,8 @@ bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, int type, C
 				*(ptr++) = g;
 				*(ptr++) = r;
 			}
+#endif
+
 
 			BITMAPINFOHEADER    bmInfohdr;
 			// Create the header info

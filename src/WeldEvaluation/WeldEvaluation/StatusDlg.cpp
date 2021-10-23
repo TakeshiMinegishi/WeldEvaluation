@@ -12,12 +12,18 @@
 
 IMPLEMENT_DYNAMIC(CStatusDlg, CDialogEx)
 
+/// <summary>
+/// コンストラクタ
+/// </summary>
 CStatusDlg::CStatusDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CStatusDlg::IDD, pParent)
 {
 
 }
 
+/// <summary>
+/// デストラクタ
+/// </summary>
 CStatusDlg::~CStatusDlg()
 {
 }
@@ -40,11 +46,17 @@ END_MESSAGE_MAP()
 
 
 // CStatusDlg メッセージ ハンドラー
+/// <summary>
+/// ステータスの更新
+/// </summary>
 void CStatusDlg::UpdateStatus()
 {
 	m_CtrlEditStatus.SetWindowText(m_Status);
 }
 
+/// <summary>
+/// キャンセルボタン押下時処理
+/// </summary>
 void CStatusDlg::OnBnClickedCancel()
 {
 	// TODO: ここにコントロール通知ハンドラー コードを追加します。

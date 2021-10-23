@@ -168,7 +168,7 @@ void CSpectralDlg::OnSizing(UINT fwSide, LPRECT pRect)
 /// ウインドの作成
 /// </summary>
 /// <param name="lpCreateStruct">CREATESTRUCTオブジェクトへのポインタ</param>
-/// <param name="pRect">成功した場合は0、失敗した場合は0以外を返す</param>
+/// <returns>成功した場合は0、失敗した場合は0以外を返す</returns>
 int CSpectralDlg::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CDialog::OnCreate(lpCreateStruct) == -1)
@@ -221,7 +221,7 @@ void CSpectralDlg::OnSize(UINT nType, int cx, int cy)
 /// <summary>
 /// スペクトルグラフの表示
 /// </summary>
-/// <param name="nType">表示データ群</param>
+/// <param name="data">表示データ群</param>
 void CSpectralDlg::draw(std::vector<std::vector<double>> data)
 {
 	m_data = data;

@@ -42,6 +42,7 @@ void CPropTabPageParameter::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDT_JOINRATIO, m_JointRatio);
 	DDX_Control(pDX, IDC_CMB_JOINRATIO_TARGET_LABEL, m_cmbJoinratioTarget);
 	DDX_CBString(pDX, IDC_CMB_JOINRATIO_TARGET_LABEL, m_strJoinratioTarget);
+	DDX_Control(pDX, IDC_STC_IDCOLOR, m_stcIDColor);
 }
 
 
@@ -56,11 +57,18 @@ END_MESSAGE_MAP()
 
 // CPropTabPageParameter メッセージ ハンドラー
 
+/// <summary>
+/// ページIDの設定
+/// </summary>
+/// <param name="PageID">ページID</param>
 void CPropTabPageParameter::setPageID(int PageID)
 {
 	m_PageID = PageID;
 }
 
+/// <summary>
+/// ページIDの取得
+/// </summary>
 int CPropTabPageParameter::getPageID()
 {
 	return m_PageID;
@@ -96,6 +104,8 @@ void CPropTabPageParameter::ItemActive(bool bActive)
 
 	ItemEnable(IDC_STC_JOINRATIO_TARGET_LABEL,bActive);
 	ItemEnable(IDC_CMB_JOINRATIO_TARGET_LABEL,bActive);
+
+	ItemEnable(IDC_STC_IDCOLOR, bActive);
 
 	UpdateCmbJoinratioTargetLabel();
 
@@ -149,7 +159,7 @@ void CPropTabPageParameter::OnEnKillfocusEdtNumofclass()
 /// <summary>
 /// パラメータをファイルから読み込む
 /// </summary>
-/// <param name="index">更新対インデックス</param>
+/// <param name="id">更新対インデックス</param>
 void CPropTabPageParameter::LoadParamater(int id)
 {
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
@@ -182,6 +192,11 @@ void CPropTabPageParameter::LoadParamater(int id)
 	UpdateData(false);
 }
 
+/// <summary>
+/// 接合割合の設定
+/// </summary>
+/// <param name="id">更新対インデックス</param>
+/// <param name="ViewJointRatioNo">接合面番号</param>
 void CPropTabPageParameter::ViewJointRatio(int id, int ViewJointRatioNo)
 {
 	if (ViewJointRatioNo < 0) {
@@ -194,21 +209,49 @@ void CPropTabPageParameter::ViewJointRatio(int id, int ViewJointRatioNo)
 		case	CWeldEvaluationDoc::eResinSurface	:	// 樹脂
 			{
 				m_JointRatio.Format(_T("%.1lf"),pDoc->ResinGetJointRetio(ViewJointRatioNo));
+				UpdateIDColor(pDoc->ResinGetJointColor(ViewJointRatioNo));
 			}
 			break;
 		case	CWeldEvaluationDoc::eMetalSurface	:	// 金属
 			{
 				m_JointRatio.Format(_T("%.1lf"),pDoc->MetalGetJointRetio(ViewJointRatioNo));
-			}
+				UpdateIDColor(pDoc->MetalGetJointColor(ViewJointRatioNo));
+		}
 			break;
 		case	CWeldEvaluationDoc::eJoiningResult	:	// 接合結果
 			{
 				m_JointRatio.Format(_T("%.1lf"),pDoc->ResultGetJointRetio(ViewJointRatioNo));
-			}
+				UpdateIDColor(pDoc->ResultGetJointColor(ViewJointRatioNo));
+		}
 			break;
 		}
 	}
 	UpdateData(false);
+}
+
+/// <summary>
+/// 分類色を反映
+/// </summary>
+/// <param name="color">変更色</param>
+void CPropTabPageParameter::UpdateIDColor(COLORREF color)
+{
+	CWnd *pWnd;
+	pWnd = GetDlgItem(IDC_STC_IDCOLOR);
+	if (pWnd) {
+		CDC *dc = pWnd->GetDC();
+		if (dc == NULL)
+		{
+			return;
+		}
+		CRect rect;
+		pWnd->GetClientRect(rect);
+		CBrush blackBrush(color);
+		CBrush *orgBrush;
+		orgBrush = dc->SelectObject(&blackBrush);
+		dc->FillRect(&rect, &blackBrush);
+		dc->SelectObject(orgBrush);
+		ReleaseDC(dc);
+	}
 }
 
 
@@ -246,6 +289,9 @@ bool CPropTabPageParameter::Update(int index)
 }
 
 
+/// <summary>
+/// 対象コンボボック項目変更時処理
+/// </summary>
 void CPropTabPageParameter::OnCbnSelchangeCmbJoinratioTargetLabel()
 {
 	UpdateData(true);
@@ -260,6 +306,9 @@ void CPropTabPageParameter::OnCbnSelchangeCmbJoinratioTargetLabel()
 	CPropTabPageParameter::ViewJointRatio(m_PageID, (int)m_cmbJoinratioTarget.GetItemData(dataid));
 }
 
+/// <summary>
+/// 対象コンボボックスラベル変更時処理
+/// </summary>
 void CPropTabPageParameter::UpdateCmbJoinratioTargetLabel()
 {
 	UpdateData(true);
@@ -294,7 +343,12 @@ void CPropTabPageParameter::UpdateCmbJoinratioTargetLabel()
 	UpdateData(false);
 }
 
-
+/// <summary>
+/// ウインドアクティブ時処理
+/// </summary>
+/// <param name="nState">アクティブフラグ</param>
+/// <param name="pWndOther">対象ウインドへのポインタ</param>
+/// <param name="bMinimized">最小化フラグ</param>
 void CPropTabPageParameter::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 {
 	CDialogEx::OnActivate(nState, pWndOther, bMinimized);
@@ -303,6 +357,9 @@ void CPropTabPageParameter::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinim
 }
 
 
+/// <summary>
+/// 対象コンボボックスのエディットボックスフォーカス消失時処理
+/// </summary>
 void CPropTabPageParameter::OnCbnKillfocusCmbJoinratioTargetLabel()
 {
 	CString str = m_strJoinratioTarget;

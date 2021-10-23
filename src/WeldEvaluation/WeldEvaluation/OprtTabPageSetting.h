@@ -3,9 +3,16 @@
 
 // COprtTabPageSetting ダイアログ
 
+/// <summary>
+/// 操作タブ　設定ページ管理クラス
+/// </summary>
 class COprtTabPageSetting : public CDialogEx
 {
 	DECLARE_DYNAMIC(COprtTabPageSetting)
+
+public:
+	CString m_strTestName;		///< 試験名
+
 
 public:
 	COprtTabPageSetting(CWnd* pParent = NULL);   // 標準コンストラクター
@@ -27,7 +34,6 @@ public:
 	void UpddateResist(bool bEnable, bool bReadMode);
 	void Update();
 	void LoadParamater();
-	CString m_strTestName;
 	afx_msg void OnBnClickedBtnRegist();
 	afx_msg void OnBnClickedBtnImageout();
 };

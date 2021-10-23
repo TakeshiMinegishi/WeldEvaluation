@@ -160,7 +160,6 @@ void COprtTabPageAnalize::OnBnClickedRdoResinMethod1()
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eResinSurface,CWeldEvaluationDoc::AnalizeTypeKMeans);
 	if (m_ResinDisplayMode == 1) {
-		CFormView *pWnd = (CFormView *)GetParent()->GetParent();
 		if (pWnd) {
 			pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eResinSurface, CWeldEvaluationDoc::DisplayModeResult);
 		}
@@ -181,7 +180,6 @@ void COprtTabPageAnalize::OnBnClickedRdoResinMethod2()
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eResinSurface,CWeldEvaluationDoc::AnalizeTypeHiClustering);
 	if (m_ResinDisplayMode == 1) {
-		CFormView *pWnd = (CFormView *)GetParent()->GetParent();
 		if (pWnd) {
 			pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eResinSurface, CWeldEvaluationDoc::DisplayModeResult);
 		}
@@ -202,7 +200,6 @@ void COprtTabPageAnalize::OnBnClickedRdoMetalMethod1()
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eMetalSurface,CWeldEvaluationDoc::AnalizeTypeKMeans);
 	if (m_MetalDisplayMode == 1) {
-		CFormView *pWnd = (CFormView *)GetParent()->GetParent();
 		if (pWnd) {
 			pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eMetalSurface, CWeldEvaluationDoc::DisplayModeResult);
 		}
@@ -223,7 +220,6 @@ void COprtTabPageAnalize::OnBnClickedRdoMetalMethod2()
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eMetalSurface,CWeldEvaluationDoc::AnalizeTypeHiClustering);
 	if (m_MetalDisplayMode == 1) {
-		CFormView *pWnd = (CFormView *)GetParent()->GetParent();
 		if (pWnd) {
 			pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eMetalSurface, CWeldEvaluationDoc::DisplayModeResult);
 		}
@@ -244,7 +240,6 @@ void COprtTabPageAnalize::OnBnClickedRdoJointMethod1()
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eJoiningResult, CWeldEvaluationDoc::AnalizeTypeKMeans);
 	if (m_JointAnalizeType == 1) {
-		CFormView *pWnd = (CFormView *)GetParent()->GetParent();
 		if (pWnd) {
 			pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eJoiningResult, CWeldEvaluationDoc::DisplayModeResult);
 		}
@@ -265,7 +260,6 @@ void COprtTabPageAnalize::OnBnClickedRdoJointMethod2()
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eJoiningResult, CWeldEvaluationDoc::AnalizeTypeHiClustering);
 	if (m_JointAnalizeType == 1) {
-		CFormView *pWnd = (CFormView *)GetParent()->GetParent();
 		if (pWnd) {
 			pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eJoiningResult, CWeldEvaluationDoc::DisplayModeResult);
 		}

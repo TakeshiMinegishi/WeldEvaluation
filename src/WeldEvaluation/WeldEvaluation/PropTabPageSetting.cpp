@@ -75,7 +75,6 @@ BEGIN_MESSAGE_MAP(CPropTabPageSetting, CDialogEx)
 	ON_EN_KILLFOCUS(IDC_EDT_RESOLUTION_HOLIZONTAL, &CPropTabPageSetting::OnEnKillfocusEdtResolutionHolizontal)
 	ON_EN_KILLFOCUS(IDC_EDT_RESOLUTION_VERTICAL, &CPropTabPageSetting::OnEnKillfocusEdtResolutionVertical)
 	ON_EN_KILLFOCUS(IDC_EDT_WBFILENAME, &CPropTabPageSetting::OnEnKillfocusEdtWbfilename)
-	ON_NOTIFY(NM_THEMECHANGED, IDC_SBR_SETTING, &CPropTabPageSetting::OnNMThemeChangedSbrSetting)
 	ON_WM_VSCROLL()
 	ON_WM_MOUSEWHEEL()
 END_MESSAGE_MAP()
@@ -83,7 +82,9 @@ END_MESSAGE_MAP()
 
 // CPropTabPageSetting メッセージ ハンドラー
 
-
+/// <summary>
+/// 登録フォルダ参照ボタン押下時処理
+/// </summary>
 void CPropTabPageSetting::OnBnClickedBunRegfolderFind()
 {
 	UpdateData(true);
@@ -104,6 +105,9 @@ void CPropTabPageSetting::OnBnClickedBunRegfolderFind()
 	}
 }
 
+/// <summary>
+/// 登録フォルダエディットボックスフォーカス消失時処理
+/// </summary>
 void CPropTabPageSetting::OnEnKillfocusEdtRegfolder()
 {
 	CString folder = m_RegistFolder;
@@ -116,7 +120,9 @@ void CPropTabPageSetting::OnEnKillfocusEdtRegfolder()
 	}
 }
 
-
+/// <summary>
+/// ホワイトバランスファイル名エディットボックスフォーカス消失時処理
+/// </summary>
 void CPropTabPageSetting::OnEnKillfocusEdtWbfilename()
 {
 	CString org = m_WBFileName;
@@ -129,7 +135,11 @@ void CPropTabPageSetting::OnEnKillfocusEdtWbfilename()
 	}
 }
 
-
+/// <summary>
+/// 重なりピクセル数スピンドル押下時処理
+/// </summary>
+/// <param name="pNMHDR">NMUPDOWNオブジェクトへのポインタ</param>
+/// <param name="pResult">戻り値</param>
 void CPropTabPageSetting::OnDeltaposSpn(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMUPDOWN pNMUpDown = reinterpret_cast<LPNMUPDOWN>(pNMHDR);
@@ -152,6 +162,9 @@ void CPropTabPageSetting::OnDeltaposSpn(NMHDR *pNMHDR, LRESULT *pResult)
 	pWnd->SendMessage(WM_UPDATEREQUEST_PROPPAGE,(WPARAM)true,(LPARAM)0);
 }
 
+/// <summary>
+/// 重なりピクセル数エディットボックスフォーカス消失時処理
+/// </summary>
 void CPropTabPageSetting::OnEnKillfocusEdtNumberofoverrappingpixel()
 {
 	UINT org = m_NumberOfOverridePixel;
@@ -164,7 +177,11 @@ void CPropTabPageSetting::OnEnKillfocusEdtNumberofoverrappingpixel()
 	}
 }
 
-
+/// <summary>
+/// IntegrationTimeスピンドル押下時処理
+/// </summary>
+/// <param name="pNMHDR">NMUPDOWNオブジェクトへのポインタ</param>
+/// <param name="pResult">戻り値</param>
 void CPropTabPageSetting::OnDeltaposSpnIntegrationtime(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMUPDOWN pNMUpDown = reinterpret_cast<LPNMUPDOWN>(pNMHDR);
@@ -187,6 +204,9 @@ void CPropTabPageSetting::OnDeltaposSpnIntegrationtime(NMHDR *pNMHDR, LRESULT *p
 	pWnd->SendMessage(WM_UPDATEREQUEST_PROPPAGE,(WPARAM)true,(LPARAM)0);
 }
 
+/// <summary>
+/// IntegrationTimeエディットボックスフォーカス消失時処理
+/// </summary>
 void CPropTabPageSetting::OnEnKillfocusEdtIntegrationtime()
 {
 	UINT org = m_IntegrationTimeMs;
@@ -199,6 +219,11 @@ void CPropTabPageSetting::OnEnKillfocusEdtIntegrationtime()
 	}
 }
 
+/// <summary>
+/// 水平解像度スピンドル押下時処理
+/// </summary>
+/// <param name="pNMHDR">NMUPDOWNオブジェクトへのポインタ</param>
+/// <param name="pResult">戻り値</param>
 void CPropTabPageSetting::OnDeltaposSpnResolutionHolizontal(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMUPDOWN pNMUpDown = reinterpret_cast<LPNMUPDOWN>(pNMHDR);
@@ -221,6 +246,9 @@ void CPropTabPageSetting::OnDeltaposSpnResolutionHolizontal(NMHDR *pNMHDR, LRESU
 	pWnd->SendMessage(WM_UPDATEREQUEST_PROPPAGE,(WPARAM)true,(LPARAM)0);
 }
 
+/// <summary>
+/// 水平解像度エディットボックスフォーカス消失時処理
+/// </summary>
 void CPropTabPageSetting::OnEnKillfocusEdtResolutionHolizontal()
 {
 	UINT org = m_ResolutionHolizontal;
@@ -233,7 +261,11 @@ void CPropTabPageSetting::OnEnKillfocusEdtResolutionHolizontal()
 	}
 }
 
-
+/// <summary>
+/// 垂直解像度スピンドル押下時処理
+/// </summary>
+/// <param name="pNMHDR">NMUPDOWNオブジェクトへのポインタ</param>
+/// <param name="pResult">戻り値</param>
 void CPropTabPageSetting::OnDeltaposSpnResolutionVertical(NMHDR *pNMHDR, LRESULT *pResult)
 {
 	LPNMUPDOWN pNMUpDown = reinterpret_cast<LPNMUPDOWN>(pNMHDR);
@@ -256,6 +288,9 @@ void CPropTabPageSetting::OnDeltaposSpnResolutionVertical(NMHDR *pNMHDR, LRESULT
 	pWnd->SendMessage(WM_UPDATEREQUEST_PROPPAGE,(WPARAM)true,(LPARAM)0);
 }
 
+/// <summary>
+/// 垂直解像度エディットボックスフォーカス消失時処理
+/// </summary>
 void CPropTabPageSetting::OnEnKillfocusEdtResolutionVertical()
 {
 	UINT org = m_ResolutionVertical;
@@ -268,14 +303,21 @@ void CPropTabPageSetting::OnEnKillfocusEdtResolutionVertical()
 	}
 }
 
-
+/// <summary>
+/// ウインドアクティブ時処理
+/// </summary>
+/// <param name="nState">アクティブフラグ</param>
+/// <param name="pWndOther">対象ウインドへのポインタ</param>
+/// <param name="bMinimized">最小化フラグ</param>
 void CPropTabPageSetting::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 {
 	CDialogEx::OnActivate(nState, pWndOther, bMinimized);
 	LoadParamater();
 }
 
-
+/// <summary>
+/// パラメータの読み込み
+/// </summary>
 void CPropTabPageSetting::LoadParamater(void)
 {
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
@@ -328,15 +370,10 @@ void CPropTabPageSetting::ItemActive(bool bActive)
 	ItemEnable(IDC_SPN_RESOLUTION_VERTICAL,bActive);
 }
 
-
-void CPropTabPageSetting::OnNMThemeChangedSbrSetting(NMHDR *pNMHDR, LRESULT *pResult)
-{
-	// この機能は Windows XP それ以降のバージョンを必要とします。
-	// シンボル _WIN32_WINNT は >= 0x0501にならなければなりません。
-	// TODO: ここにコントロール通知ハンドラー コードを追加します。
-	*pResult = 0;
-}
-
+/// <summary>
+/// 指定サイズにフィッティング
+/// </summary>
+/// <param name="rect">フィッティング領域</param>
 void CPropTabPageSetting::FitRect(CRect rect)
 {
 	CRect rr;
@@ -359,6 +396,12 @@ void CPropTabPageSetting::FitRect(CRect rect)
 	m_sbrSettingDlg.SetScrollRange(m_MinScrollPos,m_MaxScrollPos);
 }
 
+/// <summary>
+/// 垂直バースクロールクリック時処理
+/// </summary>
+/// <param name="nSBCode">スクロール要求を示すスクロールバーコード</param>
+/// <param name="nPos">スクロールボックスの位置</param>
+/// <param name="pScrollBar">スクロールバーパラメータ</param>
 void CPropTabPageSetting::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
 	int nID = pScrollBar->GetDlgCtrlID();
@@ -434,6 +477,11 @@ void CPropTabPageSetting::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScroll
 	}
 }
 
+/// <summary>
+/// アイテムの移動
+/// </summary>
+/// <param name="pos">アイテムID</param>
+/// <param name="pos">移動オフセット</param>
 void CPropTabPageSetting::VMove(int ItemId, int offset)
 {
 	CRect rect;
@@ -449,6 +497,10 @@ void CPropTabPageSetting::VMove(int ItemId, int offset)
 	pWnd->SetWindowPos(NULL,rect.left,rect.top,NULL,NULL,SWP_NOSIZE|SWP_NOZORDER);
 }
 
+/// <summary>
+/// アイテムの移動
+/// </summary>
+/// <param name="pos">位置</param>
 void CPropTabPageSetting::MoveItem(int pos)
 {
 	int offset = pos - m_ScrollDelta;
@@ -475,7 +527,10 @@ void CPropTabPageSetting::MoveItem(int pos)
 	m_ScrollDelta = pos;
 }
 
-
+/// <summary>
+/// 更新処理
+/// </summary>
+/// <returns>成功した場合はtrue,そうでなければfalseを返す</returns>
 bool CPropTabPageSetting::Update(void)
 {
 	bool bResult = true;

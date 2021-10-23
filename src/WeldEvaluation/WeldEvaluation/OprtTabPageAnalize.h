@@ -4,6 +4,9 @@
 
 // COprtTabPageAnalize ダイアログ
 
+/// <summary>
+/// 操作タブ解析ページ管理クラス
+/// </summary>
 class COprtTabPageAnalize : public CDialogEx
 {
 	DECLARE_DYNAMIC(COprtTabPageAnalize)

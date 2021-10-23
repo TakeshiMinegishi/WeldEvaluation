@@ -27,17 +27,26 @@ static UINT indicators[] =
 	ID_INDICATOR_SCRL,
 };
 
-// CMainFrame コンストラクション/デストラクション
-
+/// <summary>
+/// CMainFrame コンストラクション
+/// </summary>
 CMainFrame::CMainFrame()
 {
 	// TODO: メンバー初期化コードをここに追加してください。
 }
 
+/// <summary>
+/// CMainFrame デストラクション
+/// </summary>
 CMainFrame::~CMainFrame()
 {
 }
 
+/// <summary>
+/// ウインド作成処理
+/// </summary>
+/// <param name="lpCreateStruct">CREATESTRUCTオブジェクトへのポインタ</param>
+/// <returns>成功した場合は0、失敗した場合は-1を返す</returns>
 int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
@@ -53,6 +62,11 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	return 0;
 }
 
+/// <summary>
+/// ウインド作成前処理
+/// </summary>
+/// <param name="cs">CREATESTRUCT構造体</param>
+/// <returns>作成を継続する場合はTRUE、それ以外はFALSEを返す</returns>
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
 	if( !CFrameWnd::PreCreateWindow(cs) )
@@ -66,11 +80,19 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 // CMainFrame 診断
 
 #ifdef _DEBUG
+/// <summary>
+/// オブジェクトの妥当性検査の実施
+/// </summary>
 void CMainFrame::AssertValid() const
 {
 	CFrameWnd::AssertValid();
 }
 
+
+/// <summary>
+/// CDumpContextオブジェクトの内容をダンプ
+/// </summary>
+/// <param name="dc">afxDump診断ダンプ コンテキスト</param>
 void CMainFrame::Dump(CDumpContext& dc) const
 {
 	CFrameWnd::Dump(dc);

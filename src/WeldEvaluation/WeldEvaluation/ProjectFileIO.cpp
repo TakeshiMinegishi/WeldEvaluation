@@ -83,6 +83,9 @@ bool CProjectFileIO::SetProjectName(CString projectname)
 }
 */
 
+/// <summary>
+/// プロジェクトの初期化
+/// </summary>
 void CProjectFileIO::Initialze()
 {
 	m_ProjectFilePath = _T("");///< プロジェクトファイルへのパス
@@ -158,6 +161,11 @@ CString CProjectFileIO::Date2Str(COleDateTime date)
 	return str;
 }
 
+/// <summary>
+/// プロジェクトの読み込み
+/// </summary>
+/// <param name="path">プロジェクトファイルパス名</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CProjectFileIO::read(CString path)
 {
 	CConfigrationIO sys(path);
@@ -220,6 +228,11 @@ bool CProjectFileIO::read(CString path)
 	return true;
 }
 
+/// <summary>
+/// プロジェクトの保存
+/// </summary>
+/// <param name="path">プロジェクトファイルパス名</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CProjectFileIO::save(CString path)
 {
 	bool bResult = true;
@@ -531,7 +544,7 @@ int CProjectFileIO::GetMetalDisplayType()
 /// <summary>
 /// 金属画像表示タイプの設定
 /// </summary>
-/// <param name="fileName">金属画像表示タイプ</param>
+/// <param name="displayType">金属画像表示タイプ</param>
 /// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CProjectFileIO::SetMetalDisplayType(int displayType)
 {
@@ -541,7 +554,6 @@ bool CProjectFileIO::SetMetalDisplayType(int displayType)
 	CConfigrationIO sys(m_ProjectFilePath);
 	return sys.setInt(_T("MetalSurface"),_T("display_type"),displayType);
 }
-
 
 /// <summary>
 /// 接合結果画像スキャン画像ファイル名の取得
@@ -770,7 +782,6 @@ bool CProjectFileIO::SetSpectralGraphSectionEndPosition(int holizontal, int vert
 	m_SpectralGraphSectionVerticalEndPosition = vertical;
 	return true;
 }
-
 
 /// <summary>
 /// パラメータファイルの読み込み

@@ -1,7 +1,14 @@
 #pragma once
+
+/// <summary>
+/// プロジェクトファイルIOクラス
+/// </summary>
 class CProjectFileIO
 {
 public:
+	/// <summary>
+	/// 対象種別用列挙
+	/// </summary>
 	enum {
 		eResinSurface	= 0,	///< 樹脂
 		eMetalSurface	= 1,	///< 金属

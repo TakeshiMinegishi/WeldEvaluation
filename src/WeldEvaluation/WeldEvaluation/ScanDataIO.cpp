@@ -31,7 +31,7 @@ CScanDataIO::~CScanDataIO(void)
 /// オープン
 /// </summary>
 /// <param name="pathName">スキャンデータのフルパス名</param>
-/// <param name="reload">再読込フラグ</param>
+/// <param name="bReload">再読込フラグ</param>
 /// <returns>成功した場合はtrue,失敗した場合はfalseを返す</returns>
 /// @remark bReloadがfalseの場合は、同データが開いている場合は何もせずに終了する
 bool CScanDataIO::open(CString pathName, bool bReload/*=false*/ )
@@ -127,7 +127,6 @@ void CScanDataIO::executeNomalizerLauncher(void* args)
 /// <summary>
 /// 画像データ取得
 /// </summary>
-/// <param name="pathName">LPNMITEMACTIVATEオブジェクトへのポインタ</param>
 /// <param name="height">スキャンデータのライン数</param>
 /// <param name="width">スキャンデータのサンプリング数</param>
 /// <param name="bands">スキャンデータのバンド数</param>

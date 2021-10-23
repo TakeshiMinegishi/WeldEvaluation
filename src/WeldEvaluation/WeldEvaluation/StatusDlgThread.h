@@ -2,6 +2,9 @@
 #include "afxwin.h"
 #include "StatusDlg.h"
 
+/// <summary>
+/// ステータスダイアログスレッドクラス
+/// </summary>
 class CStatusDlgThread : public CWinThread
 {
 	DECLARE_DYNCREATE(CStatusDlgThread)
@@ -13,8 +16,8 @@ public:
 	virtual BOOL InitInstance();
 	void UpdateStatus(CString status);
 
-	CStatusDlg m_Dlg;
-	bool m_Valid;
+	CStatusDlg	m_Dlg;		///< ステータスダイアログオブジェクト
+	bool		m_Valid;	///< 有効フラグ
 
 protected:
 	DECLARE_MESSAGE_MAP()

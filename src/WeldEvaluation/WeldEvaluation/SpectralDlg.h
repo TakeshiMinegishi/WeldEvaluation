@@ -4,17 +4,18 @@
 #include	<vector>
 
 
-// CSpectralDlg ダイアログ
-
+/// <summary>
+/// 区間スペクトル用ダイアログクラス
+/// </summary>
 class CSpectralDlg : public CDialog
 {
 	DECLARE_DYNAMIC(CSpectralDlg)
 private:
-	CWnd				*m_pParemt;						///< 親ウインド
-	CGraphWind			*m_pGraphWnd;					///< グラフウインドへのポインタ
-	CRect				m_orgClientSize;
-	CRect				m_bfClientSize;
-	std::vector<std::vector<double>>	m_data;
+	CWnd								*m_pParemt;						///< 親ウインド
+	CGraphWind							*m_pGraphWnd;					///< グラフウインドへのポインタ
+	CRect								m_orgClientSize;				///< 初期ダイアログサイズ
+	CRect								m_bfClientSize;					///< 拡縮時ダイアログサイズ
+	std::vector<std::vector<double>>	m_data;							///< 表示グラフデータ
 
 public:
 	CSpectralDlg(CWnd* pParent = nullptr);   // 標準コンストラクター

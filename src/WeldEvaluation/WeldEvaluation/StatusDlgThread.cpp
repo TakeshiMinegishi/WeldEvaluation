@@ -4,15 +4,23 @@
 
 IMPLEMENT_DYNCREATE(CStatusDlgThread, CWinThread)
 
+/// <summary>
+/// コンストラクタ
+/// </summary>
 CStatusDlgThread::CStatusDlgThread(void) : m_Valid(true)
 {
 }
 
-
+/// <summary>
+/// デストラクタ
+/// </summary>
 CStatusDlgThread::~CStatusDlgThread(void)
 {
 }
 
+/// <summary>
+/// インスタンスの初期化
+/// </summary>
 BOOL CStatusDlgThread::InitInstance()
 {
 	m_pMainWnd = &m_Dlg;
@@ -21,6 +29,10 @@ BOOL CStatusDlgThread::InitInstance()
 	return TRUE;
 }
 
+/// <summary>
+/// ステータスの更新
+/// </summary>
+/// <param name="status">ステータス文字列</param>
 void CStatusDlgThread::UpdateStatus(CString status)
 {
 	m_Dlg.m_Status = status;

@@ -13,6 +13,10 @@
 
 IMPLEMENT_DYNAMIC(COprtTabPageScan, CDialogEx)
 
+/// <summary>
+/// 初期化コンストラクタ
+/// </summary>
+/// <param name="pParent">親ウインドへのポインタ</param>
 COprtTabPageScan::COprtTabPageScan(CWnd* pParent /*=NULL*/)
 	: CDialogEx(COprtTabPageScan::IDD, pParent)
 	, m_ScanTarget(0)
@@ -20,6 +24,9 @@ COprtTabPageScan::COprtTabPageScan(CWnd* pParent /*=NULL*/)
 
 }
 
+/// <summary>
+/// デストラクタ
+/// </summary>
 COprtTabPageScan::~COprtTabPageScan()
 {
 }
@@ -72,10 +79,17 @@ void COprtTabPageScan::ItemActive(bool bActive)
 	ItemEnable(IDC_BTN_CANCEL,bActive);
 }
 
+/// <summary>
+/// パラメータの読み込み
+/// </summary>
 void COprtTabPageScan::LoadParamater(void)
 {
 }
 
+/// <summary>
+/// スキャンされていない対象の取得
+/// </summary>
+/// <returns>スキャンされていない対象のIDを返す</returns>
 int COprtTabPageScan::GetDeactiveScan()
 {
 	int targetID = -1;
@@ -104,6 +118,12 @@ int COprtTabPageScan::GetDeactiveScan()
 	return targetID;
 }
 
+/// <summary>
+/// ウインドアクティブ時処理
+/// </summary>
+/// <param name="nState">アクティブフラグ</param>
+/// <param name="pWndOther">対象ウインドへのポインタ</param>
+/// <param name="bMinimized">最小化フラグ</param>
 void COprtTabPageScan::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 {
 	CDialogEx::OnActivate(nState, pWndOther, bMinimized);
@@ -116,7 +136,9 @@ void COprtTabPageScan::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 	UpdateData(false);
 }
 
-
+/// <summary>
+/// スキャンボタン押下時処理
+/// </summary>
 void COprtTabPageScan::OnBnClickedBtnScan()
 {
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
@@ -186,6 +208,10 @@ void COprtTabPageScan::OnBnClickedBtnScan()
 	ItemActive(true);
 }
 
+/// <summary>
+/// 指定サイズにフィッティング
+/// </summary>
+/// <param name="rect">フィッティング領域</param>
 void COprtTabPageScan::FitRect(CRect rect)
 {
 }

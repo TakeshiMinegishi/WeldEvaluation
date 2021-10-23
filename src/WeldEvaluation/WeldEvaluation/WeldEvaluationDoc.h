@@ -11,7 +11,9 @@
 
 #pragma once
 
-
+/// <summary>
+/// ドキュメントクラス
+/// </summary>
 class CWeldEvaluationDoc : public CDocument
 {
 public:
@@ -125,18 +127,24 @@ public:
 	bool	ResinSetNumberOfClass(UINT nClass);
 	double	ResinGetJointRetio(int ViewJointRatioNo);
 	bool	ResinSetJointRetio(int ViewJointRatioNo, double retio);
+	COLORREF ResinGetJointColor(int ViewJointRatioNo);
+	bool	ResinSetJointColor(int ViewJointRatioNo, COLORREF color);
 	int		ResinGetAnalysisMethod();
 	bool	ResinSetAnalysisMethod(int method);
 	UINT	MetalGetNumberOfClass(void);
 	bool	MetalSetNumberOfClass(UINT nClass);
 	double	MetalGetJointRetio(int ViewJointRatioNo);
 	bool	MetalSetJointRetio(int ViewJointRatioNo, double retio);
+	COLORREF MetalGetJointColor(int ViewJointRatioNo);
+	bool	MetalSetJointColor(int ViewJointRatioNo, COLORREF color);
 	int		MetalGetAnalysisMethod();
 	bool	MetalSetAnalysisMethod(int method);
 	UINT	ResultGetNumberOfClass(void);
 	bool	ResultSetNumberOfClass(UINT nClass);
 	double	ResultGetJointRetio(int ViewJointRatioNo);
 	bool	ResultSetJointRetio(int ViewJointRatioNo, double retio);
+	COLORREF ResultGetJointColor(int ViewJointRatioNo);
+	bool	ResultSetJointColor(int ViewJointRatioNo, COLORREF color);
 
 	int		GetAnalysisMethod(int targetID);
 	bool	SetAnalysisMethod(int targetID, int AnalysisMethodID);
@@ -158,15 +166,15 @@ public:
 
 	UINT	GetSpectralGraphPointTarget();
 	bool	SetSpectralGraphPointTarget(UINT targetID);
-	bool	GetSpectralGraphPointPosition(int &holizontal, int &bvertical);
-	bool	SetSpectralGraphPointPosition(int holizontal, int bvertical);
+	bool	GetSpectralGraphPointPosition(int &holizontal, int &vertical);
+	bool	SetSpectralGraphPointPosition(int holizontal, int vertical);
 
 	UINT	GetSpectralGraphSectionTarget();
 	bool	SetSpectralGraphSectionTarget(UINT targetID);
-	bool	GetSpectralGraphSectionStartPosition(int &holizontal, int &bvertical);
-	bool	SetSpectralGraphSectionStartPosition(int holizontal, int bvertical);
-	bool	GetSpectralGraphSectionEndPosition(int &holizontal, int &bvertical);
-	bool	SetSpectralGraphSectionEndPosition(int holizontal, int bvertical);
+	bool	GetSpectralGraphSectionStartPosition(int &holizontal, int &vertical);
+	bool	SetSpectralGraphSectionStartPosition(int holizontal, int vertical);
+	bool	GetSpectralGraphSectionEndPosition(int &holizontal, int &vertical);
+	bool	SetSpectralGraphSectionEndPosition(int holizontal, int vertical);
 
 	//////////////////////////////////////////////////////////////////////////////////
 	// 

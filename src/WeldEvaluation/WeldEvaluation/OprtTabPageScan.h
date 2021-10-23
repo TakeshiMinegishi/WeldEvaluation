@@ -3,6 +3,9 @@
 
 // COprtTabPageScan ダイアログ
 
+/// <summary>
+/// 操作タブ　スキャンページ管理クラス
+/// </summary>
 class COprtTabPageScan : public CDialogEx
 {
 	DECLARE_DYNAMIC(COprtTabPageScan)
@@ -24,7 +27,7 @@ private:
 	int GetDeactiveScan();
 
 public:
-	int m_ScanTarget;
+	int m_ScanTarget;	///< スキャンターゲット
 
 public:
 	void ItemActive(bool bActive);

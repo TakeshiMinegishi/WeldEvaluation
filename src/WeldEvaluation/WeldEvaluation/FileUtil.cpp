@@ -118,6 +118,11 @@ bool CFileUtil::splitPath(CString path, CString &drive, CString &dir, CString &f
 	return bResult;
 }
 
+/// <summary>
+/// ディレクトリの作成
+/// </summary>
+/// <param name="path">ディレクトリパス</param>
+/// <returns>成功した場合はture、失敗した場合はfalseを返す</returns>
 bool CFileUtil::MakeDir(CString path)
 {
 	bool bResult = true;

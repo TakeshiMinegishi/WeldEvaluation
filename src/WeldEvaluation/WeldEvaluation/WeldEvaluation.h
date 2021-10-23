@@ -14,6 +14,9 @@
 // このクラスの実装については、WeldEvaluation.cpp を参照してください。
 //
 
+/// <summary>
+/// CWeldEvaluatioアプリケーションクラス
+/// </summary>
 class CWeldEvaluationApp : public CWinApp
 {
 public:
