@@ -1,0 +1,2680 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>WeldEvaluation: CWeldEvaluationDoc クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">WeldEvaluation
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">WeldEvaluation</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_c_weld_evaluation_doc.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">公開型</a> &#124;
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pro-methods">限定公開メンバ関数</a> &#124;
+<a href="class_c_weld_evaluation_doc-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">CWeldEvaluationDoc クラス</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>ドキュメントクラス  
+ <a href="class_c_weld_evaluation_doc.html#details">[詳解]</a></p>
+
+<p><code>#include &lt;<a class="el" href="_weld_evaluation_doc_8h_source.html">WeldEvaluationDoc.h</a>&gt;</code></p>
+
+<p>CDocumentを継承しています。</p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+公開型</h2></td></tr>
+<tr class="memitem:a259c254563f87186fdb00af9f580e6f7"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="class_c_weld_evaluation_doc.html#a259c254563f87186fdb00af9f580e6f7aeaf64fcd3e835fdce991be4b4eb82674">eResinSurface</a> = 0
+, <a class="el" href="class_c_weld_evaluation_doc.html#a259c254563f87186fdb00af9f580e6f7a8ba9bd4d67af24d393076da6fc7ce39b">eMetalSurface</a> = 1
+, <a class="el" href="class_c_weld_evaluation_doc.html#a259c254563f87186fdb00af9f580e6f7a60b5621565baad7ce523354b091c93a1">eJoiningResult</a> = 2
+ }</td></tr>
+<tr class="separator:a259c254563f87186fdb00af9f580e6f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc89bcaf966787b89b3bf846e9e65245"><td class="memItemLeft" align="right" valign="top"><a id="acc89bcaf966787b89b3bf846e9e65245"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>DisplayModeScan</b> = 0
+, <b>DisplayModeResult</b> = 1
+ }</td></tr>
+<tr class="separator:acc89bcaf966787b89b3bf846e9e65245"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d84ce725a5dbb897eacccda68813123"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="class_c_weld_evaluation_doc.html#a2d84ce725a5dbb897eacccda68813123a1380d4456f3dc4a83eee552fe2a32d5d">AnalizeTypeKMeans</a> = 0
+, <a class="el" href="class_c_weld_evaluation_doc.html#a2d84ce725a5dbb897eacccda68813123aa58634ac0b1a7c0c2e89721ca39a707a">AnalizeTypeHiClustering</a> = 1
+ }</td></tr>
+<tr class="separator:a2d84ce725a5dbb897eacccda68813123"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a2e500461803db9361e0e0c86bc549547"><td class="memItemLeft" align="right" valign="top">virtual BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547">OnNewDocument</a> ()</td></tr>
+<tr class="memdesc:a2e500461803db9361e0e0c86bc549547"><td class="mdescLeft">&#160;</td><td class="mdescRight">新規プロジェクト作成  <a href="class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547">[詳解]</a><br /></td></tr>
+<tr class="separator:a2e500461803db9361e0e0c86bc549547"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8948c162a0a664ca2d52acbe03adcb5c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a8948c162a0a664ca2d52acbe03adcb5c">Serialize</a> (CArchive &amp;ar)</td></tr>
+<tr class="memdesc:a8948c162a0a664ca2d52acbe03adcb5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">シリアライズ  <a href="class_c_weld_evaluation_doc.html#a8948c162a0a664ca2d52acbe03adcb5c">[詳解]</a><br /></td></tr>
+<tr class="separator:a8948c162a0a664ca2d52acbe03adcb5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a573e58f70c29a3fd7a162f71f412dd62"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a573e58f70c29a3fd7a162f71f412dd62">~CWeldEvaluationDoc</a> ()</td></tr>
+<tr class="memdesc:a573e58f70c29a3fd7a162f71f412dd62"><td class="mdescLeft">&#160;</td><td class="mdescRight">デストラクタ  <a href="class_c_weld_evaluation_doc.html#a573e58f70c29a3fd7a162f71f412dd62">[詳解]</a><br /></td></tr>
+<tr class="separator:a573e58f70c29a3fd7a162f71f412dd62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc8a436f4364d7934b6ab11483e5138f"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#afc8a436f4364d7934b6ab11483e5138f">GetProjectName</a> ()</td></tr>
+<tr class="memdesc:afc8a436f4364d7934b6ab11483e5138f"><td class="mdescLeft">&#160;</td><td class="mdescRight">プロジェクト名の取得  <a href="class_c_weld_evaluation_doc.html#afc8a436f4364d7934b6ab11483e5138f">[詳解]</a><br /></td></tr>
+<tr class="separator:afc8a436f4364d7934b6ab11483e5138f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abffca4a1d8bb4a754b2a2422894ea002"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#abffca4a1d8bb4a754b2a2422894ea002">SetProjectName</a> (CString projectname)</td></tr>
+<tr class="memdesc:abffca4a1d8bb4a754b2a2422894ea002"><td class="mdescLeft">&#160;</td><td class="mdescRight">プロジェクト名の設定  <a href="class_c_weld_evaluation_doc.html#abffca4a1d8bb4a754b2a2422894ea002">[詳解]</a><br /></td></tr>
+<tr class="separator:abffca4a1d8bb4a754b2a2422894ea002"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9712f68619dcab924e5c06b439e1c75"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#ad9712f68619dcab924e5c06b439e1c75">GetTestName</a> ()</td></tr>
+<tr class="memdesc:ad9712f68619dcab924e5c06b439e1c75"><td class="mdescLeft">&#160;</td><td class="mdescRight">名称の取得  <a href="class_c_weld_evaluation_doc.html#ad9712f68619dcab924e5c06b439e1c75">[詳解]</a><br /></td></tr>
+<tr class="separator:ad9712f68619dcab924e5c06b439e1c75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2448432713861aa819cfdd878ec458b1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a2448432713861aa819cfdd878ec458b1">SetTestName</a> (CString name)</td></tr>
+<tr class="memdesc:a2448432713861aa819cfdd878ec458b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">名称の設定  <a href="class_c_weld_evaluation_doc.html#a2448432713861aa819cfdd878ec458b1">[詳解]</a><br /></td></tr>
+<tr class="separator:a2448432713861aa819cfdd878ec458b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3746774f32e3fa3fc4ebc4d4510d0ee"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#ad3746774f32e3fa3fc4ebc4d4510d0ee">GetRegistedFolder</a> (void)</td></tr>
+<tr class="memdesc:ad3746774f32e3fa3fc4ebc4d4510d0ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">登録済み試験格納フォルダの取得  <a href="class_c_weld_evaluation_doc.html#ad3746774f32e3fa3fc4ebc4d4510d0ee">[詳解]</a><br /></td></tr>
+<tr class="separator:ad3746774f32e3fa3fc4ebc4d4510d0ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a305d7efff0111b0612ca004176bc0280"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a305d7efff0111b0612ca004176bc0280">SetRegistedFolder</a> (CString RegistedFolder)</td></tr>
+<tr class="memdesc:a305d7efff0111b0612ca004176bc0280"><td class="mdescLeft">&#160;</td><td class="mdescRight">登録済み試験格納フォルダの設定  <a href="class_c_weld_evaluation_doc.html#a305d7efff0111b0612ca004176bc0280">[詳解]</a><br /></td></tr>
+<tr class="separator:a305d7efff0111b0612ca004176bc0280"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a999ae33c47280fcd8d7a759b0de05c2a"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a999ae33c47280fcd8d7a759b0de05c2a">GetWBFileName</a> (void)</td></tr>
+<tr class="memdesc:a999ae33c47280fcd8d7a759b0de05c2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">ホワイトバランスファイル名の取得  <a href="class_c_weld_evaluation_doc.html#a999ae33c47280fcd8d7a759b0de05c2a">[詳解]</a><br /></td></tr>
+<tr class="separator:a999ae33c47280fcd8d7a759b0de05c2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad67e43a275ca5b21835a1b256a1cade9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#ad67e43a275ca5b21835a1b256a1cade9">SetWBFileName</a> (CString WBFileName)</td></tr>
+<tr class="memdesc:ad67e43a275ca5b21835a1b256a1cade9"><td class="mdescLeft">&#160;</td><td class="mdescRight">ホワイトバランスファイル名の設定  <a href="class_c_weld_evaluation_doc.html#ad67e43a275ca5b21835a1b256a1cade9">[詳解]</a><br /></td></tr>
+<tr class="separator:ad67e43a275ca5b21835a1b256a1cade9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0dd89540e9d6522bc50cf1b1e2aef42"><td class="memItemLeft" align="right" valign="top">UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#af0dd89540e9d6522bc50cf1b1e2aef42">NumberOfOverridePixel</a> (void)</td></tr>
+<tr class="memdesc:af0dd89540e9d6522bc50cf1b1e2aef42"><td class="mdescLeft">&#160;</td><td class="mdescRight">重なりピクセル数の取得  <a href="class_c_weld_evaluation_doc.html#af0dd89540e9d6522bc50cf1b1e2aef42">[詳解]</a><br /></td></tr>
+<tr class="separator:af0dd89540e9d6522bc50cf1b1e2aef42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5421290a2c9bedda0312fb4c639fe64"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#ab5421290a2c9bedda0312fb4c639fe64">SetOverridePixelNumber</a> (UINT num)</td></tr>
+<tr class="memdesc:ab5421290a2c9bedda0312fb4c639fe64"><td class="mdescLeft">&#160;</td><td class="mdescRight">重なりピクセル数の設定  <a href="class_c_weld_evaluation_doc.html#ab5421290a2c9bedda0312fb4c639fe64">[詳解]</a><br /></td></tr>
+<tr class="separator:ab5421290a2c9bedda0312fb4c639fe64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a94c4a0940fad9ceb2ee70a9fd5e5b922"><td class="memItemLeft" align="right" valign="top">UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a94c4a0940fad9ceb2ee70a9fd5e5b922">GetIntegrationTimeMs</a> (void)</td></tr>
+<tr class="memdesc:a94c4a0940fad9ceb2ee70a9fd5e5b922"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integration_time_msの取得  <a href="class_c_weld_evaluation_doc.html#a94c4a0940fad9ceb2ee70a9fd5e5b922">[詳解]</a><br /></td></tr>
+<tr class="separator:a94c4a0940fad9ceb2ee70a9fd5e5b922"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad10cb9f19bffa177b2ae6ecd6117ce64"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#ad10cb9f19bffa177b2ae6ecd6117ce64">SetIntegrationTimeMs</a> (UINT time)</td></tr>
+<tr class="memdesc:ad10cb9f19bffa177b2ae6ecd6117ce64"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integration_time_msの設定  <a href="class_c_weld_evaluation_doc.html#ad10cb9f19bffa177b2ae6ecd6117ce64">[詳解]</a><br /></td></tr>
+<tr class="separator:ad10cb9f19bffa177b2ae6ecd6117ce64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb185b5cb5f8e080c3e082e6def82cb6"><td class="memItemLeft" align="right" valign="top">UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#acb185b5cb5f8e080c3e082e6def82cb6">GetVerticalResolution</a> (void)</td></tr>
+<tr class="memdesc:acb185b5cb5f8e080c3e082e6def82cb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">縦方向の解像度の取得  <a href="class_c_weld_evaluation_doc.html#acb185b5cb5f8e080c3e082e6def82cb6">[詳解]</a><br /></td></tr>
+<tr class="separator:acb185b5cb5f8e080c3e082e6def82cb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a450135b86704283b24146942270f8e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a8a450135b86704283b24146942270f8e">SetVerticalResolution</a> (UINT resolution)</td></tr>
+<tr class="memdesc:a8a450135b86704283b24146942270f8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">縦方向の解像度の設定  <a href="class_c_weld_evaluation_doc.html#a8a450135b86704283b24146942270f8e">[詳解]</a><br /></td></tr>
+<tr class="separator:a8a450135b86704283b24146942270f8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ef4bfb934dbbde5dc88806e63dd0b20"><td class="memItemLeft" align="right" valign="top">UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a5ef4bfb934dbbde5dc88806e63dd0b20">GetHorizontalResolution</a> (void)</td></tr>
+<tr class="memdesc:a5ef4bfb934dbbde5dc88806e63dd0b20"><td class="mdescLeft">&#160;</td><td class="mdescRight">横方向の解像度の取得  <a href="class_c_weld_evaluation_doc.html#a5ef4bfb934dbbde5dc88806e63dd0b20">[詳解]</a><br /></td></tr>
+<tr class="separator:a5ef4bfb934dbbde5dc88806e63dd0b20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41c75df2370e5979fb5409c2fcc728b0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a41c75df2370e5979fb5409c2fcc728b0">SetHorizontalResolution</a> (UINT resolution)</td></tr>
+<tr class="memdesc:a41c75df2370e5979fb5409c2fcc728b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">横方向の解像度の設定  <a href="class_c_weld_evaluation_doc.html#a41c75df2370e5979fb5409c2fcc728b0">[詳解]</a><br /></td></tr>
+<tr class="separator:a41c75df2370e5979fb5409c2fcc728b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1a2e047b8aa8406697a445c9ff8aa02"><td class="memItemLeft" align="right" valign="top">UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#af1a2e047b8aa8406697a445c9ff8aa02">ResinGetNumberOfClass</a> (void)</td></tr>
+<tr class="memdesc:af1a2e047b8aa8406697a445c9ff8aa02"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂面の分類数の取得  <a href="class_c_weld_evaluation_doc.html#af1a2e047b8aa8406697a445c9ff8aa02">[詳解]</a><br /></td></tr>
+<tr class="separator:af1a2e047b8aa8406697a445c9ff8aa02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95882c0c55b261f7b443a3c22b10f86e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a95882c0c55b261f7b443a3c22b10f86e">ResinSetNumberOfClass</a> (UINT nClass)</td></tr>
+<tr class="memdesc:a95882c0c55b261f7b443a3c22b10f86e"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂面の分類数の設定  <a href="class_c_weld_evaluation_doc.html#a95882c0c55b261f7b443a3c22b10f86e">[詳解]</a><br /></td></tr>
+<tr class="separator:a95882c0c55b261f7b443a3c22b10f86e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaaeca146df9c470124213a245756204"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#aeaaeca146df9c470124213a245756204">ResinGetJointRetio</a> (int ViewJointRatioNo)</td></tr>
+<tr class="memdesc:aeaaeca146df9c470124213a245756204"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂面の接合割合の取得  <a href="class_c_weld_evaluation_doc.html#aeaaeca146df9c470124213a245756204">[詳解]</a><br /></td></tr>
+<tr class="separator:aeaaeca146df9c470124213a245756204"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43cdbb49e4c9011c567dc8b82f0542df"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a43cdbb49e4c9011c567dc8b82f0542df">ResinSetJointRetio</a> (int ViewJointRatioNo, double retio)</td></tr>
+<tr class="memdesc:a43cdbb49e4c9011c567dc8b82f0542df"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂面の接合割合の設定  <a href="class_c_weld_evaluation_doc.html#a43cdbb49e4c9011c567dc8b82f0542df">[詳解]</a><br /></td></tr>
+<tr class="separator:a43cdbb49e4c9011c567dc8b82f0542df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91c4793db0e339ca9b1a955f296b55bf"><td class="memItemLeft" align="right" valign="top">COLORREF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a91c4793db0e339ca9b1a955f296b55bf">ResinGetJointColor</a> (int ViewJointRatioNo)</td></tr>
+<tr class="memdesc:a91c4793db0e339ca9b1a955f296b55bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂面の接合色の取得  <a href="class_c_weld_evaluation_doc.html#a91c4793db0e339ca9b1a955f296b55bf">[詳解]</a><br /></td></tr>
+<tr class="separator:a91c4793db0e339ca9b1a955f296b55bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1d6b0e82361d4c8b2e85b171f822aee"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#ab1d6b0e82361d4c8b2e85b171f822aee">ResinSetJointColor</a> (int ViewJointRatioNo, COLORREF color)</td></tr>
+<tr class="memdesc:ab1d6b0e82361d4c8b2e85b171f822aee"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂面の接合色の設定  <a href="class_c_weld_evaluation_doc.html#ab1d6b0e82361d4c8b2e85b171f822aee">[詳解]</a><br /></td></tr>
+<tr class="separator:ab1d6b0e82361d4c8b2e85b171f822aee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dc5f7f1ecde114717497554dcba7259"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a2dc5f7f1ecde114717497554dcba7259">ResinGetAnalysisMethod</a> ()</td></tr>
+<tr class="memdesc:a2dc5f7f1ecde114717497554dcba7259"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂面の解析方法の取得  <a href="class_c_weld_evaluation_doc.html#a2dc5f7f1ecde114717497554dcba7259">[詳解]</a><br /></td></tr>
+<tr class="separator:a2dc5f7f1ecde114717497554dcba7259"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a270e5a55f82e69c9f49f062d2b243426"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a270e5a55f82e69c9f49f062d2b243426">ResinSetAnalysisMethod</a> (int method)</td></tr>
+<tr class="memdesc:a270e5a55f82e69c9f49f062d2b243426"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂面の解析方法の設定  <a href="class_c_weld_evaluation_doc.html#a270e5a55f82e69c9f49f062d2b243426">[詳解]</a><br /></td></tr>
+<tr class="separator:a270e5a55f82e69c9f49f062d2b243426"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b089f9a60389f8b0e902980a1dd70eb"><td class="memItemLeft" align="right" valign="top">UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a7b089f9a60389f8b0e902980a1dd70eb">MetalGetNumberOfClass</a> (void)</td></tr>
+<tr class="memdesc:a7b089f9a60389f8b0e902980a1dd70eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属面の分類数の取得  <a href="class_c_weld_evaluation_doc.html#a7b089f9a60389f8b0e902980a1dd70eb">[詳解]</a><br /></td></tr>
+<tr class="separator:a7b089f9a60389f8b0e902980a1dd70eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac15632600f0f67f246924ba41112c6f4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#ac15632600f0f67f246924ba41112c6f4">MetalSetNumberOfClass</a> (UINT nClass)</td></tr>
+<tr class="memdesc:ac15632600f0f67f246924ba41112c6f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属面の分類数の設定  <a href="class_c_weld_evaluation_doc.html#ac15632600f0f67f246924ba41112c6f4">[詳解]</a><br /></td></tr>
+<tr class="separator:ac15632600f0f67f246924ba41112c6f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef9304255fe785208bd428f94bda0d77"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#aef9304255fe785208bd428f94bda0d77">MetalGetJointRetio</a> (int ViewJointRatioNo)</td></tr>
+<tr class="memdesc:aef9304255fe785208bd428f94bda0d77"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属面の接合割合の取得  <a href="class_c_weld_evaluation_doc.html#aef9304255fe785208bd428f94bda0d77">[詳解]</a><br /></td></tr>
+<tr class="separator:aef9304255fe785208bd428f94bda0d77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a838fa652d1df7ee88f1e663865bf70"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a9a838fa652d1df7ee88f1e663865bf70">MetalSetJointRetio</a> (int ViewJointRatioNo, double retio)</td></tr>
+<tr class="memdesc:a9a838fa652d1df7ee88f1e663865bf70"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属面の接合割合の設定  <a href="class_c_weld_evaluation_doc.html#a9a838fa652d1df7ee88f1e663865bf70">[詳解]</a><br /></td></tr>
+<tr class="separator:a9a838fa652d1df7ee88f1e663865bf70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab91987be90d82122862e48945de89711"><td class="memItemLeft" align="right" valign="top">COLORREF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#ab91987be90d82122862e48945de89711">MetalGetJointColor</a> (int ViewJointRatioNo)</td></tr>
+<tr class="memdesc:ab91987be90d82122862e48945de89711"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属面の接合色の取得  <a href="class_c_weld_evaluation_doc.html#ab91987be90d82122862e48945de89711">[詳解]</a><br /></td></tr>
+<tr class="separator:ab91987be90d82122862e48945de89711"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac721b0dc19233dbeb4562524a9a11a9d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#ac721b0dc19233dbeb4562524a9a11a9d">MetalSetJointColor</a> (int ViewJointRatioNo, COLORREF color)</td></tr>
+<tr class="memdesc:ac721b0dc19233dbeb4562524a9a11a9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属面の接合色の設定  <a href="class_c_weld_evaluation_doc.html#ac721b0dc19233dbeb4562524a9a11a9d">[詳解]</a><br /></td></tr>
+<tr class="separator:ac721b0dc19233dbeb4562524a9a11a9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85f246fcb88e06a5176d41e77f54be8f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a85f246fcb88e06a5176d41e77f54be8f">MetalGetAnalysisMethod</a> ()</td></tr>
+<tr class="memdesc:a85f246fcb88e06a5176d41e77f54be8f"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属面の解析方法の取得  <a href="class_c_weld_evaluation_doc.html#a85f246fcb88e06a5176d41e77f54be8f">[詳解]</a><br /></td></tr>
+<tr class="separator:a85f246fcb88e06a5176d41e77f54be8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdeb36b1b0f467b26e19abd532f19edf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#acdeb36b1b0f467b26e19abd532f19edf">MetalSetAnalysisMethod</a> (int method)</td></tr>
+<tr class="memdesc:acdeb36b1b0f467b26e19abd532f19edf"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属面の解析方法の設定  <a href="class_c_weld_evaluation_doc.html#acdeb36b1b0f467b26e19abd532f19edf">[詳解]</a><br /></td></tr>
+<tr class="separator:acdeb36b1b0f467b26e19abd532f19edf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a145cc5829ef490bcff1ec9f7cfce0602"><td class="memItemLeft" align="right" valign="top">UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a145cc5829ef490bcff1ec9f7cfce0602">ResultGetNumberOfClass</a> (void)</td></tr>
+<tr class="memdesc:a145cc5829ef490bcff1ec9f7cfce0602"><td class="mdescLeft">&#160;</td><td class="mdescRight">接合結果の分類数の取得  <a href="class_c_weld_evaluation_doc.html#a145cc5829ef490bcff1ec9f7cfce0602">[詳解]</a><br /></td></tr>
+<tr class="separator:a145cc5829ef490bcff1ec9f7cfce0602"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab31dbabff745dcd35f291ae9905da382"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#ab31dbabff745dcd35f291ae9905da382">ResultSetNumberOfClass</a> (UINT nClass)</td></tr>
+<tr class="memdesc:ab31dbabff745dcd35f291ae9905da382"><td class="mdescLeft">&#160;</td><td class="mdescRight">接合結果の分類数の設定  <a href="class_c_weld_evaluation_doc.html#ab31dbabff745dcd35f291ae9905da382">[詳解]</a><br /></td></tr>
+<tr class="separator:ab31dbabff745dcd35f291ae9905da382"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaba2136361b3e5e0f4d8bdb110cf8bd7"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#aaba2136361b3e5e0f4d8bdb110cf8bd7">ResultGetJointRetio</a> (int ViewJointRatioNo)</td></tr>
+<tr class="memdesc:aaba2136361b3e5e0f4d8bdb110cf8bd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">接合結果の接合割合の取得  <a href="class_c_weld_evaluation_doc.html#aaba2136361b3e5e0f4d8bdb110cf8bd7">[詳解]</a><br /></td></tr>
+<tr class="separator:aaba2136361b3e5e0f4d8bdb110cf8bd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfb6f87755b865b72a1ea182fc703139"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#abfb6f87755b865b72a1ea182fc703139">ResultSetJointRetio</a> (int ViewJointRatioNo, double retio)</td></tr>
+<tr class="memdesc:abfb6f87755b865b72a1ea182fc703139"><td class="mdescLeft">&#160;</td><td class="mdescRight">接合結果の接合割合の設定  <a href="class_c_weld_evaluation_doc.html#abfb6f87755b865b72a1ea182fc703139">[詳解]</a><br /></td></tr>
+<tr class="separator:abfb6f87755b865b72a1ea182fc703139"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdce9c01b3ffb873c63c5de42cd8e8cf"><td class="memItemLeft" align="right" valign="top">COLORREF&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#abdce9c01b3ffb873c63c5de42cd8e8cf">ResultGetJointColor</a> (int ViewJointRatioNo)</td></tr>
+<tr class="memdesc:abdce9c01b3ffb873c63c5de42cd8e8cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">接合結果の接合色の取得  <a href="class_c_weld_evaluation_doc.html#abdce9c01b3ffb873c63c5de42cd8e8cf">[詳解]</a><br /></td></tr>
+<tr class="separator:abdce9c01b3ffb873c63c5de42cd8e8cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ee01d3f3819bb92c84e5c1dc42c4573"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a8ee01d3f3819bb92c84e5c1dc42c4573">ResultSetJointColor</a> (int ViewJointRatioNo, COLORREF color)</td></tr>
+<tr class="memdesc:a8ee01d3f3819bb92c84e5c1dc42c4573"><td class="mdescLeft">&#160;</td><td class="mdescRight">接合結果の接合色の設定  <a href="class_c_weld_evaluation_doc.html#a8ee01d3f3819bb92c84e5c1dc42c4573">[詳解]</a><br /></td></tr>
+<tr class="separator:a8ee01d3f3819bb92c84e5c1dc42c4573"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab81bb09791e3edcf133e9bc0321cd4a1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#ab81bb09791e3edcf133e9bc0321cd4a1">GetAnalysisMethod</a> (int targetID)</td></tr>
+<tr class="memdesc:ab81bb09791e3edcf133e9bc0321cd4a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">解析方法の取得  <a href="class_c_weld_evaluation_doc.html#ab81bb09791e3edcf133e9bc0321cd4a1">[詳解]</a><br /></td></tr>
+<tr class="separator:ab81bb09791e3edcf133e9bc0321cd4a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3188290e41d704b8c34cb8dfd8f2a1d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#aa3188290e41d704b8c34cb8dfd8f2a1d">SetAnalysisMethod</a> (int targetID, int AnalysisMethodID)</td></tr>
+<tr class="memdesc:aa3188290e41d704b8c34cb8dfd8f2a1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">解析方法の設定  <a href="class_c_weld_evaluation_doc.html#aa3188290e41d704b8c34cb8dfd8f2a1d">[詳解]</a><br /></td></tr>
+<tr class="separator:aa3188290e41d704b8c34cb8dfd8f2a1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a1305db13ed5cb73a6debfd0b67c89a"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a3a1305db13ed5cb73a6debfd0b67c89a">GetScanImagePath</a> (int fileID)</td></tr>
+<tr class="memdesc:a3a1305db13ed5cb73a6debfd0b67c89a"><td class="mdescLeft">&#160;</td><td class="mdescRight">スキャンイメージファイルパス取得  <a href="class_c_weld_evaluation_doc.html#a3a1305db13ed5cb73a6debfd0b67c89a">[詳解]</a><br /></td></tr>
+<tr class="separator:a3a1305db13ed5cb73a6debfd0b67c89a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a995e95e45492a4523045a6a59ce35467"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a995e95e45492a4523045a6a59ce35467">GetClassificationResultPath</a> (int fileID, int type)</td></tr>
+<tr class="memdesc:a995e95e45492a4523045a6a59ce35467"><td class="mdescLeft">&#160;</td><td class="mdescRight">分類結果データファイルパス取得  <a href="class_c_weld_evaluation_doc.html#a995e95e45492a4523045a6a59ce35467">[詳解]</a><br /></td></tr>
+<tr class="separator:a995e95e45492a4523045a6a59ce35467"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fb9f31759c4175b40446be90447a42f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a6fb9f31759c4175b40446be90447a42f">GetDisplayMode</a> (int targetID)</td></tr>
+<tr class="memdesc:a6fb9f31759c4175b40446be90447a42f"><td class="mdescLeft">&#160;</td><td class="mdescRight">表示モードの取得  <a href="class_c_weld_evaluation_doc.html#a6fb9f31759c4175b40446be90447a42f">[詳解]</a><br /></td></tr>
+<tr class="separator:a6fb9f31759c4175b40446be90447a42f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c3734ada4777e97073fd72a094bf46f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a8c3734ada4777e97073fd72a094bf46f">SetDisplayMode</a> (int targetID, int DisplayModeID)</td></tr>
+<tr class="memdesc:a8c3734ada4777e97073fd72a094bf46f"><td class="mdescLeft">&#160;</td><td class="mdescRight">表示モードの設定  <a href="class_c_weld_evaluation_doc.html#a8c3734ada4777e97073fd72a094bf46f">[詳解]</a><br /></td></tr>
+<tr class="separator:a8c3734ada4777e97073fd72a094bf46f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67f246b4e19e89febdd152cb00337dad"><td class="memItemLeft" align="right" valign="top">UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a67f246b4e19e89febdd152cb00337dad">GetSpectralGraphPointTarget</a> ()</td></tr>
+<tr class="memdesc:a67f246b4e19e89febdd152cb00337dad"><td class="mdescLeft">&#160;</td><td class="mdescRight">スペクトルグラフ（点指定）の対象の取得  <a href="class_c_weld_evaluation_doc.html#a67f246b4e19e89febdd152cb00337dad">[詳解]</a><br /></td></tr>
+<tr class="separator:a67f246b4e19e89febdd152cb00337dad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16cfb6a6ecf1fab5702ea2fff4aeb88a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a16cfb6a6ecf1fab5702ea2fff4aeb88a">SetSpectralGraphPointTarget</a> (UINT targetID)</td></tr>
+<tr class="memdesc:a16cfb6a6ecf1fab5702ea2fff4aeb88a"><td class="mdescLeft">&#160;</td><td class="mdescRight">スペクトルグラフ（点指定）の対象の設定  <a href="class_c_weld_evaluation_doc.html#a16cfb6a6ecf1fab5702ea2fff4aeb88a">[詳解]</a><br /></td></tr>
+<tr class="separator:a16cfb6a6ecf1fab5702ea2fff4aeb88a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d73aeb4901a8e64596b44084254800b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a4d73aeb4901a8e64596b44084254800b">GetSpectralGraphPointPosition</a> (int &amp;holizontal, int &amp;vertical)</td></tr>
+<tr class="memdesc:a4d73aeb4901a8e64596b44084254800b"><td class="mdescLeft">&#160;</td><td class="mdescRight">スペクトルグラフ（点指定）の位置の取得  <a href="class_c_weld_evaluation_doc.html#a4d73aeb4901a8e64596b44084254800b">[詳解]</a><br /></td></tr>
+<tr class="separator:a4d73aeb4901a8e64596b44084254800b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97e53739d35a1e0322ddfd4ff78a69fd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a97e53739d35a1e0322ddfd4ff78a69fd">SetSpectralGraphPointPosition</a> (int holizontal, int vertical)</td></tr>
+<tr class="memdesc:a97e53739d35a1e0322ddfd4ff78a69fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">スペクトルグラフ（点指定）の位置の設定  <a href="class_c_weld_evaluation_doc.html#a97e53739d35a1e0322ddfd4ff78a69fd">[詳解]</a><br /></td></tr>
+<tr class="separator:a97e53739d35a1e0322ddfd4ff78a69fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d5eafd841e9ee42609019047a66550b"><td class="memItemLeft" align="right" valign="top">UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a8d5eafd841e9ee42609019047a66550b">GetSpectralGraphSectionTarget</a> ()</td></tr>
+<tr class="memdesc:a8d5eafd841e9ee42609019047a66550b"><td class="mdescLeft">&#160;</td><td class="mdescRight">スペクトルグラフ（区間指定）の対象の取得  <a href="class_c_weld_evaluation_doc.html#a8d5eafd841e9ee42609019047a66550b">[詳解]</a><br /></td></tr>
+<tr class="separator:a8d5eafd841e9ee42609019047a66550b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0399fb1ca3a2791953ab4b94aa1f279a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a0399fb1ca3a2791953ab4b94aa1f279a">SetSpectralGraphSectionTarget</a> (UINT targetID)</td></tr>
+<tr class="memdesc:a0399fb1ca3a2791953ab4b94aa1f279a"><td class="mdescLeft">&#160;</td><td class="mdescRight">スペクトルグラフ（区間指定）の対象の設定  <a href="class_c_weld_evaluation_doc.html#a0399fb1ca3a2791953ab4b94aa1f279a">[詳解]</a><br /></td></tr>
+<tr class="separator:a0399fb1ca3a2791953ab4b94aa1f279a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bb219378d9f88dc9aed34ca347827f8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a3bb219378d9f88dc9aed34ca347827f8">GetSpectralGraphSectionStartPosition</a> (int &amp;holizontal, int &amp;vertical)</td></tr>
+<tr class="memdesc:a3bb219378d9f88dc9aed34ca347827f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">スペクトルグラフ（区間指定）の開始位置の取得  <a href="class_c_weld_evaluation_doc.html#a3bb219378d9f88dc9aed34ca347827f8">[詳解]</a><br /></td></tr>
+<tr class="separator:a3bb219378d9f88dc9aed34ca347827f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc8e3a4dc39666fa3a1035bf4fef28ff"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#adc8e3a4dc39666fa3a1035bf4fef28ff">SetSpectralGraphSectionStartPosition</a> (int holizontal, int vertical)</td></tr>
+<tr class="memdesc:adc8e3a4dc39666fa3a1035bf4fef28ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">スペクトルグラフ（区間指定）の開始位置の設定  <a href="class_c_weld_evaluation_doc.html#adc8e3a4dc39666fa3a1035bf4fef28ff">[詳解]</a><br /></td></tr>
+<tr class="separator:adc8e3a4dc39666fa3a1035bf4fef28ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af308265948b0e7ba24d76ae5159a7873"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#af308265948b0e7ba24d76ae5159a7873">GetSpectralGraphSectionEndPosition</a> (int &amp;holizontal, int &amp;vertical)</td></tr>
+<tr class="memdesc:af308265948b0e7ba24d76ae5159a7873"><td class="mdescLeft">&#160;</td><td class="mdescRight">スペクトルグラフ（区間指定）の終了位置の取得  <a href="class_c_weld_evaluation_doc.html#af308265948b0e7ba24d76ae5159a7873">[詳解]</a><br /></td></tr>
+<tr class="separator:af308265948b0e7ba24d76ae5159a7873"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a56ae26e703826d3af117d9152a42332b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a56ae26e703826d3af117d9152a42332b">SetSpectralGraphSectionEndPosition</a> (int holizontal, int vertical)</td></tr>
+<tr class="memdesc:a56ae26e703826d3af117d9152a42332b"><td class="mdescLeft">&#160;</td><td class="mdescRight">スペクトルグラフ（区間指定）の終了位置の設定  <a href="class_c_weld_evaluation_doc.html#a56ae26e703826d3af117d9152a42332b">[詳解]</a><br /></td></tr>
+<tr class="separator:a56ae26e703826d3af117d9152a42332b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a358d0e31dd3cf88f0100ed648d70fd9d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a358d0e31dd3cf88f0100ed648d70fd9d">GetWindRect</a> (CRect &amp;rect)</td></tr>
+<tr class="memdesc:a358d0e31dd3cf88f0100ed648d70fd9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">メインウインドの位置とサイズの取得  <a href="class_c_weld_evaluation_doc.html#a358d0e31dd3cf88f0100ed648d70fd9d">[詳解]</a><br /></td></tr>
+<tr class="separator:a358d0e31dd3cf88f0100ed648d70fd9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e46d3afc7df54ee0caa20ed6b832078"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a0e46d3afc7df54ee0caa20ed6b832078">SetWindRect</a> (CRect &amp;rect)</td></tr>
+<tr class="memdesc:a0e46d3afc7df54ee0caa20ed6b832078"><td class="mdescLeft">&#160;</td><td class="mdescRight">メインウインドの位置とサイズの設定  <a href="class_c_weld_evaluation_doc.html#a0e46d3afc7df54ee0caa20ed6b832078">[詳解]</a><br /></td></tr>
+<tr class="separator:a0e46d3afc7df54ee0caa20ed6b832078"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0930d73e177d0881201ebf89d3a206fa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a0930d73e177d0881201ebf89d3a206fa">GetSpectralDlgRect</a> (CRect &amp;rect)</td></tr>
+<tr class="memdesc:a0930d73e177d0881201ebf89d3a206fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">区間スペクトルダイアログの位置とサイズの取得  <a href="class_c_weld_evaluation_doc.html#a0930d73e177d0881201ebf89d3a206fa">[詳解]</a><br /></td></tr>
+<tr class="separator:a0930d73e177d0881201ebf89d3a206fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4172c04d2d0a57fb781d69e51ddc97e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#af4172c04d2d0a57fb781d69e51ddc97e">SetSpectralDlgRect</a> (CRect &amp;rect)</td></tr>
+<tr class="memdesc:af4172c04d2d0a57fb781d69e51ddc97e"><td class="mdescLeft">&#160;</td><td class="mdescRight">区間スペクトルダイアログの位置とサイズの取得  <a href="class_c_weld_evaluation_doc.html#af4172c04d2d0a57fb781d69e51ddc97e">[詳解]</a><br /></td></tr>
+<tr class="separator:af4172c04d2d0a57fb781d69e51ddc97e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0aec3875f86f89c63daf5161cfded60d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d">NewProject</a> ()</td></tr>
+<tr class="memdesc:a0aec3875f86f89c63daf5161cfded60d"><td class="mdescLeft">&#160;</td><td class="mdescRight">新規プロジェクトの構築  <a href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d">[詳解]</a><br /></td></tr>
+<tr class="separator:a0aec3875f86f89c63daf5161cfded60d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd81887407c6ef8abfb6beed49309aab"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab">OpenProject</a> (CString RegistedTestName)</td></tr>
+<tr class="memdesc:abd81887407c6ef8abfb6beed49309aab"><td class="mdescLeft">&#160;</td><td class="mdescRight">既存プロジェクトのオープン  <a href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab">[詳解]</a><br /></td></tr>
+<tr class="separator:abd81887407c6ef8abfb6beed49309aab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a848f1a59f54ec2dccf6b874e3371c0a8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8">CloseProject</a> (bool bSave=false)</td></tr>
+<tr class="memdesc:a848f1a59f54ec2dccf6b874e3371c0a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">プロジェクトの終了  <a href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8">[詳解]</a><br /></td></tr>
+<tr class="separator:a848f1a59f54ec2dccf6b874e3371c0a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92d375305f80e0626001ab1b3c8d75a0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0">SaveProject</a> ()</td></tr>
+<tr class="memdesc:a92d375305f80e0626001ab1b3c8d75a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">プロジェクトの保存  <a href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0">[詳解]</a><br /></td></tr>
+<tr class="separator:a92d375305f80e0626001ab1b3c8d75a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27fa98a7a0f2d55c55bce57770dda312"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a27fa98a7a0f2d55c55bce57770dda312">GetActiveRegistedTest</a> ()</td></tr>
+<tr class="memdesc:a27fa98a7a0f2d55c55bce57770dda312"><td class="mdescLeft">&#160;</td><td class="mdescRight">アクティブな検査名の取得  <a href="class_c_weld_evaluation_doc.html#a27fa98a7a0f2d55c55bce57770dda312">[詳解]</a><br /></td></tr>
+<tr class="separator:a27fa98a7a0f2d55c55bce57770dda312"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b4d97dc8543d294f654097e4a7d74e2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a4b4d97dc8543d294f654097e4a7d74e2">GetRegistTestList</a> (CStringArray &amp;list)</td></tr>
+<tr class="memdesc:a4b4d97dc8543d294f654097e4a7d74e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">登録済み検査の取得  <a href="class_c_weld_evaluation_doc.html#a4b4d97dc8543d294f654097e4a7d74e2">[詳解]</a><br /></td></tr>
+<tr class="separator:a4b4d97dc8543d294f654097e4a7d74e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0d45ea32d1fc8484f440049e8135fcc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#af0d45ea32d1fc8484f440049e8135fcc">IsOpen</a> (void)</td></tr>
+<tr class="memdesc:af0d45ea32d1fc8484f440049e8135fcc"><td class="mdescLeft">&#160;</td><td class="mdescRight">プロジェクトのオープン判定  <a href="class_c_weld_evaluation_doc.html#af0d45ea32d1fc8484f440049e8135fcc">[詳解]</a><br /></td></tr>
+<tr class="separator:af0d45ea32d1fc8484f440049e8135fcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31cda5ced4a1f67350be5d355ba62c6c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a31cda5ced4a1f67350be5d355ba62c6c">IsNew</a> (void)</td></tr>
+<tr class="memdesc:a31cda5ced4a1f67350be5d355ba62c6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">プロジェクトの新規判定  <a href="class_c_weld_evaluation_doc.html#a31cda5ced4a1f67350be5d355ba62c6c">[詳解]</a><br /></td></tr>
+<tr class="separator:a31cda5ced4a1f67350be5d355ba62c6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41aafce3ebbfa44a9741100ed1134583"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a41aafce3ebbfa44a9741100ed1134583">ExistScanFile</a> (int fileID)</td></tr>
+<tr class="memdesc:a41aafce3ebbfa44a9741100ed1134583"><td class="mdescLeft">&#160;</td><td class="mdescRight">スキャンファイルの設定有無判定  <a href="class_c_weld_evaluation_doc.html#a41aafce3ebbfa44a9741100ed1134583">[詳解]</a><br /></td></tr>
+<tr class="separator:a41aafce3ebbfa44a9741100ed1134583"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabe96759afcb4dd3eca9e96f158bc7ae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#aabe96759afcb4dd3eca9e96f158bc7ae">SaveScanImage</a> (int ScanID)</td></tr>
+<tr class="memdesc:aabe96759afcb4dd3eca9e96f158bc7ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">スキャンデータの保存  <a href="class_c_weld_evaluation_doc.html#aabe96759afcb4dd3eca9e96f158bc7ae">[詳解]</a><br /></td></tr>
+<tr class="separator:aabe96759afcb4dd3eca9e96f158bc7ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f9b8ec445144f4c194633104d1063ac"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a9f9b8ec445144f4c194633104d1063ac">ExistClassificationResultFile</a> (int fileID, int type)</td></tr>
+<tr class="memdesc:a9f9b8ec445144f4c194633104d1063ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">分類ファイルの有無判定  <a href="class_c_weld_evaluation_doc.html#a9f9b8ec445144f4c194633104d1063ac">[詳解]</a><br /></td></tr>
+<tr class="separator:a9f9b8ec445144f4c194633104d1063ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b7dd9ce24a05331154febb0c6fe0295"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a7b7dd9ce24a05331154febb0c6fe0295">SaveClassificationResultFile</a> (int ScanID, int type)</td></tr>
+<tr class="memdesc:a7b7dd9ce24a05331154febb0c6fe0295"><td class="mdescLeft">&#160;</td><td class="mdescRight">分類結果の保存  <a href="class_c_weld_evaluation_doc.html#a7b7dd9ce24a05331154febb0c6fe0295">[詳解]</a><br /></td></tr>
+<tr class="separator:a7b7dd9ce24a05331154febb0c6fe0295"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30a52776d1ac389324620c35b35b36e1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a30a52776d1ac389324620c35b35b36e1">Analize</a> (int targetID, int AnalysisMethodID)</td></tr>
+<tr class="memdesc:a30a52776d1ac389324620c35b35b36e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">解析の実施  <a href="class_c_weld_evaluation_doc.html#a30a52776d1ac389324620c35b35b36e1">[詳解]</a><br /></td></tr>
+<tr class="separator:a30a52776d1ac389324620c35b35b36e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4de63aca3396663c6ca1ff89496e44c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a4de63aca3396663c6ca1ff89496e44c0">CalcResultStopRequest</a> ()</td></tr>
+<tr class="memdesc:a4de63aca3396663c6ca1ff89496e44c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">解析処理中止リクエスト  <a href="class_c_weld_evaluation_doc.html#a4de63aca3396663c6ca1ff89496e44c0">[詳解]</a><br /></td></tr>
+<tr class="separator:a4de63aca3396663c6ca1ff89496e44c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b289ccf358a0ad255596c59196a3bd0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a7b289ccf358a0ad255596c59196a3bd0">LoadScanImage</a> (int targetID, CImage &amp;img, bool renew=false)</td></tr>
+<tr class="memdesc:a7b289ccf358a0ad255596c59196a3bd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">スキャンデータイメージの取得  <a href="class_c_weld_evaluation_doc.html#a7b289ccf358a0ad255596c59196a3bd0">[詳解]</a><br /></td></tr>
+<tr class="separator:a7b289ccf358a0ad255596c59196a3bd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cccd8cb66df552066d96c31b9255389"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#a8cccd8cb66df552066d96c31b9255389">LoadClassificationResultImage</a> (int targetID, int type, CImage &amp;img, bool renew=false)</td></tr>
+<tr class="separator:a8cccd8cb66df552066d96c31b9255389"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad49fe5bd6a5dbd63b150bde87a194a10"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#ad49fe5bd6a5dbd63b150bde87a194a10">GetSpectrumData</a> (int ScanID, CPoint &amp;pos, std::vector&lt; double &gt; &amp;data)</td></tr>
+<tr class="separator:ad49fe5bd6a5dbd63b150bde87a194a10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+限定公開メンバ関数</h2></td></tr>
+<tr class="memitem:aa025ef9d683615500df6e160c28a952d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_doc.html#aa025ef9d683615500df6e160c28a952d">CWeldEvaluationDoc</a> ()</td></tr>
+<tr class="memdesc:aa025ef9d683615500df6e160c28a952d"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンストラクタ  <a href="class_c_weld_evaluation_doc.html#aa025ef9d683615500df6e160c28a952d">[詳解]</a><br /></td></tr>
+<tr class="separator:aa025ef9d683615500df6e160c28a952d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>ドキュメントクラス </p>
+</div><h2 class="groupheader">列挙型メンバ詳解</h2>
+<a id="a259c254563f87186fdb00af9f580e6f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a259c254563f87186fdb00af9f580e6f7">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">列挙値</th></tr><tr><td class="fieldname"><a id="a259c254563f87186fdb00af9f580e6f7aeaf64fcd3e835fdce991be4b4eb82674"></a>eResinSurface&#160;</td><td class="fielddoc"><p>樹脂 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a259c254563f87186fdb00af9f580e6f7a8ba9bd4d67af24d393076da6fc7ce39b"></a>eMetalSurface&#160;</td><td class="fielddoc"><p>金属 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a259c254563f87186fdb00af9f580e6f7a60b5621565baad7ce523354b091c93a1"></a>eJoiningResult&#160;</td><td class="fielddoc"><p>接合結果 </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="a2d84ce725a5dbb897eacccda68813123"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d84ce725a5dbb897eacccda68813123">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">列挙値</th></tr><tr><td class="fieldname"><a id="a2d84ce725a5dbb897eacccda68813123a1380d4456f3dc4a83eee552fe2a32d5d"></a>AnalizeTypeKMeans&#160;</td><td class="fielddoc"><p>k-means </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a2d84ce725a5dbb897eacccda68813123aa58634ac0b1a7c0c2e89721ca39a707a"></a>AnalizeTypeHiClustering&#160;</td><td class="fielddoc"><p>階層クラスタリング </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="aa025ef9d683615500df6e160c28a952d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa025ef9d683615500df6e160c28a952d">&#9670;&nbsp;</a></span>CWeldEvaluationDoc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CWeldEvaluationDoc::CWeldEvaluationDoc </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>コンストラクタ </p>
+
+</div>
+</div>
+<a id="a573e58f70c29a3fd7a162f71f412dd62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a573e58f70c29a3fd7a162f71f412dd62">&#9670;&nbsp;</a></span>~CWeldEvaluationDoc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">CWeldEvaluationDoc::~CWeldEvaluationDoc </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>デストラクタ </p>
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="a30a52776d1ac389324620c35b35b36e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30a52776d1ac389324620c35b35b36e1">&#9670;&nbsp;</a></span>Analize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::Analize </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>targetID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>AnalysisMethodID</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>解析の実施 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">targetID</td><td>判定素材ID</td></tr>
+    <tr><td class="paramname">AnalysisMethodID</td><td>解析方法ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功の場合はtrue、失敗の場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a4de63aca3396663c6ca1ff89496e44c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4de63aca3396663c6ca1ff89496e44c0">&#9670;&nbsp;</a></span>CalcResultStopRequest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CWeldEvaluationDoc::CalcResultStopRequest </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>解析処理中止リクエスト </p>
+
+</div>
+</div>
+<a id="a848f1a59f54ec2dccf6b874e3371c0a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a848f1a59f54ec2dccf6b874e3371c0a8">&#9670;&nbsp;</a></span>CloseProject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::CloseProject </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bSave</em> = <code>false</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>プロジェクトの終了 </p>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a9f9b8ec445144f4c194633104d1063ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f9b8ec445144f4c194633104d1063ac">&#9670;&nbsp;</a></span>ExistClassificationResultFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::ExistClassificationResultFile </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fileID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>分類ファイルの有無判定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileID</td><td>ファイル種別ID</td></tr>
+    <tr><td class="paramname">type</td><td>解析タイプ</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>存在する場合はtrue、失敗の場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a41aafce3ebbfa44a9741100ed1134583"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41aafce3ebbfa44a9741100ed1134583">&#9670;&nbsp;</a></span>ExistScanFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::ExistScanFile </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fileID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スキャンファイルの設定有無判定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileID</td><td>ファイル種別ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>存在する場合はtrue、失敗の場合はfalseを返す</dd></dl>
+<p>&lt; 樹脂</p>
+<p>&lt; 金属</p>
+<p>&lt; 接合結果</p>
+
+</div>
+</div>
+<a id="a27fa98a7a0f2d55c55bce57770dda312"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27fa98a7a0f2d55c55bce57770dda312">&#9670;&nbsp;</a></span>GetActiveRegistedTest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CWeldEvaluationDoc::GetActiveRegistedTest </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>アクティブな検査名の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>アクティブな検査名を返す</dd></dl>
+
+</div>
+</div>
+<a id="ab81bb09791e3edcf133e9bc0321cd4a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab81bb09791e3edcf133e9bc0321cd4a1">&#9670;&nbsp;</a></span>GetAnalysisMethod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CWeldEvaluationDoc::GetAnalysisMethod </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>targetID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>解析方法の取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">targetID</td><td>判定素材ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>解析モードを返す</dd></dl>
+<p>&lt; 樹脂</p>
+<p>&lt; 金属</p>
+
+</div>
+</div>
+<a id="a995e95e45492a4523045a6a59ce35467"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a995e95e45492a4523045a6a59ce35467">&#9670;&nbsp;</a></span>GetClassificationResultPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CWeldEvaluationDoc::GetClassificationResultPath </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fileID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>分類結果データファイルパス取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileID</td><td>ファイル種別ID</td></tr>
+    <tr><td class="paramname">type</td><td>分類種別ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>存在する場合はパスを返す、失敗した場合は空文字を返す</dd></dl>
+
+</div>
+</div>
+<a id="a6fb9f31759c4175b40446be90447a42f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fb9f31759c4175b40446be90447a42f">&#9670;&nbsp;</a></span>GetDisplayMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CWeldEvaluationDoc::GetDisplayMode </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>targetID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>表示モードの取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">targetID</td><td>判定素材ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>表示モードを返す</dd></dl>
+<p>&lt; 樹脂</p>
+<p>&lt; 金属</p>
+<p>&lt; 接合結果</p>
+
+</div>
+</div>
+<a id="a5ef4bfb934dbbde5dc88806e63dd0b20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ef4bfb934dbbde5dc88806e63dd0b20">&#9670;&nbsp;</a></span>GetHorizontalResolution()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CWeldEvaluationDoc::GetHorizontalResolution </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>横方向の解像度の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>横方向の解像度を返す</dd></dl>
+
+</div>
+</div>
+<a id="a94c4a0940fad9ceb2ee70a9fd5e5b922"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a94c4a0940fad9ceb2ee70a9fd5e5b922">&#9670;&nbsp;</a></span>GetIntegrationTimeMs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CWeldEvaluationDoc::GetIntegrationTimeMs </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Integration_time_msの取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>Integration_time_msを返す</dd></dl>
+
+</div>
+</div>
+<a id="afc8a436f4364d7934b6ab11483e5138f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc8a436f4364d7934b6ab11483e5138f">&#9670;&nbsp;</a></span>GetProjectName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CWeldEvaluationDoc::GetProjectName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>プロジェクト名の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>プロジェクト名を返す</dd></dl>
+
+</div>
+</div>
+<a id="ad3746774f32e3fa3fc4ebc4d4510d0ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad3746774f32e3fa3fc4ebc4d4510d0ee">&#9670;&nbsp;</a></span>GetRegistedFolder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CWeldEvaluationDoc::GetRegistedFolder </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>登録済み試験格納フォルダの取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>登録済み試験格納フォルダを返す</dd></dl>
+
+</div>
+</div>
+<a id="a4b4d97dc8543d294f654097e4a7d74e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b4d97dc8543d294f654097e4a7d74e2">&#9670;&nbsp;</a></span>GetRegistTestList()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::GetRegistTestList </td>
+          <td>(</td>
+          <td class="paramtype">CStringArray &amp;&#160;</td>
+          <td class="paramname"><em>list</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>登録済み検査の取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">list</td><td>登録済み検査のリスト</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗の場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a3a1305db13ed5cb73a6debfd0b67c89a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a1305db13ed5cb73a6debfd0b67c89a">&#9670;&nbsp;</a></span>GetScanImagePath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CWeldEvaluationDoc::GetScanImagePath </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>fileID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スキャンイメージファイルパス取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileID</td><td>ファイル種別ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>存在する場合はパスを返す、失敗した場合は空文字を返す</dd></dl>
+
+</div>
+</div>
+<a id="a0930d73e177d0881201ebf89d3a206fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0930d73e177d0881201ebf89d3a206fa">&#9670;&nbsp;</a></span>GetSpectralDlgRect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::GetSpectralDlgRect </td>
+          <td>(</td>
+          <td class="paramtype">CRect &amp;&#160;</td>
+          <td class="paramname"><em>rect</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>区間スペクトルダイアログの位置とサイズの取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rect</td><td>ウインドの位置とサイズ</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a4d73aeb4901a8e64596b44084254800b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d73aeb4901a8e64596b44084254800b">&#9670;&nbsp;</a></span>GetSpectralGraphPointPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::GetSpectralGraphPointPosition </td>
+          <td>(</td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>holizontal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>vertical</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スペクトルグラフ（点指定）の位置の取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">holizontal</td><td>水平値</td></tr>
+    <tr><td class="paramname">vertical</td><td>垂直値</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a67f246b4e19e89febdd152cb00337dad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67f246b4e19e89febdd152cb00337dad">&#9670;&nbsp;</a></span>GetSpectralGraphPointTarget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CWeldEvaluationDoc::GetSpectralGraphPointTarget </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スペクトルグラフ（点指定）の対象の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>スペクトルグラフ（点指定）の対象を返す</dd></dl>
+
+</div>
+</div>
+<a id="af308265948b0e7ba24d76ae5159a7873"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af308265948b0e7ba24d76ae5159a7873">&#9670;&nbsp;</a></span>GetSpectralGraphSectionEndPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::GetSpectralGraphSectionEndPosition </td>
+          <td>(</td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>holizontal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>vertical</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スペクトルグラフ（区間指定）の終了位置の取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">holizontal</td><td>水平値</td></tr>
+    <tr><td class="paramname">vertical</td><td>垂直値</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a3bb219378d9f88dc9aed34ca347827f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bb219378d9f88dc9aed34ca347827f8">&#9670;&nbsp;</a></span>GetSpectralGraphSectionStartPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::GetSpectralGraphSectionStartPosition </td>
+          <td>(</td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>holizontal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>vertical</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スペクトルグラフ（区間指定）の開始位置の取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">holizontal</td><td>水平値</td></tr>
+    <tr><td class="paramname">vertical</td><td>垂直値</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a8d5eafd841e9ee42609019047a66550b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d5eafd841e9ee42609019047a66550b">&#9670;&nbsp;</a></span>GetSpectralGraphSectionTarget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CWeldEvaluationDoc::GetSpectralGraphSectionTarget </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スペクトルグラフ（区間指定）の対象の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>スペクトルグラフ（区間指定）の対象を返す</dd></dl>
+
+</div>
+</div>
+<a id="ad49fe5bd6a5dbd63b150bde87a194a10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad49fe5bd6a5dbd63b150bde87a194a10">&#9670;&nbsp;</a></span>GetSpectrumData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::GetSpectrumData </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ScanID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CPoint &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; double &gt; &amp;&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>&lt; 樹脂</p>
+<p>&lt; 金属</p>
+<p>&lt; 接合結果</p>
+
+</div>
+</div>
+<a id="ad9712f68619dcab924e5c06b439e1c75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9712f68619dcab924e5c06b439e1c75">&#9670;&nbsp;</a></span>GetTestName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CWeldEvaluationDoc::GetTestName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>名称の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>名称を返す</dd></dl>
+
+</div>
+</div>
+<a id="acb185b5cb5f8e080c3e082e6def82cb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb185b5cb5f8e080c3e082e6def82cb6">&#9670;&nbsp;</a></span>GetVerticalResolution()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CWeldEvaluationDoc::GetVerticalResolution </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>縦方向の解像度の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>縦方向の解像度を返す</dd></dl>
+
+</div>
+</div>
+<a id="a999ae33c47280fcd8d7a759b0de05c2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a999ae33c47280fcd8d7a759b0de05c2a">&#9670;&nbsp;</a></span>GetWBFileName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CWeldEvaluationDoc::GetWBFileName </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ホワイトバランスファイル名の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>ホワイトバランスファイル名を返す</dd></dl>
+
+</div>
+</div>
+<a id="a358d0e31dd3cf88f0100ed648d70fd9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a358d0e31dd3cf88f0100ed648d70fd9d">&#9670;&nbsp;</a></span>GetWindRect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::GetWindRect </td>
+          <td>(</td>
+          <td class="paramtype">CRect &amp;&#160;</td>
+          <td class="paramname"><em>rect</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>メインウインドの位置とサイズの取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rect</td><td>ウインドの位置とサイズ</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a31cda5ced4a1f67350be5d355ba62c6c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31cda5ced4a1f67350be5d355ba62c6c">&#9670;&nbsp;</a></span>IsNew()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::IsNew </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>プロジェクトの新規判定 </p>
+<dl class="section return"><dt>戻り値</dt><dd>新規の場合はtrue、そうでない場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="af0d45ea32d1fc8484f440049e8135fcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0d45ea32d1fc8484f440049e8135fcc">&#9670;&nbsp;</a></span>IsOpen()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::IsOpen </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>プロジェクトのオープン判定 </p>
+<dl class="section return"><dt>戻り値</dt><dd>オープンしている場合はtrue、そうでない場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a8cccd8cb66df552066d96c31b9255389"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cccd8cb66df552066d96c31b9255389">&#9670;&nbsp;</a></span>LoadClassificationResultImage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::LoadClassificationResultImage </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>targetID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>type</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CImage &amp;&#160;</td>
+          <td class="paramname"><em>img</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>renew</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>&lt; 樹脂</p>
+<p>&lt; 金属</p>
+<p>&lt; 接合結果</p>
+
+</div>
+</div>
+<a id="a7b289ccf358a0ad255596c59196a3bd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b289ccf358a0ad255596c59196a3bd0">&#9670;&nbsp;</a></span>LoadScanImage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::LoadScanImage </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ScanID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CImage &amp;&#160;</td>
+          <td class="paramname"><em>img</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>renew</em> = <code>false</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スキャンデータイメージの取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ScanID</td><td>対象スキャンID</td></tr>
+    <tr><td class="paramname">img</td><td>取得イメージ</td></tr>
+    <tr><td class="paramname">renew</td><td>再読込フラグ</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功の場合はtrue、失敗の場合はfalseを返す</dd></dl>
+<p>&lt; 樹脂</p>
+<p>&lt; 金属</p>
+<p>&lt; 接合結果</p>
+
+</div>
+</div>
+<a id="a85f246fcb88e06a5176d41e77f54be8f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85f246fcb88e06a5176d41e77f54be8f">&#9670;&nbsp;</a></span>MetalGetAnalysisMethod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CWeldEvaluationDoc::MetalGetAnalysisMethod </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>金属面の解析方法の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>金属面の解析方法を返す</dd></dl>
+
+</div>
+</div>
+<a id="ab91987be90d82122862e48945de89711"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab91987be90d82122862e48945de89711">&#9670;&nbsp;</a></span>MetalGetJointColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">COLORREF CWeldEvaluationDoc::MetalGetJointColor </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ViewJointRatioNo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>金属面の接合色の取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ViewJointRatioNo</td><td>接合面番号</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>金属面の接合色を返す</dd></dl>
+
+</div>
+</div>
+<a id="aef9304255fe785208bd428f94bda0d77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef9304255fe785208bd428f94bda0d77">&#9670;&nbsp;</a></span>MetalGetJointRetio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double CWeldEvaluationDoc::MetalGetJointRetio </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ViewJointRatioNo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>金属面の接合割合の取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ViewJointRatioNo</td><td>接合面番号</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>金属面の接合割合を返す</dd></dl>
+
+</div>
+</div>
+<a id="a7b089f9a60389f8b0e902980a1dd70eb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b089f9a60389f8b0e902980a1dd70eb">&#9670;&nbsp;</a></span>MetalGetNumberOfClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CWeldEvaluationDoc::MetalGetNumberOfClass </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>金属面の分類数の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>金属面の分類数を返す</dd></dl>
+
+</div>
+</div>
+<a id="acdeb36b1b0f467b26e19abd532f19edf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdeb36b1b0f467b26e19abd532f19edf">&#9670;&nbsp;</a></span>MetalSetAnalysisMethod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::MetalSetAnalysisMethod </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>method</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>金属面の解析方法の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">method</td><td>金属面の解析方法</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="ac721b0dc19233dbeb4562524a9a11a9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac721b0dc19233dbeb4562524a9a11a9d">&#9670;&nbsp;</a></span>MetalSetJointColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::MetalSetJointColor </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ViewJointRatioNo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">COLORREF&#160;</td>
+          <td class="paramname"><em>color</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>金属面の接合色の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ViewJointRatioNo</td><td>接合面番号</td></tr>
+    <tr><td class="paramname">color</td><td>設定色</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a9a838fa652d1df7ee88f1e663865bf70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a838fa652d1df7ee88f1e663865bf70">&#9670;&nbsp;</a></span>MetalSetJointRetio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::MetalSetJointRetio </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ViewJointRatioNo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>retio</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>金属面の接合割合の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ViewJointRatioNo</td><td>接合面番号</td></tr>
+    <tr><td class="paramname">retio</td><td>金属面の接合割合</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="ac15632600f0f67f246924ba41112c6f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac15632600f0f67f246924ba41112c6f4">&#9670;&nbsp;</a></span>MetalSetNumberOfClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::MetalSetNumberOfClass </td>
+          <td>(</td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>nClass</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>金属面の分類数の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nClass</td><td>金属面の分類数</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a0aec3875f86f89c63daf5161cfded60d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0aec3875f86f89c63daf5161cfded60d">&#9670;&nbsp;</a></span>NewProject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::NewProject </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>新規プロジェクトの構築 </p>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、そうでない場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="af0dd89540e9d6522bc50cf1b1e2aef42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0dd89540e9d6522bc50cf1b1e2aef42">&#9670;&nbsp;</a></span>NumberOfOverridePixel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CWeldEvaluationDoc::NumberOfOverridePixel </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>重なりピクセル数の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>重なりピクセル数を返す</dd></dl>
+
+</div>
+</div>
+<a id="a2e500461803db9361e0e0c86bc549547"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e500461803db9361e0e0c86bc549547">&#9670;&nbsp;</a></span>OnNewDocument()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL CWeldEvaluationDoc::OnNewDocument </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>新規プロジェクト作成 </p>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はTRUE、失敗した場合はFALSE以外を返す</dd></dl>
+
+</div>
+</div>
+<a id="abd81887407c6ef8abfb6beed49309aab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd81887407c6ef8abfb6beed49309aab">&#9670;&nbsp;</a></span>OpenProject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::OpenProject </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>RegistedTestName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>既存プロジェクトのオープン </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">RegistedTestName</td><td>検査名</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、そうでない場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a2dc5f7f1ecde114717497554dcba7259"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dc5f7f1ecde114717497554dcba7259">&#9670;&nbsp;</a></span>ResinGetAnalysisMethod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CWeldEvaluationDoc::ResinGetAnalysisMethod </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>樹脂面の解析方法の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>樹脂面の解析方法を返す</dd></dl>
+
+</div>
+</div>
+<a id="a91c4793db0e339ca9b1a955f296b55bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a91c4793db0e339ca9b1a955f296b55bf">&#9670;&nbsp;</a></span>ResinGetJointColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">COLORREF CWeldEvaluationDoc::ResinGetJointColor </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ViewJointRatioNo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>樹脂面の接合色の取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ViewJointRatioNo</td><td>接合面番号</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>樹脂面の接合色を返す</dd></dl>
+
+</div>
+</div>
+<a id="aeaaeca146df9c470124213a245756204"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeaaeca146df9c470124213a245756204">&#9670;&nbsp;</a></span>ResinGetJointRetio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double CWeldEvaluationDoc::ResinGetJointRetio </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ViewJointRatioNo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>樹脂面の接合割合の取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ViewJointRatioNo</td><td>接合面番号</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>樹脂面の接合割合を返す</dd></dl>
+
+</div>
+</div>
+<a id="af1a2e047b8aa8406697a445c9ff8aa02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1a2e047b8aa8406697a445c9ff8aa02">&#9670;&nbsp;</a></span>ResinGetNumberOfClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CWeldEvaluationDoc::ResinGetNumberOfClass </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>樹脂面の分類数の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>樹脂面の分類数を返す</dd></dl>
+
+</div>
+</div>
+<a id="a270e5a55f82e69c9f49f062d2b243426"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a270e5a55f82e69c9f49f062d2b243426">&#9670;&nbsp;</a></span>ResinSetAnalysisMethod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::ResinSetAnalysisMethod </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>method</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>樹脂面の解析方法の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">method</td><td>樹脂面の解析方法</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="ab1d6b0e82361d4c8b2e85b171f822aee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1d6b0e82361d4c8b2e85b171f822aee">&#9670;&nbsp;</a></span>ResinSetJointColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::ResinSetJointColor </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ViewJointRatioNo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">COLORREF&#160;</td>
+          <td class="paramname"><em>color</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>樹脂面の接合色の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ViewJointRatioNo</td><td>接合面番号</td></tr>
+    <tr><td class="paramname">color</td><td>設定色</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a43cdbb49e4c9011c567dc8b82f0542df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43cdbb49e4c9011c567dc8b82f0542df">&#9670;&nbsp;</a></span>ResinSetJointRetio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::ResinSetJointRetio </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ViewJointRatioNo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>retio</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>樹脂面の接合割合の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ViewJointRatioNo</td><td>接合面番号</td></tr>
+    <tr><td class="paramname">retio</td><td>樹脂面の接合割合</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a95882c0c55b261f7b443a3c22b10f86e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95882c0c55b261f7b443a3c22b10f86e">&#9670;&nbsp;</a></span>ResinSetNumberOfClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::ResinSetNumberOfClass </td>
+          <td>(</td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>nClass</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>樹脂面の分類数の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nClass</td><td>樹脂面の分類数</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="abdce9c01b3ffb873c63c5de42cd8e8cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdce9c01b3ffb873c63c5de42cd8e8cf">&#9670;&nbsp;</a></span>ResultGetJointColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">COLORREF CWeldEvaluationDoc::ResultGetJointColor </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ViewJointRatioNo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>接合結果の接合色の取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ViewJointRatioNo</td><td>接合面番号</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>接合結果の接合色を返す</dd></dl>
+
+</div>
+</div>
+<a id="aaba2136361b3e5e0f4d8bdb110cf8bd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaba2136361b3e5e0f4d8bdb110cf8bd7">&#9670;&nbsp;</a></span>ResultGetJointRetio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double CWeldEvaluationDoc::ResultGetJointRetio </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ViewJointRatioNo</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>接合結果の接合割合の取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ViewJointRatioNo</td><td>接合面番号</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>接合結果の接合割合を返す</dd></dl>
+
+</div>
+</div>
+<a id="a145cc5829ef490bcff1ec9f7cfce0602"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a145cc5829ef490bcff1ec9f7cfce0602">&#9670;&nbsp;</a></span>ResultGetNumberOfClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CWeldEvaluationDoc::ResultGetNumberOfClass </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>接合結果の分類数の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>接合結果の分類数を返す</dd></dl>
+
+</div>
+</div>
+<a id="a8ee01d3f3819bb92c84e5c1dc42c4573"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ee01d3f3819bb92c84e5c1dc42c4573">&#9670;&nbsp;</a></span>ResultSetJointColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::ResultSetJointColor </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ViewJointRatioNo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">COLORREF&#160;</td>
+          <td class="paramname"><em>color</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>接合結果の接合色の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ViewJointRatioNo</td><td>接合面番号</td></tr>
+    <tr><td class="paramname">color</td><td>設定色</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="abfb6f87755b865b72a1ea182fc703139"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfb6f87755b865b72a1ea182fc703139">&#9670;&nbsp;</a></span>ResultSetJointRetio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::ResultSetJointRetio </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ViewJointRatioNo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>retio</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>接合結果の接合割合の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ViewJointRatioNo</td><td>接合面番号</td></tr>
+    <tr><td class="paramname">retio</td><td>接合結果の接合割合</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="ab31dbabff745dcd35f291ae9905da382"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab31dbabff745dcd35f291ae9905da382">&#9670;&nbsp;</a></span>ResultSetNumberOfClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::ResultSetNumberOfClass </td>
+          <td>(</td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>nClass</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>接合結果の分類数の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nClass</td><td>接合結果の分類数</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a7b7dd9ce24a05331154febb0c6fe0295"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b7dd9ce24a05331154febb0c6fe0295">&#9670;&nbsp;</a></span>SaveClassificationResultFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::SaveClassificationResultFile </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ScanID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>分類結果の保存 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ScanID</td><td>対象スキャンID</td></tr>
+    <tr><td class="paramname">type</td><td>解析タイプ</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗の場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a92d375305f80e0626001ab1b3c8d75a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92d375305f80e0626001ab1b3c8d75a0">&#9670;&nbsp;</a></span>SaveProject()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::SaveProject </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>プロジェクトの保存 </p>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="aabe96759afcb4dd3eca9e96f158bc7ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabe96759afcb4dd3eca9e96f158bc7ae">&#9670;&nbsp;</a></span>SaveScanImage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::SaveScanImage </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ScanID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スキャンデータの保存 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ScanID</td><td>フスキャンID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗の場合はfalseを返す</dd></dl>
+<p>&lt; 樹脂</p>
+<p>&lt; 金属</p>
+<p>&lt; 接合結果</p>
+
+</div>
+</div>
+<a id="a8948c162a0a664ca2d52acbe03adcb5c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8948c162a0a664ca2d52acbe03adcb5c">&#9670;&nbsp;</a></span>Serialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CWeldEvaluationDoc::Serialize </td>
+          <td>(</td>
+          <td class="paramtype">CArchive &amp;&#160;</td>
+          <td class="paramname"><em>ar</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>シリアライズ </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ar</td><td>アーカイブオブジェクト</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa3188290e41d704b8c34cb8dfd8f2a1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3188290e41d704b8c34cb8dfd8f2a1d">&#9670;&nbsp;</a></span>SetAnalysisMethod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::SetAnalysisMethod </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>targetID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>AnalysisMethodID</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>解析方法の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">targetID</td><td>判定素材ID</td></tr>
+    <tr><td class="paramname">AnalysisMethodID</td><td>解析方法ID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功の場合はtrue、失敗の場合はfalseを返す</dd></dl>
+<p>&lt; 樹脂</p>
+<p>&lt; 金属</p>
+
+</div>
+</div>
+<a id="a8c3734ada4777e97073fd72a094bf46f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c3734ada4777e97073fd72a094bf46f">&#9670;&nbsp;</a></span>SetDisplayMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::SetDisplayMode </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>targetID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>DisplayModeID</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>表示モードの設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">targetID</td><td>判定素材ID</td></tr>
+    <tr><td class="paramname">DisplayModeID</td><td>表示モード</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功の場合はtrue、失敗の場合はfalseを返す</dd></dl>
+<p>&lt; 樹脂</p>
+<p>&lt; 金属</p>
+<p>&lt; 接合結果</p>
+
+</div>
+</div>
+<a id="a41c75df2370e5979fb5409c2fcc728b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41c75df2370e5979fb5409c2fcc728b0">&#9670;&nbsp;</a></span>SetHorizontalResolution()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::SetHorizontalResolution </td>
+          <td>(</td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>resolution</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>横方向の解像度の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">resolution</td><td>横方向の解像度</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="ad10cb9f19bffa177b2ae6ecd6117ce64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad10cb9f19bffa177b2ae6ecd6117ce64">&#9670;&nbsp;</a></span>SetIntegrationTimeMs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::SetIntegrationTimeMs </td>
+          <td>(</td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>time</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Integration_time_msの設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">time</td><td>Integration_time_ms</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="ab5421290a2c9bedda0312fb4c639fe64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5421290a2c9bedda0312fb4c639fe64">&#9670;&nbsp;</a></span>SetOverridePixelNumber()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::SetOverridePixelNumber </td>
+          <td>(</td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>num</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>重なりピクセル数の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">num</td><td>重なりピクセル数</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="abffca4a1d8bb4a754b2a2422894ea002"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abffca4a1d8bb4a754b2a2422894ea002">&#9670;&nbsp;</a></span>SetProjectName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::SetProjectName </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>projectname</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>プロジェクト名の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">projectname</td><td>プロジェクト名</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a305d7efff0111b0612ca004176bc0280"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a305d7efff0111b0612ca004176bc0280">&#9670;&nbsp;</a></span>SetRegistedFolder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::SetRegistedFolder </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>RegistedFolder</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>登録済み試験格納フォルダの設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">RegistedFolder</td><td>登録済み試験格納フォルダ</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="af4172c04d2d0a57fb781d69e51ddc97e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4172c04d2d0a57fb781d69e51ddc97e">&#9670;&nbsp;</a></span>SetSpectralDlgRect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::SetSpectralDlgRect </td>
+          <td>(</td>
+          <td class="paramtype">CRect &amp;&#160;</td>
+          <td class="paramname"><em>rect</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>区間スペクトルダイアログの位置とサイズの取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rect</td><td>ウインドの位置とサイズ</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a97e53739d35a1e0322ddfd4ff78a69fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97e53739d35a1e0322ddfd4ff78a69fd">&#9670;&nbsp;</a></span>SetSpectralGraphPointPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::SetSpectralGraphPointPosition </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>holizontal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>vertical</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スペクトルグラフ（点指定）の位置の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">holizontal</td><td>水平値</td></tr>
+    <tr><td class="paramname">vertical</td><td>垂直値</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a16cfb6a6ecf1fab5702ea2fff4aeb88a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16cfb6a6ecf1fab5702ea2fff4aeb88a">&#9670;&nbsp;</a></span>SetSpectralGraphPointTarget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::SetSpectralGraphPointTarget </td>
+          <td>(</td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>targetID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スペクトルグラフ（点指定）の対象の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">targetID</td><td>スペクトルグラフ（点指定）の対象</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a56ae26e703826d3af117d9152a42332b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a56ae26e703826d3af117d9152a42332b">&#9670;&nbsp;</a></span>SetSpectralGraphSectionEndPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::SetSpectralGraphSectionEndPosition </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>holizontal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>vertical</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スペクトルグラフ（区間指定）の終了位置の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">holizontal</td><td>水平値</td></tr>
+    <tr><td class="paramname">vertical</td><td>垂直値</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="adc8e3a4dc39666fa3a1035bf4fef28ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc8e3a4dc39666fa3a1035bf4fef28ff">&#9670;&nbsp;</a></span>SetSpectralGraphSectionStartPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::SetSpectralGraphSectionStartPosition </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>holizontal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>vertical</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スペクトルグラフ（区間指定）の開始位置の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">holizontal</td><td>水平値</td></tr>
+    <tr><td class="paramname">vertical</td><td>垂直値</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a0399fb1ca3a2791953ab4b94aa1f279a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0399fb1ca3a2791953ab4b94aa1f279a">&#9670;&nbsp;</a></span>SetSpectralGraphSectionTarget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::SetSpectralGraphSectionTarget </td>
+          <td>(</td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>targetID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スペクトルグラフ（区間指定）の対象の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">targetID</td><td>スペクトルグラフ（区間指定）の対象</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a2448432713861aa819cfdd878ec458b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2448432713861aa819cfdd878ec458b1">&#9670;&nbsp;</a></span>SetTestName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::SetTestName </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>名称の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>名称</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a8a450135b86704283b24146942270f8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a450135b86704283b24146942270f8e">&#9670;&nbsp;</a></span>SetVerticalResolution()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::SetVerticalResolution </td>
+          <td>(</td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>resolution</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>縦方向の解像度の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">resolution</td><td>縦方向の解像度</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="ad67e43a275ca5b21835a1b256a1cade9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad67e43a275ca5b21835a1b256a1cade9">&#9670;&nbsp;</a></span>SetWBFileName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::SetWBFileName </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>WBFileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ホワイトバランスファイル名の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">WBFileName</td><td>ホワイトバランスファイル名</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a0e46d3afc7df54ee0caa20ed6b832078"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e46d3afc7df54ee0caa20ed6b832078">&#9670;&nbsp;</a></span>SetWindRect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CWeldEvaluationDoc::SetWindRect </td>
+          <td>(</td>
+          <td class="paramtype">CRect &amp;&#160;</td>
+          <td class="paramname"><em>rect</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>メインウインドの位置とサイズの設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rect</td><td>ウインドの位置とサイズ</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>C:/Users/kaneko/OneDrive/Project/JointAutomaticEvaluationSystem/WeldEvaluation/src/WeldEvaluation/WeldEvaluation/<a class="el" href="_weld_evaluation_doc_8h_source.html">WeldEvaluationDoc.h</a></li>
+<li>C:/Users/kaneko/OneDrive/Project/JointAutomaticEvaluationSystem/WeldEvaluation/src/WeldEvaluation/WeldEvaluation/WeldEvaluationDoc.cpp</li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_c_weld_evaluation_doc.html">CWeldEvaluationDoc</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>WeldEvaluation: C:/Users/kaneko/OneDrive/Project/JointAutomaticEvaluationSystem/WeldEvaluation/src/WeldEvaluation/WeldEvaluation/ScanDataIO.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">WeldEvaluation
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">WeldEvaluation</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('_scan_data_i_o_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">ScanDataIO.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &quot;hsi_api_common.h&quot;</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="class_c_scan_data_i_o.html">    8</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_c_scan_data_i_o.html">CScanDataIO</a></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        CubeFloat*  m_o_p_cube;     </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keywordtype">int</span>         m_band;         </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <span class="keywordtype">int</span>         m_row;          </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keywordtype">int</span>         m_col;          </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keywordtype">float</span>       m_normalizer;   </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordtype">float</span>       m_offset;       </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    } Normalizer;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    CString     m_pathName;         </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    CubeFloat*  m_o_p_cube;         </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_c_scan_data_i_o.html#a8c74be41d8e7136f016e04f5c4d718cf">CScanDataIO</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_c_scan_data_i_o.html#a0639de01e9bb4b515c0c7b3572628f1c">~CScanDataIO</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    UINT __cdecl getNomalizer(LPVOID p);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> executeNomalizerLauncher(<span class="keywordtype">void</span>* args);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">bool</span> getRGBBandSpectrum(<span class="keywordtype">int</span> &amp;RBand, <span class="keywordtype">int</span> &amp;GBand, <span class="keywordtype">int</span> &amp;BBand);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_c_scan_data_i_o.html#ae86f36b123901fbe038ff0f1669192bd">open</a>(CString pathName, <span class="keywordtype">bool</span> bReload =<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_c_scan_data_i_o.html#ae8fcb4c73d65ae2bcdff6f833fc93e29">close</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_c_scan_data_i_o.html#a74d77b0c697e9eab35f6f233be162c27">release</a>();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_c_scan_data_i_o.html#a3be95afdfa7914f7a2acbc003048e3ff">LoadImage</a>(<span class="keywordtype">int</span> &amp;height, <span class="keywordtype">int</span> &amp;width, <span class="keywordtype">int</span> &amp;bands, CImage &amp;img);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_c_scan_data_i_o.html#a74d0fa98822d49575c08acb1e72c128c">GetSpectrumData</a>(CPoint &amp;pos, std::vector&lt;double&gt; &amp;data);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_c_scan_data_i_o.html#a12aa5b6bf1c179fa351e419d34921157">getBandSpectrum</a>(std::vector&lt;double&gt; &amp;BandSpectrum);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;};</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="ttc" id="aclass_c_scan_data_i_o_html"><div class="ttname"><a href="class_c_scan_data_i_o.html">CScanDataIO</a></div><div class="ttdoc">スキャンデータIOクラス</div><div class="ttdef"><b>Definition:</b> ScanDataIO.h:9</div></div>
+<div class="ttc" id="aclass_c_scan_data_i_o_html_a0639de01e9bb4b515c0c7b3572628f1c"><div class="ttname"><a href="class_c_scan_data_i_o.html#a0639de01e9bb4b515c0c7b3572628f1c">CScanDataIO::~CScanDataIO</a></div><div class="ttdeci">~CScanDataIO(void)</div><div class="ttdoc">デストラクタ</div><div class="ttdef"><b>Definition:</b> ScanDataIO.cpp:25</div></div>
+<div class="ttc" id="aclass_c_scan_data_i_o_html_a12aa5b6bf1c179fa351e419d34921157"><div class="ttname"><a href="class_c_scan_data_i_o.html#a12aa5b6bf1c179fa351e419d34921157">CScanDataIO::getBandSpectrum</a></div><div class="ttdeci">bool getBandSpectrum(std::vector&lt; double &gt; &amp;BandSpectrum)</div><div class="ttdoc">各バンドのスペクトル値取得</div><div class="ttdef"><b>Definition:</b> ScanDataIO.cpp:315</div></div>
+<div class="ttc" id="aclass_c_scan_data_i_o_html_a3be95afdfa7914f7a2acbc003048e3ff"><div class="ttname"><a href="class_c_scan_data_i_o.html#a3be95afdfa7914f7a2acbc003048e3ff">CScanDataIO::LoadImage</a></div><div class="ttdeci">bool LoadImage(int &amp;height, int &amp;width, int &amp;bands, CImage &amp;img)</div><div class="ttdoc">画像データ取得</div><div class="ttdef"><b>Definition:</b> ScanDataIO.cpp:136</div></div>
+<div class="ttc" id="aclass_c_scan_data_i_o_html_a74d0fa98822d49575c08acb1e72c128c"><div class="ttname"><a href="class_c_scan_data_i_o.html#a74d0fa98822d49575c08acb1e72c128c">CScanDataIO::GetSpectrumData</a></div><div class="ttdeci">bool GetSpectrumData(CPoint &amp;pos, std::vector&lt; double &gt; &amp;data)</div><div class="ttdoc">指定位置スペクトル群の取得</div><div class="ttdef"><b>Definition:</b> ScanDataIO.cpp:245</div></div>
+<div class="ttc" id="aclass_c_scan_data_i_o_html_a74d77b0c697e9eab35f6f233be162c27"><div class="ttname"><a href="class_c_scan_data_i_o.html#a74d77b0c697e9eab35f6f233be162c27">CScanDataIO::release</a></div><div class="ttdeci">void release()</div><div class="ttdoc">CubeFloatの解放</div><div class="ttdef"><b>Definition:</b> ScanDataIO.cpp:81</div></div>
+<div class="ttc" id="aclass_c_scan_data_i_o_html_a8c74be41d8e7136f016e04f5c4d718cf"><div class="ttname"><a href="class_c_scan_data_i_o.html#a8c74be41d8e7136f016e04f5c4d718cf">CScanDataIO::CScanDataIO</a></div><div class="ttdeci">CScanDataIO(void)</div><div class="ttdoc">コンストラクタ</div><div class="ttdef"><b>Definition:</b> ScanDataIO.cpp:15</div></div>
+<div class="ttc" id="aclass_c_scan_data_i_o_html_ae86f36b123901fbe038ff0f1669192bd"><div class="ttname"><a href="class_c_scan_data_i_o.html#ae86f36b123901fbe038ff0f1669192bd">CScanDataIO::open</a></div><div class="ttdeci">bool open(CString pathName, bool bReload=false)</div><div class="ttdoc">オープン</div><div class="ttdef"><b>Definition:</b> ScanDataIO.cpp:37</div></div>
+<div class="ttc" id="aclass_c_scan_data_i_o_html_ae8fcb4c73d65ae2bcdff6f833fc93e29"><div class="ttname"><a href="class_c_scan_data_i_o.html#ae8fcb4c73d65ae2bcdff6f833fc93e29">CScanDataIO::close</a></div><div class="ttdeci">void close()</div><div class="ttdoc">CubeFloatのクローズ</div><div class="ttdef"><b>Definition:</b> ScanDataIO.cpp:70</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_f3d153628e82edf4b52b126cfcb481a7.html">WeldEvaluation</a></li><li class="navelem"><b>ScanDataIO.h</b></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>
