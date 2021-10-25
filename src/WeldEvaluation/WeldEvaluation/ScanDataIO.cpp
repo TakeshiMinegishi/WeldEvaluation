@@ -48,7 +48,7 @@ bool CScanDataIO::open(CString pathName, bool bReload/*=false*/ )
 	}
 
 	// 既に開いてるデータを閉じる
-	close();
+	release();
 
 	m_o_p_cube = new CubeFloat();
 	HSI_RETURN result = commonLoadCube(m_o_p_cube, pathName);

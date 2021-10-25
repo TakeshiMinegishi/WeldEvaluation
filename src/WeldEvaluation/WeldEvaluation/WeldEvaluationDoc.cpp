@@ -2451,6 +2451,9 @@ bool CWeldEvaluationDoc::GetSpectrumData(int ScanID, CPoint &pos, std::vector<do
 		}
 		break;
 	case	eJoiningResult:	///< Ú‡Œ‹‰Ê
+		if (!m_ResultScanData.GetSpectrumData(pos, data)) {
+			return false;
+		}
 		break;
 	default:
 		return false;

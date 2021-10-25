@@ -484,6 +484,11 @@ void CWeldEvaluationView::OnNMDblclkLstRegistTest(NMHDR *pNMHDR, LRESULT *pResul
 
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
 
+	m_pGraphWnd->Erase();
+	m_pReginWnd->Erase();
+	m_pMetalWnd->Erase();
+	m_pResultWnd->Erase();
+
 	CWaitCursor wcursol;
 	if (pDoc->OpenProject(str)) {
 
@@ -1380,6 +1385,7 @@ LRESULT CWeldEvaluationView::OnAreaSpectrumGraphRequest(WPARAM wparam, LPARAM lp
 	::SetWindowPos(m_pSpectralDlg->m_hWnd, HWND_TOPMOST, m_SpectralDlgRect.left, m_SpectralDlgRect.top, m_SpectralDlgRect.Width(), m_SpectralDlgRect.Height(), uFlag);
 	m_pReginWnd->setMode(1);
 	m_pMetalWnd->setMode(1);
+	m_pResultWnd->setMode(1);
 
 	return 0;
 }
@@ -1404,6 +1410,7 @@ LRESULT CWeldEvaluationView::OnSpectrumeCloseRequest(WPARAM wparam, LPARAM lpara
 	}
 	m_pReginWnd->setMode(0);
 	m_pMetalWnd->setMode(0);
+	m_pResultWnd->setMode(0);
 
 	return 0;
 }
@@ -1582,8 +1589,6 @@ void CWeldEvaluationView::OnBnClickedBtnNewprj()
 /// @remark 仮想キーフラグnFlagsはMK_CONTROL CTRL キー、MK_LBUTTON マウスの左ボタン、MK_MBUTTON マウスの中央ボタン、MK_RBUTTON マウスの右ボタン、MK_SHIFT SHIFT キー
 void CWeldEvaluationView::OnMouseMove(UINT nFlags, CPoint point)
 {
-	// TODO: ここにメッセージ ハンドラー コードを追加するか、既定の処理を呼び出します。
-	TRACE(_T("MainWind MouseMuve(%d,%d)\n"),point.x,point.y);
 	m_pReginWnd->OnMouseLeave();
 	m_pMetalWnd->OnMouseLeave();
 	m_pResultWnd->OnMouseLeave();
@@ -1600,7 +1605,7 @@ bool CWeldEvaluationView::ImageScaling(int targetID, CRect rect)
 {
 	bool bResult = true;
 	double scalingRetio = 1.0;
-	CPoint pos, pos1, pos2;
+	CPoint pos, pos1, pos2,tmp;
 	CImageWind *pImageWnd1 = nullptr;
 	CImageWind *pImageWnd2 = nullptr;
 	switch (targetID) {
@@ -1610,7 +1615,8 @@ bool CWeldEvaluationView::ImageScaling(int targetID, CRect rect)
 		}
 		pImageWnd1 = m_pMetalWnd;
 		pImageWnd2 = m_pResultWnd;
-		pos1 = pImageWnd1->ConvertImagePos(pos);
+		tmp = m_pReginWnd->ConvertImagePos(CPoint(pos.x, 0));
+		pos1 = tmp;
 		pos2 = pos;
 		break;
 	case	CWeldEvaluationDoc::eMetalSurface:		// 金属
@@ -1619,8 +1625,9 @@ bool CWeldEvaluationView::ImageScaling(int targetID, CRect rect)
 		}
 		pImageWnd1 = m_pReginWnd;
 		pImageWnd2 = m_pResultWnd;
-		pos1 = pImageWnd1->ConvertImagePos(pos);
-		pos2 = pImageWnd2->ConvertImagePos(pos);
+		tmp = m_pMetalWnd->ConvertImagePos(CPoint(pos.x, 0));
+		pos1 = tmp;
+		pos2 = tmp;
 		break;
 	case	CWeldEvaluationDoc::eJoiningResult:		// 接合結果
 		if (!m_pResultWnd->GetScalingInfo(scalingRetio, pos)) {
@@ -1628,8 +1635,9 @@ bool CWeldEvaluationView::ImageScaling(int targetID, CRect rect)
 		}
 		pImageWnd1 = m_pReginWnd;
 		pImageWnd2 = m_pMetalWnd;
+		tmp = m_pResultWnd->ConvertImagePos(CPoint(pos.x, 0));
 		pos1 = pos;
-		pos2 = pImageWnd2->ConvertImagePos(pos);
+		pos2 = tmp;
 		break;
 	default:
 		return false;
@@ -1641,7 +1649,7 @@ bool CWeldEvaluationView::ImageScaling(int targetID, CRect rect)
 	}
 	if (pImageWnd2) {
 		pImageWnd2->MoveImage(pos2.x, pos2.y, rect.Width(), rect.Height(), scalingRetio);
-		pImageWnd2->MoveImage(pos2.x, pos2.y, rect.Width(), rect.Height(), scalingRetio);
+//		pImageWnd2->MoveImage(pos2.x, pos2.y, rect.Width(), rect.Height(), scalingRetio);
 	}
 	TRACE(_T("Pos(%d,%d)->Pos1(%d,%d),Pos2(%d,%d)\n"), pos.x, pos.y, pos1.x, pos1.y, pos2.x, pos2.y);
 	return bResult;
