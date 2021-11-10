@@ -1,0 +1,25 @@
+var annotated_dup =
+[
+    [ "CAboutDlg", "class_c_about_dlg.html", "class_c_about_dlg" ],
+    [ "CConfigrationIO", "class_c_configration_i_o.html", "class_c_configration_i_o" ],
+    [ "CFileUtil", "class_c_file_util.html", "class_c_file_util" ],
+    [ "CGraphWind", "class_c_graph_wind.html", "class_c_graph_wind" ],
+    [ "CImageWind", "class_c_image_wind.html", "class_c_image_wind" ],
+    [ "CMainFrame", "class_c_main_frame.html", "class_c_main_frame" ],
+    [ "COprtTabPageAnalize", "class_c_oprt_tab_page_analize.html", "class_c_oprt_tab_page_analize" ],
+    [ "COprtTabPageInitialize", "class_c_oprt_tab_page_initialize.html", "class_c_oprt_tab_page_initialize" ],
+    [ "COprtTabPageScan", "class_c_oprt_tab_page_scan.html", "class_c_oprt_tab_page_scan" ],
+    [ "COprtTabPageSetting", "class_c_oprt_tab_page_setting.html", "class_c_oprt_tab_page_setting" ],
+    [ "CProgressDlg", "class_c_progress_dlg.html", "class_c_progress_dlg" ],
+    [ "CProjectFileIO", "class_c_project_file_i_o.html", "class_c_project_file_i_o" ],
+    [ "CPropatyIO", "class_c_propaty_i_o.html", "class_c_propaty_i_o" ],
+    [ "CPropTabPageParameter", "class_c_prop_tab_page_parameter.html", "class_c_prop_tab_page_parameter" ],
+    [ "CPropTabPageSetting", "class_c_prop_tab_page_setting.html", "class_c_prop_tab_page_setting" ],
+    [ "CScanDataIO", "class_c_scan_data_i_o.html", "class_c_scan_data_i_o" ],
+    [ "CSpectralDlg", "class_c_spectral_dlg.html", "class_c_spectral_dlg" ],
+    [ "CStatusDlg", "class_c_status_dlg.html", "class_c_status_dlg" ],
+    [ "CStatusDlgThread", "class_c_status_dlg_thread.html", "class_c_status_dlg_thread" ],
+    [ "CWeldEvaluationApp", "class_c_weld_evaluation_app.html", "class_c_weld_evaluation_app" ],
+    [ "CWeldEvaluationDoc", "class_c_weld_evaluation_doc.html", "class_c_weld_evaluation_doc" ],
+    [ "CWeldEvaluationView", "class_c_weld_evaluation_view.html", "class_c_weld_evaluation_view" ]
+];

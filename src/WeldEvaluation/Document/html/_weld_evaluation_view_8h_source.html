@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>WeldEvaluation: C:/Users/kaneko/OneDrive/Project/JointAutomaticEvaluationSystem/WeldEvaluation/src/WeldEvaluation/WeldEvaluation/WeldEvaluationView.h ソースファイル</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">WeldEvaluation
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">WeldEvaluation</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('_weld_evaluation_view_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">WeldEvaluationView.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// WeldEvaluationView.h : CWeldEvaluationView クラスのインターフェイス</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;resource.h&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;message.h&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;afxcmn.h&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;OprtTabPageInitialize.h&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;OprtTabPageSetting.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;OprtTabPageScan.h&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;OprtTabPageAnalize.h&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;PropTabPageParameter.h&quot;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &quot;PropTabPageSetting.h&quot;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;GraphWind.h&quot;</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;ImageWind.h&quot;</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;ProgressDlg.h&quot;</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;SpectralDlg.h&quot;</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;afxwin.h&quot;</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="class_c_weld_evaluation_view.html">   29</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_c_weld_evaluation_view.html">CWeldEvaluationView</a> : <span class="keyword">public</span> CFormView</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;{</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">protected</span>: <span class="comment">// シリアル化からのみ作成します。</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="class_c_weld_evaluation_view.html#afac68d8f90055011c50dab83d8a2eb9f">CWeldEvaluationView</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    DECLARE_DYNCREATE(<a class="code" href="class_c_weld_evaluation_view.html">CWeldEvaluationView</a>)</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">enum</span>{ IDD = IDD_WELDEVALUATION_FORM };</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">// 属性</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="class_c_weld_evaluation_doc.html">CWeldEvaluationDoc</a>* <a class="code" href="class_c_weld_evaluation_view.html#a084505fbc544e44bb950994ae5a8de92">GetDocument</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">// 操作</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">// オーバーライド</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">virtual</span> BOOL <a class="code" href="class_c_weld_evaluation_view.html#a3ff02c664da49e95d36522d4cde1c88d">PreCreateWindow</a>(CREATESTRUCT&amp; cs);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_c_weld_evaluation_view.html#a16276774ef266869ac6b1b1f895bd32c">DoDataExchange</a>(CDataExchange* pDX);    <span class="comment">// DDX/DDV サポート</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_c_weld_evaluation_view.html#a39ea2ecbca5482ae982384cccc27c7ce">OnInitialUpdate</a>(); <span class="comment">// 構築後に初めて呼び出されます。</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">// 実装</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="class_c_weld_evaluation_view.html#a4096e23cb4c5a5b545fa24c3b622ce68">~CWeldEvaluationView</a>();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#ifdef _DEBUG</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> AssertValid() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> Dump(CDumpContext&amp; dc) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="class_c_oprt_tab_page_initialize.html">COprtTabPageInitialize</a>                  m_OprtInitialize;               </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="class_c_oprt_tab_page_setting.html">COprtTabPageSetting</a>                     m_OprtSetting;                  </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="class_c_oprt_tab_page_scan.html">COprtTabPageScan</a>                        m_OprtScan;                     </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a>                     m_OprtAnalize;                  </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    CTypedPtrArray&lt; CObArray,CDialogEx *&gt;   m_OprtTab;                      </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">bool</span>                                    m_bUpdateOperation;             </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">bool</span>                                    m_bReadMode;                    </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">int</span>                                     m_SelOprtPageId;                </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="class_c_prop_tab_page_parameter.html">CPropTabPageParameter</a>                   m_PropResinPage;                </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="class_c_prop_tab_page_parameter.html">CPropTabPageParameter</a>                   m_PropMetalPage;                </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="class_c_prop_tab_page_parameter.html">CPropTabPageParameter</a>                   m_PropResultPage;               </div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="class_c_prop_tab_page_setting.html">CPropTabPageSetting</a>                     m_PropSettingPage;              </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    CTypedPtrArray&lt; CObArray,CDialogEx *&gt;   m_PropTab;                      </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">bool</span>                                    m_bUpdatePropaty;               </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">int</span>                                     m_SelPropPageId;                </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="class_c_graph_wind.html">CGraphWind</a>                              *m_pGraphWnd;                   </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="class_c_image_wind.html">CImageWind</a>                              *m_pReginWnd;                   </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="class_c_image_wind.html">CImageWind</a>                              *m_pMetalWnd;                   </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <a class="code" href="class_c_image_wind.html">CImageWind</a>                              *m_pResultWnd;                  </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="class_c_spectral_dlg.html">CSpectralDlg</a>                            *m_pSpectralDlg;                </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    CRect                                   m_SpectralDlgRect;              </div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="class_c_progress_dlg.html">CProgressDlg</a>                            *m_pProgress;                   </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="class_c_weld_evaluation_view.html#a4f9ce316ca757413259561bbd3e9e6cb">   92</a></span>&#160;    CListCtrl                               <a class="code" href="class_c_weld_evaluation_view.html#a4f9ce316ca757413259561bbd3e9e6cb">m_lstRegTest</a>;                   </div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="class_c_weld_evaluation_view.html#a9ea5c507026e00e8292a5e84da0316c8">   93</a></span>&#160;    CTabCtrl                                <a class="code" href="class_c_weld_evaluation_view.html#a9ea5c507026e00e8292a5e84da0316c8">m_tabPropaty</a>;                   </div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="class_c_weld_evaluation_view.html#a533353c94ec1c3c3c61fab28cee7a5ab">   94</a></span>&#160;    CTabCtrl                                <a class="code" href="class_c_weld_evaluation_view.html#a533353c94ec1c3c3c61fab28cee7a5ab">m_tabOperation</a>;                 </div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="class_c_weld_evaluation_view.html#a68f1f7c2ac68655c9e3fa62f3b17e3e3">   95</a></span>&#160;    CStatic                                 <a class="code" href="class_c_weld_evaluation_view.html#a68f1f7c2ac68655c9e3fa62f3b17e3e3">m_stcPropTabPageClient</a>;         </div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="class_c_weld_evaluation_view.html#a77c49b0c72f9ae9b4911428ec066edf2">   96</a></span>&#160;    CStatic                                 <a class="code" href="class_c_weld_evaluation_view.html#a77c49b0c72f9ae9b4911428ec066edf2">m_stcOperationTabPageClient</a>;    </div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="class_c_weld_evaluation_view.html#acee7794acc6411a0430688b5ea2fe2e4">   97</a></span>&#160;    CButton                                 <a class="code" href="class_c_weld_evaluation_view.html#acee7794acc6411a0430688b5ea2fe2e4">m_btnPropTabCancel</a>;             </div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="class_c_weld_evaluation_view.html#a65e34cc608fa30f9ac37491018ce74f1">   98</a></span>&#160;    CButton                                 <a class="code" href="class_c_weld_evaluation_view.html#a65e34cc608fa30f9ac37491018ce74f1">m_btnPropTabOK</a>;                 </div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="comment">// 生成された、メッセージ割り当て関数</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    DECLARE_MESSAGE_MAP()</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;public:</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    afx_msg <span class="keywordtype">void</span> <a class="code" href="class_c_weld_evaluation_view.html#a67d320bb43c94dfa68fae7fb48e3a030">OnTcnSelchangeTabOperation</a>(NMHDR *pNMHDR, LRESULT *pResult);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    afx_msg <span class="keywordtype">void</span> <a class="code" href="class_c_weld_evaluation_view.html#a2510d3b2b934618af7fe506c020ec733">OnSize</a>(UINT nType, <span class="keywordtype">int</span> cx, <span class="keywordtype">int</span> cy);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    afx_msg <span class="keywordtype">void</span> <a class="code" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911">OnNMDblclkLstRegistTest</a>(NMHDR *pNMHDR, LRESULT *pResult);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    afx_msg <span class="keywordtype">void</span> <a class="code" href="class_c_weld_evaluation_view.html#a240ef4bc5fe0fcb456a334eb5cc8fb12">OnTcnSelchangeTabPropaty</a>(NMHDR *pNMHDR, LRESULT *pResult);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    afx_msg <span class="keywordtype">void</span> <a class="code" href="class_c_weld_evaluation_view.html#abe37d4d745f7fdf7f9bc35880d553c2a">OnBnClickedBtnPropUpdate</a>();</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    afx_msg <span class="keywordtype">void</span> <a class="code" href="class_c_weld_evaluation_view.html#aa351c32514b374c6e4d98076ce7215df">OnBnClickedBtnPropCancel</a>();</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    afx_msg <span class="keywordtype">void</span> <a class="code" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91">OnBnClickedBtnNewprj</a>();</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    LRESULT <a class="code" href="class_c_weld_evaluation_view.html#a9984ad2831a69ab9a89a91fc6f7b06d4">OnUpdateRequestPrpoTab</a>(WPARAM wparam, LPARAM lparam);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_c_weld_evaluation_view.html#a57424c1abd20d3a05a23832c87ea72aa">LoadPropaty</a>();</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_c_weld_evaluation_view.html#a3c8b6c70bf6b3ea9c6c67df092b398f6">EnablePropaty</a>(<span class="keywordtype">bool</span> bActive);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_c_weld_evaluation_view.html#a82f4afb7916eedf21101d656e8377367">UpdatePropaty</a>(<span class="keywordtype">int</span> propatyID);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_c_weld_evaluation_view.html#a266807bf8e8a7dd3fd73b2907300607d">ReloadPropaty</a>(<span class="keywordtype">int</span> propatyID);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_c_weld_evaluation_view.html#a6f6d52aaf380260b7f427c9a434db5a9">LoadSetting</a>();</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_c_weld_evaluation_view.html#ae507a580c1f0ba1217822ee2c7f23aac">EnableSetting</a>(<span class="keywordtype">bool</span> bActive);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_c_weld_evaluation_view.html#ae4f218a4e70e08689a0532384eb86fe5">ReloadSetting</a>(<span class="keywordtype">int</span> settingID);</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    LRESULT <a class="code" href="class_c_weld_evaluation_view.html#a9384bbeab5745f5806acd59d1e1fb84c">OnScanRequest</a>(WPARAM wparam, LPARAM lparam);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d">ScanImage</a>(<a class="code" href="class_c_status_dlg_thread.html">CStatusDlgThread</a>* pStatus, <span class="keywordtype">int</span> ScanID);</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    LRESULT <a class="code" href="class_c_weld_evaluation_view.html#a11ad5965b7c3419db744b3e415887fa9">OnViewChangeRequest</a>(WPARAM wparam, LPARAM lparam);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_c_weld_evaluation_view.html#a20abe7b7184bdf47f0e0f3cdfa7dfe92">UpdateRegistFolderList</a>();</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    LRESULT <a class="code" href="class_c_weld_evaluation_view.html#ab33f0841eac9524d1aaa25fac32ea637">OnChangeResistFolder</a>(WPARAM wparam, LPARAM lparam); </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_c_weld_evaluation_view.html#aac1530971e39a56e75394f8c9148db1e">UnSellectProject</a>();</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    LRESULT <a class="code" href="class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8">OnAnalyzeRequest</a>(WPARAM wparam, LPARAM lparam); </div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    LRESULT <a class="code" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342">OnProjectResistRequest</a>(WPARAM wparam, LPARAM lparam);   </div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    LRESULT <a class="code" href="class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f">OnImageOutputRequest</a>(WPARAM wparam, LPARAM lparam); </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    LRESULT <a class="code" href="class_c_weld_evaluation_view.html#a4c0c78466f258b6f3046af45d445830f">OnImageScaling</a>(WPARAM wparam, LPARAM lparam);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    LRESULT <a class="code" href="class_c_weld_evaluation_view.html#ad0fe518870f876e7c21ac2f5dfd139e0">OnReadResultFileStatus</a>(WPARAM wparam, LPARAM lparam);   </div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    LRESULT <a class="code" href="class_c_weld_evaluation_view.html#a8805e4c9d110a33112c8b5e7af294f9e">OnSpectrumGraphRequest</a>(WPARAM wparam, LPARAM lparam);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    LRESULT <a class="code" href="class_c_weld_evaluation_view.html#a7381fdf7ccc1930fc4f90848e74f44bf">OnAreaSpectrumGraphRequest</a>(WPARAM wparam, LPARAM lparam);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    LRESULT <a class="code" href="class_c_weld_evaluation_view.html#a15379ed64be61c0846f836e7804902ee">OnSpectrumeCloseRequest</a>(WPARAM wparam, LPARAM lparam);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    LRESULT <a class="code" href="class_c_weld_evaluation_view.html#acb9374b4f62b3b67625526f4b5d493b4">OnAreaSpectrumeGraphSet</a>(WPARAM wparam, LPARAM lparam);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_c_weld_evaluation_view.html#af06b63ecf84478f166de1e2573b075da">FitItem</a>();</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    </div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    afx_msg <span class="keywordtype">void</span> <a class="code" href="class_c_weld_evaluation_view.html#abbaef5640b5b07f8d7d9edd439fbed62">OnDestroy</a>();</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    afx_msg <span class="keywordtype">void</span> <a class="code" href="class_c_weld_evaluation_view.html#aa29b1952bb4c1bcc3e7618bd50445d3a">OnMouseMove</a>(UINT nFlags, CPoint point);</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;};</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160; </div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="preprocessor">#ifndef _DEBUG  </span><span class="comment">// WeldEvaluationView.cpp のデバッグ バージョン</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno"><a class="line" href="class_c_weld_evaluation_view.html#a084505fbc544e44bb950994ae5a8de92">  152</a></span>&#160;<span class="comment"></span>inline CWeldEvaluationDoc* CWeldEvaluationView::GetDocument() const</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;   { <span class="keywordflow">return</span> <span class="keyword">reinterpret_cast&lt;</span><a class="code" href="class_c_weld_evaluation_doc.html">CWeldEvaluationDoc</a>*<span class="keyword">&gt;</span>(m_pDocument); }</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
+<div class="ttc" id="aclass_c_graph_wind_html"><div class="ttname"><a href="class_c_graph_wind.html">CGraphWind</a></div><div class="ttdoc">CGraphWind ダイアログ</div><div class="ttdef"><b>Definition:</b> GraphWind.h:9</div></div>
+<div class="ttc" id="aclass_c_image_wind_html"><div class="ttname"><a href="class_c_image_wind.html">CImageWind</a></div><div class="ttdoc">描画ウインドグラス</div><div class="ttdef"><b>Definition:</b> ImageWind.h:8</div></div>
+<div class="ttc" id="aclass_c_oprt_tab_page_analize_html"><div class="ttname"><a href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></div><div class="ttdoc">操作タブ解析ページ管理クラス</div><div class="ttdef"><b>Definition:</b> OprtTabPageAnalize.h:11</div></div>
+<div class="ttc" id="aclass_c_oprt_tab_page_initialize_html"><div class="ttname"><a href="class_c_oprt_tab_page_initialize.html">COprtTabPageInitialize</a></div><div class="ttdoc">操作タブ　初期化ページ管理クラス</div><div class="ttdef"><b>Definition:</b> OprtTabPageInitialize.h:10</div></div>
+<div class="ttc" id="aclass_c_oprt_tab_page_scan_html"><div class="ttname"><a href="class_c_oprt_tab_page_scan.html">COprtTabPageScan</a></div><div class="ttdoc">操作タブ　スキャンページ管理クラス</div><div class="ttdef"><b>Definition:</b> OprtTabPageScan.h:10</div></div>
+<div class="ttc" id="aclass_c_oprt_tab_page_setting_html"><div class="ttname"><a href="class_c_oprt_tab_page_setting.html">COprtTabPageSetting</a></div><div class="ttdoc">操作タブ　設定ページ管理クラス</div><div class="ttdef"><b>Definition:</b> OprtTabPageSetting.h:10</div></div>
+<div class="ttc" id="aclass_c_progress_dlg_html"><div class="ttname"><a href="class_c_progress_dlg.html">CProgressDlg</a></div><div class="ttdoc">プログレスダイアログクラス</div><div class="ttdef"><b>Definition:</b> ProgressDlg.h:11</div></div>
+<div class="ttc" id="aclass_c_prop_tab_page_parameter_html"><div class="ttname"><a href="class_c_prop_tab_page_parameter.html">CPropTabPageParameter</a></div><div class="ttdoc">プロパティタブ　パラメータ管理クラス</div><div class="ttdef"><b>Definition:</b> PropTabPageParameter.h:12</div></div>
+<div class="ttc" id="aclass_c_prop_tab_page_setting_html"><div class="ttname"><a href="class_c_prop_tab_page_setting.html">CPropTabPageSetting</a></div><div class="ttdoc">プロパティタブ　設定ページクラス</div><div class="ttdef"><b>Definition:</b> PropTabPageSetting.h:11</div></div>
+<div class="ttc" id="aclass_c_spectral_dlg_html"><div class="ttname"><a href="class_c_spectral_dlg.html">CSpectralDlg</a></div><div class="ttdoc">区間スペクトル用ダイアログクラス</div><div class="ttdef"><b>Definition:</b> SpectralDlg.h:11</div></div>
+<div class="ttc" id="aclass_c_status_dlg_thread_html"><div class="ttname"><a href="class_c_status_dlg_thread.html">CStatusDlgThread</a></div><div class="ttdoc">ステータスダイアログスレッドクラス</div><div class="ttdef"><b>Definition:</b> StatusDlgThread.h:9</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_doc_html"><div class="ttname"><a href="class_c_weld_evaluation_doc.html">CWeldEvaluationDoc</a></div><div class="ttdoc">ドキュメントクラス</div><div class="ttdef"><b>Definition:</b> WeldEvaluationDoc.h:18</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html"><div class="ttname"><a href="class_c_weld_evaluation_view.html">CWeldEvaluationView</a></div><div class="ttdoc">表示フォームクラス</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.h:30</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a084505fbc544e44bb950994ae5a8de92"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a084505fbc544e44bb950994ae5a8de92">CWeldEvaluationView::GetDocument</a></div><div class="ttdeci">CWeldEvaluationDoc * GetDocument() const</div><div class="ttdoc">ドキュメントの取得</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.h:152</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a11ad5965b7c3419db744b3e415887fa9"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a11ad5965b7c3419db744b3e415887fa9">CWeldEvaluationView::OnViewChangeRequest</a></div><div class="ttdeci">LRESULT OnViewChangeRequest(WPARAM wparam, LPARAM lparam)</div><div class="ttdoc">表示切り替え要求</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:1017</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a15379ed64be61c0846f836e7804902ee"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a15379ed64be61c0846f836e7804902ee">CWeldEvaluationView::OnSpectrumeCloseRequest</a></div><div class="ttdeci">LRESULT OnSpectrumeCloseRequest(WPARAM wparam, LPARAM lparam)</div><div class="ttdoc">区間スペクトル表示ダイアログのクローズ</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:1314</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a16276774ef266869ac6b1b1f895bd32c"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a16276774ef266869ac6b1b1f895bd32c">CWeldEvaluationView::DoDataExchange</a></div><div class="ttdeci">virtual void DoDataExchange(CDataExchange *pDX)</div><div class="ttdoc">データエクスチェンジ処理</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:92</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a1a9fb7c6caa1412479781ba074a64dc8"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8">CWeldEvaluationView::OnAnalyzeRequest</a></div><div class="ttdeci">LRESULT OnAnalyzeRequest(WPARAM wparam, LPARAM lparam)</div><div class="ttdoc">解析実施要求</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:1084</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a1b8f0add672d4bc0d3e561c7f61e649f"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f">CWeldEvaluationView::OnImageOutputRequest</a></div><div class="ttdeci">LRESULT OnImageOutputRequest(WPARAM wparam, LPARAM lparam)</div><div class="ttdoc">画像出力要求</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:950</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a20abe7b7184bdf47f0e0f3cdfa7dfe92"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a20abe7b7184bdf47f0e0f3cdfa7dfe92">CWeldEvaluationView::UpdateRegistFolderList</a></div><div class="ttdeci">void UpdateRegistFolderList()</div><div class="ttdoc">登録済み検査リストの更新</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:449</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a240ef4bc5fe0fcb456a334eb5cc8fb12"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a240ef4bc5fe0fcb456a334eb5cc8fb12">CWeldEvaluationView::OnTcnSelchangeTabPropaty</a></div><div class="ttdeci">afx_msg void OnTcnSelchangeTabPropaty(NMHDR *pNMHDR, LRESULT *pResult)</div><div class="ttdoc">プロパティタブ切り替え時処理</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:601</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a2510d3b2b934618af7fe506c020ec733"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a2510d3b2b934618af7fe506c020ec733">CWeldEvaluationView::OnSize</a></div><div class="ttdeci">afx_msg void OnSize(UINT nType, int cx, int cy)</div><div class="ttdoc">ウインドサイズの変更</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:369</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a266807bf8e8a7dd3fd73b2907300607d"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a266807bf8e8a7dd3fd73b2907300607d">CWeldEvaluationView::ReloadPropaty</a></div><div class="ttdeci">void ReloadPropaty(int propatyID)</div><div class="ttdoc">プロパティページの再読込</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:753</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a39ea2ecbca5482ae982384cccc27c7ce"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a39ea2ecbca5482ae982384cccc27c7ce">CWeldEvaluationView::OnInitialUpdate</a></div><div class="ttdeci">virtual void OnInitialUpdate()</div><div class="ttdoc">初期化処理</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:120</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a3c8b6c70bf6b3ea9c6c67df092b398f6"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a3c8b6c70bf6b3ea9c6c67df092b398f6">CWeldEvaluationView::EnablePropaty</a></div><div class="ttdeci">void EnablePropaty(bool bActive)</div><div class="ttdoc">プロパティの有効化</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:707</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a3ff02c664da49e95d36522d4cde1c88d"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a3ff02c664da49e95d36522d4cde1c88d">CWeldEvaluationView::PreCreateWindow</a></div><div class="ttdeci">virtual BOOL PreCreateWindow(CREATESTRUCT &amp;cs)</div><div class="ttdoc">ウインド作成前処理</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:109</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a407de32087c90c2e33915da88a6cc911"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911">CWeldEvaluationView::OnNMDblclkLstRegistTest</a></div><div class="ttdeci">afx_msg void OnNMDblclkLstRegistTest(NMHDR *pNMHDR, LRESULT *pResult)</div><div class="ttdoc">登録済み検査選択時処理</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:470</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a4096e23cb4c5a5b545fa24c3b622ce68"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a4096e23cb4c5a5b545fa24c3b622ce68">CWeldEvaluationView::~CWeldEvaluationView</a></div><div class="ttdeci">virtual ~CWeldEvaluationView()</div><div class="ttdoc">デストラクタ</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:83</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a4c0c78466f258b6f3046af45d445830f"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a4c0c78466f258b6f3046af45d445830f">CWeldEvaluationView::OnImageScaling</a></div><div class="ttdeci">LRESULT OnImageScaling(WPARAM wparam, LPARAM lparam)</div><div class="ttdoc">画像スケーリング実施通知</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:962</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a4f9ce316ca757413259561bbd3e9e6cb"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a4f9ce316ca757413259561bbd3e9e6cb">CWeldEvaluationView::m_lstRegTest</a></div><div class="ttdeci">CListCtrl m_lstRegTest</div><div class="ttdoc">登録済みリスト用Listオブジェクト</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.h:92</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a533353c94ec1c3c3c61fab28cee7a5ab"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a533353c94ec1c3c3c61fab28cee7a5ab">CWeldEvaluationView::m_tabOperation</a></div><div class="ttdeci">CTabCtrl m_tabOperation</div><div class="ttdoc">操作用タブオブジェクト</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.h:94</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a57424c1abd20d3a05a23832c87ea72aa"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a57424c1abd20d3a05a23832c87ea72aa">CWeldEvaluationView::LoadPropaty</a></div><div class="ttdeci">void LoadPropaty()</div><div class="ttdoc">プロパティ読み込み</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:695</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a65e34cc608fa30f9ac37491018ce74f1"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a65e34cc608fa30f9ac37491018ce74f1">CWeldEvaluationView::m_btnPropTabOK</a></div><div class="ttdeci">CButton m_btnPropTabOK</div><div class="ttdoc">プロパティタブ・OKボタンオブジェクト</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.h:98</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a67d320bb43c94dfa68fae7fb48e3a030"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a67d320bb43c94dfa68fae7fb48e3a030">CWeldEvaluationView::OnTcnSelchangeTabOperation</a></div><div class="ttdeci">afx_msg void OnTcnSelchangeTabOperation(NMHDR *pNMHDR, LRESULT *pResult)</div><div class="ttdoc">操作タブ切り替え時処理</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:550</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a68f1f7c2ac68655c9e3fa62f3b17e3e3"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a68f1f7c2ac68655c9e3fa62f3b17e3e3">CWeldEvaluationView::m_stcPropTabPageClient</a></div><div class="ttdeci">CStatic m_stcPropTabPageClient</div><div class="ttdoc">プロパティページ表示エリア用</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.h:95</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a6f6d52aaf380260b7f427c9a434db5a9"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a6f6d52aaf380260b7f427c9a434db5a9">CWeldEvaluationView::LoadSetting</a></div><div class="ttdeci">void LoadSetting()</div><div class="ttdoc">設定の読込</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:786</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a7381fdf7ccc1930fc4f90848e74f44bf"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a7381fdf7ccc1930fc4f90848e74f44bf">CWeldEvaluationView::OnAreaSpectrumGraphRequest</a></div><div class="ttdeci">LRESULT OnAreaSpectrumGraphRequest(WPARAM wparam, LPARAM lparam)</div><div class="ttdoc">区間スペクトル表示ダイアログの表示</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:1233</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a77c49b0c72f9ae9b4911428ec066edf2"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a77c49b0c72f9ae9b4911428ec066edf2">CWeldEvaluationView::m_stcOperationTabPageClient</a></div><div class="ttdeci">CStatic m_stcOperationTabPageClient</div><div class="ttdoc">処理ページ表示エリア用</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.h:96</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a82f4afb7916eedf21101d656e8377367"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a82f4afb7916eedf21101d656e8377367">CWeldEvaluationView::UpdatePropaty</a></div><div class="ttdeci">void UpdatePropaty(int propatyID)</div><div class="ttdoc">プロパティページの更新</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:719</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a8805e4c9d110a33112c8b5e7af294f9e"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a8805e4c9d110a33112c8b5e7af294f9e">CWeldEvaluationView::OnSpectrumGraphRequest</a></div><div class="ttdeci">LRESULT OnSpectrumGraphRequest(WPARAM wparam, LPARAM lparam)</div><div class="ttdoc">スペクトルグラフの表示</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:1197</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a9384bbeab5745f5806acd59d1e1fb84c"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a9384bbeab5745f5806acd59d1e1fb84c">CWeldEvaluationView::OnScanRequest</a></div><div class="ttdeci">LRESULT OnScanRequest(WPARAM wparam, LPARAM lparam)</div><div class="ttdoc">スキャンの要求</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:847</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a9984ad2831a69ab9a89a91fc6f7b06d4"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a9984ad2831a69ab9a89a91fc6f7b06d4">CWeldEvaluationView::OnUpdateRequestPrpoTab</a></div><div class="ttdeci">LRESULT OnUpdateRequestPrpoTab(WPARAM wparam, LPARAM lparam)</div><div class="ttdoc">プロパティキャンセルボタン押下時処理</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:683</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_a9ea5c507026e00e8292a5e84da0316c8"><div class="ttname"><a href="class_c_weld_evaluation_view.html#a9ea5c507026e00e8292a5e84da0316c8">CWeldEvaluationView::m_tabPropaty</a></div><div class="ttdeci">CTabCtrl m_tabPropaty</div><div class="ttdoc">プロパティ用タブオブジェクト</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.h:93</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_aa29b1952bb4c1bcc3e7618bd50445d3a"><div class="ttname"><a href="class_c_weld_evaluation_view.html#aa29b1952bb4c1bcc3e7618bd50445d3a">CWeldEvaluationView::OnMouseMove</a></div><div class="ttdeci">afx_msg void OnMouseMove(UINT nFlags, CPoint point)</div><div class="ttdoc">マウス移動時処理</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:1503</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_aa351c32514b374c6e4d98076ce7215df"><div class="ttname"><a href="class_c_weld_evaluation_view.html#aa351c32514b374c6e4d98076ce7215df">CWeldEvaluationView::OnBnClickedBtnPropCancel</a></div><div class="ttdeci">afx_msg void OnBnClickedBtnPropCancel()</div><div class="ttdoc">プロパティキャンセルボタン押下時処理</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:671</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_aac1530971e39a56e75394f8c9148db1e"><div class="ttname"><a href="class_c_weld_evaluation_view.html#aac1530971e39a56e75394f8c9148db1e">CWeldEvaluationView::UnSellectProject</a></div><div class="ttdeci">void UnSellectProject()</div><div class="ttdoc">登録済み検査未選択</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:1433</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_ab33f0841eac9524d1aaa25fac32ea637"><div class="ttname"><a href="class_c_weld_evaluation_view.html#ab33f0841eac9524d1aaa25fac32ea637">CWeldEvaluationView::OnChangeResistFolder</a></div><div class="ttdeci">LRESULT OnChangeResistFolder(WPARAM wparam, LPARAM lparam)</div><div class="ttdoc">登録済み検査の項目の更新</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:1416</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_ab8be50e0c7eeb845227827a2c0e99342"><div class="ttname"><a href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342">CWeldEvaluationView::OnProjectResistRequest</a></div><div class="ttdeci">LRESULT OnProjectResistRequest(WPARAM wparam, LPARAM lparam)</div><div class="ttdoc">プロジェクトの更新要求</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:927</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_abbaef5640b5b07f8d7d9edd439fbed62"><div class="ttname"><a href="class_c_weld_evaluation_view.html#abbaef5640b5b07f8d7d9edd439fbed62">CWeldEvaluationView::OnDestroy</a></div><div class="ttdeci">afx_msg void OnDestroy()</div><div class="ttdoc">ウインド破棄時処理</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:385</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_abe37d4d745f7fdf7f9bc35880d553c2a"><div class="ttname"><a href="class_c_weld_evaluation_view.html#abe37d4d745f7fdf7f9bc35880d553c2a">CWeldEvaluationView::OnBnClickedBtnPropUpdate</a></div><div class="ttdeci">afx_msg void OnBnClickedBtnPropUpdate()</div><div class="ttdoc">プロパティ更新ボタン押下時処理</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:659</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_acb9374b4f62b3b67625526f4b5d493b4"><div class="ttname"><a href="class_c_weld_evaluation_view.html#acb9374b4f62b3b67625526f4b5d493b4">CWeldEvaluationView::OnAreaSpectrumeGraphSet</a></div><div class="ttdeci">LRESULT OnAreaSpectrumeGraphSet(WPARAM wparam, LPARAM lparam)</div><div class="ttdoc">区間スペクトル表示ダイアログの設定</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:1337</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_acee7794acc6411a0430688b5ea2fe2e4"><div class="ttname"><a href="class_c_weld_evaluation_view.html#acee7794acc6411a0430688b5ea2fe2e4">CWeldEvaluationView::m_btnPropTabCancel</a></div><div class="ttdeci">CButton m_btnPropTabCancel</div><div class="ttdoc">プロパティタブ・Cancelボタンオブジェクト</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.h:97</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_ad0fe518870f876e7c21ac2f5dfd139e0"><div class="ttname"><a href="class_c_weld_evaluation_view.html#ad0fe518870f876e7c21ac2f5dfd139e0">CWeldEvaluationView::OnReadResultFileStatus</a></div><div class="ttdeci">LRESULT OnReadResultFileStatus(WPARAM wparam, LPARAM lparam)</div><div class="ttdoc">解析結果ファイル読み込み状態通知</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:1123</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_ae37e8e96f656ee1e5ac50c77258dcd91"><div class="ttname"><a href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91">CWeldEvaluationView::OnBnClickedBtnNewprj</a></div><div class="ttdeci">afx_msg void OnBnClickedBtnNewprj()</div><div class="ttdoc">「新規検査」ボタン押下時処理</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:1453</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_ae4f218a4e70e08689a0532384eb86fe5"><div class="ttname"><a href="class_c_weld_evaluation_view.html#ae4f218a4e70e08689a0532384eb86fe5">CWeldEvaluationView::ReloadSetting</a></div><div class="ttdeci">void ReloadSetting(int settingID)</div><div class="ttdoc">設定ページの再読込</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:807</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_ae507a580c1f0ba1217822ee2c7f23aac"><div class="ttname"><a href="class_c_weld_evaluation_view.html#ae507a580c1f0ba1217822ee2c7f23aac">CWeldEvaluationView::EnableSetting</a></div><div class="ttdeci">void EnableSetting(bool bActive)</div><div class="ttdoc">設定の有効化</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:798</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_af06b63ecf84478f166de1e2573b075da"><div class="ttname"><a href="class_c_weld_evaluation_view.html#af06b63ecf84478f166de1e2573b075da">CWeldEvaluationView::FitItem</a></div><div class="ttdeci">void FitItem()</div><div class="ttdoc">アイテムのフィッティング処理</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:418</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_af36ee74161f90ac2fe30337a0fe1fb9d"><div class="ttname"><a href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d">CWeldEvaluationView::ScanImage</a></div><div class="ttdeci">bool ScanImage(CStatusDlgThread *pStatus, int ScanID)</div><div class="ttdoc">スキャンの実施</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:896</div></div>
+<div class="ttc" id="aclass_c_weld_evaluation_view_html_afac68d8f90055011c50dab83d8a2eb9f"><div class="ttname"><a href="class_c_weld_evaluation_view.html#afac68d8f90055011c50dab83d8a2eb9f">CWeldEvaluationView::CWeldEvaluationView</a></div><div class="ttdeci">CWeldEvaluationView()</div><div class="ttdoc">コンストラクタ</div><div class="ttdef"><b>Definition:</b> WeldEvaluationView.cpp:62</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_f3d153628e82edf4b52b126cfcb481a7.html">WeldEvaluation</a></li><li class="navelem"><b>WeldEvaluationView.h</b></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>
