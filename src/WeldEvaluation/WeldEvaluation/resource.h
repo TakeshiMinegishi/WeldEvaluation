@@ -81,8 +81,12 @@
 #define IDC_STC_RESOLUTION_VERTICAL_LABEL 1035
 #define IDC_SBR_SETTING                 1036
 #define IDC_STC_NUMOFCLASS_LABEL        1037
+#define IDC_STC_SHUTTERSPEED_LABEL      1037
 #define IDC_EDT_NUMOFCLASS              1038
+#define IDC_EDT_SHUTTERSPEED            1038
 #define IDC_BTN_SECTIONSPECTRUMDISPLAY  1039
+#define IDC_SPN_SHUTTERSPEED_VERTICAL   1039
+#define IDC_SPN_SHUTTERSPEED            1039
 #define IDC_RDO_RESIN_METHOD1           1040
 #define IDC_RDO_RESIN_METHOD2           1041
 #define IDC_BTN_RESINANALIZE            1042
@@ -123,14 +127,13 @@
 #define IDC_STC_GRAPH_WND               1077
 #define IDC_STC_STATUS                  1078
 #define IDC_PRO_STATUS                  1079
-#define IDC_STC_IDCOLOOR                1079
 #define IDC_STC_IDCOLOR                 1080
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        327
+#define _APS_NEXT_RESOURCE_VALUE        328
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1081
 #define _APS_NEXT_SYMED_VALUE           310

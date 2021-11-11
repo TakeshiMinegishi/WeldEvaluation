@@ -12,6 +12,8 @@
 
 #include "WeldEvaluationDoc.h"
 #include "WeldEvaluationView.h"
+#include "CDeviceIO.h"
+
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -36,6 +38,7 @@ BEGIN_MESSAGE_MAP(CWeldEvaluationView, CFormView)
 	ON_BN_CLICKED(IDC_BTN_NEWPRJ, &CWeldEvaluationView::OnBnClickedBtnNewprj)
 	ON_MESSAGE(WM_UPDATEREQUEST_PROPPAGE, OnUpdateRequestPrpoTab)
 	ON_MESSAGE(WM_SCAN_REQUEST, OnScanRequest)
+	ON_MESSAGE(WM_WBSCAN_REQUES, OnWBScanRequest)
 	ON_MESSAGE(WM_VIEW_CHANGE_REQUEST, OnViewChangeRequest)
 	ON_MESSAGE(WM_CHANGE_REGIST, OnChangeResistFolder)
 	ON_MESSAGE(WM_ANALYSE_REQUEST, OnAnalyzeRequest)
@@ -862,7 +865,7 @@ LRESULT CWeldEvaluationView::OnScanRequest(WPARAM wparam, LPARAM lparam)
 	while (pThread->m_Dlg.m_hWnd == 0) {	// m_Dlgのウィンドウが生成されるまで待機
 		Sleep(0);
 	}
-	pThread->UpdateStatus(_T("Start Scan"));
+	pThread->UpdateStatus(_T("Preparing to start scanning ..."));
 	if (!ScanImage(pThread, ScanID)) {
 		*Result = -1;
 	}
@@ -901,14 +904,28 @@ LRESULT CWeldEvaluationView::OnScanRequest(WPARAM wparam, LPARAM lparam)
 /// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 {
-	// ダミーの処理
-	for (int i = 0 ; i < 100; i++) {
+	CDeviceIO device;
+
+	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
+	CString deviceName = pDoc->GetDeviceName();
+	int ID = device.Init(deviceName);
+	if (ID < 0) {
+		return false;
+	}
+	if (!device.ToHome(ID)) {
+		return false;
+	}
+	int DivisionNumber = 0x19;
+	for (int pos = 1; pos <= DivisionNumber; pos++) {
 		if (!pStatus->m_Valid) {  // キャンセルボタンが押された場合は何もせずに終了
 			return true;
 		}
+		if (!device.Move(ID, pos)) {
+			break;
+		}
 		Sleep(100);
 		CString buff;
-		buff.Format(_T("Scaning : %d %%"), i);
+		buff.Format(_T("Scaning : %d/%d(%d %%)"), pos, DivisionNumber, (int)(pos * 100 / DivisionNumber));
 		pStatus->UpdateStatus(buff);
 		//#######################################################
 		//#
@@ -921,7 +938,57 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 	//# スキャン結果の全画面表示が必要
 	//#
 	//#######################################################
+	device.Close(ID);
 	return true;
+}
+
+/// <summary>
+/// ホワイトバランススキャンの要求
+/// </summary>
+/// <param name="wparam"> スレッドオブジェクト</param>
+/// <param name="lparam"> スキャン結果</param>
+/// <returns>成功した場合は0、失敗した場合は0以外を返す</returns>
+LRESULT CWeldEvaluationView::OnWBScanRequest(WPARAM wparam, LPARAM lparam)
+{
+	CStatusDlgThread* pStatus = (CStatusDlgThread*)wparam;
+	int *Result = (int *)lparam;
+
+	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
+	CString deviceName = pDoc->GetDeviceName();
+	CString buff;
+	CDeviceIO device;
+	int ID = device.Init(deviceName);
+	if (ID >= 0) {
+		if (pStatus->m_Valid) {  // キャンセルボタンが押されていない
+			if (device.ToHome(ID)) {
+				if (!device.Move(ID, 1)) {
+					*Result = -1;
+				}
+				else {
+					if (pStatus->m_Valid) {  // キャンセルボタンが押されていない
+						buff.Format(_T("Scan Start"));
+						pStatus->UpdateStatus(buff);
+						Sleep(3000);
+						/////////////////////////////////////////////////////////
+						// ホワイトバランスデータの撮影
+						/////////////////////////////////////////////////////////
+						*Result = 0; // <-成功ならね
+						buff.Format(_T("Scan End"));
+						pStatus->UpdateStatus(buff);
+						Sleep(1000);
+					}
+					else {
+						AfxMessageBox(_T("キャンセル2"));
+					}
+				}
+			}
+		}
+		else {
+			AfxMessageBox(_T("キャンセル1"));
+		}
+	}
+
+	return 0;
 }
 
 /// <summary>

@@ -26,6 +26,7 @@ CPropTabPageSetting::CPropTabPageSetting(CWnd* pParent /*=NULL*/)
 	, m_ResolutionVertical(100)
 	, m_WBFileName(_T(""))
 	, m_ScrollBerPos(0)
+	, m_ShutterSpeed(0)
 {
 }
 
@@ -51,6 +52,7 @@ void CPropTabPageSetting::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDT_WBFILENAME, m_WBFileName);
 	DDX_Control(pDX, IDC_SBR_SETTING, m_sbrSettingDlg);
 	DDX_Scroll(pDX, IDC_SBR_SETTING, m_ScrollBerPos);
+	DDX_Text(pDX, IDC_EDT_SHUTTERSPEED, m_ShutterSpeed);
 }
 
 /// <summary>
@@ -68,6 +70,7 @@ BEGIN_MESSAGE_MAP(CPropTabPageSetting, CDialogEx)
 	ON_NOTIFY(UDN_DELTAPOS, IDC_SPN_INTEGRATIONTIME, &CPropTabPageSetting::OnDeltaposSpnIntegrationtime)
 	ON_NOTIFY(UDN_DELTAPOS, IDC_SPN_RESOLUTION_HOLIZONTAL, &CPropTabPageSetting::OnDeltaposSpnResolutionHolizontal)
 	ON_NOTIFY(UDN_DELTAPOS, IDC_SPN_RESOLUTION_VERTICAL, &CPropTabPageSetting::OnDeltaposSpnResolutionVertical)
+	ON_NOTIFY(UDN_DELTAPOS, IDC_SPN_SHUTTERSPEED, &CPropTabPageSetting::OnDeltaposSpnShutterspeed)
 	ON_WM_ACTIVATE()
 	ON_EN_KILLFOCUS(IDC_EDT_REGFOLDER, &CPropTabPageSetting::OnEnKillfocusEdtRegfolder)
 	ON_EN_KILLFOCUS(IDC_EDT_NUMBEROFOVERRAPPINGPIXEL, &CPropTabPageSetting::OnEnKillfocusEdtNumberofoverrappingpixel)
@@ -75,6 +78,7 @@ BEGIN_MESSAGE_MAP(CPropTabPageSetting, CDialogEx)
 	ON_EN_KILLFOCUS(IDC_EDT_RESOLUTION_HOLIZONTAL, &CPropTabPageSetting::OnEnKillfocusEdtResolutionHolizontal)
 	ON_EN_KILLFOCUS(IDC_EDT_RESOLUTION_VERTICAL, &CPropTabPageSetting::OnEnKillfocusEdtResolutionVertical)
 	ON_EN_KILLFOCUS(IDC_EDT_WBFILENAME, &CPropTabPageSetting::OnEnKillfocusEdtWbfilename)
+	ON_EN_KILLFOCUS(IDC_EDT_SHUTTERSPEED, &CPropTabPageSetting::OnEnKillfocusEdtShutterspeed)
 	ON_WM_VSCROLL()
 	ON_WM_MOUSEWHEEL()
 END_MESSAGE_MAP()
@@ -299,7 +303,50 @@ void CPropTabPageSetting::OnEnKillfocusEdtResolutionVertical()
 		UpdateData(false);
 		// 更新ボタンの更新
 		CWnd *pWnd = GetParent()->GetParent();
-		pWnd->SendMessage(WM_UPDATEREQUEST_PROPPAGE,(WPARAM)true,(LPARAM)0);
+		pWnd->SendMessage(WM_UPDATEREQUEST_PROPPAGE, (WPARAM)true, (LPARAM)0);
+	}
+}
+
+/// <summary>
+/// シャッタースピードスピンドル押下時処理
+/// </summary>
+/// <param name="pNMHDR">NMUPDOWNオブジェクトへのポインタ</param>
+/// <param name="pResult">戻り値</param>
+void CPropTabPageSetting::OnDeltaposSpnShutterspeed(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMUPDOWN pNMUpDown = reinterpret_cast<LPNMUPDOWN>(pNMHDR);
+	// TODO: ここにコントロール通知ハンドラー コードを追加します。
+	*pResult = 0;
+	UpdateData(true);
+	int Min = 1;
+	int Max = 1000;
+	int ival = (int)m_ShutterSpeed;
+	ival -= pNMUpDown->iDelta;
+	if (ival < Min) {
+		ival = Min;
+	}
+	else if (ival > Max) {
+		ival = Max;
+	}
+	m_ShutterSpeed = (UINT)ival;
+	UpdateData(false);
+	// 更新ボタンの更新
+	CWnd *pWnd = GetParent()->GetParent();
+	pWnd->SendMessage(WM_UPDATEREQUEST_PROPPAGE, (WPARAM)true, (LPARAM)0);
+}
+
+/// <summary>
+/// シャッタースピードエディットボックスフォーカス消失時処理
+/// </summary>
+void CPropTabPageSetting::OnEnKillfocusEdtShutterspeed()
+{
+	UINT org = m_ShutterSpeed;
+	UpdateData(true);
+	if (m_ShutterSpeed != org) {
+		UpdateData(false);
+		// 更新ボタンの更新
+		CWnd *pWnd = GetParent()->GetParent();
+		pWnd->SendMessage(WM_UPDATEREQUEST_PROPPAGE, (WPARAM)true, (LPARAM)0);
 	}
 }
 
@@ -329,6 +376,7 @@ void CPropTabPageSetting::LoadParamater(void)
 	m_IntegrationTimeMs = pDoc->GetIntegrationTimeMs();
 	m_ResolutionHolizontal = pDoc->GetHorizontalResolution();
 	m_ResolutionVertical = pDoc->GetVerticalResolution();
+	m_ShutterSpeed = pDoc->GetShutterSpeed();
 	UpdateData(false);
 }
 
@@ -368,6 +416,10 @@ void CPropTabPageSetting::ItemActive(bool bActive)
 	ItemEnable(IDC_STC_RESOLUTION_VERTICAL_LABEL,bActive);
 	ItemEnable(IDC_EDT_RESOLUTION_VERTICAL,bActive);
 	ItemEnable(IDC_SPN_RESOLUTION_VERTICAL,bActive);
+
+	ItemEnable(IDC_STC_SHUTTERSPEED_LABEL, bActive);
+	ItemEnable(IDC_EDT_SHUTTERSPEED, bActive);
+	ItemEnable(IDC_SPN_SHUTTERSPEED, bActive);
 }
 
 /// <summary>
@@ -391,7 +443,7 @@ void CPropTabPageSetting::FitRect(CRect rect)
 
 	m_MinScrollPos = 0;
 	h = sRect.Height() - h*2;
-	m_MaxScrollPos = (int)((double)h * (double)h/(double)wr.Height());
+	m_MaxScrollPos = (int)((double)h * ((double)h/(double)wr.Height() + 0.5));
 	m_ScrollDelta = 0;
 	m_sbrSettingDlg.SetScrollRange(m_MinScrollPos,m_MaxScrollPos);
 }
@@ -524,6 +576,9 @@ void CPropTabPageSetting::MoveItem(int pos)
 	VMove(IDC_EDT_RESOLUTION_VERTICAL,offset);
 	VMove(IDC_SPN_RESOLUTION_VERTICAL,offset);
 
+	VMove(IDC_STC_SHUTTERSPEED_LABEL, offset);
+	VMove(IDC_EDT_SHUTTERSPEED, offset);
+	VMove(IDC_SPN_SHUTTERSPEED, offset);
 	m_ScrollDelta = pos;
 }
 
@@ -580,6 +635,14 @@ bool CPropTabPageSetting::Update(void)
 			bResult = false;
 		}
 	}
+
+	uprm = pDoc->GetShutterSpeed();
+	if (m_ShutterSpeed != uprm) {
+		if (!pDoc->SetShutterSpeed(m_ShutterSpeed)) {
+			bResult = false;
+		}
+	}
+
 	return bResult;
 }
 

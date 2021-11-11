@@ -255,6 +255,36 @@ bool CPropatyIO::SetIntegrationTimeMs(UINT time)
 }
 
 /// <summary>
+/// シャッタースピードの取得
+/// </summary>
+/// <returns>ShutterSpeedを返す</returns>
+UINT CPropatyIO::GetShutterSpeed(void)
+{
+	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
+		return 0;
+	}
+	CConfigrationIO sys(m_ParamaterFilePath);
+	return sys.getInt(_T("Setting"), _T("ShutterSpeed"));
+}
+
+/// <summary>
+/// シャッタースピードの設定
+/// </summary>
+/// <param name="ShutterSpeed">シャッタースピード</param>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
+bool CPropatyIO::SetShutterSpeed(UINT ShutterSpeed)
+{
+	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
+		return false;
+	}
+	CConfigrationIO sys(m_ParamaterFilePath);
+	if (!sys.setInt(_T("Setting"), _T("ShutterSpeed"), ShutterSpeed)) {
+		return false;
+	}
+	return true;
+}
+
+/// <summary>
 /// 縦方向の解像度の取得
 /// </summary>
 /// <returns>縦方向の解像度を返す</returns>

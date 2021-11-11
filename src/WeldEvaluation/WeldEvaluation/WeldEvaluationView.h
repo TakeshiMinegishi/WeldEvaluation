@@ -122,6 +122,7 @@ public:
 	void ReloadSetting(int settingID);
 
 	LRESULT OnScanRequest(WPARAM wparam, LPARAM lparam);
+	LRESULT OnWBScanRequest(WPARAM wparam, LPARAM lparam);
 	bool ScanImage(CStatusDlgThread* pStatus, int ScanID);
 
 	LRESULT OnViewChangeRequest(WPARAM wparam, LPARAM lparam);

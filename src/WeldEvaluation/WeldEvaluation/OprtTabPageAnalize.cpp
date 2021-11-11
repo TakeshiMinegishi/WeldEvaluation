@@ -102,6 +102,11 @@ void COprtTabPageAnalize::ItemActive(bool bActive)
 	ItemEnable(IDC_RDO_METAL_METHOD2,bActive);
 	ItemEnable(IDC_BTN_METALANALIZE,bActive);
 
+	ItemEnable(IDC_STC_JOINT_FRAME, bActive);
+	ItemEnable(IDC_RDO_JOINT_METHOD1, bActive);
+	ItemEnable(IDC_RDO_JOINT_METHOD2, bActive);
+	ItemEnable(IDC_BTN_JOINTANALIZE, bActive);
+
 	ItemEnable(IDC_STC_VIEWCHANGE_FRAME,bActive);
 	ItemEnable(IDC_STC_REGIN_LABEL,bActive);
 	ItemEnable(IDC_RDO_RESINSCAN,bActive);

@@ -123,6 +123,8 @@ public:
 	bool	SetVerticalResolution(UINT resolution);
 	UINT	GetHorizontalResolution(void);
 	bool	SetHorizontalResolution(UINT resolution);
+	UINT	GetShutterSpeed();
+	bool	SetShutterSpeed(UINT ShutterSpeed);
 	UINT	ResinGetNumberOfClass(void);
 	bool	ResinSetNumberOfClass(UINT nClass);
 	double	ResinGetJointRetio(int ViewJointRatioNo);
@@ -196,6 +198,7 @@ public:
 	bool	SaveScanImage(int ScanID);
 	bool	ExistClassificationResultFile(int fileID, int type);
 	bool	SaveClassificationResultFile(int ScanID, int type);
+	CString GetDeviceName();
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//

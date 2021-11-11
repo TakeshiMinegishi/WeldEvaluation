@@ -5,6 +5,8 @@
 #include "WeldEvaluation.h"
 #include "OprtTabPageInitialize.h"
 #include "afxdialogex.h"
+#include "message.h"
+#include "CDeviceIO.h"
 
 
 // COprtTabPageInitialize ダイアログ
@@ -69,7 +71,6 @@ void COprtTabPageInitialize::ItemActive(bool bActive)
 	ItemEnable(IDC_BTN_WHITEBARANCE,bActive);
 }
 
-
 /// <summary>
 /// ホワイトバランスボタン押下時処理
 /// </summary>
@@ -81,14 +82,10 @@ void COprtTabPageInitialize::OnBnClickedBtnWhitebarance()
 	while (pThread->m_Dlg.m_hWnd == 0) {	// m_Dlgのウィンドウが生成されるまで待機
 		Sleep(0);
 	}
-	pThread->UpdateStatus(_T("Start White Balance"));
+	pThread->UpdateStatus(_T("Preparing to acquire white balance data ..."));
 	AddNode(pThread);  // すごく重い処理
 
-	if (!pThread->m_Valid) {  // キャンセルボタンが押された場合
-//		InitData();
-	}
-	else {
-//	    ShowData(); // 正常終了時の軽い処理
+	if (pThread->m_Valid) {  // キャンセルボタンが押された場合
 		pThread->m_Dlg.PostMessage(WM_COMMAND, IDOK); // Statusダイアログを閉じる
 	}
 
@@ -106,17 +103,40 @@ void COprtTabPageInitialize::AddNode(CStatusDlgThread* pStatus)
 		return;
 	}
 
-	Sleep(3000);
-//	for each (auto child in pItem->matName)
-//	{
-//		// 何か処理
-//		AddNode(&m_Item[child], hTree, pStatus);  // 再帰呼び出し(重い処理の原因)
-//	}
-		
-    // Statusを表示
+	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
+	LPARAM result;
+	if (pWnd->SendMessage(WM_WBSCAN_REQUES, (WPARAM)pStatus, (LPARAM)&result) == 0) {
+	}
+	else {
+		CString msg;
+		msg.LoadString(IDM_ERR_SCAN);
+		AfxMessageBox(msg, MB_OK | MB_ICONSTOP);
+	}
+
+#if false
 	CString buff;
-	buff.Format(_T("Adding item to tree: %d"), 1);
-	pStatus->UpdateStatus(buff);
+	CDeviceIO device;
+	int ID = device.Init(_T("DIO000"));
+	if (ID >= 0) {
+		if (pStatus->m_Valid) {  // キャンセルボタンが押されていない
+			if (device.ToHome(ID)) {
+				if (!device.Move(ID, 1)) {
+					return;
+				}
+				else {
+					if (pStatus->m_Valid) {  // キャンセルボタンが押されていない
+						buff.Format(_T("Scan Start"));
+						pStatus->UpdateStatus(buff);
+
+						/////////////////////////////////////////////////////////
+						// ホワイトバランスデータの撮影
+						/////////////////////////////////////////////////////////
+					}
+				}
+			}
+		}
+	}
+#endif
 }
 
 /// <summary>

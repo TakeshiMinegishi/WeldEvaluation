@@ -326,3 +326,187 @@ bool CScanDataIO::getBandSpectrum(std::vector<double> &BandSpectrum)
 	return true;
 }
 
+typedef struct {
+	int		m_sx;
+	int		m_sy;
+	int		m_tx;
+	int		m_ty;
+	double	m_diff;
+} sDifPos;
+
+
+bool CScanDataIO::joinInit()
+{
+	try {
+		for (int b = 0; b > m_data.size(); b++) {
+			for (int r = 0; r > m_data[b].size(); r++) {
+				m_data[b][r].clear();
+			}
+			m_data[b].clear();
+		}
+		m_data.clear();
+
+		int bands = m_o_p_cube->format.nr_bands;
+		int height = m_o_p_cube->format.height;
+		int width = m_o_p_cube->format.width;
+
+		m_data.resize(bands);
+		for (int b = 0; b < bands; b++) {
+			m_data[b].resize(height);
+			for (int row = 0; row < height; row++) {
+				m_data[b][row].resize(width);
+			}
+		}
+
+		for (int b = 0; b < bands; b++) {
+			for (int row = 0; row < height; row++) {
+				for (int col = 0; col < width; col++) {
+					m_data[b][row][col] = m_o_p_cube->ppp_data[b][row][col];
+				}
+			}
+		}
+	}
+	catch (...) {
+		return false;
+	}
+	return true;
+}
+
+bool CScanDataIO::join(CString pathName, int nOverlap)
+{
+	CScanDataIO target;
+	if (!target.open(pathName, true)) {
+		return false;
+	}
+	int bands = target.m_o_p_cube->format.nr_bands;
+
+	int xrange = m_o_p_cube->format.width / 10;
+	int ssx = m_o_p_cube->format.width / 2 - xrange / 2;
+	int sex = m_o_p_cube->format.width / 2 + xrange / 2;
+
+	float min_diff = -1.0;
+	vector<sDifPos> difPos;
+	float sdata, diff,sums;
+	int band = 0;
+	vector<float> diffs;
+	vector<vector<float>> list;
+	int svx, svy;
+
+	int sy = ((m_o_p_cube->format.height - 1) - nOverlap) - nOverlap/2;
+
+	for (int x = 0; x < xrange; x++) {
+		for (int y = 0; y < nOverlap; y++) {
+			sums = 0.0;
+			int dx = x - xrange / 2;
+			for (int sx = ssx+dx; sx < sex+dx; sx++) {
+				sdata = 0.0;
+				for (int row = 0; row < nOverlap; row++)
+				{
+					diff = fabs(m_o_p_cube->ppp_data[band][sy + y + row][sx] - target.m_o_p_cube->ppp_data[band][row][sx]);
+					sdata += diff;
+				}
+				sums += sdata / nOverlap;
+			}
+			sums /= xrange;
+			diffs.push_back(sums);
+			if ((min_diff < 0.0) || (min_diff > sums)) {
+				min_diff = sums;
+				svx = x;
+				svy = y;
+			}
+		}
+		list.push_back(diffs);
+		diffs.clear();
+	}
+
+	int offset_col = -3;
+	int offset_row = -3;
+	int resizewidth = m_o_p_cube->format.width + target.m_o_p_cube->format.width + offset_col;
+	int jrow = offset_row;
+	for (int b = 0; b < bands; b++) {
+		for (int row = 0; row < jrow; row++, jrow++) {
+			m_data[b][row].resize(resizewidth);
+			for (int col = offset_col; col < target.m_o_p_cube->format.width; col++) {
+				if (col < 0) {
+					continue;
+				}
+				m_data[b][row][col] = 0.0;
+			}
+		}
+		for (int row = 0; row < target.m_o_p_cube->format.height; row++, jrow++) {
+			if (jrow < 0) {
+				continue;
+			}
+			m_data[b][row].resize(resizewidth);
+			for (int col = offset_col; col < target.m_o_p_cube->format.width; col++) {
+				if (col < 0) {
+					continue;
+				}
+				m_data[b][row][col] = target.m_o_p_cube->ppp_data[b][row][col];
+			}
+		}
+		for (int row = jrow; row < m_o_p_cube->format.height; row++, jrow++) {
+			m_data[b][row].resize(resizewidth);
+			for (int col = offset_col; col < target.m_o_p_cube->format.width; col++) {
+				if (col < 0) {
+					continue;
+				}
+				m_data[b][row][col] = 0.0;
+			}
+		}
+	}
+
+	target.close();
+	return true;
+}
+
+bool CScanDataIO::joinend(CString outpathName)
+{
+	if (m_data.size() <= 0) {
+		return false;
+	}
+	if (m_data[0].size() <= 0) {
+		return false;
+	}
+	if (m_data[0][0].size() <= 0) {
+		return false;
+	}
+
+	int band = (int)m_data.size();
+	int width = (int)m_data[0][0].size();
+	int height = (int)m_data[0].size();
+
+
+	float *** ppp_data;
+	ppp_data = new float **[m_data.size()];
+	for (int b = 0; b < band; b++) {
+		ppp_data[b] = new float*[m_data[b].size()];
+		for (int r = 0; r < height; r++) {
+			ppp_data[b][r] = new float[m_data[b][r].size()];
+			for (int c = 0; c < width; c++) {
+				ppp_data[b][r][c] = m_data[b][r][c];
+			}
+		}
+	}
+
+	int m_o_p_cube_height = m_o_p_cube->format.height;
+	int m_o_p_cube_bands = m_o_p_cube->format.nr_bands;
+
+	for (int b = 0; b > m_o_p_cube_bands; b++) {
+		for (int r = 0; r > m_o_p_cube_height; r++) {
+			if (m_o_p_cube->ppp_data[b][r]) {
+				delete[] m_o_p_cube->ppp_data[b][r];
+			}
+		}
+		delete[] m_o_p_cube->ppp_data[b];
+	}
+	delete[] m_o_p_cube->ppp_data;
+
+	m_o_p_cube->ppp_data = ppp_data;
+	m_o_p_cube->format.width = width;
+	m_o_p_cube->format.height = height;
+
+	return true;
+}
+
+
