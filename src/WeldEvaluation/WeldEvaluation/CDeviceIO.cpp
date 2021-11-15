@@ -22,7 +22,7 @@ void CDeviceIO::logOut(CString filePath, long lineNo, CString msg)
 {
 	CLog log;
 	CString ErrMsg;
-	ErrMsg.Format(_T(" File:%s Line:%ld:%s"), filePath, lineNo, msg);
+	ErrMsg.Format(_T(" File:%s Line:%ld:%s"), (LPCTSTR)filePath, lineNo, (LPCTSTR)msg);
 	log.logWrite(CLog::LOGLEVEL::Error, ErrMsg);
 	AfxMessageBox(ErrMsg, MB_OK | MB_ICONSTOP);
 }
@@ -73,7 +73,6 @@ bool CDeviceIO::PortOut(int id, int portNo, int value)
 		}
 		else {
 			char	szError[256];
-			TCHAR	szReturnCode[256];
 			DioGetErrorString(ret, szError);
 			ErrMsg.Format(_T("Ret = %d : %S"), ret, szError);
 		}
@@ -81,7 +80,7 @@ bool CDeviceIO::PortOut(int id, int portNo, int value)
 		if (!bResult) {
 			CLog log;
 			CString msg;
-			msg.Format(_T("CDeviceIO::PortOut():ID(%d):%s"), id, ErrMsg);
+			msg.Format(_T("CDeviceIO::PortOut():ID(%d):%s"), id, (LPCTSTR)ErrMsg);
 			logOut(CString(__FILE__), __LINE__, msg);
 		}
 	}
@@ -129,7 +128,7 @@ int CDeviceIO::Init(CString DeviceName)
 			char	szError[256];
 			DioGetErrorString(ret, szError);
 			CString msg;
-			msg.Format(_T("CDeviceIO::Init():DeviceName(%s):Ret = %d : %S"), DeviceName, ret, szError);
+			msg.Format(_T("CDeviceIO::Init():DeviceName(%s):Ret = %d : %S"), (LPCTSTR)DeviceName, ret, (LPCTSTR)szError);
 			logOut(CString(__FILE__), __LINE__, msg);
 			return -1;
 		}

@@ -117,14 +117,14 @@ public:
 	bool	SetWBFileName(CString WBFileName);
 	UINT	NumberOfOverridePixel(void);
 	bool	SetOverridePixelNumber(UINT num);
-	UINT	GetIntegrationTimeMs(void);
-	bool	SetIntegrationTimeMs(UINT time);
+	double	GetIntegrationTimeMs(void);
+	bool	SetIntegrationTimeMs(double time);
 	UINT	GetVerticalResolution(void);
 	bool	SetVerticalResolution(UINT resolution);
 	UINT	GetHorizontalResolution(void);
 	bool	SetHorizontalResolution(UINT resolution);
-	UINT	GetShutterSpeed();
-	bool	SetShutterSpeed(UINT ShutterSpeed);
+	UINT	NumberOfBand(void);
+	bool	SetNumberOfBand(UINT band);
 	UINT	ResinGetNumberOfClass(void);
 	bool	ResinSetNumberOfClass(UINT nClass);
 	double	ResinGetJointRetio(int ViewJointRatioNo);
@@ -199,6 +199,9 @@ public:
 	bool	ExistClassificationResultFile(int fileID, int type);
 	bool	SaveClassificationResultFile(int ScanID, int type);
 	CString GetDeviceName();
+	bool	IsCameraDummyApi();
+	CString getSnapscanFile();
+	int		GetDivisionNumber();
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//
@@ -209,4 +212,5 @@ public:
 	bool	LoadClassificationResultImage(int targetID, int type, CImage &img, bool renew = false);
 	
 	bool	GetSpectrumData(int ScanID, CPoint &pos, std::vector<double> &data);
+	bool	WriteImage(CString writePath);
 };

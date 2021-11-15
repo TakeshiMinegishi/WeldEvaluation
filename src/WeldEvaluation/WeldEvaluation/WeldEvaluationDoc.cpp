@@ -18,7 +18,7 @@
 #include "message.h"
 #include "FileUtil.h"
 #include "ConfigrationIO.h"
-
+#include "CLog.h"
 
 #pragma warning(disable:4800)
 #pragma warning(disable:4100)
@@ -348,13 +348,13 @@ bool CWeldEvaluationDoc::SetOverridePixelNumber(UINT num)
 /// Integration_time_msの取得
 /// </summary>
 /// <returns>Integration_time_msを返す</returns>
-UINT CWeldEvaluationDoc::GetIntegrationTimeMs(void)
+double CWeldEvaluationDoc::GetIntegrationTimeMs(void)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
 		CConfigrationIO sys(m_SystemFilePathName);
 		return sys.getInt(_T("ParamDefault"),_T("Integration_time_ms"));
 	} else {
-		UINT val = m_PropatyIO.GetIntegrationTimeMs();
+		double val = m_PropatyIO.GetIntegrationTimeMs();
 		if (val == 0) {
 			CConfigrationIO sys(m_SystemFilePathName);
 			val = sys.getInt(_T("ParamDefault"),_T("Integration_time_ms"));
@@ -368,7 +368,7 @@ UINT CWeldEvaluationDoc::GetIntegrationTimeMs(void)
 /// </summary>
 /// <param name="time">Integration_time_ms</param>
 /// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
-bool CWeldEvaluationDoc::SetIntegrationTimeMs(UINT time)
+bool CWeldEvaluationDoc::SetIntegrationTimeMs(double time)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
 		return false;
@@ -376,42 +376,6 @@ bool CWeldEvaluationDoc::SetIntegrationTimeMs(UINT time)
 		return m_PropatyIO.SetIntegrationTimeMs(time);
 	}
 }
-
-/// <summary>
-/// シャッタースピードの取得
-/// </summary>
-/// <returns>ShutterSpeedを返す</returns>
-UINT CWeldEvaluationDoc::GetShutterSpeed()
-{
-	if (m_ActiveRegisttedTestName.IsEmpty()) {
-		CConfigrationIO sys(m_SystemFilePathName);
-		return sys.getInt(_T("ParamDefault"), _T("ShutterSpeed"));
-	}
-	else {
-		UINT val = m_PropatyIO.GetShutterSpeed();
-		if (val == 0) {
-			CConfigrationIO sys(m_SystemFilePathName);
-			val = sys.getInt(_T("ParamDefault"), _T("ShutterSpeed"));
-		}
-		return val;
-	}
-}
-
-/// <summary>
-/// シャッタースピードの設定
-/// </summary>
-/// <param name="ShutterSpeed">シャッタースピード</param>
-/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
-bool CWeldEvaluationDoc::SetShutterSpeed(UINT ShutterSpeed)
-{
-	if (m_ActiveRegisttedTestName.IsEmpty()) {
-		return false;
-	}
-	else {
-		return m_PropatyIO.SetShutterSpeed(ShutterSpeed);
-	}
-}
-
 
 /// <summary>
 /// 縦方向の解像度の取得
@@ -478,6 +442,42 @@ bool CWeldEvaluationDoc::SetHorizontalResolution(UINT resolution)
 		return m_PropatyIO.SetHorizontalResolution(resolution);
 	}
 }
+
+/// <summary>
+/// バンド数の取得
+/// </summary>
+/// <returns>バンド数を返す</returns>
+UINT CWeldEvaluationDoc::NumberOfBand(void)
+{
+	if (m_ActiveRegisttedTestName.IsEmpty()) {
+		CConfigrationIO sys(m_SystemFilePathName);
+		return sys.getInt(_T("ParamDefault"), _T("Number_of_band"));
+	}
+	else {
+		UINT val = m_PropatyIO.GetNumberOfBand();
+		if (val == 0) {
+			CConfigrationIO sys(m_SystemFilePathName);
+			val = sys.getInt(_T("ParamDefault"), _T("Number_of_band"));
+		}
+		return val;
+	}
+}
+
+/// <summary>
+/// バンド数の設定
+/// </summary>
+/// <param name="resolution">バンド数</param>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
+bool CWeldEvaluationDoc::SetNumberOfBand(UINT band)
+{
+	if (m_ActiveRegisttedTestName.IsEmpty()) {
+		return false;
+	}
+	else {
+		return m_PropatyIO.SetHorizontalResolution(band);
+	}
+}
+
 
 /// <summary>
 /// 樹脂面の分類数の取得
@@ -1431,8 +1431,20 @@ CString CWeldEvaluationDoc::GetDeviceName()
 {
 	CConfigrationIO sys(m_SystemFilePathName);
 	CString name;
-	sys.getString(_T("System"), _T("DeviceName"), name);
+	name = sys.getString(_T("System"), _T("DeviceName"), _T(""));
 	return name;
+}
+
+bool CWeldEvaluationDoc::IsCameraDummyApi()
+{
+	CConfigrationIO sys(m_SystemFilePathName);
+	int use = sys.getInt(_T("System"), _T("UseCameraDummyApi"));
+	if (use == 0) {
+		return false;
+	}
+	else {
+		return true;
+	}
 }
 
 /// <summary>
@@ -1698,8 +1710,9 @@ bool CWeldEvaluationDoc::SaveProject()
 		if (!m_PropatyIO.SetOverridePixelNumber(uval)) {
 			bResult = false;
 		}
-		uval = pf.GetIntegrationTimeMs();
-		if (!m_PropatyIO.SetIntegrationTimeMs(uval)) {
+		double dval;
+		dval = pf.GetIntegrationTimeMs();
+		if (!m_PropatyIO.SetIntegrationTimeMs(dval)) {
 			bResult = false;
 		}
 		uval = pf.GetHorizontalResolution();
@@ -1711,7 +1724,6 @@ bool CWeldEvaluationDoc::SaveProject()
 			bResult = false;
 		}
 
-		double dval;
 		uval = pf.ResinGetNumberOfClass();
 		if (!m_PropatyIO.ResinSetNumberOfClass(uval)) {
 			bResult = false;
@@ -1842,6 +1854,28 @@ bool CWeldEvaluationDoc::SaveProject()
 CString CWeldEvaluationDoc::GetActiveRegistedTest()
 {
 	return m_ActiveRegisttedTestName;
+}
+
+/// <summary>
+/// スナップスキャンファイルパスの取得
+/// </summary>
+/// <returns>スナップスキャンファイルへのパスを返す</returns>
+CString CWeldEvaluationDoc::getSnapscanFile()
+{
+	CConfigrationIO sys(m_SystemFilePathName);
+	CString Snapscan_file = sys.getString(_T("Common"), _T("Snapscan_file"));
+	return Snapscan_file;
+}
+
+/// <summary>
+/// スキャンの分割数
+/// </summary>
+/// <returns>スキャンの分割数を返す</returns>
+int	CWeldEvaluationDoc::GetDivisionNumber()
+{
+	CConfigrationIO sys(m_SystemFilePathName);
+	int DivisionNumber = sys.getInt(_T("System"), _T("DivisionNumber"));
+	return DivisionNumber;
 }
 
 /// <summary>
@@ -2249,9 +2283,9 @@ bool CWeldEvaluationDoc::Analize(int targetID, int AnalysisMethodID)
 	}
 
 	if (CFileUtil::fileExists(execpath)) {
-		prm.Format(_T("%s %s %d"), ScanDataFilePath, ClassificationDataFilePath, nClass);
+		prm.Format(_T("%s %s %d"), (LPCTSTR)ScanDataFilePath, (LPCTSTR)ClassificationDataFilePath, nClass);
 		CString cmd;
-		cmd.Format(_T("%s %s"), execpath, prm);
+		cmd.Format(_T("%s %s"), (LPCTSTR)execpath, (LPCTSTR)prm);
 		TCHAR pszText[1049], pszMpath[1049];
 		ZeroMemory(pszText, 1049);
 		ZeroMemory(pszMpath, 1049);
@@ -2648,3 +2682,78 @@ bool CWeldEvaluationDoc::GetSpectrumData(int ScanID, CPoint &pos, std::vector<do
 	return true;
 }
 
+bool CWeldEvaluationDoc::WriteImage(CString writePath)
+{
+	int ScanID[3] = { eResinSurface ,eMetalSurface , eJoiningResult};
+	int type[2] = { AnalizeTypeKMeans, AnalizeTypeHiClustering };
+
+	bool bResult = true;
+	CString drive, dir, fname, ext;
+	CString path,classfile, outPath;
+	bool bexist = true;
+	for (int ID = 0; ID < 3; ID++) {
+		if (ExistScanFile(ScanID[ID])) {
+			bexist = true;
+			path = getScanImageFilePath(ScanID[ID]);
+			if (!CFileUtil::fileExists(path)) {
+				CImage img;
+				if (!LoadScanImage(ScanID[ID], img)) {
+					bexist = false;
+				}
+				else {
+					HRESULT iret = img.Save(path);
+					if (iret != 0) {
+						bexist = false;
+					}
+				}
+			}
+			if (bexist) {
+				if (CFileUtil::splitPath(path, drive, dir, fname, ext)) {
+					fname.Format(_T("%d_%s%s"), ScanID[ID], (LPCTSTR)fname, (LPCTSTR)ext);
+					outPath = CFileUtil::FilePathCombine(writePath, fname);
+					if (!CopyFile(path, outPath, true)) {
+						bResult = false;
+					}
+				}
+				else {
+					bResult = false;
+				}
+			}
+
+			for (int TypeID = 0; TypeID < 2; TypeID++) {
+				// 結果画像は解析したもののみ表示
+				classfile = getClassificationDataFilePath(ScanID[ID], type[TypeID]);
+				if (CFileUtil::fileExists(classfile)) {
+					path = getClassificationImageFilePath(ScanID[ID], type[TypeID]);
+					bexist = true;
+					if (!CFileUtil::fileExists(path)) {
+						CImage img;
+						if (!LoadClassificationResultImage(ScanID[ID], type[TypeID], img)) {
+							bexist = false;
+						}
+						else {
+							HRESULT iret = img.Save(path);
+							if (iret != 0) {
+								bexist = false;
+							}
+						}
+					}
+
+					if (bexist) {
+						if (CFileUtil::splitPath(path, drive, dir, fname, ext)) {
+							fname.Format(_T("%d_%d_%s%s"), ScanID[ID], type[TypeID], (LPCTSTR)fname, (LPCTSTR)ext);
+							outPath = CFileUtil::FilePathCombine(writePath, fname);
+							if (!CopyFile(path, outPath, true)) {
+								bResult = false;
+							}
+						}
+						else {
+							bResult = false;
+						}
+					}
+				}
+			}
+		}
+	}
+	return bResult;
+}

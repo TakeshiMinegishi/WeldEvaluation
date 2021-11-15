@@ -100,6 +100,7 @@ public:
 // 生成された、メッセージ割り当て関数
 protected:
 	DECLARE_MESSAGE_MAP()
+
 public:
 	afx_msg void OnTcnSelchangeTabOperation(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
@@ -110,7 +111,13 @@ public:
 	afx_msg void OnBnClickedBtnPropUpdate();
 	afx_msg void OnBnClickedBtnPropCancel();
 	afx_msg void OnBnClickedBtnNewprj();
+	afx_msg void OnDestroy();
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 
+private:
+	void CWeldEvaluationView::logOut(CString filePath, long lineNo, CString msg);
+
+public:
 	LRESULT OnUpdateRequestPrpoTab(WPARAM wparam, LPARAM lparam);
 	void LoadPropaty();
 	void EnablePropaty(bool bActive);
@@ -142,9 +149,6 @@ public:
 	LRESULT OnAreaSpectrumeGraphSet(WPARAM wparam, LPARAM lparam);
 
 	void FitItem();
-	
-	afx_msg void OnDestroy();
-	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 };
 
 #ifndef _DEBUG  // WeldEvaluationView.cpp のデバッグ バージョン

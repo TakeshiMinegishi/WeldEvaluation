@@ -1,28 +1,28 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include "FileUtil.h"
 
 
 /// <summary>
-/// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 /// </summary>
 CFileUtil::CFileUtil(void)
 {
 }
 
 /// <summary>
-/// ƒfƒXƒgƒ‰ƒNƒ^
+/// ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 /// </summary>
 CFileUtil::~CFileUtil(void)
 {
 }
 
 /// <summary>
-/// Àsƒ‚ƒWƒ…[ƒ‹‚ÌƒJƒŒƒ“ƒgƒpƒX‚Ìæ“¾
+/// å®Ÿè¡Œãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®ã‚«ãƒ¬ãƒ³ãƒˆãƒ‘ã‚¹ã®å–å¾—
 /// </summary>
-/// <returns>Àsƒ‚ƒWƒ…[ƒ‹‚ÌƒJƒŒƒ“ƒgƒpƒX‚ğ•Ô‚·</returns>
+/// <returns>å®Ÿè¡Œãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®ã‚«ãƒ¬ãƒ³ãƒˆãƒ‘ã‚¹ã‚’è¿”ã™</returns>
 CString CFileUtil::GetModulePath()
 {
-	CString	    path = _T("");     // ƒe[ƒuƒ‹‚Ö‚ÌƒpƒX
+	CString	    path = _T("");     // ãƒ†ãƒ¼ãƒ–ãƒ«ã¸ã®ãƒ‘ã‚¹
 	DWORD nSize = 1024;
 	TCHAR* szPath = nullptr;
 	DWORD rSize;
@@ -43,10 +43,10 @@ CString CFileUtil::GetModulePath()
 }
 
 /// <summary>
-/// ƒtƒ@ƒCƒ‹‚ª‘¶İ‚·‚é‚©‚ğŠm”F‚·‚é
+/// ãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã™ã‚‹ã‹ã‚’ç¢ºèªã™ã‚‹
 /// </summary>
-/// <param name="pathname">ƒtƒ@ƒCƒ‹‚Ö‚Ìƒtƒ‹ƒpƒX</param>
-/// <returns>‘¶İ‚·‚éê‡‚ÍtrueA‘¶İ‚µ‚È‚¢ê‡‚Ífalse‚ğ•Ô‚·</returns>
+/// <param name="pathname">ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ•ãƒ«ãƒ‘ã‚¹</param>
+/// <returns>å­˜åœ¨ã™ã‚‹å ´åˆã¯trueã€å­˜åœ¨ã—ãªã„å ´åˆã¯falseã‚’è¿”ã™</returns>
 bool CFileUtil::fileExists(CString& pathname)
 {
 	bool bResult = false;
@@ -57,10 +57,10 @@ bool CFileUtil::fileExists(CString& pathname)
 }
 
 /// <summary>
-/// ƒtƒ@ƒCƒ‹‚ğíœ‚·‚é
+/// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤ã™ã‚‹
 /// </summary>
-/// <param name="pathname">ƒtƒ@ƒCƒ‹‚Ö‚Ìƒtƒ‹ƒpƒX</param>
-/// <returns>¬Œ÷‚µ‚½ê‡‚ÍtrueA¸”s‚µ‚½ê‡‚Ífalse‚ğ•Ô‚·</returns>
+/// <param name="pathname">ãƒ•ã‚¡ã‚¤ãƒ«ã¸ã®ãƒ•ãƒ«ãƒ‘ã‚¹</param>
+/// <returns>æˆåŠŸã—ãŸå ´åˆã¯trueã€å¤±æ•—ã—ãŸå ´åˆã¯falseã‚’è¿”ã™</returns>
 bool CFileUtil::fileDelete(CString& pathname)
 {
 	bool bResult = false;
@@ -89,14 +89,14 @@ bool CFileUtil::fileDelete(CString& pathname)
 }
 
 /// <summary>
-/// ƒtƒBƒ‹ƒpƒX‚ğ•ª‰ğ‚·‚é
+/// ãƒ•ã‚£ãƒ«ãƒ‘ã‚¹ã‚’åˆ†è§£ã™ã‚‹
 /// </summary>
-/// <param name="path">ƒtƒ@ƒCƒ‹ƒpƒX</param>
-/// <param name="drive">ƒhƒ‰ƒCƒuƒŒƒ^[</param>
-/// <param name="dir">ƒpƒX</param>
-/// <param name="fname">ƒtƒ@ƒCƒ‹ƒ^ƒCƒgƒ‹</param>
-/// <param name="ext">Šg’£q</param>
-/// <returns>¬Œ÷‚µ‚½ê‡‚ÍtureA¸”s‚µ‚½ê‡‚Ífalse‚ğ•Ô‚·</returns>
+/// <param name="path">ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹</param>
+/// <param name="drive">ãƒ‰ãƒ©ã‚¤ãƒ–ãƒ¬ã‚¿ãƒ¼</param>
+/// <param name="dir">ãƒ‘ã‚¹</param>
+/// <param name="fname">ãƒ•ã‚¡ã‚¤ãƒ«ã‚¿ã‚¤ãƒˆãƒ«</param>
+/// <param name="ext">æ‹¡å¼µå­</param>
+/// <returns>æˆåŠŸã—ãŸå ´åˆã¯tureã€å¤±æ•—ã—ãŸå ´åˆã¯falseã‚’è¿”ã™</returns>
 bool CFileUtil::splitPath(CString path, CString &drive, CString &dir, CString &fname, CString &ext)
 {
 	bool bResult = false;
@@ -119,10 +119,10 @@ bool CFileUtil::splitPath(CString path, CString &drive, CString &dir, CString &f
 }
 
 /// <summary>
-/// ƒfƒBƒŒƒNƒgƒŠ‚Ìì¬
+/// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ä½œæˆ
 /// </summary>
-/// <param name="path">ƒfƒBƒŒƒNƒgƒŠƒpƒX</param>
-/// <returns>¬Œ÷‚µ‚½ê‡‚ÍtureA¸”s‚µ‚½ê‡‚Ífalse‚ğ•Ô‚·</returns>
+/// <param name="path">ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ‘ã‚¹</param>
+/// <returns>æˆåŠŸã—ãŸå ´åˆã¯tureã€å¤±æ•—ã—ãŸå ´åˆã¯falseã‚’è¿”ã™</returns>
 bool CFileUtil::MakeDir(CString path)
 {
 	bool bResult = true;
@@ -144,10 +144,10 @@ bool CFileUtil::MakeDir(CString path)
 }
 
 /// <summary>
-/// ƒtƒ@ƒCƒ‹ƒpƒX‚©‚çƒfƒBƒŒƒNƒgƒŠ‚ğæ“¾‚·‚é
+/// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã‹ã‚‰ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’å–å¾—ã™ã‚‹
 /// </summary>
-/// <param name="path">ƒtƒ@ƒCƒ‹ƒpƒX</param>
-/// <returns>ƒfƒBƒŒƒNƒgƒŠ‚ğ•Ô‚·</returns>
+/// <param name="path">ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹</param>
+/// <returns>ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’è¿”ã™</returns>
 CString CFileUtil::getDir(CString path)
 {
 	CString  dirpath = _T("");
@@ -164,11 +164,11 @@ CString CFileUtil::getDir(CString path)
 }
 
 /// <summary>
-/// ƒtƒ@ƒCƒ‹ƒpƒX‚Ìì¬
+/// ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹ã®ä½œæˆ
 /// </summary>
-/// <param name="path">ƒtƒ@ƒCƒ‹ƒtƒHƒ‹ƒ_</param>
-/// <param name="filename">ƒtƒ@ƒCƒ‹–¼</param>
-/// <returns>¬Œ÷‚µ‚½ê‡‚ÍtrueA¸”s‚µ‚½ê‡‚Ífalse‚ğ•Ô‚·</returns>
+/// <param name="path">ãƒ•ã‚¡ã‚¤ãƒ«ãƒ•ã‚©ãƒ«ãƒ€</param>
+/// <param name="filename">ãƒ•ã‚¡ã‚¤ãƒ«å</param>
+/// <returns>æˆåŠŸã—ãŸå ´åˆã¯trueã€å¤±æ•—ã—ãŸå ´åˆã¯falseã‚’è¿”ã™</returns>
 CString CFileUtil::FilePathCombine(CString path, CString filename)
 {
 	TCHAR filePath[MAX_PATH];
@@ -179,11 +179,11 @@ CString CFileUtil::FilePathCombine(CString path, CString filename)
 
 
 /// <summary>
-/// ƒtƒ@ƒCƒ‹‚Ìì¬“ú‚Ìæ“¾
+/// ãƒ•ã‚¡ã‚¤ãƒ«ã®ä½œæˆæ—¥ã®å–å¾—
 /// </summary>
-/// <param name="path">ƒtƒ@ƒCƒ‹ƒpƒX</param>
-/// <param name="cdate">ì¬“ú</param>
-/// <returns>¬Œ÷‚µ‚½ê‡‚ÍtrueA¸”s‚µ‚½ê‡‚Ífalse‚ğ•Ô‚·</returns>
+/// <param name="path">ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹</param>
+/// <param name="cdate">ä½œæˆæ—¥</param>
+/// <returns>æˆåŠŸã—ãŸå ´åˆã¯trueã€å¤±æ•—ã—ãŸå ´åˆã¯falseã‚’è¿”ã™</returns>
 bool CFileUtil::GetFileCreateDay(CString path,COleDateTime &cdate)
 {
 	if (!CFileUtil::fileExists(path)) {
@@ -202,11 +202,11 @@ bool CFileUtil::GetFileCreateDay(CString path,COleDateTime &cdate)
 }
 
 /// <summary>
-/// ƒtƒ@ƒCƒ‹‚ÌXV“ú‚Ìæ“¾
+/// ãƒ•ã‚¡ã‚¤ãƒ«ã®æ›´æ–°æ—¥ã®å–å¾—
 /// </summary>
-/// <param name="path">ƒtƒ@ƒCƒ‹ƒpƒX</param>
-/// <param name="mdate">XV“ú“ú</param>
-/// <returns>¬Œ÷‚µ‚½ê‡‚ÍtrueA¸”s‚µ‚½ê‡‚Ífalse‚ğ•Ô‚·</returns>
+/// <param name="path">ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹</param>
+/// <param name="mdate">æ›´æ–°æ—¥æ—¥</param>
+/// <returns>æˆåŠŸã—ãŸå ´åˆã¯trueã€å¤±æ•—ã—ãŸå ´åˆã¯falseã‚’è¿”ã™</returns>
 bool CFileUtil::GetFileUpdateDay(CString path,COleDateTime &mdate)
 {
 	if (!CFileUtil::fileExists(path)) {
@@ -222,4 +222,60 @@ bool CFileUtil::GetFileUpdateDay(CString path,COleDateTime &mdate)
 		mdate.SetDate(0,0,0);
 		return false;
 	}
+}
+
+
+int CALLBACK BrowseCallbackProc(HWND hWnd, UINT uMsg, LPARAM lParam, LPARAM lpData)
+{
+	switch (uMsg)
+	{
+	case BFFM_INITIALIZED:
+		//åˆæœŸåŒ–å‡¦ç†(åˆæœŸè¡¨ç¤ºãƒ•ã‚©ãƒ«ãƒ€æŒ‡å®š)
+		SendMessage(hWnd, BFFM_SETSELECTION, (WPARAM)TRUE, lpData);
+		break;
+	case BFFM_SELCHANGED:
+		//ãƒ•ã‚©ãƒ«ãƒ€é¸æŠãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã§ãƒ•ã‚©ãƒ«ãƒ€ãŒé¸æŠã•ã‚ŒãŸæ™‚ã«å‡¦ç†ãŒå¿…è¦ã§ã‚ã‚Œã°ã“ã“ã«è¨˜è¼‰
+		break;
+	}
+	return 0;
+}
+
+bool CFileUtil::SelectFolder(HWND hWnd, LPCTSTR lpDefFolder, LPTSTR lpSelectPath, UINT iFlg, CString ttl)
+{
+	LPMALLOC    pMalloc;
+	BOOL        brtn = FALSE;
+
+
+	//IMallocã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿ã‚’å–å¾—
+	if (SUCCEEDED(SHGetMalloc(&pMalloc)))
+	{
+		BROWSEINFO        brows;
+		ITEMIDLIST        *pIDlist;
+		//BROWSEINFOæ§‹é€ ä½“ã®åˆæœŸåŒ–
+		memset(&brows, NULL, sizeof(brows));
+		//BROWSEINFOæ§‹é€ ä½“ã«å€¤ã‚’ã‚»ãƒƒãƒˆ
+		brows.hwndOwner = hWnd;
+		brows.pszDisplayName = lpSelectPath;
+		brows.lpszTitle = ttl;
+		brows.lParam = (LPARAM)lpDefFolder;
+		brows.pidlRoot = NULL;
+		brows.ulFlags = iFlg;
+		brows.lpfn = &BrowseCallbackProc;
+		brows.iImage = (int)NULL;
+		//ãƒ•ã‚©ãƒ«ãƒ€é¸æŠãƒ€ã‚¤ã‚¢ãƒ­ã‚°ã®è¡¨ç¤º
+		pIDlist = SHBrowseForFolder(&brows);
+		if (pIDlist == NULL) {
+			// ã‚­ãƒ£ãƒ³ã‚»ãƒ«
+			return false;
+		}
+		else {
+			//ITEMIDLIST ã‹ã‚‰ãƒ•ãƒ«ãƒ‘ã‚¹ã‚’å¾—ã‚‹
+			SHGetPathFromIDList(pIDlist, lpSelectPath);
+			brtn = TRUE;
+			//ITEMIDLIST ã®é–‹æ”¾
+			pMalloc->Free(pIDlist);
+		}
+		pMalloc->Release();
+	}	
+	return true;
 }

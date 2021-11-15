@@ -21,5 +21,6 @@ public:
 	static CString FilePathCombine(CString path, CString filename);
 	static bool GetFileCreateDay(CString path,COleDateTime &cdate);
 	static bool GetFileUpdateDay(CString path,COleDateTime &mdate);
+	static bool SelectFolder(HWND hWnd, LPCTSTR lpDefFolder, LPTSTR lpSelectPath, UINT iFlg, CString ttl);
 };
 

@@ -32,7 +32,7 @@ public:
 	CString		m_RegistFolder;					///< 登録ふぉふだ
 	CString		m_WBFileName;					///< ホワイトバランスファイル名
 	UINT		m_NumberOfOverridePixel;		///< 重なりピクセル数
-	UINT		m_IntegrationTimeMs;			///< Integration Time
+	double		m_IntegrationTimeMs;			///< Integration Time
 	UINT		m_ResolutionHolizontal;			///< 水平解像度
 	UINT		m_ResolutionVertical;			///< 垂直解像度
 	UINT		m_ShutterSpeed;					///< シャッタースピード

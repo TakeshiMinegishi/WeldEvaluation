@@ -60,7 +60,7 @@ public:
 	CString getLogPathName();
 
     void deleteLogFile(int saveday);
-    void writeLine(std::ofstream& ofsswLog, LOGLEVEL level, CString prm);
+    void writeLine(std::wofstream & ofsswLog, LOGLEVEL level, CString prm);
     void logWrite(LOGLEVEL level, CString prm);
     void logWrite(LOGLEVEL level, vector<CString> prms);
     void clrLineBuff();

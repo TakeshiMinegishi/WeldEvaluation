@@ -4,6 +4,9 @@
 #include <Shlwapi.h>
 #include <iostream>
 #include <iomanip>
+#include <codecvt>
+#include <fstream>
+#include <locale>
 
 //#define NotLog
 
@@ -45,9 +48,17 @@ void CLog::outputErrLog(exception ex)
         s << setw(2) << setfill('0') << localTime.tm_mday;
 
         CString sName = _T("Err_") + CString(s.str().c_str()) + ".log";
+		CString logPath = CFileUtil::FilePathCombine(CFileUtil::GetModulePath(), _T("log"));
+		if (!CFileUtil::fileExists(logPath)) {
+			::CreateDirectory(logPath, NULL);
+			if (!CFileUtil::fileExists(logPath)) {
+				logPath = CFileUtil::GetModulePath();
+			}
+		}
 
         CString errlogpath = CFileUtil::FilePathCombine(CFileUtil::GetModulePath(),_T("\\errorlog_") + CString(s.str().c_str()) + _T(".txt"));
-        std::ofstream ofs(errlogpath, std::ios::app);
+        std::wofstream  ofs(errlogpath, std::ios::app);
+		ofs.imbue({ {}, new std::codecvt_utf8<wchar_t, 0x10FFFF, std::generate_header> });
 
         CString drive, dir, fname, ext;
 		string file = __FILE__;
@@ -55,10 +66,10 @@ void CLog::outputErrLog(exception ex)
         if (CFileUtil::splitPath(path, drive, dir, fname, ext)) {
             path = fname + ext;
         }
-        ofs << "[" << "20" << localTime.tm_year - 100 << "/" << setw(2) << setfill('0') << localTime.tm_mon + 1 << "/" << setw(2) << setfill('0') << localTime.tm_mday;
-        ofs << " " << setw(2) << setfill('0') << localTime.tm_hour << ":" << setw(2) << setfill('0') << localTime.tm_min << ":" << setw(2) << setfill('0') << localTime.tm_sec << "]";
-        ofs << " " << "(" << path << ")";
-        ofs << " " << ex.what() << endl;
+        ofs << L"[" << L"20" << localTime.tm_year - 100 << L"/" << setw(2) << setfill(L'0') << localTime.tm_mon + 1 << L"/" << setw(2) << setfill(L'0') << localTime.tm_mday;
+        ofs << L" " << setw(2) << setfill(L'0') << localTime.tm_hour << L":" << setw(2) << setfill(L'0') << localTime.tm_min << L":" << setw(2) << setfill(L'0') << localTime.tm_sec << L"]";
+        ofs << L" " << L"(" << path << L")";
+        ofs << L" " << ex.what() << endl;
 
         ofs.close();
     }
@@ -80,7 +91,13 @@ bool CLog::Initiaize()
         m_sysLogLevel = LOGLEVEL::Non;
         m_linebuffs.clear();
 
-        CString path = CFileUtil::GetModulePath();
+		CString path = CFileUtil::FilePathCombine(CFileUtil::GetModulePath(), _T("log"));
+		if (!CFileUtil::fileExists(path)) {
+			::CreateDirectory(path, NULL);
+			if (!CFileUtil::fileExists(path)) {
+				path = CFileUtil::GetModulePath();
+			}
+		}
 
         m_logPath = path;
         m_prefix = "Log_";
@@ -290,8 +307,8 @@ void CLog::deleteLogFile(int saveday)
                 double diff = difftime(ltime, ftime);
                 diff /= 60.0 * 60.0 * 24.0;
                 if (INT(diff+0.5) > saveday) {
-                    CString fname = win32fd.cFileName;
-                    CFileUtil::fileDelete(CFileUtil::FilePathCombine(getLogPath(), fname));
+                    CString fname = CFileUtil::FilePathCombine(getLogPath(), win32fd.cFileName);
+                    CFileUtil::fileDelete(fname);
                 }
             }
         } while (FindNextFile(hFind, &win32fd));
@@ -310,14 +327,14 @@ void CLog::deleteLogFile(int saveday)
  /// <param name="ofsswLog">StreamWriterインスタンス</param>
  /// <param name="level">ログレベル</param>
  /// <param name="prm">出力文字列</param>
-void CLog::writeLine(std::ofstream &ofsswLog, LOGLEVEL level, CString prm)
+void CLog::writeLine(std::wofstream  &ofsswLog, LOGLEVEL level, CString prm)
 {
 #ifndef NotLog
     ios::iostate stat = ofsswLog.exceptions();
     ofsswLog.exceptions(ios::failbit | ios::badbit);
     try
     {
-        string label;
+        CString label;
         if ((level & LOGLEVEL::Error) == LOGLEVEL::Error)
         {
             label = "Error      ";
@@ -340,10 +357,15 @@ void CLog::writeLine(std::ofstream &ofsswLog, LOGLEVEL level, CString prm)
         tm localTime;
         localtime_s(&localTime, &t);
 
-        ofsswLog << "[" << "20" << localTime.tm_year - 100 << "/" << setw(2) << setfill('0') << localTime.tm_mon + 1 << "/" << setw(2) << setfill('0') << localTime.tm_mday;
-        ofsswLog << " " << setw(2) << setfill('0') << localTime.tm_hour << ":" << setw(2) << setfill('0') << localTime.tm_min << ":" << setw(2) << setfill('0') << localTime.tm_sec << "]";
-        ofsswLog << ":" ;
-        ofsswLog << label << ":" << prm << std::endl;
+		CString wrk = label + L":" + prm;
+		int bufSZ = wrk.GetLength() + 2;
+		TCHAR *buf = new TCHAR[bufSZ];
+		_tcscpy_s(buf, bufSZ, wrk);
+
+        ofsswLog << L"[" << "20" << localTime.tm_year - 100 << L"/" << setw(2) << setfill(L'0') << localTime.tm_mon + 1 << L"/" << setw(2) << setfill(L'0') << localTime.tm_mday;
+        ofsswLog << L" " << setw(2) << setfill(L'0') << localTime.tm_hour << ":" << setw(2) << setfill(L'0') << localTime.tm_min << L":" << setw(2) << setfill(L'0') << localTime.tm_sec << "]";
+        ofsswLog << L":" << buf << std::endl;
+		delete buf;
 
         // 例外発生のチェック
         std::ios_base::iostate state = ofsswLog.rdstate();
@@ -380,8 +402,9 @@ void CLog::logWrite(LOGLEVEL level, CString prm)
 	CString logPath = getLogPathName();
     try
     {
-        std::ofstream ofsLog(logPath, std::ios::app);
-        writeLine(ofsLog, level, prm);
+        std::wofstream  ofsLog(logPath, std::ios::app);
+		ofsLog.imbue({ {}, new std::codecvt_utf8<wchar_t, 0x10FFFF, std::generate_header> });
+		writeLine(ofsLog, level, prm);
         ofsLog.close();
     }
     catch (exception ex)
@@ -409,8 +432,9 @@ void CLog::logWrite(LOGLEVEL level, vector<CString> prms)
         try
         {
 			CString logPath = getLogPathName();
-            std::ofstream ofsLog(logPath, std::ios::app);
-            for(CString str : prms)
+            std::wofstream  ofsLog(logPath, std::ios::app);
+			ofsLog.imbue({ {}, new std::codecvt_utf8<wchar_t, 0x10FFFF, std::generate_header> });
+			for(CString str : prms)
             {
                 writeLine(ofsLog, level, str);
             }
@@ -462,8 +486,9 @@ void CLog::writeLineBuff(LOGLEVEL level)
         try
         {
 			CString logPath = getLogPathName();
-            std::ofstream ofsLog(logPath, std::ios::app);
-            for (CString str : m_linebuffs)
+            std::wofstream  ofsLog(logPath, std::ios::app);
+			ofsLog.imbue({ {}, new std::codecvt_utf8<wchar_t, 0x10FFFF, std::generate_header> });
+			for (CString str : m_linebuffs)
             {
                 writeLine(ofsLog, level, str);
             }
