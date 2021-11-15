@@ -228,13 +228,13 @@ bool CPropatyIO::SetOverridePixelNumber(UINT num)
 /// Integration_time_msの取得
 /// </summary>
 /// <returns>Integration_time_msを返す</returns>
-UINT CPropatyIO::GetIntegrationTimeMs(void)
+double CPropatyIO::GetIntegrationTimeMs(void)
 {
 	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
 		return 0;
 	}
 	CConfigrationIO sys(m_ParamaterFilePath);
-	return sys.getInt(_T("Setting"),_T("Integration_time_ms"));
+	return sys.getDouble(_T("Setting"),_T("Integration_time_ms"));
 }
 
 /// <summary>
@@ -242,43 +242,13 @@ UINT CPropatyIO::GetIntegrationTimeMs(void)
 /// </summary>
 /// <param name="time">Integration_time_ms</param>
 /// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
-bool CPropatyIO::SetIntegrationTimeMs(UINT time)
+bool CPropatyIO::SetIntegrationTimeMs(double time)
 {
 	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
 		return false;
 	}
 	CConfigrationIO sys(m_ParamaterFilePath);
-	if (!sys.setInt(_T("Setting"),_T("Integration_time_ms"),time)) {
-		return false;
-	}
-	return true;
-}
-
-/// <summary>
-/// シャッタースピードの取得
-/// </summary>
-/// <returns>ShutterSpeedを返す</returns>
-UINT CPropatyIO::GetShutterSpeed(void)
-{
-	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
-		return 0;
-	}
-	CConfigrationIO sys(m_ParamaterFilePath);
-	return sys.getInt(_T("Setting"), _T("ShutterSpeed"));
-}
-
-/// <summary>
-/// シャッタースピードの設定
-/// </summary>
-/// <param name="ShutterSpeed">シャッタースピード</param>
-/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
-bool CPropatyIO::SetShutterSpeed(UINT ShutterSpeed)
-{
-	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
-		return false;
-	}
-	CConfigrationIO sys(m_ParamaterFilePath);
-	if (!sys.setInt(_T("Setting"), _T("ShutterSpeed"), ShutterSpeed)) {
+	if (!sys.setDouble(_T("Setting"),_T("Integration_time_ms"),time)) {
 		return false;
 	}
 	return true;
@@ -343,6 +313,37 @@ bool CPropatyIO::SetHorizontalResolution(UINT resolution)
 	}
 	return true;
 }
+
+/// <summary>
+/// バンド数の取得
+/// </summary>
+/// <returns>バンド数を返す</returns>
+UINT CPropatyIO::GetNumberOfBand(void)
+{
+	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
+		return 0;
+	}
+	CConfigrationIO sys(m_ParamaterFilePath);
+	return sys.getInt(_T("Setting"), _T("Number_of_band"));
+}
+
+/// <summary>
+/// バンド数の設定
+/// </summary>
+/// <param name="band">バンド数</param>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
+bool CPropatyIO::SetNumberOfBand(UINT band)
+{
+	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
+		return false;
+	}
+	CConfigrationIO sys(m_ParamaterFilePath);
+	if (!sys.setInt(_T("Setting"), _T("Number_of_band"), band)) {
+		return false;
+	}
+	return true;
+}
+
 
 /// <summary>
 /// 樹脂面の分類数の取得

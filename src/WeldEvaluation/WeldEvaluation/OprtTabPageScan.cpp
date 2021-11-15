@@ -178,7 +178,7 @@ void COprtTabPageScan::OnBnClickedBtnScan()
 		}
 	}
 	
-	LPARAM result;
+	int result;
 	if (pWnd->SendMessage(WM_SCAN_REQUEST,(WPARAM)ScanID,(LPARAM)&result) == 0) {
 		switch(result) {
 		case	0	:		// ƒXƒLƒƒƒ“¬Œ÷

@@ -44,14 +44,14 @@ public:
 
 	UINT NumberOfOverridePixel(void);
 	bool SetOverridePixelNumber(UINT num);
-	UINT GetIntegrationTimeMs(void);
-	bool SetIntegrationTimeMs(UINT time);
+	double GetIntegrationTimeMs(void);
+	bool SetIntegrationTimeMs(double time);
 	UINT GetVerticalResolution(void);
 	bool SetVerticalResolution(UINT resolution);
 	UINT GetHorizontalResolution(void);
 	bool SetHorizontalResolution(UINT resolution);
-	UINT GetShutterSpeed(void);
-	bool SetShutterSpeed(UINT ShutterSpeed);
+	UINT GetNumberOfBand(void);
+	bool SetNumberOfBand(UINT band);
 
 	UINT ResinGetNumberOfClass(void);
 	bool ResinSetNumberOfClass(UINT nClass);

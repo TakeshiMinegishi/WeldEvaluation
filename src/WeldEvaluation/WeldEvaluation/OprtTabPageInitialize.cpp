@@ -76,13 +76,16 @@ void COprtTabPageInitialize::ItemActive(bool bActive)
 /// </summary>
 void COprtTabPageInitialize::OnBnClickedBtnWhitebarance()
 {
+	CWaitCursor waitCursor;
 	CStatusDlgThread* pThread = DYNAMIC_DOWNCAST(CStatusDlgThread, AfxBeginThread(RUNTIME_CLASS(CStatusDlgThread) , 0, 0, CREATE_SUSPENDED));
 	pThread->m_bAutoDelete = false;			// 無効なアクセス防止のため自動削除は無効化
 	pThread->ResumeThread();
 	while (pThread->m_Dlg.m_hWnd == 0) {	// m_Dlgのウィンドウが生成されるまで待機
 		Sleep(0);
 	}
-	pThread->UpdateStatus(_T("Preparing to acquire white balance data ..."));
+	CString msg;
+	msg.LoadString(IDS_PREPANING);
+	pThread->UpdateStatus(msg);
 	AddNode(pThread);  // すごく重い処理
 
 	if (pThread->m_Valid) {  // キャンセルボタンが押された場合

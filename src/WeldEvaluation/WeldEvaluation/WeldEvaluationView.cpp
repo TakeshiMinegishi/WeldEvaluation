@@ -13,7 +13,8 @@
 #include "WeldEvaluationDoc.h"
 #include "WeldEvaluationView.h"
 #include "CDeviceIO.h"
-
+#include "CCameraIO.h"
+#include "CLOg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -87,6 +88,15 @@ CWeldEvaluationView::CWeldEvaluationView()
 CWeldEvaluationView::~CWeldEvaluationView()
 {
 
+}
+
+
+void CWeldEvaluationView::logOut(CString filePath, long lineNo, CString msg)
+{
+	CLog log;
+	CString ErrMsg;
+	ErrMsg.Format(_T(" File:%s Line:%ld:%s"), (LPCTSTR)filePath, lineNo, (LPCTSTR)msg);
+	log.logWrite(CLog::LOGLEVEL::Error, ErrMsg);
 }
 
 /// <summary>
@@ -910,14 +920,60 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 	CString deviceName = pDoc->GetDeviceName();
 	int ID = device.Init(deviceName);
 	if (ID < 0) {
+		logOut(CString(__FILE__), __LINE__,_T("ScanImage():デバイスの初期化に失敗した"));
 		return false;
 	}
 	if (!device.ToHome(ID)) {
+		logOut(CString(__FILE__), __LINE__, _T("ScanImage():ホームポジションへの移動に失敗した"));
 		return false;
 	}
-	int DivisionNumber = 0x19;
+	
+	// カメラ設定
+	int band = pDoc->NumberOfBand();
+	int width = pDoc->GetHorizontalResolution();
+	int height = pDoc->GetVerticalResolution();
+	double speed = pDoc->GetIntegrationTimeMs();
+	CCameraIO cam(width, height, band);
+	CString SnapscanFile = pDoc->getSnapscanFile();
+	if (!CFileUtil::fileExists(SnapscanFile)) {
+		CString msg;
+		msg.Format(_T("ScanImage():SnapscanFileが見つからない[%s]"), (LPCTSTR)SnapscanFile);
+		logOut(CString(__FILE__), __LINE__, msg);
+		return false;
+	}
+	bool dummyApi = pDoc->IsCameraDummyApi();
+	if (!cam.Open(SnapscanFile,dummyApi)) {
+		logOut(CString(__FILE__), __LINE__, _T("ScanImage():カメラをオープンできませんでした"));
+		return false;
+	}
+	if (!cam.setIntegrationTime(speed)) {
+		CString msg;
+		msg.Format(_T("ScanImage():IntegrationTimeの設定に失敗しました[%lf]"), speed);
+		logOut(CString(__FILE__), __LINE__, msg);
+		return false;
+	}
+	if (!cam.StartScan()) {
+		logOut(CString(__FILE__), __LINE__, _T("ScanImage():スキャンの開始に失敗しました"));
+		return false;
+	}
+
+	CString registedFolde = pDoc->GetRegistedFolder();
+	CString WBFileName = pDoc->GetWBFileName();
+	CubeFloat *reference_corrected = new CubeFloat();
+	if (!cam.LoadReference(*reference_corrected, registedFolde, WBFileName)) {
+		logOut(CString(__FILE__), __LINE__, _T("ScanImage():ホワイトバランスデータのロードに失敗しました"));
+		return false;
+	}
+
+	bool bResult = true;
+	CString spectralFilePath = pDoc->GetRegistedFolder();
+	CString fname;
+	int DivisionNumber = pDoc->GetDivisionNumber();
 	for (int pos = 1; pos <= DivisionNumber; pos++) {
 		if (!pStatus->m_Valid) {  // キャンセルボタンが押された場合は何もせずに終了
+			if (reference_corrected) {
+				delete[] reference_corrected;
+			}
 			return true;
 		}
 		if (!device.Move(ID, pos)) {
@@ -927,19 +983,26 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		CString buff;
 		buff.Format(_T("Scaning : %d/%d(%d %%)"), pos, DivisionNumber, (int)(pos * 100 / DivisionNumber));
 		pStatus->UpdateStatus(buff);
-		//#######################################################
-		//#
-		//# スキャン中の画像表示が必要
-		//#
-		//#######################################################
+		/////////////////////////////////////////////////////////
+		// スキャン実施
+		/////////////////////////////////////////////////////////
+		fname.Format(_T("normal%02d"), pos);
+		if (!cam.AcquireSpectralCube(spectralFilePath,fname, *reference_corrected)) {
+			bResult = false;
+			break;
+		}
 	}
 	//#######################################################
 	//#
 	//# スキャン結果の全画面表示が必要
 	//#
 	//#######################################################
+	cam.Close();
 	device.Close(ID);
-	return true;
+	if (reference_corrected) {
+		delete[] reference_corrected;
+	}
+	return bResult;
 }
 
 /// <summary>
@@ -952,6 +1015,7 @@ LRESULT CWeldEvaluationView::OnWBScanRequest(WPARAM wparam, LPARAM lparam)
 {
 	CStatusDlgThread* pStatus = (CStatusDlgThread*)wparam;
 	int *Result = (int *)lparam;
+	*Result = -1;
 
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
 	CString deviceName = pDoc->GetDeviceName();
@@ -961,30 +1025,69 @@ LRESULT CWeldEvaluationView::OnWBScanRequest(WPARAM wparam, LPARAM lparam)
 	if (ID >= 0) {
 		if (pStatus->m_Valid) {  // キャンセルボタンが押されていない
 			if (device.ToHome(ID)) {
-				if (!device.Move(ID, 1)) {
-					*Result = -1;
-				}
-				else {
+				if (device.Move(ID, 1)) {
 					if (pStatus->m_Valid) {  // キャンセルボタンが押されていない
-						buff.Format(_T("Scan Start"));
+						buff.LoadString(IDS_PREPANING);
 						pStatus->UpdateStatus(buff);
-						Sleep(3000);
 						/////////////////////////////////////////////////////////
 						// ホワイトバランスデータの撮影
 						/////////////////////////////////////////////////////////
-						*Result = 0; // <-成功ならね
-						buff.Format(_T("Scan End"));
+						int band = pDoc->NumberOfBand();
+						int width = pDoc->GetHorizontalResolution();
+						int height = pDoc->GetVerticalResolution();
+						double speed = pDoc->GetIntegrationTimeMs();
+						CCameraIO cam(width, height,band);
+
+						CString SnapscanFile = pDoc->getSnapscanFile();
+						if (CFileUtil::fileExists(SnapscanFile)) {
+							bool dummyApi = pDoc->IsCameraDummyApi();
+							if (cam.Open(SnapscanFile, dummyApi)) {
+								buff.LoadString(IDM_SCANNING);
+								pStatus->UpdateStatus(buff);
+								if (cam.setIntegrationTime(speed)) {
+									if (cam.StartScan()) {
+										CString registedFolde = pDoc->GetRegistedFolder();
+										CString WBFileName = pDoc->GetWBFileName();
+										if (cam.AcquireReference(registedFolde,WBFileName)) {
+											*Result = 0;
+										}
+										else {
+											logOut(CString(__FILE__), __LINE__, _T("OnWBScanRequest():ホワイトバランスデータの取得に失敗しました"));
+										}
+									}
+									else {
+										logOut(CString(__FILE__), __LINE__, _T("OnWBScanRequest():スキャンの開始に失敗しました"));
+									}
+								}
+								else {
+									CString msg;
+									msg.Format(_T("OnWBScanRequest():IntegrationTimeの設定に失敗しました[%lf]"), speed);
+									logOut(CString(__FILE__), __LINE__, msg);
+								}
+								cam.Close();
+							}
+							else {
+								logOut(CString(__FILE__), __LINE__, _T("OnWBScanRequest():カメラをオープンできませんでした"));
+							}
+						}
+						else {
+							CString msg;
+							msg.Format(_T("OnWBScanRequest():SnapscanFileが見つからない[%s]"), (LPCTSTR)SnapscanFile);
+							logOut(CString(__FILE__), __LINE__, msg);
+						}
+						buff.LoadString(IDM_SCAN_SUCCESS);
 						pStatus->UpdateStatus(buff);
-						Sleep(1000);
 					}
 					else {
-						AfxMessageBox(_T("キャンセル2"));
+						buff.LoadString(IDM_SCAN_CANCELD);
+						AfxMessageBox(buff, MB_OK | MB_ICONWARNING);
 					}
 				}
 			}
 		}
 		else {
-			AfxMessageBox(_T("キャンセル1"));
+			buff.LoadString(IDM_SCAN_CANCELD);
+			AfxMessageBox(buff, MB_OK | MB_ICONWARNING);
 		}
 	}
 
@@ -1022,7 +1125,47 @@ LRESULT CWeldEvaluationView::OnProjectResistRequest(WPARAM wparam, LPARAM lparam
 //// <returns>成功場合は0、失敗場合は-1を返す</returns>
 LRESULT CWeldEvaluationView::OnImageOutputRequest(WPARAM wparam, LPARAM lparam)
 {
-	int iResult = 0;
+	int iResult = -1;
+
+	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
+#if 0
+	pDoc
+		CString GetProjectName();
+
+	CString getScanImageFilePath(int ScanID);
+	CString getClassificationImageFilePath(int ScanID, int type);
+#endif
+	CString ImagePath = pDoc->GetScanImagePath(CWeldEvaluationDoc::eResinSurface);
+	int buffSize = 1024;
+	TCHAR *buff = new TCHAR[buffSize];
+	int size;
+	while (1) {
+		size = GetCurrentDirectory(sizeof(TCHAR)*buffSize, buff);
+		if (size < buffSize) {
+			ImagePath = buff;
+			break;
+		}
+		if (buff) {
+			delete[] buff;
+		}
+		buffSize *= 2;
+		if (buffSize > 16384) {
+			break;
+		}
+		buff = new TCHAR[buffSize];
+	}
+
+	CString label;
+	label.LoadString(IDS_LBL_FOLDERSELECT);
+
+	if (CFileUtil::SelectFolder(this->m_hWnd, ImagePath, buff, BIF_RETURNONLYFSDIRS, label)) {
+		CString writePath = buff;
+		pDoc->WriteImage(writePath);
+	}
+	if (buff) {
+		delete[] buff;
+	}
+
 	return iResult;
 }
 

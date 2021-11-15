@@ -22,6 +22,7 @@
     <ProjectGuid>{75291289-5FB8-4D5D-A50D-EA1F605913AD}</ProjectGuid>
     <RootNamespace>WeldEvaluation</RootNamespace>
     <Keyword>MFCProj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.18362.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -74,21 +75,25 @@
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SystemDrive)\Users\Project\$(SolutionName)\bin\$(PlatformTarget)\$(IntDir)</OutDir>
     <IntDir>$(SystemDrive)\Users\Project\$(SolutionName)\$(PlatformTarget)\$(IntDir)</IntDir>
+    <IncludePath>C:\imec\HSI Snapscan\bin;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SystemDrive)\Users\Project\$(SolutionName)\bin\$(PlatformTarget)\$(IntDir)</OutDir>
     <IntDir>$(SystemDrive)\Users\Project\$(SolutionName)\$(PlatformTarget)\$(IntDir)</IntDir>
+    <IncludePath>C:\imec\HSI Snapscan\bin;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SystemDrive)\Users\Project\$(SolutionName)\bin\$(PlatformTarget)\$(IntDir)</OutDir>
     <IntDir>$(SystemDrive)\Users\Project\$(SolutionName)\$(PlatformTarget)\$(IntDir)</IntDir>
+    <IncludePath>C:\imec\HSI Snapscan\bin;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SystemDrive)\Users\Project\$(SolutionName)\bin\$(PlatformTarget)\$(IntDir)</OutDir>
     <IntDir>$(SystemDrive)\Users\Project\$(SolutionName)\$(PlatformTarget)\$(IntDir)</IntDir>
+    <IncludePath>C:\imec\HSI Snapscan\bin;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -204,6 +209,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CCameraIO.h" />
     <ClInclude Include="CDeviceIO.h" />
     <ClInclude Include="CLog.h" />
     <ClInclude Include="ConfigrationIO.h" />
@@ -233,6 +239,7 @@
     <ClInclude Include="WeldEvaluationView.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CCameraIO.cpp" />
     <ClCompile Include="CDeviceIO.cpp" />
     <ClCompile Include="CLog.cpp" />
     <ClCompile Include="ConfigrationIO.cpp" />
