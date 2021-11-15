@@ -50,6 +50,8 @@ public:
 	bool SetVerticalResolution(UINT resolution);
 	UINT GetHorizontalResolution(void);
 	bool SetHorizontalResolution(UINT resolution);
+	UINT GetShutterSpeed(void);
+	bool SetShutterSpeed(UINT ShutterSpeed);
 
 	UINT ResinGetNumberOfClass(void);
 	bool ResinSetNumberOfClass(UINT nClass);

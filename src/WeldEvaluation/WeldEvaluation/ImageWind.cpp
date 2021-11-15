@@ -473,8 +473,8 @@ void CImageWind::Erase()
 {
 	m_bActive = false;
 	m_zoomRetio = 1.0;
-	m_imageY = 0.0;
-	m_imageX = 0.0;
+	m_imageY = (int)0.0;
+	m_imageX = (int)0.0;
 	OnPaint();
 }
 

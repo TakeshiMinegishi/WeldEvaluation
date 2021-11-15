@@ -38,7 +38,7 @@ private:
 
 public:
 	afx_msg void OnDeltaposSpinNumofclass(NMHDR *pNMHDR, LRESULT *pResult);
-	afx_msg void OnEnKillfocusEdtNumofclass();
+//	afx_msg void OnEnKillfocusEdtNumofclass();
 	afx_msg void OnCbnSelchangeCmbJoinratioTargetLabel();
 	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
 	afx_msg void OnCbnKillfocusCmbJoinratioTargetLabel();
@@ -50,4 +50,5 @@ public:
 	void LoadParamater(int id);
 	void ViewJointRatio(int id, int ViewJointRatioNo);
 	bool Update(int index);
+	afx_msg void OnEnKillfocusEdtNumofclass();
 };

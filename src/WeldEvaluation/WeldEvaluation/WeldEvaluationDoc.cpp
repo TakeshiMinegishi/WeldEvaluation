@@ -72,6 +72,27 @@ BOOL CWeldEvaluationDoc::OnNewDocument()
 	if (!NewProject()) {
 		return FALSE;
 	}
+
+#if false
+	/////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////
+	/// dummy
+	/////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////
+	CScanDataIO dmy;
+	CString path1 = _T("C:\\Users\\Project\\WeldEvaluation\\Data\\検査20210801-1\\normalized_1.hdr");
+	CString path2 = _T("C:\\Users\\Project\\WeldEvaluation\\Data\\検査20210801-1\\normalized_2.hdr");
+	if (dmy.open(path1)) {
+		dmy.joinInit();
+		dmy.join(path2, 10);
+		dmy.joinend(_T("C:\\Users\\Project\\WeldEvaluation\\Data\\検査20210801-1\\joindata.hdr"));
+	}
+
+	/////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////
+	/////////////////////////////////////////////////////////////////
+#endif
+
 	return TRUE;
 }
 
@@ -355,6 +376,42 @@ bool CWeldEvaluationDoc::SetIntegrationTimeMs(UINT time)
 		return m_PropatyIO.SetIntegrationTimeMs(time);
 	}
 }
+
+/// <summary>
+/// シャッタースピードの取得
+/// </summary>
+/// <returns>ShutterSpeedを返す</returns>
+UINT CWeldEvaluationDoc::GetShutterSpeed()
+{
+	if (m_ActiveRegisttedTestName.IsEmpty()) {
+		CConfigrationIO sys(m_SystemFilePathName);
+		return sys.getInt(_T("ParamDefault"), _T("ShutterSpeed"));
+	}
+	else {
+		UINT val = m_PropatyIO.GetShutterSpeed();
+		if (val == 0) {
+			CConfigrationIO sys(m_SystemFilePathName);
+			val = sys.getInt(_T("ParamDefault"), _T("ShutterSpeed"));
+		}
+		return val;
+	}
+}
+
+/// <summary>
+/// シャッタースピードの設定
+/// </summary>
+/// <param name="ShutterSpeed">シャッタースピード</param>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
+bool CWeldEvaluationDoc::SetShutterSpeed(UINT ShutterSpeed)
+{
+	if (m_ActiveRegisttedTestName.IsEmpty()) {
+		return false;
+	}
+	else {
+		return m_PropatyIO.SetShutterSpeed(ShutterSpeed);
+	}
+}
+
 
 /// <summary>
 /// 縦方向の解像度の取得
@@ -1370,6 +1427,14 @@ bool CWeldEvaluationDoc::SetSpectralDlgRect(CRect &rect)
 	return true;
 }
 
+CString CWeldEvaluationDoc::GetDeviceName()
+{
+	CConfigrationIO sys(m_SystemFilePathName);
+	CString name;
+	sys.getString(_T("System"), _T("DeviceName"), name);
+	return name;
+}
+
 /// <summary>
 /// プロジェクトのオープン判定
 /// </summary>
@@ -2124,12 +2189,135 @@ bool CWeldEvaluationDoc::CalcJoJointRetio(vector<int> data, int nClass, vector<d
 /// <returns>成功の場合はtrue、失敗の場合はfalseを返す</returns>
 bool CWeldEvaluationDoc::Analize(int targetID, int AnalysisMethodID)
 {
-	bool bResult = true;
+	int nClass = 1;
+	CString ScanDataFilePath, ClassificationDataFilePath;
 	////////////////////////////////////////////////////////////////////
-	//
 	// 解析を実施
-	//
 	////////////////////////////////////////////////////////////////////
+	ScanDataFilePath = getScanDataFilePath(targetID);
+	ClassificationDataFilePath = getClassificationDataFilePath(targetID, AnalysisMethodID);
+	switch (targetID) {
+	case	eResinSurface	:	// 樹脂
+		nClass = ResinGetNumberOfClass();
+		break;
+	case	eMetalSurface	:	// 金属
+		nClass = MetalGetNumberOfClass();
+		break;
+	case	eJoiningResult	:	// 接合結果
+		nClass = ResultGetNumberOfClass();
+		break;
+	}
+
+	CConfigrationIO sys(m_SystemFilePathName);
+	CString modulePath = sys.getString(_T("Common"), _T("AIModuleFolder"));
+	if (modulePath.IsEmpty()) {
+		return false;
+	}
+	CString returnfile = CFileUtil::FilePathCombine(modulePath, _T("return.txt"));
+	CFileUtil::fileDelete(returnfile);
+
+	CString execpath;
+
+
+#if true
+	PROCESS_INFORMATION p;
+	STARTUPINFO s;
+	ZeroMemory(&s, sizeof(s));
+	s.cb = sizeof(s);
+#else
+	SHELLEXECUTEINFO ShExecInfo;
+	ShExecInfo.cbSize = sizeof(SHELLEXECUTEINFO);
+	ShExecInfo.fMask = NULL;
+	ShExecInfo.hwnd = NULL;
+	ShExecInfo.lpVerb = NULL;
+	ShExecInfo.lpFile = NULL;
+	ShExecInfo.lpParameters = NULL;
+	ShExecInfo.lpDirectory = NULL;
+	ShExecInfo.nShow = SW_SHOW;
+	ShExecInfo.hInstApp = NULL;
+#endif
+	CString prm;
+	switch (AnalysisMethodID) {
+	case	AnalizeTypeKMeans:				// k-means
+		execpath = CFileUtil::FilePathCombine(modulePath, _T("kmeans.bat"));
+		break;
+	case	AnalizeTypeHiClustering:		// 階層クラスタリング
+		execpath = CFileUtil::FilePathCombine(modulePath, _T("dendrogram.bat"));
+		break;
+	default:
+		return false;
+	}
+
+	if (CFileUtil::fileExists(execpath)) {
+		prm.Format(_T("%s %s %d"), ScanDataFilePath, ClassificationDataFilePath, nClass);
+		CString cmd;
+		cmd.Format(_T("%s %s"), execpath, prm);
+		TCHAR pszText[1049], pszMpath[1049];
+		ZeroMemory(pszText, 1049);
+		ZeroMemory(pszMpath, 1049);
+		_tcscpy_s(pszText, 1049, cmd);
+		_tcscpy_s(pszMpath, 1049, modulePath);
+		int ret = CreateProcess(
+			NULL,
+			pszText,
+			NULL,
+			NULL,
+			FALSE,
+			NULL,
+			NULL,
+			pszMpath,
+			&s,
+			&p
+		);
+		if (ret == 0) {
+			CloseHandle(p.hProcess);
+			return false;
+		}
+		else {
+			CloseHandle(p.hThread);
+			WaitForSingleObject(p.hProcess, INFINITE);
+			CloseHandle(p.hProcess);
+		}
+	}
+	else {
+		return false;
+	}
+
+
+	bool bResult = false;
+	int count = 0;
+	int TimeOut = 500;
+	while (count < TimeOut) {
+		if (CFileUtil::fileExists(returnfile)) {
+			bResult = true;
+			break;
+		}
+		Sleep(10);
+		count++;
+	}
+	if (!bResult) {
+		// タイムアウト
+		return false;
+	}
+
+	CStdioFile fd;
+	UINT nOpenFlags = CFile::modeRead;
+	if (fd.Open(returnfile, nOpenFlags))
+	{
+		CString read;
+		if (!fd.ReadString(read)) {
+			fd.Close();
+			return false;
+		}
+		int val = _ttol(read);
+		fd.Close();
+		if (val != 0) {
+			return false;
+		}
+	}
+	else {
+		return false;
+	}
 
 	////////////////////////////////////////////////////////////////////
 	//
@@ -2145,7 +2333,6 @@ bool CWeldEvaluationDoc::Analize(int targetID, int AnalysisMethodID)
 	CString path;
 	vector<int> data;
 	vector<double> retio;
-	int nClass = 0;
 #if 0
 	CString ResultFileName = m_ProjectIO.GetResinClassificationResultFile();
 
@@ -2159,16 +2346,16 @@ bool CWeldEvaluationDoc::Analize(int targetID, int AnalysisMethodID)
 
 	path = CFileUtil::FilePathCombine(m_ActiveRegisttedTestFolder,ResultFileName);
 #else
-	path = getClassificationDataFilePath(targetID, AnalysisMethodID);
-	if (targetID == eResinSurface) {
-		nClass = m_PropatyIO.ResinGetNumberOfClass();
-	}
-	else if (targetID == eMetalSurface) {
-		nClass = m_PropatyIO.MetalGetNumberOfClass();
-	}
-	else if (targetID == eJoiningResult) {
-		nClass = m_PropatyIO.ResultGetNumberOfClass();
-	}
+//	path = getClassificationDataFilePath(targetID, AnalysisMethodID);
+//	if (targetID == eResinSurface) {
+//		nClass = m_PropatyIO.ResinGetNumberOfClass();
+//	}
+//	else if (targetID == eMetalSurface) {
+//		nClass = m_PropatyIO.MetalGetNumberOfClass();
+//	}
+//	else if (targetID == eJoiningResult) {
+//		nClass = m_PropatyIO.ResultGetNumberOfClass();
+//	}
 #endif
 	if (!CWeldEvaluationDoc::getResultFile(path, data)) {
 		return false;

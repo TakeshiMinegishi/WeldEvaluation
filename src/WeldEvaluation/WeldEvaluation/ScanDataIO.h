@@ -20,6 +20,8 @@ class CScanDataIO
 private:
 	CString		m_pathName;			///< スキャンデータファイルパス
 	CubeFloat*	m_o_p_cube;			///< CubeFloatオブジェクトへのポインタ
+	std::vector<std::vector<std::vector<float>>>	m_data;
+
 
 public:
 	CScanDataIO(void);
@@ -37,5 +39,8 @@ public:
 	bool LoadImage(int &height, int &width, int &bands, CImage &img);
 	bool GetSpectrumData(CPoint &pos, std::vector<double> &data);
 	bool getBandSpectrum(std::vector<double> &BandSpectrum);
+	bool joinInit();
+	bool join(CString pathName, int nOverlap);
+	bool joinend(CString outpathName);
 };
 

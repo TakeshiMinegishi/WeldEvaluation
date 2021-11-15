@@ -97,13 +97,13 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>./../imec/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./../imec/include;./../dio/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>./../imec/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>hsi_api.lib;snapscan_api.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>./../imec/lib;./../dio/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>hsi_api.lib;snapscan_api.lib;CDIO.lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -123,13 +123,13 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>./../imec/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./../imec/include;./../dio/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>./../imec/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>hsi_api.lib;snapscan_api.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>./../imec/lib;./../dio/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>hsi_api.lib;snapscan_api.lib;CDIO.lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -150,15 +150,15 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>./../imec/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./../imec/include;./../dio/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>./../imec/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>hsi_api.lib;snapscan_api.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>./../imec/lib;./../dio/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>hsi_api.lib;snapscan_api.lib;CDIO.lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -180,15 +180,15 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>./../imec/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>./../imec/include;./../dio/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>./../imec/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>hsi_api.lib;snapscan_api.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>./../imec/lib;./../dio/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>hsi_api.lib;snapscan_api.lib;CDIO.lib</AdditionalDependencies>
     </Link>
     <Midl>
       <MkTypLibCompatible>false</MkTypLibCompatible>
@@ -204,6 +204,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CDeviceIO.h" />
+    <ClInclude Include="CLog.h" />
     <ClInclude Include="ConfigrationIO.h" />
     <ClInclude Include="FileUtil.h" />
     <ClInclude Include="GraphWind.h" />
@@ -231,6 +233,8 @@
     <ClInclude Include="WeldEvaluationView.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CDeviceIO.cpp" />
+    <ClCompile Include="CLog.cpp" />
     <ClCompile Include="ConfigrationIO.cpp" />
     <ClCompile Include="FileUtil.cpp" />
     <ClCompile Include="GraphWind.cpp" />

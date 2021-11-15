@@ -48,10 +48,10 @@ void CPropTabPageParameter::DoDataExchange(CDataExchange* pDX)
 
 BEGIN_MESSAGE_MAP(CPropTabPageParameter, CDialogEx)
 	ON_NOTIFY(UDN_DELTAPOS, IDC_SPIN_NUMOFCLASS, &CPropTabPageParameter::OnDeltaposSpinNumofclass)
-	ON_EN_KILLFOCUS(IDC_EDT_NUMOFCLASS, &CPropTabPageParameter::OnEnKillfocusEdtNumofclass)
 	ON_CBN_SELCHANGE(IDC_CMB_JOINRATIO_TARGET_LABEL, &CPropTabPageParameter::OnCbnSelchangeCmbJoinratioTargetLabel)
 	ON_WM_ACTIVATE()
 	ON_CBN_KILLFOCUS(IDC_CMB_JOINRATIO_TARGET_LABEL, &CPropTabPageParameter::OnCbnKillfocusCmbJoinratioTargetLabel)
+	ON_EN_KILLFOCUS(IDC_EDT_NUMOFCLASS, &CPropTabPageParameter::OnEnKillfocusEdtNumofclass)
 END_MESSAGE_MAP()
 
 
@@ -139,6 +139,7 @@ void CPropTabPageParameter::OnDeltaposSpinNumofclass(NMHDR *pNMHDR, LRESULT *pRe
 	CWnd *pWnd = GetParent()->GetParent();
 	pWnd->SendMessage(WM_UPDATEREQUEST_PROPPAGE,(WPARAM)true,(LPARAM)0);
 }
+
 
 /// <summary>
 /// 分類数編集ボックスがフォーカスを失った時の処理
