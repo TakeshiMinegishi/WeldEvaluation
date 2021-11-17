@@ -18,6 +18,7 @@ public:
 
 	CStatusDlg	m_Dlg;		///< ステータスダイアログオブジェクト
 	bool		m_Valid;	///< 有効フラグ
+	bool		m_bResult;	///< 結果
 
 protected:
 	DECLARE_MESSAGE_MAP()

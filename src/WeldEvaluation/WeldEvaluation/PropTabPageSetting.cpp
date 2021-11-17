@@ -587,6 +587,37 @@ bool CPropTabPageSetting::Update(void)
 }
 
 /// <summary>
+/// 更新の有無確認
+/// </summary>
+/// <returns>更新されている場合はtrue、失敗場合はfalseを返す</returns>
+bool CPropTabPageSetting::ConfirmChange()
+{
+	bool	bResult = false;
+	CString RegistFolder = m_RegistFolder;
+	CString WBFileName = m_WBFileName;
+	UINT	NumberOfOverridePixel = m_NumberOfOverridePixel;
+	double	IntegrationTimeMs = m_IntegrationTimeMs;
+	UINT	ResolutionHolizontal = m_ResolutionHolizontal;
+	UINT	ResolutionVertical = m_ResolutionVertical;
+	UpdateData(true);
+
+	if ((m_RegistFolder != RegistFolder)  ||
+		(m_WBFileName != WBFileName) ||
+		(m_NumberOfOverridePixel != NumberOfOverridePixel) ||
+		(m_IntegrationTimeMs != IntegrationTimeMs) ||
+		(m_ResolutionHolizontal != ResolutionHolizontal) ||
+		(m_ResolutionVertical != ResolutionVertical) )  {
+
+		// 更新ボタンの更新
+		UpdateData(false);
+		CWnd *pWnd = GetParent()->GetParent();
+		pWnd->SendMessage(WM_UPDATEREQUEST_PROPPAGE, (WPARAM)true, (LPARAM)0);
+		bResult = true;
+	}
+	return bResult;
+}
+
+/// <summary>
 /// マウスホイールの回転イベント
 /// </summary>
 /// <param name="nFlags">仮想キーフラグ</param>

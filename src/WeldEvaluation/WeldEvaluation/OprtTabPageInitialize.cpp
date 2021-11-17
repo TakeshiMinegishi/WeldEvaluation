@@ -71,11 +71,19 @@ void COprtTabPageInitialize::ItemActive(bool bActive)
 	ItemEnable(IDC_BTN_WHITEBARANCE,bActive);
 }
 
+#include "ScanDataIO.h"
 /// <summary>
 /// ホワイトバランスボタン押下時処理
 /// </summary>
 void COprtTabPageInitialize::OnBnClickedBtnWhitebarance()
 {
+	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
+	LRESULT iret = pWnd->SendMessage(WM_WBSCAN_EXISTCHECK, (WPARAM)NULL, (LPARAM)NULL);
+	if (iret == 1) {
+		// ホワイトバランス用のスキャンを行わない。
+		return;
+	}
+
 	CWaitCursor waitCursor;
 	CStatusDlgThread* pThread = DYNAMIC_DOWNCAST(CStatusDlgThread, AfxBeginThread(RUNTIME_CLASS(CStatusDlgThread) , 0, 0, CREATE_SUSPENDED));
 	pThread->m_bAutoDelete = false;			// 無効なアクセス防止のため自動削除は無効化
@@ -93,6 +101,15 @@ void COprtTabPageInitialize::OnBnClickedBtnWhitebarance()
 	}
 
 	WaitForSingleObject(pThread->m_hThread, 30000);	// スレッドの終了を30秒だけ待ってやる（ほぼ0秒のはず
+
+	if (!pThread->m_bResult) {
+		msg.LoadString(IDM_ERR_SCAN);
+		AfxMessageBox(msg, MB_OK | MB_ICONSTOP);
+	}
+	else {
+		msg.LoadString(IDM_SCAN_SUCCESS);
+		AfxMessageBox(msg, MB_OK | MB_ICONINFORMATION);
+	}
 	delete pThread;
 }
 
@@ -107,13 +124,13 @@ void COprtTabPageInitialize::AddNode(CStatusDlgThread* pStatus)
 	}
 
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
-	LPARAM result;
-	if (pWnd->SendMessage(WM_WBSCAN_REQUES, (WPARAM)pStatus, (LPARAM)&result) == 0) {
+	int result;
+	LRESULT iret = pWnd->SendMessage(WM_WBSCAN_REQUES, (WPARAM)pStatus, (LPARAM)&result);
+	if ((iret != 0) || (result != 0)) {
+		pStatus->m_bResult = false;
 	}
 	else {
-		CString msg;
-		msg.LoadString(IDM_ERR_SCAN);
-		AfxMessageBox(msg, MB_OK | MB_ICONSTOP);
+		pStatus->m_bResult = true;
 	}
 
 #if false

@@ -94,7 +94,6 @@ private:
 	bool split(std::string& input, char delimiter, int &dataID, std::vector<int> &data);
 	bool getResultFile(CString path, std::vector<int>& data);
 	CString getScanDataPath(int ScanID);
-	CString getScanDataFilePath(int ScanID);
 	CString getScanImageFilePath(int ScanID);
 	CString getClassificationDataFilePath(int ScanID, int type);
 	CString getClassificationImageFilePath(int ScanID, int type);
@@ -104,6 +103,11 @@ private:
 
 
 public:
+
+	//////////////////////////////////////////////////////////////////////////////////
+	// Systemパラメータ
+	UINT GetShootingWidth();
+	UINT GetShootingHeight();
 
 	//////////////////////////////////////////////////////////////////////////////////
 	// プロパティデータIO
@@ -153,13 +157,6 @@ public:
 
 	//////////////////////////////////////////////////////////////////////////////////
 	// プロジェクトデータIO
-//	CString GetResinScanImagePath();
-//	CString GetResinClassificationResultPath();
-
-//	CString GetMetalScanImagePath();
-//	CString GetMetalClassificationResultPath();
-
-//	CString GetClassScanImagePath();
 	CString GetScanImagePath(int fileID);
 	CString GetClassificationResultPath(int fileID, int type);
 
@@ -209,8 +206,10 @@ public:
 	void	CalcResultStopRequest();
 
 	bool	LoadScanImage(int targetID, CImage &img, bool renew = false);
+	COLORREF GetClassColor(int id, int nClass);
 	bool	LoadClassificationResultImage(int targetID, int type, CImage &img, bool renew = false);
 	
 	bool	GetSpectrumData(int ScanID, CPoint &pos, std::vector<double> &data);
 	bool	WriteImage(CString writePath);
+	CString getScanDataFilePath(int ScanID);
 };

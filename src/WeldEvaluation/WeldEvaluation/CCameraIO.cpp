@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "CCameraIO.h"
 #include "FileUtil.h"
+#include "ScanDataIO.h"
 
 CCameraIO::CCameraIO()
 {
@@ -35,6 +36,7 @@ void CCameraIO::CameraPrmInit()
 	m_cube				= { 0 };
 	m_correction_matrix = { 0 };
 	m_cube_format		= { 0 };
+	m_dark_reference	= { 0 };
 }
 
 bool CCameraIO::InitLlogger()
@@ -44,7 +46,7 @@ bool CCameraIO::InitLlogger()
 	HSI_RETURN return_val = commonInitializeLogger(logPath, LV_WARNING);
 	if (HSI_OK != return_val)
 	{
-		errorLog(CString(__FILE__), __LINE__, _T("InitializeLogger"), return_val);
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("InitializeLogger"), return_val);
 		return false;
 	}
 	return true;
@@ -54,103 +56,116 @@ bool CCameraIO::Open(CString snapscan_file, bool dummyApi/* = true*/)
 {
 	HSI_RETURN return_val;
 	{
-		int o_p_major, o_p_minor, o_p_patch, o_p_build;
-		return_val = GetAPIVersion(&o_p_major, &o_p_minor, &o_p_patch, &o_p_build);
+		int major, minor, patch, build;
+		return_val = GetAPIVersion(&major, &minor, &patch, &build);
 		if (HSI_OK != return_val)
 		{
-			errorLog(CString(__FILE__), __LINE__, _T("OpenDevice"), return_val);
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("OpenDevice"), return_val);
 			return false;
 		}
 		CString version;
-		version.Format(_T("major:%d minor:%d patch:%d build:%d"), o_p_major, o_p_minor, o_p_patch, o_p_build);
-		writeLog(CLog::LOGLEVEL::Info, CString(__FILE__), __LINE__, version);
-		AfxMessageBox(version, MB_OK | MB_ICONSTOP);
+		version.Format(_T("API Version %d.%d.%d.%d\n"), major, minor, patch, build);
+		CScanDataIO::writeLog(CLog::LOGLEVEL::Info, CString(__FILE__), __LINE__, version);
 	}
 
-CString sval;
-sval.Format(_T("Open:IN dummyApi:%d file:%s"), dummyApi, (LPCTSTR)snapscan_file);
-AfxMessageBox(sval, MB_OK | MB_ICONSTOP);
-
+#ifdef _DEBUG
+	CScanDataIO::writeLog(CLog::LOGLEVEL::Info, CString(__FILE__), __LINE__, L"Connecting device ...");
+#endif
 	m_handle = 0x0;
-	//snapscan_file = _T("./resources/snapscan_dummy.xml");
 	return_val = OpenDevice(&m_handle, snapscan_file, dummyApi);
 	if (HSI_OK != return_val)
 	{
-		errorLog(CString(__FILE__), __LINE__, _T("OpenDevice"), return_val);
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("OpenDevice"), return_val);
 		return false;
 	}
-AfxMessageBox(_T("Open:OpenDevice(Success)"), MB_OK | MB_ICONSTOP);
+
+#ifdef _DEBUG
+	SystemProperties system_properties = { 0 };
+	return_val = GetSystemProperties(m_handle, &system_properties);
+	if (HSI_OK == return_val)
+	{
+		CString msg;
+		msg.Format(_T("Max cube dimensions : %d x %d"), system_properties.cube_height_max, system_properties.cube_width_max);
+		CScanDataIO::writeLog(CLog::LOGLEVEL::Info, CString(__FILE__), __LINE__, msg);
+		msg.Format(_T("Memory requiremenets (Mb) : %f"), 0.000001 * (double)(system_properties.memory_requirements_bytes));
+		CScanDataIO::writeLog(CLog::LOGLEVEL::Info, CString(__FILE__), __LINE__, msg);
+		msg.Format(_T("Max pixel step: %d"), system_properties.pixel_step_max);
+		CScanDataIO::writeLog(CLog::LOGLEVEL::Info, CString(__FILE__), __LINE__, msg);
+		msg.Format(_T("Max stage position: %d"), system_properties.stage_position_px_max);
+		CScanDataIO::writeLog(CLog::LOGLEVEL::Info, CString(__FILE__), __LINE__, msg);
+	}
+#endif
+
 
 	// Width,Height,Band ÇÃê›íË
 	if (!setFormat(m_width, m_height, m_band)) {
-		writeLog(CLog::LOGLEVEL::Error, CString(__FILE__), __LINE__, _T("Open Error"));
+		CScanDataIO::writeLog(CLog::LOGLEVEL::Error, CString(__FILE__), __LINE__, _T("Open Error"));
 		return false;
 	}
-AfxMessageBox(_T("Open:setFormat(Success)"), MB_OK | MB_ICONSTOP);
 
 	// Initialize
+#ifdef _DEBUG
+	CScanDataIO::writeLog(CLog::LOGLEVEL::Info, CString(__FILE__), __LINE__, _T("Initializing ..."));
+#endif
 	return_val = Initialize(m_handle);
 	if (HSI_OK != return_val)
 	{
-		errorLog(CString(__FILE__), __LINE__, _T("Initialize"), return_val);
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("Initialize"), return_val);
 		return false;
 	}
-AfxMessageBox(_T("Open:Initialize(Success)"), MB_OK | MB_ICONSTOP);
 
 	// allocate cube data format(mandatory)
 	return_val = GetOutputCubeDataFormat(m_handle, &m_cube_format);
 	if (HSI_OK != return_val)
 	{
-		errorLog(CString(__FILE__), __LINE__, _T("GetOutputCubeDataFormat"), return_val);
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("GetOutputCubeDataFormat"), return_val);
 		return false;
 	}
-AfxMessageBox(_T("Open:GetOutputCubeDataFormat(Success)"), MB_OK | MB_ICONSTOP);
 
 	// allocate cube (mandatory)
 	m_cube = { 0 };
 	return_val = commonAllocateCube(&m_cube, m_cube_format);
 	if (HSI_OK != return_val)
 	{
-		errorLog(CString(__FILE__), __LINE__, _T("AllocateCube (cube)"), return_val);
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("AllocateCube (cube)"), return_val);
 		return false;
 	}
-AfxMessageBox(_T("Open:commonAllocateCube(Success)"), MB_OK | MB_ICONSTOP);
-AfxMessageBox(_T("Open:OUT(Success)"), MB_OK | MB_ICONSTOP);
 return true;
 }
 
 void CCameraIO::FleeCameraPrm()
 {
-AfxMessageBox(_T("FleeCameraPrm:IN"), MB_OK | MB_ICONSTOP);
 	// deallocate data format
 	HSI_RETURN return_val = commonDeallocateCubeDataFormat(&m_cube_format);
 	if (HSI_OK != return_val)
 	{
-		errorLog(CString(__FILE__), __LINE__, _T("DeallocateCubeDataFormat"), return_val);
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("DeallocateCubeDataFormat"), return_val);
 	}
-AfxMessageBox(_T("FleeCameraPrm:commonDeallocateCubeDataFormat(SUCCESS)"), MB_OK | MB_ICONSTOP);
+
+	// deallocate dark_reference
+	return_val = commonDeallocateFrame(&m_dark_reference);
+	if (HSI_OK != return_val)
+	{
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("DeallocateFrame (dark_reference)"), return_val);
+	}
 
 	// deallocate correction matrix
 	return_val = DeallocateCorrectionMatrix(&m_correction_matrix);
 	if (HSI_OK != return_val)
 	{
-		errorLog(CString(__FILE__), __LINE__, _T("DeallocateCorrectionMatrix"), return_val);
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("DeallocateCorrectionMatrix"), return_val);
 	}
-AfxMessageBox(_T("FleeCameraPrm:DeallocateCorrectionMatrix(SUCCESS)"), MB_OK | MB_ICONSTOP);
 }
 
 void CCameraIO::Close()
 {
-AfxMessageBox(_T("Close:IN"), MB_OK | MB_ICONSTOP);
 	FleeCameraPrm();
-AfxMessageBox(_T("Close:FleeCameraPrm(SUCCESS)"), MB_OK | MB_ICONSTOP);
 
 	HSI_RETURN return_val = CloseDevice(&m_handle);
 	if (HSI_OK != return_val)
 	{
-		errorLog(CString(__FILE__), __LINE__, _T("CloseDevice"), return_val);
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("CloseDevice"), return_val);
 	}
-AfxMessageBox(_T("Close:CloseDevice(SUCCESS)"), MB_OK | MB_ICONSTOP);
 }
 
 bool CCameraIO::getSystemFormat(int &widht_max, int &height_max)
@@ -162,7 +177,7 @@ bool CCameraIO::getSystemFormat(int &widht_max, int &height_max)
 	HSI_RETURN return_val = GetSystemProperties(m_handle, &system_properties);
 	if (HSI_OK != return_val)
 	{
-		errorLog(CString(__FILE__), __LINE__, _T("GetSystemProperties"), return_val);
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("GetSystemProperties"), return_val);
 		return false;
 	}
 	widht_max	= system_properties.cube_height_max;
@@ -182,24 +197,28 @@ bool CCameraIO::setFormat(int width, int height, int band)
 		HSI_RETURN return_val = GetConfigurationParameters(m_handle, &config);
 		if (HSI_OK != return_val)
 		{
-			errorLog(CString(__FILE__), __LINE__, _T("GetConfigurationParameters"), return_val);
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("GetConfigurationParameters"), return_val);
 			return false;
 		}
-AfxMessageBox(_T("Open:GetConfigurationParameters(Success)"), MB_OK | MB_ICONSTOP);
 
 		config.cube_width = width;
 		config.cube_height = height;
+#ifdef _DEBUG
+		CString msg;
+		CScanDataIO::writeLog(CLog::LOGLEVEL::Info, CString(__FILE__), __LINE__, _T("Setting configuration parameters ..."));
+		msg.Format(_T("Dimensions : %d x %d"), config.cube_height, config.cube_width);
+		CScanDataIO::writeLog(CLog::LOGLEVEL::Info, CString(__FILE__), __LINE__, msg);
+#endif
 		return_val = SetConfigurationParameters(m_handle, config);
 		if (HSI_OK != return_val)
 		{
-			errorLog(CString(__FILE__), __LINE__, _T("SetConfigurationParameters"), return_val);
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("SetConfigurationParameters"), return_val);
 			return false;
 		}
 		else {
 			m_width = width;
 			m_height = height;
 		}
-AfxMessageBox(_T("Open:SetConfigurationParameters(Success)"), MB_OK | MB_ICONSTOP);
 
 #if 0
 		SpectralRegionOfInterest i_spectral_regions;
@@ -209,7 +228,7 @@ AfxMessageBox(_T("Open:SetConfigurationParameters(Success)"), MB_OK | MB_ICONSTO
 		return_val = SetBandSelection(m_handle, &i_spectral_regions, band);
 		if (HSI_OK != return_val)
 		{
-			errorLog(CString(__FILE__), __LINE__, _T("SetBandSelection"), return_val);
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("SetBandSelection"), return_val);
 			return false;
 		}
 		else {
@@ -232,7 +251,7 @@ bool CCameraIO::getFormat(int &width, int &height, int &band)
 		HSI_RETURN return_val = GetConfigurationParameters(m_handle, &config);
 		if (HSI_OK != return_val)
 		{
-			errorLog(CString(__FILE__), __LINE__, _T("GetConfigurationParameters"), return_val);
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("GetConfigurationParameters"), return_val);
 			return false;
 		}
 		width = config.cube_width;
@@ -252,16 +271,22 @@ bool CCameraIO::setIntegrationTime(double integrationTime)
 		HSI_RETURN return_val = GetRuntimeParameters(m_handle, &runtime);
 		if (HSI_OK != return_val)
 		{
-			errorLog(CString(__FILE__), __LINE__, _T("GetRuntimeParameters"), return_val);
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("GetRuntimeParameters"), return_val);
 			return 1.0;
 		}
 
 		runtime.integration_time_ms = integrationTime;
+#ifdef _DEBUG
+		CString msg;
+		CScanDataIO::writeLog(CLog::LOGLEVEL::Info, CString(__FILE__), __LINE__, _T("Setting runtime parameters ..."));
+		msg.Format(_T("Integration time : %f"), runtime.integration_time_ms);
+		CScanDataIO::writeLog(CLog::LOGLEVEL::Info, CString(__FILE__), __LINE__, msg);
+#endif
 
 		return_val = SetRuntimeParameters(m_handle, runtime);
 		if (HSI_OK != return_val)
 		{
-			errorLog(CString(__FILE__), __LINE__, _T("SetRuntimeParameters"), return_val);
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("SetRuntimeParameters"), return_val);
 			return false;
 		}
 		else {
@@ -282,7 +307,7 @@ double CCameraIO::getIntegrationTime()
 		HSI_RETURN return_val = GetRuntimeParameters(m_handle, &runtime);
 		if (HSI_OK != return_val)
 		{
-			errorLog(CString(__FILE__), __LINE__, _T("GetRuntimeParameters"), return_val);
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("GetRuntimeParameters"), return_val);
 			return 1.0;
 		}
 		integrationTime = runtime.integration_time_ms;
@@ -292,56 +317,80 @@ double CCameraIO::getIntegrationTime()
 
 bool CCameraIO::StartScan()
 {
-AfxMessageBox(_T("StartScan:IN"), MB_OK | MB_ICONSTOP);
 	if (m_handle == 0x00) {
-		writeLog(CLog::LOGLEVEL::Error, CString(__FILE__), __LINE__, _T("Start Error:camera is not open."));
+		CScanDataIO::writeLog(CLog::LOGLEVEL::Error, CString(__FILE__), __LINE__, _T("Start Error:camera is not open."));
 		return false;
 	}
 	else {
+		HSI_RETURN return_val;
 		// start
-		HSI_RETURN return_val = Start(m_handle);
+#ifdef _DEBUG
+		CScanDataIO::writeLog(CLog::LOGLEVEL::Info, CString(__FILE__), __LINE__, _T("Starting"));
+#endif
+		return_val = Start(m_handle);
 		if (HSI_OK != return_val)
 		{
-			errorLog(CString(__FILE__), __LINE__, _T("Start"), return_val);
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("Start"), return_val);
 			return false;
 		}
-AfxMessageBox(_T("StartScan:Start(SUCCESS)"), MB_OK | MB_ICONSTOP);
+
+		// acquire dark reference
+#ifdef _DEBUG
+		CScanDataIO::writeLog(CLog::LOGLEVEL::Info, CString(__FILE__), __LINE__, _T("Acquiring dark reference ..."));
+#endif
+		FrameFloat dark_reference = { 0 };
+		return_val = AcquireDarkReferenceFrame(m_handle, &m_dark_reference);
+		if (HSI_OK != return_val)
+		{
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("AcquireDarkReferenceFrame (dark reference)"), return_val);
+			return false;
+		}
 
 		// get correction matrix (mandatory)
+#ifdef _DEBUG
+		CScanDataIO::writeLog(CLog::LOGLEVEL::Info, CString(__FILE__), __LINE__, _T("Getting correction matrix ..."));
+#endif
 		m_correction_matrix = { 0 };
 		return_val = GetCorrectionMatrix(m_handle, &m_correction_matrix);
 		if (HSI_OK != return_val)
 		{
-			errorLog(CString(__FILE__), __LINE__, _T("GetCorrectionMatrix"), return_val);
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("GetCorrectionMatrix"), return_val);
 			return false;
 		}
-AfxMessageBox(_T("StartScan:GetCorrectionMatrix(SUCCESS)"), MB_OK | MB_ICONSTOP);
 	}
-AfxMessageBox(_T("StartScan:OUT(SUCCESS)"), MB_OK | MB_ICONSTOP);
+	return true;
+}
+
+bool CCameraIO::StopScan()
+{
+	if (m_handle == 0x00) {
+		return true;
+	}
+	else {
+		HSI_RETURN return_val;
+		return_val = Stop(m_handle);
+		if (HSI_OK != return_val)
+		{
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("Stop"), return_val);
+			return false;
+		}
+	}
 	return true;
 }
 
 bool CCameraIO::AcquireReference(CString refarenceFilePath, CString refarenceFileName)
 {
-AfxMessageBox(_T("AcquireReference:IN"), MB_OK | MB_ICONSTOP);
-	// acquire dark reference
-	FrameFloat dark_reference = { 0 };
-	HSI_RETURN return_val = AcquireDarkReferenceFrame(m_handle, &dark_reference);
-	if (HSI_OK != return_val)
-	{
-		errorLog(CString(__FILE__), __LINE__, _T("AcquireDarkReferenceFrame (dark reference)"), return_val);
-		return false;
-	}
-AfxMessageBox(_T("AcquireReference:AcquireDarkReferenceFrame(SUCCESS)"), MB_OK | MB_ICONSTOP);
-
+	HSI_RETURN return_val;
 	// acquire cube (mandatory)
-	return_val = AcquireCube(m_handle, &dark_reference, &m_cube);
+#ifdef _DEBUG
+	CScanDataIO::writeLog(CLog::LOGLEVEL::Info, CString(__FILE__), __LINE__, _T("Acquiring cube ..."));
+#endif
+	return_val = AcquireCube(m_handle, &m_dark_reference, &m_cube);
 	if (HSI_OK != return_val)
 	{
-		errorLog(CString(__FILE__), __LINE__, _T("AcquireCube (cube)"), return_val);
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("AcquireCube (cube)"), return_val);
 		return false;
 	}
-AfxMessageBox(_T("AcquireReference:AcquireCube(SUCCESS)"), MB_OK | MB_ICONSTOP);
 
 #if 0
 	/* --------------------------
@@ -351,64 +400,50 @@ AfxMessageBox(_T("AcquireReference:AcquireCube(SUCCESS)"), MB_OK | MB_ICONSTOP);
 	return_val = commonSaveCube(m_cube, dummypath, L"cube", FF_ENVI);
 	if (HSI_OK != return_val)
 	{
-		errorLog(CString(__FILE__), __LINE__, _T("SaveCube (cube)"), return_val);
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("SaveCube (cube)"), return_val);
 		return false;
 	}
 #endif
-
-	return_val = commonDeallocateFrame(&dark_reference);
-	if (HSI_OK != return_val)
-	{
-		errorLog(CString(__FILE__), __LINE__, _T("DeallocateFrame (dark_reference)"), return_val);
-		return false;
-	}
-AfxMessageBox(_T("AcquireReference:commonDeallocateFrame(SUCCESS)"), MB_OK | MB_ICONSTOP);
 
 	// allocate corrected cube (mandatory)
 	CubeFloat reference_corrected = { 0 };
 	 return_val = AllocateCubeCorrected(&reference_corrected, m_correction_matrix, m_cube_format);
 	if (HSI_OK != return_val)
 	{
-		errorLog(CString(__FILE__), __LINE__, _T("AllocateCubeCorrected"), return_val);
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("AllocateCubeCorrected"), return_val);
 		return false;
 	}
-AfxMessageBox(_T("AcquireReference:AllocateCubeCorrected(SUCCESS)"), MB_OK | MB_ICONSTOP);
 
 	// apply spectral correction (mandatory)
 	return_val = ApplySpectralCorrection(&reference_corrected, m_cube, m_correction_matrix);
 	if (HSI_OK != return_val)
 	{
-		errorLog(CString(__FILE__), __LINE__, _T("ApplySpectralCorrection"), return_val);
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("ApplySpectralCorrection"), return_val);
 		return false;
 	}
-AfxMessageBox(_T("AcquireReference:ApplySpectralCorrection(SUCCESS)"), MB_OK | MB_ICONSTOP);
 
 	return_val = commonDeallocateCube(&m_cube);
 	if (HSI_OK != return_val)
 	{
-		errorLog(CString(__FILE__), __LINE__, _T("DeallocateCube (reference)"), return_val);
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("DeallocateCube (reference)"), return_val);
 		return false;
 	}
-AfxMessageBox(_T("AcquireReference:commonDeallocateCube(SUCCESS)"), MB_OK | MB_ICONSTOP);
 
 	// save result (optional)
 	return_val = commonSaveCube(reference_corrected, refarenceFilePath, refarenceFileName, FF_ENVI);
 	if (HSI_OK != return_val)
 	{
-		errorLog(CString(__FILE__), __LINE__, _T("SaveCube (corrected)"), return_val);
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("SaveCube (corrected)"), return_val);
 		return false;
 	}
-AfxMessageBox(_T("AcquireReference:commonSaveCube(SUCCESS)"), MB_OK | MB_ICONSTOP);
 
 	return_val = commonDeallocateCube(&reference_corrected);
 	if (HSI_OK != return_val)
 	{
-		errorLog(CString(__FILE__), __LINE__, _T("DeallocateCube (reference)"), return_val);
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("DeallocateCube (reference)"), return_val);
 		return false;
 	}
-AfxMessageBox(_T("AcquireReference:commonDeallocateCube(SUCCESS)"), MB_OK | MB_ICONSTOP);
-AfxMessageBox(_T("AcquireReference:OUT(SUCCESS)"), MB_OK | MB_ICONSTOP);
-return true;
+	return true;
 }
 
 bool CCameraIO::LoadReference(CubeFloat &reference_corrected, CString refarenceFilePath, CString refarenceFileName)
@@ -418,7 +453,7 @@ bool CCameraIO::LoadReference(CubeFloat &reference_corrected, CString refarenceF
 	HSI_RETURN return_val = commonLoadCube(&reference_corrected, filepath);
 	if (HSI_OK != return_val)
 	{
-		errorLog(CString(__FILE__), __LINE__, _T("commonLoadCube (reference)"), return_val);
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("commonLoadCube (reference)"), return_val);
 		return false;
 	}
 	return true;
@@ -427,49 +462,32 @@ bool CCameraIO::LoadReference(CubeFloat &reference_corrected, CString refarenceF
 
 bool CCameraIO::AcquireSpectralCube(CString spectralFilePath, CString spectralFileName, CubeFloat &reference_corrected)
 {
-	// acquire dark reference
-	FrameFloat dark_reference = { 0 };
-	HSI_RETURN return_val = AcquireDarkReferenceFrame(m_handle, &dark_reference);
-	if (HSI_OK != return_val)
-	{
-		errorLog(CString(__FILE__), __LINE__, _T("AcquireDarkReferenceFrame (dark reference)"), return_val);
-		return false;
-	}
-
+	HSI_RETURN return_val;
 	// acquire cube (mandatory)
-	return_val = AcquireCube(m_handle, &dark_reference, &m_cube);
+	return_val = AcquireCube(m_handle, &m_dark_reference, &m_cube);
 	if (HSI_OK != return_val)
 	{
-		errorLog(CString(__FILE__), __LINE__, _T("AcquireCube (cube)"), return_val);
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("AcquireCube (cube)"), return_val);
 		return false;
 	}
 
 #if 0
-	/* --------------------------
-	save cube (optional)
-	--------------------------*/
-	CString dummypath = _T("C:\\Users\\Project\\WeldEvaluation\\Data\\tmp");
-	return_val = commonSaveCube(m_cube, dummypath, L"cube", FF_ENVI);
+	// save cube (optional)
+	CString cubeName = _T("cube");
+	return_val = commonSaveCube(m_cube, spectralFilePath, cubeName, FF_ENVI);
 	if (HSI_OK != return_val)
 	{
-		errorLog(CString(__FILE__), __LINE__, _T("SaveCube (cube)"), return_val);
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("SaveCube (cube)"), return_val);
 		return false;
 	}
 #endif
-
-	return_val = commonDeallocateFrame(&dark_reference);
-	if (HSI_OK != return_val)
-	{
-		errorLog(CString(__FILE__), __LINE__, _T("DeallocateFrame (dark_reference)"), return_val);
-		return false;
-	}
 
 	// allocate corrected cube(mandatory)
 	CubeFloat cube_corrected = { 0 };
 	return_val = AllocateCubeCorrected(&cube_corrected, m_correction_matrix, m_cube_format);
 	if (HSI_OK != return_val)
 	{
-		errorLog(CString(__FILE__), __LINE__, _T("AllocateCubeCorrected"), return_val);
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("AllocateCubeCorrected"), return_val);
 		return false;
 	}
 
@@ -477,14 +495,25 @@ bool CCameraIO::AcquireSpectralCube(CString spectralFilePath, CString spectralFi
 	return_val = ApplySpectralCorrection(&cube_corrected, m_cube, m_correction_matrix);
 	if (HSI_OK != return_val)
 	{
-		errorLog(CString(__FILE__), __LINE__, _T("ApplySpectralCorrection"), return_val);
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("ApplySpectralCorrection"), return_val);
 		return false;
 	}
+
+#if 0
+	// save cube (optional)
+	CString cubeCorrectedName = _T("cube_corrected");
+	return_val = commonSaveCube(cube_corrected, spectralFilePath, cubeCorrectedName, FF_ENVI);
+	if (HSI_OK != return_val)
+	{
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("SaveCube (corrected)"), return_val);
+		return false;
+	}
+#endif
 
 	return_val = ApplyWhiteReference(&cube_corrected, cube_corrected, reference_corrected, 0.95);
 	if (HSI_OK != return_val)
 	{
-		errorLog(CString(__FILE__), __LINE__, _T("Normalize"), return_val);
+		CScanDataIO::CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("Normalize"), return_val);
 		return false;
 	}
 
@@ -492,82 +521,83 @@ bool CCameraIO::AcquireSpectralCube(CString spectralFilePath, CString spectralFi
 	return_val = commonSaveCube(cube_corrected, spectralFilePath, spectralFileName, FF_ENVI);
 	if (HSI_OK != return_val)
 	{
-		errorLog(CString(__FILE__), __LINE__, _T("SaveCube (corrected)"), return_val);
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("SaveCube (corrected)"), return_val);
 		return false;
 	}
-
-
 	return true;
 }
 
-void CCameraIO::writeLog(CLog::LOGLEVEL level, CString filePath, long lineNo, CString msg)
+bool CCameraIO::CopyData(int band, int width, int height, float ***pppData, CString FilePath, CString FileName)
 {
-	CLog log;
-	CString ErrMsg;
-	ErrMsg.Format(_T(" File:%s Line:%ld:%s"), (LPCTSTR)filePath, lineNo, (LPCTSTR)msg);
-	log.logWrite(level, ErrMsg);
-}
-
-void CCameraIO::errorLog(CString filePath, long lineNo, CString i_caller_name, HSI_RETURN i_return_val)
-{
-	if (i_return_val == HSI_OK)
-	{
-		return;
+	bool bResult = true;
+	if (m_handle == 0x00) {
+		bResult = false;
 	}
+	else {
+		ConfigurationParameters config = { 0 };
+		HSI_RETURN return_val = GetConfigurationParameters(m_handle, &config);
+		if (HSI_OK != return_val)
+		{
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("GetConfigurationParameters"), return_val);
+			return false;
+		}
 
-	CString errs;
-	switch (i_return_val)
-	{
-	case HSI_HANDLE_INVALID:
-		errs = _T("Invalid device handle specified.");
-		break;
-	case HSI_ARGUMENT_INVALID:
-		errs = _T("Invalid argument provided in function call.");
-		break;
-	case HSI_CALL_ILLEGAL:
-		errs = _T("Function call illegal given the current snapscan state.");
-		break;
-	case HSI_FILE_NOT_FOUND:
-		errs = _T("A file could not be found.");
-		break;
-	case HSI_CALIBRATION_FILE_NOT_FOUND:
-		errs = _T("Sensor calibration file could not be found.");
-		break;
-	case HSI_CONNECTION_FAILED:
-		errs = _T("Snapscan system could not be connected.");
-		break;
-	case HSI_ALLOCATION_ERROR:
-		errs = _T("Allocation of resources failed.");
-		break;
-	case HSI_ACQUISITION_FAILED:
-		errs = _T("Unable to fulfill acquisition.");
-		break;
-	case HSI_DATA_NOT_ALLOCATED:
-		errs = _T("Provided data structure is not allocated.");
-		break;
-	case HSI_DATA_NOT_VALID:
-		errs = _T("Data with valid flag false provided as input for operation.");
-		break;
-	case HSI_DATA_NOT_COMPATIBLE:
-		errs = _T("Data provided is not compatible.");
-		break;
-	case HSI_FILE_SYSTEM_ERROR:
-		errs = _T("Specified directory doesn't exist and could not be created.");
-		break;
-	case HSI_FILE_IO_ERROR:
-		errs = _T("Could not read or write data from the filesystem.");
-		break;
-	case HSI_INTERNAL_ERROR:
-		errs = _T("An undexpected internal error occurred.");
-		break;
-	default:
-		errs = _T("Unknown error.");
-		break;
+		config.cube_width = width;
+		config.cube_height = height;
+		return_val = SetConfigurationParameters(m_handle, config);
+		if (HSI_OK != return_val)
+		{
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("SetConfigurationParameters"), return_val);
+			return false;
+		}
+
+		// allocate cube data format(mandatory)
+		CubeDataFormat		cube_format;
+		return_val = GetOutputCubeDataFormat(m_handle, &cube_format);
+		if (HSI_OK != return_val)
+		{
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("GetOutputCubeDataFormat"), return_val);
+			return false;
+		}
+
+		// allocate cube (mandatory)
+		CubeFloat cube = { 0 };
+		return_val = commonAllocateCube(&cube, cube_format);
+		if (HSI_OK != return_val)
+		{
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("AllocateCube (cube)"), return_val);
+			return false;
+		}
+
+		if (m_band < band) {
+			band = m_band;
+		}
+
+		for (int b = 0; b < band; b++) {
+			for (int h = 0; h < height; h++) {
+				memcpy(cube.ppp_data[b][h], pppData[b][h], sizeof(float)*width);
+			}
+		}
+
+		return_val = commonSaveCube(cube, FilePath, FileName, FF_ENVI);
+		if (HSI_OK != return_val)
+		{
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("SaveCube (corrected)"), return_val);
+			bResult =  false;
+		}
+
+		return_val = commonDeallocateCubeDataFormat(&cube_format);
+		if (HSI_OK != return_val)
+		{
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("DeallocateCubeDataFormat"), return_val);
+			bResult = false;
+		}
+		return_val = commonDeallocateCube(&cube);
+		if (HSI_OK != return_val)
+		{
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("commonDeallocateCube"), return_val);
+			bResult = false;
+		}
 	}
-
-	CLog log;
-	CString ErrMsg;
-	ErrMsg.Format(_T(" File:%s Line:%ld:%s:%s"), (LPCTSTR)filePath, lineNo, (LPCTSTR)i_caller_name, (LPCTSTR)errs);
-	log.logWrite(CLog::LOGLEVEL::Error, ErrMsg);
-	return;
+	return bResult;
 }

@@ -16,14 +16,13 @@ private:
 	double				m_integrationTime;
 	CubeDataFormat		m_cube_format;
 	CubeFloat			m_cube;
+	FrameFloat			m_dark_reference;
 	CorrectionMatrix	m_correction_matrix;
 
 
 private:
 	void CameraPrmInit();
 	void FleeCameraPrm();
-	void writeLog(CLog::LOGLEVEL level, CString filePath, long lineNo, CString msg);
-	void errorLog(CString filePath, long lineNo, CString i_caller_name, HSI_RETURN i_return_val);
 	bool InitLlogger();
 
 public:
@@ -39,8 +38,12 @@ public:
 	bool setIntegrationTime(double integrationTime);
 	double getIntegrationTime();
 	bool StartScan();
+	bool StopScan();
 	bool AcquireReference(CString refarenceFilePath, CString refarenceFileName);
 	bool LoadReference(CubeFloat &reference_corrected, CString refarenceFilePath, CString refarenceFileName);
 	bool AcquireSpectralCube(CString spectralFilePath, CString spectralFileName, CubeFloat &reference_corrected);
+
+	bool CopyData(int band, int width, int height, float ***pppData, CString FilePath, CString FileName);
+
 };
 

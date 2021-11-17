@@ -68,4 +68,5 @@ public:
 	void ItemActive(bool bActive);
 	void FitRect(CRect rect);
 	bool Update(void);
+	bool ConfirmChange();
 };

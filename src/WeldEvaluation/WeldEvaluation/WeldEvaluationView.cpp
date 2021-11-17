@@ -39,6 +39,7 @@ BEGIN_MESSAGE_MAP(CWeldEvaluationView, CFormView)
 	ON_BN_CLICKED(IDC_BTN_NEWPRJ, &CWeldEvaluationView::OnBnClickedBtnNewprj)
 	ON_MESSAGE(WM_UPDATEREQUEST_PROPPAGE, OnUpdateRequestPrpoTab)
 	ON_MESSAGE(WM_SCAN_REQUEST, OnScanRequest)
+	ON_MESSAGE(WM_WBSCAN_EXISTCHECK, OnWBScanExistCheck)
 	ON_MESSAGE(WM_WBSCAN_REQUES, OnWBScanRequest)
 	ON_MESSAGE(WM_VIEW_CHANGE_REQUEST, OnViewChangeRequest)
 	ON_MESSAGE(WM_CHANGE_REGIST, OnChangeResistFolder)
@@ -637,6 +638,7 @@ void CWeldEvaluationView::OnTcnSelchangeTabPropaty(NMHDR *pNMHDR, LRESULT *pResu
 			}
 		}
 	} else {
+		ConfirmChange(m_SelPropPageId);
 		if ((m_SelPropPageId != SelIdx) && (m_bUpdatePropaty)) {
 			CString	msg,sub;
 			msg.LoadString(IDM_PROPUPDATE);
@@ -729,6 +731,38 @@ void CWeldEvaluationView::EnablePropaty(bool bActive)
 	m_PropMetalPage.ItemActive(bActive);
 	m_PropResultPage.ItemActive(bActive);
 	m_PropSettingPage.ItemActive(bActive);
+}
+
+bool CWeldEvaluationView::ConfirmChange(int propatyID)
+{
+	bool bResult = false;
+	switch (propatyID) {
+	case	0:
+	{
+		CPropTabPageParameter *pDlg = (CPropTabPageParameter *)m_PropTab.GetAt(propatyID);
+		bResult = pDlg->ConfirmChange();
+	}
+	break;
+	case	1:
+	{
+		CPropTabPageParameter *pDlg = (CPropTabPageParameter *)m_PropTab.GetAt(propatyID);
+		bResult = pDlg->ConfirmChange();
+	}
+	break;
+	case	2:
+	{
+		CPropTabPageParameter *pDlg = (CPropTabPageParameter *)m_PropTab.GetAt(propatyID);
+		bResult = pDlg->ConfirmChange();
+	}
+	break;
+	case	3:
+	{
+		CPropTabPageSetting *pDlg = (CPropTabPageSetting *)m_PropTab.GetAt(propatyID);
+		bResult = pDlg->ConfirmChange();
+	}
+	break;
+	}
+	return bResult;
 }
 
 /// <summary>
@@ -877,23 +911,26 @@ LRESULT CWeldEvaluationView::OnScanRequest(WPARAM wparam, LPARAM lparam)
 	}
 	pThread->UpdateStatus(_T("Preparing to start scanning ..."));
 	if (!ScanImage(pThread, ScanID)) {
+		pThread->m_Dlg.PostMessage(WM_COMMAND, IDCANCEL); // Statusダイアログを閉じる
 		*Result = -1;
 	}
-
-	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
-	if (!pThread->m_Valid) {  // キャンセルボタンが押された場合
-		// キャンセルの処理
-		*Result = 1;
-	}
 	else {
-		// 正常終了処理
-		pThread->m_Dlg.PostMessage(WM_COMMAND, IDOK); // Statusダイアログを閉じる
-		if (!pDoc->SaveScanImage(ScanID)) {
-			*Result = -1;
-		} else {
-			// スキャン画面更新
-			// もし、スキャンした画像の表示モードが解析ならスキャンに変更
-			*Result = 0;
+		CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
+		if (!pThread->m_Valid) {  // キャンセルボタンが押された場合
+			// キャンセルの処理
+			*Result = 1;
+		}
+		else {
+			// 正常終了処理
+			pThread->m_Dlg.PostMessage(WM_COMMAND, IDOK); // Statusダイアログを閉じる
+			if (!pDoc->SaveScanImage(ScanID)) {
+				*Result = -1;
+			}
+			else {
+				// スキャン画面更新
+				// もし、スキャンした画像の表示モードが解析ならスキャンに変更
+				*Result = 0;
+			}
 		}
 	}
 
@@ -914,6 +951,24 @@ LRESULT CWeldEvaluationView::OnScanRequest(WPARAM wparam, LPARAM lparam)
 /// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 {
+	CWaitCursor waitCursol;
+
+#if 0
+	{
+		CScanDataIO scn;
+		if (scn.open(L"C:/Users/Project/WeldEvaluation/Data/temp/normal01.hdr")) {
+/*
+			if (scn.scale(1024, 544, L"C:/Users/Project/WeldEvaluation/Data/temp", L"scale")) {
+				int aaa = 0;
+			}
+*/
+			if (scn.affine(1024, 544, 90, 0, 0,  L"C:/Users/Project/WeldEvaluation/Data/temp", L"scale")) {
+				int aaa = 0;
+			}
+		}
+	}
+#endif
+
 	CDeviceIO device;
 
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
@@ -928,10 +983,13 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		return false;
 	}
 	
+	int HorizontalResolution = pDoc->GetHorizontalResolution();
+	int VerticalResolution = pDoc->GetVerticalResolution();
+
 	// カメラ設定
 	int band = pDoc->NumberOfBand();
-	int width = pDoc->GetHorizontalResolution();
-	int height = pDoc->GetVerticalResolution();
+	int width = pDoc->GetShootingWidth();
+	int height = pDoc->GetShootingHeight();
 	double speed = pDoc->GetIntegrationTimeMs();
 	CCameraIO cam(width, height, band);
 	CString SnapscanFile = pDoc->getSnapscanFile();
@@ -965,12 +1023,20 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		return false;
 	}
 
+	// 一時ファイル保存先パス設定
 	bool bResult = true;
-	CString spectralFilePath = pDoc->GetRegistedFolder();
+	CString spectralFilePath = CFileUtil::FilePathCombine(pDoc->GetRegistedFolder(),_T("temp"));
+	if (!CFileUtil::fileExists(spectralFilePath)) {
+		if (!CreateDirectory(spectralFilePath, NULL)) {
+			spectralFilePath = pDoc->GetRegistedFolder();
+		}
+	}
+
 	CString fname;
 	int DivisionNumber = pDoc->GetDivisionNumber();
-	for (int pos = 1; pos <= DivisionNumber; pos++) {
+	for (int pos = 0; pos < DivisionNumber; pos++) {
 		if (!pStatus->m_Valid) {  // キャンセルボタンが押された場合は何もせずに終了
+			cam.StopScan();
 			if (reference_corrected) {
 				delete[] reference_corrected;
 			}
@@ -981,17 +1047,39 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		}
 		Sleep(100);
 		CString buff;
-		buff.Format(_T("Scaning : %d/%d(%d %%)"), pos, DivisionNumber, (int)(pos * 100 / DivisionNumber));
+		buff.Format(_T("Scaning : %d/%d(%d %%)"), pos+1, DivisionNumber, (int)((pos+1) * 100 / DivisionNumber));
 		pStatus->UpdateStatus(buff);
 		/////////////////////////////////////////////////////////
 		// スキャン実施
 		/////////////////////////////////////////////////////////
-		fname.Format(_T("normal%02d"), pos);
+		fname.Format(_T("normal%02d"), pos+1);
 		if (!cam.AcquireSpectralCube(spectralFilePath,fname, *reference_corrected)) {
 			bResult = false;
 			break;
 		}
+
+#if 0
+		{
+			CString loadpath = _T("C:/Users/Project/WeldEvaluation/Data/temp/Test05.hdr");
+
+			CubeFloat *cube = new CubeFloat();
+			HSI_RETURN result = commonLoadCube(cube, loadpath);
+			if (result != HSI_OK) {
+				return false;
+			}
+
+			CString folder = _T("C:/Users/Project/WeldEvaluation/Data/temp");
+			CString name = _T("cnv_test");
+
+			if (!cam.CopyData(cube->format.width, cube->format.height, cube->format.nr_bands,(float***)cube->ppp_data,folder,name)) {
+				return false;
+			}
+			commonDeallocateCube(cube);
+			delete cube;
+		}
+#endif
 	}
+
 	//#######################################################
 	//#
 	//# スキャン結果の全画面表示が必要
@@ -1003,6 +1091,23 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		delete[] reference_corrected;
 	}
 	return bResult;
+}
+
+LRESULT CWeldEvaluationView::OnWBScanExistCheck(WPARAM wparam, LPARAM lparam)
+{
+	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
+	CString registedFolde = pDoc->GetRegistedFolder();
+	CString WBFileName = pDoc->GetWBFileName();
+	CString fname = WBFileName + _T(".hdr");
+	CString chkPath = CFileUtil::FilePathCombine(registedFolde, fname);
+	if (CFileUtil::fileExists(chkPath)) {
+		CString msg;
+		msg.LoadString(IDM_EXISTWBSCANFILE);
+		if (AfxMessageBox(msg, MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON1) != IDYES) {
+			return 1;
+		}
+	}
+	return 0;
 }
 
 /// <summary>
@@ -1018,6 +1123,8 @@ LRESULT CWeldEvaluationView::OnWBScanRequest(WPARAM wparam, LPARAM lparam)
 	*Result = -1;
 
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
+	CString registedFolde = pDoc->GetRegistedFolder();
+	CString WBFileName = pDoc->GetWBFileName();
 	CString deviceName = pDoc->GetDeviceName();
 	CString buff;
 	CDeviceIO device;
@@ -1033,8 +1140,10 @@ LRESULT CWeldEvaluationView::OnWBScanRequest(WPARAM wparam, LPARAM lparam)
 						// ホワイトバランスデータの撮影
 						/////////////////////////////////////////////////////////
 						int band = pDoc->NumberOfBand();
-						int width = pDoc->GetHorizontalResolution();
-						int height = pDoc->GetVerticalResolution();
+//						int width = pDoc->GetHorizontalResolution();
+//						int height = pDoc->GetVerticalResolution();
+						int width = pDoc->GetShootingWidth();
+						int height = pDoc->GetShootingHeight();
 						double speed = pDoc->GetIntegrationTimeMs();
 						CCameraIO cam(width, height,band);
 
@@ -1046,10 +1155,10 @@ LRESULT CWeldEvaluationView::OnWBScanRequest(WPARAM wparam, LPARAM lparam)
 								pStatus->UpdateStatus(buff);
 								if (cam.setIntegrationTime(speed)) {
 									if (cam.StartScan()) {
-										CString registedFolde = pDoc->GetRegistedFolder();
-										CString WBFileName = pDoc->GetWBFileName();
 										if (cam.AcquireReference(registedFolde,WBFileName)) {
 											*Result = 0;
+											buff.LoadString(IDM_SCAN_SUCCESS);
+											pStatus->UpdateStatus(buff);
 										}
 										else {
 											logOut(CString(__FILE__), __LINE__, _T("OnWBScanRequest():ホワイトバランスデータの取得に失敗しました"));
@@ -1075,8 +1184,6 @@ LRESULT CWeldEvaluationView::OnWBScanRequest(WPARAM wparam, LPARAM lparam)
 							msg.Format(_T("OnWBScanRequest():SnapscanFileが見つからない[%s]"), (LPCTSTR)SnapscanFile);
 							logOut(CString(__FILE__), __LINE__, msg);
 						}
-						buff.LoadString(IDM_SCAN_SUCCESS);
-						pStatus->UpdateStatus(buff);
 					}
 					else {
 						buff.LoadString(IDM_SCAN_CANCELD);
@@ -1113,6 +1220,7 @@ LRESULT CWeldEvaluationView::OnProjectResistRequest(WPARAM wparam, LPARAM lparam
 		m_bUpdateOperation = false;
 		m_OprtSetting.UpddateResist(m_bUpdateOperation,m_bReadMode);
 		m_OprtSetting.Update();
+		UpdateRegistFolderList();
 	}
 	return iResult;
 }
@@ -1128,13 +1236,7 @@ LRESULT CWeldEvaluationView::OnImageOutputRequest(WPARAM wparam, LPARAM lparam)
 	int iResult = -1;
 
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
-#if 0
-	pDoc
-		CString GetProjectName();
 
-	CString getScanImageFilePath(int ScanID);
-	CString getClassificationImageFilePath(int ScanID, int type);
-#endif
 	CString ImagePath = pDoc->GetScanImagePath(CWeldEvaluationDoc::eResinSurface);
 	int buffSize = 1024;
 	TCHAR *buff = new TCHAR[buffSize];
@@ -1389,6 +1491,13 @@ LRESULT CWeldEvaluationView::OnAnalyzeRequest(WPARAM wparam, LPARAM lparam)
 	case	CWeldEvaluationDoc::eMetalSurface	:		// 金属
 		break;
 	}
+	CString ScanDataFilePath = pDoc->getScanDataFilePath(targetID);
+	// 改正対象が存在するかをチェック
+	if (!CFileUtil::fileExists(ScanDataFilePath)) {
+		AfxMessageBox(_T("解析対象が存在しません。"));
+		return false;
+	}
+
 	// 解析の実施
 	if (!pDoc->Analize(targetID,AnalyzeMethod)) {
 		iResult = -1;

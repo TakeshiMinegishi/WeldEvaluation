@@ -69,6 +69,9 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 /// <returns>作成を継続する場合はTRUE、それ以外はFALSEを返す</returns>
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
+	::DestroyMenu(cs.hMenu);
+	//DeleteObject(cs.hMenu);
+	cs.hMenu = NULL;
 	if( !CFrameWnd::PreCreateWindow(cs) )
 		return FALSE;
 	// TODO: この位置で CREATESTRUCT cs を修正して Window クラスまたはスタイルを
