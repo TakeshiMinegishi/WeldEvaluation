@@ -460,8 +460,19 @@ bool CCameraIO::LoadReference(CubeFloat &reference_corrected, CString refarenceF
 }
 
 
-bool CCameraIO::AcquireSpectralCube(CString spectralFilePath, CString spectralFileName, CubeFloat &reference_corrected)
+bool CCameraIO::AcquireSpectralCube(CString spectralFilePath, CString spectralFileName, CubeFloat &reference_corrected, CubeFloat  &cube_corrected)
 {
+#if 0
+	{
+		CString fname = spectralFileName + _T(".hdr");
+		CString scanDataFilePath = CFileUtil::FilePathCombine(spectralFilePath, fname);
+		HSI_RETURN result = commonLoadCube(&cube_corrected, scanDataFilePath);
+		if (result != HSI_OK) {
+			return false;
+		}
+		return true;
+	}
+#endif
 	HSI_RETURN return_val;
 	// acquire cube (mandatory)
 	return_val = AcquireCube(m_handle, &m_dark_reference, &m_cube);
@@ -483,7 +494,8 @@ bool CCameraIO::AcquireSpectralCube(CString spectralFilePath, CString spectralFi
 #endif
 
 	// allocate corrected cube(mandatory)
-	CubeFloat cube_corrected = { 0 };
+//	CubeFloat cube_corrected = { 0 };
+	cube_corrected = { 0 };
 	return_val = AllocateCubeCorrected(&cube_corrected, m_correction_matrix, m_cube_format);
 	if (HSI_OK != return_val)
 	{

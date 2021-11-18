@@ -1055,6 +1055,7 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		}
 	}
 
+	CubeFloat  *cube_corrected = new CubeFloat();
 	CScanDataIO scn;
 	double scale = pDoc->GetScale();
 #ifdef _LocalCHechk_
@@ -1108,6 +1109,7 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		}
 	}
 
+	double *pWavelength = nullptr;
 	for (int pos = 0; pos < DivisionNumber; pos++) {
 		if (!pStatus->m_Valid) {  // キャンセルボタンが押された場合は何もせずに終了
 			cam.StopScan();
@@ -1128,10 +1130,18 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		// スキャン実施
 		/////////////////////////////////////////////////////////
 		fname.Format(_T("normal%02d"), pos+1);
-		if (!cam.AcquireSpectralCube(spectralFilePath,fname, *reference_corrected)) {
+		*cube_corrected = { 0 };
+		if (!cam.AcquireSpectralCube(spectralFilePath,fname, *reference_corrected, *cube_corrected)) {
 			bResult = false;
 			break;
 		}
+		if (!pWavelength) {
+			pWavelength = new double[band];
+			for (int b = 0; b < band; b++) {
+				pWavelength[b] = cube_corrected->format.band_names[b];
+			}
+		}
+
 		/////////////////////////////////////////////////////////////////
 		// スキャンデータ変換処理
 #ifdef _LocalCHechk_
@@ -1148,7 +1158,7 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 */
 		buff.Format(_T("Scaning : %d/%d(%d %%) Converting..."), pos + 1, DivisionNumber, (int)((pos + 1) * 100 / DivisionNumber));
 		pStatus->UpdateStatus(buff);
-		scn.ScanDataConvert(width, height, band, (float ***)reference_corrected->ppp_data, scale, dstW, dstH, dst);
+		scn.ScanDataConvert(width, height, band, (float ***)cube_corrected->ppp_data, scale, dstW, dstH, dst,false);
 #endif
 
 
@@ -1166,7 +1176,7 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		}
 		if (jointPos == 0) {
 			for (int b = 0; b < band; b++) {
-				buff.Format(_T("Scaning : %d/%d(%d %%) Joint : %d/%d"), pos + 1, DivisionNumber, (int)((pos + 1) * 100 / DivisionNumber,b+1,band));
+				buff.Format(_T("Scaning : %d/%d(%d %%) Joint : %d/%d"), pos + 1, DivisionNumber, (int)((pos + 1) * 100 / DivisionNumber),b+1,band);
 				pStatus->UpdateStatus(buff);
 				for (int h = 0; h < dstH; h++) {
 					memcpy(outData[b][h], dst[b][h], sizeof(float)*dstW);
@@ -1222,6 +1232,18 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 			TRACE(_T("\n"));
 		}
 #endif
+		commonDeallocateCube(cube_corrected);
+		commonDeallocateCube(cube);
+	}
+	if (cube_corrected) {
+		delete  cube_corrected;
+		cube_corrected = nullptr;
+	}
+	cam.Close();
+	device.Close(ID);
+	commonDeallocateCube(reference_corrected);
+	if (reference_corrected) {
+		delete[] reference_corrected;
 	}
 
 	///////////////////////////////////////////////////////////////////////////////////
@@ -1256,9 +1278,9 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 			buf = _T("wavelength = {");
 			CFileUtil::WriteUTF8ToSJIS(tfd, buf);
 
-			buf.Format(_T("%.8lf"), reference_corrected->format.band_names[0]);
+			buf.Format(_T("%.8lf"), pWavelength[0]);
 			for (int b = 1; b < band; b++) {
-				buf.Format(_T("%s,%.8lf"), buf, reference_corrected->format.band_names[b]);
+				buf.Format(_T("%s,%.8lf"), buf, pWavelength[b]);
 			}
 			CFileUtil::WriteUTF8ToSJIS(tfd, buf);
 			buf = _T("}");
@@ -1267,6 +1289,10 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 			tfd.Close();
 		}
 
+		if (pWavelength) {
+			delete[] pWavelength;
+			pWavelength = nullptr;
+		}
 		// rawデータ出力
 		CFile fd;
 		if (fd.Open(rawFile, CFile::modeWrite | CFile::modeCreate | CFile::typeBinary)) {
@@ -1277,13 +1303,6 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 			}
 			fd.Close();
 		}
-
-		cam.Close();
-		device.Close(ID);
-		if (reference_corrected) {
-			delete[] reference_corrected;
-		}
-		commonDeallocateCube(cube);
 	}
 
 #ifdef _LocalCHechk_

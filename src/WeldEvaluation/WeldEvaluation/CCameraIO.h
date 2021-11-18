@@ -41,7 +41,7 @@ public:
 	bool StopScan();
 	bool AcquireReference(CString refarenceFilePath, CString refarenceFileName);
 	bool LoadReference(CubeFloat &reference_corrected, CString refarenceFilePath, CString refarenceFileName);
-	bool AcquireSpectralCube(CString spectralFilePath, CString spectralFileName, CubeFloat &reference_corrected);
+	bool AcquireSpectralCube(CString spectralFilePath, CString spectralFileName, CubeFloat &reference_corrected, CubeFloat  &norcube_correctedmal);
 
 	bool CopyData(int band, int width, int height, float ***pppData, CString FilePath, CString FileName);
 
