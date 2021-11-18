@@ -223,6 +223,16 @@ bool CWeldEvaluationDoc::SetProjectName(CString projectname)
 	}
 }
 
+double   CWeldEvaluationDoc::GetScale()
+{
+	CConfigrationIO sys(m_SystemFilePathName);
+	double scale = sys.getDouble(_T("System"), _T("ScanDataScaling"));
+	if (scale <= 0.0) {
+		scale = 0.5;
+	}
+	return scale;
+}
+
 /// <summary>
 /// 登録済み試験格納フォルダの取得
 /// </summary>
@@ -2043,6 +2053,72 @@ bool CWeldEvaluationDoc::getResultFile(CString path, vector<int>& data)
 	return true;
 }
 
+CString CWeldEvaluationDoc::GetNoProjectFolderName()
+{
+	return CString(_T("__NoProject__"));
+}
+
+CString CWeldEvaluationDoc::GetNoProjectFolderPath()
+{
+	return CFileUtil::FilePathCombine(GetRegistedFolder(), GetNoProjectFolderName());
+}
+
+CString CWeldEvaluationDoc::GetTmpFolderName()
+{
+	return CString(_T("__temp__"));
+}
+
+CString CWeldEvaluationDoc::GetTmpFolderPath()
+{
+	return CFileUtil::FilePathCombine(GetRegistedFolder(), GetTmpFolderName());
+}
+
+/// <summary>
+/// スキャンデータ名の取得
+/// </summary>
+/// <param name="ScanID">フスキャンID</param>
+/// <returns>スキャンデータ名を返す</returns>
+CString CWeldEvaluationDoc::GetScanDataName(int ScanID, CString Prefix)
+{
+	CString ProjectName = m_PropatyIO.GetProjectName();
+	CString fileName;
+	switch (ScanID) {
+	case	eResinSurface:	///< 樹脂
+	{
+		if (Prefix.IsEmpty()) {
+			fileName.Format(_T("ResinScanImage"));
+		}
+		else {
+			fileName.Format(_T("%s_ResinScanImage"), (LPCWSTR)ProjectName);
+		}
+	}
+	break;
+	case	eMetalSurface:	///< 金属
+	{
+		if (Prefix.IsEmpty()) {
+			fileName.Format(_T("MetalScanImage"));
+		}
+		else {
+			fileName.Format(_T("%s_MetalScanImage"), (LPCWSTR)ProjectName);
+		}
+	}
+	break;
+	case	eJoiningResult:	///< 接合結果
+	{
+		if (Prefix.IsEmpty()) {
+			fileName.Format(_T("ResultScanImage"));
+		}
+		else {
+			fileName.Format(_T("%s_ResultScanImage"), (LPCWSTR)ProjectName);
+		}
+	}
+	break;
+	default:
+		return _T("");
+	}
+	return fileName;
+}
+
 /// <summary>
 /// スキャンデータの保存
 /// </summary>
@@ -2051,51 +2127,42 @@ bool CWeldEvaluationDoc::getResultFile(CString path, vector<int>& data)
 bool CWeldEvaluationDoc::SaveScanImage(int ScanID)
 {
 	CString ProjectName = m_PropatyIO.GetProjectName();
-	CString fileName;
-	switch(ScanID) {
-	case	eResinSurface	:	///< 樹脂
-		{
-			fileName.Format(_T("%s_ResinScanImage"), (LPCWSTR)ProjectName);
-			////////////////////////////////////////////////////////////////////
-			//
-			// 保存処理を行う(.hdr,.raw,.bmp)
-			// 画像の保存に成功したらプロジェクトへ登録
-			//
-			////////////////////////////////////////////////////////////////////
-			if (!m_ProjectIO.SetResinScanImageFile(fileName)) {
-				return false;
-			}
+	CString fileName = GetScanDataName(ScanID, ProjectName);
+	switch (ScanID) {
+	case	eResinSurface:	///< 樹脂
+		if (!m_ProjectIO.SetResinScanImageFile(fileName)) {
+			return false;
 		}
+		////////////////////////////////////////////////////////////////////
+		//
+		// 保存処理を行う(.hdr,.raw,.bmp)
+		// 画像の保存に成功したらプロジェクトへ登録
+		//
+		////////////////////////////////////////////////////////////////////
 		break;
-	case	eMetalSurface	:	///< 金属
-		{
-			fileName.Format(_T("%s_MetalScanImage"), (LPCWSTR)ProjectName);
-			////////////////////////////////////////////////////////////////////
-			//
-			// 保存処理を行う(.hdr,.raw,.bmp)
-			// 画像の保存に成功したらプロジェクトへ登録
-			//
-			////////////////////////////////////////////////////////////////////
-			if (!m_ProjectIO.SetMetalScanImageFile(fileName)) {
-				return false;
-			}
+	case	eMetalSurface:	///< 金属
+		if (!m_ProjectIO.SetMetalScanImageFile(fileName)) {
+			return false;
 		}
+		////////////////////////////////////////////////////////////////////
+		//
+		// 保存処理を行う(.hdr,.raw,.bmp)
+		// 画像の保存に成功したらプロジェクトへ登録
+		//
+		////////////////////////////////////////////////////////////////////
 		break;
-	case	eJoiningResult	:	///< 接合結果
-		{
-			fileName.Format(_T("%s_ResultScanImage"), (LPCWSTR)ProjectName);
-			////////////////////////////////////////////////////////////////////
-			//
-			// 保存処理を行う(.hdr,.raw,.bmp)
-			// 画像の保存に成功したらプロジェクトへ登録
-			//
-			////////////////////////////////////////////////////////////////////
-			if (!m_ProjectIO.SetResultScanImageFile(fileName)) {
-				return false;
-			}
+	case	eJoiningResult:	///< 接合結果
+		if (!m_ProjectIO.SetResultScanImageFile(fileName)) {
+			return false;
 		}
+		////////////////////////////////////////////////////////////////////
+		//
+		// 保存処理を行う(.hdr,.raw,.bmp)
+		// 画像の保存に成功したらプロジェクトへ登録
+		//
+		////////////////////////////////////////////////////////////////////
 		break;
-	default :
+	default:
 		return false;
 	}
 
@@ -2249,6 +2316,12 @@ bool CWeldEvaluationDoc::GetRegistTestList(CStringArray &list)
 		if (!cFileFind.IsDots()) {
 			if (cFileFind.IsDirectory()) {
 				CString patnname = cFileFind.GetFileTitle();
+				if (patnname.CollateNoCase(GetTmpFolderName()) == 0) {
+					continue;
+				}
+				else if (patnname.CollateNoCase(GetNoProjectFolderName()) == 0) {
+					continue;
+				}
 				list.Add(patnname);
 			}
 		}
@@ -2557,6 +2630,15 @@ bool CWeldEvaluationDoc::LoadScanImage(int ScanID, CImage &img, bool renew/* = f
 		if (FAILED(ret)) {
 			return false;
 		}
+	}
+	return true;
+}
+
+bool CWeldEvaluationDoc::DeleteScanImageFilePath(int ScanID)
+{
+	CString scanImageFile = getScanImageFilePath(ScanID);
+	if (CFileUtil::fileExists(scanImageFile)) {
+		return CFileUtil::fileDelete(scanImageFile);
 	}
 	return true;
 }

@@ -16,6 +16,7 @@ CScanDataIO::CScanDataIO(void)
 {
 	m_pathName = _T("");
 	m_o_p_cube = nullptr;
+	m_localData = false;
 }
 
 
@@ -53,9 +54,103 @@ bool CScanDataIO::open(CString pathName, bool bReload/*=false*/ )
 	m_o_p_cube = new CubeFloat();
 	HSI_RETURN result = commonLoadCube(m_o_p_cube, pathName);
 	if (result != HSI_OK) {
+#if 1
+		m_localData = true;
+		CStdioFile tfd;
+		// headerデータ出力
+		if (tfd.Open(pathName, CFile::modeRead | CFile::typeText)) {
+			CString buf;
+			CString key, val;
+			int byteoder,datatype;
+			while (tfd.ReadString(buf)) {
+				int id = buf.FindOneOf(_T("="));
+				if (id == -1) {
+					continue;
+				}
+				key = buf.Mid(0, id);
+				key.Trim();
+				val = buf.Mid(id+1);
+				val.Trim();
+				if (key == _T("bands")) {
+					m_o_p_cube->format.nr_bands = _ttoi(val);
+				}
+				else if (key == _T("byte order")) {
+					byteoder = _ttoi(val);
+				}
+				else if (key == _T("data type")) {
+					datatype = _ttoi(val);
+				}
+				else if (key == _T("file type")) {
+				}
+				else if (key == _T("header offset")) {
+				}
+				else if (key == _T("interleave")) {
+				}
+				else if (key == _T("lines")) {
+					m_o_p_cube->format.height = _ttoi(val);
+				}
+				else if (key == _T("samples")) {
+					m_o_p_cube->format.width = _ttoi(val);
+				}
+				else if (key == _T("wavelength")) {
+					tfd.ReadString(buf);
+					m_o_p_cube->format.band_names = new double[m_o_p_cube->format.nr_bands];
+
+					double dval;
+					int cnt = 0;
+					while (cnt < m_o_p_cube->format.nr_bands) {
+						id = buf.FindOneOf(_T(","));
+						if (id == -1) {
+							break;
+						}
+						val = buf.Mid(0, id);
+						val.Trim();
+						buf = buf.Mid(id + 1);
+						buf.Trim();
+
+						dval = _ttof(val);
+						if (!val.IsEmpty()) {
+							m_o_p_cube->format.band_names[cnt] = dval;
+							cnt++;
+						}
+					}
+					buf.Trim();
+					if (!buf.IsEmpty()) {
+						dval = _ttof(val);
+						m_o_p_cube->format.band_names[cnt] = dval;
+					}
+					tfd.ReadString(buf);
+				}
+			}
+			m_o_p_cube->format.size_bytes = m_o_p_cube->format.width * m_o_p_cube->format.height * m_o_p_cube->format.nr_bands * sizeof(float);
+			tfd.Close();
+
+			float ***ppp_data = new float **[m_o_p_cube->format.nr_bands];
+			for (int b = 0; b < m_o_p_cube->format.nr_bands; b++) {
+				ppp_data[b] = new float*[m_o_p_cube->format.height];
+				for (int h = 0; h < m_o_p_cube->format.height; h++) {
+					ppp_data[b][h] = new float[m_o_p_cube->format.width];
+				}
+			}
+
+			CString drive, dir, name, ext;
+			CFileUtil::splitPath(pathName, drive, dir, name, ext);
+			CString rawpath = drive + dir + name + _T(".raw");
+			CFile fd;
+			if (fd.Open(rawpath, CFile::modeRead | CFile::typeBinary)) {
+				for (int b = 0; b < m_o_p_cube->format.nr_bands; b++) {
+					for (int h = 0; h < m_o_p_cube->format.height; h++) {
+						fd.Read(ppp_data[b][h], sizeof(float)*m_o_p_cube->format.width);
+					}
+				}
+			}
+			m_o_p_cube->ppp_data = ppp_data;
+	}
+#else
 		errorLog(CString(__FILE__), __LINE__, _T("commonLoadCube()"), result);
 		close();
 		return false;
+#endif
 	}
 	m_pathName = pathName;
 	return true;
@@ -68,7 +163,30 @@ void CScanDataIO::close()
 {
 	if (m_o_p_cube) {
 		m_pathName = _T("");
-		commonDeallocateCube(m_o_p_cube);
+		if (m_localData) {
+			int band = m_o_p_cube->format.nr_bands;
+			int widht = m_o_p_cube->format.width;
+			int height = m_o_p_cube->format.height;
+			for (int b = 0; b < band; b++) {
+				for (int h = 0; h < height; h++) {
+					if (m_o_p_cube->ppp_data[b][h]) {
+						delete [] m_o_p_cube->ppp_data[b][h];
+					}
+				}
+				if (m_o_p_cube->ppp_data[b]) {
+					delete [] m_o_p_cube->ppp_data[b];
+				}
+			}
+			delete [] m_o_p_cube->ppp_data;
+			m_o_p_cube->ppp_data = nullptr;
+			if (m_o_p_cube->format.band_names) {
+				delete[] m_o_p_cube->format.band_names;
+				m_o_p_cube->format.band_names = nullptr;
+			}
+		}
+		else {
+			commonDeallocateCube(m_o_p_cube);
+		}
 	}
 }
 
@@ -82,6 +200,7 @@ void CScanDataIO::release()
 		delete m_o_p_cube;
 		m_o_p_cube = nullptr;
 	}
+	m_localData = false;
 }
 
 /// <summary>
@@ -884,7 +1003,7 @@ void  CScanDataIO::MatrixInvers(double **mat)
 	}
 }
 
-bool CScanDataIO::affine(int srcWidth, int srcHeight, float ***src, int dstWidth, int distHeight, float ***dst, int band, double **mat)
+bool CScanDataIO::affine(int srcWidth, int srcHeight, float ***src, int dstWidth, int distHeight, float ***dst, int band, double **mat, bool bBicubic/*=true*/)
 {
 	double sx, sy;
 	int x, y;
@@ -906,9 +1025,15 @@ bool CScanDataIO::affine(int srcWidth, int srcHeight, float ***src, int dstWidth
 				}
 			}
 			else {
-				bicubic(src, srcWidth, srcHeight, band, (float)x, (float)y, p);
-				for (int b = 0; b < band; b++) {
-					dst[b][dy][dx] = p[b];
+				if (bBicubic) {
+					bicubic(src, srcWidth, srcHeight, band, (float)x, (float)y, p);
+					for (int b = 0; b < band; b++) {
+						dst[b][dy][dx] = p[b];
+					}
+				} else {
+					for (int b = 0; b < band; b++) {
+						dst[b][dy][dx] = src[b][y][x];
+					}
 				}
 			}
 		}
@@ -916,7 +1041,7 @@ bool CScanDataIO::affine(int srcWidth, int srcHeight, float ***src, int dstWidth
 	return true;
 }
 
-bool CScanDataIO::ScanDataConvert(int srcWidth, int srcHeight, int band, float ***src, double scale, int &dstWidth, int &dstHeight, float ***& dst)
+bool CScanDataIO::ScanDataConvert(int srcWidth, int srcHeight, int band, float ***src, double scale, int &dstWidth, int &dstHeight, float ***& dst, bool bBicubic/* = true*/)
 {
 	double **mat = MatrixInit();
 	dstHeight = (int)(srcWidth * scale);
@@ -936,7 +1061,7 @@ bool CScanDataIO::ScanDataConvert(int srcWidth, int srcHeight, int band, float *
 			ZeroMemory(dst[b][y],sizeof(float)*dstWidth);
 		}
 	}
-	affine(srcWidth, srcHeight, src, dstWidth, dstHeight, dst, band, mat);
+	affine(srcWidth, srcHeight, src, dstWidth, dstHeight, dst, band, mat, bBicubic);
 	MatrixRelease(mat);
 	return true;
 }

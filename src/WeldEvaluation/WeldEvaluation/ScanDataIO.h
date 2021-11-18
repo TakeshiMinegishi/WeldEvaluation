@@ -22,6 +22,7 @@ private:
 	CString		m_pathName;			///< スキャンデータファイルパス
 	CubeFloat*	m_o_p_cube;			///< CubeFloatオブジェクトへのポインタ
 	std::vector<std::vector<std::vector<float>>>	m_data;
+	bool		m_localData;
 
 
 public:
@@ -61,8 +62,8 @@ public:
 	void MatrixRotete(double **mat, double angle);
 	void MatrixScale(double **mat, double x, double y);
 	void MatrixInvers(double **mat);
-	bool affine(int srcWidth, int srcHeight, float ***src, int dstWidth, int distHeight, float ***dst, int band, double **mat);
-	bool ScanDataConvert(int srcWidth, int srcHeight, int band, float ***src, double scale, int &dstWidth, int &distHight, float ***& dist);
+	bool affine(int srcWidth, int srcHeight, float ***src, int dstWidth, int distHeight, float ***dst, int band, double **mat, bool bBicubic = true);
+	bool ScanDataConvert(int srcWidth, int srcHeight, int band, float ***src, double scale, int &dstWidth, int &distHight, float ***& dist, bool bBicubic = true);
 	void FreeConvertData(int dstHeight, int band, float ***& dst);
 
 };

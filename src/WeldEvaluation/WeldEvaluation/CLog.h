@@ -66,7 +66,6 @@ public:
     void clrLineBuff();
     void setLineBuff(CString buff);
     void writeLineBuff(LOGLEVEL level);
-
 };
 
 

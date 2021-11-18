@@ -93,7 +93,6 @@ private:
 	CString SetRegistedTestFolder(void);
 	bool split(std::string& input, char delimiter, int &dataID, std::vector<int> &data);
 	bool getResultFile(CString path, std::vector<int>& data);
-	CString getScanDataPath(int ScanID);
 	CString getScanImageFilePath(int ScanID);
 	CString getClassificationDataFilePath(int ScanID, int type);
 	CString getClassificationImageFilePath(int ScanID, int type);
@@ -157,6 +156,7 @@ public:
 
 	//////////////////////////////////////////////////////////////////////////////////
 	// プロジェクトデータIO
+	CString getScanDataPath(int ScanID);
 	CString GetScanImagePath(int fileID);
 	CString GetClassificationResultPath(int fileID, int type);
 
@@ -192,6 +192,7 @@ public:
 	bool	IsOpen(void);
 	bool	IsNew(void);
 	bool	ExistScanFile(int fileID);
+	CString GetScanDataName(int ScanID, CString Prefix);
 	bool	SaveScanImage(int ScanID);
 	bool	ExistClassificationResultFile(int fileID, int type);
 	bool	SaveClassificationResultFile(int ScanID, int type);
@@ -212,4 +213,11 @@ public:
 	bool	GetSpectrumData(int ScanID, CPoint &pos, std::vector<double> &data);
 	bool	WriteImage(CString writePath);
 	CString getScanDataFilePath(int ScanID);
+	CString GetNoProjectFolderName();
+	CString GetNoProjectFolderPath();
+	CString GetTmpFolderName();
+	CString GetTmpFolderPath();
+	double  GetScale();
+	bool	DeleteScanImageFilePath(int ScanID);
+
 };

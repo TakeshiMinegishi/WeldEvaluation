@@ -279,3 +279,23 @@ bool CFileUtil::SelectFolder(HWND hWnd, LPCTSTR lpDefFolder, LPTSTR lpSelectPath
 	}	
 	return true;
 }
+
+bool CFileUtil::WriteUTF8ToSJIS(CStdioFile  &fd, CString str)
+{
+	char cr = '\n';
+	CByteArray dest;
+	_bstr_t bSrc(str);
+	dest.RemoveAll();
+	const int len = ::WideCharToMultiByte(CP_UTF8, 0, bSrc, -1, NULL, 0, NULL, NULL);
+	if (len > 0)
+	{
+		dest.SetSize(len);
+		if (::WideCharToMultiByte(CP_UTF8, 0, bSrc, -1,
+			static_cast<LPSTR>(static_cast<void*>(dest.GetData())),
+			len, NULL, NULL)) {
+			fd.Write(static_cast<LPSTR>(static_cast<void*>(dest.GetData())), len-1);
+			fd.Write(&cr, sizeof(char));
+		}
+	}
+	return false;
+}
