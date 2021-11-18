@@ -210,7 +210,11 @@ void CPropTabPageParameter::ViewJointRatio(int id, int ViewJointRatioNo)
 		case	CWeldEvaluationDoc::eResinSurface	:	// 樹脂
 			{
 				m_JointRatio.Format(_T("%.1lf"),pDoc->ResinGetJointRetio(ViewJointRatioNo));
-				UpdateIDColor(pDoc->ResinGetJointColor(ViewJointRatioNo));
+				COLORREF col = pDoc->ResinGetJointColor(ViewJointRatioNo);
+				if (col == 0) {
+					col = pDoc->GetClassColor(ViewJointRatioNo, m_NumberOfClass);
+				}
+				UpdateIDColor(col);
 			}
 			break;
 		case	CWeldEvaluationDoc::eMetalSurface	:	// 金属
@@ -289,6 +293,26 @@ bool CPropTabPageParameter::Update(int index)
 	return false;
 }
 
+/// <summary>
+/// 更新の有無確認
+/// </summary>
+/// <returns>更新されている場合はtrue、失敗場合はfalseを返す</returns>
+bool CPropTabPageParameter::ConfirmChange()
+{
+	bool bResult = false;
+	UINT org = m_NumberOfClass;
+	UpdateData(true);
+	if (m_NumberOfClass != org) {
+		UpdateData(false);
+		// 更新ボタンの更新
+		UpdateCmbJoinratioTargetLabel();
+		CWnd *pWnd = GetParent()->GetParent();
+		pWnd->SendMessage(WM_UPDATEREQUEST_PROPPAGE, (WPARAM)true, (LPARAM)0);
+		bResult = true;
+	}
+	return bResult;
+}
+
 
 /// <summary>
 /// 対象コンボボック項目変更時処理
@@ -352,6 +376,7 @@ void CPropTabPageParameter::UpdateCmbJoinratioTargetLabel()
 /// <param name="bMinimized">最小化フラグ</param>
 void CPropTabPageParameter::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 {
+
 	CDialogEx::OnActivate(nState, pWndOther, bMinimized);
 
 	UpdateCmbJoinratioTargetLabel();

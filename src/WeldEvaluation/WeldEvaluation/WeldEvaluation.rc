@@ -623,7 +623,7 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_REGTEST_LABEL       "名称"
+    IDS_REGTEST_LABEL       "保存データ一覧"
 END
 
 STRINGTABLE
@@ -645,13 +645,13 @@ BEGIN
     IDM_CHECKOFUPDATE       "更新しますか？"
     IDM_MAKEFOLDER          "フォルダが存在しません。\n作成しますか？"
     IDM_EXISTSCANIMAGE      "スキャン画像が存在します。\n再取得をおこないますか？"
+    IDM_EXISTWBSCANFILE     "ホワイトバランスデータは取得済みです。\n取得しなおしますか？"
     IDS_PREPANING           "準備中..."
     IDM_SCANNING            "スキャン中..."
     IDM_SCAN_CANCELD        "スキャン処理がキャンセルされました。"
     IDM_SCAN_SUCCESS        "スキャン処理が正常に終了しました。"
     IDM_RESULT_READ_TITLE   "結果ファイルの読み込"
     IDM_RESULT_READ_INIT    "読み込み準備中・・・"
-    IDM_RESULT_READING      "読み込み中：%d/%d (%.2lf[%%])"
 END
 
 STRINGTABLE
@@ -676,6 +676,13 @@ END
 STRINGTABLE
 BEGIN
     IDS_LBL_FOLDERSELECT    "フォルダ選択"
+END
+
+STRINGTABLE
+BEGIN
+    IDM_RESULT_READING      "読み込み中：%d/%d (%.2lf[%%])"
+    IDM_PRJREGIST_SUCCESS   "登録が完了しました。"
+    IDM_PRJREGIST_OVERWRITE "同じ名前のプロジェクトが存在します\n上書きしますか？\n上書きをした場合、以前のデータは破棄されます。"
 END
 
 #endif    // 日本語 (日本) resources

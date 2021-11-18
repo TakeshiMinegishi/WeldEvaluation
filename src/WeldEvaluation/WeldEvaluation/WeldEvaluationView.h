@@ -122,6 +122,7 @@ public:
 	void LoadPropaty();
 	void EnablePropaty(bool bActive);
 	void UpdatePropaty(int propatyID);
+	bool ConfirmChange(int propatyID);
 	void ReloadPropaty(int propatyID);
 
 	void LoadSetting();
@@ -129,6 +130,8 @@ public:
 	void ReloadSetting(int settingID);
 
 	LRESULT OnScanRequest(WPARAM wparam, LPARAM lparam);
+
+	LRESULT OnWBScanExistCheck(WPARAM wparam, LPARAM lparam);
 	LRESULT OnWBScanRequest(WPARAM wparam, LPARAM lparam);
 	bool ScanImage(CStatusDlgThread* pStatus, int ScanID);
 

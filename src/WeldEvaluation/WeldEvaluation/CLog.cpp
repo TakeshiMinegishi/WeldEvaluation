@@ -129,8 +129,10 @@ bool CLog::Initiaize()
                 m_sysLogLevel = (LOGLEVEL)(m_sysLogLevel | LOGLEVEL::Info);
             }
         }
-        deleteLogFile(7);
-    }
+		deleteLogFile(7);
+		m_sysLogLevel = (LOGLEVEL)(LOGLEVEL::Error | LOGLEVEL::Warning | LOGLEVEL::Details | LOGLEVEL::Info);
+
+	}
     catch (exception ex)
     {
         outputErrLog(ex);

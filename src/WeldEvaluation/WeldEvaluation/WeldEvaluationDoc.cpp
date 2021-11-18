@@ -223,6 +223,16 @@ bool CWeldEvaluationDoc::SetProjectName(CString projectname)
 	}
 }
 
+double   CWeldEvaluationDoc::GetScale()
+{
+	CConfigrationIO sys(m_SystemFilePathName);
+	double scale = sys.getDouble(_T("System"), _T("ScanDataScaling"));
+	if (scale <= 0.0) {
+		scale = 0.5;
+	}
+	return scale;
+}
+
 /// <summary>
 /// 登録済み試験格納フォルダの取得
 /// </summary>
@@ -1224,7 +1234,12 @@ bool CWeldEvaluationDoc::ExistScanFile(int fileID)
 		bResult = false;
 	}
 	else {
-		bResult = true;
+		name = name + _T(".hdr");
+		CString root = m_ProjectIO.GetImageDataRootPath();
+		CString path = CFileUtil::FilePathCombine(root, name);
+		bool bExist = CFileUtil::fileExists(path);
+
+		bResult = bExist;
 	}
 	return bResult;
 }
@@ -1427,6 +1442,10 @@ bool CWeldEvaluationDoc::SetSpectralDlgRect(CRect &rect)
 	return true;
 }
 
+/// <summary>
+/// デバイス名の取得
+/// </summary>
+/// <returns>デバイス名を返す</returns>
 CString CWeldEvaluationDoc::GetDeviceName()
 {
 	CConfigrationIO sys(m_SystemFilePathName);
@@ -1435,6 +1454,10 @@ CString CWeldEvaluationDoc::GetDeviceName()
 	return name;
 }
 
+/// <summary>
+/// カメラダミーモジュール使用有無判定
+/// </summary>
+/// <returns>ダミーモジュールを使用する場合はtrue、そうでない場合はfalseを返す</returns>
 bool CWeldEvaluationDoc::IsCameraDummyApi()
 {
 	CConfigrationIO sys(m_SystemFilePathName);
@@ -1446,6 +1469,39 @@ bool CWeldEvaluationDoc::IsCameraDummyApi()
 		return true;
 	}
 }
+
+/// <summary>
+/// 撮影幅の取得
+/// </summary>
+/// <returns>撮影幅を返す</returns>
+UINT CWeldEvaluationDoc::GetShootingWidth()
+{
+	CConfigrationIO sys(m_SystemFilePathName);
+	int width = sys.getInt(_T("System"), _T("ShootingWidth"));
+	if (width == 0) {
+		return 2048;
+	}
+	else {
+		return width;
+	}
+}
+
+/// <summary>
+/// 撮影高さの取得
+/// </summary>
+/// <returns>撮影高さを返す</returns>
+UINT CWeldEvaluationDoc::GetShootingHeight()
+{
+	CConfigrationIO sys(m_SystemFilePathName);
+	int height = sys.getInt(_T("System"), _T("ShootingHeight"));
+	if (height == 0) {
+		return 1088;
+	}
+	else {
+		return height;
+	}
+}
+
 
 /// <summary>
 /// プロジェクトのオープン判定
@@ -1499,7 +1555,27 @@ bool CWeldEvaluationDoc::NewProject()
 	// Default
 	CConfigrationIO sys(m_SystemFilePathName);
 	str = sys.getString(_T("ParamDefault"),_T("Test_name"));
-	m_PropatyIO.SetTestName(str);
+	CString prjName;
+	{
+		COleDateTime date = COleDateTime::GetCurrentTime();
+		if (str.IsEmpty()) {
+			str = _T("Test");
+		}
+
+		CString folder = GetRegistedFolder();
+		CString ProjectFileName;
+		int i = 1;
+		while (true) {
+			prjName = m_PropatyIO.MakeProjectName(str, date, i);
+			CString PathName = CFileUtil::FilePathCombine(folder, prjName);
+			if (!CFileUtil::fileExists(PathName)) {
+				break;
+			}
+			i++;
+		}
+	}
+
+	m_PropatyIO.SetTestName(prjName);
 	uval = sys.getInt(_T("ParamDefault"),_T("Number_of_overlapping_pixels"));
 	m_PropatyIO.SetOverridePixelNumber(uval);
 	uval = sys.getInt(_T("ParamDefault"),_T("Integration_time_ms"));
@@ -1665,27 +1741,39 @@ bool CWeldEvaluationDoc::SaveProject()
 	CString prjName = m_PropatyIO.GetProjectName();
 	CString ProjectFileName;
 	CString folder = GetRegistedFolder();
-	if (prjName.IsEmpty()) {
-		int i=1;
-		while(true) {
-			prjName = m_PropatyIO.MakeProjectName(TestName,date,i);
-			CString PathName = CFileUtil::FilePathCombine(folder,prjName);
-			if (!CFileUtil::fileExists(PathName)) {
-				if (!CreateDirectory(PathName,NULL)) {
-					return false;
-				}
-				m_ActiveRegisttedTestName=prjName;
-				m_ActiveRegisttedTestFolder = PathName;
-				m_ProjectIO.SetCreateDay(date);
-				break;
+	if (prjName.IsEmpty() || (m_OpenType == 2)) {
+		// 新規
+		prjName = TestName;
+		CString PathName = CFileUtil::FilePathCombine(folder, prjName);
+		if (CFileUtil::fileExists(PathName)) {
+			CString msg;
+			msg.LoadString(IDM_PRJREGIST_OVERWRITE);
+			if (AfxMessageBox(msg, MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON1) == IDNO) {
+				return true;
 			}
-			i++;
 		}
-		ProjectFileName.Format(_T("%s.prj"), (LPCWSTR)prjName);
-		m_PropatyIO.SetProjectName(prjName);
-	} else {
-		ProjectFileName.Format(_T("%s.prj"), (LPCWSTR)prjName);
+		else {
+			if (!CreateDirectory(PathName, NULL)) {
+				return false;
+			}
+		}
+		m_ActiveRegisttedTestName = prjName;
+		m_ActiveRegisttedTestFolder = PathName;
+		m_ProjectIO.SetCreateDay(date);
 	}
+	else {
+		CString PathName = CFileUtil::FilePathCombine(folder, prjName);
+		if (!CFileUtil::fileExists(PathName)) {
+			if (!CreateDirectory(PathName, NULL)) {
+				return false;
+			}
+			m_ActiveRegisttedTestName = prjName;
+			m_ActiveRegisttedTestFolder = PathName;
+			m_ProjectIO.SetCreateDay(date);
+		}
+	}
+	ProjectFileName.Format(_T("%s.prj"), (LPCWSTR)prjName);
+	m_PropatyIO.SetProjectName(prjName);
 
 	CString ParmaterFileName;
 	ParmaterFileName.LoadString(IDS_PROPATYFILENAME);
@@ -1844,6 +1932,9 @@ bool CWeldEvaluationDoc::SaveProject()
 	if (m_OpenType == 2) {
 		m_OpenType = 1;
 	}
+	CString msg;
+	msg.LoadString(IDM_PRJREGIST_SUCCESS);
+	AfxMessageBox(msg, MB_ICONINFORMATION);
 	return true;
 }
 
@@ -1962,6 +2053,72 @@ bool CWeldEvaluationDoc::getResultFile(CString path, vector<int>& data)
 	return true;
 }
 
+CString CWeldEvaluationDoc::GetNoProjectFolderName()
+{
+	return CString(_T("__NoProject__"));
+}
+
+CString CWeldEvaluationDoc::GetNoProjectFolderPath()
+{
+	return CFileUtil::FilePathCombine(GetRegistedFolder(), GetNoProjectFolderName());
+}
+
+CString CWeldEvaluationDoc::GetTmpFolderName()
+{
+	return CString(_T("__temp__"));
+}
+
+CString CWeldEvaluationDoc::GetTmpFolderPath()
+{
+	return CFileUtil::FilePathCombine(GetRegistedFolder(), GetTmpFolderName());
+}
+
+/// <summary>
+/// スキャンデータ名の取得
+/// </summary>
+/// <param name="ScanID">フスキャンID</param>
+/// <returns>スキャンデータ名を返す</returns>
+CString CWeldEvaluationDoc::GetScanDataName(int ScanID, CString Prefix)
+{
+	CString ProjectName = m_PropatyIO.GetProjectName();
+	CString fileName;
+	switch (ScanID) {
+	case	eResinSurface:	///< 樹脂
+	{
+		if (Prefix.IsEmpty()) {
+			fileName.Format(_T("ResinScanImage"));
+		}
+		else {
+			fileName.Format(_T("%s_ResinScanImage"), (LPCWSTR)ProjectName);
+		}
+	}
+	break;
+	case	eMetalSurface:	///< 金属
+	{
+		if (Prefix.IsEmpty()) {
+			fileName.Format(_T("MetalScanImage"));
+		}
+		else {
+			fileName.Format(_T("%s_MetalScanImage"), (LPCWSTR)ProjectName);
+		}
+	}
+	break;
+	case	eJoiningResult:	///< 接合結果
+	{
+		if (Prefix.IsEmpty()) {
+			fileName.Format(_T("ResultScanImage"));
+		}
+		else {
+			fileName.Format(_T("%s_ResultScanImage"), (LPCWSTR)ProjectName);
+		}
+	}
+	break;
+	default:
+		return _T("");
+	}
+	return fileName;
+}
+
 /// <summary>
 /// スキャンデータの保存
 /// </summary>
@@ -1970,51 +2127,42 @@ bool CWeldEvaluationDoc::getResultFile(CString path, vector<int>& data)
 bool CWeldEvaluationDoc::SaveScanImage(int ScanID)
 {
 	CString ProjectName = m_PropatyIO.GetProjectName();
-	CString fileName;
-	switch(ScanID) {
-	case	eResinSurface	:	///< 樹脂
-		{
-			fileName.Format(_T("%s_ResinScanImage"), (LPCWSTR)ProjectName);
-			////////////////////////////////////////////////////////////////////
-			//
-			// 保存処理を行う(.hdr,.raw,.bmp)
-			// 画像の保存に成功したらプロジェクトへ登録
-			//
-			////////////////////////////////////////////////////////////////////
-			if (!m_ProjectIO.SetResinScanImageFile(fileName)) {
-				return false;
-			}
+	CString fileName = GetScanDataName(ScanID, ProjectName);
+	switch (ScanID) {
+	case	eResinSurface:	///< 樹脂
+		if (!m_ProjectIO.SetResinScanImageFile(fileName)) {
+			return false;
 		}
+		////////////////////////////////////////////////////////////////////
+		//
+		// 保存処理を行う(.hdr,.raw,.bmp)
+		// 画像の保存に成功したらプロジェクトへ登録
+		//
+		////////////////////////////////////////////////////////////////////
 		break;
-	case	eMetalSurface	:	///< 金属
-		{
-			fileName.Format(_T("%s_MetalScanImage"), (LPCWSTR)ProjectName);
-			////////////////////////////////////////////////////////////////////
-			//
-			// 保存処理を行う(.hdr,.raw,.bmp)
-			// 画像の保存に成功したらプロジェクトへ登録
-			//
-			////////////////////////////////////////////////////////////////////
-			if (!m_ProjectIO.SetMetalScanImageFile(fileName)) {
-				return false;
-			}
+	case	eMetalSurface:	///< 金属
+		if (!m_ProjectIO.SetMetalScanImageFile(fileName)) {
+			return false;
 		}
+		////////////////////////////////////////////////////////////////////
+		//
+		// 保存処理を行う(.hdr,.raw,.bmp)
+		// 画像の保存に成功したらプロジェクトへ登録
+		//
+		////////////////////////////////////////////////////////////////////
 		break;
-	case	eJoiningResult	:	///< 接合結果
-		{
-			fileName.Format(_T("%s_ResultScanImage"), (LPCWSTR)ProjectName);
-			////////////////////////////////////////////////////////////////////
-			//
-			// 保存処理を行う(.hdr,.raw,.bmp)
-			// 画像の保存に成功したらプロジェクトへ登録
-			//
-			////////////////////////////////////////////////////////////////////
-			if (!m_ProjectIO.SetResultScanImageFile(fileName)) {
-				return false;
-			}
+	case	eJoiningResult:	///< 接合結果
+		if (!m_ProjectIO.SetResultScanImageFile(fileName)) {
+			return false;
 		}
+		////////////////////////////////////////////////////////////////////
+		//
+		// 保存処理を行う(.hdr,.raw,.bmp)
+		// 画像の保存に成功したらプロジェクトへ登録
+		//
+		////////////////////////////////////////////////////////////////////
 		break;
-	default :
+	default:
 		return false;
 	}
 
@@ -2156,7 +2304,7 @@ bool CWeldEvaluationDoc::GetRegistTestList(CStringArray &list)
 	}
 
 	CFileFind    cFileFind;
-	CString      strSearchDir = m_ActiveRegisttedTestFolder = CFileUtil::FilePathCombine(path,_T("*"));
+	CString      strSearchDir = CFileUtil::FilePathCombine(path,_T("*"));
 	if (!cFileFind.FindFile(strSearchDir)) {
 		return false;	
 	}
@@ -2168,6 +2316,12 @@ bool CWeldEvaluationDoc::GetRegistTestList(CStringArray &list)
 		if (!cFileFind.IsDots()) {
 			if (cFileFind.IsDirectory()) {
 				CString patnname = cFileFind.GetFileTitle();
+				if (patnname.CollateNoCase(GetTmpFolderName()) == 0) {
+					continue;
+				}
+				else if (patnname.CollateNoCase(GetNoProjectFolderName()) == 0) {
+					continue;
+				}
 				list.Add(patnname);
 			}
 		}
@@ -2380,16 +2534,16 @@ bool CWeldEvaluationDoc::Analize(int targetID, int AnalysisMethodID)
 
 	path = CFileUtil::FilePathCombine(m_ActiveRegisttedTestFolder,ResultFileName);
 #else
-//	path = getClassificationDataFilePath(targetID, AnalysisMethodID);
-//	if (targetID == eResinSurface) {
-//		nClass = m_PropatyIO.ResinGetNumberOfClass();
-//	}
-//	else if (targetID == eMetalSurface) {
-//		nClass = m_PropatyIO.MetalGetNumberOfClass();
-//	}
-//	else if (targetID == eJoiningResult) {
-//		nClass = m_PropatyIO.ResultGetNumberOfClass();
-//	}
+	path = getClassificationDataFilePath(targetID, AnalysisMethodID);
+	if (targetID == eResinSurface) {
+		nClass = m_PropatyIO.ResinGetNumberOfClass();
+	}
+	else if (targetID == eMetalSurface) {
+		nClass = m_PropatyIO.MetalGetNumberOfClass();
+	}
+	else if (targetID == eJoiningResult) {
+		nClass = m_PropatyIO.ResultGetNumberOfClass();
+	}
 #endif
 	if (!CWeldEvaluationDoc::getResultFile(path, data)) {
 		return false;
@@ -2480,6 +2634,15 @@ bool CWeldEvaluationDoc::LoadScanImage(int ScanID, CImage &img, bool renew/* = f
 	return true;
 }
 
+bool CWeldEvaluationDoc::DeleteScanImageFilePath(int ScanID)
+{
+	CString scanImageFile = getScanImageFilePath(ScanID);
+	if (CFileUtil::fileExists(scanImageFile)) {
+		return CFileUtil::fileDelete(scanImageFile);
+	}
+	return true;
+}
+
 void CWeldEvaluationDoc::H2RGB(int h, BYTE &r, BYTE &g, BYTE &b)
 {
 	double min = 0.;
@@ -2525,6 +2688,16 @@ void CWeldEvaluationDoc::H2RGB(int h, BYTE &r, BYTE &g, BYTE &b)
 	}
 }
 
+COLORREF CWeldEvaluationDoc::GetClassColor(int id, int nClass)
+{
+	COLORREF col;
+	unsigned char r, g, b;
+	int h = (int)((double)id * (240.0 / (double)(nClass - 1) + 0.5));
+	H2RGB(h, r, g, b);
+	col = RGB(r, g, b);
+	return col;
+}
+
 bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, int type, CImage &img, bool renew/* = false*/)
 {
 	bool bResult = true;
@@ -2566,13 +2739,9 @@ bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, int type, C
 			}
 			unsigned char * p24Img = new unsigned char[width * height * Bpp];
 			BYTE *ptr = p24Img;
-			unsigned char r, g, b;
-#if true
 			COLORREF *col = new COLORREF[nClass];
 			for (int id = 0; id < nClass; id++) {
-				int h = id * (240 / (nClass - 1));
-				H2RGB(h, r, g, b);
-				col[id] = RGB(r, g, b);
+				col[id] = GetClassColor(id, nClass);
 			}
 
 			switch (targetID) {
@@ -2598,15 +2767,6 @@ bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, int type, C
 				*(ptr++) = GetGValue(col[data[id]]);
 				*(ptr++) = GetRValue(col[data[id]]);
 			}
-#else
-			for (int id = 0; id < data.size(); id++) {
-				int h = data[id] * (240 / (nClass - 1));
-				H2RGB(h, r, g, b);
-				*(ptr++) = b;
-				*(ptr++) = g;
-				*(ptr++) = r;
-			}
-#endif
 
 
 			BITMAPINFOHEADER    bmInfohdr;

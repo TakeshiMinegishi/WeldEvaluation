@@ -97,7 +97,7 @@ void COprtTabPageSetting::UpddateResist(bool bEnable, bool bReadMode)
 		ItemEnable(IDC_EDT_TESTNAME,bEnable);
 		ItemEnable(IDC_BTN_IMAGEOUT,bEnable);
 	}
-	ItemEnable(IDC_BTN_REGIST,bEnable);
+//	ItemEnable(IDC_BTN_REGIST,bEnable);
 }
 
 /// <summary>

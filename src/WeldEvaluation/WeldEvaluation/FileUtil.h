@@ -22,5 +22,6 @@ public:
 	static bool GetFileCreateDay(CString path,COleDateTime &cdate);
 	static bool GetFileUpdateDay(CString path,COleDateTime &mdate);
 	static bool SelectFolder(HWND hWnd, LPCTSTR lpDefFolder, LPTSTR lpSelectPath, UINT iFlg, CString ttl);
+	static bool WriteUTF8ToSJIS(CStdioFile &fd, CString str);
 };
 

@@ -16,6 +16,7 @@ CScanDataIO::CScanDataIO(void)
 {
 	m_pathName = _T("");
 	m_o_p_cube = nullptr;
+	m_localData = false;
 }
 
 
@@ -53,12 +54,103 @@ bool CScanDataIO::open(CString pathName, bool bReload/*=false*/ )
 	m_o_p_cube = new CubeFloat();
 	HSI_RETURN result = commonLoadCube(m_o_p_cube, pathName);
 	if (result != HSI_OK) {
-		if (result == HSI_ARGUMENT_INVALID) {
-		}
-		else if (result == HSI_FILE_IO_ERROR) {
-		}
+#if 1
+		m_localData = true;
+		CStdioFile tfd;
+		// headerデータ出力
+		if (tfd.Open(pathName, CFile::modeRead | CFile::typeText)) {
+			CString buf;
+			CString key, val;
+			int byteoder,datatype;
+			while (tfd.ReadString(buf)) {
+				int id = buf.FindOneOf(_T("="));
+				if (id == -1) {
+					continue;
+				}
+				key = buf.Mid(0, id);
+				key.Trim();
+				val = buf.Mid(id+1);
+				val.Trim();
+				if (key == _T("bands")) {
+					m_o_p_cube->format.nr_bands = _ttoi(val);
+				}
+				else if (key == _T("byte order")) {
+					byteoder = _ttoi(val);
+				}
+				else if (key == _T("data type")) {
+					datatype = _ttoi(val);
+				}
+				else if (key == _T("file type")) {
+				}
+				else if (key == _T("header offset")) {
+				}
+				else if (key == _T("interleave")) {
+				}
+				else if (key == _T("lines")) {
+					m_o_p_cube->format.height = _ttoi(val);
+				}
+				else if (key == _T("samples")) {
+					m_o_p_cube->format.width = _ttoi(val);
+				}
+				else if (key == _T("wavelength")) {
+					tfd.ReadString(buf);
+					m_o_p_cube->format.band_names = new double[m_o_p_cube->format.nr_bands];
+
+					double dval;
+					int cnt = 0;
+					while (cnt < m_o_p_cube->format.nr_bands) {
+						id = buf.FindOneOf(_T(","));
+						if (id == -1) {
+							break;
+						}
+						val = buf.Mid(0, id);
+						val.Trim();
+						buf = buf.Mid(id + 1);
+						buf.Trim();
+
+						dval = _ttof(val);
+						if (!val.IsEmpty()) {
+							m_o_p_cube->format.band_names[cnt] = dval;
+							cnt++;
+						}
+					}
+					buf.Trim();
+					if (!buf.IsEmpty()) {
+						dval = _ttof(val);
+						m_o_p_cube->format.band_names[cnt] = dval;
+					}
+					tfd.ReadString(buf);
+				}
+			}
+			m_o_p_cube->format.size_bytes = m_o_p_cube->format.width * m_o_p_cube->format.height * m_o_p_cube->format.nr_bands * sizeof(float);
+			tfd.Close();
+
+			float ***ppp_data = new float **[m_o_p_cube->format.nr_bands];
+			for (int b = 0; b < m_o_p_cube->format.nr_bands; b++) {
+				ppp_data[b] = new float*[m_o_p_cube->format.height];
+				for (int h = 0; h < m_o_p_cube->format.height; h++) {
+					ppp_data[b][h] = new float[m_o_p_cube->format.width];
+				}
+			}
+
+			CString drive, dir, name, ext;
+			CFileUtil::splitPath(pathName, drive, dir, name, ext);
+			CString rawpath = drive + dir + name + _T(".raw");
+			CFile fd;
+			if (fd.Open(rawpath, CFile::modeRead | CFile::typeBinary)) {
+				for (int b = 0; b < m_o_p_cube->format.nr_bands; b++) {
+					for (int h = 0; h < m_o_p_cube->format.height; h++) {
+						fd.Read(ppp_data[b][h], sizeof(float)*m_o_p_cube->format.width);
+					}
+				}
+			}
+			m_o_p_cube->ppp_data = ppp_data;
+	}
+#else
+		errorLog(CString(__FILE__), __LINE__, _T("commonLoadCube()"), result);
 		close();
 		return false;
+#endif
 	}
 	m_pathName = pathName;
 	return true;
@@ -71,7 +163,30 @@ void CScanDataIO::close()
 {
 	if (m_o_p_cube) {
 		m_pathName = _T("");
-		commonDeallocateCube(m_o_p_cube);
+		if (m_localData) {
+			int band = m_o_p_cube->format.nr_bands;
+			int widht = m_o_p_cube->format.width;
+			int height = m_o_p_cube->format.height;
+			for (int b = 0; b < band; b++) {
+				for (int h = 0; h < height; h++) {
+					if (m_o_p_cube->ppp_data[b][h]) {
+						delete [] m_o_p_cube->ppp_data[b][h];
+					}
+				}
+				if (m_o_p_cube->ppp_data[b]) {
+					delete [] m_o_p_cube->ppp_data[b];
+				}
+			}
+			delete [] m_o_p_cube->ppp_data;
+			m_o_p_cube->ppp_data = nullptr;
+			if (m_o_p_cube->format.band_names) {
+				delete[] m_o_p_cube->format.band_names;
+				m_o_p_cube->format.band_names = nullptr;
+			}
+		}
+		else {
+			commonDeallocateCube(m_o_p_cube);
+		}
 	}
 }
 
@@ -85,6 +200,7 @@ void CScanDataIO::release()
 		delete m_o_p_cube;
 		m_o_p_cube = nullptr;
 	}
+	m_localData = false;
 }
 
 /// <summary>
@@ -509,4 +625,463 @@ bool CScanDataIO::joinend(CString outpathName)
 	return true;
 }
 
+bool CScanDataIO::bicubic(float *** srcdata, int width, int height, int band, float orignX, float orignY, float *p)
+{
+	float integral[2], fractional[2];
+	fractional[0] = modff(orignX, &integral[0]);
+	fractional[1] = modff(orignY, &integral[1]);
 
+	int x0 = (int)integral[0];
+	int x1 = x0 + 1;
+	if (x1 >= width) {
+		x1 = x0;
+	}
+	int y0 = (int)integral[1];
+	int y1 = y0 + 1;
+	if (y1 >= height) {
+		y1 = y0;
+	}
+	float dx = orignX - (float)x0;
+	float dy = orignY - (float)y0;
+	float a = (float)((1.0 - dx) * (1.0 - dy));
+	float b = (float)((1.0 - dx) * dy);
+	float c = (float)(dx * (1.0 - dy));
+	float d = dx * dy;
+
+	for (int bd = 0; bd < band; bd++) {
+		p[bd] = srcdata[bd][y0][x0] * a + srcdata[bd][y1][x0] * b + srcdata[bd][y0][x1] * c + srcdata[bd][y1][x0] * d;
+	}
+	return true;
+}
+
+#if 0
+bool CScanDataIO::scale(int width, int height, CString outpathPath, CString outName)
+{
+	int X_SIZE = m_o_p_cube->format.width;
+	int Y_SIZE = m_o_p_cube->format.height;
+	double zx	= (double)width / (double)m_o_p_cube->format.width;
+	double zy	= (double)height / (double)m_o_p_cube->format.height;
+	int band	= m_o_p_cube->format.nr_bands;
+
+	float *** ppp_data;
+	ppp_data = new float **[band];
+	for (int b = 0; b < band; b++) {
+		ppp_data[b] = new float*[Y_SIZE];
+		for (int h = 0; h < Y_SIZE; h++) {
+			ppp_data[b][h] = new float[X_SIZE];
+			ZeroMemory(ppp_data[b][h], sizeof(float)*X_SIZE);
+		}
+	}
+
+	int		i, j, m, n, d;
+	float	x, y, p, q;
+	int		xs = m_o_p_cube->format.width / 2;
+	int		ys = m_o_p_cube->format.height / 2;
+
+	for (int b = 0; b < band; b++) {
+		for (i = -ys; i < ys; i++) {
+			for (j = -xs; j < xs; j++) {
+				y = (float)(i / zy);
+				x = (float)(j / zx);
+				if (y > 0) m = (int)y;
+				else m = (int)(y - 1);
+				if (x > 0) n = (int)x;
+				else n = (int)(x - 1);
+				q = y - m;
+				p = x - n;
+				if (q == 1) { q = 0; m = m + 1; }
+				if (p == 1) { p = 0; n = n + 1; }
+				if ((m >= -ys) && (m < ys) && (n >= -xs) && (n < xs)) {
+					d = (int)((1.0 - q)*((1.0 - p) * m_o_p_cube->ppp_data[b][m + ys][n + xs]
+						+ p * m_o_p_cube->ppp_data[b][m + ys][n + 1 + xs])
+						+ q * ((1.0 - p) * m_o_p_cube->ppp_data[b][m + 1 + ys][n + xs]
+							+ p * m_o_p_cube->ppp_data[b][m + 1 + ys][n + 1 + xs]));
+				}
+				else {
+					d = 0;
+				}
+
+//				ppp_data[b][(int)((i + ys)*zy)][(int)((j + xs)*zx)] = d;
+				ppp_data[b][i + ys][j + xs] = (float)d;
+			}
+		}
+	}
+
+	CubeFloat*	o_p_cube = new CubeFloat();
+	o_p_cube->format = m_o_p_cube->format;
+	o_p_cube->format.width	= width;
+	o_p_cube->format.height = height;
+	o_p_cube->format.size_bytes = width * height * band * sizeof(float);
+
+	o_p_cube->info = m_o_p_cube->info;
+	o_p_cube->p_reserved = m_o_p_cube->p_reserved;
+	o_p_cube->ppp_data = ppp_data;
+
+	HSI_RETURN return_val = commonSaveCube(*o_p_cube, outpathPath, outName, FF_ENVI);
+	if (HSI_OK != return_val)
+	{
+		errorLog(CString(__FILE__), __LINE__, _T("SaveCube (cube)"), return_val);
+		return false;
+	}
+	return true;
+}
+
+void CScanDataIO::calc_aff_coef(double HScale, double VScale, double Angle, int InWidth, int InHeight, int OutWidth, int OutHeight, double coef[6])
+{
+	double PI = 3.141592648777698869248;
+	double rad = (PI / 180.0) * Angle;
+
+	//　左上、右上、左下、右下の順に配列
+	double dX[4], dY[4];
+	double MinX, MinY;
+
+	coef[0] = HScale * cos(rad);
+	if (fabs(coef[0]) < 1.0E-6) {
+		coef[0] = 0.0;
+	}
+	coef[1] = VScale * sin(rad);
+	if (fabs(coef[1]) < 1.0E-6) {
+		coef[1] = 0.0;
+	}
+	coef[3] = -1 * HScale * sin(rad);
+	if (fabs(coef[3]) < 1.0E-6) {
+		coef[3] = 0.0;
+	}
+	coef[4] = VScale * cos(rad);
+	if (fabs(coef[4]) < 1.0E-6) {
+		coef[4] = 0.0;
+	}
+
+	//変換後の4隅の座標を計算する
+	dX[0] = 0.0;
+	dX[1] = coef[0] * (double)(InWidth);
+	dX[2] = coef[1] * (double)(InHeight);
+	dX[3] = (double)OutWidth;
+	dY[0] = 0.0;
+	dY[1] = coef[3] * (double)(InWidth);
+	dY[2] = coef[4] * (double)(InHeight);
+	dY[3] = (double)OutHeight;
+
+	//変換後の座標値の最大値と最小値を求める。
+	MinX = dX[0];
+	MinY = dY[0];
+
+	for (int i = 1; i < 4; i++)
+	{
+		if (MinX > dX[i]) MinX = dX[i];
+		if (MinY > dY[i]) MinY = dY[i];
+	}
+
+	//変換後の座標が負にならないように平行移動量を決定する。
+	coef[2] = -1 * MinX;
+	coef[5] = -1 * MinY;
+}
+
+void CScanDataIO::aff_trans(float **src, float **dst, int srcWidth, int srcHeight, int dstWidth, int dstHeight, double coef[6])
+{
+	int r, c;
+	int nRow, nCol;
+	double dRow, dCol;
+
+	for (r = 0; r < dstHeight; r++) {
+		for (c = 0; c < dstWidth; c++) {
+			dCol = coef[0] * (double)c + coef[1] * (double)r + coef[2];
+			dRow = coef[3] * (double)c + coef[4] * (double)r + coef[5];
+			nCol = (int)floor(dCol + 0.5);
+			nRow = (int)floor(dRow + 0.5);
+
+			if ((nCol < 0) || (nCol >= srcWidth) || (nRow < 0) || (nRow >= srcHeight)) {
+				dst[r][c] = 0.0;
+			}
+			else {
+				dst[r][c] = src[nRow][nCol];
+			}
+		}
+	}
+
+	return;
+}
+#endif
+
+void CScanDataIO::writeLog(CLog::LOGLEVEL level, CString filePath, long lineNo, CString msg)
+{
+	CLog log;
+	CString ErrMsg;
+	ErrMsg.Format(_T(" File:%s Line:%ld:%s"), (LPCTSTR)filePath, lineNo, (LPCTSTR)msg);
+	log.logWrite(level, ErrMsg);
+}
+
+void CScanDataIO::errorLog(CString filePath, long lineNo, CString i_caller_name, HSI_RETURN i_return_val)
+{
+	if (i_return_val == HSI_OK)
+	{
+		return;
+	}
+
+	CString errs;
+	switch (i_return_val)
+	{
+	case HSI_HANDLE_INVALID:
+		errs = _T("Invalid device handle specified.");
+		break;
+	case HSI_ARGUMENT_INVALID:
+		errs = _T("Invalid argument provided in function call.");
+		break;
+	case HSI_CALL_ILLEGAL:
+		errs = _T("Function call illegal given the current snapscan state.");
+		break;
+	case HSI_FILE_NOT_FOUND:
+		errs = _T("A file could not be found.");
+		break;
+	case HSI_CALIBRATION_FILE_NOT_FOUND:
+		errs = _T("Sensor calibration file could not be found.");
+		break;
+	case HSI_CONNECTION_FAILED:
+		errs = _T("Snapscan system could not be connected.");
+		break;
+	case HSI_ALLOCATION_ERROR:
+		errs = _T("Allocation of resources failed.");
+		break;
+	case HSI_ACQUISITION_FAILED:
+		errs = _T("Unable to fulfill acquisition.");
+		break;
+	case HSI_DATA_NOT_ALLOCATED:
+		errs = _T("Provided data structure is not allocated.");
+		break;
+	case HSI_DATA_NOT_VALID:
+		errs = _T("Data with valid flag false provided as input for operation.");
+		break;
+	case HSI_DATA_NOT_COMPATIBLE:
+		errs = _T("Data provided is not compatible.");
+		break;
+	case HSI_FILE_SYSTEM_ERROR:
+		errs = _T("Specified directory doesn't exist and could not be created.");
+		break;
+	case HSI_FILE_IO_ERROR:
+		errs = _T("Could not read or write data from the filesystem.");
+		break;
+	case HSI_INTERNAL_ERROR:
+		errs = _T("An undexpected internal error occurred.");
+		break;
+	default:
+		errs = _T("Unknown error.");
+		break;
+	}
+
+	CLog log;
+	CString ErrMsg;
+	ErrMsg.Format(_T(" File:%s Line:%ld:%s:%s"), (LPCTSTR)filePath, lineNo, (LPCTSTR)i_caller_name, (LPCTSTR)errs);
+	log.logWrite(CLog::LOGLEVEL::Error, ErrMsg);
+	return;
+}
+
+double ** CScanDataIO::MatrixInit()
+{
+	double init[3][3] = { {1,0,0},{0,1,0},{0,0,1} };
+	double **mat = new double *[3];
+	for (int i = 0; i < 3; i++) {
+		mat[i] = new double[3];
+		for (int j = 0; j < 3; j++) {
+			mat[i][j] = init[i][j];
+		}
+	}
+	return mat;
+}
+
+void CScanDataIO::MatrixRelease(double ** &mat)
+{
+	if (mat != nullptr) {
+		for (int i = 0; i < 3; i++) {
+			if (mat[i] != nullptr) {
+				delete[] mat[i];
+				mat[i] = nullptr;
+			}
+		}
+		delete  mat;
+		mat = nullptr;
+	}
+}
+
+void CScanDataIO::MatrixMultiplication(double **src, double **dst)
+{
+	double d[3];
+	d[0] = src[0][0] * dst[0][0] + src[0][1] * dst[1][0] + src[0][2] * dst[2][0];
+	d[1] = src[0][0] * dst[0][1] + src[0][1] * dst[1][1] + src[0][2] * dst[2][1];
+	d[2] = src[0][0] * dst[0][2] + src[0][1] * dst[1][2] + src[0][2] * dst[2][2];
+	src[0][0] = d[0];
+	src[0][1] = d[1];
+	src[0][2] = d[2];
+
+	d[0] = src[1][0] * dst[0][0] + src[1][1] * dst[1][0] + src[1][2] * dst[2][0];
+	d[1] = src[1][0] * dst[0][1] + src[1][1] * dst[1][1] + src[1][2] * dst[2][1];
+	d[2] = src[1][0] * dst[0][2] + src[1][1] * dst[1][2] + src[1][2] * dst[2][2];
+	src[1][0] = d[0];
+	src[1][1] = d[1];
+	src[1][2] = d[2];
+
+	d[0] = src[2][0] * dst[0][0] + src[2][1] * dst[1][0] + src[2][2] * dst[2][0];
+	d[1] = src[2][0] * dst[0][1] + src[2][1] * dst[1][1] + src[2][2] * dst[2][1];
+	d[2] = src[2][0] * dst[0][2] + src[2][1] * dst[1][2] + src[2][2] * dst[2][2];
+	src[2][0] = d[0];
+	src[2][1] = d[1];
+	src[2][2] = d[2];
+}
+
+void CScanDataIO::MatrixMove(double **mat, double x, double y)
+{
+	double prm[3][3] = { {1,0,x},{0,1,y},{0,0,1} };
+	double **dst = MatrixInit();
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			dst[i][j] = prm[i][j];
+		}
+	}
+	MatrixMultiplication(mat, (double **)dst);
+	MatrixRelease(dst);
+}
+
+void CScanDataIO::MatrixRotete(double **mat, double angle)
+{
+	double PI = 3.141592648777698869248;
+	double r = angle * PI / 180.0;
+	double s = sin(r);
+	if (fabs(s) < 1.0E-6) {
+		s = 0.0;
+	}
+	double c = cos(r);
+	if (fabs(c) < 1.0E-6) {
+		c = 0.0;
+	}
+
+	double prm[3][3] = { {c,-s,0,},{s,c,0},{0,0,1} };
+	double **dst = MatrixInit();
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			dst[i][j] = prm[i][j];
+		}
+	}
+
+	MatrixMultiplication(mat, (double **)dst);
+	MatrixRelease(dst);
+}
+
+void CScanDataIO::MatrixScale(double **mat, double x, double y)
+{
+	double prm[3][3] = { {x,0,0,},{0,y,0},{0,0,1} };
+	double **dst = MatrixInit();
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			dst[i][j] = prm[i][j];
+		}
+	}
+
+	MatrixMultiplication(mat, (double **)dst);
+	MatrixRelease(dst);
+}
+
+void  CScanDataIO::MatrixInvers(double **mat)
+{
+	double a[3][3];
+	double D = 1.0 / (mat[0][0] * mat[1][1] * mat[2][2] + mat[0][1] * mat[1][2] * mat[2][0] + mat[0][2] * mat[1][0] * mat[2][1] - mat[0][2] * mat[1][1] * mat[2][0] - mat[0][1] * mat[1][0] * mat[2][2] - mat[0][0] * mat[1][2] * mat[2][1]);
+
+	a[0][0] =  (mat[1][1] * mat[2][2] - mat[1][2] * mat[2][1]) * D;
+	a[0][1] = -(mat[0][1] * mat[2][2] - mat[0][2] * mat[2][1]) * D;
+	a[0][2] =  (mat[0][1] * mat[1][2] - mat[0][2] * mat[1][1]) * D;
+
+	a[1][0] = -(mat[1][0] * mat[2][2] - mat[1][2] * mat[2][0]) * D;
+	a[1][1] =  (mat[0][0] * mat[2][2] - mat[0][2] * mat[2][0]) * D;
+	a[1][2] = -(mat[0][0] * mat[1][2] - mat[0][2] * mat[1][0]) * D;
+
+	a[2][0] =  (mat[1][0] * mat[2][1] - mat[1][1] * mat[2][0]) * D;
+	a[2][1] = -(mat[0][0] * mat[2][1] - mat[0][1] * mat[2][0]) * D;
+	a[2][2] =  (mat[0][0] * mat[1][1] - mat[0][1] * mat[1][0]) * D;
+
+	for (int i = 0; i < 3; i++) {
+		for (int j = 0; j < 3; j++) {
+			mat[i][j] = a[i][j];
+		}
+	}
+}
+
+bool CScanDataIO::affine(int srcWidth, int srcHeight, float ***src, int dstWidth, int distHeight, float ***dst, int band, double **mat, bool bBicubic/*=true*/)
+{
+	double sx, sy;
+	int x, y;
+	float *p = new float[band];
+	for (int dy = 0; dy < distHeight; dy++) {
+		for (int dx = 0; dx < dstWidth; dx++) {
+			sx = mat[0][0] * (double)dx + mat[0][1] * (double)dy + mat[0][2];
+			sy = mat[1][0] * (double)dx + mat[1][1] * (double)dy + mat[1][2];
+			x = (int)floor(sx + .5);
+			y = (int)floor(sy + .5);
+			if (x < 0) x = 0;
+			else if (x >= srcWidth) x = srcWidth - 1;
+			if (y < 0) y = 0;
+			else if (y >= srcHeight) y = srcHeight - 1;
+
+			if ((x < 0) || (x >= srcWidth) || (y < 0) || (y >= srcHeight)) {
+				for (int b = 0; b < band; b++) {
+					dst[b][dx][dy] = 0.0;
+				}
+			}
+			else {
+				if (bBicubic) {
+					bicubic(src, srcWidth, srcHeight, band, (float)x, (float)y, p);
+					for (int b = 0; b < band; b++) {
+						dst[b][dy][dx] = p[b];
+					}
+				} else {
+					for (int b = 0; b < band; b++) {
+						dst[b][dy][dx] = src[b][y][x];
+					}
+				}
+			}
+		}
+	}
+	return true;
+}
+
+bool CScanDataIO::ScanDataConvert(int srcWidth, int srcHeight, int band, float ***src, double scale, int &dstWidth, int &dstHeight, float ***& dst, bool bBicubic/* = true*/)
+{
+	double **mat = MatrixInit();
+	dstHeight = (int)(srcWidth * scale);
+	dstWidth  = (int)(srcHeight * scale);
+
+	MatrixMove(mat, dstWidth / 2, dstHeight / 2);
+	MatrixScale(mat, scale, scale);
+	MatrixRotete(mat, 90.0);
+	MatrixMove(mat, -srcWidth / 2, -srcHeight / 2);
+	MatrixInvers(mat);
+
+	dst = new float**[band];
+	for (int b = 0; b < band; b++) {
+		dst[b] = new float*[dstHeight];
+		for (int y = 0; y < dstHeight; y++) {
+			dst[b][y] = new float[dstWidth];
+			ZeroMemory(dst[b][y],sizeof(float)*dstWidth);
+		}
+	}
+	affine(srcWidth, srcHeight, src, dstWidth, dstHeight, dst, band, mat, bBicubic);
+	MatrixRelease(mat);
+	return true;
+}
+
+void CScanDataIO::FreeConvertData(int dstHeight, int band, float ***& dst)
+{
+	if (dst) {
+		for (int b = 0; b < band; b++) {
+			if (dst[b]) {
+				for (int y = 0; y < dstHeight; y++) {
+					if (dst[b][y]) {
+						delete[] dst[b][y];
+						dst[b][y] = nullptr;
+					}
+				}
+				delete[] dst[b];
+				dst[b] = nullptr;
+			}
+		}
+		delete[] dst;
+		dst = nullptr;
+	}
+}
