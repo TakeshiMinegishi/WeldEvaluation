@@ -2399,7 +2399,6 @@ bool CWeldEvaluationDoc::Analize(int targetID, int AnalysisMethodID)
 	CConfigrationIO sys(m_SystemFilePathName);
 	CString modulePath = sys.getString(_T("Common"), _T("AIModuleFolder"));
 	if (modulePath.IsEmpty()) {
-		AfxMessageBox(_T("modulePath.IsEmpty()"), MB_OK);	// mine
 		return false;
 	}
 	CString returnfile = CFileUtil::FilePathCombine(modulePath, _T("return.txt"));
