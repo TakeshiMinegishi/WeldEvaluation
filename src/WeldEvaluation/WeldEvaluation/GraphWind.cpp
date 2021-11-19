@@ -452,15 +452,19 @@ void CGraphWind::DrawGraph(CDC *pDC, CRect area)
 	CPen* orgPen = pDC->SelectObject(m_graphPen);
 	int nGraph = (int)m_data.size();
 
-	double lh = 100.0;
-	double hh = 240.0;
+	double lh = 0.0;
+	double hh = 360.0;
 	double hs = (hh - lh) / (double)nGraph;
+	if (hs < 30.0) {	// 色相差30度未満だったら、色を繰り返す
+		hs = 30.0;
+	}
 
 	COLORREF dcol;
 	double v = 0.0;
 	int zeroLine = (int)(m_offset + 0.5)*(nGraph - 1);
 	for (int i = nGraph - 1; i >= 0; i--) {
-		H2RGB((int)(hh - (i*hs) + .5), dcol);
+//		H2RGB((int)(hh - (i*hs) + .5), dcol);
+		H2RGB((int)(lh+hs*(nGraph-i-1)), dcol);
 		CPen *graphPen = new CPen;
 		graphPen->CreatePen(PS_SOLID, 1, dcol);
 		pDC->SelectObject(graphPen);
