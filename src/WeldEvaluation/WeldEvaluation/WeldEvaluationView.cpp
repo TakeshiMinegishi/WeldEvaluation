@@ -1778,6 +1778,19 @@ LRESULT CWeldEvaluationView::OnAnalyzeRequest(WPARAM wparam, LPARAM lparam)
 		}
 
 		m_OprtAnalize.LoadParamater();
+
+		// プロパティページを更新
+		switch (targetID) {
+		case	CWeldEvaluationDoc::eResinSurface:		// 樹脂
+			m_PropResinPage.LoadParamater(CWeldEvaluationDoc::eResinSurface);
+			break;
+		case	CWeldEvaluationDoc::eMetalSurface:		// 金属
+			m_PropMetalPage.LoadParamater(CWeldEvaluationDoc::eMetalSurface);
+			break;
+		case	CWeldEvaluationDoc::eJoiningResult:		// 結合結果
+			m_PropResultPage.LoadParamater(CWeldEvaluationDoc::eJoiningResult);
+			break;
+		}
 	}
 
 	return iResult;
