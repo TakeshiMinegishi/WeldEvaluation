@@ -115,6 +115,10 @@ void CSpectralDlg::OnDestroy()
 		delete m_pGraphWnd;
 		m_pGraphWnd = nullptr;
 	}
+
+	// 全Viewを再描画
+	m_pParemt->Invalidate(FALSE);
+	m_pParemt->UpdateWindow();
 }
 
 /// <summary>

@@ -463,7 +463,6 @@ void CGraphWind::DrawGraph(CDC *pDC, CRect area)
 	double v = 0.0;
 	int zeroLine = (int)(m_offset + 0.5)*(nGraph - 1);
 	for (int i = nGraph - 1; i >= 0; i--) {
-//		H2RGB((int)(hh - (i*hs) + .5), dcol);
 		H2RGB((int)(lh+hs*(nGraph-i-1)), dcol);
 		CPen *graphPen = new CPen;
 		graphPen->CreatePen(PS_SOLID, 1, dcol);

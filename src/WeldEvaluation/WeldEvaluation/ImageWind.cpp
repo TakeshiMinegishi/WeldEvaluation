@@ -205,6 +205,19 @@ void CImageWind::OnLButtonDown(UINT nFlags, CPoint point)
 				cpt = point;
 				clientToScan(cpt);
 				pos.push_back(cpt);
+
+				{
+					CDC *dc = GetDC();
+					CPen *pPen = new CPen;
+					pPen->CreatePen(PS_SOLID, 5, RGB(0, 0, 0));
+					CPen* orgPen = dc->SelectObject(pPen);
+					dc->MoveTo(m_pLButtonDownosPos.x, m_pLButtonDownosPos.y);
+					dc->LineTo(point.x, point.y);
+					dc->SelectObject(orgPen);
+					delete pPen;
+					ReleaseDC(dc);
+				}
+
 				GetParent()->SendMessage(WM_AREA_SPECTRUM_GRAPH_SET, (WPARAM)m_Type, (LPARAM)&pos);
 				pos.clear();
 			}
@@ -213,12 +226,18 @@ void CImageWind::OnLButtonDown(UINT nFlags, CPoint point)
 				m_bAriaSelect = true;
 				m_pLButtonDownosPos = point;
 				m_deltaPos = point;
+				// ‘SView‚ðÄ•`‰æ
+				GetParent()->Invalidate(FALSE);
+				GetParent()->UpdateWindow();
 			}
 		}
 		else {
 			m_bButtonDown = true;
 			m_pLButtonDownosPos = point;
 			m_deltaPos = point;
+			// ‘SView‚ðÄ•`‰æ
+			GetParent()->Invalidate(FALSE);
+			GetParent()->UpdateWindow();
 		}
 	}
 	CDialog::OnLButtonDown(nFlags, point);
