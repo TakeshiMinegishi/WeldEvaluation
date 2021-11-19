@@ -220,13 +220,21 @@ void CPropTabPageParameter::ViewJointRatio(int id, int ViewJointRatioNo)
 		case	CWeldEvaluationDoc::eMetalSurface	:	// ‹à‘®
 			{
 				m_JointRatio.Format(_T("%.1lf"),pDoc->MetalGetJointRetio(ViewJointRatioNo));
-				UpdateIDColor(pDoc->MetalGetJointColor(ViewJointRatioNo));
+				COLORREF col = pDoc->MetalGetJointColor(ViewJointRatioNo);
+				if (col == 0) {
+					col = pDoc->GetClassColor(ViewJointRatioNo, m_NumberOfClass);
+				}
+				UpdateIDColor(col);
 		}
 			break;
 		case	CWeldEvaluationDoc::eJoiningResult	:	// Ú‡Œ‹‰Ê
 			{
 				m_JointRatio.Format(_T("%.1lf"),pDoc->ResultGetJointRetio(ViewJointRatioNo));
-				UpdateIDColor(pDoc->ResultGetJointColor(ViewJointRatioNo));
+				COLORREF col = pDoc->ResultGetJointColor(ViewJointRatioNo);
+				if (col == 0) {
+					col = pDoc->GetClassColor(ViewJointRatioNo, m_NumberOfClass);
+				}
+				UpdateIDColor(col);
 		}
 			break;
 		}
