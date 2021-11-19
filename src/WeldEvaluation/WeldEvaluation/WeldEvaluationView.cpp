@@ -1762,13 +1762,24 @@ LRESULT CWeldEvaluationView::OnAnalyzeRequest(WPARAM wparam, LPARAM lparam)
 		iResult = -1;
 	}
 	m_bUpdateOperation = true;
-	m_OprtSetting.UpddateResist(m_bUpdateOperation,m_bReadMode);
+	m_OprtSetting.UpddateResist(m_bUpdateOperation, m_bReadMode);
 	m_OprtSetting.Update();
+
 	if (iResult < 0) {
 		CString msg;
 		msg.LoadString(IDM_ERR_NOT_ANALYZE);
 		AfxMessageBox(msg,MB_OK|MB_ICONSTOP);
 	}
+	else {
+		// もし、解析した画像の表示モードがスキャンなら解析に変更
+		if (pDoc->GetDisplayMode(targetID) == CWeldEvaluationDoc::DisplayModeScan) {
+			OnViewChangeRequest(targetID, CWeldEvaluationDoc::DisplayModeResult);
+			m_pReginWnd->Invalidate();
+		}
+
+		m_OprtAnalize.LoadParamater();
+	}
+
 	return iResult;
 }
 
