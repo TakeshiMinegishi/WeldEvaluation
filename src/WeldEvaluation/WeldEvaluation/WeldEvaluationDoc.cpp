@@ -1312,26 +1312,26 @@ CString CWeldEvaluationDoc::getClassificationDataFilePath(int ScanID, int type)
 	switch (ScanID) {
 	case	eResinSurface:	///< Ž÷Ž‰
 		if (type == AnalizeTypeKMeans) {
-			name = m_ProjectIO.GetResinDendrogramClassFile();
+			name = m_ProjectIO.GetResinKmeansClassFile();
 		}
 		else {
-			name = m_ProjectIO.GetResinKmeansClassFile();
+			name = m_ProjectIO.GetResinDendrogramClassFile();
 		}
 		break;
 	case	eMetalSurface:	///< ‹à‘®
 		if (type == AnalizeTypeKMeans) {
-			name = m_ProjectIO.GetMetalDendrogramClassFile();
+			name = m_ProjectIO.GetMetalKmeansClassFile();
 		}
 		else {
-			name = m_ProjectIO.GetMetalKmeansClassFile();
+			name = m_ProjectIO.GetMetalDendrogramClassFile();
 		}
 		break;
 	case	eJoiningResult:	///< Ú‡Œ‹‰Ê
 		if (type == AnalizeTypeKMeans) {
-			name = m_ProjectIO.GetResultDendrogramClassFile();
+			name = m_ProjectIO.GetResultKmeansClassFile();
 		}
 		else {
-			name = m_ProjectIO.GetResultKmeansClassFile();
+			name = m_ProjectIO.GetResultDendrogramClassFile();
 		}
 		break;
 	default:
@@ -2399,6 +2399,7 @@ bool CWeldEvaluationDoc::Analize(int targetID, int AnalysisMethodID)
 	CConfigrationIO sys(m_SystemFilePathName);
 	CString modulePath = sys.getString(_T("Common"), _T("AIModuleFolder"));
 	if (modulePath.IsEmpty()) {
+		AfxMessageBox(_T("modulePath.IsEmpty()"), MB_OK);	// mine
 		return false;
 	}
 	CString returnfile = CFileUtil::FilePathCombine(modulePath, _T("return.txt"));
