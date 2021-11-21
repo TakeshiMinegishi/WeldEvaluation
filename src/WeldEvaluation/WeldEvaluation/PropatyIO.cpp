@@ -194,36 +194,38 @@ bool CPropatyIO::SetTestName(CString name)
 	return true;
 }
 
-/// <summary>
-/// 重なりピクセル数の取得
-/// </summary>
-/// <returns>重なりピクセル数を返す</returns>
-UINT CPropatyIO::NumberOfOverridePixel(void)
+bool CPropatyIO::WriteProjectName(CString PropatyFilePath, CString ProjectName)
 {
-	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
-		return 0;
-	}
-	CConfigrationIO sys(m_ParamaterFilePath);
-	return sys.getInt(_T("Setting"),_T("Number_of_overlapping_pixels"));
-}
-
-/// <summary>
-/// 重なりピクセル数の設定
-/// </summary>
-/// <param name="num">重なりピクセル数</param>
-/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
-bool CPropatyIO::SetOverridePixelNumber(UINT num)
-{
-	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
+	if (!CFileUtil::fileExists(PropatyFilePath)) {
 		return false;
 	}
-	CConfigrationIO sys(m_ParamaterFilePath);
-	if (!sys.setInt(_T("Setting"),_T("Number_of_overlapping_pixels"),num)) {
-		return false;
+
+	bool bResult = true;
+	CConfigrationIO sys(PropatyFilePath);
+	// プロジェクト名
+	if (!sys.setString(_T("Common"), _T("Projent_name"), ProjectName)) {
+		bResult = false;
 	}
-	return true;
+	return bResult;
 }
 
+bool CPropatyIO::WriteTestName(CString PropatyFilePath, CString TestName)
+{
+	if (!CFileUtil::fileExists(PropatyFilePath)) {
+		return false;
+	}
+
+	bool bResult = true;
+	CConfigrationIO sys(PropatyFilePath);
+	// 名称
+	if (!sys.setString(_T("Common"), _T("Test_name"), TestName)) {
+		bResult = false;
+	}
+	return bResult;
+}
+
+
+#if 0
 /// <summary>
 /// Integration_time_msの取得
 /// </summary>
@@ -255,66 +257,6 @@ bool CPropatyIO::SetIntegrationTimeMs(double time)
 }
 
 /// <summary>
-/// 縦方向の解像度の取得
-/// </summary>
-/// <returns>縦方向の解像度を返す</returns>
-UINT CPropatyIO::GetVerticalResolution(void)
-{
-	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
-		return 0;
-	}
-	CConfigrationIO sys(m_ParamaterFilePath);
-	return sys.getInt(_T("Setting"),_T("Vertical_resolution"));
-}
-
-/// <summary>
-/// 縦方向の解像度の設定
-/// </summary>
-/// <param name="resolution">縦方向の解像度</param>
-/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
-bool CPropatyIO::SetVerticalResolution(UINT resolution)
-{
-	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
-		return false;
-	}
-	CConfigrationIO sys(m_ParamaterFilePath);
-	if (!sys.setInt(_T("Setting"),_T("Vertical_resolution"),resolution)) {
-		return false;
-	}
-	return true;
-}
-
-/// <summary>
-/// 横方向の解像度の取得
-/// </summary>
-/// <returns>横方向の解像度を返す</returns>
-UINT CPropatyIO::GetHorizontalResolution(void)
-{
-	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
-		return 0;
-	}
-	CConfigrationIO sys(m_ParamaterFilePath);
-	return sys.getInt(_T("Setting"),_T("Horizontal_resolution"));
-}
-
-/// <summary>
-/// 横方向の解像度の設定
-/// </summary>
-/// <param name="resolution">横方向の解像度</param>
-/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
-bool CPropatyIO::SetHorizontalResolution(UINT resolution)
-{
-	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
-		return false;
-	}
-	CConfigrationIO sys(m_ParamaterFilePath);
-	if (!sys.setInt(_T("Setting"),_T("Horizontal_resolution"),resolution)) {
-		return false;
-	}
-	return true;
-}
-
-/// <summary>
 /// バンド数の取得
 /// </summary>
 /// <returns>バンド数を返す</returns>
@@ -339,6 +281,97 @@ bool CPropatyIO::SetNumberOfBand(UINT band)
 	}
 	CConfigrationIO sys(m_ParamaterFilePath);
 	if (!sys.setInt(_T("Setting"), _T("Number_of_band"), band)) {
+		return false;
+	}
+	return true;
+}
+#endif
+
+/// <summary>
+/// 重なりピクセル数の取得
+/// </summary>
+/// <returns>重なりピクセル数を返す</returns>
+UINT CPropatyIO::NumberOfOverridePixel(void)
+{
+	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
+		return 0;
+	}
+	CConfigrationIO sys(m_ParamaterFilePath);
+	return sys.getInt(_T("Setting"), _T("Number_of_overlapping_pixels"));
+}
+
+/// <summary>
+/// 重なりピクセル数の設定
+/// </summary>
+/// <param name="num">重なりピクセル数</param>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
+bool CPropatyIO::SetOverridePixelNumber(UINT num)
+{
+	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
+		return false;
+	}
+	CConfigrationIO sys(m_ParamaterFilePath);
+	if (!sys.setInt(_T("Setting"), _T("Number_of_overlapping_pixels"), num)) {
+		return false;
+	}
+	return true;
+}
+
+/// <summary>
+/// 縦方向の解像度の取得
+/// </summary>
+/// <returns>縦方向の解像度を返す</returns>
+UINT CPropatyIO::GetVerticalResolution(void)
+{
+	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
+		return 0;
+	}
+	CConfigrationIO sys(m_ParamaterFilePath);
+	return sys.getInt(_T("Setting"), _T("Vertical_resolution"));
+}
+
+/// <summary>
+/// 縦方向の解像度の設定
+/// </summary>
+/// <param name="resolution">縦方向の解像度</param>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
+bool CPropatyIO::SetVerticalResolution(UINT resolution)
+{
+	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
+		return false;
+	}
+	CConfigrationIO sys(m_ParamaterFilePath);
+	if (!sys.setInt(_T("Setting"), _T("Vertical_resolution"), resolution)) {
+		return false;
+	}
+	return true;
+}
+
+/// <summary>
+/// 横方向の解像度の取得
+/// </summary>
+/// <returns>横方向の解像度を返す</returns>
+UINT CPropatyIO::GetHorizontalResolution(void)
+{
+	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
+		return 0;
+	}
+	CConfigrationIO sys(m_ParamaterFilePath);
+	return sys.getInt(_T("Setting"), _T("Horizontal_resolution"));
+}
+
+/// <summary>
+/// 横方向の解像度の設定
+/// </summary>
+/// <param name="resolution">横方向の解像度</param>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
+bool CPropatyIO::SetHorizontalResolution(UINT resolution)
+{
+	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
+		return false;
+	}
+	CConfigrationIO sys(m_ParamaterFilePath);
+	if (!sys.setInt(_T("Setting"), _T("Horizontal_resolution"), resolution)) {
 		return false;
 	}
 	return true;

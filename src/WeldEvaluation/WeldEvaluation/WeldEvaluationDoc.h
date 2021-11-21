@@ -50,6 +50,8 @@ private:
 	CScanDataIO		m_MetalScanData;				///< 金属面スキャンデータIOオブジェクト
 	CScanDataIO		m_ResultScanData;				///< 結果スキャンデータIOオブジェクト
 
+	bool			m_bVisible;						///< 操作過不可フラグ
+
 
 protected: // シリアル化からのみ作成します。
 	CWeldEvaluationDoc();
@@ -102,11 +104,23 @@ private:
 
 
 public:
+	void SetVisible(bool bVisible);
 
 	//////////////////////////////////////////////////////////////////////////////////
 	// Systemパラメータ
-	UINT GetShootingWidth();
-	UINT GetShootingHeight();
+	int		GetShootingWidth();
+	int		GetShootingHeight();
+
+	double	GetIntegrationTimeMs();
+	bool	SetIntegrationTimeMs(double IntegrationTime_ms);
+	UINT	NumberOfBand(void);
+	bool	SetNumberOfBand(UINT band);
+	double	GetVerticalScale();
+	double	GetHorizontalScale();
+	CString GetWBFileName(void);
+	bool	SetWBFileName(CString WBFileName);
+
+
 
 	//////////////////////////////////////////////////////////////////////////////////
 	// プロパティデータIO
@@ -116,18 +130,14 @@ public:
 	bool	SetTestName(CString name);
 	CString GetRegistedFolder(void);
 	bool	SetRegistedFolder(CString RegistedFolder);
-	CString GetWBFileName(void);
-	bool	SetWBFileName(CString WBFileName);
-	UINT	NumberOfOverridePixel(void);
-	bool	SetOverridePixelNumber(UINT num);
-	double	GetIntegrationTimeMs(void);
-	bool	SetIntegrationTimeMs(double time);
 	UINT	GetVerticalResolution(void);
 	bool	SetVerticalResolution(UINT resolution);
-	UINT	GetHorizontalResolution(void);
-	bool	SetHorizontalResolution(UINT resolution);
-	UINT	NumberOfBand(void);
-	bool	SetNumberOfBand(UINT band);
+	UINT	GetHorizontalResolution();
+	bool	SetHorizontalResolution(UINT HorizontalResolution);
+	UINT	NumberOfOverridePixel();
+	bool	SetOverridePixelNumber(UINT num);
+	//	UINT	NumberOfBand(void);
+	//	bool	SetNumberOfBand(UINT band);
 	UINT	ResinGetNumberOfClass(void);
 	bool	ResinSetNumberOfClass(UINT nClass);
 	double	ResinGetJointRetio(int ViewJointRatioNo);
@@ -213,11 +223,18 @@ public:
 	bool	GetSpectrumData(int ScanID, CPoint &pos, std::vector<double> &data);
 	bool	WriteImage(CString writePath);
 	CString getScanDataFilePath(int ScanID);
-	CString GetNoProjectFolderName();
-	CString GetNoProjectFolderPath();
 	CString GetTmpFolderName();
 	CString GetTmpFolderPath();
-	double  GetScale();
 	bool	DeleteScanImageFilePath(int ScanID);
 
+	CString GetWorkProjectFolderName();
+	CString GetWorkProjectFolderPath();
+	CString GetWorkProjectStatus(CString WKPrjPath, CString key);
+	bool	SetWorkProjectStatus(CString WKPrjPath, CString key, CString value);
+	CString GetWorkProjectPath();
+	bool IsWorkProjectUpdated();
+	bool SetWorkProjectUpdteStatus(bool bUpdate);
+	bool PushProject(CString ResistPath, CString ProjentName);
+	bool PopProject(CString ResistPath, CString ProjentName);
+	void ClrWorkProject();
 };

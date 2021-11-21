@@ -47,6 +47,7 @@
 #define IDM_RESULT_READING              512
 #define IDM_PRJREGIST_SUCCESS           513
 #define IDM_PRJREGIST_OVERWRITE         514
+#define DM_PRJREGIST_EXISTUPDATE        515
 #define IDM_ERR_NOTOPEN_REGTEST         700
 #define IDM_ERR_SCAN                    701
 #define IDM_ERR_PROJECT_SAVE            702
@@ -130,6 +131,7 @@
 #define IDC_STC_STATUS                  1078
 #define IDC_PRO_STATUS                  1079
 #define IDC_STC_IDCOLOR                 1080
+#define IDC_STC_MESSAGE                 1081
 
 // Next default values for new objects
 // 
@@ -137,7 +139,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        328
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1081
+#define _APS_NEXT_CONTROL_VALUE         1082
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

@@ -85,8 +85,10 @@ void COprtTabPageSetting::UpddateResist(bool bEnable, bool bReadMode)
 {
 	if (bEnable) {
 		if (bReadMode) {
-			ItemEnable(IDC_STC_TESTNAME,FALSE);
-			ItemEnable(IDC_EDT_TESTNAME,FALSE);
+//			ItemEnable(IDC_STC_TESTNAME,FALSE);
+//			ItemEnable(IDC_EDT_TESTNAME,FALSE);
+			ItemEnable(IDC_STC_TESTNAME, bEnable);
+			ItemEnable(IDC_EDT_TESTNAME, bEnable);
 		} else {
 			ItemEnable(IDC_STC_TESTNAME,bEnable);
 			ItemEnable(IDC_EDT_TESTNAME,bEnable);
@@ -144,10 +146,16 @@ void COprtTabPageSetting::LoadParamater(void)
 /// </summary>
 void COprtTabPageSetting::OnBnClickedBtnRegist()
 {
+	CString name = m_strTestName;
 	UpdateData(true);
 
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
+
+	if (name != m_strTestName) {
+
+	}
+
 	if (!pDoc->SetTestName(m_strTestName)) {
 		// Error
 	}

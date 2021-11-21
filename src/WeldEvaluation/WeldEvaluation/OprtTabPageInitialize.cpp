@@ -7,6 +7,9 @@
 #include "afxdialogex.h"
 #include "message.h"
 #include "CDeviceIO.h"
+#include "WeldEvaluationDoc.h"
+#include "FileUtil.h"
+#include "ScanDataIO.h"
 
 
 // COprtTabPageInitialize ダイアログ
@@ -19,6 +22,7 @@ IMPLEMENT_DYNAMIC(COprtTabPageInitialize, CDialogEx)
 /// <param name="pParent">親ウインドへのポインタ</param>
 COprtTabPageInitialize::COprtTabPageInitialize(CWnd* pParent /*=NULL*/)
 	: CDialogEx(COprtTabPageInitialize::IDD, pParent)
+	, m_message(_T(""))
 {
 
 }
@@ -37,11 +41,13 @@ COprtTabPageInitialize::~COprtTabPageInitialize()
 void COprtTabPageInitialize::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Text(pDX, IDC_STC_MESSAGE, m_message);
 }
 
 
 BEGIN_MESSAGE_MAP(COprtTabPageInitialize, CDialogEx)
 	ON_BN_CLICKED(IDC_BTN_WHITEBARANCE, &COprtTabPageInitialize::OnBnClickedBtnWhitebarance)
+	ON_WM_ACTIVATE()
 END_MESSAGE_MAP()
 
 
@@ -69,9 +75,9 @@ void COprtTabPageInitialize::ItemActive(bool bActive)
 {
 	ItemEnable(IDC_STC_WHITEBARANCE,bActive);
 	ItemEnable(IDC_BTN_WHITEBARANCE,bActive);
+	LoadParamater();
 }
 
-#include "ScanDataIO.h"
 /// <summary>
 /// ホワイトバランスボタン押下時処理
 /// </summary>
@@ -111,6 +117,7 @@ void COprtTabPageInitialize::OnBnClickedBtnWhitebarance()
 		AfxMessageBox(msg, MB_OK | MB_ICONINFORMATION);
 	}
 	delete pThread;
+	LoadParamater();
 }
 
 /// <summary>
@@ -164,4 +171,41 @@ void COprtTabPageInitialize::AddNode(CStatusDlgThread* pStatus)
 /// </summary>
 void COprtTabPageInitialize::LoadParamater(void)
 {
+	bool bWBExist = false;
+	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
+	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
+	CString registedFolde = pDoc->GetRegistedFolder();
+	CString WBFileName = pDoc->GetWBFileName();
+	if (!WBFileName.IsEmpty()) {
+		WBFileName = WBFileName + _T(".hdr");
+		CString path = CFileUtil::FilePathCombine(registedFolde, WBFileName);
+		int width, height;
+		if (!CScanDataIO::GetHeaderFilePrm(path, width, height)) {
+			bWBExist = false;
+		}
+		else {
+			if ((width != pDoc->GetShootingWidth()) || (height != pDoc->GetShootingHeight())) {
+				bWBExist = false;
+			}
+			else {
+				bWBExist = true;
+			}
+		}
+	}
+
+	if (bWBExist) {
+		m_message = _T("ホワイトバランス設定済み");
+	}
+	else {
+		m_message = _T("ホワイトバランス未設定");
+	}
+	UpdateData(false);
+}
+
+
+void COprtTabPageInitialize::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
+{
+	CDialogEx::OnActivate(nState, pWndOther, bMinimized);
+
+	LoadParamater();
 }

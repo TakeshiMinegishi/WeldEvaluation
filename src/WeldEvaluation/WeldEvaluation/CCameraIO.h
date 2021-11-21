@@ -18,7 +18,7 @@ private:
 	CubeFloat			m_cube;
 	FrameFloat			m_dark_reference;
 	CorrectionMatrix	m_correction_matrix;
-
+	bool				m_bDemoMode;
 
 private:
 	void CameraPrmInit();
@@ -42,8 +42,5 @@ public:
 	bool AcquireReference(CString refarenceFilePath, CString refarenceFileName);
 	bool LoadReference(CubeFloat &reference_corrected, CString refarenceFilePath, CString refarenceFileName);
 	bool AcquireSpectralCube(CString spectralFilePath, CString spectralFileName, CubeFloat &reference_corrected, CubeFloat  &norcube_correctedmal);
-
-	bool CopyData(int band, int width, int height, float ***pppData, CString FilePath, CString FileName);
-
 };
 

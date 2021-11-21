@@ -63,8 +63,9 @@ public:
 	void MatrixScale(double **mat, double x, double y);
 	void MatrixInvers(double **mat);
 	bool affine(int srcWidth, int srcHeight, float ***src, int dstWidth, int distHeight, float ***dst, int band, double **mat, bool bBicubic = true);
-	bool ScanDataConvert(int srcWidth, int srcHeight, int band, float ***src, double scale, int &dstWidth, int &distHight, float ***& dist, bool bBicubic = true);
+	bool ScanDataConvert(int srcWidth, int srcHeight, int band, float ***src, double hscale, double vscale, int &dstWidth, int &distHight, float ***& dist, bool bBicubic = true);
 	void FreeConvertData(int dstHeight, int band, float ***& dst);
+	static bool GetHeaderFilePrm(CString pathName, int &width, int &height);
 
 };
 

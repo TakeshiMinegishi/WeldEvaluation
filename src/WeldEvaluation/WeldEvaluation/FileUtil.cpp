@@ -88,6 +88,85 @@ bool CFileUtil::fileDelete(CString& pathname)
 	return bResult;
 }
 
+bool CFileUtil::fileDeleteEx(CString pathname)
+{
+	CFileFind    cFileFind;
+	CString      strSearchDir = CFileUtil::FilePathCombine(pathname, _T("*"));
+	if (!cFileFind.FindFile(strSearchDir)) {
+		return false;
+	}
+
+	bool findResult = true;
+	bool bResult = true;
+	do
+	{
+		findResult = cFileFind.FindNextFile();
+		if (!cFileFind.IsDots()) {
+			if (cFileFind.IsDirectory()) {
+				CString DirPath = cFileFind.GetFilePath();
+				if (fileDeleteEx(DirPath)) {
+					if (!fileDelete(DirPath)) {
+						bResult = false;
+					}
+				}
+				else {
+					bResult = false;
+				}
+			}
+			else {
+				CString pathName = cFileFind.GetFilePath();
+				if (!fileDelete(pathName)) {
+					bResult = false;
+				}
+			}
+		}
+	} while (findResult);
+
+	if (!fileDelete(pathname)) {
+		bResult = false;
+	}
+	return bResult;
+}
+
+bool CFileUtil::Copy(CString src, CString dst, bool bOverwrite)
+{
+	// 新しいフォルダ作成
+	if (!fileExists(dst)) {
+		if (!CreateDirectory(dst, NULL)) {
+			return false;
+		}
+	}
+
+	CFileFind    cFileFind;
+	CString      strSearchDir = CFileUtil::FilePathCombine(src, _T("*.*"));
+	if (!cFileFind.FindFile(strSearchDir)) {
+		return false;
+	}
+
+	bool findResult = true;
+	do {
+		findResult = cFileFind.FindNextFile();
+		if (!cFileFind.IsDots()) {
+			CString From = CFileUtil::FilePathCombine(src, cFileFind.GetFileName());
+			CString To = CFileUtil::FilePathCombine(dst, cFileFind.GetFileName());
+			if (cFileFind.IsDirectory()) {
+				if (!Copy(From, To, bOverwrite)) {
+					cFileFind.Close();
+					return false;
+				}
+			}
+			else {
+				if (!CopyFile(From, To, !bOverwrite)) {
+					cFileFind.Close();
+					return false;
+				}
+			}
+		}
+	} while (findResult);
+	cFileFind.Close();
+	return true;
+}
+
 /// <summary>
 /// フィルパスを分解する
 /// </summary>

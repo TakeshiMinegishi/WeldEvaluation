@@ -145,7 +145,7 @@ bool CScanDataIO::open(CString pathName, bool bReload/*=false*/ )
 				}
 			}
 			m_o_p_cube->ppp_data = ppp_data;
-	}
+		}
 #else
 		errorLog(CString(__FILE__), __LINE__, _T("commonLoadCube()"), result);
 		close();
@@ -255,9 +255,9 @@ bool CScanDataIO::LoadImage(int &height, int &width, int &bands, CImage &img)
 		return false;
 	}
 
-	height	= m_o_p_cube->format.height;
-	width	= m_o_p_cube->format.width;
-	bands	= m_o_p_cube->format.nr_bands;
+	height = m_o_p_cube->format.height;
+	width = m_o_p_cube->format.width;
+	bands = m_o_p_cube->format.nr_bands;
 
 	int band[3];
 	getRGBBandSpectrum(band[0], band[1], band[2]);
@@ -316,29 +316,51 @@ bool CScanDataIO::LoadImage(int &height, int &width, int &bands, CImage &img)
 	bmInfo.bmiHeader = bmInfohdr;
 	bmInfo.bmiColors[0].rgbBlue = 255;
 
-	unsigned char * p24Img = new unsigned char[bmInfohdr.biSizeImage];
+	unsigned char * p24Img = new unsigned char[bmInfohdr.biSizeImage*8];
 	unsigned char * ptr = p24Img;
 
+	unsigned char r, g, b;
 	for (int row = 0; row < height; row++) {
 		for (int col = 0; col < width; col++) {
-			unsigned char r = (BYTE)(m_o_p_cube->ppp_data[band[0]][row][col] * dnormalizer);
-			unsigned char g = (BYTE)(m_o_p_cube->ppp_data[band[1]][row][col] * dnormalizer);
-			unsigned char b = (BYTE)(m_o_p_cube->ppp_data[band[2]][row][col] * dnormalizer);
-			if (r > 255) r = 255;
-			else if (r < 0) r = 0;
-			if (g > 255) g = 255;
-			else if (g < 0) g = 0;
-			if (b > 255) b = 255;
-			else if (b < 0) b = 0;
+			if (col >= m_o_p_cube->format.width) {
+				r = g = b = 0;
+			}
+			else {
+				r = (BYTE)(m_o_p_cube->ppp_data[band[0]][row][col] * dnormalizer);
+				g = (BYTE)(m_o_p_cube->ppp_data[band[1]][row][col] * dnormalizer);
+				b = (BYTE)(m_o_p_cube->ppp_data[band[2]][row][col] * dnormalizer);
+				if (r > 255) r = 255;
+				else if (r < 0) r = 0;
+				if (g > 255) g = 255;
+				else if (g < 0) g = 0;
+				if (b > 255) b = 255;
+				else if (b < 0) b = 0;
+			}
 			*(ptr++) = b;
 			*(ptr++) = g;
 			*(ptr++) = r;
 		}
+		ptr += 0;
 	}
 
 	if (img.Create(width, height, 8 * Bpp, NULL)) {
 		HDC dc = img.GetDC();
-		SetDIBitsToDevice(dc, 0, 0, width, height, 0, 0, 0, height, p24Img, &bmInfo, DIB_RGB_COLORS);
+		int ret = SetDIBitsToDevice(dc, 0, 0, width, height, 0, 0, 0, height, p24Img, &bmInfo, DIB_RGB_COLORS);
+		if(ret == 0) {
+			DWORD err = GetLastError();
+			LPVOID lpMsgBuf;
+			FormatMessage(
+				FORMAT_MESSAGE_ALLOCATE_BUFFER  //      テキストのメモリ割り当てを要求する
+				| FORMAT_MESSAGE_FROM_SYSTEM    //      エラーメッセージはWindowsが用意しているものを使用
+				| FORMAT_MESSAGE_IGNORE_INSERTS,//      次の引数を無視してエラーコードに対するエラーメッセージを作成する
+				NULL, err, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),//   言語を指定
+				(LPTSTR)&lpMsgBuf,                          //      メッセージテキストが保存されるバッファへのポインタ
+				0,
+				NULL);
+//			AfxMessageBox((LPCTSTR)lpMsgBuf, MB_OK | MB_ICONINFORMATION);
+			LocalFree(lpMsgBuf);
+			bResult = false;
+		}
 		img.ReleaseDC();
 	}
 	else {
@@ -1038,17 +1060,21 @@ bool CScanDataIO::affine(int srcWidth, int srcHeight, float ***src, int dstWidth
 			}
 		}
 	}
+	if (p) {
+		delete[] p;
+		p = nullptr;
+	}
 	return true;
 }
 
-bool CScanDataIO::ScanDataConvert(int srcWidth, int srcHeight, int band, float ***src, double scale, int &dstWidth, int &dstHeight, float ***& dst, bool bBicubic/* = true*/)
+bool CScanDataIO::ScanDataConvert(int srcWidth, int srcHeight, int band, float ***src, double hscale, double vscale, int &dstWidth, int &dstHeight, float ***& dst, bool bBicubic/* = true*/)
 {
 	double **mat = MatrixInit();
-	dstHeight = (int)(srcWidth * scale);
-	dstWidth  = (int)(srcHeight * scale);
+	dstHeight = (int)(srcWidth * hscale);
+	dstWidth  = (int)(srcHeight * vscale);
 
 	MatrixMove(mat, dstWidth / 2, dstHeight / 2);
-	MatrixScale(mat, scale, scale);
+	MatrixScale(mat, hscale, vscale);
 	MatrixRotete(mat, 90.0);
 	MatrixMove(mat, -srcWidth / 2, -srcHeight / 2);
 	MatrixInvers(mat);
@@ -1084,4 +1110,55 @@ void CScanDataIO::FreeConvertData(int dstHeight, int band, float ***& dst)
 		delete[] dst;
 		dst = nullptr;
 	}
+}
+
+bool CScanDataIO::GetHeaderFilePrm(CString pathName, int &width, int &height)
+{
+	bool bResult = true;
+	if (!CFileUtil::fileExists(pathName)) {
+		return false;
+	}
+
+	int find = 0;
+	int bands = 0;
+	CStdioFile tfd;
+	if (tfd.Open(pathName, CFile::modeRead | CFile::typeText)) {
+		CString buf;
+		CString key, val;
+		int byteoder, datatype;
+		while (tfd.ReadString(buf)) {
+			int id = buf.FindOneOf(_T("="));
+			if (id == -1) {
+				continue;
+			}
+			key = buf.Mid(0, id);
+			key.Trim();
+			val = buf.Mid(id + 1);
+			val.Trim();
+			if (key == _T("bands")) {
+				bands = _ttoi(val);
+			}
+			else if (key == _T("interleave")) {
+			}
+			else if (key == _T("lines")) {
+				height = _ttoi(val);
+				find |= 0x01;
+				if ((find & 0x03) == 0x03) {
+					break;
+				}
+			}
+			else if (key == _T("samples")) {
+				width = _ttoi(val);
+				find |= 0x02;
+				if ((find & 0x03) == 0x03) {
+					break;
+				}
+			}
+		}
+		tfd.Close();
+	}
+	if ((find & 0x03) != 0x03) {
+		bResult = false;
+	}
+	return bResult;
 }

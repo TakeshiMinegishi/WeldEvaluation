@@ -33,12 +33,11 @@ protected:
 	DECLARE_MESSAGE_MAP()
 private:
 	void ItemEnable(int ItemID,bool bActive);
-	void UpdateCmbJoinratioTargetLabel();
+	void UpdateCmbJoinratioTargetLabel(bool renew);
 	void UpdateIDColor(COLORREF color);
 
 public:
 	afx_msg void OnDeltaposSpinNumofclass(NMHDR *pNMHDR, LRESULT *pResult);
-//	afx_msg void OnEnKillfocusEdtNumofclass();
 	afx_msg void OnCbnSelchangeCmbJoinratioTargetLabel();
 	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
 	afx_msg void OnCbnKillfocusCmbJoinratioTargetLabel();

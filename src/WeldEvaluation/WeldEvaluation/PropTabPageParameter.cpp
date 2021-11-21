@@ -107,7 +107,7 @@ void CPropTabPageParameter::ItemActive(bool bActive)
 
 	ItemEnable(IDC_STC_IDCOLOR, bActive);
 
-	UpdateCmbJoinratioTargetLabel();
+	UpdateCmbJoinratioTargetLabel(true);
 
 }
 
@@ -134,7 +134,7 @@ void CPropTabPageParameter::OnDeltaposSpinNumofclass(NMHDR *pNMHDR, LRESULT *pRe
 	}
 	m_NumberOfClass = (UINT)ival;
 	UpdateData(false);
-	UpdateCmbJoinratioTargetLabel();
+	UpdateCmbJoinratioTargetLabel(false);
 	// 更新ボタンの更新
 	CWnd *pWnd = GetParent()->GetParent();
 	pWnd->SendMessage(WM_UPDATEREQUEST_PROPPAGE,(WPARAM)true,(LPARAM)0);
@@ -151,7 +151,7 @@ void CPropTabPageParameter::OnEnKillfocusEdtNumofclass()
 	if (m_NumberOfClass != org) {
 		UpdateData(false);
 		// 更新ボタンの更新
-		UpdateCmbJoinratioTargetLabel();
+		UpdateCmbJoinratioTargetLabel(false);
 		CWnd *pWnd = GetParent()->GetParent();
 		pWnd->SendMessage(WM_UPDATEREQUEST_PROPPAGE,(WPARAM)true,(LPARAM)0);
 	}
@@ -313,7 +313,7 @@ bool CPropTabPageParameter::ConfirmChange()
 	if (m_NumberOfClass != org) {
 		UpdateData(false);
 		// 更新ボタンの更新
-		UpdateCmbJoinratioTargetLabel();
+		UpdateCmbJoinratioTargetLabel(false);
 		CWnd *pWnd = GetParent()->GetParent();
 		pWnd->SendMessage(WM_UPDATEREQUEST_PROPPAGE, (WPARAM)true, (LPARAM)0);
 		bResult = true;
@@ -342,11 +342,11 @@ void CPropTabPageParameter::OnCbnSelchangeCmbJoinratioTargetLabel()
 /// <summary>
 /// 対象コンボボックスラベル変更時処理
 /// </summary>
-void CPropTabPageParameter::UpdateCmbJoinratioTargetLabel()
+void CPropTabPageParameter::UpdateCmbJoinratioTargetLabel(bool renew)
 {
 	UpdateData(true);
 	int itemCount = m_cmbJoinratioTarget.GetCount();
-	if (m_cmbJoinratioTarget.GetCount() != (int)m_NumberOfClass) {
+	if ((renew) || (m_cmbJoinratioTarget.GetCount() != (int)m_NumberOfClass)) {
 		CString strJoinratioTarget = m_strJoinratioTarget;
 		if (itemCount > (int)m_NumberOfClass) {
 			for (int i = itemCount-1; i >= (int)m_NumberOfClass; i--) {
@@ -387,7 +387,7 @@ void CPropTabPageParameter::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinim
 
 	CDialogEx::OnActivate(nState, pWndOther, bMinimized);
 
-	UpdateCmbJoinratioTargetLabel();
+	UpdateCmbJoinratioTargetLabel(true);
 }
 
 
@@ -407,3 +407,4 @@ void CPropTabPageParameter::OnCbnKillfocusCmbJoinratioTargetLabel()
 	}
 	UpdateData(false);
 }
+

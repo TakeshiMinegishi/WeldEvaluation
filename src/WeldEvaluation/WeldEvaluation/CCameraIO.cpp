@@ -3,6 +3,10 @@
 #include "FileUtil.h"
 #include "ScanDataIO.h"
 
+
+/// <summary>
+/// コンストラクタ
+/// </summary>
 CCameraIO::CCameraIO()
 {
 	CameraPrmInit();
@@ -10,11 +14,17 @@ CCameraIO::CCameraIO()
 	m_height			= 1088;
 	m_band				= 150;
 	m_integrationTime	= 1.0;
-
+	m_bDemoMode			= false;
 	InitLlogger();
 
 }
 
+/// <summary>
+/// 初期化コンストラクタ
+/// </summary>
+/// <param name="widht">データ幅</param>
+/// <param name="height">データ高さ</param>
+/// <param name="band">バンドサイズ</param>
 CCameraIO::CCameraIO(int widht, int height, int band)
 {
 	InitLlogger();
@@ -23,13 +33,20 @@ CCameraIO::CCameraIO(int widht, int height, int band)
 	m_height			= height;
 	m_band				= band;
 	m_integrationTime	= 1.0;
+	m_bDemoMode			= false;
 }
 
+/// <summary>
+/// デストラクタ
+/// </summary>
 CCameraIO::~CCameraIO()
 {
 	FleeCameraPrm();
 }
 
+/// <summary>
+/// カメラパラメータの初期化
+/// </summary>
 void CCameraIO::CameraPrmInit()
 {
 	m_handle			= 0x0;
@@ -39,6 +56,9 @@ void CCameraIO::CameraPrmInit()
 	m_dark_reference	= { 0 };
 }
 
+/// <summary>
+/// ロガーの初期化
+/// </summary>
 bool CCameraIO::InitLlogger()
 {
 	CLog log;
@@ -52,6 +72,12 @@ bool CCameraIO::InitLlogger()
 	return true;
 }
 
+/// <summary>
+/// カメラのオープン
+/// </summary>
+/// <param name="snapscan_file">スナップスキャンファイルへのパス</param>
+/// <param name="dummyApi">ダミーAPIフラグ</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CCameraIO::Open(CString snapscan_file, bool dummyApi/* = true*/)
 {
 	HSI_RETURN return_val;
@@ -66,6 +92,13 @@ bool CCameraIO::Open(CString snapscan_file, bool dummyApi/* = true*/)
 		CString version;
 		version.Format(_T("API Version %d.%d.%d.%d\n"), major, minor, patch, build);
 		CScanDataIO::writeLog(CLog::LOGLEVEL::Info, CString(__FILE__), __LINE__, version);
+	}
+
+	if (dummyApi == true) {
+		m_bDemoMode = true;
+	}
+	else {
+		m_bDemoMode = false;
 	}
 
 #ifdef _DEBUG
@@ -96,7 +129,6 @@ bool CCameraIO::Open(CString snapscan_file, bool dummyApi/* = true*/)
 	}
 #endif
 
-
 	// Width,Height,Band の設定
 	if (!setFormat(m_width, m_height, m_band)) {
 		CScanDataIO::writeLog(CLog::LOGLEVEL::Error, CString(__FILE__), __LINE__, _T("Open Error"));
@@ -123,6 +155,7 @@ bool CCameraIO::Open(CString snapscan_file, bool dummyApi/* = true*/)
 	}
 
 	// allocate cube (mandatory)
+	commonDeallocateCube(&m_cube);
 	m_cube = { 0 };
 	return_val = commonAllocateCube(&m_cube, m_cube_format);
 	if (HSI_OK != return_val)
@@ -133,10 +166,20 @@ bool CCameraIO::Open(CString snapscan_file, bool dummyApi/* = true*/)
 return true;
 }
 
+/// <summary>
+/// カメラのパラメータ開放
+/// </summary>
 void CCameraIO::FleeCameraPrm()
 {
+	HSI_RETURN return_val;
+	return_val = commonDeallocateCube(&m_cube);
+	if (HSI_OK != return_val)
+	{
+		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("DeallocateCubeData"), return_val);
+	}
+
 	// deallocate data format
-	HSI_RETURN return_val = commonDeallocateCubeDataFormat(&m_cube_format);
+	return_val = commonDeallocateCubeDataFormat(&m_cube_format);
 	if (HSI_OK != return_val)
 	{
 		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("DeallocateCubeDataFormat"), return_val);
@@ -157,6 +200,9 @@ void CCameraIO::FleeCameraPrm()
 	}
 }
 
+/// <summary>
+/// カメラのクローズ
+/// </summary>
 void CCameraIO::Close()
 {
 	FleeCameraPrm();
@@ -168,6 +214,12 @@ void CCameraIO::Close()
 	}
 }
 
+/// <summary>
+/// システムフォーマットの取得
+/// </summary>
+/// <param name="widht_max">最大幅</param>
+/// <param name="height_max">最大高</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CCameraIO::getSystemFormat(int &widht_max, int &height_max)
 {
 	if (m_handle == 0x00) {
@@ -185,6 +237,13 @@ bool CCameraIO::getSystemFormat(int &widht_max, int &height_max)
 	return true;
 }
 
+/// <summary>
+/// フォーマットの設定
+/// </summary>
+/// <param name="width">幅</param>
+/// <param name="height">高さ</param>
+/// <param name="band">バンド</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CCameraIO::setFormat(int width, int height, int band)
 {
 	if (m_handle == 0x00) {
@@ -239,6 +298,13 @@ bool CCameraIO::setFormat(int width, int height, int band)
 	return true;
 }
 
+/// <summary>
+/// フォーマットの取得
+/// </summary>
+/// <param name="width">幅</param>
+/// <param name="height">高さ</param>
+/// <param name="band">バンド</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CCameraIO::getFormat(int &width, int &height, int &band)
 {
 	if (m_handle == 0x00) {
@@ -261,6 +327,11 @@ bool CCameraIO::getFormat(int &width, int &height, int &band)
 	return true;
 }
 
+/// <summary>
+/// IntegrationTimeの設定
+/// </summary>
+/// <param name="integrationTime">integrationTime</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CCameraIO::setIntegrationTime(double integrationTime)
 {
 	if (m_handle == 0x00) {
@@ -296,6 +367,10 @@ bool CCameraIO::setIntegrationTime(double integrationTime)
 	return true;
 }
 
+/// <summary>
+/// IntegrationTimeの取得
+/// </summary>
+/// <returns>IntegrationTimeを返す</returns>
 double CCameraIO::getIntegrationTime()
 {
 	double integrationTime = 1.0;
@@ -315,6 +390,10 @@ double CCameraIO::getIntegrationTime()
 	return integrationTime;
 }
 
+/// <summary>
+/// スキャンの開始
+/// </summary>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CCameraIO::StartScan()
 {
 	if (m_handle == 0x00) {
@@ -357,10 +436,22 @@ bool CCameraIO::StartScan()
 			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("GetCorrectionMatrix"), return_val);
 			return false;
 		}
+
+		// deallocate dark_reference
+		return_val = commonDeallocateFrame(&m_dark_reference);
+		if (HSI_OK != return_val)
+		{
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("DeallocateFrame (dark_reference)"), return_val);
+		}
+
 	}
 	return true;
 }
 
+/// <summary>
+/// スキャンの停止
+/// </summary>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CCameraIO::StopScan()
 {
 	if (m_handle == 0x00) {
@@ -378,6 +469,12 @@ bool CCameraIO::StopScan()
 	return true;
 }
 
+/// <summary>
+/// リファレンス（ホワイトバランス）の取得
+/// </summary>
+/// <param name="refarenceFilePath">リファレンスファイルの保存フォルダ</param>
+/// <param name="refarenceFileName">リファレンスファイル名（ホワイトバランスファイル）</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CCameraIO::AcquireReference(CString refarenceFilePath, CString refarenceFileName)
 {
 	HSI_RETURN return_val;
@@ -446,6 +543,13 @@ bool CCameraIO::AcquireReference(CString refarenceFilePath, CString refarenceFil
 	return true;
 }
 
+/// <summary>
+/// リファレンス（ホワイトバランス）の読み込み
+/// </summary>
+/// <param name="reference_corrected">リファレンスファイルデータ</param>
+/// <param name="refarenceFilePath">リファレンスファイルの保存フォルダ</param>
+/// <param name="refarenceFileName">リファレンスファイル名（ホワイトバランスファイル）</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CCameraIO::LoadReference(CubeFloat &reference_corrected, CString refarenceFilePath, CString refarenceFileName)
 {
 	CString filename = refarenceFileName + ".hdr";
@@ -459,157 +563,77 @@ bool CCameraIO::LoadReference(CubeFloat &reference_corrected, CString refarenceF
 	return true;
 }
 
-
+/// <summary>
+/// キューブデータ（最終データ）の取得
+/// </summary>
+/// <param name="spectralFilePath">キューブデータファイルの保存フォルダ</param>
+/// <param name="spectralFileName">キューブデータファイル名</param>
+/// <param name="refarenceFilePath">リファレンスファイルの保存フォルダ</param>
+/// <param name="refarenceFileName">リファレンスファイル名（ホワイトバランスファイル）</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CCameraIO::AcquireSpectralCube(CString spectralFilePath, CString spectralFileName, CubeFloat &reference_corrected, CubeFloat  &cube_corrected)
 {
-#if 0
-	{
+	if (m_bDemoMode) {
 		CString fname = spectralFileName + _T(".hdr");
 		CString scanDataFilePath = CFileUtil::FilePathCombine(spectralFilePath, fname);
 		HSI_RETURN result = commonLoadCube(&cube_corrected, scanDataFilePath);
 		if (result != HSI_OK) {
 			return false;
 		}
-		return true;
-	}
-#endif
-	HSI_RETURN return_val;
-	// acquire cube (mandatory)
-	return_val = AcquireCube(m_handle, &m_dark_reference, &m_cube);
-	if (HSI_OK != return_val)
-	{
-		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("AcquireCube (cube)"), return_val);
-		return false;
-	}
-
-#if 0
-	// save cube (optional)
-	CString cubeName = _T("cube");
-	return_val = commonSaveCube(m_cube, spectralFilePath, cubeName, FF_ENVI);
-	if (HSI_OK != return_val)
-	{
-		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("SaveCube (cube)"), return_val);
-		return false;
-	}
-#endif
-
-	// allocate corrected cube(mandatory)
-//	CubeFloat cube_corrected = { 0 };
-	cube_corrected = { 0 };
-	return_val = AllocateCubeCorrected(&cube_corrected, m_correction_matrix, m_cube_format);
-	if (HSI_OK != return_val)
-	{
-		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("AllocateCubeCorrected"), return_val);
-		return false;
-	}
-
-	// apply spectral correction (mandatory)
-	return_val = ApplySpectralCorrection(&cube_corrected, m_cube, m_correction_matrix);
-	if (HSI_OK != return_val)
-	{
-		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("ApplySpectralCorrection"), return_val);
-		return false;
-	}
-
-#if 0
-	// save cube (optional)
-	CString cubeCorrectedName = _T("cube_corrected");
-	return_val = commonSaveCube(cube_corrected, spectralFilePath, cubeCorrectedName, FF_ENVI);
-	if (HSI_OK != return_val)
-	{
-		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("SaveCube (corrected)"), return_val);
-		return false;
-	}
-#endif
-
-	return_val = ApplyWhiteReference(&cube_corrected, cube_corrected, reference_corrected, 0.95);
-	if (HSI_OK != return_val)
-	{
-		CScanDataIO::CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("Normalize"), return_val);
-		return false;
-	}
-
-	// save result (optional)
-	return_val = commonSaveCube(cube_corrected, spectralFilePath, spectralFileName, FF_ENVI);
-	if (HSI_OK != return_val)
-	{
-		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("SaveCube (corrected)"), return_val);
-		return false;
-	}
-	return true;
-}
-
-bool CCameraIO::CopyData(int band, int width, int height, float ***pppData, CString FilePath, CString FileName)
-{
-	bool bResult = true;
-	if (m_handle == 0x00) {
-		bResult = false;
 	}
 	else {
-		ConfigurationParameters config = { 0 };
-		HSI_RETURN return_val = GetConfigurationParameters(m_handle, &config);
+		HSI_RETURN return_val;
+		// acquire cube (mandatory)
+		return_val = AcquireCube(m_handle, &m_dark_reference, &m_cube);
 		if (HSI_OK != return_val)
 		{
-			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("GetConfigurationParameters"), return_val);
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("AcquireCube (cube)"), return_val);
 			return false;
 		}
 
-		config.cube_width = width;
-		config.cube_height = height;
-		return_val = SetConfigurationParameters(m_handle, config);
+#if 0
+		// save cube (optional)
+		CString cubeName = _T("cube");
+		return_val = commonSaveCube(m_cube, spectralFilePath, cubeName, FF_ENVI);
 		if (HSI_OK != return_val)
 		{
-			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("SetConfigurationParameters"), return_val);
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("SaveCube (cube)"), return_val);
+			return false;
+		}
+#endif
+
+		// allocate corrected cube(mandatory)
+		commonDeallocateCube(&cube_corrected);
+		cube_corrected = { 0 };
+		return_val = AllocateCubeCorrected(&cube_corrected, m_correction_matrix, m_cube_format);
+		if (HSI_OK != return_val)
+		{
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("AllocateCubeCorrected"), return_val);
 			return false;
 		}
 
-		// allocate cube data format(mandatory)
-		CubeDataFormat		cube_format;
-		return_val = GetOutputCubeDataFormat(m_handle, &cube_format);
+		// apply spectral correction (mandatory)
+		return_val = ApplySpectralCorrection(&cube_corrected, m_cube, m_correction_matrix);
 		if (HSI_OK != return_val)
 		{
-			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("GetOutputCubeDataFormat"), return_val);
+			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("ApplySpectralCorrection"), return_val);
 			return false;
 		}
 
-		// allocate cube (mandatory)
-		CubeFloat cube = { 0 };
-		return_val = commonAllocateCube(&cube, cube_format);
+		return_val = ApplyWhiteReference(&cube_corrected, cube_corrected, reference_corrected, 0.95);
 		if (HSI_OK != return_val)
 		{
-			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("AllocateCube (cube)"), return_val);
+			CScanDataIO::CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("Normalize"), return_val);
 			return false;
 		}
 
-		if (m_band < band) {
-			band = m_band;
-		}
-
-		for (int b = 0; b < band; b++) {
-			for (int h = 0; h < height; h++) {
-				memcpy(cube.ppp_data[b][h], pppData[b][h], sizeof(float)*width);
-			}
-		}
-
-		return_val = commonSaveCube(cube, FilePath, FileName, FF_ENVI);
+		// save result (optional)
+		return_val = commonSaveCube(cube_corrected, spectralFilePath, spectralFileName, FF_ENVI);
 		if (HSI_OK != return_val)
 		{
 			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("SaveCube (corrected)"), return_val);
-			bResult =  false;
-		}
-
-		return_val = commonDeallocateCubeDataFormat(&cube_format);
-		if (HSI_OK != return_val)
-		{
-			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("DeallocateCubeDataFormat"), return_val);
-			bResult = false;
-		}
-		return_val = commonDeallocateCube(&cube);
-		if (HSI_OK != return_val)
-		{
-			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("commonDeallocateCube"), return_val);
-			bResult = false;
+			return false;
 		}
 	}
-	return bResult;
+	return true;
 }

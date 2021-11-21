@@ -42,16 +42,21 @@ public:
 	CString GetTestName();
 	bool SetTestName(CString name);
 
-	UINT NumberOfOverridePixel(void);
-	bool SetOverridePixelNumber(UINT num);
+	static bool WriteProjectName(CString PropatyFilePath, CString ProjectName);
+	static bool WriteTestName(CString PropatyFilePath, CString TestName);
+
+#if 0
 	double GetIntegrationTimeMs(void);
 	bool SetIntegrationTimeMs(double time);
+	UINT GetNumberOfBand(void);
+	bool SetNumberOfBand(UINT band);
+#endif
+	UINT NumberOfOverridePixel(void);
+	bool SetOverridePixelNumber(UINT num);
 	UINT GetVerticalResolution(void);
 	bool SetVerticalResolution(UINT resolution);
 	UINT GetHorizontalResolution(void);
 	bool SetHorizontalResolution(UINT resolution);
-	UINT GetNumberOfBand(void);
-	bool SetNumberOfBand(UINT band);
 
 	UINT ResinGetNumberOfClass(void);
 	bool ResinSetNumberOfClass(UINT nClass);

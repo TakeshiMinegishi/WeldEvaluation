@@ -11,6 +11,9 @@ class COprtTabPageInitialize : public CDialogEx
 	DECLARE_DYNAMIC(COprtTabPageInitialize)
 
 public:
+	CString m_message;
+
+public:
 	COprtTabPageInitialize(CWnd* pParent = NULL);   // 標準コンストラクター
 	virtual ~COprtTabPageInitialize();
 
@@ -30,4 +33,5 @@ public:
 	afx_msg void OnBnClickedBtnWhitebarance();
 	void AddNode(CStatusDlgThread* pStatus);
 	void LoadParamater();
+	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
 };

@@ -154,7 +154,7 @@ STYLE DS_SETFONT | WS_CHILD | WS_BORDER
 FONT 9, "MS UI Gothic", 0, 0, 0x1
 BEGIN
     PUSHBUTTON      "新規検査",IDC_BTN_NEWPRJ,7,7,118,14
-    CONTROL         "",IDC_LST_REGIST_TEST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_SORTASCENDING | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,7,30,118,502
+    CONTROL         "",IDC_LST_REGIST_TEST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOSCROLL | NOT WS_VISIBLE | WS_BORDER | WS_TABSTOP,7,30,118,502
     CTEXT           "ここに樹脂面画像が表示される",IDC_STC_RESINIMG_VIEW,140,7,440,165,SS_CENTERIMAGE | WS_BORDER
     CTEXT           "ここに金属面画像が表示される",IDC_STC_METALIMG_VIEW,140,187,440,165,SS_CENTERIMAGE | WS_BORDER
     CTEXT           "ここに結果画像が表示される",IDC_STC_RESULTIMG_VIEW,140,367,440,165,SS_CENTERIMAGE | WS_BORDER
@@ -272,6 +272,7 @@ BEGIN
     PUSHBUTTON      "キャンセル",IDCANCEL,142,144,58,17,NOT WS_VISIBLE | WS_DISABLED | NOT WS_TABSTOP,WS_EX_STATICEDGE
     PUSHBUTTON      "スキャン",IDC_BTN_WHITEBARANCE,17,28,88,14
     LTEXT           "ホワイトバランス：",IDC_STC_WHITEBARANCE,7,0,81,14,SS_CENTERIMAGE
+    LTEXT           "スタティック",IDC_STC_MESSAGE,19,52,161,8
 END
 
 IDD_STATUS_DLG DIALOGEX 0, 0, 255, 79
@@ -511,6 +512,11 @@ BEGIN
     0
 END
 
+IDD_OPERTAB_PAGE_INITIALIZE AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -669,7 +675,7 @@ STRINGTABLE
 BEGIN
     IDM_ERR_NOTOPEN_REGTEST "登録済み試験 [%s] を開くことができませんでした。"
     IDM_ERR_SCAN            "スキャンに失敗しました"
-    IDM_ERR_PROJECT_SAVE    "プロジェクトの保存に失敗しました。"
+    IDM_ERR_PROJECT_SAVE    "登録に失敗しました。"
     IDM_ERR_NOT_ANALYZE     "解析処理に失敗しました"
 END
 
@@ -687,7 +693,8 @@ STRINGTABLE
 BEGIN
     IDM_RESULT_READING      "読み込み中：%d/%d (%.2lf[%%])"
     IDM_PRJREGIST_SUCCESS   "登録が完了しました。"
-    IDM_PRJREGIST_OVERWRITE "同じ名前のプロジェクトが存在します\n上書きしますか？\n上書きをした場合、以前のデータは破棄されます。"
+    IDM_PRJREGIST_OVERWRITE "同じ登録名称が存在します\n上書きしますか？\n上書きをした場合、以前のデータは破棄されます。"
+    DM_PRJREGIST_EXISTUPDATE "データが更新されています。\n更新されているデータを破棄しますか?"
 END
 
 #endif    // 日本語 (日本) resources

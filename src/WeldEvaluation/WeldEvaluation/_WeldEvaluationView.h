@@ -135,7 +135,6 @@ public:
 	LRESULT OnWBScanRequest(WPARAM wparam, LPARAM lparam);
 	bool ScanImage(CStatusDlgThread* pStatus, int ScanID);
 
-	bool ViewChangeRequest(int ScanID, int DisplayMode, bool renew=false);
 	LRESULT OnViewChangeRequest(WPARAM wparam, LPARAM lparam);
 	void UpdateRegistFolderList();
 	LRESULT OnChangeResistFolder(WPARAM wparam, LPARAM lparam);	

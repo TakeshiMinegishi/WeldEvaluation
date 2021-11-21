@@ -249,11 +249,12 @@ bool CProjectFileIO::save(CString path)
 	if (str.IsEmpty() || (!sys.setString(_T("Common"),_T("update_date"),str))) {
 		bResult = false;
 	}
+/*
 	// イメージデータへのルートパス
 	if (!sys.setString(_T("Common"),_T("image_data_root_path"),m_ImageDataRootPath)) {
 		bResult = false;
 	}
-
+*/
 	// 樹脂面スキャン画像ファイル名
 	if (!sys.setString(_T("ResinSurface"),_T("scan_image_file"),m_ResinScanImageFile)) {
 		bResult = false;
