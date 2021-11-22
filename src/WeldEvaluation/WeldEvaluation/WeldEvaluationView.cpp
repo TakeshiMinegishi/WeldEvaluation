@@ -482,6 +482,15 @@ void CWeldEvaluationView::UpdateRegistFolderList()
 			m_lstRegTest.SetItemData(j, (unsigned long)i);
 		}
 	}
+
+	// 現在のプロジェクトを選択状態にする
+	int count = (int)list.GetCount();
+	for (int i = 0; i < count; i++) {
+		if (!list[i].CompareNoCase(pDoc->GetActiveRegistedTest())) {
+			m_lstRegTest.SetItemState(i, LVIS_FOCUSED | LVIS_SELECTED, LVIS_FOCUSED | LVIS_SELECTED);
+			break;
+		}
+	}
 }
 
 /// <summary>
