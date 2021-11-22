@@ -185,12 +185,16 @@ public:
 	bool	GetSpectralGraphSectionEndPosition(int &holizontal, int &vertical);
 	bool	SetSpectralGraphSectionEndPosition(int holizontal, int vertical);
 
+	bool	GetScanDataSize(int &holizontal, int &vertical);
+	bool	SetScanDataSize(int holizontal, int vertical);
+
 	//////////////////////////////////////////////////////////////////////////////////
 	// 
 	bool	GetWindRect(CRect &rect);
 	bool	SetWindRect(CRect &rect);
 	bool	GetSpectralDlgRect(CRect &rect);
 	bool	SetSpectralDlgRect(CRect &rect);
+	bool	SetRGBWavelength(double &r, double &g, double &b);
 
 	bool	NewProject();
 	bool	OpenProject(CString RegistedTestName);

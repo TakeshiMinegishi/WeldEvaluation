@@ -58,6 +58,7 @@ BEGIN_MESSAGE_MAP(CWeldEvaluationView, CFormView)
 	ON_WM_NCDESTROY()
 	ON_WM_DESTROY()
 	ON_WM_MOUSEMOVE()
+	ON_WM_CLOSE()
 END_MESSAGE_MAP()
 
 // CWeldEvaluationView コンストラクション/デストラクション
@@ -390,9 +391,14 @@ void CWeldEvaluationView::OnSize(UINT nType, int cx, int cy)
 	CRect   lpRect;
 	GetClientRect(lpRect);
 
-	CWnd* pWnd = GetDlgItem( IDD_WELDEVALUATION_FORM );
+	CWnd* pWnd = GetDlgItem(IDD_WELDEVALUATION_FORM);
 	if( pWnd && pWnd->GetSafeHwnd() ) {
 		pWnd->MoveWindow(lpRect);
+	}
+	else {
+		if (::IsWindowEnabled(this->m_hWnd)) {
+//			MoveWindow(lpRect);
+		}
 	}
 }
 
@@ -559,7 +565,7 @@ void CWeldEvaluationView::OnNMDblclkLstRegistTest(NMHDR *pNMHDR, LRESULT *pResul
 		AppName.LoadString(AFX_IDS_APP_TITLE);
 		msg.Format(_T("%s - %s"), (LPCWSTR)str, (LPCWSTR)AppName);
 		GetParentFrame()->SetWindowText(msg);
-
+		pDoc->SetWorkProjectUpdteStatus(false);
 	} else {
 		CString msg,fmt;
 		fmt.LoadString(IDM_ERR_NOTOPEN_REGTEST);
@@ -1284,6 +1290,7 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 			CFileUtil::WriteUTF8ToSJIS(tfd, buf);
 
 			tfd.Close();
+			pDoc->SetScanDataSize(outW,outH);
 		}
 
 		// rawデータ出力
@@ -1779,6 +1786,10 @@ LRESULT CWeldEvaluationView::OnAnalyzeRequest(WPARAM wparam, LPARAM lparam)
 			break;
 		}
 		pDoc->SetWorkProjectUpdteStatus(true);
+		
+		CString	msg;
+		msg.LoadString(IDM_ANALYZE_SUCCESS);
+		AfxMessageBox(msg, MB_OK | MB_ICONINFORMATION);
 	}
 
 	return iResult;
@@ -2249,3 +2260,11 @@ bool CWeldEvaluationView::ImageScaling(int targetID, CRect rect)
 	return bResult;
 }
 
+
+
+void CWeldEvaluationView::OnClose()
+{
+	// TODO: ここにメッセージ ハンドラー コードを追加するか、既定の処理を呼び出します。
+
+	CFormView::OnClose();
+}

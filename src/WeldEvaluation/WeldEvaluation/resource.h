@@ -48,6 +48,7 @@
 #define IDM_PRJREGIST_SUCCESS           513
 #define IDM_PRJREGIST_OVERWRITE         514
 #define DM_PRJREGIST_EXISTUPDATE        515
+#define IDM_ANALYZE_SUCCESS             516
 #define IDM_ERR_NOTOPEN_REGTEST         700
 #define IDM_ERR_SCAN                    701
 #define IDM_ERR_PROJECT_SAVE            702

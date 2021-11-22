@@ -13,6 +13,7 @@ CPropatyIO::CPropatyIO(void)
 	m_TestName	=_T("");			///< 名称
 	m_ResinAnalysisMethod	= 0;	///< 樹脂面 解析方法
 	m_MetalAnalysisMethod	= 0;	///< 金属面 解析方法
+	m_ResultAnalysisMethod	= 0;	///< 接合結果 解析方法
 }
 
 /// <summary>
@@ -73,6 +74,7 @@ bool CPropatyIO::read(CString path)
 	m_TestName				= sys.getString(_T("Common"),_T("Test_name"));						// 名称
 	m_ResinAnalysisMethod	= sys.getInt(_T("ResinSurface"),_T("Analysis_method"));				// 樹脂面 解析方法
 	m_MetalAnalysisMethod	= sys.getInt(_T("MetalSurface"),_T("Analysis_method"));				// 金属面 解析方法
+	m_ResultAnalysisMethod	= sys.getInt(_T("JoiningResult"), _T("Analysis_method"));			// 接合結果 解析方法
 
 	return true;
 }
@@ -117,6 +119,7 @@ bool CPropatyIO::save(CString path)
 	}
 
 	// Settingのダミー出力
+#if 0
 	uval = sys.getInt(_T("ResinSurface"),_T("Number_of_overlapping_pixels"));
 	if (!sys.setInt(_T("ResinSurface"),_T("Number_of_overlapping_pixels"),uval)) {
 		bResult = false;
@@ -141,6 +144,7 @@ bool CPropatyIO::save(CString path)
 	if (!sys.setDouble(_T("JoiningResult "),_T("Joining_ratio"),uval)) {
 		bResult = false;
 	}
+#endif
 
 	// 樹脂面 解析方法
 	if (!sys.setInt(_T("ResinSurface"),_T("Analysis_method"),m_ResinAnalysisMethod)) {
@@ -148,6 +152,10 @@ bool CPropatyIO::save(CString path)
 	}
 	// 金属面 解析方法
 	if (!sys.setInt(_T("MetalSurface"),_T("Analysis_method"),m_MetalAnalysisMethod)) {
+		bResult = false;
+	}
+	// 結果面 解析方法
+	if (!sys.setInt(_T("JoiningResult"), _T("Analysis_method"), m_ResultAnalysisMethod)) {
 		bResult = false;
 	}
 
@@ -749,6 +757,26 @@ bool CPropatyIO::ResultSetJointColor(int ViewJointRatioNo, COLORREF color)
 	if (!sys.setInt(_T("JoiningResult"), label, (DWORD)color)) {
 		return false;
 	}
+	return true;
+}
+
+/// <summary>
+/// 接合結果の解析方法の取得
+/// </summary>
+/// <returns>接合結果の解析方法を返す</returns>
+int CPropatyIO::ResultGetAnalysisMethod()
+{
+	return m_ResultAnalysisMethod;
+}
+
+/// <summary>
+/// 接合結果の解析方法の設定
+/// </summary>
+/// <param name="method">接合結果の解析方法</param>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
+bool CPropatyIO::ResultSetAnalysisMethod(int method)
+{
+	m_ResultAnalysisMethod = method;
 	return true;
 }
 

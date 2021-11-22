@@ -24,6 +24,9 @@ private:
 	std::vector<std::vector<std::vector<float>>>	m_data;
 	bool		m_localData;
 
+	double		m_RSpectrum;		///< 赤のスペクトル値
+	double		m_GSpectrum;		///< 緑のスペクトル値
+	double		m_BSpectrum;		///< 青のスペクトル値
 
 public:
 	CScanDataIO(void);
@@ -38,6 +41,7 @@ public:
 	bool open(CString pathName, bool bReload =false);
 	void close();
 	void release();
+	void SetRGBWavelength(double r, double g, double b);
 	bool LoadImage(int &height, int &width, int &bands, CImage &img);
 	bool GetSpectrumData(CPoint &pos, std::vector<double> &data);
 	bool getBandSpectrum(std::vector<double> &BandSpectrum);
