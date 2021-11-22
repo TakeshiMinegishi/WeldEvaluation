@@ -4,6 +4,7 @@
 
 #include "stdafx.h"
 #include "WeldEvaluation.h"
+#include "WeldEvaluationDoc.h"
 
 #include "MainFrm.h"
 
@@ -17,6 +18,7 @@ IMPLEMENT_DYNCREATE(CMainFrame, CFrameWnd)
 
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_WM_CREATE()
+	ON_WM_CLOSE()
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -72,6 +74,8 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 	::DestroyMenu(cs.hMenu);
 	//DeleteObject(cs.hMenu);
 	cs.hMenu = NULL;
+//	cs.style &= ~(WS_MAXIMIZEBOX | WS_THICKFRAME);
+
 	if( !CFrameWnd::PreCreateWindow(cs) )
 		return FALSE;
 	// TODO: この位置で CREATESTRUCT cs を修正して Window クラスまたはスタイルを
@@ -102,7 +106,19 @@ void CMainFrame::Dump(CDumpContext& dc) const
 }
 #endif //_DEBUG
 
-
+void CMainFrame::OnClose()
+{
+	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetActiveDocument();
+	if (pDoc->IsWorkProjectUpdated()) {
+		CString msg;
+		msg.LoadString(DM_PRJREGIST_EXISTUPDATE);
+		if (AfxMessageBox(msg, MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON1) == IDNO) {
+			return;
+		}
+		pDoc->ClrWorkProject();
+	}
+	CFrameWnd::OnClose();
+}
 // CMainFrame メッセージ ハンドラー
 
 

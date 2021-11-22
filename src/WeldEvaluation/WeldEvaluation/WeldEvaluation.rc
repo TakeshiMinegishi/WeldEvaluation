@@ -695,6 +695,7 @@ BEGIN
     IDM_PRJREGIST_SUCCESS   "登録が完了しました。"
     IDM_PRJREGIST_OVERWRITE "同じ登録名称が存在します\n上書きしますか？\n上書きをした場合、以前のデータは破棄されます。"
     DM_PRJREGIST_EXISTUPDATE "データが更新されています。\n更新されているデータを破棄しますか?"
+    IDM_ANALYZE_SUCCESS     "解析処理が正常終了しました"
 END
 
 #endif    // 日本語 (日本) resources

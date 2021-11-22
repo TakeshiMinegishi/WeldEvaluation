@@ -88,7 +88,7 @@ bool CProjectFileIO::SetProjectName(CString projectname)
 /// </summary>
 void CProjectFileIO::Initialze()
 {
-	m_ProjectFilePath = _T("");///< プロジェクトファイルへのパス
+//	m_ProjectFilePath = _T("");///< プロジェクトファイルへのパス
 
 	m_CreeateDay = COleDateTime(1960,11,18,0,0,0);				///< 作成日
 	m_UpdateDay = COleDateTime(1960,11,18,0,0,0);				///< 更新簿
@@ -115,6 +115,10 @@ void CProjectFileIO::Initialze()
 	m_SpectralGraphSectionVerticalStartPosition		= 0;		///< スペクトルグラフ（点指定）の垂直開始位置
 	m_SpectralGraphSectionHolizontalEndPosition		= 0;		///< スペクトルグラフ（点指定）の水平終了位置
 	m_SpectralGraphSectionVerticalEndPosition		= 0;		///< スペクトルグラフ（点指定）の垂直終了位置
+
+	m_ScanDataHolizontalSize						= 0;
+	m_ScanDataVerticalSize							= 0;
+
 }
 
 
@@ -225,6 +229,10 @@ bool CProjectFileIO::read(CString path)
 		m_SpectralGraphSectionHolizontalEndPosition = 0;
 		m_SpectralGraphSectionVerticalEndPosition = 0;
 	}
+
+	m_ScanDataHolizontalSize = sys.getInt(_T("Common"), _T("scan_data_holizontal_size"));
+	m_ScanDataVerticalSize = sys.getInt(_T("Common"), _T("scan_data_vertical_size"));
+
 	return true;
 }
 
@@ -249,6 +257,15 @@ bool CProjectFileIO::save(CString path)
 	if (str.IsEmpty() || (!sys.setString(_T("Common"),_T("update_date"),str))) {
 		bResult = false;
 	}
+
+	if (!sys.setInt(_T("Common"), _T("scan_data_holizontal_size"), m_ScanDataHolizontalSize)) {
+		bResult = false;
+	}
+
+	if (!sys.setInt(_T("Common"), _T("scan_data_vertical_size"), m_ScanDataVerticalSize)) {
+		bResult = false;
+	}
+
 /*
 	// イメージデータへのルートパス
 	if (!sys.setString(_T("Common"),_T("image_data_root_path"),m_ImageDataRootPath)) {
@@ -781,6 +798,20 @@ bool CProjectFileIO::SetSpectralGraphSectionEndPosition(int holizontal, int vert
 {
 	m_SpectralGraphSectionHolizontalEndPosition = holizontal;
 	m_SpectralGraphSectionVerticalEndPosition = vertical;
+	return true;
+}
+
+bool CProjectFileIO::GetScanDataSize(int &holizontal, int &vertical)
+{
+	holizontal	= m_ScanDataHolizontalSize;
+	vertical	= m_ScanDataVerticalSize;
+	return true;
+}
+
+bool CProjectFileIO::SetScanDataSize(int holizontal, int vertical)
+{
+	m_ScanDataHolizontalSize = holizontal;
+	m_ScanDataVerticalSize = vertical;
 	return true;
 }
 

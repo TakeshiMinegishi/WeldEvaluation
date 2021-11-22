@@ -50,6 +50,10 @@ private:
 	int				m_SpectralGraphSectionHolizontalEndPosition;	///< スペクトルグラフ（点指定）の水平終了位置
 	int				m_SpectralGraphSectionVerticalEndPosition;		///< スペクトルグラフ（点指定）の垂直終了位置
 
+	int				m_ScanDataHolizontalSize;
+	int				m_ScanDataVerticalSize;
+
+
 private:
 	bool read(CString path);
 	bool save(CString path);
@@ -119,6 +123,9 @@ public:
 	bool SetSpectralGraphSectionStartPosition(int holizontal, int bvertical);
 	bool GetSpectralGraphSectionEndPosition(int &holizontal, int &bvertical);
 	bool SetSpectralGraphSectionEndPosition(int holizontal, int bvertical);
+
+	bool GetScanDataSize(int &holizontal, int &vertical);
+	bool SetScanDataSize(int holizontal, int vertical);
 
 	bool Read(CString path = _T(""));
 	bool Save(bool bUpdate=true, CString path = _T(""));

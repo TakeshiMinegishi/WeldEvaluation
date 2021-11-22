@@ -17,6 +17,10 @@ CScanDataIO::CScanDataIO(void)
 	m_pathName = _T("");
 	m_o_p_cube = nullptr;
 	m_localData = false;
+
+	m_RSpectrum = dRSpectrum;		// 赤のスペクトル値
+	m_GSpectrum = dGSpectrum;		// 緑のスペクトル値
+	m_BSpectrum = dBSpectrum;		// 青のスペクトル値
 }
 
 
@@ -239,6 +243,21 @@ void CScanDataIO::executeNomalizerLauncher(void* args)
 	reinterpret_cast<CScanDataIO*>(args)->getNomalizer(args);
 }
 
+/// <summary>
+/// カラー波長の設定
+/// </summary>
+/// <param name="r">赤の波長</param>
+/// <param name="g">緑の波長</param>
+/// <param name="b">青の波長</param>
+void CScanDataIO::SetRGBWavelength(double r, double g, double b)
+{
+	if (r > 0.0 )
+		m_RSpectrum = r;
+	if (g > 0.0)
+		m_GSpectrum = g;
+	if (b > 0.0)
+		m_BSpectrum = b;
+}
 
 /// <summary>
 /// 画像データ取得
@@ -426,17 +445,17 @@ bool CScanDataIO::getRGBBandSpectrum(int &RBand, int &GBand, int &BBand)
 
 	for (int i = 0; i < bands; i++) {
 		bdat = m_o_p_cube->format.band_names[i];
-		diff = fabs(dRSpectrum - bdat);
+		diff = fabs(m_RSpectrum - bdat);
 		if (rDiff > diff) {
 			rDiff = diff;
 			RBand = i;
 		}
-		diff = fabs(dGSpectrum - bdat);
+		diff = fabs(m_GSpectrum - bdat);
 		if (gDiff > diff) {
 			gDiff = diff;
 			GBand = i;
 		}
-		diff = fabs(dBSpectrum - bdat);
+		diff = fabs(m_BSpectrum - bdat);
 		if (bDiff > diff) {
 			bDiff = diff;
 			BBand = i;

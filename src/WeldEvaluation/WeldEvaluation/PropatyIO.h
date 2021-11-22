@@ -22,6 +22,7 @@ private:
 	CString		m_TestName;					///< –¼Ì
 	int			m_ResinAnalysisMethod;		///< Ž÷Ž‰–Ê ‰ðÍ•û–@
 	int			m_MetalAnalysisMethod;		///< ‹à‘®–Ê ‰ðÍ•û–@
+	int			m_ResultAnalysisMethod;		///< Œ‹‰Ê–Ê ‰ðÍ•û–@
 
 private:
 	bool read(CString path);
@@ -78,10 +79,12 @@ public:
 
 	UINT ResultGetNumberOfClass(void);
 	bool ResultSetNumberOfClass(UINT nClass);
-	COLORREF ResultGetJointColor(int ViewJointRatioNo);
-	bool ResultSetJointColor(int ViewJointRatioNo, COLORREF color);
 	double ResultGetJointRetio(int ViewJointRatioNo);
 	bool ResultSetJointRetio(int ViewJointRatioNo, double retio);
+	COLORREF ResultGetJointColor(int ViewJointRatioNo);
+	bool ResultSetJointColor(int ViewJointRatioNo, COLORREF color);
+	int ResultGetAnalysisMethod();
+	bool ResultSetAnalysisMethod(int method);
 
 	bool Read(CString path = _T(""));
 	bool Save(bool Update = true, CString path = _T(""));

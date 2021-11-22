@@ -153,6 +153,7 @@ public:
 	LRESULT OnAreaSpectrumeGraphSet(WPARAM wparam, LPARAM lparam);
 
 	void FitItem();
+	afx_msg void OnClose();
 };
 
 #ifndef _DEBUG  // WeldEvaluationView.cpp のデバッグ バージョン

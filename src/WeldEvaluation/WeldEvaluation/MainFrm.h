@@ -38,6 +38,7 @@ protected:  // コントロール バー用メンバー
 // 生成された、メッセージ割り当て関数
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
+	afx_msg void OnClose();
 
 	DECLARE_MESSAGE_MAP()
 
