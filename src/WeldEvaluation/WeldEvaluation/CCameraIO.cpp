@@ -147,6 +147,8 @@ bool CCameraIO::Open(CString snapscan_file, bool dummyApi/* = true*/)
 	}
 
 	// allocate cube data format(mandatory)
+	commonDeallocateCubeDataFormat(&m_cube_format);
+	m_cube_format = { 0 };
 	return_val = GetOutputCubeDataFormat(m_handle, &m_cube_format);
 	if (HSI_OK != return_val)
 	{
@@ -417,7 +419,8 @@ bool CCameraIO::StartScan()
 #ifdef _DEBUG
 		CScanDataIO::writeLog(CLog::LOGLEVEL::Info, CString(__FILE__), __LINE__, _T("Acquiring dark reference ..."));
 #endif
-		FrameFloat dark_reference = { 0 };
+		commonDeallocateFrame(&m_dark_reference);
+		m_dark_reference = { 0 };
 		return_val = AcquireDarkReferenceFrame(m_handle, &m_dark_reference);
 		if (HSI_OK != return_val)
 		{
@@ -429,6 +432,7 @@ bool CCameraIO::StartScan()
 #ifdef _DEBUG
 		CScanDataIO::writeLog(CLog::LOGLEVEL::Info, CString(__FILE__), __LINE__, _T("Getting correction matrix ..."));
 #endif
+		DeallocateCorrectionMatrix(&m_correction_matrix);
 		m_correction_matrix = { 0 };
 		return_val = GetCorrectionMatrix(m_handle, &m_correction_matrix);
 		if (HSI_OK != return_val)
@@ -436,14 +440,6 @@ bool CCameraIO::StartScan()
 			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("GetCorrectionMatrix"), return_val);
 			return false;
 		}
-
-		// deallocate dark_reference
-		return_val = commonDeallocateFrame(&m_dark_reference);
-		if (HSI_OK != return_val)
-		{
-			CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("DeallocateFrame (dark_reference)"), return_val);
-		}
-
 	}
 	return true;
 }
@@ -516,13 +512,6 @@ bool CCameraIO::AcquireReference(CString refarenceFilePath, CString refarenceFil
 	if (HSI_OK != return_val)
 	{
 		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("ApplySpectralCorrection"), return_val);
-		return false;
-	}
-
-	return_val = commonDeallocateCube(&m_cube);
-	if (HSI_OK != return_val)
-	{
-		CScanDataIO::errorLog(CString(__FILE__), __LINE__, _T("DeallocateCube (reference)"), return_val);
 		return false;
 	}
 
