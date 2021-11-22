@@ -345,6 +345,7 @@ bool CScanDataIO::LoadImage(int &height, int &width, int &bands, CImage &img)
 				r = g = b = 0;
 			}
 			else {
+				// オーバーフロー対策
 				r = (BYTE)((m_o_p_cube->ppp_data[band[0]][row][col] > 1.0 ? 1.0 : (m_o_p_cube->ppp_data[band[0]][row][col] < 0.0 ? 0.0 : m_o_p_cube->ppp_data[band[0]][row][col])) * dnormalizer);
 				g = (BYTE)((m_o_p_cube->ppp_data[band[1]][row][col] > 1.0 ? 1.0 : (m_o_p_cube->ppp_data[band[1]][row][col] < 0.0 ? 0.0 : m_o_p_cube->ppp_data[band[1]][row][col])) * dnormalizer);
 				b = (BYTE)((m_o_p_cube->ppp_data[band[2]][row][col] > 1.0 ? 1.0 : (m_o_p_cube->ppp_data[band[0]][row][col] < 0.0 ? 0.0 : m_o_p_cube->ppp_data[band[2]][row][col])) * dnormalizer);
