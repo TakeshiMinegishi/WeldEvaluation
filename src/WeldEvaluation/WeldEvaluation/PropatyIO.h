@@ -23,6 +23,9 @@ private:
 	int			m_ResinAnalysisMethod;		///< 樹脂面 解析方法
 	int			m_MetalAnalysisMethod;		///< 金属面 解析方法
 	int			m_ResultAnalysisMethod;		///< 結果面 解析方法
+	CString		m_joinRetioFormat;			///< 接合比フォーマット
+	CString		m_joinColorFormat;			///< 接合色フォーマット
+
 
 private:
 	bool read(CString path);
@@ -61,28 +64,28 @@ public:
 
 	UINT ResinGetNumberOfClass(void);
 	bool ResinSetNumberOfClass(UINT nClass);
-	double ResinGetJointRetio(int ViewJointRatioNo);
-	bool ResinSetJointRetio(int ViewJointRatioNo, double retio);
-	COLORREF ResinGetJointColor(int ViewJointRatioNo);
-	bool ResinSetJointColor(int ViewJointRatioNo, COLORREF color);
+	double ResinGetJointRetio(int method, int ViewJointRatioNo);
+	bool ResinSetJointRetio(int method, int ViewJointRatioNo, double retio);
+	COLORREF ResinGetJointColor(int method, int ViewJointRatioNo);
+	bool ResinSetJointColor(int method, int ViewJointRatioNo, COLORREF color);
 	int ResinGetAnalysisMethod();
 	bool ResinSetAnalysisMethod(int method);
 
 	UINT MetalGetNumberOfClass(void);
 	bool MetalSetNumberOfClass(UINT nClass);
-	double MetalGetJointRetio(int ViewJointRatioNo);
-	bool MetalSetJointRetio(int ViewJointRatioNo, double retio);
-	COLORREF MetalGetJointColor(int ViewJointRatioNo);
-	bool MetalSetJointColor(int ViewJointRatioNo, COLORREF color);
+	double MetalGetJointRetio(int method, int ViewJointRatioNo);
+	bool MetalSetJointRetio(int method, int ViewJointRatioNo, double retio);
+	COLORREF MetalGetJointColor(int method, int ViewJointRatioNo);
+	bool MetalSetJointColor(int method, int ViewJointRatioNo, COLORREF color);
 	int MetalGetAnalysisMethod();
 	bool MetalSetAnalysisMethod(int method);
 
 	UINT ResultGetNumberOfClass(void);
 	bool ResultSetNumberOfClass(UINT nClass);
-	double ResultGetJointRetio(int ViewJointRatioNo);
-	bool ResultSetJointRetio(int ViewJointRatioNo, double retio);
-	COLORREF ResultGetJointColor(int ViewJointRatioNo);
-	bool ResultSetJointColor(int ViewJointRatioNo, COLORREF color);
+	double ResultGetJointRetio(int method, int ViewJointRatioNo);
+	bool ResultSetJointRetio(int method, int ViewJointRatioNo, double retio);
+	COLORREF ResultGetJointColor(int method, int ViewJointRatioNo);
+	bool ResultSetJointColor(int method, int ViewJointRatioNo, COLORREF color);
 	int ResultGetAnalysisMethod();
 	bool ResultSetAnalysisMethod(int method);
 

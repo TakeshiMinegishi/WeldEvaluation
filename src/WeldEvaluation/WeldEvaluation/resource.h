@@ -53,6 +53,9 @@
 #define IDM_ERR_SCAN                    701
 #define IDM_ERR_PROJECT_SAVE            702
 #define IDM_ERR_NOT_ANALYZE             703
+#define IDF_JOININGRETIO                900
+#define IDS_IDF_JOININGCOLOR            901
+#define IDF_JOININGCOLOR                901
 #define IDC_BTN_NEWPRJ                  1000
 #define IDC_TAB_OPERATION               1002
 #define IDC_TAB_PROPATY                 1003

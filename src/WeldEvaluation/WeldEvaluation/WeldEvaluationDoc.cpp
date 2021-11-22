@@ -466,15 +466,16 @@ bool CWeldEvaluationDoc::ResinSetNumberOfClass(UINT nClass)
 /// <summary>
 /// 樹脂面の接合割合の取得
 /// </summary>
+/// <param name="method">解析方法</param>
 /// <param name="ViewJointRatioNo">接合面番号</param>
 /// <returns>樹脂面の接合割合を返す</returns>
-double CWeldEvaluationDoc::ResinGetJointRetio(int ViewJointRatioNo)
+double CWeldEvaluationDoc::ResinGetJointRetio(int method, int ViewJointRatioNo)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
 		CConfigrationIO sys(m_SystemFilePathName);
 		return sys.getDouble(_T("ParamDefault"),_T("ResinSurface_Joining_ratio"));
 	} else {
-		double val = m_PropatyIO.ResinGetJointRetio(ViewJointRatioNo);
+		double val = m_PropatyIO.ResinGetJointRetio(method,ViewJointRatioNo);
 		if (val == 0) {
 			CConfigrationIO sys(m_SystemFilePathName);
 			val = sys.getDouble(_T("ParamDefault"),_T("ResinSurface_Joining_ratio"));
@@ -486,28 +487,30 @@ double CWeldEvaluationDoc::ResinGetJointRetio(int ViewJointRatioNo)
 /// <summary>
 /// 樹脂面の接合割合の設定
 /// </summary>
+/// <param name="method">解析方法</param>
 /// <param name="ViewJointRatioNo">接合面番号</param>
 /// <param name="retio">樹脂面の接合割合</param>
 /// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
-bool CWeldEvaluationDoc::ResinSetJointRetio(int ViewJointRatioNo, double retio)
+bool CWeldEvaluationDoc::ResinSetJointRetio(int method, int ViewJointRatioNo, double retio)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
 		return false;
 	} else {
-		return m_PropatyIO.ResinSetJointRetio(ViewJointRatioNo, retio);
+		return m_PropatyIO.ResinSetJointRetio(method,ViewJointRatioNo, retio);
 	}
 }
 
 /// <summary>
 /// 樹脂面の接合色の取得
 /// </summary>
+/// <param name="method">解析方法</param>
 /// <param name="ViewJointRatioNo">接合面番号</param>
 /// <returns>樹脂面の接合色を返す</returns>
-COLORREF CWeldEvaluationDoc::ResinGetJointColor(int ViewJointRatioNo)
+COLORREF CWeldEvaluationDoc::ResinGetJointColor(int method, int ViewJointRatioNo)
 {
 	COLORREF color = RGB(0, 0, 0);
 	if (!m_ActiveRegisttedTestName.IsEmpty()) {
-		color = m_PropatyIO.ResinGetJointColor(ViewJointRatioNo);
+		color = m_PropatyIO.ResinGetJointColor(method,ViewJointRatioNo);
 	}
 	return color;
 }
@@ -515,16 +518,17 @@ COLORREF CWeldEvaluationDoc::ResinGetJointColor(int ViewJointRatioNo)
 /// <summary>
 /// 樹脂面の接合色の設定
 /// </summary>
+/// <param name="method">解析方法</param>
 /// <param name="ViewJointRatioNo">接合面番号</param>
 /// <param name="color">設定色</param>
 /// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
-bool CWeldEvaluationDoc::ResinSetJointColor(int ViewJointRatioNo, COLORREF color)
+bool CWeldEvaluationDoc::ResinSetJointColor(int method, int ViewJointRatioNo, COLORREF color)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
 		return false;
 	}
 	else {
-		return m_PropatyIO.ResinSetJointColor(ViewJointRatioNo, color);
+		return m_PropatyIO.ResinSetJointColor(method, ViewJointRatioNo, color);
 	}
 }
 
@@ -593,15 +597,16 @@ bool CWeldEvaluationDoc::MetalSetNumberOfClass(UINT nClass)
 /// <summary>
 /// 金属面の接合割合の取得
 /// </summary>
+/// <param name="method">解析方法</param>
 /// <param name="ViewJointRatioNo">接合面番号</param>
 /// <returns>金属面の接合割合を返す</returns>
-double CWeldEvaluationDoc::MetalGetJointRetio(int ViewJointRatioNo)
+double CWeldEvaluationDoc::MetalGetJointRetio(int method, int ViewJointRatioNo)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
 		CConfigrationIO sys(m_SystemFilePathName);
 		return sys.getDouble(_T("ParamDefault"),_T("MetalSurface_Joining_ratio"));
 	} else {
-		double val = m_PropatyIO.MetalGetJointRetio(ViewJointRatioNo);
+		double val = m_PropatyIO.MetalGetJointRetio(method,ViewJointRatioNo);
 		if (val == 0) {
 			CConfigrationIO sys(m_SystemFilePathName);
 			val = sys.getDouble(_T("ParamDefault"),_T("MetalSurface_Joining_ratio"));
@@ -613,28 +618,30 @@ double CWeldEvaluationDoc::MetalGetJointRetio(int ViewJointRatioNo)
 /// <summary>
 /// 金属面の接合割合の設定
 /// </summary>
+/// <param name="method">解析方法</param>
 /// <param name="ViewJointRatioNo">接合面番号</param>
 /// <param name="retio">金属面の接合割合</param>
 /// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
-bool CWeldEvaluationDoc::MetalSetJointRetio(int ViewJointRatioNo,double retio)
+bool CWeldEvaluationDoc::MetalSetJointRetio(int method, int ViewJointRatioNo,double retio)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
 		return false;
 	} else {
-		return m_PropatyIO.MetalSetJointRetio(ViewJointRatioNo,retio);
+		return m_PropatyIO.MetalSetJointRetio(method,ViewJointRatioNo,retio);
 	}
 }
 
 /// <summary>
 /// 金属面の接合色の取得
 /// </summary>
+/// <param name="method">解析方法</param>
 /// <param name="ViewJointRatioNo">接合面番号</param>
 /// <returns>金属面の接合色を返す</returns>
-COLORREF CWeldEvaluationDoc::MetalGetJointColor(int ViewJointRatioNo)
+COLORREF CWeldEvaluationDoc::MetalGetJointColor(int method, int ViewJointRatioNo)
 {
 	COLORREF color = RGB(0, 0, 0);
 	if (!m_ActiveRegisttedTestName.IsEmpty()) {
-		color = m_PropatyIO.MetalGetJointColor(ViewJointRatioNo);
+		color = m_PropatyIO.MetalGetJointColor(method, ViewJointRatioNo);
 	}
 	return color;
 }
@@ -642,16 +649,17 @@ COLORREF CWeldEvaluationDoc::MetalGetJointColor(int ViewJointRatioNo)
 /// <summary>
 /// 金属面の接合色の設定
 /// </summary>
+/// <param name="method">解析方法</param>
 /// <param name="ViewJointRatioNo">接合面番号</param>
 /// <param name="color">設定色</param>
 /// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
-bool CWeldEvaluationDoc::MetalSetJointColor(int ViewJointRatioNo, COLORREF color)
+bool CWeldEvaluationDoc::MetalSetJointColor(int method, int ViewJointRatioNo, COLORREF color)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
 		return false;
 	}
 	else {
-		return m_PropatyIO.MetalSetJointColor(ViewJointRatioNo, color);
+		return m_PropatyIO.MetalSetJointColor(method, ViewJointRatioNo, color);
 	}
 }
 
@@ -720,15 +728,16 @@ bool CWeldEvaluationDoc::ResultSetNumberOfClass(UINT nClass)
 /// <summary>
 /// 接合結果の接合割合の取得
 /// </summary>
+/// <param name="method">解析方法</param>
 /// <param name="ViewJointRatioNo">接合面番号</param>
 /// <returns>接合結果の接合割合を返す</returns>
-double CWeldEvaluationDoc::ResultGetJointRetio(int ViewJointRatioNo)
+double CWeldEvaluationDoc::ResultGetJointRetio(int method, int ViewJointRatioNo)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
 		CConfigrationIO sys(m_SystemFilePathName);
 		return sys.getDouble(_T("ParamDefault"),_T("JoiningResult_Joining_ratio"));
 	} else {
-		double val = m_PropatyIO.ResultGetJointRetio(ViewJointRatioNo);
+		double val = m_PropatyIO.ResultGetJointRetio(method, ViewJointRatioNo);
 		if (val == 0) {
 			CConfigrationIO sys(m_SystemFilePathName);
 			val = sys.getDouble(_T("ParamDefault"),_T("JoiningResult_Joining_ratio"));
@@ -740,28 +749,30 @@ double CWeldEvaluationDoc::ResultGetJointRetio(int ViewJointRatioNo)
 /// <summary>
 /// 接合結果の接合割合の設定
 /// </summary>
+/// <param name="method">解析方法</param>
 /// <param name="ViewJointRatioNo">接合面番号</param>
 /// <param name="retio">接合結果の接合割合</param>
 /// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
-bool CWeldEvaluationDoc::ResultSetJointRetio(int ViewJointRatioNo, double retio)
+bool CWeldEvaluationDoc::ResultSetJointRetio(int method, int ViewJointRatioNo, double retio)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
 		return false;
 	} else {
-		return m_PropatyIO.ResultSetJointRetio(ViewJointRatioNo, retio);
+		return m_PropatyIO.ResultSetJointRetio(method, ViewJointRatioNo, retio);
 	}
 }
 
 /// <summary>
 /// 接合結果の接合色の取得
 /// </summary>
+/// <param name="method">解析方法</param>
 /// <param name="ViewJointRatioNo">接合面番号</param>
 /// <returns>接合結果の接合色を返す</returns>
-COLORREF CWeldEvaluationDoc::ResultGetJointColor(int ViewJointRatioNo)
+COLORREF CWeldEvaluationDoc::ResultGetJointColor(int method, int ViewJointRatioNo)
 {
 	COLORREF color = RGB(0, 0, 0);
 	if (!m_ActiveRegisttedTestName.IsEmpty()) {
-		color = m_PropatyIO.ResultGetJointColor(ViewJointRatioNo);
+		color = m_PropatyIO.ResultGetJointColor(method, ViewJointRatioNo);
 	}
 	return color;
 }
@@ -769,16 +780,17 @@ COLORREF CWeldEvaluationDoc::ResultGetJointColor(int ViewJointRatioNo)
 /// <summary>
 /// 接合結果の接合色の設定
 /// </summary>
+/// <param name="method">解析方法</param>
 /// <param name="ViewJointRatioNo">接合面番号</param>
 /// <param name="color">設定色</param>
 /// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
-bool CWeldEvaluationDoc::ResultSetJointColor(int ViewJointRatioNo, COLORREF color)
+bool CWeldEvaluationDoc::ResultSetJointColor(int method, int ViewJointRatioNo, COLORREF color)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
 		return false;
 	}
 	else {
-		return m_PropatyIO.ResultSetJointColor(ViewJointRatioNo, color);
+		return m_PropatyIO.ResultSetJointColor(method, ViewJointRatioNo, color);
 	}
 }
 
@@ -1679,27 +1691,34 @@ bool CWeldEvaluationDoc::NewProject()
 #endif
 	uval = sys.getInt(_T("ParamDefault"),_T("ResinSurface_Number_of_classifications"));
 	m_PropatyIO.ResinSetNumberOfClass(uval);
-	for (int i = 0; i < (int)uval;i++) {
-		dval = sys.getDouble(_T("ParamDefault"),_T("ResinSurface_Joining_ratio"));
-		m_PropatyIO.ResinSetJointRetio(i,dval);
+
+	for (int method = 0; method < 2; method++) {
+		for (int i = 0; i < (int)uval; i++) {
+			dval = sys.getDouble(_T("ParamDefault"), _T("ResinSurface_Joining_ratio"));
+			m_PropatyIO.ResinSetJointRetio(method, i, dval);
+		}
 	}
 	uval = sys.getInt(_T("ParamDefault"),_T("ResinSurface_Analysis_method"));
 	m_PropatyIO.ResinSetAnalysisMethod(uval);
 
 	uval = sys.getInt(_T("ParamDefault"),_T("MetalSurface_Number_of_classifications"));
 	m_PropatyIO.MetalSetNumberOfClass(uval);
-	for (int i = 0; i < (int)uval;i++) {
-		dval = sys.getDouble(_T("ParamDefault"),_T("MetalSurface_Joining_ratio"));
-		m_PropatyIO.MetalSetJointRetio(i,dval);
+	for (int method = 0; method < 2; method++) {
+		for (int i = 0; i < (int)uval; i++) {
+			dval = sys.getDouble(_T("ParamDefault"), _T("MetalSurface_Joining_ratio"));
+			m_PropatyIO.MetalSetJointRetio(method, i, dval);
+		}
 	}
 	uval = sys.getInt(_T("ParamDefault"),_T("MetalSurface_Analysis_method"));
 	m_PropatyIO.MetalSetAnalysisMethod(uval);
 
 	uval = sys.getInt(_T("ParamDefault"),_T("JoiningResult_Number_of_classifications"));
 	m_PropatyIO.ResultSetNumberOfClass(uval);
-	for (int i = 0; i < (int)uval;i++) {
-		dval = sys.getInt(_T("ParamDefault"),_T("JoiningResult_Joining_ratio"));
-		m_PropatyIO.ResultSetJointRetio(i, dval);
+	for (int method = 0; method < 2; method++) {
+		for (int i = 0; i < (int)uval; i++) {
+			dval = sys.getInt(_T("ParamDefault"), _T("JoiningResult_Joining_ratio"));
+			m_PropatyIO.ResultSetJointRetio(method,i, dval);
+		}
 	}
 
 	uval = NumberOfOverridePixel();
@@ -1960,30 +1979,36 @@ bool CWeldEvaluationDoc::SaveProject()
 		if (!m_PropatyIO.ResinSetNumberOfClass(uval)) {
 			bResult = false;
 		}
-		for (int i = 0; i < (int)uval; i++) {
-			dval = pf.ResinGetJointRetio(i);
-			if (!m_PropatyIO.ResinSetJointRetio(i,dval)) {
-				bResult = false;
+		for (int method = 0; method < 2; method++) {
+			for (int i = 0; i < (int)uval; i++) {
+				dval = pf.ResinGetJointRetio(method,i);
+				if (!m_PropatyIO.ResinSetJointRetio(method,i, dval)) {
+					bResult = false;
+				}
 			}
 		}
 		uval = pf.MetalGetNumberOfClass();
 		if (!m_PropatyIO.MetalSetNumberOfClass(uval)) {
 			bResult = false;
 		}
-		for (int i = 0; i < (int)uval; i++) {
-			dval = pf.MetalGetJointRetio(i);
-			if (!m_PropatyIO.MetalSetJointRetio(i,dval)) {
-				bResult = false;
+		for (int method = 0; method < 2; method++) {
+			for (int i = 0; i < (int)uval; i++) {
+				dval = pf.MetalGetJointRetio(method,i);
+				if (!m_PropatyIO.MetalSetJointRetio(method,i, dval)) {
+					bResult = false;
+				}
 			}
 		}
 		uval = pf.ResultGetNumberOfClass();
 		if (!m_PropatyIO.ResultSetNumberOfClass(uval)) {
 			bResult = false;
 		}
-		for (int i = 0; i < (int)uval; i++) {
-			dval = pf.ResultGetJointRetio(i);
-			if (!m_PropatyIO.ResultSetJointRetio(i,dval)) {
-				bResult = false;
+		for (int method = 0; method < 2; method++) {
+			for (int i = 0; i < (int)uval; i++) {
+				dval = pf.ResultGetJointRetio(method,i);
+				if (!m_PropatyIO.ResultSetJointRetio(method,i, dval)) {
+					bResult = false;
+				}
 			}
 		}
 	}
@@ -2710,19 +2735,19 @@ bool CWeldEvaluationDoc::Analize(int targetID, int AnalysisMethodID)
 
 	if (targetID == eResinSurface) {
 		for (int ViewJointRatioNo = 0; ViewJointRatioNo < retio.size(); ViewJointRatioNo++) {
-			if (!ResinSetJointRetio(ViewJointRatioNo,retio[ViewJointRatioNo]*100.0)) {
+			if (!ResinSetJointRetio(AnalysisMethodID, ViewJointRatioNo,retio[ViewJointRatioNo]*100.0)) {
 				bResult = false;
 			}
 		}
 	} else if (targetID == eMetalSurface) {
 		for (int ViewJointRatioNo = 0; ViewJointRatioNo < retio.size(); ViewJointRatioNo++) {
-			if (!MetalSetJointRetio(ViewJointRatioNo,retio[ViewJointRatioNo]*100.0)) {
+			if (!MetalSetJointRetio(AnalysisMethodID, ViewJointRatioNo,retio[ViewJointRatioNo]*100.0)) {
 				bResult = false;
 			}
 		}
 	} else if (targetID == eJoiningResult) {
 		for (int ViewJointRatioNo = 0; ViewJointRatioNo < retio.size(); ViewJointRatioNo++) {
-			if (!ResultSetJointRetio(ViewJointRatioNo, retio[ViewJointRatioNo] * 100.0)) {
+			if (!ResultSetJointRetio(AnalysisMethodID,ViewJointRatioNo, retio[ViewJointRatioNo] * 100.0)) {
 				bResult = false;
 			}
 		}
@@ -2865,7 +2890,7 @@ bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, int type, C
 		return false;
 	}
 	imagefile = getClassificationImageFilePath(targetID,type);
-	if (!CFileUtil::fileExists(imagefile)) {
+	if ((renew) || (!CFileUtil::fileExists(imagefile))) {
 		vector<int> data;
 		if (!CWeldEvaluationDoc::getResultFile(classfile, data)) {
 			return false;
@@ -2906,17 +2931,17 @@ bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, int type, C
 			switch (targetID) {
 			case	eResinSurface:	///< 樹脂
 				for (int id = 0; id < nClass; id++) {
-					ResinSetJointColor(id, col[id]);
+					ResinSetJointColor(type,id, col[id]);
 				}
 				break;
 			case	eMetalSurface:	///< 金属
 				for (int id = 0; id < nClass; id++) {
-					ResinSetJointColor(id, col[id]);
+					MetalSetJointColor(type,id, col[id]);
 				}
 				break;
 			case	eJoiningResult:	///< 接合結果
 				for (int id = 0; id < nClass; id++) {
-					ResinSetJointColor(id, col[id]);
+					ResultSetJointColor(type,id, col[id]);
 				}
 				break;
 			}

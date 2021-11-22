@@ -1680,7 +1680,7 @@ bool CWeldEvaluationView::ViewChangeRequest(int ScanID, int DisplayMode, bool re
 		int type = m_OprtAnalize.GetAnalizeType(ScanID);
 		if (pDoc->ExistClassificationResultFile(ScanID, type)) {
 			CImage *pImg = pImageWnd->GetImage();
-			if (pDoc->LoadClassificationResultImage(ScanID, type, *pImg)) {
+			if (pDoc->LoadClassificationResultImage(ScanID, type, *pImg,true)) {
 				pImageWnd->Draw();
 			}
 			else {
@@ -1734,12 +1734,6 @@ LRESULT CWeldEvaluationView::OnAnalyzeRequest(WPARAM wparam, LPARAM lparam)
 	int iResult = 0;
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
 
-	switch(targetID) {
-	case	CWeldEvaluationDoc::eResinSurface	:		// 樹脂
-		break;
-	case	CWeldEvaluationDoc::eMetalSurface	:		// 金属
-		break;
-	}
 	CString ScanDataFilePath = pDoc->getScanDataFilePath(targetID);
 	// 改正対象が存在するかをチェック
 	if (!CFileUtil::fileExists(ScanDataFilePath)) {
@@ -1748,7 +1742,7 @@ LRESULT CWeldEvaluationView::OnAnalyzeRequest(WPARAM wparam, LPARAM lparam)
 	}
 
 	// 解析の実施
-	if (!pDoc->Analize(targetID,AnalyzeMethod)) {
+ 	if (!pDoc->Analize(targetID,AnalyzeMethod)) {
 		iResult = -1;
 	}
 
@@ -1766,10 +1760,10 @@ LRESULT CWeldEvaluationView::OnAnalyzeRequest(WPARAM wparam, LPARAM lparam)
 	}
 	else {
 		// もし、解析した画像の表示モードがスキャンなら解析に変更
-		if (pDoc->GetDisplayMode(targetID) == CWeldEvaluationDoc::DisplayModeScan) {
-			ViewChangeRequest(targetID, CWeldEvaluationDoc::DisplayModeResult);
+//		if (pDoc->GetDisplayMode(targetID) == CWeldEvaluationDoc::DisplayModeScan) {
+			ViewChangeRequest(targetID, CWeldEvaluationDoc::DisplayModeResult,true);
 			m_pReginWnd->Invalidate();
-		}
+//		}
 
 		m_OprtAnalize.LoadParamater();
 

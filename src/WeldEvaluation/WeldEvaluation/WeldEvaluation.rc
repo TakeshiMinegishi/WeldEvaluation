@@ -698,6 +698,12 @@ BEGIN
     IDM_ANALYZE_SUCCESS     "‰ðÍˆ—‚ª³íI—¹‚µ‚Ü‚µ‚½"
 END
 
+STRINGTABLE
+BEGIN
+    IDF_JOININGRETIO        """%02d_Joining_ratio%03d"""
+    IDF_JOININGCOLOR        """%02d_Joining_color%03d"""
+END
+
 #endif    // “ú–{Œê (“ú–{) resources
 /////////////////////////////////////////////////////////////////////////////
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "message.h"
 #include "afxwin.h"
+#include "WeldEvaluationDoc.h"
 
 
 // CPropTabPageParameter ダイアログ
@@ -35,6 +36,8 @@ private:
 	void ItemEnable(int ItemID,bool bActive);
 	void UpdateCmbJoinratioTargetLabel(bool renew);
 	void UpdateIDColor(COLORREF color);
+	CWeldEvaluationDoc *GetDocument();
+
 
 public:
 	afx_msg void OnDeltaposSpinNumofclass(NMHDR *pNMHDR, LRESULT *pResult);
@@ -48,7 +51,7 @@ public:
 	int getPageID();
 	void ItemActive(bool bActive);
 	void LoadParamater(int id);
-	void ViewJointRatio(int id, int ViewJointRatioNo);
+	void ViewJointRatio(int method, int id, int ViewJointRatioNo);
 	bool Update(int index);
 	bool ConfirmChange();
 };

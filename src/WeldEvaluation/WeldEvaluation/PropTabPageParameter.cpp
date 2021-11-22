@@ -5,7 +5,6 @@
 #include "WeldEvaluation.h"
 #include "PropTabPageParameter.h"
 #include "afxdialogex.h"
-#include "WeldEvaluationDoc.h"
 
 
 // CPropTabPageParameter ダイアログ
@@ -160,11 +159,11 @@ void CPropTabPageParameter::OnEnKillfocusEdtNumofclass()
 /// <summary>
 /// パラメータをファイルから読み込む
 /// </summary>
+/// <param name="AnalyzeMethod">解析方法</param>
 /// <param name="id">更新対インデックス</param>
 void CPropTabPageParameter::LoadParamater(int id)
 {
-	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
-	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
+	CWeldEvaluationDoc *pDoc = GetDocument();
 	UpdateData(true);
 
 	switch(id) {
@@ -184,11 +183,12 @@ void CPropTabPageParameter::LoadParamater(int id)
 		}
 		break;
 	}
+	int AnalyzeMethod = pDoc->GetAnalysisMethod(id);
 	int dataid  = m_cmbJoinratioTarget.GetCurSel();
 	if (dataid < 0) {
-		ViewJointRatio(dataid, -1);
+		ViewJointRatio(AnalyzeMethod, dataid, -1);
 	} else {
-		ViewJointRatio(id, (int)m_cmbJoinratioTarget.GetItemData(dataid));
+		ViewJointRatio(AnalyzeMethod, id, (int)m_cmbJoinratioTarget.GetItemData(dataid));
 	}
 	UpdateData(false);
 }
@@ -196,21 +196,21 @@ void CPropTabPageParameter::LoadParamater(int id)
 /// <summary>
 /// 接合割合の設定
 /// </summary>
+/// <param name="method">解析方法</param>
 /// <param name="id">更新対インデックス</param>
 /// <param name="ViewJointRatioNo">接合面番号</param>
-void CPropTabPageParameter::ViewJointRatio(int id, int ViewJointRatioNo)
+void CPropTabPageParameter::ViewJointRatio(int method, int id, int ViewJointRatioNo)
 {
 	if (ViewJointRatioNo < 0) {
 		m_JointRatio.Format(_T("%.1lf"),0.0);
 	} else {
-		CFormView *pWnd = (CFormView *)GetParent()->GetParent();
-		CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
+		CWeldEvaluationDoc *pDoc = GetDocument();
 
 		switch(id) {
 		case	CWeldEvaluationDoc::eResinSurface	:	// 樹脂
 			{
-				m_JointRatio.Format(_T("%.1lf"),pDoc->ResinGetJointRetio(ViewJointRatioNo));
-				COLORREF col = pDoc->ResinGetJointColor(ViewJointRatioNo);
+				m_JointRatio.Format(_T("%.1lf"),pDoc->ResinGetJointRetio(method,ViewJointRatioNo));
+				COLORREF col = pDoc->ResinGetJointColor(method,ViewJointRatioNo);
 				if (col == 0) {
 					col = pDoc->GetClassColor(ViewJointRatioNo, m_NumberOfClass);
 				}
@@ -219,8 +219,8 @@ void CPropTabPageParameter::ViewJointRatio(int id, int ViewJointRatioNo)
 			break;
 		case	CWeldEvaluationDoc::eMetalSurface	:	// 金属
 			{
-				m_JointRatio.Format(_T("%.1lf"),pDoc->MetalGetJointRetio(ViewJointRatioNo));
-				COLORREF col = pDoc->MetalGetJointColor(ViewJointRatioNo);
+				m_JointRatio.Format(_T("%.1lf"),pDoc->MetalGetJointRetio(method,ViewJointRatioNo));
+				COLORREF col = pDoc->MetalGetJointColor(method,ViewJointRatioNo);
 				if (col == 0) {
 					col = pDoc->GetClassColor(ViewJointRatioNo, m_NumberOfClass);
 				}
@@ -229,8 +229,8 @@ void CPropTabPageParameter::ViewJointRatio(int id, int ViewJointRatioNo)
 			break;
 		case	CWeldEvaluationDoc::eJoiningResult	:	// 接合結果
 			{
-				m_JointRatio.Format(_T("%.1lf"),pDoc->ResultGetJointRetio(ViewJointRatioNo));
-				COLORREF col = pDoc->ResultGetJointColor(ViewJointRatioNo);
+				m_JointRatio.Format(_T("%.1lf"),pDoc->ResultGetJointRetio(method,ViewJointRatioNo));
+				COLORREF col = pDoc->ResultGetJointColor(method,ViewJointRatioNo);
 				if (col == 0) {
 					col = pDoc->GetClassColor(ViewJointRatioNo, m_NumberOfClass);
 				}
@@ -277,8 +277,7 @@ bool CPropTabPageParameter::Update(int index)
 {
 	bool bResult = false;
 	UpdateData(true);
-	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
-	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
+	CWeldEvaluationDoc *pDoc = GetDocument();
 
 	switch(index) {
 	case	CWeldEvaluationDoc::eResinSurface	:	// 樹脂
@@ -321,6 +320,16 @@ bool CPropTabPageParameter::ConfirmChange()
 	return bResult;
 }
 
+/// <summary>
+/// CWeldEvaluationDocの取得
+/// </summary>
+/// <returns>CWeldEvaluationDocへのポインタを返す</returns>
+CWeldEvaluationDoc *CPropTabPageParameter::GetDocument()
+{
+	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
+	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
+	return pDoc;
+}
 
 /// <summary>
 /// 対象コンボボック項目変更時処理
@@ -336,7 +345,10 @@ void CPropTabPageParameter::OnCbnSelchangeCmbJoinratioTargetLabel()
 	m_cmbJoinratioTarget.GetLBText(dataid, str);
 	m_strJoinratioTarget = str;
 	UpdateData(false);
-	CPropTabPageParameter::ViewJointRatio(m_PageID, (int)m_cmbJoinratioTarget.GetItemData(dataid));
+
+	CWeldEvaluationDoc *pDoc = GetDocument();
+	int AnarizeMethod = pDoc->GetAnalysisMethod(m_PageID);
+	CPropTabPageParameter::ViewJointRatio(AnarizeMethod, m_PageID, (int)m_cmbJoinratioTarget.GetItemData(dataid));
 }
 
 /// <summary>
@@ -359,7 +371,9 @@ void CPropTabPageParameter::UpdateCmbJoinratioTargetLabel(bool renew)
 					UpdateData(false);
 					int id = m_cmbJoinratioTarget.SelectString(0,m_strJoinratioTarget);
 					if (id != CB_ERR ) {
-						ViewJointRatio(m_PageID, id);
+						CWeldEvaluationDoc *pDoc = GetDocument();
+						int AnarizeMethod = pDoc->GetAnalysisMethod(m_PageID);
+						ViewJointRatio(AnarizeMethod, m_PageID, id);
 					}
 				}
 			}
@@ -400,7 +414,9 @@ void CPropTabPageParameter::OnCbnKillfocusCmbJoinratioTargetLabel()
 	UpdateData(true);
 	int dataid = m_cmbJoinratioTarget.SelectString(0,m_strJoinratioTarget);
 	if (dataid != CB_ERR) {
-		CPropTabPageParameter::ViewJointRatio(m_PageID, (int)m_cmbJoinratioTarget.GetItemData(dataid));
+		CWeldEvaluationDoc *pDoc = GetDocument();
+		int AnarizeMethod = pDoc->GetAnalysisMethod(m_PageID);
+		CPropTabPageParameter::ViewJointRatio(AnarizeMethod, m_PageID, (int)m_cmbJoinratioTarget.GetItemData(dataid));
 	}
 	else {
 		m_strJoinratioTarget = str;
