@@ -536,7 +536,7 @@ void CWeldEvaluationView::OnNMDblclkLstRegistTest(NMHDR *pNMHDR, LRESULT *pResul
 		LoadSetting();
 		m_OprtInitialize.ItemActive(true);
 		m_bReadMode = true;
-		m_OprtSetting.UpddateResist(false,m_bReadMode);	// 設定データをリードモードにする
+//		m_OprtSetting.UpddateResist(false,m_bReadMode);	// 設定データをリードモードにする
 		m_OprtSetting.Update();
 		m_OprtScan.ItemActive(true);;
 		m_OprtAnalize.ItemActive(true);;

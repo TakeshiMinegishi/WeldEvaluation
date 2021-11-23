@@ -272,7 +272,7 @@ void CImageWind::OnMouseMove(UINT nFlags, CPoint point)
 				}
 			}
 
-			if (m_imageHeight > 0) {
+			if (m_imageHeight > rect.Height()) {
 				m_imageY -= delta.y;
 				if (m_imageY > 0) {
 					m_imageY = 0;
@@ -282,6 +282,10 @@ void CImageWind::OnMouseMove(UINT nFlags, CPoint point)
 				}
 //				TRACE(_T("imageY:%d Height:%d-%d\n"), m_imageY, m_imageHeight, rect.Height());
 			}
+			else {
+				m_imageY = (rect.Height() - m_imageHeight)/2;
+			}
+
 			if ((m_deltaPos.x != point.x) || (m_deltaPos.y != point.y)) {
 				m_deltaPos = point;
 				if ((x != m_imageX) || (y != m_imageY)) {
@@ -392,11 +396,12 @@ BOOL CImageWind::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 
 		CRect rect;
 		GetClientRect(&rect);
+
 		CPoint delta;
-		delta.x = pos.x - rect.Width() / 2;
-		delta.y = pos.y - rect.Height() / 2;
-		pos.x = m_imageX - delta.x;
-		pos.y = m_imageY - delta.y;
+//		delta.x = pos.x - rect.Width() / 2;
+//		delta.y = pos.y - rect.Height() / 2;
+//		pos.x = m_imageX - delta.x;
+//		pos.y = m_imageY - delta.y;
 		double scalingRetio = m_zoomRetio + ((double)zDelta / 120.0) * 0.1;
 
 		Scaling(scalingRetio, pos);
@@ -572,6 +577,7 @@ bool CImageWind::MoveImage(int x, int y, int width, int height, double scaingRet
 	return true;
 }
 
+#include "ScanDataIO.h"
 /// <summary>
 /// 画像のスケーリング
 /// </summary>
@@ -592,29 +598,48 @@ void CImageWind::Scaling(double ScalingRetio, CPoint pt)
 	int imageWidth = (int)(m_orgImageWidth * zoomRetio);
 	int imageHeight = (int)(m_orgImageHeight * zoomRetio);
 
-	if (imageWidth > imageHeight) {
-		if (imageHeight < rect.Height()) {
-			zoomRetio = 1.0;
-			imageWidth = m_orgImageWidth;
-			imageHeight = m_orgImageHeight;
-			imageY = (int)((rect.Height() - imageHeight) / 2.0);
-		}
-		if (imageWidth < rect.Width()) {
-			imageX = (int)((rect.Width() - imageWidth) / 2.0);
-		}
-		else {
+	/////////////////////////////////////////////////////////
+	CPoint delta;
+	imageY = (int)((rect.Height() - imageHeight) / 2.0);
+	imageX = (int)((rect.Width() - imageWidth) / 2.0);
 
-		}
+	delta.x = pt.x - rect.Width() / 2;
+	delta.y = pt.y - rect.Height() / 2;
+	imageX = imageX - delta.x * zoomRetio;
+	imageY = imageY - delta.y * zoomRetio;
+	/////////////////////////////////////////////////////////
+
+//m_imageX, m_imageY, m_imageX + m_imageWidth, m_imageY + m_imageHeight
+
+	if (zoomRetio <= 1.0) {
+		zoomRetio = 1.0;
+		imageWidth = m_orgImageWidth;
+		imageHeight = m_orgImageHeight;
+		imageY = (int)((rect.Height() - imageHeight) / 2.0);
+		imageX = (int)((rect.Width()  - imageWidth ) / 2.0);
 	}
 	else {
-		if (imageHeight < rect.Height()) {
-			imageY = (int)((rect.Height() - imageHeight) / 2.0);
+		if (imageWidth > imageHeight) {
+			if (imageHeight < rect.Height()) {
+				imageY = (int)((rect.Height() - imageHeight) / 2.0);
+			}
+			if (imageWidth < rect.Width()) {
+				imageX = (int)((rect.Width() - imageWidth) / 2.0);
+			}
+			else {
+
+			}
 		}
-		if (imageWidth < rect.Width()) {
-			zoomRetio = 1.0;
-			imageWidth = m_orgImageWidth;
-			imageHeight = m_orgImageHeight;
-			imageX = (int)((rect.Width() - imageWidth) / 2.0);
+		else {
+			if (imageHeight < rect.Height()) {
+				imageY = (int)((rect.Height() - imageHeight) / 2.0);
+			}
+			if (imageWidth < rect.Width()) {
+				zoomRetio = 1.0;
+				imageWidth = m_orgImageWidth;
+				imageHeight = m_orgImageHeight;
+				imageX = (int)((rect.Width() - imageWidth) / 2.0);
+			}
 		}
 	}
 
@@ -622,12 +647,12 @@ void CImageWind::Scaling(double ScalingRetio, CPoint pt)
 		if (imageX > 0) {
 			imageX = 0;
 		}
-		else if ((rect.Width() - imageWidth) > m_imageX) {
+		else if ((rect.Width() - imageWidth) > imageX) {
 			imageX = (rect.Width() - imageWidth);
 		}
 	}
 
-	if (m_imageHeight > 0) {
+	if (imageHeight > rect.Height()) {
 		if (imageY > 0) {
 			imageY = 0;
 		}
