@@ -1457,6 +1457,8 @@ LRESULT CWeldEvaluationView::OnProjectResistRequest(WPARAM wparam, LPARAM lparam
 {
 	int iResult = 0;
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
+
+	CWaitCursor waitCursol;
 	if (!pDoc->SaveProject()) {
 		CString msg;
 		msg.LoadString(IDM_ERR_PROJECT_SAVE);
@@ -1484,6 +1486,7 @@ LRESULT CWeldEvaluationView::OnImageOutputRequest(WPARAM wparam, LPARAM lparam)
 
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
 
+	CWaitCursor waitCursol;
 	CString ImagePath = pDoc->GetScanImagePath(CWeldEvaluationDoc::eResinSurface);
 	int buffSize = 1024;
 	TCHAR *buff = new TCHAR[buffSize];
