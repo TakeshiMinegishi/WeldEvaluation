@@ -202,14 +202,14 @@ void CPropTabPageParameter::LoadParamater(int id)
 void CPropTabPageParameter::ViewJointRatio(int method, int id, int ViewJointRatioNo)
 {
 	if (ViewJointRatioNo < 0) {
-		m_JointRatio.Format(_T("%.1lf"),0.0);
+		m_JointRatio.Format(_T("%.2lf"),0.0);
 	} else {
 		CWeldEvaluationDoc *pDoc = GetDocument();
 
 		switch(id) {
 		case	CWeldEvaluationDoc::eResinSurface	:	// Ž÷Ž‰
 			{
-				m_JointRatio.Format(_T("%.1lf"),pDoc->ResinGetJointRetio(method,ViewJointRatioNo));
+				m_JointRatio.Format(_T("%.2lf"),pDoc->ResinGetJointRetio(method,ViewJointRatioNo));
 				COLORREF col = pDoc->ResinGetJointColor(method,ViewJointRatioNo);
 				if (col == 0) {
 					col = pDoc->GetClassColor(ViewJointRatioNo, m_NumberOfClass);
@@ -219,7 +219,7 @@ void CPropTabPageParameter::ViewJointRatio(int method, int id, int ViewJointRati
 			break;
 		case	CWeldEvaluationDoc::eMetalSurface	:	// ‹à‘®
 			{
-				m_JointRatio.Format(_T("%.1lf"),pDoc->MetalGetJointRetio(method,ViewJointRatioNo));
+				m_JointRatio.Format(_T("%.2lf"),pDoc->MetalGetJointRetio(method,ViewJointRatioNo));
 				COLORREF col = pDoc->MetalGetJointColor(method,ViewJointRatioNo);
 				if (col == 0) {
 					col = pDoc->GetClassColor(ViewJointRatioNo, m_NumberOfClass);
@@ -229,7 +229,7 @@ void CPropTabPageParameter::ViewJointRatio(int method, int id, int ViewJointRati
 			break;
 		case	CWeldEvaluationDoc::eJoiningResult	:	// Ú‡Œ‹‰Ê
 			{
-				m_JointRatio.Format(_T("%.1lf"),pDoc->ResultGetJointRetio(method,ViewJointRatioNo));
+				m_JointRatio.Format(_T("%.2lf"),pDoc->ResultGetJointRetio(method,ViewJointRatioNo));
 				COLORREF col = pDoc->ResultGetJointColor(method,ViewJointRatioNo);
 				if (col == 0) {
 					col = pDoc->GetClassColor(ViewJointRatioNo, m_NumberOfClass);
