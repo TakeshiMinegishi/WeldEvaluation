@@ -1423,8 +1423,8 @@ bool CWeldEvaluationDoc::SetRGBWavelength(double &r, double &g, double &b)
 	}
 	CConfigrationIO sys(m_SystemFilePathName);
 	r = sys.getDouble(_T("System"), _T("RedWavelength"));
-	g = sys.getDouble(_T("System"), _T("BlueWavelength"));
-	b = sys.getDouble(_T("System"), _T("GreenWavelength"));
+	g = sys.getDouble(_T("System"), _T("GreenWavelength"));
+	b = sys.getDouble(_T("System"), _T("BlueWavelength"));
 	return true;
 }
 

@@ -1234,8 +1234,9 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 				buff.Format(_T("Scaning : %d/%d(%d %%) Joint : %d/%d"), pos + 1, DivisionNumber, (int)((pos + 1) * 100 / DivisionNumber), b + 1, band);
 				pStatus->UpdateStatus(buff);
 				for (int h = 0; h < outH; h++) {
-					for (int w = 0; w < dstW; w++) {
-						outData[b][h][jointPos + w] = (outData[b][h][jointPos + w] + dst[b][h][w]) / (float)2.0;
+					for (int w = 0; w < offset; w++) {
+						float delta = (float)w / (float)offset;
+						outData[b][h][jointPos + w] = outData[b][h][jointPos + w]*(1.0f-delta) + dst[b][h][w]*delta;
 					}
 					memcpy(&outData[b][h][jointPos + offset], &dst[b][h][offset], sizeof(float)*(dstW - offset));
 				}
