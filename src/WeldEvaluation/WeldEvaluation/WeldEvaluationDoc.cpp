@@ -1219,7 +1219,7 @@ bool CWeldEvaluationDoc::ExistScanFile(int fileID)
 /// <summary>
 /// スキャンファイルパス取得（拡張子なし）
 /// </summary>
-/// <param name="fileID">ファイル種別ID</param>
+/// <param name="ScanID">対象スキャンID</param>
 /// <returns>存在する場合はパスを返す、失敗した場合は空文字を返す</returns>
 CString CWeldEvaluationDoc::getScanDataPath(int ScanID)
 {
@@ -1249,7 +1249,7 @@ CString CWeldEvaluationDoc::getScanDataPath(int ScanID)
 /// <summary>
 /// スキャンデータファイルパス取得
 /// </summary>
-/// <param name="fileID">ファイル種別ID</param>
+/// <param name="ScanID">対象スキャンID</param>
 /// <returns>存在する場合はパスを返す、失敗した場合は空文字を返す</returns>
 CString CWeldEvaluationDoc::getScanDataFilePath(int ScanID)
 {
@@ -1261,7 +1261,7 @@ CString CWeldEvaluationDoc::getScanDataFilePath(int ScanID)
 /// <summary>
 /// スキャンイメージファイルパス取得
 /// </summary>
-/// <param name="fileID">ファイル種別ID</param>
+/// <param name="ScanID">ファイル種別ID</param>
 /// <returns>存在する場合はパスを返す、失敗した場合は空文字を返す</returns>
 CString CWeldEvaluationDoc::getScanImageFilePath(int ScanID)
 {
@@ -1273,7 +1273,7 @@ CString CWeldEvaluationDoc::getScanImageFilePath(int ScanID)
 /// <summary>
 /// 分類結果データファイルパス取得
 /// </summary>
-/// <param name="ScanID">ファイル種別ID</param>
+/// <param name="ScanID">対象スキャンID</param>
 /// <param name="type">分類種別ID</param>
 /// <returns>存在する場合はパスを返す、失敗した場合は空文字を返す</returns>
 CString CWeldEvaluationDoc::getClassificationDataFilePath(int ScanID, int type)
@@ -1322,7 +1322,7 @@ CString CWeldEvaluationDoc::getClassificationDataFilePath(int ScanID, int type)
 /// <summary>
 /// 分類結果イメージファイルパス取得
 /// </summary>
-/// <param name="ScanID">ファイル種別ID</param>
+/// <param name="ScanID">対象スキャンID</param>
 /// <param name="type">分類種別ID</param>
 /// <returns>存在する場合はパスを返す、失敗した場合は空文字を返す</returns>
 CString CWeldEvaluationDoc::getClassificationImageFilePath(int ScanID, int type)
@@ -2253,7 +2253,7 @@ CString CWeldEvaluationDoc::GetTmpFolderPath()
 /// <summary>
 /// スキャンデータ名の取得
 /// </summary>
-/// <param name="ScanID">フスキャンID</param>
+/// <param name="ScanID">対象スキャンID</param>
 /// <returns>スキャンデータ名を返す</returns>
 CString CWeldEvaluationDoc::GetScanDataName(int ScanID, CString Prefix)
 {
@@ -2299,7 +2299,7 @@ CString CWeldEvaluationDoc::GetScanDataName(int ScanID, CString Prefix)
 /// <summary>
 /// スキャンデータの保存
 /// </summary>
-/// <param name="ScanID">フスキャンID</param>
+/// <param name="ScanID">対象スキャンID</param>
 /// <returns>成功した場合はtrue、失敗の場合はfalseを返す</returns>
 bool CWeldEvaluationDoc::SaveScanImage(int ScanID)
 {
@@ -2814,6 +2814,11 @@ bool CWeldEvaluationDoc::LoadScanImage(int ScanID, CImage &img, bool renew/* = f
 	return true;
 }
 
+/// <summary>
+/// スキャンデータイメージの削除
+/// </summary>
+/// <param name="ScanID">対象スキャンID</param>
+/// <returns>成功の場合はtrue、失敗の場合はfalseを返す</returns>
 bool CWeldEvaluationDoc::DeleteScanImageFilePath(int ScanID)
 {
 	CString scanImageFile = getScanImageFilePath(ScanID);
@@ -2823,6 +2828,13 @@ bool CWeldEvaluationDoc::DeleteScanImageFilePath(int ScanID)
 	return true;
 }
 
+/// <summary>
+/// 輝度－RGB変換
+/// </summary>
+/// <param name="h">輝度</param>
+/// <param name="r">赤</param>
+/// <param name="g">緑</param>
+/// <param name="b">青</param>
 void CWeldEvaluationDoc::H2RGB(int h, BYTE &r, BYTE &g, BYTE &b)
 {
 	double min = 0.;
@@ -2868,6 +2880,12 @@ void CWeldEvaluationDoc::H2RGB(int h, BYTE &r, BYTE &g, BYTE &b)
 	}
 }
 
+/// <summary>
+/// クラスに対応する色の取得
+/// </summary>
+/// <param name="id">対象クラスID</param>
+/// <param name="nClass">クラス数</param>
+/// <returns>成功の場合は対応色を返す</returns>
 COLORREF CWeldEvaluationDoc::GetClassColor(int id, int nClass)
 {
 	COLORREF col;
@@ -3001,6 +3019,7 @@ bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, int type, C
 	return bResult;
 }
 
+/// <param name="ScanID">対象スキャンID</param>
 bool CWeldEvaluationDoc::GetSpectrumData(int ScanID, CPoint &pos, std::vector<double> &data)
 {
 	CString root, name;
@@ -3110,6 +3129,10 @@ bool CWeldEvaluationDoc::WriteImage(CString writePath)
 //////////////////////////////////////////////////////////////////////////////////////////
 // プロジェクトワークファイル処理
 
+/// <summary>
+/// ワークプロジェクト名の取得
+/// </summary>
+/// <returns>ワークプロジェクト名を返す</returns>
 CString CWeldEvaluationDoc::GetWorkProjectFolderName()
 {
 	CConfigrationIO sys(m_SystemFilePathName);
@@ -3120,6 +3143,10 @@ CString CWeldEvaluationDoc::GetWorkProjectFolderName()
 	return folder;
 }
 
+/// <summary>
+/// ワークプロジェクトのルートパス取得
+/// </summary>
+/// <returns>ワークプロジェクトのルートパスを返す</returns>
 CString CWeldEvaluationDoc::GetWorkProjectFolderPath()
 {
 	CString folderName = GetWorkProjectFolderName();
@@ -3132,6 +3159,13 @@ CString CWeldEvaluationDoc::GetWorkProjectFolderPath()
 	return path;
 }
 
+/// <summary>
+/// プロジェクトステータス設定
+/// </summary>
+/// <param name="WKPrjPath">ワークプロジェクトへのパス</param>
+/// <param name="key">ステータスキー</param>
+/// <param name="value">ステータスキーに対応する値</param>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
 bool CWeldEvaluationDoc::SetWorkProjectStatus(CString WKPrjPath, CString key, CString value)
 {
 	CString stsPathName = CFileUtil::FilePathCombine(WKPrjPath, StatysFileName);
@@ -3139,6 +3173,12 @@ bool CWeldEvaluationDoc::SetWorkProjectStatus(CString WKPrjPath, CString key, CS
 	return sys.setString(_T("Status"), key, value);
 }
 
+/// <summary>
+/// プロジェクトステータス取得
+/// </summary>
+/// <param name="WKPrjPath">ワークプロジェクトへのパス</param>
+/// <param name="key">ステータスキー</param>
+/// <returns>成功場合はキーに対応する値を返す</returns>
 CString CWeldEvaluationDoc::GetWorkProjectStatus(CString WKPrjPath, CString key)
 {
 	CString stsPathName = CFileUtil::FilePathCombine(WKPrjPath, StatysFileName);
@@ -3147,6 +3187,10 @@ CString CWeldEvaluationDoc::GetWorkProjectStatus(CString WKPrjPath, CString key)
 	return val;
 }
 
+/// <summary>
+/// ワークプロジェクトパスの取得
+/// </summary>
+/// <returns>ワークプロジェクトパスを返す</returns>
 CString CWeldEvaluationDoc::GetWorkProjectPath()
 {
 	CString rootPath = GetWorkProjectFolderPath();
@@ -3157,6 +3201,10 @@ CString CWeldEvaluationDoc::GetWorkProjectPath()
 	return CFileUtil::FilePathCombine(rootPath, prjName);
 }
 
+/// <summary>
+/// プロジェクトの更新判定
+/// </summary>
+/// <returns>更新がある場合はtrue、無い場合はfalseを返す</returns>
 bool CWeldEvaluationDoc::IsWorkProjectUpdated()
 {
 	CString rootPath = GetWorkProjectFolderPath();
@@ -3169,6 +3217,11 @@ bool CWeldEvaluationDoc::IsWorkProjectUpdated()
 	}
 }
 
+/// <summary>
+/// プロジェクトの更新ステータス設定
+/// </summary>
+/// <param name="bUpdate">更新フラグ</param>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
 bool CWeldEvaluationDoc::SetWorkProjectUpdteStatus(bool bUpdate)
 {
 	CString rootPath = GetWorkProjectFolderPath();
@@ -3182,6 +3235,9 @@ bool CWeldEvaluationDoc::SetWorkProjectUpdteStatus(bool bUpdate)
 	return SetWorkProjectStatus(rootPath, _T("Update"), status);
 }
 
+/// <summary>
+/// ワークプロジェクトの削除
+/// </summary>
 void CWeldEvaluationDoc::ClrWorkProject()
 {
 	CString folder = GetWorkProjectFolderPath();
@@ -3190,7 +3246,12 @@ void CWeldEvaluationDoc::ClrWorkProject()
 	}
 }
 
-// プロジェクトをワークへ
+/// <summary>
+/// プロジェクトをワークへ移動
+/// </summary>
+/// <param name="ResistPath">移動元プロジェクトのルートパス</param>
+/// <param name="ProjentName">プロジェクト名</param>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
 bool CWeldEvaluationDoc::PushProject(CString ResistPath, CString ProjentName)
 {
 	CString rootPath = GetWorkProjectFolderPath();
@@ -3220,7 +3281,12 @@ bool CWeldEvaluationDoc::PushProject(CString ResistPath, CString ProjentName)
 	return true;
 }
 
-// ワークからプロジェクトへ
+/// <summary>
+/// ワークからプロジェクトへ移動
+/// </summary>
+/// <param name="ResistPath">移動先プロジェクトのルートパス</param>
+/// <param name="ProjentName">プロジェクト名</param>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
 bool CWeldEvaluationDoc::PopProject(CString ResistPath, CString ProjentName)
 {
 	CString rootPath = GetWorkProjectFolderPath();
@@ -3257,5 +3323,86 @@ bool CWeldEvaluationDoc::PopProject(CString ResistPath, CString ProjentName)
 	CPropatyIO::WriteProjectName(PropatyFilePath, projectFileName);
 	CPropatyIO::WriteTestName(PropatyFilePath, ProjentName);
 
+	dstPath = CFileUtil::FilePathCombine(rootPath, ProjentName);
+	CFile::Rename(srcPath, dstPath);
+
 	return true;
+}
+
+/// <summary>
+/// スキャン情報の削除
+/// </summary>
+/// <param name="ScanID">対象スキャンID</param>
+/// <param name="ViewJointRatioNo">接合面番号</param>
+/// <param name="retio">接合結果の接合割合</param>
+void CWeldEvaluationDoc::DeleteContents(int ScanID)
+{
+	int a;
+	CString path, imgPaht;
+	path = getScanDataPath(ScanID);
+	CString headerPath = path + _T(".hdr");
+	if (CFileUtil::fileExists(headerPath)) {
+		CFileUtil::fileDelete(headerPath);
+	}
+	CString rawPath = path + _T(".raw");
+	if (CFileUtil::fileExists(rawPath)) {
+		CFileUtil::fileDelete(rawPath);
+	}
+	imgPaht = GetScanImagePath(ScanID);
+	if (CFileUtil::fileExists(imgPaht)) {
+		CFileUtil::fileDelete(imgPaht);
+	}
+	path = GetClassificationResultPath(ScanID, AnalizeTypeKMeans);
+	if (CFileUtil::fileExists(path)) {
+		CFileUtil::fileDelete(path);
+	}
+	imgPaht = path + _T(".bmp");
+	if (CFileUtil::fileExists(imgPaht)) {
+		CFileUtil::fileDelete(imgPaht);
+	}
+	path = GetClassificationResultPath(ScanID, AnalizeTypeHiClustering);
+	if (CFileUtil::fileExists(path)) {
+		CFileUtil::fileDelete(path);
+	}
+	imgPaht = path + _T(".bmp");
+	if (CFileUtil::fileExists(imgPaht)) {
+		CFileUtil::fileDelete(imgPaht);
+	}
+
+	CConfigrationIO sys(m_SystemFilePathName);
+	double dval;
+	int uval;
+	COLORREF color = RGB(0, 0, 0);
+	switch (ScanID) {
+	case	eResinSurface:	///< 樹脂
+		uval = m_PropatyIO.ResinGetNumberOfClass();
+		for (int method = 0; method < 2; method++) {
+			for (int i = 0; i < (int)uval; i++) {
+				dval = sys.getDouble(_T("ParamDefault"), _T("ResinSurface_Joining_ratio"));
+				m_PropatyIO.ResinSetJointRetio(method, i, dval);
+				m_PropatyIO.ResinSetJointColor(method, i,color);
+			}
+		}
+		break;
+	case	eMetalSurface:	///< 金属
+		uval = m_PropatyIO.MetalGetNumberOfClass();
+		for (int method = 0; method < 2; method++) {
+			for (int i = 0; i < (int)uval; i++) {
+				dval = sys.getDouble(_T("ParamDefault"), _T("ResinSurface_Joining_ratio"));
+				m_PropatyIO.MetalSetJointRetio(method, i, dval);
+				m_PropatyIO.MetalSetJointColor(method, i, color);
+			}
+		}
+		break;
+	case	eJoiningResult:	///< 接合結果
+		uval = m_PropatyIO.ResultGetNumberOfClass();
+		for (int method = 0; method < 2; method++) {
+			for (int i = 0; i < (int)uval; i++) {
+				dval = sys.getDouble(_T("ParamDefault"), _T("ResinSurface_Joining_ratio"));
+				m_PropatyIO.ResultSetJointRetio(method, i, dval);
+				m_PropatyIO.ResultSetJointColor(method, i, color);
+			}
+		}
+		break;
+	}
 }

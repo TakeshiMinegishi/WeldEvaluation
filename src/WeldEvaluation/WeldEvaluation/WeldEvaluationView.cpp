@@ -954,6 +954,20 @@ LRESULT CWeldEvaluationView::OnScanRequest(WPARAM wparam, LPARAM lparam)
 
 	int ScanID = (int)wparam;
 	int *Result = (int *)lparam;
+	int type = m_OprtAnalize.GetAnalizeType(ScanID);
+
+	m_OprtAnalize.SetDisplayMode(ScanID, CWeldEvaluationDoc::DisplayModeScan);
+	switch (ScanID) {
+	case	CWeldEvaluationDoc::eResinSurface:		// Ž÷Ž‰
+		m_PropResinPage.ViewJointRatio(type, ScanID, -1);
+		break;
+	case	CWeldEvaluationDoc::eMetalSurface:		// ‹à‘®
+		m_PropMetalPage.ViewJointRatio(type, ScanID, -1);
+		break;
+	case	CWeldEvaluationDoc::eJoiningResult:		// Ú‡Œ‹‰Ê
+		m_PropResultPage.ViewJointRatio(type, ScanID, -1);
+		break;
+	}
 
 	CStatusDlgThread* pThread = DYNAMIC_DOWNCAST(CStatusDlgThread, AfxBeginThread(RUNTIME_CLASS(CStatusDlgThread) , 0, 0, CREATE_SUSPENDED));
 	pThread->m_bAutoDelete = false;			// –³Œø‚ÈƒAƒNƒZƒX–hŽ~‚Ì‚½‚ßŽ©“®íœ‚Í–³Œø‰»
@@ -1661,16 +1675,20 @@ bool CWeldEvaluationView::ViewChangeRequest(int ScanID, int DisplayMode, bool re
 	int iResult = 0;
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
 
+	CPropTabPageParameter *pPropPage = nullptr;
 	CImageWind *pImageWnd = nullptr;
 	switch (ScanID) {
 	case	CWeldEvaluationDoc::eResinSurface:		// Ž÷Ž‰
 		pImageWnd = m_pReginWnd;
+		pPropPage = &m_PropResinPage;
 		break;
 	case	CWeldEvaluationDoc::eMetalSurface:		// ‹à‘®
 		pImageWnd = m_pMetalWnd;
+		pPropPage = &m_PropMetalPage;
 		break;
 	case	CWeldEvaluationDoc::eJoiningResult:		// Ú‡Œ‹‰Ê
 		pImageWnd = m_pResultWnd;
+		pPropPage = &m_PropResultPage;
 		break;
 	}
 
@@ -1702,6 +1720,8 @@ bool CWeldEvaluationView::ViewChangeRequest(int ScanID, int DisplayMode, bool re
 		else {
 			pImageWnd->Erase();
 		}
+		pPropPage->LoadParamater(type);
+		pPropPage->ViewJointRatio(type, ScanID, -1);
 	}
 
 	if (!pDoc->SetDisplayMode(ScanID, DisplayMode)) {

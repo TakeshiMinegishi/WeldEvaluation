@@ -484,6 +484,7 @@ bool CScanDataIO::getBandSpectrum(std::vector<double> &BandSpectrum)
 	return true;
 }
 
+#if 0	// 削除するコード
 typedef struct {
 	int		m_sx;
 	int		m_sy;
@@ -491,7 +492,6 @@ typedef struct {
 	int		m_ty;
 	double	m_diff;
 } sDifPos;
-
 
 bool CScanDataIO::joinInit()
 {
@@ -667,36 +667,6 @@ bool CScanDataIO::joinend(CString outpathName)
 	return true;
 }
 
-bool CScanDataIO::bicubic(float *** srcdata, int width, int height, int band, float orignX, float orignY, float *p)
-{
-	float integral[2], fractional[2];
-	fractional[0] = modff(orignX, &integral[0]);
-	fractional[1] = modff(orignY, &integral[1]);
-
-	int x0 = (int)integral[0];
-	int x1 = x0 + 1;
-	if (x1 >= width) {
-		x1 = x0;
-	}
-	int y0 = (int)integral[1];
-	int y1 = y0 + 1;
-	if (y1 >= height) {
-		y1 = y0;
-	}
-	float dx = orignX - (float)x0;
-	float dy = orignY - (float)y0;
-	float a = (float)((1.0 - dx) * (1.0 - dy));
-	float b = (float)((1.0 - dx) * dy);
-	float c = (float)(dx * (1.0 - dy));
-	float d = dx * dy;
-
-	for (int bd = 0; bd < band; bd++) {
-		p[bd] = srcdata[bd][y0][x0] * a + srcdata[bd][y1][x0] * b + srcdata[bd][y0][x1] * c + srcdata[bd][y1][x0] * d;
-	}
-	return true;
-}
-
-#if 0
 bool CScanDataIO::scale(int width, int height, CString outpathPath, CString outName)
 {
 	int X_SIZE = m_o_p_cube->format.width;
@@ -845,6 +815,53 @@ void CScanDataIO::aff_trans(float **src, float **dst, int srcWidth, int srcHeigh
 }
 #endif
 
+/// <summary>
+/// 線形補間
+/// </summary>
+/// <param name="srcdata">データ</param>
+/// <param name="width">データ幅</param>
+/// <param name="height">データ高さ</param>
+/// <param name="band">バンド数</param>
+/// <param name="orignX">補間対象データX値</param>
+/// <param name="orignY">補間対象データY値</param>
+/// <param name="p">補間値</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
+bool CScanDataIO::bicubic(float *** srcdata, int width, int height, int band, float orignX, float orignY, float *p)
+{
+	float integral[2], fractional[2];
+	fractional[0] = modff(orignX, &integral[0]);
+	fractional[1] = modff(orignY, &integral[1]);
+
+	int x0 = (int)integral[0];
+	int x1 = x0 + 1;
+	if (x1 >= width) {
+		x1 = x0;
+	}
+	int y0 = (int)integral[1];
+	int y1 = y0 + 1;
+	if (y1 >= height) {
+		y1 = y0;
+	}
+	float dx = orignX - (float)x0;
+	float dy = orignY - (float)y0;
+	float a = (float)((1.0 - dx) * (1.0 - dy));
+	float b = (float)((1.0 - dx) * dy);
+	float c = (float)(dx * (1.0 - dy));
+	float d = dx * dy;
+
+	for (int bd = 0; bd < band; bd++) {
+		p[bd] = srcdata[bd][y0][x0] * a + srcdata[bd][y1][x0] * b + srcdata[bd][y0][x1] * c + srcdata[bd][y1][x0] * d;
+	}
+	return true;
+}
+
+/// <summary>
+/// ログ出力
+/// </summary>
+/// <param name="level">ログレベル</param>
+/// <param name="filePath">エラーファイル</param>
+/// <param name="lineNo">エラー行</param>
+/// <param name="msg">ログメッセージ</param>
 void CScanDataIO::writeLog(CLog::LOGLEVEL level, CString filePath, long lineNo, CString msg)
 {
 	CLog log;
@@ -853,6 +870,13 @@ void CScanDataIO::writeLog(CLog::LOGLEVEL level, CString filePath, long lineNo, 
 	log.logWrite(level, ErrMsg);
 }
 
+/// <summary>
+/// エラーログ出力
+/// </summary>
+/// <param name="filePath">エラーファイル</param>
+/// <param name="lineNo">エラー行</param>
+/// <param name="i_caller_name">エラーコード</param>
+/// <param name="i_return_val">呼び出し名</param>
 void CScanDataIO::errorLog(CString filePath, long lineNo, CString i_caller_name, HSI_RETURN i_return_val)
 {
 	if (i_return_val == HSI_OK)
@@ -917,6 +941,10 @@ void CScanDataIO::errorLog(CString filePath, long lineNo, CString i_caller_name,
 	return;
 }
 
+/// <summary>
+/// マトリックス初期化
+/// </summary>
+/// <returns>マトリックス領域を返す</returns>
 double ** CScanDataIO::MatrixInit()
 {
 	double init[3][3] = { {1,0,0},{0,1,0},{0,0,1} };
@@ -930,6 +958,10 @@ double ** CScanDataIO::MatrixInit()
 	return mat;
 }
 
+/// <summary>
+/// マトリックス開放
+/// </summary>
+/// <param name="mat">マトリックス</param>
 void CScanDataIO::MatrixRelease(double ** &mat)
 {
 	if (mat != nullptr) {
@@ -944,6 +976,11 @@ void CScanDataIO::MatrixRelease(double ** &mat)
 	}
 }
 
+/// <summary>
+/// マトリックスかけ算
+/// </summary>
+/// <param name="src">マトリックス1</param>
+/// <param name="dst">マトリックス2</param>
 void CScanDataIO::MatrixMultiplication(double **src, double **dst)
 {
 	double d[3];
@@ -969,6 +1006,12 @@ void CScanDataIO::MatrixMultiplication(double **src, double **dst)
 	src[2][2] = d[2];
 }
 
+/// <summary>
+/// マトリックス移動
+/// </summary>
+/// <param name="mat">マトリックス</param>
+/// <param name="x">X移動量</param>
+/// <param name="y">Y移動量</param>
 void CScanDataIO::MatrixMove(double **mat, double x, double y)
 {
 	double prm[3][3] = { {1,0,x},{0,1,y},{0,0,1} };
@@ -982,6 +1025,11 @@ void CScanDataIO::MatrixMove(double **mat, double x, double y)
 	MatrixRelease(dst);
 }
 
+/// <summary>
+/// マトリックス回転
+/// </summary>
+/// <param name="mat">マトリックス</param>
+/// <param name="angle">回転角（度）</param>
 void CScanDataIO::MatrixRotete(double **mat, double angle)
 {
 	double PI = 3.141592648777698869248;
@@ -1007,6 +1055,12 @@ void CScanDataIO::MatrixRotete(double **mat, double angle)
 	MatrixRelease(dst);
 }
 
+/// <summary>
+/// マトリックス拡縮
+/// </summary>
+/// <param name="mat">マトリックス</param>
+/// <param name="x">X縮尺率</param>
+/// <param name="y">Y縮尺率</param>
 void CScanDataIO::MatrixScale(double **mat, double x, double y)
 {
 	double prm[3][3] = { {x,0,0,},{0,y,0},{0,0,1} };
@@ -1021,6 +1075,10 @@ void CScanDataIO::MatrixScale(double **mat, double x, double y)
 	MatrixRelease(dst);
 }
 
+/// <summary>
+/// マトリックス逆行列
+/// </summary>
+/// <param name="mat">マトリックス</param>
 void  CScanDataIO::MatrixInvers(double **mat)
 {
 	double a[3][3];
@@ -1045,6 +1103,19 @@ void  CScanDataIO::MatrixInvers(double **mat)
 	}
 }
 
+/// <summary>
+/// アファイン変換
+/// </summary>
+/// <param name="srcWidth">変換元幅</param>
+/// <param name="srcHeight">変換元高さ</param>
+/// <param name="src">変換元データ</param>
+/// <param name="dstWidth">変換先幅</param>
+/// <param name="distHeight">変換先高さ</param>
+/// <param name="dst">変換先データ</param>
+/// <param name="band">バンド数</param>
+/// <param name="mat">マトリックス</param>
+/// <param name="bBicubic">線形補間有無フラグ</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CScanDataIO::affine(int srcWidth, int srcHeight, float ***src, int dstWidth, int distHeight, float ***dst, int band, double **mat, bool bBicubic/*=true*/)
 {
 	double sx, sy;
@@ -1087,6 +1158,20 @@ bool CScanDataIO::affine(int srcWidth, int srcHeight, float ***src, int dstWidth
 	return true;
 }
 
+/// <summary>
+/// スキャンデータ変換
+/// </summary>
+/// <param name="srcWidth">変換元幅</param>
+/// <param name="srcHeight">変換元高さ</param>
+/// <param name="band">バンド数</param>
+/// <param name="src">変換元データ</param>
+/// <param name="hscale">X軸拡縮率</param>
+/// <param name="vscale">Y軸拡縮率</param>
+/// <param name="dstWidth">変換先幅</param>
+/// <param name="distHeight">変換先高さ</param>
+/// <param name="dst">変換先データ</param>
+/// <param name="bBicubic">線形補間有無フラグ</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CScanDataIO::ScanDataConvert(int srcWidth, int srcHeight, int band, float ***src, double hscale, double vscale, int &dstWidth, int &dstHeight, float ***& dst, bool bBicubic/* = true*/)
 {
 	double **mat = MatrixInit();
@@ -1112,6 +1197,12 @@ bool CScanDataIO::ScanDataConvert(int srcWidth, int srcHeight, int band, float *
 	return true;
 }
 
+/// <summary>
+/// 変換データの開放
+/// </summary>
+/// <param name="distHeight">変換データ高さ</param>
+/// <param name="band">バンド数</param>
+/// <param name="dst">変換データ</param>
 void CScanDataIO::FreeConvertData(int dstHeight, int band, float ***& dst)
 {
 	if (dst) {
@@ -1132,6 +1223,13 @@ void CScanDataIO::FreeConvertData(int dstHeight, int band, float ***& dst)
 	}
 }
 
+/// <summary>
+/// ヘッダファイルから幅、高さを取得
+/// </summary>
+/// <param name="pathName">ヘッダファイルへのパス</param>
+/// <param name="width">幅</param>
+/// <param name="height">高さ</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CScanDataIO::GetHeaderFilePrm(CString pathName, int &width, int &height)
 {
 	bool bResult = true;
@@ -1180,5 +1278,12 @@ bool CScanDataIO::GetHeaderFilePrm(CString pathName, int &width, int &height)
 	if ((find & 0x03) != 0x03) {
 		bResult = false;
 	}
+	return bResult;
+}
+
+bool CScanDataIO::GetHomographyMatrix(CPoint srcPt[4], CPoint dstPt[4], double prm[6])
+{
+	bool bResult = true;
+
 	return bResult;
 }

@@ -241,4 +241,7 @@ public:
 	bool PushProject(CString ResistPath, CString ProjentName);
 	bool PopProject(CString ResistPath, CString ProjentName);
 	void ClrWorkProject();
+
+	void DeleteContents(int ScanID);
+
 };

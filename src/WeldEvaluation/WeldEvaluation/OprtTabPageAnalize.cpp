@@ -164,9 +164,9 @@ void COprtTabPageAnalize::OnBnClickedRdoResinMethod1()
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eResinSurface,CWeldEvaluationDoc::AnalizeTypeKMeans);
-	if (m_ResinDisplayMode == 0) {
+	if (m_ResinAnalizeType == 0) {
 		if (pWnd) {
-			if (pDoc->GetDisplayMode(CWeldEvaluationDoc::eJoiningResult) != CWeldEvaluationDoc::DisplayModeScan) {
+			if (pDoc->GetDisplayMode(CWeldEvaluationDoc::eResinSurface) != CWeldEvaluationDoc::DisplayModeScan) {
 				pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eResinSurface, CWeldEvaluationDoc::DisplayModeResult);
 			}
 		}
@@ -186,9 +186,9 @@ void COprtTabPageAnalize::OnBnClickedRdoResinMethod2()
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eResinSurface,CWeldEvaluationDoc::AnalizeTypeHiClustering);
-	if (m_ResinDisplayMode == 1) {
+	if (m_ResinAnalizeType == 1) {
 		if (pWnd) {
-			if (pDoc->GetDisplayMode(CWeldEvaluationDoc::eJoiningResult) != CWeldEvaluationDoc::DisplayModeScan) {
+			if (pDoc->GetDisplayMode(CWeldEvaluationDoc::eResinSurface) != CWeldEvaluationDoc::DisplayModeScan) {
 				pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eResinSurface, CWeldEvaluationDoc::DisplayModeResult);
 			}
 		}
@@ -208,9 +208,9 @@ void COprtTabPageAnalize::OnBnClickedRdoMetalMethod1()
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eMetalSurface,CWeldEvaluationDoc::AnalizeTypeKMeans);
-	if (m_MetalDisplayMode == 0) {
+	if (m_MetalAnalizeType == 0) {
 		if (pWnd) {
-			if (pDoc->GetDisplayMode(CWeldEvaluationDoc::eJoiningResult) != CWeldEvaluationDoc::DisplayModeScan) {
+			if (pDoc->GetDisplayMode(CWeldEvaluationDoc::eMetalSurface) != CWeldEvaluationDoc::DisplayModeScan) {
 				pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eMetalSurface, CWeldEvaluationDoc::DisplayModeResult);
 			}
 		}
@@ -230,9 +230,9 @@ void COprtTabPageAnalize::OnBnClickedRdoMetalMethod2()
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eMetalSurface,CWeldEvaluationDoc::AnalizeTypeHiClustering);
-	if (m_MetalDisplayMode == 1) {
+	if (m_MetalAnalizeType == 1) {
 		if (pWnd) {
-			if (pDoc->GetDisplayMode(CWeldEvaluationDoc::eJoiningResult) != CWeldEvaluationDoc::DisplayModeScan) {
+			if (pDoc->GetDisplayMode(CWeldEvaluationDoc::eMetalSurface) != CWeldEvaluationDoc::DisplayModeScan) {
 				pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eMetalSurface, CWeldEvaluationDoc::DisplayModeResult);
 			}
 		}
@@ -476,4 +476,30 @@ int COprtTabPageAnalize::GetAnalizeType(int ItemID)
 	}
 	int type = AnalizeType == 0 ? CWeldEvaluationDoc::AnalizeTypeKMeans : CWeldEvaluationDoc::AnalizeTypeHiClustering;
 	return type;
+}
+
+int COprtTabPageAnalize::SetDisplayMode(int ScanID, int mode)
+{
+	switch (ScanID) {
+	case		CWeldEvaluationDoc::eResinSurface:
+		m_ResinDisplayMode = mode;			// 樹脂面表示タイプ
+		OnBnClickedRdoResinscan();
+		UpdateData(true);
+		m_ResinDisplayMode = mode;			// 樹脂面表示タイプ
+		break;
+	case		CWeldEvaluationDoc::eMetalSurface:
+		m_MetalDisplayMode = mode;			// 金属面表示タイプ	
+		OnBnClickedRdoMetalscan();
+		UpdateData(true);
+		m_MetalDisplayMode = mode;			// 樹脂面表示タイプ
+		break;
+	case		CWeldEvaluationDoc::eJoiningResult:
+		m_ResultDisplayMode = mode;			// 接合結果表示タイプ
+		OnBnClickedRdoJointresultscan();
+		UpdateData(true);
+		m_ResultDisplayMode = mode;			// 樹脂面表示タイプ
+		break;
+	}
+	UpdateData(false);
+	return mode;
 }

@@ -21,7 +21,7 @@ class CScanDataIO
 private:
 	CString		m_pathName;			///< スキャンデータファイルパス
 	CubeFloat*	m_o_p_cube;			///< CubeFloatオブジェクトへのポインタ
-	std::vector<std::vector<std::vector<float>>>	m_data;
+//	std::vector<std::vector<std::vector<float>>>	m_data;
 	bool		m_localData;
 
 	double		m_RSpectrum;		///< 赤のスペクトル値
@@ -45,16 +45,19 @@ public:
 	bool LoadImage(int &height, int &width, int &bands, CImage &img);
 	bool GetSpectrumData(CPoint &pos, std::vector<double> &data);
 	bool getBandSpectrum(std::vector<double> &BandSpectrum);
+#if 0	// 削除するコード
 	bool joinInit();
 	bool join(CString pathName, int nOverlap);
 	bool joinend(CString outpathName);
 
-
 	void aff_trans(float **src, float **dst, int srcWidth, int srcHeight, int dstWidth, int dstHeight, double coef[6]);
 	void calc_aff_coef(double HScale, double VScale, double Angle, int offsetX, int offsetY, int OutWidth, int OutHeight, double coef[6]);
+
+	bool scale(int width, int height, CString outpathPath, CString outName);
+	bool affine(int width, int height, double deg, int ofsetX, int offsetY, CString outpathPath, CString outName);
+#endif
+
 	bool bicubic(float *** srcdata, int width, int height, int band, float orignX, float orignY, float *p);
-	bool scale(int width , int height, CString outpathPath, CString outName);
-//	bool affine(int width, int height, double deg, int ofsetX, int offsetY, CString outpathPath, CString outName);
 
 	static void writeLog(CLog::LOGLEVEL level, CString filePath, long lineNo, CString msg);
 	static void errorLog(CString filePath, long lineNo, CString i_caller_name, HSI_RETURN i_return_val);
@@ -69,7 +72,10 @@ public:
 	bool affine(int srcWidth, int srcHeight, float ***src, int dstWidth, int distHeight, float ***dst, int band, double **mat, bool bBicubic = true);
 	bool ScanDataConvert(int srcWidth, int srcHeight, int band, float ***src, double hscale, double vscale, int &dstWidth, int &distHight, float ***& dist, bool bBicubic = true);
 	void FreeConvertData(int dstHeight, int band, float ***& dst);
+
 	static bool GetHeaderFilePrm(CString pathName, int &width, int &height);
+
+	bool GetHomographyMatrix(CPoint srcPt[4], CPoint dstPt[4], double prm[6]);
 
 };
 

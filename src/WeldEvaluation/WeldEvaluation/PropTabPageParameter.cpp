@@ -202,6 +202,18 @@ void CPropTabPageParameter::LoadParamater(int id)
 void CPropTabPageParameter::ViewJointRatio(int method, int id, int ViewJointRatioNo)
 {
 	if (ViewJointRatioNo < 0) {
+		if (m_cmbJoinratioTarget.GetCount() <= 0) {
+			ViewJointRatioNo = -1;
+		}
+		else {
+			
+			ViewJointRatioNo = 0;
+			int selid = m_cmbJoinratioTarget.SetCurSel(0);
+			int a = 0;
+		}
+	}
+
+	if (ViewJointRatioNo < 0) {
 		m_JointRatio.Format(_T("%.1lf"),0.0);
 	} else {
 		CWeldEvaluationDoc *pDoc = GetDocument();
@@ -238,6 +250,16 @@ void CPropTabPageParameter::ViewJointRatio(int method, int id, int ViewJointRati
 		}
 			break;
 		}
+#if 1
+		if (m_cmbJoinratioTarget.GetCount() > 0) {
+			int selid = m_cmbJoinratioTarget.SetCurSel(ViewJointRatioNo);
+			CString sel;
+			m_cmbJoinratioTarget.GetLBText(selid, sel);
+			selid = m_cmbJoinratioTarget.SelectString(-1, sel);
+			int a = 0;
+		}
+#endif
+
 	}
 	UpdateData(false);
 }
@@ -369,7 +391,7 @@ void CPropTabPageParameter::UpdateCmbJoinratioTargetLabel(bool renew)
 				if (_itot_s(m_NumberOfClass,sval,255,10) == 0) {
 					m_strJoinratioTarget = sval;
 					UpdateData(false);
-					int id = m_cmbJoinratioTarget.SelectString(0,m_strJoinratioTarget);
+					int id = m_cmbJoinratioTarget.SelectString(-1,m_strJoinratioTarget);
 					if (id != CB_ERR ) {
 						CWeldEvaluationDoc *pDoc = GetDocument();
 						int AnarizeMethod = pDoc->GetAnalysisMethod(m_PageID);
@@ -378,13 +400,31 @@ void CPropTabPageParameter::UpdateCmbJoinratioTargetLabel(bool renew)
 				}
 			}
 		} else if (itemCount < (int)m_NumberOfClass) {
+			m_cmbJoinratioTarget.ResetContent();
 			for (int i =itemCount ; i < (int)m_NumberOfClass; i++) {
 				TCHAR sval[255];
 				if (_itot_s(i+1,sval,255,10) == 0) {
-					int id = m_cmbJoinratioTarget.AddString(sval);
+					CString strLabel = sval;
+					int id = m_cmbJoinratioTarget.AddString(strLabel);
 					m_cmbJoinratioTarget.SetItemData(id,i);
 				}
 			}
+			m_cmbJoinratioTarget.SetCurSel(0);
+#if 0
+			CString str;
+			int id = m_cmbJoinratioTarget.SetCurSel(0);
+			for (int i = 0; i < (int)m_NumberOfClass; i++) {
+				m_cmbJoinratioTarget.GetLBText(i, str);
+				int id = m_cmbJoinratioTarget.SelectString(-1,str);
+				int data = m_cmbJoinratioTarget.GetItemData(id);
+				for (int j = 0; j < m_cmbJoinratioTarget.GetCount(); j++) {
+					if (m_cmbJoinratioTarget.GetItemData(id) == i + 1) {
+						m_cmbJoinratioTarget.GetLBText(j, str);
+						int x = 0;
+					}
+				}
+			}
+#endif
 		}
 	}
 	UpdateData(false);
@@ -412,7 +452,7 @@ void CPropTabPageParameter::OnCbnKillfocusCmbJoinratioTargetLabel()
 {
 	CString str = m_strJoinratioTarget;
 	UpdateData(true);
-	int dataid = m_cmbJoinratioTarget.SelectString(0,m_strJoinratioTarget);
+	int dataid = m_cmbJoinratioTarget.SelectString(-1,m_strJoinratioTarget);
 	if (dataid != CB_ERR) {
 		CWeldEvaluationDoc *pDoc = GetDocument();
 		int AnarizeMethod = pDoc->GetAnalysisMethod(m_PageID);

@@ -176,6 +176,10 @@ void COprtTabPageScan::OnBnClickedBtnScan()
 			ItemActive(true);
 			return;
 		}
+		else {
+			// 関連データの削除
+			pDoc->DeleteContents(ScanID);
+		}
 	}
 	
 	int result;

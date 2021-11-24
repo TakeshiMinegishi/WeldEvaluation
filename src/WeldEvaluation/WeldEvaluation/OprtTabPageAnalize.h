@@ -59,4 +59,5 @@ public:
 	void LoadParamater();
 	void ViewModeReset(void);
 	int GetAnalizeType(int ItemID);
+	int SetDisplayMode(int ScanID, int mode);
 };
