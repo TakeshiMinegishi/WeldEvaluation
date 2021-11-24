@@ -1416,10 +1416,17 @@ bool CWeldEvaluationDoc::SetSpectralDlgRect(CRect &rect)
 	return true;
 }
 
-bool CWeldEvaluationDoc::SetRGBWavelength(double &r, double &g, double &b)
+/// <summary>
+/// RGBに対応する波長の取得
+/// </summary>
+/// <param name="r">赤の波長</param>
+/// <param name="g">緑の波長</param>
+/// <param name="b">青の波長</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
+bool CWeldEvaluationDoc::GetRGBWavelength(double &r, double &g, double &b)
 {
 	if (!CFileUtil::fileExists(m_SystemFilePathName)) {
-		return 0;
+		return false;
 	}
 	CConfigrationIO sys(m_SystemFilePathName);
 	r = sys.getDouble(_T("System"), _T("RedWavelength"));
@@ -1428,6 +1435,41 @@ bool CWeldEvaluationDoc::SetRGBWavelength(double &r, double &g, double &b)
 	return true;
 }
 
+/// <summary>
+/// 射影変換用頂点のの取得
+/// </summary>
+/// <param name="vOrignPt">射影元の頂点</param>
+/// <param name="vTransPt">射影先の頂点</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
+/// @remark 頂点は左上、左した、右下、右上で格納
+bool CWeldEvaluationDoc::GetHomographyPoint(vector<CPoint> &vOrignPt, vector<CPoint> &vTransPt)
+{
+	if (!CFileUtil::fileExists(m_SystemFilePathName)) {
+		return false;
+	}
+	vOrignPt.resize(4);
+	vTransPt.resize(4);
+	CConfigrationIO sys(m_SystemFilePathName);
+	vOrignPt[0].x = sys.getInt(_T("System"), _T("HomographyOrignTLPtX"));
+	vOrignPt[0].y = sys.getInt(_T("System"), _T("HomographyOrignTLPtY"));
+	vOrignPt[1].x = sys.getInt(_T("System"), _T("HomographyOrignBLPtX"));
+	vOrignPt[1].y = sys.getInt(_T("System"), _T("HomographyOrignBLPtY"));
+	vOrignPt[2].x = sys.getInt(_T("System"), _T("HomographyOrignBRPtX"));
+	vOrignPt[2].y = sys.getInt(_T("System"), _T("HomographyOrignBRPtY"));
+	vOrignPt[3].x = sys.getInt(_T("System"), _T("HomographyOrignTRPtX"));
+	vOrignPt[3].y = sys.getInt(_T("System"), _T("HomographyOrignTRPtY"));
+
+	vTransPt[0].x = sys.getInt(_T("System"), _T("HomographyTransTLPtX"));
+	vTransPt[0].y = sys.getInt(_T("System"), _T("HomographyTransTLPtY"));
+	vTransPt[1].x = sys.getInt(_T("System"), _T("HomographyTransBLPtX"));
+	vTransPt[1].y = sys.getInt(_T("System"), _T("HomographyTransBLPtY"));
+	vTransPt[2].x = sys.getInt(_T("System"), _T("HomographyTransBRPtX"));
+	vTransPt[2].y = sys.getInt(_T("System"), _T("HomographyTransBRPtY"));
+	vTransPt[3].x = sys.getInt(_T("System"), _T("HomographyTransTRPtX"));
+	vTransPt[3].y = sys.getInt(_T("System"), _T("HomographyTransTRPtY"));
+
+	return true;
+}
 
 /// <summary>
 /// デバイス名の取得
@@ -1619,6 +1661,44 @@ bool CWeldEvaluationDoc::IsNew(void)
 /// <returns>成功した場合はtrue、そうでない場合はfalseを返す</returns>
 bool CWeldEvaluationDoc::NewProject()
 {
+#if 0
+	////////////////////////////////////////////////////////////////
+	// 消してね
+	////////////////////////////////////////////////////////////////
+	{
+		CScanDataIO sc;
+		CPoint srcPt[4] = { {22,119},{30,982},{2019,974},{2013,106} };
+		CPoint dstPt[4] = { {25,114},{25,976},{2017,976},{2017,114} };
+		double prm[8];
+
+		vector<CPoint> vOrig = { {22,119},{30,982},{2019,974},{2013,106} };
+		vector<CPoint> vTrans = { {25,114},{25,976},{2017,976},{2017,114} };
+		double aParam[8]; 
+
+		double pt[2],ppt[2];
+		sc.GetHomographyMatrix(srcPt, dstPt, prm);
+		sc.Calc_ProjectionParam(vOrig, vTrans, aParam);
+		for (int i = 0; i < 4; i++) {
+			sc.Projection(dstPt[i].x, dstPt[i].y, prm, pt[0], pt[1]);
+			if ((pt[0] != (double)dstPt[i].x) || (pt[1] != (double)dstPt[i].y)) {
+				int a = 0;
+			}
+			else {
+				int a = 0;
+			}
+			sc.Projection(vOrig[i].x, vOrig[i].y, aParam, ppt[0], ppt[1]);
+			if ((pt[0] != (double)dstPt[i].x) || (pt[1] != (double)dstPt[i].y)) {
+				int a = 0;
+			}
+			else {
+				int a = 0;
+			}
+			int a = 0;
+		}
+	}
+	////////////////////////////////////////////////////////////////
+#endif
+
 	ClrWorkProject();
 
 	m_ResinScanData.close();
@@ -2791,7 +2871,7 @@ bool CWeldEvaluationDoc::LoadScanImage(int ScanID, CImage &img, bool renew/* = f
 			return false;
 		}
 		double r, g, b;
-		SetRGBWavelength(r,g,b); 
+		GetRGBWavelength(r,g,b); 
 		pSdio->SetRGBWavelength(r,g,b);
 		if (pSdio->open(scanfile,renew)) {
 			if (!pSdio->LoadImage(height, width, nBand, img)) {

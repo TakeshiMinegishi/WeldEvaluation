@@ -338,6 +338,8 @@ bool CScanDataIO::LoadImage(int &height, int &width, int &bands, CImage &img)
 	unsigned char * p24Img = new unsigned char[bmInfohdr.biSizeImage*8];
 	unsigned char * ptr = p24Img;
 
+
+	float fval;
 	unsigned char r, g, b;
 	for (int row = 0; row < height; row++) {
 		for (int col = 0; col < width; col++) {
@@ -1281,9 +1283,330 @@ bool CScanDataIO::GetHeaderFilePrm(CString pathName, int &width, int &height)
 	return bResult;
 }
 
-bool CScanDataIO::GetHomographyMatrix(CPoint srcPt[4], CPoint dstPt[4], double prm[6])
+void  CScanDataIO::MatrixInvers(int nprm, double **ppMat, double **ppInvMat)
+{
+	int i, j, k;
+	double t, u, det;
+	det = 1;
+
+	for (i = 0; i < nprm; i++) {
+		memcpy(ppInvMat[i], ppMat[i], sizeof(double)*nprm);
+	}
+
+	for (k = 0; k < nprm; k++)
+	{
+		t = ppInvMat[k][k];
+		det *= t;
+
+		for (i = 0; i < nprm; i++) {
+			if (t != 0.0) {
+				ppInvMat[k][i] /= t;
+			}
+		}
+
+		if (t != 0.0) {
+			ppInvMat[k][k] = 1 / t;
+		}
+
+		for (j = 0; j < nprm; j++)
+		{
+			if (j != k)
+			{
+				u = ppInvMat[j][k];
+
+				for (i = 0; i < nprm; i++)
+				{
+					if (i != k) {
+						ppInvMat[j][i] -= ppInvMat[k][i] * u;
+					}
+					else {
+						if (t != 0.0) {
+							ppInvMat[j][i] = -u / t;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+bool CScanDataIO::GetHomographyMatrix(CPoint srcPt[4], CPoint dstPt[4], double prm[])
 {
 	bool bResult = true;
+	double **dATA, **dATA_I;
+	int i;
+
+	dATA	= new double*[8];
+	dATA_I	= new double*[8];
+
+	for (i = 0; i < 8; i++)
+	{
+		dATA[i]		= new double[8];
+		dATA_I[i]	= new double[8];
+	}
+
+	dATA[0][0] = srcPt[0].x;
+	dATA[0][1] = srcPt[0].y;
+	dATA[0][2] = 1;
+	dATA[0][3] = 0;
+	dATA[0][4] = 0;
+	dATA[0][5] = 0;
+	dATA[0][6] = -1 * dstPt[0].x * srcPt[0].x;
+	dATA[0][7] = -1 * dstPt[0].x * srcPt[0].y;
+	dATA[1][0] = srcPt[1].x;
+	dATA[1][1] = srcPt[1].y;
+	dATA[1][2] = 1;
+	dATA[1][3] = 0;
+	dATA[1][4] = 0;
+	dATA[1][5] = 0;
+	dATA[1][6] = -1 * dstPt[1].x * srcPt[1].x;
+	dATA[1][7] = -1 * dstPt[1].x * srcPt[1].y;
+	dATA[2][0] = srcPt[2].x;
+	dATA[2][1] = srcPt[2].y;
+	dATA[2][2] = 1;
+	dATA[2][3] = 0;
+	dATA[2][4] = 0;
+	dATA[2][5] = 0;
+	dATA[2][6] = -1 * dstPt[2].x * srcPt[2].x;
+	dATA[2][7] = -1 * dstPt[2].x * srcPt[2].y;
+	dATA[3][0] = srcPt[3].x;
+	dATA[3][1] = srcPt[3].y;
+	dATA[3][2] = 1;
+	dATA[3][3] = 0;
+	dATA[3][4] = 0;
+	dATA[3][5] = 0;
+	dATA[3][6] = -1 * dstPt[3].x * srcPt[3].x;
+	dATA[3][7] = -1 * dstPt[3].x * srcPt[3].y;
+	dATA[4][0] = 0;
+	dATA[4][1] = 0;
+	dATA[4][2] = 0;
+	dATA[4][3] = srcPt[0].x;
+	dATA[4][4] = srcPt[0].y;
+	dATA[4][5] = 1;
+	dATA[4][6] = -1 * dstPt[0].y * srcPt[0].x;
+	dATA[4][7] = -1 * dstPt[0].y * srcPt[0].y;
+	dATA[5][0] = 0;
+	dATA[5][1] = 0;
+	dATA[5][2] = 0;
+	dATA[5][3] = srcPt[1].x;
+	dATA[5][4] = srcPt[1].y;
+	dATA[5][5] = 1;
+	dATA[5][6] = -1 * dstPt[1].y * srcPt[1].x;
+	dATA[5][7] = -1 * dstPt[1].y * srcPt[1].y;
+	dATA[6][0] = 0;
+	dATA[6][1] = 0;
+	dATA[6][2] = 0;
+	dATA[6][3] = srcPt[2].x;
+	dATA[6][4] = srcPt[2].y;
+	dATA[6][5] = 1;
+	dATA[6][6] = -1 * dstPt[2].y * srcPt[2].x;
+	dATA[6][7] = -1 * dstPt[2].y * srcPt[2].y;
+	dATA[7][0] = 0;
+	dATA[7][1] = 0;
+	dATA[7][2] = 0;
+	dATA[7][3] = srcPt[3].x;
+	dATA[7][4] = srcPt[3].y;
+	dATA[7][5] = 1;
+	dATA[7][6] = -1 * dstPt[3].y * srcPt[3].x;
+	dATA[7][7] = -1 * dstPt[3].y * srcPt[3].y;
+
+	// ‹ts—ñ
+//	MatrixInvers(8, dATA, dATA_I);
+
+	prm[0] =	dATA_I[0][0] * dstPt[0].x + dATA_I[0][1] * dstPt[1].x +
+				dATA_I[0][2] * dstPt[2].x + dATA_I[0][3] * dstPt[3].x +
+				dATA_I[0][4] * dstPt[0].y + dATA_I[0][5] * dstPt[1].y +
+				dATA_I[0][6] * dstPt[2].y + dATA_I[0][7] * dstPt[3].y;
+	prm[1] =	dATA_I[1][0] * dstPt[0].x + dATA_I[1][1] * dstPt[1].x +
+				dATA_I[1][2] * dstPt[2].x + dATA_I[1][3] * dstPt[3].x +
+				dATA_I[1][4] * dstPt[0].y + dATA_I[1][5] * dstPt[1].y +
+				dATA_I[1][6] * dstPt[2].y + dATA_I[1][7] * dstPt[3].y;
+	prm[2] =	dATA_I[2][0] * dstPt[0].x + dATA_I[2][1] * dstPt[1].x +
+				dATA_I[2][2] * dstPt[2].x + dATA_I[2][3] * dstPt[3].x +
+				dATA_I[2][4] * dstPt[0].y + dATA_I[2][5] * dstPt[1].y +
+				dATA_I[2][6] * dstPt[2].y + dATA_I[2][7] * dstPt[3].y;
+	prm[3] =	dATA_I[3][0] * dstPt[0].x + dATA_I[3][1] * dstPt[1].x +
+				dATA_I[3][2] * dstPt[2].x + dATA_I[3][3] * dstPt[3].x +
+				dATA_I[3][4] * dstPt[0].y + dATA_I[3][5] * dstPt[1].y +
+				dATA_I[3][6] * dstPt[2].y + dATA_I[3][7] * dstPt[3].y;
+	prm[4] =	dATA_I[4][0] * dstPt[0].x + dATA_I[4][1] * dstPt[1].x +
+				dATA_I[4][2] * dstPt[2].x + dATA_I[4][3] * dstPt[3].x +
+				dATA_I[4][4] * dstPt[0].y + dATA_I[4][5] * dstPt[1].y +
+				dATA_I[4][6] * dstPt[2].y + dATA_I[4][7] * dstPt[3].y;
+	prm[5] =	dATA_I[5][0] * dstPt[0].x + dATA_I[5][1] * dstPt[1].x +
+				dATA_I[5][2] * dstPt[2].x + dATA_I[5][3] * dstPt[3].x +
+				dATA_I[5][4] * dstPt[0].y + dATA_I[5][5] * dstPt[1].y +
+				dATA_I[5][6] * dstPt[2].y + dATA_I[5][7] * dstPt[3].y;
+	prm[6] =	dATA_I[6][0] * dstPt[0].x + dATA_I[6][1] * dstPt[1].x +
+				dATA_I[6][2] * dstPt[2].x + dATA_I[6][3] * dstPt[3].x +
+				dATA_I[6][4] * dstPt[0].y + dATA_I[6][5] * dstPt[1].y +
+				dATA_I[6][6] * dstPt[2].y + dATA_I[6][7] * dstPt[3].y;
+	prm[7] =	dATA_I[7][0] * dstPt[0].x + dATA_I[7][1] * dstPt[1].x +
+				dATA_I[7][2] * dstPt[2].x + dATA_I[7][3] * dstPt[3].x +
+				dATA_I[7][4] * dstPt[0].y + dATA_I[7][5] * dstPt[1].y +
+				dATA_I[7][6] * dstPt[2].y + dATA_I[7][7] * dstPt[3].y;
+
+	for (i = 0; i < 8; i++)
+	{
+		delete dATA[i];
+		delete dATA_I[i];
+	}
+	delete dATA;
+	delete dATA_I;
 
 	return bResult;
 }
+
+void CScanDataIO::Projection(int SrcX, int SrcY, double prm[], double &dTranX, double &dTranY)
+{
+	dTranX = ((double)SrcX*prm[0] + (double)SrcY*prm[1] + prm[2]) /	((double)SrcX*prm[6] + (double)SrcY*prm[7] + 1);
+	dTranY = ((double)SrcX*prm[3] + (double)SrcY*prm[4] + prm[5]) /	((double)SrcX*prm[6] + (double)SrcY*prm[7] + 1);
+}
+
+void CScanDataIO::matinv(int n, double **a)
+{
+	int i, j, k;
+	double t, u, det;
+	det = 1;
+
+	for (k = 0; k < n; k++)
+	{
+		t = a[k][k];
+		det *= t;
+
+		for (i = 0; i < n; i++) a[k][i] /= t;
+
+		a[k][k] = 1 / t;
+
+		for (j = 0; j < n; j++)
+		{
+			if (j != k)
+			{
+				u = a[j][k];
+
+				for (i = 0; i < n; i++)
+				{
+					if (i != k) a[j][i] -= a[k][i] * u;
+					else a[j][i] = -u / t;
+				}
+			}
+		}
+	}
+}
+
+void CScanDataIO::Calc_ProjectionParam(vector<CPoint> &vOrig, vector<CPoint> &vTrans,double aParam[8])
+{
+	UINT i, j;
+	double **dA;
+	double dV[8];
+
+	dA = new double*[8];
+	for (i = 0; i < 8; i++)
+	{
+		dA[i] = new double[8];
+	}
+
+	for (i = 0; i < 8; i++)
+	{
+		for (j = 0; j < 8; j++)
+		{
+			dA[i][j] = 0.0;
+		}
+		dV[i] = 0.0;
+		aParam[i] = 0.0;
+	}
+
+	for (i = 0; i < vOrig.size(); i++)
+	{
+		// AT*A
+		dA[0][0] += (double)vOrig[i].x * (double)vOrig[i].x;
+		dA[3][3] += (double)vOrig[i].x * (double)vOrig[i].x;
+		dA[0][1] += (double)vOrig[i].x * (double)vOrig[i].y;
+		dA[1][0] += (double)vOrig[i].x * (double)vOrig[i].y;
+		dA[3][4] += (double)vOrig[i].x * (double)vOrig[i].y;
+		dA[4][3] += (double)vOrig[i].x * (double)vOrig[i].y;
+		dA[1][1] += (double)vOrig[i].y * (double)vOrig[i].y;
+		dA[4][4] += (double)vOrig[i].y * (double)vOrig[i].y;
+		dA[0][2] += (double)vOrig[i].x;
+		dA[2][0] += (double)vOrig[i].x;
+		dA[3][5] += (double)vOrig[i].x;
+		dA[5][3] += (double)vOrig[i].x;
+		dA[1][2] += (double)vOrig[i].y;
+		dA[2][1] += (double)vOrig[i].y;
+		dA[4][5] += (double)vOrig[i].y;
+		dA[5][4] += (double)vOrig[i].y;
+		dA[2][2] += 1;
+		dA[5][5] += 1;
+		dA[0][6] += -1 * (double)vTrans[i].x * (double)vOrig[i].x * (double)vOrig[i].x;
+		dA[6][0] += -1 * (double)vTrans[i].x * (double)vOrig[i].x * (double)vOrig[i].x;
+		dA[0][7] += -1 * (double)vTrans[i].x * (double)vOrig[i].x * (double)vOrig[i].y;
+		dA[1][6] += -1 * (double)vTrans[i].x * (double)vOrig[i].x * (double)vOrig[i].y;
+		dA[6][1] += -1 * (double)vTrans[i].x * (double)vOrig[i].x * (double)vOrig[i].y;
+		dA[7][0] += -1 * (double)vTrans[i].x * (double)vOrig[i].x * (double)vOrig[i].y;
+		dA[1][7] += -1 * (double)vTrans[i].x * (double)vOrig[i].y * (double)vOrig[i].y;
+		dA[7][1] += -1 * (double)vTrans[i].x * (double)vOrig[i].y * (double)vOrig[i].y;
+		dA[2][6] += -1 * (double)vTrans[i].x * (double)vOrig[i].x;
+		dA[6][2] += -1 * (double)vTrans[i].x * (double)vOrig[i].x;
+		dA[2][7] += -1 * (double)vTrans[i].x * (double)vOrig[i].y;
+		dA[7][2] += -1 * (double)vTrans[i].x * (double)vOrig[i].y;
+		dA[3][6] += -1 * (double)vTrans[i].y * (double)vOrig[i].x * (double)vOrig[i].x;
+		dA[6][3] += -1 * (double)vTrans[i].y * (double)vOrig[i].x * (double)vOrig[i].x;
+		dA[3][7] += -1 * (double)vTrans[i].y * (double)vOrig[i].x * (double)vOrig[i].y;
+		dA[4][6] += -1 * (double)vTrans[i].y * (double)vOrig[i].x * (double)vOrig[i].y;
+		dA[6][4] += -1 * (double)vTrans[i].y * (double)vOrig[i].x * (double)vOrig[i].y;
+		dA[7][3] += -1 * (double)vTrans[i].y * (double)vOrig[i].x * (double)vOrig[i].y;
+		dA[4][7] += -1 * (double)vTrans[i].y * (double)vOrig[i].y * (double)vOrig[i].y;
+		dA[7][4] += -1 * (double)vTrans[i].y * (double)vOrig[i].y * (double)vOrig[i].y;
+		dA[5][6] += -1 * (double)vTrans[i].y * (double)vOrig[i].x;
+		dA[6][5] += -1 * (double)vTrans[i].y * (double)vOrig[i].x;
+		dA[5][7] += -1 * (double)vTrans[i].y * (double)vOrig[i].y;
+		dA[7][5] += -1 * (double)vTrans[i].y * (double)vOrig[i].y;
+		dA[6][6] += (double)vTrans[i].x * (double)vTrans[i].x * (double)vOrig[i].x * (double)vOrig[i].x +
+			(double)vTrans[i].y * (double)vTrans[i].y * (double)vOrig[i].x * (double)vOrig[i].x;
+		dA[6][7] += (double)vTrans[i].x * (double)vTrans[i].x * (double)vOrig[i].x * (double)vOrig[i].y +
+			(double)vTrans[i].y * (double)vTrans[i].y * (double)vOrig[i].x * (double)vOrig[i].y;
+		dA[7][6] += (double)vTrans[i].x * (double)vTrans[i].x * (double)vOrig[i].x * (double)vOrig[i].y +
+			(double)vTrans[i].y * (double)vTrans[i].y * (double)vOrig[i].x * (double)vOrig[i].y;
+		dA[7][7] += (double)vTrans[i].x * (double)vTrans[i].x * (double)vOrig[i].y * (double)vOrig[i].y +
+			(double)vTrans[i].y * (double)vTrans[i].y * (double)vOrig[i].y * (double)vOrig[i].y;
+
+		// AT*V
+		dV[0] += (double)vTrans[i].x * (double)vOrig[i].x;
+		dV[1] += (double)vTrans[i].x * (double)vOrig[i].y;
+		dV[2] += (double)vTrans[i].x;
+		dV[3] += (double)vTrans[i].y * (double)vOrig[i].x;
+		dV[4] += (double)vTrans[i].y * (double)vOrig[i].y;
+		dV[5] += (double)vTrans[i].y;
+		dV[6] += -1 * ((double)vTrans[i].x * (double)vTrans[i].x * (double)vOrig[i].x +
+			(double)vTrans[i].y * (double)vTrans[i].y * (double)vOrig[i].x);
+		dV[7] += -1 * ((double)vTrans[i].x * (double)vTrans[i].x * (double)vOrig[i].y +
+			(double)vTrans[i].y * (double)vTrans[i].y * (double)vOrig[i].y);
+	}
+
+	// AT*A-1 * AT*V
+	matinv(8, dA);
+
+	for (i = 0; i < 8; i++)
+	{
+		for (j = 0; j < 8; j++)
+		{
+			aParam[i] += dA[i][j] * dV[j];
+		}
+	}
+
+	for (i = 0; i < 8; i++)
+	{
+		delete dA[i];
+	}
+	delete dA;
+
+}
+
+void CScanDataIO::ProjectionInvPos(int DstX, int DstY, double prm[], double &SrcX, double &SrcY)
+{
+	SrcX = ((prm[5] - DstY) / (prm[7] * DstY - prm[4]) - (prm[2] - DstX) / (prm[7] * DstX - prm[1]))
+			/ ((prm[0] - prm[6] * DstX) / (prm[7] * DstX - prm[1]) - (prm[3] - prm[6] * DstY) / (prm[7] * DstY - prm[4]));
+	SrcY = ((prm[5] - DstY) / (prm[6] * DstY - prm[3]) - (prm[2] - DstX) / (prm[6] * DstX - prm[0]))
+			/ ((prm[1] - prm[7] * DstX) / (prm[6] * DstX - prm[0]) - (prm[4] - prm[7] * DstY) / (prm[6] * DstY - prm[3]));
+}
+

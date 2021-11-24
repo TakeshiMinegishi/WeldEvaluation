@@ -595,8 +595,9 @@ void CImageWind::Scaling(double ScalingRetio, CPoint pt)
 	int imageY = 0;
 	double zoomRetio = ScalingRetio;
 
-//pt.x = rect.Width() / 2;
-//pt.y = rect.Height() / 2;
+pt.x = rect.Width() / 2;
+pt.y = rect.Height() / 2;
+//zoomRetio = 2.0;
 
 	/////////////////////////////////////////////////////////
 	//
@@ -634,14 +635,15 @@ void CImageWind::Scaling(double ScalingRetio, CPoint pt)
 	/////////////////////////////////////////////////////////
 
 #if 0
+	double dx, dy, sx, sy;
 	CScanDataIO sc;
 	double **mat = sc.MatrixInit();
-	sc.MatrixMove(mat, pt.x, pt.y);
-//	sc.MatrixScale(mat, ScalingRetio, ScalingRetio);
-//	sc.MatrixMove(mat, -pt.x*ScalingRetio, -pt.y*ScalingRetio);
-	double dx, dy, sx, sy;
+
 	sx = (double)m_imageX;
 	sy = (double)m_imageY;
+	sc.MatrixMove(mat, pt.x*zoomRetio, pt.y*zoomRetio);
+	sc.MatrixScale(mat, zoomRetio, zoomRetio);
+	sc.MatrixMove(mat, -pt.x, -pt.y);
 	dx = mat[0][0] * (double)sx + mat[0][1] * (double)sy + mat[0][2];
 	dy = mat[1][0] * (double)sx + mat[1][1] * (double)sy + mat[1][2];
 	sc.MatrixRelease(mat);
@@ -659,7 +661,7 @@ void CImageWind::Scaling(double ScalingRetio, CPoint pt)
 		imageX = (int)((rect.Width()  - imageWidth ) / 2.0);
 	}
 	else {
-#if 1
+#if 0
 		if (imageWidth > imageHeight) {
 			if (imageHeight < rect.Height()) {
 				imageY = (int)((rect.Height() - imageHeight) / 2.0);
@@ -681,7 +683,7 @@ void CImageWind::Scaling(double ScalingRetio, CPoint pt)
 		}
 #endif
 	}
-#if 1
+#if 0
 	if (imageWidth > rect.Width()) {
 		if (imageX > 0) {
 			imageX = 0;
@@ -706,6 +708,31 @@ void CImageWind::Scaling(double ScalingRetio, CPoint pt)
 		imageY = (int)((rect.Height() - imageHeight) / 2.0);
 	}
 #endif
+
+	if (imageWidth < rect.Width()) {
+		imageX = (int)((rect.Width() - imageWidth) / 2.0);
+	}
+	else if (imageWidth > rect.Width()) {
+		if (imageX > 0) {
+			imageX = 0;
+		}
+		else if ((imageX + imageWidth) < rect.Width()) {
+			imageX = rect.Width() - imageWidth;
+		}
+	}
+
+	if (imageHeight < rect.Height()) {
+		imageY = (int)((rect.Height() - imageHeight) / 2.0);
+	}
+	else if (imageHeight > rect.Height()) {
+		if (imageY > 0) {
+			imageY = 0;
+		}
+		else if ((imageY + imageHeight) < rect.Height()) {
+			imageY = rect.Height() - imageHeight;
+		}
+	}
+
 	MoveImage(imageX, imageY, imageWidth, imageHeight, zoomRetio);
 }
 

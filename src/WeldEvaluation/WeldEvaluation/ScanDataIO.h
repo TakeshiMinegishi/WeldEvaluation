@@ -75,7 +75,13 @@ public:
 
 	static bool GetHeaderFilePrm(CString pathName, int &width, int &height);
 
-	bool GetHomographyMatrix(CPoint srcPt[4], CPoint dstPt[4], double prm[6]);
+	void MatrixInvers(int nprm, double **ppMat, double **ppInvMat);
+	bool GetHomographyMatrix(CPoint srcPt[4], CPoint dstPt[4], double prm[]);
+	void Projection(int SrcX, int SrcY, double prm[], double &dTranX, double &dTranY);
+
+	void matinv(int n, double **a);
+	void Calc_ProjectionParam(vector<CPoint> &vOrig, vector<CPoint> &vTrans, double aParam[8]);
+	void ProjectionInvPos(int DstX, int DstY, double prm[], double &SrcX, double &SrcY);
 
 };
 

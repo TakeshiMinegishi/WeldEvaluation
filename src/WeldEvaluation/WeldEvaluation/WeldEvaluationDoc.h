@@ -194,7 +194,8 @@ public:
 	bool	SetWindRect(CRect &rect);
 	bool	GetSpectralDlgRect(CRect &rect);
 	bool	SetSpectralDlgRect(CRect &rect);
-	bool	SetRGBWavelength(double &r, double &g, double &b);
+	bool	GetRGBWavelength(double &r, double &g, double &b);
+	bool	GetHomographyPoint(vector<CPoint> &vOrignPt, vector<CPoint> &vTransPt);
 
 	bool	NewProject();
 	bool	OpenProject(CString RegistedTestName);

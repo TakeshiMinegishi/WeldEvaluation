@@ -1157,6 +1157,18 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		}
 	}
 
+	bool bHomography = true;		// 射影変換可否フラグ
+	double aParam[8];				// 射影変換パラメータ
+	float *p = new float[band];		// 線形補間結果格納用
+	vector<CPoint> vOrign = { {22,119},{30,982},{2019,974},{2013,106} };
+	vector<CPoint> vTrans = { {25,114},{25,976},{2017,976},{2017,114} };
+	if (!pDoc->GetHomographyPoint(vOrign, vTrans)) {
+		bHomography = false;
+	}
+	else {
+		scn.Calc_ProjectionParam(vOrign, vTrans, aParam);
+	}
+
 	double *pWavelength = nullptr;
 	for (int pos = 0; pos < DivisionNumber; pos++) {
 		if (!pStatus->m_Valid) {  // キャンセルボタンが押された場合は何もせずに終了
@@ -1197,6 +1209,23 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		pStatus->UpdateStatus(buff);
 		scn.ScanDataConvert(width, height, band, (float ***)cube_corrected->ppp_data, hscale, vscale, dstW, dstH, dst,false);
 
+		if (bHomography) {	// 射影変換
+			for (int h = 0; h < dstH; h++) {
+				for (int w = 0; w < dstW; w++) {
+					double sx, sy;
+					scn.ProjectionInvPos(w, h, aParam, sx, sy);
+					if (((sx < 0) || (sx >= dstW)) || ((sy < 0) || (sy >= dstH))) {
+						continue;
+					}
+					else {
+						scn.bicubic(dst, dstW, dstH, band, (float)sx, (float)sy, p);
+						for (int b = 0; b < band; b++) {
+							dst[b][h][w] = p[b];
+						}
+					}
+				}
+			}
+		}
 		/////////////////////////////////////////////////////////////////
 		// スキャンデータ結合処理
 		if (outH < dstH) {
@@ -1261,6 +1290,12 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		commonDeallocateCube(cube_corrected);
 		commonDeallocateCube(cube);
 	}
+
+	if (p) {
+		delete[] p;
+		p = nullptr;
+	}
+
 	if (cube_corrected) {
 		delete  cube_corrected;
 		cube_corrected = nullptr;
