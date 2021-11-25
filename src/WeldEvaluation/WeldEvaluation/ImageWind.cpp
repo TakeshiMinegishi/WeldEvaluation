@@ -598,8 +598,8 @@ void CImageWind::Scaling(double ScalingRetio, CPoint pt)
 	int imageY = 0;
 	double zoomRetio = ScalingRetio;
 
-pt.x = rect.Width() / 2;
-pt.y = rect.Height() / 2;
+//pt.x = rect.Width() / 2;
+//pt.y = rect.Height() / 2;
 //zoomRetio = 2.0;
 
 	/////////////////////////////////////////////////////////
