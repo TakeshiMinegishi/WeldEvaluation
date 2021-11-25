@@ -7,6 +7,7 @@
 #include "afxdialogex.h"
 #include "message.h"
 #include <vector>
+#include "ScanDataIO.h"
 
 
 // CImageWind ダイアログ
@@ -15,6 +16,7 @@ IMPLEMENT_DYNAMIC(CImageWind, CDialog)
 
 #define BG_INIT_COLOR		RGB(0, 0, 0)		///< 初期カラー値
 #define BG_COLOR			RGB(0, 0, 0)		///< バックグラウンドカラー
+#define ZoomSpep			0.1
 
 /// <summary>
 /// コンストラクタ
@@ -404,7 +406,7 @@ BOOL CImageWind::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 //		delta.y = pos.y - rect.Height() / 2;
 //		pos.x = m_imageX - delta.x;
 //		pos.y = m_imageY - delta.y;
-		double scalingRetio = m_zoomRetio + ((double)zDelta / 120.0) * 0.1;
+		double scalingRetio = m_zoomRetio + ((double)zDelta / 120.0) * ZoomSpep;
 		if (scalingRetio < 1.0) {
 			scalingRetio = 1.0;
 		}
@@ -582,7 +584,6 @@ bool CImageWind::MoveImage(int x, int y, int width, int height, double scaingRet
 	return true;
 }
 
-#include "ScanDataIO.h"
 /// <summary>
 /// 画像のスケーリング
 /// </summary>
@@ -596,11 +597,10 @@ void CImageWind::Scaling(double ScalingRetio, CPoint pt)
 
 	CRect rect;
 	GetClientRect(&rect);
-	double imageX = 0;
-	double imageY = 0;
+	int imageX = 0;
+	int imageY = 0;
 	double zoomRetio = ScalingRetio;
 
-	//
 	int imageBX = (int)((rect.Width()  - m_imageWidth ) / 2.0);
 	int imageBY = (int)((rect.Height() - m_imageHeight) / 2.0);
 	int deltaDX = (int)((imageBX - m_imageX) / m_zoomRetio);
@@ -612,8 +612,8 @@ void CImageWind::Scaling(double ScalingRetio, CPoint pt)
 	imageX = ((rect.Width()  - imageWidth)  / 2.0) - (deltaDX * zoomRetio);
 	imageY = ((rect.Height() - imageHeight) / 2.0) - (deltaDY * zoomRetio);
 
-	delta.x = pt.x * 0.1 / (zoomRetio * m_zoomRetio);
-	delta.y = pt.y * 0.1 / (zoomRetio * m_zoomRetio);
+	delta.x = pt.x * ZoomSpep / (zoomRetio * m_zoomRetio);
+	delta.y = pt.y * ZoomSpep / (zoomRetio * m_zoomRetio);
 	if (zoomRetio > m_zoomRetio) {
 		imageX += delta.x;
 		imageY += delta.y;
@@ -655,6 +655,7 @@ void CImageWind::Scaling(double ScalingRetio, CPoint pt)
 			}
 		}
 	}
+
 	MoveImage(imageX, imageY, imageWidth, imageHeight, zoomRetio);
 }
 
