@@ -54,4 +54,6 @@ public:
 	void ViewJointRatio(int method, int id, int ViewJointRatioNo);
 	bool Update(int index);
 	bool ConfirmChange();
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 };

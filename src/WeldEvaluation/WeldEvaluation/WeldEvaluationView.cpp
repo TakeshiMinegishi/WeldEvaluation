@@ -2103,39 +2103,65 @@ LRESULT CWeldEvaluationView::OnAreaSpectrumeGraphSet(WPARAM wparam, LPARAM lpara
 	CPoint point;
 	if (abs(pos[1].x - pos[0].x) > abs(pos[1].y - pos[0].y)) {
 		// xŽ²Šî€
+		bool bInv = false;
 		if (pos[0].x > pos[1].x) {
 			CPoint p = pos[0];
 			pos[0] = pos[1];
 			pos[1] = p;
+			bInv = true;
 		}
 		int sz = pos[1].x - pos[0].x;
 		data.resize(sz);
 		double a = (double)(pos[1].y - pos[0].y) / (double)sz;
 		double b = (double)(pos[1].x * pos[0].y - pos[0].x * pos[1].y) / (double)sz;
 		int x;
-		for (int i = 0; i < sz; i++) {
-			x = pos[0].x + i;
-			point = CPoint(x, (int)(a*x + b));
-			if (pDoc->GetSpectrumData(ScanID, point, data[i])) {
+		if (bInv) {
+			int blockid = sz - 1;
+			for (int i = 0; i < sz; i++) {
+				x = pos[0].x + i;
+				point = CPoint(x, (int)(a*x + b));
+				if (pDoc->GetSpectrumData(ScanID, point, data[blockid-i])) {
+				}
+			}
+		}
+		else {
+			for (int i = 0; i < sz; i++) {
+				x = pos[0].x + i;
+				point = CPoint(x, (int)(a*x + b));
+				if (pDoc->GetSpectrumData(ScanID, point, data[i])) {
+				}
 			}
 		}
 	}
 	else {
 		// yŽ²Šî€
+		bool bInv = false;
 		if (pos[0].y > pos[1].y) {
 			CPoint p = pos[0];
 			pos[0] = pos[1];
 			pos[1] = p;
+			bInv = true;
 		}
 		int sz = pos[1].y - pos[0].y;
 		data.resize(sz);
 		double a = (double)(pos[1].x - pos[0].x) / (double)sz;
 		double b = (double)(pos[1].y * pos[0].x - pos[0].y * pos[1].x) / (double)sz;
 		int y;
-		for (int i = 0; i < sz; i++) {
-			y = pos[0].y + i;
-			point = CPoint((int)(a*y + b),y);
-			if (pDoc->GetSpectrumData(ScanID, point, data[i])) {
+		if (bInv) {
+			int blockid = sz - 1;
+			for (int i = 0; i < sz; i++) {
+				y = pos[0].y + i;
+				point = CPoint((int)(a*y + b), y);
+				if (pDoc->GetSpectrumData(ScanID, point, data[blockid -i])) {
+				}
+			}
+		}
+		else {
+			for (int i = 0; i < sz; i++) {
+				y = pos[0].y + i;
+				point = CPoint((int)(a*y + b), y);
+				if (pDoc->GetSpectrumData(ScanID, point, data[i])) {
+				}
 			}
 		}
 	}

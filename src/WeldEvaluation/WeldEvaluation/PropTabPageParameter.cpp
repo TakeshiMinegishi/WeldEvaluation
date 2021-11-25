@@ -51,6 +51,8 @@ BEGIN_MESSAGE_MAP(CPropTabPageParameter, CDialogEx)
 	ON_WM_ACTIVATE()
 	ON_CBN_KILLFOCUS(IDC_CMB_JOINRATIO_TARGET_LABEL, &CPropTabPageParameter::OnCbnKillfocusCmbJoinratioTargetLabel)
 	ON_EN_KILLFOCUS(IDC_EDT_NUMOFCLASS, &CPropTabPageParameter::OnEnKillfocusEdtNumofclass)
+	ON_WM_CTLCOLOR()
+	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
 
@@ -206,10 +208,25 @@ void CPropTabPageParameter::ViewJointRatio(int method, int id, int ViewJointRati
 			ViewJointRatioNo = -1;
 		}
 		else {
-			
-			ViewJointRatioNo = 0;
-			int selid = m_cmbJoinratioTarget.SetCurSel(0);
-			int a = 0;
+			if (!m_strJoinratioTarget.IsEmpty()) {
+				int selid = m_cmbJoinratioTarget.SelectString(-1, m_strJoinratioTarget);
+				if (id == CB_ERR) {
+					ViewJointRatioNo = 0;
+					int selid = m_cmbJoinratioTarget.SetCurSel(0);
+				}
+				else {
+					ViewJointRatioNo = selid;
+				}
+			}
+			else {
+				m_strJoinratioTarget = _T("1");
+				ViewJointRatioNo = 0;
+				int selid = m_cmbJoinratioTarget.SelectString(-1, m_strJoinratioTarget);
+				if (id == CB_ERR) {
+					int selid = m_cmbJoinratioTarget.SetCurSel(0);
+				}
+			}
+
 		}
 	}
 
@@ -256,7 +273,8 @@ void CPropTabPageParameter::ViewJointRatio(int method, int id, int ViewJointRati
 			CString sel;
 			m_cmbJoinratioTarget.GetLBText(selid, sel);
 			selid = m_cmbJoinratioTarget.SelectString(-1, sel);
-			int a = 0;
+			m_strJoinratioTarget = sel;
+			m_cmbJoinratioTarget.SetWindowTextW(sel);
 		}
 #endif
 
@@ -286,6 +304,7 @@ void CPropTabPageParameter::UpdateIDColor(COLORREF color)
 		dc->FillRect(&rect, &blackBrush);
 		dc->SelectObject(orgBrush);
 		ReleaseDC(dc);
+		return;
 	}
 }
 
@@ -442,8 +461,18 @@ void CPropTabPageParameter::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinim
 	CDialogEx::OnActivate(nState, pWndOther, bMinimized);
 
 	UpdateCmbJoinratioTargetLabel(true);
-}
 
+	CString strJoinratioTarget = m_strJoinratioTarget;
+	int selid = m_cmbJoinratioTarget.SelectString(-1, strJoinratioTarget);
+	if (selid != CB_ERR) {
+		CWeldEvaluationDoc *pDoc = GetDocument();
+		int AnarizeMethod = pDoc->GetAnalysisMethod(m_PageID);
+		CPropTabPageParameter::ViewJointRatio(AnarizeMethod, m_PageID, (int)m_cmbJoinratioTarget.GetItemData(selid));
+	}
+	UINT timerID = 1;
+	UINT interval = 100;
+	SetTimer(timerID, interval, NULL);
+}
 
 /// <summary>
 /// 対象コンボボックスのエディットボックスフォーカス消失時処理
@@ -464,3 +493,32 @@ void CPropTabPageParameter::OnCbnKillfocusCmbJoinratioTargetLabel()
 	UpdateData(false);
 }
 
+HBRUSH CPropTabPageParameter::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+
+	HBRUSH hbr = CDialogEx::OnCtlColor(pDC, pWnd, nCtlColor);
+	return hbr;
+}
+
+
+void CPropTabPageParameter::OnTimer(UINT_PTR nIDEvent)
+{
+	CWeldEvaluationDoc *pDoc = GetDocument();
+	if (!pDoc->ExistScanFile(m_PageID)) {
+		m_strJoinratioTarget = _T("");
+		m_cmbJoinratioTarget.SetCurSel(-1);
+	}
+	else {
+		if (m_strJoinratioTarget.IsEmpty()) {
+			m_strJoinratioTarget = _T("1");
+		}
+		int selid = m_cmbJoinratioTarget.SelectString(-1, m_strJoinratioTarget);
+		if (selid != CB_ERR) {
+			int AnarizeMethod = pDoc->GetAnalysisMethod(m_PageID);
+			CPropTabPageParameter::ViewJointRatio(AnarizeMethod, m_PageID, (int)m_cmbJoinratioTarget.GetItemData(selid));
+		}
+	}
+
+	KillTimer(nIDEvent);
+	CDialogEx::OnTimer(nIDEvent);
+}
