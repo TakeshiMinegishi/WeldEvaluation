@@ -592,6 +592,7 @@ void CImageWind::Scaling(double ScalingRetio, CPoint pt)
 		return;
 	}
 
+#if 0
 	CRect rect;
 	GetClientRect(&rect);
 	int imageX = 0;
@@ -655,6 +656,26 @@ void CImageWind::Scaling(double ScalingRetio, CPoint pt)
 #endif
 
 //m_imageX, m_imageY, m_imageX + m_imageWidth, m_imageY + m_imageHeight
+#else
+	CRect rect;
+	GetClientRect(&rect);
+	double zoomRetio = ScalingRetio;
+
+	// 画像でのカーソル位置の計算（クライアント領域）
+	int imgX = pt.x - m_imageX;
+	int imgY = pt.y - m_imageY;
+
+	double deltaX = (double)imgX / (double)m_imageWidth;
+	double deltaY = (double)imgY / (double)m_imageHeight;
+
+	// 左上座標を計算（クライアント領域）
+	int imageX = pt.x - m_orgImageWidth * deltaX * zoomRetio;
+	int imageY = pt.y - m_orgImageHeight * deltaY * zoomRetio;
+
+	// 表示画像の大きさを計算（クライアント領域）
+	int imageWidth = (int)(m_orgImageWidth * zoomRetio);
+	int imageHeight = (int)(m_orgImageHeight * zoomRetio);
+#endif
 
 	if (zoomRetio <= 1.0) {
 		zoomRetio = 1.0;
