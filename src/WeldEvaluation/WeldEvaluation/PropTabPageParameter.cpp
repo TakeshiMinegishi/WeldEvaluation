@@ -420,7 +420,7 @@ void CPropTabPageParameter::UpdateCmbJoinratioTargetLabel(bool renew)
 			}
 		} else if (itemCount < (int)m_NumberOfClass) {
 			m_cmbJoinratioTarget.ResetContent();
-			for (int i =itemCount ; i < (int)m_NumberOfClass; i++) {
+			for (int i =0 ; i < (int)m_NumberOfClass; i++) {
 				TCHAR sval[255];
 				if (_itot_s(i+1,sval,255,10) == 0) {
 					CString strLabel = sval;
@@ -428,22 +428,8 @@ void CPropTabPageParameter::UpdateCmbJoinratioTargetLabel(bool renew)
 					m_cmbJoinratioTarget.SetItemData(id,i);
 				}
 			}
+			itemCount = m_NumberOfClass;
 			m_cmbJoinratioTarget.SetCurSel(0);
-#if 0
-			CString str;
-			int id = m_cmbJoinratioTarget.SetCurSel(0);
-			for (int i = 0; i < (int)m_NumberOfClass; i++) {
-				m_cmbJoinratioTarget.GetLBText(i, str);
-				int id = m_cmbJoinratioTarget.SelectString(-1,str);
-				int data = m_cmbJoinratioTarget.GetItemData(id);
-				for (int j = 0; j < m_cmbJoinratioTarget.GetCount(); j++) {
-					if (m_cmbJoinratioTarget.GetItemData(id) == i + 1) {
-						m_cmbJoinratioTarget.GetLBText(j, str);
-						int x = 0;
-					}
-				}
-			}
-#endif
 		}
 	}
 	UpdateData(false);

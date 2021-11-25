@@ -405,7 +405,9 @@ BOOL CImageWind::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 //		pos.x = m_imageX - delta.x;
 //		pos.y = m_imageY - delta.y;
 		double scalingRetio = m_zoomRetio + ((double)zDelta / 120.0) * 0.1;
-
+		if (scalingRetio < 1.0) {
+			scalingRetio = 1.0;
+		}
 		Scaling(scalingRetio, pos);
 		CRect ImageRect(m_imageX, m_imageY, m_imageX + m_imageWidth, m_imageY + m_imageHeight);
 		GetParent()->SendMessage(WM_IMAGE_SCALING, (WPARAM)m_Type, (LPARAM)&ImageRect);
@@ -594,67 +596,32 @@ void CImageWind::Scaling(double ScalingRetio, CPoint pt)
 
 	CRect rect;
 	GetClientRect(&rect);
-	int imageX = 0;
-	int imageY = 0;
+	double imageX = 0;
+	double imageY = 0;
 	double zoomRetio = ScalingRetio;
 
-//pt.x = rect.Width() / 2;
-//pt.y = rect.Height() / 2;
-//zoomRetio = 2.0;
-
-	/////////////////////////////////////////////////////////
 	//
 	int imageBX = (int)((rect.Width()  - m_imageWidth ) / 2.0);
 	int imageBY = (int)((rect.Height() - m_imageHeight) / 2.0);
-	int deltaDX = imageBX - m_imageX;
-	int deltaDY = imageBY - m_imageY;
+	int deltaDX = (int)((imageBX - m_imageX) / m_zoomRetio);
+	int deltaDY = (int)((imageBY - m_imageY) / m_zoomRetio);
 
-#if 1
 	CPoint delta;
-	int imageWidth = (int)(m_orgImageWidth * zoomRetio);
+	int imageWidth	= (int)(m_orgImageWidth  * zoomRetio);
 	int imageHeight = (int)(m_orgImageHeight * zoomRetio);
-//	imageX = (int)((rect.Width() - imageWidth) / 2.0) - ( deltaDX * zoomRetio);
-//	imageY = (int)((rect.Height() - imageHeight) / 2.0) - (deltaDY * zoomRetio);
-	imageX = (int)((rect.Width() - imageWidth) / 2.0);
-	imageY = (int)((rect.Height() - imageHeight) / 2.0);
+	imageX = ((rect.Width()  - imageWidth)  / 2.0) - (deltaDX * zoomRetio);
+	imageY = ((rect.Height() - imageHeight) / 2.0) - (deltaDY * zoomRetio);
 
-	delta.x = pt.x - rect.Width() / 2;
-	delta.y = pt.y - rect.Height() / 2;
-	imageX = (int)(imageX - (delta.x * zoomRetio));
-	imageY = (int)(imageY - (delta.y * zoomRetio));
-#else 
-	double	xv = m_imageX - imageBX;
-	double	pxv = ScalingRetio * xv + (ScalingRetio - 1.0)*pt.x;
-	int	ivx = (int)(pxv - ((m_orgImageWidth * zoomRetio) / 2.0));
-	double	yv = m_imageY - imageBY;
-	double	pyv = ScalingRetio * yv + (ScalingRetio - 1.0)*pt.y;
-	int	ivy = (int)(pyv - ((m_orgImageWidth * zoomRetio) / 2.0));
-	CPoint delta;
-	int imageWidth = (int)(m_orgImageWidth * zoomRetio);
-	int imageHeight = (int)(m_orgImageHeight * zoomRetio);
-	imageX = ivx;
-	imageY = ivy;
-#endif
-	/////////////////////////////////////////////////////////
-
-#if 0
-	double dx, dy, sx, sy;
-	CScanDataIO sc;
-	double **mat = sc.MatrixInit();
-
-	sx = (double)m_imageX;
-	sy = (double)m_imageY;
-	sc.MatrixMove(mat, pt.x*zoomRetio, pt.y*zoomRetio);
-	sc.MatrixScale(mat, zoomRetio, zoomRetio);
-	sc.MatrixMove(mat, -pt.x, -pt.y);
-	dx = mat[0][0] * (double)sx + mat[0][1] * (double)sy + mat[0][2];
-	dy = mat[1][0] * (double)sx + mat[1][1] * (double)sy + mat[1][2];
-	sc.MatrixRelease(mat);
-	imageX = (int)dx;
-	imageY = (int)dy;
-#endif
-
-//m_imageX, m_imageY, m_imageX + m_imageWidth, m_imageY + m_imageHeight
+	delta.x = pt.x * 0.1 / (zoomRetio * m_zoomRetio);
+	delta.y = pt.y * 0.1 / (zoomRetio * m_zoomRetio);
+	if (zoomRetio > m_zoomRetio) {
+		imageX += delta.x;
+		imageY += delta.y;
+	}
+	else {
+		imageX += delta.x;
+		imageY += delta.y;
+	}
 
 	if (zoomRetio <= 1.0) {
 		zoomRetio = 1.0;
@@ -664,78 +631,30 @@ void CImageWind::Scaling(double ScalingRetio, CPoint pt)
 		imageX = (int)((rect.Width()  - imageWidth ) / 2.0);
 	}
 	else {
-#if 0
-		if (imageWidth > imageHeight) {
-			if (imageHeight < rect.Height()) {
-				imageY = (int)((rect.Height() - imageHeight) / 2.0);
-			}
-			if (imageWidth < rect.Width()) {
-				imageX = (int)((rect.Width() - imageWidth) / 2.0);
-			}
-			else {
-
-			}
+		if (imageWidth < rect.Width()) {
+			imageX = (int)((rect.Width() - imageWidth) / 2.0);
 		}
-		else {
-			if (imageHeight < rect.Height()) {
-				imageY = (int)((rect.Height() - imageHeight) / 2.0);
+		else if (imageWidth > rect.Width()) {
+			if (imageX > 0) {
+				imageX = 0;
 			}
-			if (imageWidth < rect.Width()) {
-				imageX = (int)((rect.Width() - imageWidth) / 2.0);
+			else if ((imageX + imageWidth) < rect.Width()) {
+				imageX = rect.Width() - imageWidth;
 			}
 		}
-#endif
-	}
-#if 0
-	if (imageWidth > rect.Width()) {
-		if (imageX > 0) {
-			imageX = 0;
-		}
-		else if ((rect.Width() - imageWidth) > imageX) {
-			imageX = (rect.Width() - imageWidth);
-		}
-	}
-	else {
-		imageX = (int)((rect.Width() - imageWidth) / 2.0);
-	}
 
-	if (imageHeight > rect.Height()) {
-		if (imageY > 0) {
-			imageY = 0;
+		if (imageHeight < rect.Height()) {
+			imageY = (int)((rect.Height() - imageHeight) / 2.0);
 		}
-		else if ((rect.Height() - imageHeight) > imageY) {
-			imageY = (rect.Height() - imageHeight);
-		}
-	}
-	else {
-		imageY = (int)((rect.Height() - imageHeight) / 2.0);
-	}
-#endif
-
-	if (imageWidth < rect.Width()) {
-		imageX = (int)((rect.Width() - imageWidth) / 2.0);
-	}
-	else if (imageWidth > rect.Width()) {
-		if (imageX > 0) {
-			imageX = 0;
-		}
-		else if ((imageX + imageWidth) < rect.Width()) {
-			imageX = rect.Width() - imageWidth;
+		else if (imageHeight > rect.Height()) {
+			if (imageY > 0) {
+				imageY = 0;
+			}
+			else if ((imageY + imageHeight) < rect.Height()) {
+				imageY = rect.Height() - imageHeight;
+			}
 		}
 	}
-
-	if (imageHeight < rect.Height()) {
-		imageY = (int)((rect.Height() - imageHeight) / 2.0);
-	}
-	else if (imageHeight > rect.Height()) {
-		if (imageY > 0) {
-			imageY = 0;
-		}
-		else if ((imageY + imageHeight) < rect.Height()) {
-			imageY = rect.Height() - imageHeight;
-		}
-	}
-
 	MoveImage(imageX, imageY, imageWidth, imageHeight, zoomRetio);
 }
 
