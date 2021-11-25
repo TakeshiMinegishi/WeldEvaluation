@@ -59,6 +59,7 @@ BEGIN_MESSAGE_MAP(CWeldEvaluationView, CFormView)
 	ON_WM_DESTROY()
 	ON_WM_MOUSEMOVE()
 	ON_WM_CLOSE()
+	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
 // CWeldEvaluationView コンストラクション/デストラクション
@@ -344,6 +345,11 @@ void CWeldEvaluationView::OnInitialUpdate()
 	OnBnClickedBtnNewprj();
 }
 
+void CWeldEvaluationView::OnTimer(UINT_PTR nIDEvent)
+{
+	CWeldEvaluationView::OnTimer(nIDEvent);
+}
+
 // CWeldEvaluationView 診断
 
 #ifdef _DEBUG
@@ -430,7 +436,7 @@ void CWeldEvaluationView::OnSize(UINT nType, int cx, int cy)
 			rect3.top		= rect2.bottom	+ sps;
 			rect3.bottom	= rect3.top		+ hight;
 
-			int w = 0, movew = 0;
+			int w = 0, movew = 0, moveh = 0;
 			if ((m_pGraphWnd != NULL) && (m_pGraphWnd->IsWindowEnabled())) {
 				m_pGraphWnd->GetWindowRect(rect4);
 				movew = rect4.left;
@@ -450,9 +456,9 @@ void CWeldEvaluationView::OnSize(UINT nType, int cx, int cy)
 			m_tabPropaty.GetWindowRect(rect6);
 			rect6.right = lpRect.right - leftsps;
 			rect6.left = rect6.right - w;
-			
-			pWnd = GetDlgItem(IDD_PROPTAB_PAGE_SETTING);
-
+			moveh = rect3.bottom - rect6.bottom;
+			int hsps = rect5.top - rect4.bottom;
+			rect4.bottom += moveh;
 
 
 			rect.right = rect4.left - sps2;
@@ -474,11 +480,14 @@ void CWeldEvaluationView::OnSize(UINT nType, int cx, int cy)
 			ScreenToClient(rect6);
 			m_tabPropaty.MoveWindow(rect6);
 
-			MoveItem(&m_stcOperationTabPageClient, movew, 0);
-			MoveItem(&m_stcPropTabPageClient, movew, 0);
+			MoveItem(&m_tabOperation, 0, moveh);
+			MoveItem(&m_tabPropaty, 0, moveh);
 
-			MoveItem(&m_btnPropTabCancel, movew, 0);
-			MoveItem(&m_btnPropTabOK, movew, 0);
+			MoveItem(&m_stcOperationTabPageClient, movew, moveh);
+			MoveItem(&m_stcPropTabPageClient, movew, moveh);
+
+			MoveItem(&m_btnPropTabCancel, movew, moveh);
+			MoveItem(&m_btnPropTabOK, movew, moveh);
 
 			FitItem();
 		}

@@ -155,6 +155,7 @@ public:
 
 	void FitItem();
 	afx_msg void OnClose();
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 };
 
 #ifndef _DEBUG  // WeldEvaluationView.cpp のデバッグ バージョン

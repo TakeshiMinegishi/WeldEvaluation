@@ -81,6 +81,10 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 	// TODO: この位置で CREATESTRUCT cs を修正して Window クラスまたはスタイルを
 	//  修正してください。
 
+	cs.cy = ::GetSystemMetrics(SM_CYSCREEN) / 3;
+	cs.cx = ::GetSystemMetrics(SM_CXSCREEN) / 3;
+	cs.y = ((cs.cy * 3) - cs.cy) / 2;
+	cs.x = ((cs.cx * 3) - cs.cx) / 2;
 	return TRUE;
 }
 

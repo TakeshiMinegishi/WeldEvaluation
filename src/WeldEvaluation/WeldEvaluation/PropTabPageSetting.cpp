@@ -377,6 +377,7 @@ void CPropTabPageSetting::ItemActive(bool bActive)
 /// <param name="rect">フィッティング領域</param>
 void CPropTabPageSetting::FitRect(CRect rect)
 {
+	m_sbrSettingDlg.ShowWindow(SW_HIDE);
 	CRect rr;
 	m_sbrSettingDlg.GetWindowRect(rr);
 	
