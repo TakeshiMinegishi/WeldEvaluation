@@ -308,13 +308,6 @@ void CImageWind::OnMouseMove(UINT nFlags, CPoint point)
 		}
 	}
 
-#if 0
-	if (m_bButtonDown && m_bActive) {
-		if (nFlags == MK_CONTROL) {
-//			TRACE(_T("OnMouseMove(%d,%d)\n"), point.x, point.y);
-		}
-	}
-#endif
 	CDialog::OnMouseMove(nFlags, point);
 }
 
@@ -329,71 +322,6 @@ void CImageWind::OnMouseMove(UINT nFlags, CPoint point)
 /// @remark ‰ñ“]‹——£zDelta ’l‚Í120‚Ì”{”
 BOOL CImageWind::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 {
-#if 0
-	if (m_bActive) {
-		CPoint pos = pt;
-		ScreenToClient(&pos);
-
-		CRect rect;
-		GetClientRect(&rect);
-		CPoint delta;
-		delta.x = pos.x - rect.Width() / 2;
-		delta.y = pos.y - rect.Height() / 2;
-		m_imageX -= delta.x;
-		m_imageY -= delta.y;
-
-		m_zoomRetio += ((double)zDelta / 120.0) * 0.1;
-		m_imageWidth = (int)(m_orgImageWidth * m_zoomRetio);
-		m_imageHeight = (int)(m_orgImageHeight * m_zoomRetio);;
-
-		if (m_imageWidth > m_imageHeight) {
-			if (m_imageHeight < rect.Height()) {
-				m_zoomRetio = 1.0;
-				m_imageWidth = m_orgImageWidth;
-				m_imageHeight = m_orgImageHeight;
-				m_imageY = (int)((rect.Height() - m_imageHeight) / 2.0);
-			}
-			if (m_imageWidth < rect.Width()) {
-				m_imageX = (int)((rect.Width() - m_imageWidth) / 2.0);
-			}
-			else {
-
-			}
-		}
-		else {
-			if (m_imageHeight < rect.Height()) {
-				m_imageY = (int)((rect.Height() - m_imageHeight) / 2.0);
-			}
-			if (m_imageWidth < rect.Width()) {
-				m_zoomRetio = 1.0;
-				m_imageWidth = m_orgImageWidth;
-				m_imageHeight = m_orgImageHeight;
-				m_imageX = (int)((rect.Width() - m_imageWidth) / 2.0);
-			}
-		}
-
-		if (m_imageWidth > rect.Width()) {
-			if (m_imageX > 0) {
-				m_imageX = 0;
-			}
-			else if ((rect.Width() - m_imageWidth) > m_imageX) {
-				m_imageX = (rect.Width() - m_imageWidth);
-			}
-		}
-
-		if (m_imageHeight > 0) {
-			if (m_imageY > 0) {
-				m_imageY = 0;
-			}
-			else if ((rect.Height() - m_imageHeight) > m_imageY) {
-				m_imageY = (rect.Height() - m_imageHeight);
-			}
-		}
-
-//		TRACE(_T("pos(%d,%d) Width= %d height = %d (%lf)\n"), pos.x, pos.y, m_imageWidth, m_imageHeight, m_zoomRetio);
-		OnPaint();
-	}
-#else
 	if (m_bActive) {
 		CPoint pos = pt;
 		ScreenToClient(&pos);
@@ -402,10 +330,6 @@ BOOL CImageWind::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 		GetClientRect(&rect);
 
 		CPoint delta;
-//		delta.x = pos.x - rect.Width() / 2;
-//		delta.y = pos.y - rect.Height() / 2;
-//		pos.x = m_imageX - delta.x;
-//		pos.y = m_imageY - delta.y;
 		double scalingRetio = m_zoomRetio + ((double)zDelta / 120.0) * ZoomSpep;
 		if (scalingRetio < 1.0) {
 			scalingRetio = 1.0;
@@ -414,7 +338,6 @@ BOOL CImageWind::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 		CRect ImageRect(m_imageX, m_imageY, m_imageX + m_imageWidth, m_imageY + m_imageHeight);
 		GetParent()->SendMessage(WM_IMAGE_SCALING, (WPARAM)m_Type, (LPARAM)&ImageRect);
 	}
-#endif
 	return CDialog::OnMouseWheel(nFlags, zDelta, pt);
 }
 

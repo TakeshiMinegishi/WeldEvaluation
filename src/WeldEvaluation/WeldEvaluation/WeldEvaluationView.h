@@ -116,6 +116,7 @@ public:
 
 private:
 	void CWeldEvaluationView::logOut(CString filePath, long lineNo, CString msg);
+	void MoveItem(CWnd *pWnd, int movex, int movey);
 
 public:
 	LRESULT OnUpdateRequestPrpoTab(WPARAM wparam, LPARAM lparam);

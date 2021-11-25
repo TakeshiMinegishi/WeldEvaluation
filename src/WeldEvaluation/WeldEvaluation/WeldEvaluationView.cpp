@@ -396,11 +396,107 @@ void CWeldEvaluationView::OnSize(UINT nType, int cx, int cy)
 		pWnd->MoveWindow(lpRect);
 	}
 	else {
+		int top = 0,bottom = 0,leftsps=0,sps2=0;
+
+		CRect rect;
+		CWnd *pWnd = GetDlgItem(IDC_BTN_NEWPRJ);
+		if (pWnd) {
+			pWnd->GetWindowRect(rect);
+			top = rect.top;
+			leftsps = rect.left;
+		}
+
 		if (::IsWindowEnabled(this->m_hWnd)) {
-//			MoveWindow(lpRect);
+			if ((m_lstRegTest.m_hWnd != NULL) && (m_lstRegTest.IsWindowEnabled())) {
+				m_lstRegTest.GetWindowRect(rect);
+				rect.bottom = rect.top + lpRect.Height() - 60;
+				bottom = rect.bottom;
+				ScreenToClient(rect);
+				m_lstRegTest.MoveWindow(rect);
+			}
+		}
+
+		if (((m_pReginWnd != NULL) && (m_pReginWnd->IsWindowEnabled())) && ((m_pMetalWnd != NULL) && (m_pMetalWnd->IsWindowEnabled())) && ((m_pResultWnd != NULL) && (m_pResultWnd->IsWindowEnabled()))) {
+			CRect rect2,rect3, rect4;
+			int sps;
+			m_pReginWnd->GetWindowRect(rect);
+			m_pMetalWnd->GetWindowRect(rect2);
+			m_pResultWnd->GetWindowRect(rect3);
+			sps = rect2.top - rect.bottom;
+			int hight = ((bottom - top) - sps*2) / 3;
+			rect.bottom = rect.top + hight;
+			rect2.top		= rect.bottom	+ sps;
+			rect2.bottom	= rect2.top		+ hight;
+			rect3.top		= rect2.bottom	+ sps;
+			rect3.bottom	= rect3.top		+ hight;
+
+			int w = 0, movew = 0;
+			if ((m_pGraphWnd != NULL) && (m_pGraphWnd->IsWindowEnabled())) {
+				m_pGraphWnd->GetWindowRect(rect4);
+				movew = rect4.left;
+				sps2 = rect4.left - rect.right;
+				w = rect4.Width();
+				rect4.right = lpRect.right - leftsps;
+				rect4.left = rect4.right - w;
+				movew = rect4.left - movew;
+			}
+
+			CRect rect5;
+			m_tabOperation.GetWindowRect(rect5);
+			rect5.right = lpRect.right - leftsps;
+			rect5.left = rect5.right - w;
+
+			CRect rect6;
+			m_tabPropaty.GetWindowRect(rect6);
+			rect6.right = lpRect.right - leftsps;
+			rect6.left = rect6.right - w;
+			
+			pWnd = GetDlgItem(IDD_PROPTAB_PAGE_SETTING);
+
+
+
+			rect.right = rect4.left - sps2;
+			ScreenToClient(rect);
+			m_pReginWnd->MoveWindow(rect);
+			rect2.right = rect4.left - sps2;
+			ScreenToClient(rect2);
+			m_pMetalWnd->MoveWindow(rect2);
+			rect3.right = rect4.left - sps2;
+			ScreenToClient(rect3);
+			m_pResultWnd->MoveWindow(rect3);
+
+			ScreenToClient(rect4);
+			m_pGraphWnd->MoveWindow(rect4);
+
+			ScreenToClient(rect5);
+			m_tabOperation.MoveWindow(rect5);
+
+			ScreenToClient(rect6);
+			m_tabPropaty.MoveWindow(rect6);
+
+			MoveItem(&m_stcOperationTabPageClient, movew, 0);
+			MoveItem(&m_stcPropTabPageClient, movew, 0);
+
+			MoveItem(&m_btnPropTabCancel, movew, 0);
+			MoveItem(&m_btnPropTabOK, movew, 0);
+
+			FitItem();
 		}
 	}
 }
+
+void CWeldEvaluationView::MoveItem(CWnd *pWnd, int movex, int movey)
+{
+	CRect wrct;
+	pWnd->GetWindowRect(wrct);
+	wrct.left	+= movex;
+	wrct.right	+= movex;
+	wrct.top	+= movey;
+	wrct.bottom += movey;
+	ScreenToClient(wrct);
+	pWnd->MoveWindow(wrct);
+}
+
 
 /// <summary>
 /// ƒEƒCƒ“ƒh”jŠüˆ—
