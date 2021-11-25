@@ -113,18 +113,20 @@ void CImageWind::OnPaint()
 		CDC		*pDC = GetDC();
 		CDC		cDC;				// ビットマップ表示用DC
 		BITMAP	bm;					// ビットマップオブジェクト
+
 		cDC.CreateCompatibleDC(pDC);
 		bmp = CBitmap::FromHandle(*m_pImg);
 		if (bmp) {
 			CBitmap *oldBMP = cDC.SelectObject(bmp);
 			bmp->GetBitmap(&bm);
-			pDC->SetStretchBltMode(HALFTONE);
 			pDC->SetStretchBltMode(COLORONCOLOR);
 			pDC->StretchBlt(m_imageX, m_imageY, m_imageWidth, m_imageHeight, &cDC, 0, 0, bm.bmWidth, bm.bmHeight, SRCCOPY);
 			TRACE(_T("OnPaint(%d) X=%d Y=%d, W=%d H=%d\n"), m_Type, m_imageX, m_imageY, m_imageWidth, m_imageHeight);
 
 			cDC.SelectObject(oldBMP);
 		}
+
+		ReleaseDC(pDC);
 	}
 }
 
@@ -553,6 +555,7 @@ void CImageWind::Draw()
 	pDC->StretchBlt(m_imageX, m_imageY, m_imageWidth, m_imageHeight, &virtualDC, 0, 0, bm.bmWidth, bm.bmHeight, SRCCOPY);
 
 	virtualDC.SelectObject(oldBMP);
+	ReleaseDC(pDC);
 	m_bActive = true;
 }
 

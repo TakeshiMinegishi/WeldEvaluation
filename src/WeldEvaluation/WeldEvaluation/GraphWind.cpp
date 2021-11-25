@@ -93,6 +93,7 @@ void CGraphWind::OnPaint()
 	CreateBackground(rect);
 	DrawFrame(pDC, m_DrawArea);
 	DrawGraph(pDC, m_DrawArea);
+	ReleaseDC(pDC);
 #else
 //	CreateBackground(rect);
 	if (m_pBmp == nullptr) {
