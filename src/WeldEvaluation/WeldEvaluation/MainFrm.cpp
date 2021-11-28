@@ -19,6 +19,7 @@ IMPLEMENT_DYNCREATE(CMainFrame, CFrameWnd)
 BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_WM_CREATE()
 	ON_WM_CLOSE()
+	ON_WM_GETMINMAXINFO()
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -74,17 +75,14 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 	::DestroyMenu(cs.hMenu);
 	//DeleteObject(cs.hMenu);
 	cs.hMenu = NULL;
-//	cs.style &= ~(WS_MAXIMIZEBOX | WS_THICKFRAME);
-
+#ifndef _DEBUG
+	cs.style &= ~(WS_MAXIMIZEBOX | WS_THICKFRAME);
+#endif
 	if( !CFrameWnd::PreCreateWindow(cs) )
 		return FALSE;
 	// TODO: この位置で CREATESTRUCT cs を修正して Window クラスまたはスタイルを
 	//  修正してください。
 
-	cs.cy = ::GetSystemMetrics(SM_CYSCREEN) / 3;
-	cs.cx = ::GetSystemMetrics(SM_CXSCREEN) / 3;
-	cs.y = ((cs.cy * 3) - cs.cy) / 2;
-	cs.x = ((cs.cx * 3) - cs.cx) / 2;
 	return TRUE;
 }
 
@@ -125,4 +123,16 @@ void CMainFrame::OnClose()
 }
 // CMainFrame メッセージ ハンドラー
 
+
+void CMainFrame::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
+{
+	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetActiveDocument();
+	if (pDoc) {
+		CSize min;
+		if (pDoc->GetMinWndSize(min)) {
+			lpMMI->ptMinTrackSize.x = min.cx;
+			lpMMI->ptMinTrackSize.y = min.cy;
+		}
+	}
+}
 

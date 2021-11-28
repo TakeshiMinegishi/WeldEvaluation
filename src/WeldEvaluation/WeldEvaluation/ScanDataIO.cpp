@@ -486,6 +486,35 @@ bool CScanDataIO::getBandSpectrum(std::vector<double> &BandSpectrum)
 	return true;
 }
 
+/// <summary>
+/// バンド数の取得
+/// </summary>
+/// <returns>バンド数を返す</returns>
+int  CScanDataIO::GetNumberOfBand()
+{
+	if (m_o_p_cube == nullptr) {
+		return 0;
+	}
+	int bands = m_o_p_cube->format.nr_bands;
+	return bands;
+}
+
+/// <summary>
+/// バンドのスペクトル値取得
+/// </summary>
+/// <param name="index">バンドインデックス</param>
+/// <returns>スペクトル値を返す</returns>
+double CScanDataIO::getWaveLength(int index)
+{
+	if (m_o_p_cube == nullptr) {
+		return 0.0;
+	}
+	if ((index < 0) || (index >= m_o_p_cube->format.nr_bands)) {
+		return 0.0;
+	}
+	return m_o_p_cube->format.band_names[index];
+}
+
 #if 0	// 削除するコード
 typedef struct {
 	int		m_sx;

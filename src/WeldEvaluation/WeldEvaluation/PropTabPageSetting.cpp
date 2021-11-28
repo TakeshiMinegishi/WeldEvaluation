@@ -28,6 +28,7 @@ CPropTabPageSetting::CPropTabPageSetting(CWnd* pParent /*=NULL*/)
 	, m_ScrollBerPos(0)
 	, m_ShutterSpeed(0)
 {
+	m_PageID = 99999;
 }
 
 /// <summary>
@@ -612,7 +613,7 @@ bool CPropTabPageSetting::ConfirmChange()
 		// 更新ボタンの更新
 		UpdateData(false);
 		CWnd *pWnd = GetParent()->GetParent();
-		pWnd->SendMessage(WM_UPDATEREQUEST_PROPPAGE, (WPARAM)true, (LPARAM)0);
+		pWnd->SendMessage(WM_UPDATEREQUEST_PROPPAGE, (WPARAM)true, (LPARAM)m_PageID);
 		bResult = true;
 	}
 	return bResult;

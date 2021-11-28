@@ -25,6 +25,8 @@ COprtTabPageAnalize::COprtTabPageAnalize(CWnd* pParent /*=NULL*/)
 	, m_MetalDisplayMode(0)
 	, m_ResultDisplayMode(0)
 {
+	m_bChangedAnalizeType = false;
+	m_bChangedDisplayMode = false;
 }
 
 /// <summary>
@@ -165,11 +167,13 @@ void COprtTabPageAnalize::OnBnClickedRdoResinMethod1()
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eResinSurface,CWeldEvaluationDoc::AnalizeTypeKMeans);
 	if (m_ResinAnalizeType == 0) {
+		m_bChangedAnalizeType = true;
 		if (pWnd) {
 			if (pDoc->GetDisplayMode(CWeldEvaluationDoc::eResinSurface) != CWeldEvaluationDoc::DisplayModeScan) {
 				pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eResinSurface, CWeldEvaluationDoc::DisplayModeResult);
 			}
 		}
+		m_bChangedAnalizeType = false;
 	}
 }
 
@@ -187,11 +191,13 @@ void COprtTabPageAnalize::OnBnClickedRdoResinMethod2()
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eResinSurface,CWeldEvaluationDoc::AnalizeTypeHiClustering);
 	if (m_ResinAnalizeType == 1) {
+		m_bChangedAnalizeType = true;
 		if (pWnd) {
 			if (pDoc->GetDisplayMode(CWeldEvaluationDoc::eResinSurface) != CWeldEvaluationDoc::DisplayModeScan) {
 				pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eResinSurface, CWeldEvaluationDoc::DisplayModeResult);
 			}
 		}
+		m_bChangedAnalizeType = false;
 	}
 }
 
@@ -209,11 +215,13 @@ void COprtTabPageAnalize::OnBnClickedRdoMetalMethod1()
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eMetalSurface,CWeldEvaluationDoc::AnalizeTypeKMeans);
 	if (m_MetalAnalizeType == 0) {
+		m_bChangedAnalizeType = true;
 		if (pWnd) {
 			if (pDoc->GetDisplayMode(CWeldEvaluationDoc::eMetalSurface) != CWeldEvaluationDoc::DisplayModeScan) {
 				pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eMetalSurface, CWeldEvaluationDoc::DisplayModeResult);
 			}
 		}
+		m_bChangedAnalizeType = false;
 	}
 }
 
@@ -231,11 +239,13 @@ void COprtTabPageAnalize::OnBnClickedRdoMetalMethod2()
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eMetalSurface,CWeldEvaluationDoc::AnalizeTypeHiClustering);
 	if (m_MetalAnalizeType == 1) {
+		m_bChangedAnalizeType = true;
 		if (pWnd) {
 			if (pDoc->GetDisplayMode(CWeldEvaluationDoc::eMetalSurface) != CWeldEvaluationDoc::DisplayModeScan) {
 				pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eMetalSurface, CWeldEvaluationDoc::DisplayModeResult);
 			}
 		}
+		m_bChangedAnalizeType = false;
 	}
 }
 
@@ -254,11 +264,13 @@ void COprtTabPageAnalize::OnBnClickedRdoJointMethod1()
 	}
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eJoiningResult, CWeldEvaluationDoc::AnalizeTypeKMeans);
 	if (m_JointAnalizeType == 0) {
+		m_bChangedAnalizeType = true;
 		if (pWnd) {
 			if (pDoc->GetDisplayMode(CWeldEvaluationDoc::eJoiningResult) != CWeldEvaluationDoc::DisplayModeScan) {
 				pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eJoiningResult, CWeldEvaluationDoc::DisplayModeResult);
 			}
 		}
+		m_bChangedAnalizeType = false;
 	}
 }
 
@@ -277,11 +289,13 @@ void COprtTabPageAnalize::OnBnClickedRdoJointMethod2()
 	}
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eJoiningResult, CWeldEvaluationDoc::AnalizeTypeHiClustering);
 	if (m_JointAnalizeType == 1) {
+		m_bChangedAnalizeType = true;
 		if (pWnd) {
 			if (pDoc->GetDisplayMode(CWeldEvaluationDoc::eJoiningResult) != CWeldEvaluationDoc::DisplayModeScan) {
 				pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eJoiningResult, CWeldEvaluationDoc::DisplayModeResult);
 			}
 		}
+		m_bChangedAnalizeType = false;
 	}
 }
 
@@ -355,11 +369,15 @@ void COprtTabPageAnalize::OnBnClickedRdoResinclasresult()
 		return;
 	}
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
-	if (pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST,CWeldEvaluationDoc::eResinSurface,CWeldEvaluationDoc::DisplayModeResult) != 0) {
-		m_ResinDisplayMode = org;
-	} else {
-		CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
-		pDoc->SetDisplayMode(CWeldEvaluationDoc::eResinSurface,CWeldEvaluationDoc::DisplayModeResult);
+	if (pWnd) {
+		m_bChangedDisplayMode = true;
+		if (pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST,CWeldEvaluationDoc::eResinSurface,CWeldEvaluationDoc::DisplayModeResult) != 0) {
+			m_ResinDisplayMode = org;
+		} else {
+			CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
+			pDoc->SetDisplayMode(CWeldEvaluationDoc::eResinSurface,CWeldEvaluationDoc::DisplayModeResult);
+		}
+		m_bChangedDisplayMode = false;
 	}
 	UpdateData(false);
 }
@@ -375,11 +393,16 @@ void COprtTabPageAnalize::OnBnClickedRdoMetalscan()
 		return;
 	}
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
-	if (pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST,CWeldEvaluationDoc::eMetalSurface,CWeldEvaluationDoc::DisplayModeScan) != 0) {
-		m_MetalDisplayMode = org;
-	} else {
-		CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
-		pDoc->SetDisplayMode(CWeldEvaluationDoc::eMetalSurface,CWeldEvaluationDoc::DisplayModeScan);
+	if (pWnd) {
+		m_bChangedDisplayMode = true;
+		if (pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eMetalSurface, CWeldEvaluationDoc::DisplayModeScan) != 0) {
+			m_MetalDisplayMode = org;
+		}
+		else {
+			CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
+			pDoc->SetDisplayMode(CWeldEvaluationDoc::eMetalSurface, CWeldEvaluationDoc::DisplayModeScan);
+		}
+		m_bChangedDisplayMode = false;
 	}
 	UpdateData(false);
 }
@@ -395,11 +418,16 @@ void COprtTabPageAnalize::OnBnClickedRdoMetalclasresult()
 		return;
 	}
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
-	if (pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST,CWeldEvaluationDoc::eMetalSurface,CWeldEvaluationDoc::DisplayModeResult) != 0) {
-		m_MetalDisplayMode = org;
-	} else {
-		CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
-		pDoc->SetDisplayMode(CWeldEvaluationDoc::eMetalSurface,CWeldEvaluationDoc::DisplayModeResult);
+	if (pWnd) {
+		m_bChangedDisplayMode = true;
+		if (pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eMetalSurface, CWeldEvaluationDoc::DisplayModeResult) != 0) {
+			m_MetalDisplayMode = org;
+		}
+		else {
+			CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
+			pDoc->SetDisplayMode(CWeldEvaluationDoc::eMetalSurface, CWeldEvaluationDoc::DisplayModeResult);
+		}
+		m_bChangedDisplayMode = false;
 	}
 	UpdateData(false);
 }
@@ -415,11 +443,16 @@ void COprtTabPageAnalize::OnBnClickedRdoJointresultscan()
 		return;
 	}
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
-	if (pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST,CWeldEvaluationDoc::eJoiningResult,CWeldEvaluationDoc::DisplayModeScan) != 0) {
-		m_ResultDisplayMode = org;
-	} else {
-		CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
-		pDoc->SetDisplayMode(CWeldEvaluationDoc::eJoiningResult,CWeldEvaluationDoc::DisplayModeScan);
+	if (pWnd) {
+		m_bChangedDisplayMode = true;
+		if (pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eJoiningResult, CWeldEvaluationDoc::DisplayModeScan) != 0) {
+			m_ResultDisplayMode = org;
+		}
+		else {
+			CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
+			pDoc->SetDisplayMode(CWeldEvaluationDoc::eJoiningResult, CWeldEvaluationDoc::DisplayModeScan);
+		}
+		m_bChangedDisplayMode = false;
 	}
 	UpdateData(false);
 }
@@ -436,11 +469,16 @@ void COprtTabPageAnalize::OnBnClickedRdoJointresultclasresult()
 		return;
 	}
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
-	if (pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST,CWeldEvaluationDoc::eJoiningResult,CWeldEvaluationDoc::DisplayModeResult) != 0) {
-		m_ResultDisplayMode = org;
-	} else {
-		CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
-		pDoc->SetDisplayMode(CWeldEvaluationDoc::eJoiningResult,CWeldEvaluationDoc::DisplayModeResult);
+	if (pWnd) {
+		m_bChangedDisplayMode = true;
+		if (pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eJoiningResult, CWeldEvaluationDoc::DisplayModeResult) != 0) {
+			m_ResultDisplayMode = org;
+		}
+		else {
+			CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
+			pDoc->SetDisplayMode(CWeldEvaluationDoc::eJoiningResult, CWeldEvaluationDoc::DisplayModeResult);
+		}
+		m_bChangedDisplayMode = false;
 	}
 	UpdateData(false);
 }
@@ -478,6 +516,38 @@ int COprtTabPageAnalize::GetAnalizeType(int ItemID)
 	return type;
 }
 
+void COprtTabPageAnalize::ChangeAnalizeType(int ScanID)
+{
+	UpdateData(true);
+	switch (ScanID) {
+	case		CWeldEvaluationDoc::eResinSurface:
+		if (m_ResinAnalizeType == 0) {
+			m_ResinAnalizeType = 1;
+		}
+		else {
+			m_ResinAnalizeType = 0;
+		}
+		break;
+	case		CWeldEvaluationDoc::eMetalSurface:
+		if (m_MetalAnalizeType == 0) {
+			m_MetalAnalizeType = 1;
+		}
+		else {
+			m_MetalAnalizeType = 0;
+		}
+		break;
+	case		CWeldEvaluationDoc::eJoiningResult:
+		if (m_JointAnalizeType == 0) {
+			m_JointAnalizeType = 1;
+		}
+		else {
+			m_JointAnalizeType = 0;
+		}
+		break;
+	}
+	UpdateData(false);
+}
+
 int COprtTabPageAnalize::SetDisplayMode(int ScanID, int mode)
 {
 	switch (ScanID) {
@@ -502,4 +572,14 @@ int COprtTabPageAnalize::SetDisplayMode(int ScanID, int mode)
 	}
 	UpdateData(false);
 	return mode;
+}
+
+bool COprtTabPageAnalize::IsChangedAnalizeType()
+{
+	return m_bChangedAnalizeType;
+}
+
+bool COprtTabPageAnalize::IsChangedDisplayMode()
+{
+	return m_bChangedDisplayMode;
 }

@@ -109,6 +109,15 @@ BEGIN
     END
 END
 
+IDR_POPUP_MENU MENU
+BEGIN
+    POPUP "popup_menue"
+    BEGIN
+        MENUITEM "開く",                          IDS_PROJECT_OPEN
+        MENUITEM "削除",                          IDS_PROJECT_DELETE
+    END
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -117,19 +126,20 @@ END
 
 IDR_MAINFRAME ACCELERATORS
 BEGIN
-    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL
-    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
-    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL
-    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
-    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
-    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
-    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
-    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
-    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
-    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
-    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
-    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
-    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_DELETE,      ID_PROJECT_DELETE,      VIRTKEY, NOINVERT
+    "O",            ID_PROJECT_OPEN,        VIRTKEY, CONTROL, NOINVERT
 END
 
 
@@ -182,6 +192,7 @@ BEGIN
     COMBOBOX        IDC_CMB_JOINRATIO_TARGET_LABEL,161,44,34,48,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
     LTEXT           "対象：",IDC_STC_JOINRATIO_TARGET_LABEL,114,44,20,13,SS_CENTERIMAGE
     CONTROL         "",IDC_STC_IDCOLOR,"Static",SS_BLACKRECT,138,44,20,13
+    LTEXT           "スタティック",IDC_MSG_FEILD,15,65,181,8
 END
 
 IDD_PROPTAB_PAGE_SETTING DIALOGEX 0, 0, 211, 156
@@ -699,12 +710,29 @@ BEGIN
     IDM_PRJREGIST_OVERWRITE "同じ登録名称が存在します\n上書きしますか？\n上書きをした場合、以前のデータは破棄されます。"
     DM_PRJREGIST_EXISTUPDATE "データが更新されています。\n更新されているデータを破棄しますか?"
     IDM_ANALYZE_SUCCESS     "解析処理が正常終了しました"
+    IDS_EXIST_REPAIRABLEDATA "修復可能な登録データ[%s]が存在します。\n修復しますか？"
+    IDS_REPAIR_COMPLEAT     "修復が完了しました。"
+    IDM_CHANGED_NUMBEROFCLASS "クラス数が更新されています。\n更新を破棄しますか？"
+    IDM_DELETE              "削除してよろしいですか？ "
+    IDM_DELETE_ACTIVEPROJECT "編集中のデータです。\n削除しますか？"
 END
 
 STRINGTABLE
 BEGIN
     IDF_JOININGRETIO        """%02d_Joining_ratio%03d"""
     IDF_JOININGCOLOR        """%02d_Joining_color%03d"""
+END
+
+STRINGTABLE
+BEGIN
+    IDM_ERR_FAIL_REGIST     "修復に失敗完了しました。"
+    IDM_ERR_NOTEXIST_ANALIZEDATA "解析対象が存在しません"
+END
+
+STRINGTABLE
+BEGIN
+    IDS_PROJECT_OPEN        "開く"
+    IDS_PROJECT_DELETE      "削除"
 END
 
 #endif    // 日本語 (日本) resources

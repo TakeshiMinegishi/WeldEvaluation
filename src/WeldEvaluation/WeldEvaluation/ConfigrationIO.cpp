@@ -201,3 +201,18 @@ bool CConfigrationIO::setString(CString section, CString key, CString& value, CS
 	}
 	return write(section,key,value,filePath);
 }
+
+/// <summary>
+/// 指定セクションのキーにを削除
+/// </summary>
+/// <param name="section">セクション名</param>
+/// <param name="key">キー名</param>
+/// <param name="filePath">データパス名</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
+bool CConfigrationIO::deleteKey(CString section, CString key, CString filePath)
+{
+	if (filePath == _T("")) {
+		filePath = m_DataPath;
+	}
+	return WritePrivateProfileString(section, key, NULL, filePath);
+}

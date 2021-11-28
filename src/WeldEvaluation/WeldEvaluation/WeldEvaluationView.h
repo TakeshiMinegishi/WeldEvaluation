@@ -113,6 +113,12 @@ public:
 	afx_msg void OnBnClickedBtnNewprj();
 	afx_msg void OnDestroy();
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	afx_msg void OnClose();
+	afx_msg void OnNMRClickLstRegistTest(NMHDR *pNMHDR, LRESULT *pResult);
+	afx_msg void OnProjectOpen();
+	afx_msg void OnProjectDelete();
+	afx_msg void OnFileSave();
+	afx_msg void OnProjectNew();
 
 private:
 	void CWeldEvaluationView::logOut(CString filePath, long lineNo, CString msg);
@@ -154,8 +160,6 @@ public:
 	LRESULT OnAreaSpectrumeGraphSet(WPARAM wparam, LPARAM lparam);
 
 	void FitItem();
-	afx_msg void OnClose();
-	afx_msg void OnTimer(UINT_PTR nIDEvent);
 };
 
 #ifndef _DEBUG  // WeldEvaluationView.cpp のデバッグ バージョン

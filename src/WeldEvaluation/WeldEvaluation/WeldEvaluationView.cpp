@@ -59,7 +59,11 @@ BEGIN_MESSAGE_MAP(CWeldEvaluationView, CFormView)
 	ON_WM_DESTROY()
 	ON_WM_MOUSEMOVE()
 	ON_WM_CLOSE()
-	ON_WM_TIMER()
+	ON_NOTIFY(NM_RCLICK, IDC_LST_REGIST_TEST, &CWeldEvaluationView::OnNMRClickLstRegistTest)
+	ON_COMMAND(ID_PROJECT_OPEN, &CWeldEvaluationView::OnProjectOpen)
+	ON_COMMAND(ID_PROJECT_DELETE, &CWeldEvaluationView::OnProjectDelete)
+	ON_COMMAND(ID_FILE_SAVE, &CWeldEvaluationView::OnFileSave)
+	ON_COMMAND(ID_FILE_NEW, &CWeldEvaluationView::OnProjectNew)
 END_MESSAGE_MAP()
 
 // CWeldEvaluationView コンストラクション/デストラクション
@@ -82,7 +86,7 @@ CWeldEvaluationView::CWeldEvaluationView()
 
 	m_pProgress			= nullptr;
 	m_pSpectralDlg		= nullptr;
-	m_SpectralDlgRect = CRect(0, 0, 0, 0);
+	m_SpectralDlgRect	= CRect(0, 0, 0, 0);
 }
 
 /// <summary>
@@ -136,12 +140,14 @@ BOOL CWeldEvaluationView::PreCreateWindow(CREATESTRUCT& cs)
 /// </summary>
 void CWeldEvaluationView::OnInitialUpdate()
 {
+	CWnd* pWnd = nullptr;
 	CFormView::OnInitialUpdate();
 	GetParentFrame()->RecalcLayout();
 
 	CRect formRect;
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
 	int top,left,width,hight;
+
 	if (!pDoc->GetWindRect(formRect)) {
 		top = 0;
 		left = 0;
@@ -157,7 +163,6 @@ void CWeldEvaluationView::OnInitialUpdate()
 			hight = (int)(GetSystemMetrics(SM_CYSCREEN)*0.8);
 		}
 	}
-
 	GetClientRect( formRect );
 	formRect.top    = 0;
 	formRect.left   = 0;
@@ -253,7 +258,7 @@ void CWeldEvaluationView::OnInitialUpdate()
 	}
 
 	// ここはクラフウインドの表示確認用のダミーです
-	CWnd *pWnd = GetDlgItem(IDC_STC_GRAPH_WND);
+	pWnd = GetDlgItem(IDC_STC_GRAPH_WND);
 	if (pWnd) {
 		CRect rcClient;
 		pWnd->GetWindowRect(rcClient);
@@ -341,13 +346,24 @@ void CWeldEvaluationView::OnInitialUpdate()
 		m_SpectralDlgRect = CRect(0, 0, 0, 0);
 	}
 
+	GetWindowRect(rect);
+	CSize minRect = CSize(rect.Width(), rect.Height());
+	int w = GetSystemMetrics(SM_CXSIZEFRAME) + GetSystemMetrics(SM_CXEDGE);;
+	int h = GetSystemMetrics(SM_CYSIZEFRAME) + GetSystemMetrics(SM_CYEDGE);
+	minRect.cx += w * 2;
+	minRect.cy += h * 2;
+
+	w += GetSystemMetrics(SM_CYHSCROLL) + GetSystemMetrics(SM_CXHTHUMB) * 2;
+	h += GetSystemMetrics(SM_CYHSCROLL) + GetSystemMetrics(SM_CXHTHUMB) * 2;
+
+	h = GetSystemMetrics(SM_CYCAPTION);
+	minRect.cy += h*4;
+	minRect.cx += w;
+
+	pDoc->SetMinWndSize(minRect);
+
 	pDoc->SetVisible(true);
 	OnBnClickedBtnNewprj();
-}
-
-void CWeldEvaluationView::OnTimer(UINT_PTR nIDEvent)
-{
-	CWeldEvaluationView::OnTimer(nIDEvent);
 }
 
 // CWeldEvaluationView 診断
@@ -405,7 +421,7 @@ void CWeldEvaluationView::OnSize(UINT nType, int cx, int cy)
 		int top = 0,bottom = 0,leftsps=0,sps2=0;
 
 		CRect rect;
-		CWnd *pWnd = GetDlgItem(IDC_BTN_NEWPRJ);
+		pWnd = GetDlgItem(IDC_BTN_NEWPRJ);
 		if (pWnd) {
 			pWnd->GetWindowRect(rect);
 			top = rect.top;
@@ -613,6 +629,9 @@ void CWeldEvaluationView::OnNMDblclkLstRegistTest(NMHDR *pNMHDR, LRESULT *pResul
 		return;
 	}
 
+	OnProjectOpen();
+
+#if 0
 	CString str = m_lstRegTest.GetItemText(pNMItemActivate->iItem,0);
 	if (str.IsEmpty()) {
 		return;
@@ -686,6 +705,7 @@ void CWeldEvaluationView::OnNMDblclkLstRegistTest(NMHDR *pNMHDR, LRESULT *pResul
 		msg.Format(fmt, (LPCWSTR)str);
 		AfxMessageBox(msg,MB_OK|MB_ICONSTOP);
 	}
+#endif
 }
 
 
@@ -775,7 +795,7 @@ void CWeldEvaluationView::OnTcnSelchangeTabPropaty(NMHDR *pNMHDR, LRESULT *pResu
 			msg.LoadString(IDM_PROPUPDATE);
 			sub.LoadStringW(IDM_CHECKOFUPDATE);
 			msg += _T("\n") + sub;
-			if (AfxMessageBox(msg,MB_YESNO|MB_ICONQUESTION|MB_DEFBUTTON1) == IDYES) {
+			if (AfxMessageBox(msg,MB_YESNO| MB_ICONWARNING |MB_DEFBUTTON1) == IDYES) {
 				UpdatePropaty(m_SelPropPageId);
 			} else {
 				ReloadPropaty(m_SelPropPageId);
@@ -814,21 +834,24 @@ void CWeldEvaluationView::OnBnClickedBtnPropUpdate()
 	SelIdx = m_tabPropaty.GetCurSel();
 	UpdatePropaty(SelIdx);
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
-
 	switch (SelIdx) {
 	case	0:	// 樹脂面
 	{
 		pDoc->SetWorkProjectUpdteStatus(true);
+		m_PropResinPage.UpdateStatus();
+		
 	}
 	break;
 	case	1:	// 金属面
 	{
 		pDoc->SetWorkProjectUpdteStatus(true);
+		m_PropMetalPage.UpdateStatus();
 	}
 	break;
 	case	2:	// 結果
 	{
 		pDoc->SetWorkProjectUpdteStatus(true);
+		m_PropResultPage.UpdateStatus();
 	}
 	break;
 	case	3:	// 設定
@@ -852,10 +875,10 @@ void CWeldEvaluationView::OnBnClickedBtnPropCancel()
 }
 
 /// <summary>
-/// プロパティキャンセルボタン押下時処理
+/// プロパティ更新情報の設定
 /// </summary>
 /// <param name="wparam"> 更新フラグ</param>
-/// <param name="lparam"> 未使用</param>
+/// <param name="lparam"> ページID</param>
 /// <returns>成功した場合は0、失敗した場合は0以外を返す</returns>
 LRESULT CWeldEvaluationView::OnUpdateRequestPrpoTab(WPARAM wparam, LPARAM lparam)
 {
@@ -1447,7 +1470,7 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 
 			buf.Format(_T("%.8lf"), pWavelength[0]);
 			for (int b = 1; b < band; b++) {
-				buf.Format(_T("%s,%.8lf"), buf, pWavelength[b]);
+				buf.Format(_T("%s,%.8lf"), (LPCWSTR)buf, pWavelength[b]);
 			}
 			CFileUtil::WriteUTF8ToSJIS(tfd, buf);
 			buf = _T("}");
@@ -1813,8 +1836,17 @@ LRESULT CWeldEvaluationView::OnImageMoveing(WPARAM wparam, LPARAM lparam)
 bool CWeldEvaluationView::ViewChangeRequest(int ScanID, int DisplayMode, bool renew/*=false*/)
 {
 	bool bResult = true;
-	int iResult = 0;
+	int NumberOfClass = 0;
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
+	int AnalyzeMethod = m_OprtAnalize.GetAnalizeType(ScanID);
+	int BeforAnalyzeMethod;
+	int BeforNumberOfClass = 0;
+	if (AnalyzeMethod == CWeldEvaluationDoc::AnalizeTypeHiClustering) {
+		BeforAnalyzeMethod = CWeldEvaluationDoc::AnalizeTypeKMeans;
+	}
+	else {
+		BeforAnalyzeMethod = CWeldEvaluationDoc::AnalizeTypeHiClustering;
+	}
 
 	CPropTabPageParameter *pPropPage = nullptr;
 	CImageWind *pImageWnd = nullptr;
@@ -1822,14 +1854,20 @@ bool CWeldEvaluationView::ViewChangeRequest(int ScanID, int DisplayMode, bool re
 	case	CWeldEvaluationDoc::eResinSurface:		// 樹脂
 		pImageWnd = m_pReginWnd;
 		pPropPage = &m_PropResinPage;
+		NumberOfClass = pDoc->ResinGetNumberOfClass(AnalyzeMethod);
+		BeforNumberOfClass = pDoc->ResinGetNumberOfClass(BeforAnalyzeMethod);
 		break;
 	case	CWeldEvaluationDoc::eMetalSurface:		// 金属
 		pImageWnd = m_pMetalWnd;
 		pPropPage = &m_PropMetalPage;
+		NumberOfClass = pDoc->MetalGetNumberOfClass(AnalyzeMethod);
+		BeforNumberOfClass = pDoc->MetalGetNumberOfClass(BeforAnalyzeMethod);
 		break;
 	case	CWeldEvaluationDoc::eJoiningResult:		// 接合結果
 		pImageWnd = m_pResultWnd;
 		pPropPage = &m_PropResultPage;
+		NumberOfClass = pDoc->ResultGetNumberOfClass(AnalyzeMethod);
+		BeforNumberOfClass = pDoc->ResultGetNumberOfClass(BeforAnalyzeMethod);
 		break;
 	}
 
@@ -1848,8 +1886,22 @@ bool CWeldEvaluationView::ViewChangeRequest(int ScanID, int DisplayMode, bool re
 		}
 	}
 	else {
+		if (m_OprtAnalize.IsChangedAnalizeType()) {
+			int newNCluss = pPropPage->GetNumbetOfClass();
+			if (BeforNumberOfClass != newNCluss) {
+				CString msg;
+				msg.LoadString(IDM_CHANGED_NUMBEROFCLASS);
+				if (AfxMessageBox(msg, MB_YESNO | MB_ICONWARNING | MB_DEFBUTTON1) == IDNO) {
+					m_OprtAnalize.ChangeAnalizeType(ScanID);
+					return true;
+				}
+			}
+			if (NumberOfClass != newNCluss) {
+				pPropPage->UpdateCmbJoinratioTargetLabel(true, NumberOfClass);
+			}
+		}
 		int type = m_OprtAnalize.GetAnalizeType(ScanID);
-		if (pDoc->ExistClassificationResultFile(ScanID, type)) {
+		if (pDoc->IsExistClassificationResultFile(ScanID, type)) {
 			CImage *pImg = pImageWnd->GetImage();
 			if (pDoc->LoadClassificationResultImage(ScanID, type, *pImg,true)) {
 				pImageWnd->Draw();
@@ -1861,8 +1913,9 @@ bool CWeldEvaluationView::ViewChangeRequest(int ScanID, int DisplayMode, bool re
 		else {
 			pImageWnd->Erase();
 		}
-		pPropPage->LoadParamater(type);
+		pPropPage->LoadParamater(ScanID);
 		pPropPage->ViewJointRatio(type, ScanID, -1);
+		pPropPage->UpdateStatus();
 	}
 
 	if (!pDoc->SetDisplayMode(ScanID, DisplayMode)) {
@@ -1910,8 +1963,30 @@ LRESULT CWeldEvaluationView::OnAnalyzeRequest(WPARAM wparam, LPARAM lparam)
 	CString ScanDataFilePath = pDoc->getScanDataFilePath(targetID);
 	// 改正対象が存在するかをチェック
 	if (!CFileUtil::fileExists(ScanDataFilePath)) {
-		AfxMessageBox(_T("解析対象が存在しません。"));
-		return false;
+		CString msg;
+		msg.LoadString(IDM_ERR_NOTEXIST_ANALIZEDATA);
+		AfxMessageBox(msg, MB_OK | MB_ICONSTOP);
+		return -1;
+	}
+
+	if (m_bUpdatePropaty) {
+		bool bUpdate = false;
+		if ((m_SelPropPageId == 0) && (targetID == CWeldEvaluationDoc::eResinSurface)) {
+			bUpdate = true;
+		} else if ((m_SelPropPageId == 1) && (targetID == CWeldEvaluationDoc::eMetalSurface)) {
+			bUpdate = true;
+		}
+		else if ((m_SelPropPageId == 1) && (targetID == CWeldEvaluationDoc::eJoiningResult)) {
+			bUpdate = true;
+		}
+		if (bUpdate) {
+			CString msg;
+			msg.LoadString(DM_PRJREGIST_EXISTUPDATE);
+			if (AfxMessageBox(msg, MB_YESNO | MB_ICONWARNING | MB_DEFBUTTON1) == IDNO) {
+				return -1;
+			}
+			OnBnClickedBtnPropCancel();
+		}
 	}
 
 	// 解析の実施
@@ -1923,6 +1998,7 @@ LRESULT CWeldEvaluationView::OnAnalyzeRequest(WPARAM wparam, LPARAM lparam)
 	if (!pDoc->SetAnalysisMethod(targetID,AnalyzeMethod)) {
 		iResult = -1;
 	}
+
 	m_bUpdateOperation = true;
 	m_OprtSetting.UpddateResist(m_bUpdateOperation,m_bReadMode);
 	m_OprtSetting.Update();
@@ -1932,28 +2008,52 @@ LRESULT CWeldEvaluationView::OnAnalyzeRequest(WPARAM wparam, LPARAM lparam)
 		AfxMessageBox(msg,MB_OK|MB_ICONSTOP);
 	}
 	else {
-		// もし、解析した画像の表示モードがスキャンなら解析に変更
-//		if (pDoc->GetDisplayMode(targetID) == CWeldEvaluationDoc::DisplayModeScan) {
-			ViewChangeRequest(targetID, CWeldEvaluationDoc::DisplayModeResult,true);
-			m_pReginWnd->Invalidate();
-//		}
+		// 表示モードをスキャン
+		ViewChangeRequest(targetID, CWeldEvaluationDoc::DisplayModeResult,true);
+		m_pReginWnd->Invalidate();
 
 		m_OprtAnalize.LoadParamater();
 
 		// プロパティページを更新
+		CDialogEx * pDlg = nullptr;
 		switch (targetID) {
 		case	CWeldEvaluationDoc::eResinSurface:		// 樹脂
 			m_PropResinPage.LoadParamater(CWeldEvaluationDoc::eResinSurface);
+			m_PropResinPage.UpdateStatus();
+			pDlg = (CDialogEx *)&m_PropResinPage;
 			break;
 		case	CWeldEvaluationDoc::eMetalSurface:		// 金属
 			m_PropMetalPage.LoadParamater(CWeldEvaluationDoc::eMetalSurface);
+			m_PropMetalPage.UpdateStatus();
+			pDlg = (CDialogEx *)&m_PropMetalPage;
 			break;
 		case	CWeldEvaluationDoc::eJoiningResult:		// 結合結果
 			m_PropResultPage.LoadParamater(CWeldEvaluationDoc::eJoiningResult);
+			m_PropResultPage.UpdateStatus();
+			pDlg = (CDialogEx *)&m_PropResultPage;
 			break;
 		}
+		// ワークのステータス更新
 		pDoc->SetWorkProjectUpdteStatus(true);
-		
+
+		// プロパティタブを解析対象のページに切り替える
+		if (pDlg != nullptr) {
+			int iCnt = (int)m_PropTab.GetSize();
+			for (int i = 0; i < iCnt; i++) {
+				if (pDlg == m_PropTab.GetAt(i)) {
+					WPARAM wparam = WA_ACTIVE & 0xFFFF;
+					LPARAM lparam = (LPARAM)pDlg->m_hWnd;
+					m_PropTab.GetAt(i)->SendMessage(WM_ACTIVATE, wparam, lparam);
+					m_PropTab.GetAt(i)->ShowWindow(SW_SHOW);
+					m_tabPropaty.SetCurSel(i);
+				}
+				else {
+					m_PropTab.GetAt(i)->ShowWindow(SW_HIDE);
+				}
+			}
+		}
+
+		// 解析終了メッセージ
 		CString	msg;
 		msg.LoadString(IDM_ANALYZE_SUCCESS);
 		AfxMessageBox(msg, MB_OK | MB_ICONINFORMATION);
@@ -2065,7 +2165,18 @@ LRESULT CWeldEvaluationView::OnSpectrumGraphRequest(WPARAM wparam, LPARAM lparam
 	}
 
 	if (pDoc->GetSpectrumData(ScanID, pos, data[0])) {
+		double min, max;
+		if (pDoc->GetSpectrumRange(ScanID, min, max)) {
+			CString maxlabel, milabel;
+			milabel.Format(_T("%.1lfnm"), min);
+			maxlabel.Format(_T("%.1lfnm"), max);
+			m_pGraphWnd->SetXLabel(milabel, maxlabel);
+		}
+		else {
+			m_pGraphWnd->SetXLabel(_T(""), _T(""));
+		}
 		m_pGraphWnd->SetVirticalRange(0.0, 1.2);
+		m_pGraphWnd->SetYLabel(_T("0.0"), _T("1.0"));
 		m_pGraphWnd->Draw(data, 0, false);
 	}
 
@@ -2270,6 +2381,18 @@ LRESULT CWeldEvaluationView::OnAreaSpectrumeGraphSet(WPARAM wparam, LPARAM lpara
 			}
 		}
 	}
+
+	double min, max;
+	if (pDoc->GetSpectrumRange(ScanID, min, max)) {
+		CString maxlabel, milabel;
+		milabel.Format(_T("%.1lfnm"), min);
+		maxlabel.Format(_T("%.1lfnm"), max);
+		m_pSpectralDlg->SetXLabel(milabel, maxlabel);
+	}
+	else {
+		m_pSpectralDlg->SetXLabel(_T(""), _T(""));
+	}
+	m_pSpectralDlg->SetYLabel(_T(""), _T(""));
 	m_pSpectralDlg->draw(data);
 
 	pos.clear();
@@ -2460,4 +2583,178 @@ void CWeldEvaluationView::OnClose()
 	// TODO: ここにメッセージ ハンドラー コードを追加するか、既定の処理を呼び出します。
 
 	CFormView::OnClose();
+}
+
+/// <summary>
+/// リスト項目の右ボタン押下時処理
+/// </summary>
+/// <param name="pNMHDR">NMITEMACTIVATEへのポインタ</param>
+/// <param name="pResult">結果</param>
+void CWeldEvaluationView::OnNMRClickLstRegistTest(NMHDR *pNMHDR, LRESULT *pResult)
+{
+	LPNMITEMACTIVATE pNMItemActivate = reinterpret_cast<LPNMITEMACTIVATE>(pNMHDR);
+	// TODO: ここにコントロール通知ハンドラー コードを追加します。
+	if(pNMItemActivate->iItem == -1) {
+		*pResult = 0;
+		return;
+	}
+
+	CMenu *popupMenuP = NULL;
+	CMenu cMenu;
+	CPoint posMouse;
+	int err = 0;
+
+	if (!err) {
+		if (!cMenu.LoadMenu(IDR_POPUP_MENU)) {
+			err = 1;
+		}
+	}
+	// サブメニューを取得
+	if (!err) {
+		if ((popupMenuP = cMenu.GetSubMenu(0)) == NULL) {
+			err = 1;
+		}
+	}
+	// メニューをポップアップ
+	if (!err) {
+		GetCursorPos(&posMouse);
+		if (popupMenuP->TrackPopupMenu(TPM_LEFTBUTTON, posMouse.x, posMouse.y, this))
+			err = 1;
+	}	
+
+	*pResult = 0;
+}
+
+
+/// <summary>
+/// プロジェクトのオープン
+/// </summary>
+void CWeldEvaluationView::OnProjectOpen()
+{
+	POSITION pos = m_lstRegTest.GetFirstSelectedItemPosition();
+	int iItem = m_lstRegTest.GetNextSelectedItem(pos);
+
+	CString str = m_lstRegTest.GetItemText((int)iItem, 0);
+	if (str.IsEmpty()) {
+		return;
+	}
+
+	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
+
+	if (pDoc->IsWorkProjectUpdated()) {
+		CString msg;
+		msg.LoadString(DM_PRJREGIST_EXISTUPDATE);
+		if (AfxMessageBox(msg, MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON1) == IDNO) {
+			return;
+		}
+	}
+	pDoc->ClrWorkProject();
+
+	m_pGraphWnd->Erase();
+	m_pReginWnd->Erase();
+	m_pMetalWnd->Erase();
+	m_pResultWnd->Erase();
+
+	CWaitCursor wcursol;
+	if (pDoc->OpenProject(str)) {
+
+		// 設定データの読み込み
+		LoadSetting();
+		m_OprtInitialize.ItemActive(true);
+		m_bReadMode = true;
+		//		m_OprtSetting.UpddateResist(false,m_bReadMode);	// 設定データをリードモードにする
+		m_OprtSetting.Update();
+		m_OprtScan.ItemActive(true);;
+		m_OprtAnalize.ItemActive(true);;
+
+		// プロパティデータの読み込み
+		LoadPropaty();
+		EnablePropaty(true);
+
+		// 画像表示
+		int DisplayMode = 0;
+		// 樹脂面画像
+		DisplayMode = pDoc->GetDisplayMode(CWeldEvaluationDoc::eResinSurface);
+		ViewChangeRequest(CWeldEvaluationDoc::eResinSurface, DisplayMode);
+		m_pReginWnd->Invalidate();
+
+		// 金属面画像
+		DisplayMode = pDoc->GetDisplayMode(CWeldEvaluationDoc::eMetalSurface);
+		ViewChangeRequest(CWeldEvaluationDoc::eMetalSurface, DisplayMode);
+		m_pReginWnd->Invalidate();
+
+		// 結果画像
+		DisplayMode = pDoc->GetDisplayMode(CWeldEvaluationDoc::eJoiningResult);
+		ViewChangeRequest(CWeldEvaluationDoc::eJoiningResult, DisplayMode);
+		m_pReginWnd->Invalidate();
+
+		//#######################################################
+		//#
+		//# グラフの表示が必要
+		//#
+		//#######################################################
+		int holizontal, vertical;
+		pDoc->GetSpectralGraphPointPosition(holizontal, vertical);
+
+		CString msg, AppName;
+		AppName.LoadString(AFX_IDS_APP_TITLE);
+		msg.Format(_T("%s - %s"), (LPCWSTR)str, (LPCWSTR)AppName);
+		GetParentFrame()->SetWindowText(msg);
+		pDoc->SetWorkProjectUpdteStatus(false);
+	}
+	else {
+		CString msg, fmt;
+		fmt.LoadString(IDM_ERR_NOTOPEN_REGTEST);
+		msg.Format(fmt, (LPCWSTR)str);
+		AfxMessageBox(msg, MB_OK | MB_ICONSTOP);
+	}
+}
+
+/// <summary>
+/// プロジェクト削除
+/// </summary>
+void CWeldEvaluationView::OnProjectDelete()
+{
+	POSITION pos = m_lstRegTest.GetFirstSelectedItemPosition();
+	int iItem = m_lstRegTest.GetNextSelectedItem(pos);
+	CString str = m_lstRegTest.GetItemText((int)iItem,0);
+	if (str.IsEmpty()) {
+		return;
+	}
+	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
+	CString strTestName = pDoc->GetTestName();
+	if (str.Compare(strTestName) == 0) {
+		CString msg;
+		msg.LoadString(IDM_DELETE_ACTIVEPROJECT);
+		if (AfxMessageBox(msg, MB_YESNO | MB_ICONWARNING | MB_DEFBUTTON1) == IDNO) {
+			return;
+		}
+	}
+	else {
+		CString msg;
+		msg.LoadString(IDM_DELETE);
+		if (AfxMessageBox(msg, MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON1) == IDNO) {
+			return;
+		}
+	}
+
+	if (pDoc->DeleteProject(str)) {
+		m_lstRegTest.DeleteItem(iItem);
+	}
+}
+
+/// <summary>
+/// プロジェクトの更新
+/// </summary>
+void CWeldEvaluationView::OnFileSave()
+{
+	OnProjectResistRequest(NULL, NULL);
+}
+
+/// <summary>
+/// プロジェクト新規作成
+/// </summary>
+void CWeldEvaluationView::OnProjectNew()
+{
+	OnBnClickedBtnNewprj();
 }

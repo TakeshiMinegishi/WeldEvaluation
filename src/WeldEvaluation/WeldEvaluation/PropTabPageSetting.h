@@ -25,6 +25,7 @@ protected:
 	DECLARE_MESSAGE_MAP()
 
 private:
+	int			m_PageID;						///< ページID
 	int			m_MinScrollPos;					///< スクロール最小値
 	int			m_MaxScrollPos;					///< スクロール最大値
 	int			m_ScrollDelta;					///< スクロール分解能

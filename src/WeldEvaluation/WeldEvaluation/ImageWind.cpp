@@ -426,8 +426,8 @@ void CImageWind::Erase()
 {
 	m_bActive = false;
 	m_zoomRetio = 1.0;
-	m_imageY = (int)0.0;
-	m_imageX = (int)0.0;
+	m_imageY = 0;
+	m_imageX = 0;
 	OnPaint();
 }
 
@@ -532,11 +532,11 @@ void CImageWind::Scaling(double ScalingRetio, CPoint pt)
 	CPoint delta;
 	int imageWidth	= (int)(m_orgImageWidth  * zoomRetio);
 	int imageHeight = (int)(m_orgImageHeight * zoomRetio);
-	imageX = ((rect.Width()  - imageWidth)  / 2.0) - (deltaDX * zoomRetio);
-	imageY = ((rect.Height() - imageHeight) / 2.0) - (deltaDY * zoomRetio);
+	imageX = (int)(((rect.Width()  - imageWidth)  / 2.0) - (deltaDX * zoomRetio));
+	imageY = (int)(((rect.Height() - imageHeight) / 2.0) - (deltaDY * zoomRetio));
 
-	delta.x = pt.x * ZoomSpep / (zoomRetio * m_zoomRetio);
-	delta.y = pt.y * ZoomSpep / (zoomRetio * m_zoomRetio);
+	delta.x = (LONG)(pt.x * ZoomSpep / (zoomRetio * m_zoomRetio));
+	delta.y = (LONG)(pt.y * ZoomSpep / (zoomRetio * m_zoomRetio));
 	if (zoomRetio > m_zoomRetio) {
 		imageX += delta.x;
 		imageY += delta.y;

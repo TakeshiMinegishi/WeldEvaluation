@@ -32,6 +32,7 @@
 #define IDD_IMAGE_WIND                  320
 #define IDD_PROGRESS_DLG                321
 #define IDD_SPECTRAL_DLG                324
+#define IDR_POPUP_MENU                  329
 #define IDM_PROPUPDATE                  500
 #define IDM_OPRTUPDATE                  501
 #define IDM_CHECKOFUPDATE               502
@@ -49,12 +50,18 @@
 #define IDM_PRJREGIST_OVERWRITE         514
 #define DM_PRJREGIST_EXISTUPDATE        515
 #define IDM_ANALYZE_SUCCESS             516
+#define IDS_EXIST_REPAIRABLEDATA        517
+#define IDS_REPAIR_COMPLEAT             518
+#define IDM_CHANGED_NUMBEROFCLASS       519
+#define IDM_DELETE                      520
+#define IDM_DELETE_ACTIVEPROJECT        521
 #define IDM_ERR_NOTOPEN_REGTEST         700
 #define IDM_ERR_SCAN                    701
 #define IDM_ERR_PROJECT_SAVE            702
 #define IDM_ERR_NOT_ANALYZE             703
+#define IDM_ERR_FAIL_REGIST             704
+#define IDM_ERR_NOTEXIST_ANALIZEDATA    705
 #define IDF_JOININGRETIO                900
-#define IDS_IDF_JOININGCOLOR            901
 #define IDF_JOININGCOLOR                901
 #define IDC_BTN_NEWPRJ                  1000
 #define IDC_TAB_OPERATION               1002
@@ -136,14 +143,21 @@
 #define IDC_PRO_STATUS                  1079
 #define IDC_STC_IDCOLOR                 1080
 #define IDC_STC_MESSAGE                 1081
+#define IDC_MSG_FEILD                   1082
+#define ID_32771                        32771
+#define ID_32772                        32772
+#define ID_PROJECT_DELETE               32773
+#define ID_PROJECT_OPEN                 32775
+#define IDS_PROJECT_OPEN                57700
+#define IDS_PROJECT_DELETE              57701
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        328
-#define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1082
+#define _APS_NEXT_RESOURCE_VALUE        330
+#define _APS_NEXT_COMMAND_VALUE         32777
+#define _APS_NEXT_CONTROL_VALUE         1083
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

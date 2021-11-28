@@ -45,6 +45,9 @@ public:
 	bool LoadImage(int &height, int &width, int &bands, CImage &img);
 	bool GetSpectrumData(CPoint &pos, std::vector<double> &data);
 	bool getBandSpectrum(std::vector<double> &BandSpectrum);
+	int  GetNumberOfBand();
+	double getWaveLength(int index);
+
 #if 0	// íœ‚·‚éƒR[ƒh
 	bool joinInit();
 	bool join(CString pathName, int nOverlap);

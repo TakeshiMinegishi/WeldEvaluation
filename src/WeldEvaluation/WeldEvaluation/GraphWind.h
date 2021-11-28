@@ -28,6 +28,11 @@ private:
 	CBitmap		*m_pBmp;
 	std::vector<std::vector<double>> m_data;	///< 表示データ
 
+	CString		YMinLabel;						///< Y軸最小値ラベル
+	CString		YMaxLabel;						///< Y軸最大値ラベル
+	CString		XMinLabel;						///< X軸最小値ラベル
+	CString		XMaxLabel;						///< X軸最大値ラベル
+
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV サポート
 
@@ -44,6 +49,7 @@ private:
 	void GetVerticalRange(std::vector<std::vector<double>> &data, double &min, double &max);
 	void makeImage(CRect &rect);
 	void DrawFrame(CDC *pDC, CRect area);
+	void DrawLabel(CDC *pDC, CRect area);
 	void DrawGraph(CDC *pDC, CRect area);
 
 public:
@@ -53,4 +59,6 @@ public:
 	void GetVirticalRange(double &min, double& max);
 	void Draw(std::vector<std::vector<double>> &data, double offset = 0.0, bool AutoRange=false);
 	void Erase();
+	void SetXLabel(CString min, CString max);
+	void SetYLabel(CString min, CString max);
 };

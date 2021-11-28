@@ -22,7 +22,7 @@ BEGIN_MESSAGE_MAP(CWeldEvaluationApp, CWinApp)
 	ON_COMMAND(ID_APP_ABOUT, &CWeldEvaluationApp::OnAppAbout)
 	// 標準のファイル基本ドキュメント コマンド
 	ON_COMMAND(ID_FILE_NEW, &CWinApp::OnFileNew)
-	ON_COMMAND(ID_FILE_OPEN, &CWinApp::OnFileOpen)
+//	ON_COMMAND(ID_FILE_OPEN, &CWinApp::OnFileOpen)
 END_MESSAGE_MAP()
 
 
@@ -129,7 +129,8 @@ BOOL CWeldEvaluationApp::InitInstance()
 		return FALSE;
 
 	// メイン ウィンドウが初期化されたので、表示と更新を行います。
-	m_pMainWnd->ShowWindow(SW_SHOW);
+//	m_pMainWnd->ShowWindow(SW_SHOW);
+	m_pMainWnd->ShowWindow(SW_MAXIMIZE);
 	m_pMainWnd->UpdateWindow();
 	// 接尾辞が存在する場合にのみ DragAcceptFiles を呼び出してください。
 	//  SDI アプリケーションでは、ProcessShellCommand の直後にこの呼び出しが発生しなければなりません。
@@ -171,6 +172,7 @@ protected:
 // 実装
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
 };
 
 /// <summary>
@@ -203,6 +205,3 @@ void CWeldEvaluationApp::OnAppAbout()
 }
 
 // CWeldEvaluationApp メッセージ ハンドラー
-
-
-

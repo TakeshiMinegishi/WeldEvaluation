@@ -20,6 +20,8 @@ public:
 	int				m_ResinDisplayMode;			///< 樹脂面表示タイプ
 	int				m_MetalDisplayMode;			///< 金属面表示タイプ
 	int				m_ResultDisplayMode;		///< 接合結果表示タイプ
+	bool			m_bChangedAnalizeType;
+	bool			m_bChangedDisplayMode;
 
 public:
 	COprtTabPageAnalize(CWnd* pParent = NULL);   // 標準コンストラクター
@@ -59,5 +61,8 @@ public:
 	void LoadParamater();
 	void ViewModeReset(void);
 	int GetAnalizeType(int ItemID);
+	void ChangeAnalizeType(int ScanID);
 	int SetDisplayMode(int ScanID, int mode);
+	bool IsChangedAnalizeType();
+	bool IsChangedDisplayMode();
 };

@@ -20,6 +20,7 @@ public:
 	CComboBox	m_cmbJoinratioTarget;		///< 分類用コンボボックス
 	CString		m_strJoinratioTarget;		///< 選択分類値
 	CStatic		m_stcIDColor;				///< 分類ID色
+	CStatic		m_stcMsgFeild;
 
 public:
 	CPropTabPageParameter(CWnd* pParent = NULL);   // 標準コンストラクター
@@ -34,7 +35,6 @@ protected:
 	DECLARE_MESSAGE_MAP()
 private:
 	void ItemEnable(int ItemID,bool bActive);
-	void UpdateCmbJoinratioTargetLabel(bool renew);
 	void UpdateIDColor(COLORREF color);
 	CWeldEvaluationDoc *GetDocument();
 
@@ -45,6 +45,8 @@ public:
 	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
 	afx_msg void OnCbnKillfocusCmbJoinratioTargetLabel();
 	afx_msg void OnEnKillfocusEdtNumofclass();
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 
 public:
 	void setPageID(int PageID);
@@ -54,6 +56,7 @@ public:
 	void ViewJointRatio(int method, int id, int ViewJointRatioNo);
 	bool Update(int index);
 	bool ConfirmChange();
-	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
-	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	void UpdateStatus();
+	int GetNumbetOfClass();
+	void UpdateCmbJoinratioTargetLabel(bool renew, int nClass=-1);
 };
