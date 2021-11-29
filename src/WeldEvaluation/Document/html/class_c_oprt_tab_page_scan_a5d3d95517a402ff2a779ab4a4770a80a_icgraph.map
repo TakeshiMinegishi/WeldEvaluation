@@ -1,0 +1,4 @@
+<map id="COprtTabPageScan::ItemActive" name="COprtTabPageScan::ItemActive">
+<area shape="rect" id="node1" title="アイテムのアクティブ/ディアクティブ化" alt="" coords="275,13,480,39"/>
+<area shape="rect" id="node2" href="$class_c_oprt_tab_page_scan.html#a325bd4d3b6c573140e8b23f901378767" title="スキャンボタン押下時処理" alt="" coords="5,5,227,47"/>
+</map>

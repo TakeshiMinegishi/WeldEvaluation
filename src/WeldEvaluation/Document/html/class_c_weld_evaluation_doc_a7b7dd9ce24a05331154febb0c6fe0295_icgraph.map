@@ -1,0 +1,11 @@
+<map id="CWeldEvaluationDoc::SaveClassificationResultFile" name="CWeldEvaluationDoc::SaveClassificationResultFile">
+<area shape="rect" id="node1" title="分類結果の保存" alt="" coords="821,104,1015,145"/>
+<area shape="rect" id="node2" href="$class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="631,73,773,115"/>
+<area shape="rect" id="node7" href="$class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="440,136,583,177"/>
+<area shape="rect" id="node3" href="$class_c_weld_evaluation_doc.html#acceb13e1dba62f59383094194ecf9774" title="プロジェクトの削除" alt="" coords="440,5,583,47"/>
+<area shape="rect" id="node5" href="$class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547" title="新規プロジェクト作成" alt="" coords="440,71,583,112"/>
+<area shape="rect" id="node4" href="$class_c_weld_evaluation_view.html#a1c8f728724d0615945c96bc74bf24e76" title="プロジェクト削除" alt="" coords="231,5,379,47"/>
+<area shape="rect" id="node6" href="$class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,100,171,141"/>
+<area shape="rect" id="node8" href="$class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,129,377,171"/>
+<area shape="rect" id="node9" href="$class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="219,195,392,236"/>
+</map>

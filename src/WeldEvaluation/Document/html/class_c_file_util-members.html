@@ -28,7 +28,7 @@
    <div id="projectname">WeldEvaluation
    &#160;<span id="projectnumber">1.0</span>
    </div>
-   <div id="projectbrief">WeldEvaluation</div>
+   <div id="projectbrief">ソース一式</div>
   </td>
  </tr>
  </tbody>
@@ -91,7 +91,9 @@ $(document).ready(function(){initNavTree('class_c_file_util.html',''); initResiz
 <p>継承メンバを含む <a class="el" href="class_c_file_util.html">CFileUtil</a> の全メンバ一覧です。</p>
 <table class="directory">
   <tr class="even"><td class="entry"><a class="el" href="class_c_file_util.html#a3f5222b9f7fc24e27893d84d24533abe">CFileUtil</a>(void)</td><td class="entry"><a class="el" href="class_c_file_util.html">CFileUtil</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_c_file_util.html#a390bb140d44dcbd206497e5efe5a76a8">fileDelete</a>(CString &amp;pathname)</td><td class="entry"><a class="el" href="class_c_file_util.html">CFileUtil</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_file_util.html#a3e7c1a5aac6ffb5357485b2a97c8b233">Copy</a>(CString src, CString dst, bool bOverwrite)</td><td class="entry"><a class="el" href="class_c_file_util.html">CFileUtil</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_c_file_util.html#a390bb140d44dcbd206497e5efe5a76a8">fileDelete</a>(CString &amp;pathname)</td><td class="entry"><a class="el" href="class_c_file_util.html">CFileUtil</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_file_util.html#a1a5b66b44b29a8777c94cf89f960323d">fileDeleteEx</a>(CString pathname)</td><td class="entry"><a class="el" href="class_c_file_util.html">CFileUtil</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df">fileExists</a>(CString &amp;pathname)</td><td class="entry"><a class="el" href="class_c_file_util.html">CFileUtil</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7">FilePathCombine</a>(CString path, CString filename)</td><td class="entry"><a class="el" href="class_c_file_util.html">CFileUtil</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_c_file_util.html#a1308760e07cde212bd7ee59ae99fbf99">getDir</a>(CString path)</td><td class="entry"><a class="el" href="class_c_file_util.html">CFileUtil</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
@@ -99,7 +101,9 @@ $(document).ready(function(){initNavTree('class_c_file_util.html',''); initResiz
   <tr class="even"><td class="entry"><a class="el" href="class_c_file_util.html#a703717c284d2c59607967e7c0fcaea45">GetFileUpdateDay</a>(CString path, COleDateTime &amp;mdate)</td><td class="entry"><a class="el" href="class_c_file_util.html">CFileUtil</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_c_file_util.html#a798a3f11a7a8b5bde65a4a2655106752">GetModulePath</a>()</td><td class="entry"><a class="el" href="class_c_file_util.html">CFileUtil</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_c_file_util.html#af931a05d8c01e5609eb3f6e0a18244c9">MakeDir</a>(CString path)</td><td class="entry"><a class="el" href="class_c_file_util.html">CFileUtil</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_c_file_util.html#acd0ab529d0f67b3a1d783e9b954c5576">splitPath</a>(CString path, CString &amp;drive, CString &amp;dir, CString &amp;fname, CString &amp;ext)</td><td class="entry"><a class="el" href="class_c_file_util.html">CFileUtil</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_file_util.html#addb1b54c1b8a2a289da96fc5c7705a21">SelectFolder</a>(HWND hWnd, LPCTSTR lpDefFolder, LPTSTR lpSelectPath, UINT iFlg, CString ttl)</td><td class="entry"><a class="el" href="class_c_file_util.html">CFileUtil</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_c_file_util.html#acd0ab529d0f67b3a1d783e9b954c5576">splitPath</a>(CString path, CString &amp;drive, CString &amp;dir, CString &amp;fname, CString &amp;ext)</td><td class="entry"><a class="el" href="class_c_file_util.html">CFileUtil</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_file_util.html#a5f7aff778aabcf22950697df16d7e222">WriteUTF8ToSJIS</a>(CStdioFile &amp;fd, CString str)</td><td class="entry"><a class="el" href="class_c_file_util.html">CFileUtil</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_c_file_util.html#aed0c093b32b772487551cffa92f2b5d7">~CFileUtil</a>(void)</td><td class="entry"><a class="el" href="class_c_file_util.html">CFileUtil</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->

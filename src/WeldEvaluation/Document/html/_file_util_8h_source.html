@@ -28,7 +28,7 @@
    <div id="projectname">WeldEvaluation
    &#160;<span id="projectnumber">1.0</span>
    </div>
-   <div id="projectbrief">WeldEvaluation</div>
+   <div id="projectbrief">ソース一式</div>
   </td>
  </tr>
  </tbody>
@@ -101,14 +101,18 @@ $(document).ready(function(){initNavTree('_file_util_8h_source.html',''); initRe
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keyword">static</span> CString GetModulePath();</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> fileExists(CString&amp; pathname);</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> fileDelete(CString&amp; pathname);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> splitPath(CString path, CString &amp;drive, CString &amp;dir, CString &amp;fname, CString &amp;ext);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> MakeDir(CString path);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">static</span> CString getDir(CString path);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">static</span> CString FilePathCombine(CString path, CString filename);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> GetFileCreateDay(CString path,COleDateTime &amp;cdate);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> GetFileUpdateDay(CString path,COleDateTime &amp;mdate);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;};</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> fileDeleteEx(CString pathname);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> Copy(CString src, CString dst, <span class="keywordtype">bool</span> bOverwrite);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> splitPath(CString path, CString &amp;drive, CString &amp;dir, CString &amp;fname, CString &amp;ext);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> MakeDir(CString path);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">static</span> CString getDir(CString path);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">static</span> CString FilePathCombine(CString path, CString filename);</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> GetFileCreateDay(CString path,COleDateTime &amp;cdate);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> GetFileUpdateDay(CString path,COleDateTime &amp;mdate);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> SelectFolder(HWND hWnd, LPCTSTR lpDefFolder, LPTSTR lpSelectPath, UINT iFlg, CString ttl);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> WriteUTF8ToSJIS(CStdioFile &amp;fd, CString str);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;};</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
 <div class="ttc" id="aclass_c_file_util_html"><div class="ttname"><a href="class_c_file_util.html">CFileUtil</a></div><div class="ttdoc">ファイルユーティリティクラス</div><div class="ttdef"><b>Definition:</b> FileUtil.h:10</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

@@ -1,0 +1,8 @@
+<map id="CLog::deleteLogFile" name="CLog::deleteLogFile">
+<area shape="rect" id="node1" title="ログファイル削除" alt="" coords="5,81,143,108"/>
+<area shape="rect" id="node2" href="$class_c_file_util.html#a390bb140d44dcbd206497e5efe5a76a8" title="ファイルを削除する" alt="" coords="214,5,346,32"/>
+<area shape="rect" id="node4" href="$class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="191,56,369,83"/>
+<area shape="rect" id="node5" href="$class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="214,107,346,133"/>
+<area shape="rect" id="node6" href="$class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="217,157,343,184"/>
+<area shape="rect" id="node3" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="417,5,549,32"/>
+</map>

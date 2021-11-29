@@ -28,7 +28,7 @@
    <div id="projectname">WeldEvaluation
    &#160;<span id="projectnumber">1.0</span>
    </div>
-   <div id="projectbrief">WeldEvaluation</div>
+   <div id="projectbrief">ソース一式</div>
   </td>
  </tr>
  </tbody>
@@ -96,8 +96,26 @@ $(document).ready(function(){initNavTree('class_c_status_dlg_thread.html',''); i
  <a href="class_c_status_dlg_thread.html#details">[詳解]</a></p>
 
 <p><code>#include &lt;<a class="el" href="_status_dlg_thread_8h_source.html">StatusDlgThread.h</a>&gt;</code></p>
-
-<p>CWinThreadを継承しています。</p>
+<div class="dynheader">
+CStatusDlgThread の継承関係図</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_status_dlg_thread__inherit__graph.png" border="0" usemap="#a_c_status_dlg_thread_inherit__map" alt="Inheritance graph"/></div>
+<map name="a_c_status_dlg_thread_inherit__map" id="a_c_status_dlg_thread_inherit__map">
+<area shape="rect" title="ステータスダイアログスレッドクラス" alt="" coords="5,80,132,107"/>
+<area shape="rect" title=" " alt="" coords="22,5,115,32"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+CStatusDlgThread 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_status_dlg_thread__coll__graph.png" border="0" usemap="#a_c_status_dlg_thread_coll__map" alt="Collaboration graph"/></div>
+<map name="a_c_status_dlg_thread_coll__map" id="a_c_status_dlg_thread_coll__map">
+<area shape="rect" title="ステータスダイアログスレッドクラス" alt="" coords="27,171,154,197"/>
+<area shape="rect" title=" " alt="" coords="5,81,99,108"/>
+<area shape="rect" href="class_c_status_dlg.html" title="ステータスダイアログクラス" alt="" coords="123,81,211,108"/>
+<area shape="rect" title=" " alt="" coords="125,5,208,32"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">凡例</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 公開メンバ関数</h2></td></tr>
@@ -124,6 +142,10 @@ $(document).ready(function(){initNavTree('class_c_status_dlg_thread.html',''); i
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_status_dlg_thread.html#ab1d047a9fedb38ef84903bd01c3f888a">m_Valid</a></td></tr>
 <tr class="memdesc:ab1d047a9fedb38ef84903bd01c3f888a"><td class="mdescLeft">&#160;</td><td class="mdescRight">有効フラグ <br /></td></tr>
 <tr class="separator:ab1d047a9fedb38ef84903bd01c3f888a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8519512595955ae596d4f9e32c64a32"><td class="memItemLeft" align="right" valign="top"><a id="ae8519512595955ae596d4f9e32c64a32"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_status_dlg_thread.html#ae8519512595955ae596d4f9e32c64a32">m_bResult</a></td></tr>
+<tr class="memdesc:ae8519512595955ae596d4f9e32c64a32"><td class="mdescLeft">&#160;</td><td class="mdescRight">結果 <br /></td></tr>
+<tr class="separator:ae8519512595955ae596d4f9e32c64a32"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
 <div class="textblock"><p>ステータスダイアログスレッドクラス </p>
@@ -219,6 +241,19 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_status_dlg_thread_a5b12b4fbcef88da4d589d79a521eb1a1_icgraph.png" border="0" usemap="#aclass_c_status_dlg_thread_a5b12b4fbcef88da4d589d79a521eb1a1_icgraph" alt=""/></div>
+<map name="aclass_c_status_dlg_thread_a5b12b4fbcef88da4d589d79a521eb1a1_icgraph" id="aclass_c_status_dlg_thread_a5b12b4fbcef88da4d589d79a521eb1a1_icgraph">
+<area shape="rect" title="ステータスの更新" alt="" coords="463,123,639,164"/>
+<area shape="rect" href="class_c_oprt_tab_page_initialize.html#ac1148391e39e7791eb7ce66b671caca2" title="ホワイトバランス用画像撮影処理" alt="" coords="260,5,415,47"/>
+<area shape="rect" href="class_c_oprt_tab_page_initialize.html#ab94bb92896d005e2ea95e3f7fe4f49e8" title="ホワイトバランスボタン押下時処理" alt="" coords="5,35,212,76"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a9384bbeab5745f5806acd59d1e1fb84c" title="スキャンの要求" alt="" coords="263,123,411,164"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a2b69faf84702201cc5dbfe3fcd202b32" title="ホワイトバランススキャンの要求" alt="" coords="263,188,411,229"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="263,253,411,295"/>
+</map>
+</div>
 
 </div>
 </div>

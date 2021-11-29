@@ -1,0 +1,4 @@
+<map id="CLog::clrLineBuff" name="CLog::clrLineBuff">
+<area shape="rect" id="node1" title="ログ出力ラインバッファのクリア" alt="" coords="187,5,307,32"/>
+<area shape="rect" id="node2" href="$class_c_log.html#a525e7b49275b938e8ffaa42256983e20" title="ログ出力ラインバッファのログ出力" alt="" coords="5,5,139,32"/>
+</map>

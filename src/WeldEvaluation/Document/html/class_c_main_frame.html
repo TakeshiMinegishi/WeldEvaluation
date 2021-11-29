@@ -28,7 +28,7 @@
    <div id="projectname">WeldEvaluation
    &#160;<span id="projectnumber">1.0</span>
    </div>
-   <div id="projectbrief">WeldEvaluation</div>
+   <div id="projectbrief">ソース一式</div>
   </td>
  </tr>
  </tbody>
@@ -97,14 +97,33 @@ $(document).ready(function(){initNavTree('class_c_main_frame.html',''); initResi
  <a href="class_c_main_frame.html#details">[詳解]</a></p>
 
 <p><code>#include &lt;<a class="el" href="_main_frm_8h_source.html">MainFrm.h</a>&gt;</code></p>
-
-<p>CFrameWndを継承しています。</p>
+<div class="dynheader">
+CMainFrame の継承関係図</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_main_frame__inherit__graph.png" border="0" usemap="#a_c_main_frame_inherit__map" alt="Inheritance graph"/></div>
+<map name="a_c_main_frame_inherit__map" id="a_c_main_frame_inherit__map">
+<area shape="rect" title="CMainFrame クラス" alt="" coords="5,80,101,107"/>
+<area shape="rect" title=" " alt="" coords="6,5,101,32"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+CMainFrame 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_main_frame__coll__graph.png" border="0" usemap="#a_c_main_frame_coll__map" alt="Collaboration graph"/></div>
+<map name="a_c_main_frame_coll__map" id="a_c_main_frame_coll__map">
+<area shape="rect" title="CMainFrame クラス" alt="" coords="5,80,101,107"/>
+<area shape="rect" title=" " alt="" coords="6,5,101,32"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">凡例</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 公開メンバ関数</h2></td></tr>
 <tr class="memitem:a549bf677c955c2898c3c683321633c16"><td class="memItemLeft" align="right" valign="top">virtual BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_main_frame.html#a549bf677c955c2898c3c683321633c16">PreCreateWindow</a> (CREATESTRUCT &amp;cs)</td></tr>
 <tr class="memdesc:a549bf677c955c2898c3c683321633c16"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウインド作成前処理  <a href="class_c_main_frame.html#a549bf677c955c2898c3c683321633c16">[詳解]</a><br /></td></tr>
 <tr class="separator:a549bf677c955c2898c3c683321633c16"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad68d347c88110b21ddc25227c70e9230"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_main_frame.html#ad68d347c88110b21ddc25227c70e9230">OnGetMinMaxInfo</a> (MINMAXINFO *lpMMI)</td></tr>
+<tr class="memdesc:ad68d347c88110b21ddc25227c70e9230"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウインドの最大最小値の取得  <a href="class_c_main_frame.html#ad68d347c88110b21ddc25227c70e9230">[詳解]</a><br /></td></tr>
+<tr class="separator:ad68d347c88110b21ddc25227c70e9230"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ae555f23fdf97edb4feb4d3e1bfa4ee"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_main_frame.html#a8ae555f23fdf97edb4feb4d3e1bfa4ee">~CMainFrame</a> ()</td></tr>
 <tr class="memdesc:a8ae555f23fdf97edb4feb4d3e1bfa4ee"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_c_main_frame.html" title="CMainFrame クラス">CMainFrame</a> デストラクション  <a href="class_c_main_frame.html#a8ae555f23fdf97edb4feb4d3e1bfa4ee">[詳解]</a><br /></td></tr>
 <tr class="separator:a8ae555f23fdf97edb4feb4d3e1bfa4ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -117,6 +136,9 @@ $(document).ready(function(){initNavTree('class_c_main_frame.html',''); initResi
 <tr class="memitem:a48666466fd37412fcaeff75c3b12e0ed"><td class="memItemLeft" align="right" valign="top">afx_msg int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_main_frame.html#a48666466fd37412fcaeff75c3b12e0ed">OnCreate</a> (LPCREATESTRUCT lpCreateStruct)</td></tr>
 <tr class="memdesc:a48666466fd37412fcaeff75c3b12e0ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウインド作成処理  <a href="class_c_main_frame.html#a48666466fd37412fcaeff75c3b12e0ed">[詳解]</a><br /></td></tr>
 <tr class="separator:a48666466fd37412fcaeff75c3b12e0ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d2d2b0b5a12fa591dcbf41ec0368cc9"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_main_frame.html#a1d2d2b0b5a12fa591dcbf41ec0368cc9">OnClose</a> ()</td></tr>
+<tr class="memdesc:a1d2d2b0b5a12fa591dcbf41ec0368cc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">クローズ処理  <a href="class_c_main_frame.html#a1d2d2b0b5a12fa591dcbf41ec0368cc9">[詳解]</a><br /></td></tr>
+<tr class="separator:a1d2d2b0b5a12fa591dcbf41ec0368cc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 限定公開変数類</h2></td></tr>
@@ -183,6 +205,52 @@ CStatusBar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 </div>
 </div>
 <h2 class="groupheader">関数詳解</h2>
+<a id="a1d2d2b0b5a12fa591dcbf41ec0368cc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d2d2b0b5a12fa591dcbf41ec0368cc9">&#9670;&nbsp;</a></span>OnClose()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CMainFrame::OnClose </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>クローズ処理 </p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_main_frame_a1d2d2b0b5a12fa591dcbf41ec0368cc9_cgraph.png" border="0" usemap="#aclass_c_main_frame_a1d2d2b0b5a12fa591dcbf41ec0368cc9_cgraph" alt=""/></div>
+<map name="aclass_c_main_frame_a1d2d2b0b5a12fa591dcbf41ec0368cc9_cgraph" id="aclass_c_main_frame_a1d2d2b0b5a12fa591dcbf41ec0368cc9_cgraph">
+<area shape="rect" title="クローズ処理" alt="" coords="5,121,160,148"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a66c4a406f8a43359ced44c21e974cb90" title="ワークプロジェクトの削除" alt="" coords="217,81,359,122"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a6d85514e7850edc2d4dc4c007445bb17" title="プロジェクトの更新判定" alt="" coords="208,146,368,187"/>
+<area shape="rect" href="class_c_file_util.html#a1a5b66b44b29a8777c94cf89f960323d" title="ファイルを削除する（ディレクトリを含むリーカーシブル削除）" alt="" coords="435,88,583,115"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1305,43,1437,69"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="416,142,603,183"/>
+<area shape="rect" href="class_c_file_util.html#a390bb140d44dcbd206497e5efe5a76a8" title="ファイルを削除する" alt="" coords="912,43,1044,69"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="658,211,837,237"/>
+<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="892,123,1064,149"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="651,145,844,186"/>
+<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="1112,93,1257,120"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a827c581753a1e8dab5c6a6437e8d1696" title="プロジェクトステータス取得" alt="" coords="429,207,590,249"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a48666466fd37412fcaeff75c3b12e0ed"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a48666466fd37412fcaeff75c3b12e0ed">&#9670;&nbsp;</a></span>OnCreate()</h2>
 
@@ -215,6 +283,41 @@ CStatusBar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
   </dd>
 </dl>
 <dl class="section return"><dt>戻り値</dt><dd>成功した場合は0、失敗した場合は-1を返す</dd></dl>
+
+</div>
+</div>
+<a id="ad68d347c88110b21ddc25227c70e9230"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad68d347c88110b21ddc25227c70e9230">&#9670;&nbsp;</a></span>OnGetMinMaxInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CMainFrame::OnGetMinMaxInfo </td>
+          <td>(</td>
+          <td class="paramtype">MINMAXINFO *&#160;</td>
+          <td class="paramname"><em>lpMMI</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ウインドの最大最小値の取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lpMMI</td><td>ウィンドウの最大サイズと位置、および最小および最大の追跡サイズに関する情報</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_main_frame_ad68d347c88110b21ddc25227c70e9230_cgraph.png" border="0" usemap="#aclass_c_main_frame_ad68d347c88110b21ddc25227c70e9230_cgraph" alt=""/></div>
+<map name="aclass_c_main_frame_ad68d347c88110b21ddc25227c70e9230_cgraph" id="aclass_c_main_frame_ad68d347c88110b21ddc25227c70e9230_cgraph">
+<area shape="rect" title="ウインドの最大最小値の取得" alt="" coords="5,13,213,39"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#abaf5f31261ef01cbd0b9dbfcdd26dc99" title="ウインドの最小サイズの取得" alt="" coords="261,5,404,47"/>
+</map>
+</div>
 
 </div>
 </div>

@@ -1,0 +1,10 @@
+<map id="CWeldEvaluationDoc::GetIntegrationTimeMs" name="CWeldEvaluationDoc::GetIntegrationTimeMs">
+<area shape="rect" id="node1" title="Integration_time_msの取得" alt="" coords="403,136,560,177"/>
+<area shape="rect" id="node2" href="$class_c_prop_tab_page_setting.html#a11a96b76db0c9f575e8f84ad3d3bcf09" title="パラメータの読み込み" alt="" coords="204,37,355,79"/>
+<area shape="rect" id="node5" href="$class_c_weld_evaluation_view.html#a2b69faf84702201cc5dbfe3fcd202b32" title="ホワイトバランススキャンの要求" alt="" coords="205,103,353,144"/>
+<area shape="rect" id="node6" href="$class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="205,168,353,209"/>
+<area shape="rect" id="node7" href="$class_c_prop_tab_page_setting.html#acefe73a52687d98a8a6e6f01ef270b01" title="更新処理" alt="" coords="204,233,355,275"/>
+<area shape="rect" id="node3" href="$class_c_prop_tab_page_setting.html#ad176661bbe7c6d157814d81897d50f7d" title="ウインドアクティブ時処理" alt="" coords="5,5,156,47"/>
+<area shape="rect" id="node4" href="$class_c_weld_evaluation_view.html#a266807bf8e8a7dd3fd73b2907300607d" title="プロパティページの再読込" alt="" coords="7,71,155,112"/>
+<area shape="rect" id="node8" href="$class_c_weld_evaluation_view.html#a82f4afb7916eedf21101d656e8377367" title="プロパティページの更新" alt="" coords="7,233,155,275"/>
+</map>

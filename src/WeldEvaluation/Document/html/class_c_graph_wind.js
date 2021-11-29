@@ -10,5 +10,7 @@ var class_c_graph_wind =
     [ "OnInitDialog", "class_c_graph_wind.html#aa9aacbae1e7485fc024baae8b1c930e8", null ],
     [ "OnPaint", "class_c_graph_wind.html#ab66f255e1be2794e8d059daaa6193150", null ],
     [ "SetHolizontalRange", "class_c_graph_wind.html#a95de3e761d2151a736d34f88b295242d", null ],
-    [ "SetVirticalRange", "class_c_graph_wind.html#a70b24a99aa2ea35df62cbfaf15be3fe7", null ]
+    [ "SetVirticalRange", "class_c_graph_wind.html#a70b24a99aa2ea35df62cbfaf15be3fe7", null ],
+    [ "SetXLabel", "class_c_graph_wind.html#a4d999dfdb4d1621109e04bcf4f0ee4c6", null ],
+    [ "SetYLabel", "class_c_graph_wind.html#a7718ab9796a2540407db9012f0437b50", null ]
 ];

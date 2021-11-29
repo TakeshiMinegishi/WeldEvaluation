@@ -1,0 +1,16 @@
+<map id="CWeldEvaluationDoc::GetWBFileName" name="CWeldEvaluationDoc::GetWBFileName">
+<area shape="rect" id="node1" title="ホワイトバランスファイル名の取得" alt="" coords="475,365,617,407"/>
+<area shape="rect" id="node2" href="$class_c_oprt_tab_page_initialize.html#a39a52da491a71f8afec8c1366284227a" title="パラメータの読み込み" alt="" coords="266,136,421,177"/>
+<area shape="rect" id="node7" href="$class_c_prop_tab_page_setting.html#a11a96b76db0c9f575e8f84ad3d3bcf09" title="パラメータの読み込み" alt="" coords="268,267,419,308"/>
+<area shape="rect" id="node10" href="$class_c_weld_evaluation_view.html#a9dcdce885e3876bfca2870cffae3a3d3" title="ホワイトバランススキャンの実施有無判定" alt="" coords="260,332,427,373"/>
+<area shape="rect" id="node11" href="$class_c_weld_evaluation_view.html#a2b69faf84702201cc5dbfe3fcd202b32" title="ホワイトバランススキャンの要求" alt="" coords="269,397,417,439"/>
+<area shape="rect" id="node12" href="$class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="269,463,417,504"/>
+<area shape="rect" id="node13" href="$class_c_prop_tab_page_setting.html#acefe73a52687d98a8a6e6f01ef270b01" title="更新処理" alt="" coords="268,528,419,569"/>
+<area shape="rect" id="node3" href="$class_c_oprt_tab_page_initialize.html#ad26437c34391f67b3546182071900642" title="アイテムのアクティブ/ディアクティブ化" alt="" coords="31,5,186,47"/>
+<area shape="rect" id="node4" href="$class_c_oprt_tab_page_initialize.html#a51b47e6f52aacb9733fdc52ac320f573" title="アクティブ時処理" alt="" coords="31,71,186,112"/>
+<area shape="rect" id="node5" href="$class_c_oprt_tab_page_initialize.html#ab94bb92896d005e2ea95e3f7fe4f49e8" title="ホワイトバランスボタン押下時処理" alt="" coords="5,136,212,177"/>
+<area shape="rect" id="node6" href="$class_c_weld_evaluation_view.html#ae4f218a4e70e08689a0532384eb86fe5" title="設定ページの再読込" alt="" coords="35,201,183,243"/>
+<area shape="rect" id="node8" href="$class_c_prop_tab_page_setting.html#ad176661bbe7c6d157814d81897d50f7d" title="ウインドアクティブ時処理" alt="" coords="33,267,184,308"/>
+<area shape="rect" id="node9" href="$class_c_weld_evaluation_view.html#a266807bf8e8a7dd3fd73b2907300607d" title="プロパティページの再読込" alt="" coords="35,332,183,373"/>
+<area shape="rect" id="node14" href="$class_c_weld_evaluation_view.html#a82f4afb7916eedf21101d656e8377367" title="プロパティページの更新" alt="" coords="35,528,183,569"/>
+</map>

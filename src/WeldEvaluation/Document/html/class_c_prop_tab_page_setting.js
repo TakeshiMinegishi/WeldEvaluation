@@ -2,6 +2,7 @@ var class_c_prop_tab_page_setting =
 [
     [ "CPropTabPageSetting", "class_c_prop_tab_page_setting.html#ace8e81f21936ff3cb51e4882dce0fee7", null ],
     [ "~CPropTabPageSetting", "class_c_prop_tab_page_setting.html#aa36d1fd9c85eb237095aaa501712b603", null ],
+    [ "ConfirmChange", "class_c_prop_tab_page_setting.html#aedb6c4e6c340c9c02081871ae6ffd002", null ],
     [ "DoDataExchange", "class_c_prop_tab_page_setting.html#a855644ff9c5afe6c8dc8a7ae2e5f6c20", null ],
     [ "FitRect", "class_c_prop_tab_page_setting.html#a99e72e4f0249eb7c998d669983b9305b", null ],
     [ "ItemActive", "class_c_prop_tab_page_setting.html#a49d04dfe498d651f6f00de37f6b894b3", null ],
@@ -22,12 +23,13 @@ var class_c_prop_tab_page_setting =
     [ "OnMouseWheel", "class_c_prop_tab_page_setting.html#a7e6fc3814ec28480639e7900244ce6b1", null ],
     [ "OnVScroll", "class_c_prop_tab_page_setting.html#a00d1667d93127da70a3c0f3aa5bc61b2", null ],
     [ "Update", "class_c_prop_tab_page_setting.html#acefe73a52687d98a8a6e6f01ef270b01", null ],
-    [ "m_IntegrationTimeMs", "class_c_prop_tab_page_setting.html#a274a55acf40f265993acfe6e816af886", null ],
+    [ "m_IntegrationTimeMs", "class_c_prop_tab_page_setting.html#a26472c2669204bcadfa8bc4eb489eb40", null ],
     [ "m_NumberOfOverridePixel", "class_c_prop_tab_page_setting.html#aa25fdaf0b01f86c44bc9b19a8f06ae1f", null ],
     [ "m_RegistFolder", "class_c_prop_tab_page_setting.html#ab47bbe159402c18c9820a7bcc3bc0a41", null ],
     [ "m_ResolutionHolizontal", "class_c_prop_tab_page_setting.html#a57433987647c475107090f975ae5171f", null ],
     [ "m_ResolutionVertical", "class_c_prop_tab_page_setting.html#a64a2c24ce1bd6d88d349a0dcd17b88d3", null ],
     [ "m_sbrSettingDlg", "class_c_prop_tab_page_setting.html#aa67834249b8c2adc63d382a5353a6b61", null ],
     [ "m_ScrollBerPos", "class_c_prop_tab_page_setting.html#aa33795eee523cf6d92b49b748c430e64", null ],
+    [ "m_ShutterSpeed", "class_c_prop_tab_page_setting.html#a5ca0a5cdccf41136101155f04e4fd3de", null ],
     [ "m_WBFileName", "class_c_prop_tab_page_setting.html#a90b4b35adff83a3fdee3e6cf4e4f304e", null ]
 ];

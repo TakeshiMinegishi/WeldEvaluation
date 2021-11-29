@@ -28,7 +28,7 @@
    <div id="projectname">WeldEvaluation
    &#160;<span id="projectnumber">1.0</span>
    </div>
-   <div id="projectbrief">WeldEvaluation</div>
+   <div id="projectbrief">ソース一式</div>
   </td>
  </tr>
  </tbody>
@@ -98,21 +98,23 @@ $(document).ready(function(){initNavTree('message_8h_source.html',''); initResiz
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#define WM_UPDATEREQUEST_PROPPAGE       (WM_USER + 200)</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#define ID_UPDATE_STATUS                (WM_UPDATEREQUEST_PROPPAGE + 1)</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#define WM_SCAN_REQUEST                 (ID_UPDATE_STATUS+1)</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define WM_VIEW_CHANGE_REQUEST          (WM_SCAN_REQUEST+1)</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#define WM_CHANGE_REGIST                (WM_VIEW_CHANGE_REQUEST+1)</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#define WM_ANALYSE_REQUEST              (WM_CHANGE_REGIST+1)</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#define WM_RESIST_REGIST                (WM_ANALYSE_REQUEST+1)</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define WM_IMAGE_OUTPUT_REGIST          (WM_RESIST_REGIST+1)</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#define WM_IMAGE_SCALING                (WM_IMAGE_OUTPUT_REGIST+1)</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#define WM_IMAGE_MOVEING                (WM_IMAGE_SCALING+1)</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#define WM_READ_RESULT_STATUS           (WM_IMAGE_MOVEING+1)</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#define WM_SPECTRUM_GRAPH_REQUEST       (WM_READ_RESULT_STATUS+1)</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#define WM_AREA_SPECTRUM_GRAPH_REQUEST  (WM_SPECTRUM_GRAPH_REQUEST+1)</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#define WM_SPECTRUME_CLOSE_REQUEST      (WM_AREA_SPECTRUM_GRAPH_REQUEST+1)</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#define WM_AREA_SPECTRUM_GRAPH_SET      (WM_SPECTRUME_CLOSE_REQUEST+1)</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#define WM_WBSCAN_EXISTCHECK            (ID_UPDATE_STATUS+1)</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define WM_WBSCAN_REQUES                (WM_WBSCAN_EXISTCHECK+1)</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#define WM_SCAN_REQUEST                 (WM_WBSCAN_REQUES+1)</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#define WM_VIEW_CHANGE_REQUEST          (WM_SCAN_REQUEST+1)</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#define WM_CHANGE_REGIST                (WM_VIEW_CHANGE_REQUEST+1)</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define WM_ANALYSE_REQUEST              (WM_CHANGE_REGIST+1)</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#define WM_RESIST_REGIST                (WM_ANALYSE_REQUEST+1)</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#define WM_IMAGE_OUTPUT_REGIST          (WM_RESIST_REGIST+1)</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#define WM_IMAGE_SCALING                (WM_IMAGE_OUTPUT_REGIST+1)</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#define WM_IMAGE_MOVEING                (WM_IMAGE_SCALING+1)</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#define WM_READ_RESULT_STATUS           (WM_IMAGE_MOVEING+1)</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#define WM_SPECTRUM_GRAPH_REQUEST       (WM_READ_RESULT_STATUS+1)</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#define WM_AREA_SPECTRUM_GRAPH_REQUEST  (WM_SPECTRUM_GRAPH_REQUEST+1)</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#define WM_SPECTRUME_CLOSE_REQUEST      (WM_AREA_SPECTRUM_GRAPH_REQUEST+1)</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define WM_AREA_SPECTRUM_GRAPH_SET      (WM_SPECTRUME_CLOSE_REQUEST+1)</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -1,0 +1,12 @@
+<map id="CWeldEvaluationDoc::GetSpectrumData" name="CWeldEvaluationDoc::GetSpectrumData">
+<area shape="rect" id="node1" title="指定位置スペクトル群の取得" alt="" coords="5,35,148,76"/>
+<area shape="rect" id="node2" href="$class_c_scan_data_i_o.html#a74d0fa98822d49575c08acb1e72c128c" title="指定位置スペクトル群の取得" alt="" coords="196,13,409,39"/>
+<area shape="rect" id="node3" href="$class_c_weld_evaluation_doc.html#ab9b811efdecb8b32d42d8eaeba752b23" title="ワークプロジェクトパスの取得" alt="" coords="227,64,378,105"/>
+<area shape="rect" id="node4" href="$class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="699,69,878,95"/>
+<area shape="rect" id="node5" href="$class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="457,123,644,164"/>
+<area shape="rect" id="node10" href="$class_c_weld_evaluation_doc.html#a827c581753a1e8dab5c6a6437e8d1696" title="プロジェクトステータス取得" alt="" coords="470,5,631,47"/>
+<area shape="rect" id="node6" href="$class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="933,127,1105,154"/>
+<area shape="rect" id="node9" href="$class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="692,120,885,161"/>
+<area shape="rect" id="node7" href="$class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="1153,127,1299,154"/>
+<area shape="rect" id="node8" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1347,127,1479,154"/>
+</map>

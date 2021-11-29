@@ -28,7 +28,7 @@
    <div id="projectname">WeldEvaluation
    &#160;<span id="projectnumber">1.0</span>
    </div>
-   <div id="projectbrief">WeldEvaluation</div>
+   <div id="projectbrief">ソース一式</div>
   </td>
  </tr>
  </tbody>
@@ -87,7 +87,8 @@ $(document).ready(function(){initNavTree('functions_o.html',''); initResizable()
 
 <h3><a id="index_o"></a>- o -</h3><ul>
 <li>OnActivate()
-: <a class="el" href="class_c_oprt_tab_page_scan.html#a1736e8cd2fe121b17a05a8017b11c3f1">COprtTabPageScan</a>
+: <a class="el" href="class_c_oprt_tab_page_initialize.html#a51b47e6f52aacb9733fdc52ac320f573">COprtTabPageInitialize</a>
+, <a class="el" href="class_c_oprt_tab_page_scan.html#a1736e8cd2fe121b17a05a8017b11c3f1">COprtTabPageScan</a>
 , <a class="el" href="class_c_prop_tab_page_parameter.html#ace1f9ec08dc88cef79340c4efab44c8e">CPropTabPageParameter</a>
 , <a class="el" href="class_c_prop_tab_page_setting.html#ad176661bbe7c6d157814d81897d50f7d">CPropTabPageSetting</a>
 </li>
@@ -189,11 +190,16 @@ $(document).ready(function(){initNavTree('functions_o.html',''); initResizable()
 : <a class="el" href="class_c_weld_evaluation_view.html#ab33f0841eac9524d1aaa25fac32ea637">CWeldEvaluationView</a>
 </li>
 <li>OnClose()
-: <a class="el" href="class_c_spectral_dlg.html#a582ce855c6605bf943936388816a6818">CSpectralDlg</a>
+: <a class="el" href="class_c_main_frame.html#a1d2d2b0b5a12fa591dcbf41ec0368cc9">CMainFrame</a>
+, <a class="el" href="class_c_spectral_dlg.html#a582ce855c6605bf943936388816a6818">CSpectralDlg</a>
+, <a class="el" href="class_c_weld_evaluation_view.html#af4124c59c9bb0d4d72bcdea19f02e535">CWeldEvaluationView</a>
 </li>
 <li>OnCreate()
 : <a class="el" href="class_c_main_frame.html#a48666466fd37412fcaeff75c3b12e0ed">CMainFrame</a>
 , <a class="el" href="class_c_spectral_dlg.html#a4410ade8a65229814705c594d32cf534">CSpectralDlg</a>
+</li>
+<li>OnCtlColor()
+: <a class="el" href="class_c_prop_tab_page_parameter.html#a6dfa928512bbcfed03034ec99a8f3860">CPropTabPageParameter</a>
 </li>
 <li>OnDeltaposSpinNumofclass()
 : <a class="el" href="class_c_prop_tab_page_parameter.html#aae8ea6963a7f608b6a9e7d577d12655d">CPropTabPageParameter</a>
@@ -234,6 +240,15 @@ $(document).ready(function(){initNavTree('functions_o.html',''); initResizable()
 </li>
 <li>OnEnKillfocusEdtWbfilename()
 : <a class="el" href="class_c_prop_tab_page_setting.html#a8b6ba14af656a7cfbd943f71ae8b9011">CPropTabPageSetting</a>
+</li>
+<li>OnFileSave()
+: <a class="el" href="class_c_weld_evaluation_view.html#aa0fcbbdfd969d0b507e6199c257a68df">CWeldEvaluationView</a>
+</li>
+<li>OnGetMinMaxInfo()
+: <a class="el" href="class_c_main_frame.html#ad68d347c88110b21ddc25227c70e9230">CMainFrame</a>
+</li>
+<li>OnImageMoveing()
+: <a class="el" href="class_c_weld_evaluation_view.html#adf3033ffebe857d0ea9fb23c17467be9">CWeldEvaluationView</a>
 </li>
 <li>OnImageOutputRequest()
 : <a class="el" href="class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f">CWeldEvaluationView</a>
@@ -280,9 +295,21 @@ $(document).ready(function(){initNavTree('functions_o.html',''); initResizable()
 <li>OnNMDblclkLstRegistTest()
 : <a class="el" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911">CWeldEvaluationView</a>
 </li>
+<li>OnNMRClickLstRegistTest()
+: <a class="el" href="class_c_weld_evaluation_view.html#afbf1ecce79d71762fcc4867fdb50e75c">CWeldEvaluationView</a>
+</li>
 <li>OnPaint()
 : <a class="el" href="class_c_graph_wind.html#ab66f255e1be2794e8d059daaa6193150">CGraphWind</a>
 , <a class="el" href="class_c_image_wind.html#a92a25e63a400fe2f35e71e913dad63f9">CImageWind</a>
+</li>
+<li>OnProjectDelete()
+: <a class="el" href="class_c_weld_evaluation_view.html#a1c8f728724d0615945c96bc74bf24e76">CWeldEvaluationView</a>
+</li>
+<li>OnProjectNew()
+: <a class="el" href="class_c_weld_evaluation_view.html#a6d6b31a607af4f86fb4dea09a88a6b3a">CWeldEvaluationView</a>
+</li>
+<li>OnProjectOpen()
+: <a class="el" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867">CWeldEvaluationView</a>
 </li>
 <li>OnProjectResistRequest()
 : <a class="el" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342">CWeldEvaluationView</a>
@@ -312,6 +339,9 @@ $(document).ready(function(){initNavTree('functions_o.html',''); initResizable()
 <li>OnTcnSelchangeTabPropaty()
 : <a class="el" href="class_c_weld_evaluation_view.html#a240ef4bc5fe0fcb456a334eb5cc8fb12">CWeldEvaluationView</a>
 </li>
+<li>OnTimer()
+: <a class="el" href="class_c_prop_tab_page_parameter.html#a14f7d8b2d5db7edb3211c6c969dd4701">CPropTabPageParameter</a>
+</li>
 <li>OnUpdateRequestPrpoTab()
 : <a class="el" href="class_c_weld_evaluation_view.html#a9984ad2831a69ab9a89a91fc6f7b06d4">CWeldEvaluationView</a>
 </li>
@@ -320,6 +350,15 @@ $(document).ready(function(){initNavTree('functions_o.html',''); initResizable()
 </li>
 <li>OnVScroll()
 : <a class="el" href="class_c_prop_tab_page_setting.html#a00d1667d93127da70a3c0f3aa5bc61b2">CPropTabPageSetting</a>
+</li>
+<li>OnWBScanExistCheck()
+: <a class="el" href="class_c_weld_evaluation_view.html#a9dcdce885e3876bfca2870cffae3a3d3">CWeldEvaluationView</a>
+</li>
+<li>OnWBScanRequest()
+: <a class="el" href="class_c_weld_evaluation_view.html#a2b69faf84702201cc5dbfe3fcd202b32">CWeldEvaluationView</a>
+</li>
+<li>Open()
+: <a class="el" href="class_c_camera_i_o.html#ac592e3623be0dba68f4db806da652cba">CCameraIO</a>
 </li>
 <li>open()
 : <a class="el" href="class_c_scan_data_i_o.html#ae86f36b123901fbe038ff0f1669192bd">CScanDataIO</a>

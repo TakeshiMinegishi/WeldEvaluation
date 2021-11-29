@@ -9,5 +9,7 @@ var class_c_spectral_dlg =
     [ "OnDestroy", "class_c_spectral_dlg.html#aeb8f3fe2ac1d11dd6a05f361e9474483", null ],
     [ "OnInitDialog", "class_c_spectral_dlg.html#a3abfa350001f8b2e969d5cafc69b609f", null ],
     [ "OnSize", "class_c_spectral_dlg.html#a9805fbcf82816594a0a92cbe50cb9a6e", null ],
-    [ "OnSizing", "class_c_spectral_dlg.html#aa7a336a4c6b4b23c34ec6d135a357db9", null ]
+    [ "OnSizing", "class_c_spectral_dlg.html#aa7a336a4c6b4b23c34ec6d135a357db9", null ],
+    [ "SetXLabel", "class_c_spectral_dlg.html#a686e55c4b4bf85791a903627e6eaa41b", null ],
+    [ "SetYLabel", "class_c_spectral_dlg.html#a109ab7fe665f1c9387be7609ac62453e", null ]
 ];

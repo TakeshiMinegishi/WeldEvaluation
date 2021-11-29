@@ -28,7 +28,7 @@
    <div id="projectname">WeldEvaluation
    &#160;<span id="projectnumber">1.0</span>
    </div>
-   <div id="projectbrief">WeldEvaluation</div>
+   <div id="projectbrief">ソース一式</div>
   </td>
  </tr>
  </tbody>
@@ -97,8 +97,24 @@ $(document).ready(function(){initNavTree('class_c_graph_wind.html',''); initResi
  <a href="class_c_graph_wind.html#details">[詳解]</a></p>
 
 <p><code>#include &lt;<a class="el" href="_graph_wind_8h_source.html">GraphWind.h</a>&gt;</code></p>
-
-<p>CDialogを継承しています。</p>
+<div class="dynheader">
+CGraphWind の継承関係図</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_graph_wind__inherit__graph.png" border="0" usemap="#a_c_graph_wind_inherit__map" alt="Inheritance graph"/></div>
+<map name="a_c_graph_wind_inherit__map" id="a_c_graph_wind_inherit__map">
+<area shape="rect" title="CGraphWind ダイアログ" alt="" coords="5,80,101,107"/>
+<area shape="rect" title=" " alt="" coords="20,5,87,32"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+CGraphWind 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_graph_wind__coll__graph.png" border="0" usemap="#a_c_graph_wind_coll__map" alt="Collaboration graph"/></div>
+<map name="a_c_graph_wind_coll__map" id="a_c_graph_wind_coll__map">
+<area shape="rect" title="CGraphWind ダイアログ" alt="" coords="5,80,101,107"/>
+<area shape="rect" title=" " alt="" coords="20,5,87,32"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">凡例</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 公開型</h2></td></tr>
@@ -138,6 +154,12 @@ $(document).ready(function(){initNavTree('class_c_graph_wind.html',''); initResi
 <tr class="memitem:a45f6955a443ae18cf854c4a0fe9bd734"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_graph_wind.html#a45f6955a443ae18cf854c4a0fe9bd734">Erase</a> ()</td></tr>
 <tr class="memdesc:a45f6955a443ae18cf854c4a0fe9bd734"><td class="mdescLeft">&#160;</td><td class="mdescRight">グラフ削除  <a href="class_c_graph_wind.html#a45f6955a443ae18cf854c4a0fe9bd734">[詳解]</a><br /></td></tr>
 <tr class="separator:a45f6955a443ae18cf854c4a0fe9bd734"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d999dfdb4d1621109e04bcf4f0ee4c6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_graph_wind.html#a4d999dfdb4d1621109e04bcf4f0ee4c6">SetXLabel</a> (CString min, CString max)</td></tr>
+<tr class="memdesc:a4d999dfdb4d1621109e04bcf4f0ee4c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">水平軸ラベル設定  <a href="class_c_graph_wind.html#a4d999dfdb4d1621109e04bcf4f0ee4c6">[詳解]</a><br /></td></tr>
+<tr class="separator:a4d999dfdb4d1621109e04bcf4f0ee4c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7718ab9796a2540407db9012f0437b50"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_graph_wind.html#a7718ab9796a2540407db9012f0437b50">SetYLabel</a> (CString min, CString max)</td></tr>
+<tr class="memdesc:a7718ab9796a2540407db9012f0437b50"><td class="mdescLeft">&#160;</td><td class="mdescRight">垂直軸ラベル設定  <a href="class_c_graph_wind.html#a7718ab9796a2540407db9012f0437b50">[詳解]</a><br /></td></tr>
+<tr class="separator:a7718ab9796a2540407db9012f0437b50"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 限定公開メンバ関数</h2></td></tr>
@@ -165,10 +187,6 @@ $(document).ready(function(){initNavTree('class_c_graph_wind.html',''); initResi
 </div><div class="memdoc">
 
 <p>コンストラクタ </p>
-<p>&lt; 水平方向最小値</p>
-<p>&lt; 水平方向最大値</p>
-<p>&lt; 垂直方向最小値</p>
-<p>&lt; 垂直方向最立ち</p>
 
 </div>
 </div>
@@ -273,6 +291,24 @@ $(document).ready(function(){initNavTree('class_c_graph_wind.html',''); initResi
 <dl class="section remark"><dt>注釈</dt><dd>AutoRangeがtrueの場合垂直方向のレンジはデータの（最大値−最小値）*1.2として自動に求める </dd>
 <dd>
 offsetは垂直方向のグラフ間ゼロ線をずらす為のもの </dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_graph_wind_a4c91a5a3fa6bc76b7f3e0e4ec960942f_cgraph.png" border="0" usemap="#aclass_c_graph_wind_a4c91a5a3fa6bc76b7f3e0e4ec960942f_cgraph" alt=""/></div>
+<map name="aclass_c_graph_wind_a4c91a5a3fa6bc76b7f3e0e4ec960942f_cgraph" id="aclass_c_graph_wind_a4c91a5a3fa6bc76b7f3e0e4ec960942f_cgraph">
+<area shape="rect" title="グラフ描画" alt="" coords="5,5,139,32"/>
+<area shape="rect" href="class_c_graph_wind.html#ab66f255e1be2794e8d059daaa6193150" title="描画処理" alt="" coords="187,5,337,32"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_graph_wind_a4c91a5a3fa6bc76b7f3e0e4ec960942f_icgraph.png" border="0" usemap="#aclass_c_graph_wind_a4c91a5a3fa6bc76b7f3e0e4ec960942f_icgraph" alt=""/></div>
+<map name="aclass_c_graph_wind_a4c91a5a3fa6bc76b7f3e0e4ec960942f_icgraph" id="aclass_c_graph_wind_a4c91a5a3fa6bc76b7f3e0e4ec960942f_icgraph">
+<area shape="rect" title="グラフ描画" alt="" coords="187,5,320,32"/>
+<area shape="rect" href="class_c_spectral_dlg.html#a779cbb744b5c248b1a9f663e609ece3f" title="スペクトルグラフの表示" alt="" coords="5,5,139,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -292,6 +328,24 @@ offsetは垂直方向のグラフ間ゼロ線をずらす為のもの </dd></dl>
 </div><div class="memdoc">
 
 <p>グラフ削除 </p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_graph_wind_a45f6955a443ae18cf854c4a0fe9bd734_cgraph.png" border="0" usemap="#aclass_c_graph_wind_a45f6955a443ae18cf854c4a0fe9bd734_cgraph" alt=""/></div>
+<map name="aclass_c_graph_wind_a45f6955a443ae18cf854c4a0fe9bd734_cgraph" id="aclass_c_graph_wind_a45f6955a443ae18cf854c4a0fe9bd734_cgraph">
+<area shape="rect" title="グラフ削除" alt="" coords="5,5,144,32"/>
+<area shape="rect" href="class_c_graph_wind.html#ab66f255e1be2794e8d059daaa6193150" title="描画処理" alt="" coords="192,5,343,32"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_graph_wind_a45f6955a443ae18cf854c4a0fe9bd734_icgraph.png" border="0" usemap="#aclass_c_graph_wind_a45f6955a443ae18cf854c4a0fe9bd734_icgraph" alt=""/></div>
+<map name="aclass_c_graph_wind_a45f6955a443ae18cf854c4a0fe9bd734_icgraph" id="aclass_c_graph_wind_a45f6955a443ae18cf854c4a0fe9bd734_icgraph">
+<area shape="rect" title="グラフ削除" alt="" coords="187,5,325,32"/>
+<area shape="rect" href="class_c_spectral_dlg.html#a779cbb744b5c248b1a9f663e609ece3f" title="スペクトルグラフの表示" alt="" coords="5,5,139,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -412,6 +466,18 @@ offsetは垂直方向のグラフ間ゼロ線をずらす為のもの </dd></dl>
 </div><div class="memdoc">
 
 <p>描画処理 </p>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_graph_wind_ab66f255e1be2794e8d059daaa6193150_icgraph.png" border="0" usemap="#aclass_c_graph_wind_ab66f255e1be2794e8d059daaa6193150_icgraph" alt=""/></div>
+<map name="aclass_c_graph_wind_ab66f255e1be2794e8d059daaa6193150_icgraph" id="aclass_c_graph_wind_ab66f255e1be2794e8d059daaa6193150_icgraph">
+<area shape="rect" title="描画処理" alt="" coords="384,56,535,83"/>
+<area shape="rect" href="class_c_graph_wind.html#a4c91a5a3fa6bc76b7f3e0e4ec960942f" title="グラフ描画" alt="" coords="195,5,328,32"/>
+<area shape="rect" href="class_c_graph_wind.html#a45f6955a443ae18cf854c4a0fe9bd734" title="グラフ削除" alt="" coords="192,56,331,83"/>
+<area shape="rect" href="class_c_spectral_dlg.html#a9805fbcf82816594a0a92cbe50cb9a6e" title="ウインドサイズの変更" alt="" coords="187,107,336,133"/>
+<area shape="rect" href="class_c_spectral_dlg.html#a779cbb744b5c248b1a9f663e609ece3f" title="スペクトルグラフの表示" alt="" coords="5,31,139,57"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -486,6 +552,107 @@ offsetは垂直方向のグラフ間ゼロ線をずらす為のもの </dd></dl>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_graph_wind_a70b24a99aa2ea35df62cbfaf15be3fe7_icgraph.png" border="0" usemap="#aclass_c_graph_wind_a70b24a99aa2ea35df62cbfaf15be3fe7_icgraph" alt=""/></div>
+<map name="aclass_c_graph_wind_a70b24a99aa2ea35df62cbfaf15be3fe7_icgraph" id="aclass_c_graph_wind_a70b24a99aa2ea35df62cbfaf15be3fe7_icgraph">
+<area shape="rect" title="垂直方向領域設定（物理値）" alt="" coords="187,5,388,32"/>
+<area shape="rect" href="class_c_spectral_dlg.html#a779cbb744b5c248b1a9f663e609ece3f" title="スペクトルグラフの表示" alt="" coords="5,5,139,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4d999dfdb4d1621109e04bcf4f0ee4c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d999dfdb4d1621109e04bcf4f0ee4c6">&#9670;&nbsp;</a></span>SetXLabel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CGraphWind::SetXLabel </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>min</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>max</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>水平軸ラベル設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">min</td><td>最小値ラベル</td></tr>
+    <tr><td class="paramname">max</td><td>最大値ラベル</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_graph_wind_a4d999dfdb4d1621109e04bcf4f0ee4c6_icgraph.png" border="0" usemap="#aclass_c_graph_wind_a4d999dfdb4d1621109e04bcf4f0ee4c6_icgraph" alt=""/></div>
+<map name="aclass_c_graph_wind_a4d999dfdb4d1621109e04bcf4f0ee4c6_icgraph" id="aclass_c_graph_wind_a4d999dfdb4d1621109e04bcf4f0ee4c6_icgraph">
+<area shape="rect" title="水平軸ラベル設定" alt="" coords="187,5,349,32"/>
+<area shape="rect" href="class_c_spectral_dlg.html#a779cbb744b5c248b1a9f663e609ece3f" title="スペクトルグラフの表示" alt="" coords="5,5,139,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7718ab9796a2540407db9012f0437b50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7718ab9796a2540407db9012f0437b50">&#9670;&nbsp;</a></span>SetYLabel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CGraphWind::SetYLabel </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>min</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>max</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>垂直軸ラベル設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">min</td><td>最小値ラベル</td></tr>
+    <tr><td class="paramname">max</td><td>最大値ラベル</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_graph_wind_a7718ab9796a2540407db9012f0437b50_icgraph.png" border="0" usemap="#aclass_c_graph_wind_a7718ab9796a2540407db9012f0437b50_icgraph" alt=""/></div>
+<map name="aclass_c_graph_wind_a7718ab9796a2540407db9012f0437b50_icgraph" id="aclass_c_graph_wind_a7718ab9796a2540407db9012f0437b50_icgraph">
+<area shape="rect" title="垂直軸ラベル設定" alt="" coords="187,5,351,32"/>
+<area shape="rect" href="class_c_spectral_dlg.html#a779cbb744b5c248b1a9f663e609ece3f" title="スペクトルグラフの表示" alt="" coords="5,5,139,32"/>
+</map>
+</div>
 
 </div>
 </div>

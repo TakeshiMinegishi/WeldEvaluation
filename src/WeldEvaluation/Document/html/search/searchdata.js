@@ -1,10 +1,11 @@
 var indexSectionsWithContent =
 {
-  0: "acdefgilmnoprsuvw~",
+  0: "abcdefgilmnoprstuvw~",
   1: "c",
-  2: "acdefgilmnoprsuvw~",
+  2: "abcdefgilmnoprstuvw~",
   3: "m",
-  4: "ae"
+  4: "l",
+  5: "adeintw"
 };
 
 var indexSectionNames =
@@ -13,7 +14,8 @@ var indexSectionNames =
   1: "classes",
   2: "functions",
   3: "variables",
-  4: "enumvalues"
+  4: "enums",
+  5: "enumvalues"
 };
 
 var indexSectionLabels =
@@ -22,6 +24,7 @@ var indexSectionLabels =
   1: "クラス",
   2: "関数",
   3: "変数",
-  4: "列挙値"
+  4: "列挙型",
+  5: "列挙値"
 };
 

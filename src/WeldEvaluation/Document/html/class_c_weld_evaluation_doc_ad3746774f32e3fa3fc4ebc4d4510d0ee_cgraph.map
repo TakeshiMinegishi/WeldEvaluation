@@ -1,0 +1,8 @@
+<map id="CWeldEvaluationDoc::GetRegistedFolder" name="CWeldEvaluationDoc::GetRegistedFolder">
+<area shape="rect" id="node1" title="登録済み試験格納フォルダの取得" alt="" coords="5,23,148,65"/>
+<area shape="rect" id="node2" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="611,5,743,32"/>
+<area shape="rect" id="node3" href="$class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="196,31,368,57"/>
+<area shape="rect" id="node5" href="$class_c_configration_i_o.html#a0fb34e01af48df8da81d80108ffa3d03" title="指定セクションのキーに文字列を設定" alt="" coords="196,81,368,108"/>
+<area shape="rect" id="node4" href="$class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="417,31,562,57"/>
+<area shape="rect" id="node6" href="$class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="416,81,563,108"/>
+</map>

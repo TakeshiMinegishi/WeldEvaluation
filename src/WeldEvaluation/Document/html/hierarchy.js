@@ -1,6 +1,8 @@
 var hierarchy =
 [
+    [ "CCameraIO", "class_c_camera_i_o.html", null ],
     [ "CConfigrationIO", "class_c_configration_i_o.html", null ],
+    [ "CDeviceIO", "class_c_device_i_o.html", null ],
     [ "CDialog", null, [
       [ "CGraphWind", "class_c_graph_wind.html", null ],
       [ "CImageWind", "class_c_image_wind.html", null ],
@@ -27,6 +29,7 @@ var hierarchy =
     [ "CFrameWnd", null, [
       [ "CMainFrame", "class_c_main_frame.html", null ]
     ] ],
+    [ "CLog", "class_c_log.html", null ],
     [ "CProjectFileIO", "class_c_project_file_i_o.html", null ],
     [ "CPropatyIO", "class_c_propaty_i_o.html", null ],
     [ "CScanDataIO", "class_c_scan_data_i_o.html", null ],

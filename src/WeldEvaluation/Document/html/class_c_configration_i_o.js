@@ -3,6 +3,7 @@ var class_c_configration_i_o =
     [ "CConfigrationIO", "class_c_configration_i_o.html#a83553ea988e4cbee7b5058489713f3d7", null ],
     [ "CConfigrationIO", "class_c_configration_i_o.html#a584c58757fa1e4daf6873f5ebab8b612", null ],
     [ "~CConfigrationIO", "class_c_configration_i_o.html#a397d450b91e1e955e047d56cdb5e1cd6", null ],
+    [ "deleteKey", "class_c_configration_i_o.html#a502e7c8a4d1a173bf0637e9704ebd980", null ],
     [ "getDouble", "class_c_configration_i_o.html#a460fe4c9b31d05649b998bcf78f2568d", null ],
     [ "getFilePath", "class_c_configration_i_o.html#a93f967a58e5cdde06dcee22f492fc726", null ],
     [ "getInt", "class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805", null ],

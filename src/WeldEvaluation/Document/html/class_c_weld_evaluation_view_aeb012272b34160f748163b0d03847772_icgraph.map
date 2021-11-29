@@ -1,0 +1,5 @@
+<map id="CWeldEvaluationView::ImageScaling" name="CWeldEvaluationView::ImageScaling">
+<area shape="rect" id="node1" title="画像のスケーリング・移動" alt="" coords="201,39,349,80"/>
+<area shape="rect" id="node2" href="$class_c_weld_evaluation_view.html#adf3033ffebe857d0ea9fb23c17467be9" title="画像移動通知" alt="" coords="5,5,153,47"/>
+<area shape="rect" id="node3" href="$class_c_weld_evaluation_view.html#a4c0c78466f258b6f3046af45d445830f" title="画像スケーリング実施通知" alt="" coords="5,71,153,112"/>
+</map>

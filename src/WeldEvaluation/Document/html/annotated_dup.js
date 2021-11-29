@@ -1,10 +1,13 @@
 var annotated_dup =
 [
     [ "CAboutDlg", "class_c_about_dlg.html", "class_c_about_dlg" ],
+    [ "CCameraIO", "class_c_camera_i_o.html", "class_c_camera_i_o" ],
     [ "CConfigrationIO", "class_c_configration_i_o.html", "class_c_configration_i_o" ],
+    [ "CDeviceIO", "class_c_device_i_o.html", "class_c_device_i_o" ],
     [ "CFileUtil", "class_c_file_util.html", "class_c_file_util" ],
     [ "CGraphWind", "class_c_graph_wind.html", "class_c_graph_wind" ],
     [ "CImageWind", "class_c_image_wind.html", "class_c_image_wind" ],
+    [ "CLog", "class_c_log.html", "class_c_log" ],
     [ "CMainFrame", "class_c_main_frame.html", "class_c_main_frame" ],
     [ "COprtTabPageAnalize", "class_c_oprt_tab_page_analize.html", "class_c_oprt_tab_page_analize" ],
     [ "COprtTabPageInitialize", "class_c_oprt_tab_page_initialize.html", "class_c_oprt_tab_page_initialize" ],
