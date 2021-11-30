@@ -1,0 +1,984 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>WeldEvaluation: CLog クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">WeldEvaluation
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">ソース一式</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_c_log.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">公開型</a> &#124;
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="class_c_log-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">CLog クラス</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>ログ出力用クラス  
+ <a href="class_c_log.html#details">[詳解]</a></p>
+
+<p><code>#include &lt;<a class="el" href="_c_log_8h_source.html">CLog.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+公開型</h2></td></tr>
+<tr class="memitem:a27b47974f6e8e389ff5652deace14d4a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_log.html#a27b47974f6e8e389ff5652deace14d4a">LOGLEVEL</a> { <br />
+&#160;&#160;<a class="el" href="class_c_log.html#a27b47974f6e8e389ff5652deace14d4aa8602d34affc154b3252ddd6ca1676ffb">Non</a> = 0x00
+, <a class="el" href="class_c_log.html#a27b47974f6e8e389ff5652deace14d4aa6c67756a3c60984f78740f88ffc3777a">Error</a> = 0x01
+, <a class="el" href="class_c_log.html#a27b47974f6e8e389ff5652deace14d4aa97b3ce842f17660ebd8db6aeb39e6eea">Warning</a> = 0x02
+, <a class="el" href="class_c_log.html#a27b47974f6e8e389ff5652deace14d4aa6ffeb5ebf37a8d3208da4f49c355c9ba">Details</a> = 0x04
+, <br />
+&#160;&#160;<a class="el" href="class_c_log.html#a27b47974f6e8e389ff5652deace14d4aa02ea13fb7246262a7810f02e867cce6e">Info</a> = 0x08
+, <a class="el" href="class_c_log.html#a27b47974f6e8e389ff5652deace14d4aa6b7105dd3d476e2827ac840017694ec6">Trace</a> = 0x0F
+, <a class="el" href="class_c_log.html#a27b47974f6e8e389ff5652deace14d4aa835627de65598b03d70103da02b3b9aa">Debug</a> = 0x10
+<br />
+ }</td></tr>
+<tr class="memdesc:a27b47974f6e8e389ff5652deace14d4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログ出力モードの列挙型  <a href="class_c_log.html#a27b47974f6e8e389ff5652deace14d4a">[詳解]</a><br /></td></tr>
+<tr class="separator:a27b47974f6e8e389ff5652deace14d4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:ac3e81955a022e0c205354caadbed8a3c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_log.html#ac3e81955a022e0c205354caadbed8a3c">CLog</a> ()</td></tr>
+<tr class="memdesc:ac3e81955a022e0c205354caadbed8a3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンストラクタ  <a href="class_c_log.html#ac3e81955a022e0c205354caadbed8a3c">[詳解]</a><br /></td></tr>
+<tr class="separator:ac3e81955a022e0c205354caadbed8a3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed650e01cd2278e8ea4acfd031ae39d7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_log.html#aed650e01cd2278e8ea4acfd031ae39d7">CLog</a> (CString path, CString prefix)</td></tr>
+<tr class="memdesc:aed650e01cd2278e8ea4acfd031ae39d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">初期化コンストラクタ  <a href="class_c_log.html#aed650e01cd2278e8ea4acfd031ae39d7">[詳解]</a><br /></td></tr>
+<tr class="separator:aed650e01cd2278e8ea4acfd031ae39d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a569ed11d9b2dcd2f57753b000beb67e9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_log.html#a569ed11d9b2dcd2f57753b000beb67e9">~CLog</a> ()</td></tr>
+<tr class="memdesc:a569ed11d9b2dcd2f57753b000beb67e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">デストラクタ  <a href="class_c_log.html#a569ed11d9b2dcd2f57753b000beb67e9">[詳解]</a><br /></td></tr>
+<tr class="separator:a569ed11d9b2dcd2f57753b000beb67e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a436d6df17bae35980711fdc4def47410"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_log.html#a436d6df17bae35980711fdc4def47410">setFilePrefix</a> (CString prefix)</td></tr>
+<tr class="memdesc:a436d6df17bae35980711fdc4def47410"><td class="mdescLeft">&#160;</td><td class="mdescRight">ファイル名プレフィックスの設定  <a href="class_c_log.html#a436d6df17bae35980711fdc4def47410">[詳解]</a><br /></td></tr>
+<tr class="separator:a436d6df17bae35980711fdc4def47410"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70464aa2d7a0a10825a9f7f7b7adf2ee"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee">getFilePrefix</a> ()</td></tr>
+<tr class="memdesc:a70464aa2d7a0a10825a9f7f7b7adf2ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">ファイル名プレフィックスの取得  <a href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee">[詳解]</a><br /></td></tr>
+<tr class="separator:a70464aa2d7a0a10825a9f7f7b7adf2ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac48d7f36fc1419e93d2a294874f4b98e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_log.html#ac48d7f36fc1419e93d2a294874f4b98e">setSystemLogLevel</a> (<a class="el" href="class_c_log.html#a27b47974f6e8e389ff5652deace14d4a">LOGLEVEL</a> level)</td></tr>
+<tr class="memdesc:ac48d7f36fc1419e93d2a294874f4b98e"><td class="mdescLeft">&#160;</td><td class="mdescRight">システムのログレベル設定  <a href="class_c_log.html#ac48d7f36fc1419e93d2a294874f4b98e">[詳解]</a><br /></td></tr>
+<tr class="separator:ac48d7f36fc1419e93d2a294874f4b98e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65d2c4306ed1a9d777c08caff941e776"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_log.html#a65d2c4306ed1a9d777c08caff941e776">getLogName</a> ()</td></tr>
+<tr class="memdesc:a65d2c4306ed1a9d777c08caff941e776"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログファイル名の取得  <a href="class_c_log.html#a65d2c4306ed1a9d777c08caff941e776">[詳解]</a><br /></td></tr>
+<tr class="separator:a65d2c4306ed1a9d777c08caff941e776"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd64ffb8c3f7522d647df2444dcfdca0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_log.html#abd64ffb8c3f7522d647df2444dcfdca0">setLogPath</a> (CString path)</td></tr>
+<tr class="memdesc:abd64ffb8c3f7522d647df2444dcfdca0"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログファイル出力ディレクトリの設定  <a href="class_c_log.html#abd64ffb8c3f7522d647df2444dcfdca0">[詳解]</a><br /></td></tr>
+<tr class="separator:abd64ffb8c3f7522d647df2444dcfdca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27df84a7db3c444addee476022bfc5ae"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_log.html#a27df84a7db3c444addee476022bfc5ae">getLogPath</a> ()</td></tr>
+<tr class="memdesc:a27df84a7db3c444addee476022bfc5ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログファイル出力ディレクトリの取得  <a href="class_c_log.html#a27df84a7db3c444addee476022bfc5ae">[詳解]</a><br /></td></tr>
+<tr class="separator:a27df84a7db3c444addee476022bfc5ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9c474897ca906770f57d5da2feefa6d"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d">getLogPathName</a> ()</td></tr>
+<tr class="memdesc:ab9c474897ca906770f57d5da2feefa6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログファイルフルパス名の取得  <a href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d">[詳解]</a><br /></td></tr>
+<tr class="separator:ab9c474897ca906770f57d5da2feefa6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab71eadeaabab3775e02b9abaabc92564"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_log.html#ab71eadeaabab3775e02b9abaabc92564">deleteLogFile</a> (int saveday)</td></tr>
+<tr class="memdesc:ab71eadeaabab3775e02b9abaabc92564"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログファイル削除  <a href="class_c_log.html#ab71eadeaabab3775e02b9abaabc92564">[詳解]</a><br /></td></tr>
+<tr class="separator:ab71eadeaabab3775e02b9abaabc92564"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae51a9a6b80711b7a6f5088c61eb346cf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf">writeLine</a> (std::wofstream &amp;ofsswLog, <a class="el" href="class_c_log.html#a27b47974f6e8e389ff5652deace14d4a">LOGLEVEL</a> level, CString prm)</td></tr>
+<tr class="separator:ae51a9a6b80711b7a6f5088c61eb346cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac31d4dac2937ba01a36d1a3b44b83d70"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70">logWrite</a> (<a class="el" href="class_c_log.html#a27b47974f6e8e389ff5652deace14d4a">LOGLEVEL</a> level, CString prm)</td></tr>
+<tr class="memdesc:ac31d4dac2937ba01a36d1a3b44b83d70"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログの出力  <a href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70">[詳解]</a><br /></td></tr>
+<tr class="separator:ac31d4dac2937ba01a36d1a3b44b83d70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33f44fd7d9c88646d180d02f1642dd6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_log.html#a33f44fd7d9c88646d180d02f1642dd6b">logWrite</a> (<a class="el" href="class_c_log.html#a27b47974f6e8e389ff5652deace14d4a">LOGLEVEL</a> level, vector&lt; CString &gt; prms)</td></tr>
+<tr class="memdesc:a33f44fd7d9c88646d180d02f1642dd6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログの出力  <a href="class_c_log.html#a33f44fd7d9c88646d180d02f1642dd6b">[詳解]</a><br /></td></tr>
+<tr class="separator:a33f44fd7d9c88646d180d02f1642dd6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbe05506285ab384d581ab49fd4ffe02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_log.html#abbe05506285ab384d581ab49fd4ffe02">clrLineBuff</a> ()</td></tr>
+<tr class="memdesc:abbe05506285ab384d581ab49fd4ffe02"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログ出力ラインバッファのクリア  <a href="class_c_log.html#abbe05506285ab384d581ab49fd4ffe02">[詳解]</a><br /></td></tr>
+<tr class="separator:abbe05506285ab384d581ab49fd4ffe02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4817e0304e663455ed573a4f905e2edf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_log.html#a4817e0304e663455ed573a4f905e2edf">setLineBuff</a> (CString buff)</td></tr>
+<tr class="memdesc:a4817e0304e663455ed573a4f905e2edf"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログ出力ラインバッファへの出力文字列の登録  <a href="class_c_log.html#a4817e0304e663455ed573a4f905e2edf">[詳解]</a><br /></td></tr>
+<tr class="separator:a4817e0304e663455ed573a4f905e2edf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a525e7b49275b938e8ffaa42256983e20"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_log.html#a525e7b49275b938e8ffaa42256983e20">writeLineBuff</a> (<a class="el" href="class_c_log.html#a27b47974f6e8e389ff5652deace14d4a">LOGLEVEL</a> level)</td></tr>
+<tr class="memdesc:a525e7b49275b938e8ffaa42256983e20"><td class="mdescLeft">&#160;</td><td class="mdescRight">ログ出力ラインバッファのログ出力  <a href="class_c_log.html#a525e7b49275b938e8ffaa42256983e20">[詳解]</a><br /></td></tr>
+<tr class="separator:a525e7b49275b938e8ffaa42256983e20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>ログ出力用クラス </p>
+</div><h2 class="groupheader">列挙型メンバ詳解</h2>
+<a id="a27b47974f6e8e389ff5652deace14d4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27b47974f6e8e389ff5652deace14d4a">&#9670;&nbsp;</a></span>LOGLEVEL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_c_log.html#a27b47974f6e8e389ff5652deace14d4a">CLog::LOGLEVEL</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ログ出力モードの列挙型 </p>
+<table class="fieldtable">
+<tr><th colspan="2">列挙値</th></tr><tr><td class="fieldname"><a id="a27b47974f6e8e389ff5652deace14d4aa8602d34affc154b3252ddd6ca1676ffb"></a>Non&#160;</td><td class="fielddoc"><p>未使用 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a27b47974f6e8e389ff5652deace14d4aa6c67756a3c60984f78740f88ffc3777a"></a>Error&#160;</td><td class="fielddoc"><p>エラー出力 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a27b47974f6e8e389ff5652deace14d4aa97b3ce842f17660ebd8db6aeb39e6eea"></a>Warning&#160;</td><td class="fielddoc"><p>警告 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a27b47974f6e8e389ff5652deace14d4aa6ffeb5ebf37a8d3208da4f49c355c9ba"></a>Details&#160;</td><td class="fielddoc"><p>詳細 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a27b47974f6e8e389ff5652deace14d4aa02ea13fb7246262a7810f02e867cce6e"></a>Info&#160;</td><td class="fielddoc"><p>情報等出力 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a27b47974f6e8e389ff5652deace14d4aa6b7105dd3d476e2827ac840017694ec6"></a>Trace&#160;</td><td class="fielddoc"><p>全情報 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a27b47974f6e8e389ff5652deace14d4aa835627de65598b03d70103da02b3b9aa"></a>Debug&#160;</td><td class="fielddoc"><p>デバッグモード時のみ出力 </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="ac3e81955a022e0c205354caadbed8a3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3e81955a022e0c205354caadbed8a3c">&#9670;&nbsp;</a></span>CLog() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CLog::CLog </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>コンストラクタ </p>
+
+</div>
+</div>
+<a id="aed650e01cd2278e8ea4acfd031ae39d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed650e01cd2278e8ea4acfd031ae39d7">&#9670;&nbsp;</a></span>CLog() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CLog::CLog </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>prefix</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>初期化コンストラクタ </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>ログ格納先フォルダへのパス</td></tr>
+    <tr><td class="paramname">prefix</td><td>ファイル名プレフィックス</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_log_aed650e01cd2278e8ea4acfd031ae39d7_cgraph.png" border="0" usemap="#aclass_c_log_aed650e01cd2278e8ea4acfd031ae39d7_cgraph" alt=""/></div>
+<map name="aclass_c_log_aed650e01cd2278e8ea4acfd031ae39d7_cgraph" id="aclass_c_log_aed650e01cd2278e8ea4acfd031ae39d7_cgraph">
+<area shape="rect" title="初期化コンストラクタ" alt="" coords="5,5,96,32"/>
+<area shape="rect" href="class_c_log.html#abd64ffb8c3f7522d647df2444dcfdca0" title="ログファイル出力ディレクトリの設定" alt="" coords="144,5,271,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a569ed11d9b2dcd2f57753b000beb67e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a569ed11d9b2dcd2f57753b000beb67e9">&#9670;&nbsp;</a></span>~CLog()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CLog::~CLog </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>デストラクタ </p>
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="abbe05506285ab384d581ab49fd4ffe02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbe05506285ab384d581ab49fd4ffe02">&#9670;&nbsp;</a></span>clrLineBuff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CLog::clrLineBuff </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ログ出力ラインバッファのクリア </p>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_log_abbe05506285ab384d581ab49fd4ffe02_icgraph.png" border="0" usemap="#aclass_c_log_abbe05506285ab384d581ab49fd4ffe02_icgraph" alt=""/></div>
+<map name="aclass_c_log_abbe05506285ab384d581ab49fd4ffe02_icgraph" id="aclass_c_log_abbe05506285ab384d581ab49fd4ffe02_icgraph">
+<area shape="rect" title="ログ出力ラインバッファのクリア" alt="" coords="187,5,307,32"/>
+<area shape="rect" href="class_c_log.html#a525e7b49275b938e8ffaa42256983e20" title="ログ出力ラインバッファのログ出力" alt="" coords="5,5,139,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab71eadeaabab3775e02b9abaabc92564"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab71eadeaabab3775e02b9abaabc92564">&#9670;&nbsp;</a></span>deleteLogFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CLog::deleteLogFile </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>saveday</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ログファイル削除 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">saveday</td><td>保存有効期間</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section remark"><dt>注釈</dt><dd>呼び出し日より保存有効期間以前のファイルを削除する。 </dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_log_ab71eadeaabab3775e02b9abaabc92564_cgraph.png" border="0" usemap="#aclass_c_log_ab71eadeaabab3775e02b9abaabc92564_cgraph" alt=""/></div>
+<map name="aclass_c_log_ab71eadeaabab3775e02b9abaabc92564_cgraph" id="aclass_c_log_ab71eadeaabab3775e02b9abaabc92564_cgraph">
+<area shape="rect" title="ログファイル削除" alt="" coords="5,81,143,108"/>
+<area shape="rect" href="class_c_file_util.html#a390bb140d44dcbd206497e5efe5a76a8" title="ファイルを削除する" alt="" coords="214,5,346,32"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="191,56,369,83"/>
+<area shape="rect" href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="214,107,346,133"/>
+<area shape="rect" href="class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="217,157,343,184"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="417,5,549,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a70464aa2d7a0a10825a9f7f7b7adf2ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70464aa2d7a0a10825a9f7f7b7adf2ee">&#9670;&nbsp;</a></span>getFilePrefix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CLog::getFilePrefix </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ファイル名プレフィックスの取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>ファイル名プレフィックを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_log_a70464aa2d7a0a10825a9f7f7b7adf2ee_icgraph.png" border="0" usemap="#aclass_c_log_a70464aa2d7a0a10825a9f7f7b7adf2ee_icgraph" alt=""/></div>
+<map name="aclass_c_log_a70464aa2d7a0a10825a9f7f7b7adf2ee_icgraph" id="aclass_c_log_a70464aa2d7a0a10825a9f7f7b7adf2ee_icgraph">
+<area shape="rect" title="ファイル名プレフィックスの取得" alt="" coords="1751,272,1883,299"/>
+<area shape="rect" href="class_c_log.html#ab71eadeaabab3775e02b9abaabc92564" title="ログファイル削除" alt="" coords="1565,247,1703,273"/>
+<area shape="rect" href="class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="1567,297,1701,324"/>
+<area shape="rect" href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="1357,297,1517,324"/>
+<area shape="rect" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="1189,272,1297,299"/>
+<area shape="rect" href="class_c_log.html#a525e7b49275b938e8ffaa42256983e20" title="ログ出力ラインバッファのログ出力" alt="" coords="1176,323,1309,349"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#abfa111bff1b107f9615bf57d5014f7f4" title="エラーログ出力" alt="" coords="971,385,1127,412"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="971,132,1128,159"/>
+<area shape="rect" href="class_c_camera_i_o.html#a1730843fe81498de96623f8669cdefc5" title="リファレンス（ホワイトバランス）の取得" alt="" coords="722,5,921,32"/>
+<area shape="rect" href="class_c_camera_i_o.html#a0579cb57b28f22477e9f0f27fbf5b845" title="キューブデータ（最終データ）の取得" alt="" coords="453,539,672,565"/>
+<area shape="rect" href="class_c_camera_i_o.html#a5aeea6f7c98f556616525063d302d720" title="カメラのクローズ" alt="" coords="497,364,628,391"/>
+<area shape="rect" href="class_c_camera_i_o.html#a2969ec4f1d88629fa2d89ae29c901460" title="フォーマットの取得" alt="" coords="743,360,899,387"/>
+<area shape="rect" href="class_c_camera_i_o.html#a6f3994fcc04dd4265e02a8aff3211796" title="IntegrationTimeの取得" alt="" coords="720,411,923,437"/>
+<area shape="rect" href="class_c_camera_i_o.html#a5af5cf5d929a1186903b2d586d76ddb5" title="システムフォーマットの取得" alt="" coords="721,563,922,589"/>
+<area shape="rect" href="class_c_camera_i_o.html#a840fb31e388d67d52c8e316ded6a9e21" title="リファレンス（ホワイトバランス）の読み込み" alt="" coords="471,473,654,500"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ae86f36b123901fbe038ff0f1669192bd" title="オープン" alt="" coords="753,715,890,741"/>
+<area shape="rect" href="class_c_camera_i_o.html#ac592e3623be0dba68f4db806da652cba" title="カメラのオープン" alt="" coords="499,208,627,235"/>
+<area shape="rect" href="class_c_camera_i_o.html#aa4c14720243ce00bb95950a601327637" title="フォーマットの設定" alt="" coords="743,107,899,133"/>
+<area shape="rect" href="class_c_camera_i_o.html#a81016636faf8f4329a1a664716c17de9" title="IntegrationTimeの設定" alt="" coords="720,259,923,285"/>
+<area shape="rect" href="class_c_camera_i_o.html#a366c8cfc6c2492079e3d7a63fffb076c" title="スキャンの開始" alt="" coords="485,309,640,336"/>
+<area shape="rect" href="class_c_camera_i_o.html#aca6555e75b8ed9fc8695fb547bfb52f6" title="スキャンの停止" alt="" coords="485,619,640,645"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a2b69faf84702201cc5dbfe3fcd202b32" title="ホワイトバランススキャンの要求" alt="" coords="240,251,388,293"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="240,407,388,449"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b289ccf358a0ad255596c59196a3bd0" title="スキャンデータイメージの取得" alt="" coords="491,739,634,781"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="491,674,634,715"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="239,739,389,781"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="243,805,385,846"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="5,805,175,846"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="223,609,405,650"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="240,674,388,715"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a65d2c4306ed1a9d777c08caff941e776"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65d2c4306ed1a9d777c08caff941e776">&#9670;&nbsp;</a></span>getLogName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CLog::getLogName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ログファイル名の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>ログファイル名を返す</dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_log_a65d2c4306ed1a9d777c08caff941e776_cgraph.png" border="0" usemap="#aclass_c_log_a65d2c4306ed1a9d777c08caff941e776_cgraph" alt=""/></div>
+<map name="aclass_c_log_a65d2c4306ed1a9d777c08caff941e776_cgraph" id="aclass_c_log_a65d2c4306ed1a9d777c08caff941e776_cgraph">
+<area shape="rect" title="ログファイル名の取得" alt="" coords="5,5,139,32"/>
+<area shape="rect" href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="187,5,319,32"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_log_a65d2c4306ed1a9d777c08caff941e776_icgraph.png" border="0" usemap="#aclass_c_log_a65d2c4306ed1a9d777c08caff941e776_icgraph" alt=""/></div>
+<map name="aclass_c_log_a65d2c4306ed1a9d777c08caff941e776_icgraph" id="aclass_c_log_a65d2c4306ed1a9d777c08caff941e776_icgraph">
+<area shape="rect" title="ログファイル名の取得" alt="" coords="1565,297,1699,324"/>
+<area shape="rect" href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="1357,297,1517,324"/>
+<area shape="rect" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="1189,272,1297,299"/>
+<area shape="rect" href="class_c_log.html#a525e7b49275b938e8ffaa42256983e20" title="ログ出力ラインバッファのログ出力" alt="" coords="1176,323,1309,349"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#abfa111bff1b107f9615bf57d5014f7f4" title="エラーログ出力" alt="" coords="971,385,1127,412"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="971,132,1128,159"/>
+<area shape="rect" href="class_c_camera_i_o.html#a1730843fe81498de96623f8669cdefc5" title="リファレンス（ホワイトバランス）の取得" alt="" coords="722,5,921,32"/>
+<area shape="rect" href="class_c_camera_i_o.html#a0579cb57b28f22477e9f0f27fbf5b845" title="キューブデータ（最終データ）の取得" alt="" coords="453,539,672,565"/>
+<area shape="rect" href="class_c_camera_i_o.html#a5aeea6f7c98f556616525063d302d720" title="カメラのクローズ" alt="" coords="497,364,628,391"/>
+<area shape="rect" href="class_c_camera_i_o.html#a2969ec4f1d88629fa2d89ae29c901460" title="フォーマットの取得" alt="" coords="743,360,899,387"/>
+<area shape="rect" href="class_c_camera_i_o.html#a6f3994fcc04dd4265e02a8aff3211796" title="IntegrationTimeの取得" alt="" coords="720,411,923,437"/>
+<area shape="rect" href="class_c_camera_i_o.html#a5af5cf5d929a1186903b2d586d76ddb5" title="システムフォーマットの取得" alt="" coords="721,563,922,589"/>
+<area shape="rect" href="class_c_camera_i_o.html#a840fb31e388d67d52c8e316ded6a9e21" title="リファレンス（ホワイトバランス）の読み込み" alt="" coords="471,473,654,500"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ae86f36b123901fbe038ff0f1669192bd" title="オープン" alt="" coords="753,715,890,741"/>
+<area shape="rect" href="class_c_camera_i_o.html#ac592e3623be0dba68f4db806da652cba" title="カメラのオープン" alt="" coords="499,208,627,235"/>
+<area shape="rect" href="class_c_camera_i_o.html#aa4c14720243ce00bb95950a601327637" title="フォーマットの設定" alt="" coords="743,107,899,133"/>
+<area shape="rect" href="class_c_camera_i_o.html#a81016636faf8f4329a1a664716c17de9" title="IntegrationTimeの設定" alt="" coords="461,309,664,336"/>
+<area shape="rect" href="class_c_camera_i_o.html#a366c8cfc6c2492079e3d7a63fffb076c" title="スキャンの開始" alt="" coords="744,259,899,285"/>
+<area shape="rect" href="class_c_camera_i_o.html#aca6555e75b8ed9fc8695fb547bfb52f6" title="スキャンの停止" alt="" coords="485,619,640,645"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a2b69faf84702201cc5dbfe3fcd202b32" title="ホワイトバランススキャンの要求" alt="" coords="240,251,388,293"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="240,407,388,449"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b289ccf358a0ad255596c59196a3bd0" title="スキャンデータイメージの取得" alt="" coords="491,739,634,781"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="491,674,634,715"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="239,739,389,781"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="243,805,385,846"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="5,805,175,846"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="223,609,405,650"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="240,674,388,715"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a27df84a7db3c444addee476022bfc5ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27df84a7db3c444addee476022bfc5ae">&#9670;&nbsp;</a></span>getLogPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CLog::getLogPath </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ログファイル出力ディレクトリの取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>ログファイル出力ディレクトリを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_log_a27df84a7db3c444addee476022bfc5ae_icgraph.png" border="0" usemap="#aclass_c_log_a27df84a7db3c444addee476022bfc5ae_icgraph" alt=""/></div>
+<map name="aclass_c_log_a27df84a7db3c444addee476022bfc5ae_icgraph" id="aclass_c_log_a27df84a7db3c444addee476022bfc5ae_icgraph">
+<area shape="rect" title="ログファイル出力ディレクトリの取得" alt="" coords="1565,272,1692,299"/>
+<area shape="rect" href="class_c_log.html#ab71eadeaabab3775e02b9abaabc92564" title="ログファイル削除" alt="" coords="1369,247,1506,273"/>
+<area shape="rect" href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="1357,297,1517,324"/>
+<area shape="rect" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="1189,272,1297,299"/>
+<area shape="rect" href="class_c_log.html#a525e7b49275b938e8ffaa42256983e20" title="ログ出力ラインバッファのログ出力" alt="" coords="1176,323,1309,349"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#abfa111bff1b107f9615bf57d5014f7f4" title="エラーログ出力" alt="" coords="971,385,1127,412"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="971,132,1128,159"/>
+<area shape="rect" href="class_c_camera_i_o.html#a1730843fe81498de96623f8669cdefc5" title="リファレンス（ホワイトバランス）の取得" alt="" coords="722,5,921,32"/>
+<area shape="rect" href="class_c_camera_i_o.html#a0579cb57b28f22477e9f0f27fbf5b845" title="キューブデータ（最終データ）の取得" alt="" coords="453,539,672,565"/>
+<area shape="rect" href="class_c_camera_i_o.html#a5aeea6f7c98f556616525063d302d720" title="カメラのクローズ" alt="" coords="497,364,628,391"/>
+<area shape="rect" href="class_c_camera_i_o.html#a2969ec4f1d88629fa2d89ae29c901460" title="フォーマットの取得" alt="" coords="743,360,899,387"/>
+<area shape="rect" href="class_c_camera_i_o.html#a6f3994fcc04dd4265e02a8aff3211796" title="IntegrationTimeの取得" alt="" coords="720,411,923,437"/>
+<area shape="rect" href="class_c_camera_i_o.html#a5af5cf5d929a1186903b2d586d76ddb5" title="システムフォーマットの取得" alt="" coords="721,563,922,589"/>
+<area shape="rect" href="class_c_camera_i_o.html#a840fb31e388d67d52c8e316ded6a9e21" title="リファレンス（ホワイトバランス）の読み込み" alt="" coords="471,473,654,500"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ae86f36b123901fbe038ff0f1669192bd" title="オープン" alt="" coords="753,715,890,741"/>
+<area shape="rect" href="class_c_camera_i_o.html#ac592e3623be0dba68f4db806da652cba" title="カメラのオープン" alt="" coords="499,208,627,235"/>
+<area shape="rect" href="class_c_camera_i_o.html#aa4c14720243ce00bb95950a601327637" title="フォーマットの設定" alt="" coords="743,107,899,133"/>
+<area shape="rect" href="class_c_camera_i_o.html#a81016636faf8f4329a1a664716c17de9" title="IntegrationTimeの設定" alt="" coords="720,259,923,285"/>
+<area shape="rect" href="class_c_camera_i_o.html#a366c8cfc6c2492079e3d7a63fffb076c" title="スキャンの開始" alt="" coords="485,309,640,336"/>
+<area shape="rect" href="class_c_camera_i_o.html#aca6555e75b8ed9fc8695fb547bfb52f6" title="スキャンの停止" alt="" coords="485,619,640,645"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a2b69faf84702201cc5dbfe3fcd202b32" title="ホワイトバランススキャンの要求" alt="" coords="240,251,388,293"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="240,407,388,449"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b289ccf358a0ad255596c59196a3bd0" title="スキャンデータイメージの取得" alt="" coords="491,739,634,781"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="491,674,634,715"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="239,739,389,781"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="243,805,385,846"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="5,805,175,846"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="223,609,405,650"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="240,674,388,715"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab9c474897ca906770f57d5da2feefa6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9c474897ca906770f57d5da2feefa6d">&#9670;&nbsp;</a></span>getLogPathName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CLog::getLogPathName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ログファイルフルパス名の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>ログファイルフルパス名を返す</dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_log_ab9c474897ca906770f57d5da2feefa6d_cgraph.png" border="0" usemap="#aclass_c_log_ab9c474897ca906770f57d5da2feefa6d_cgraph" alt=""/></div>
+<map name="aclass_c_log_ab9c474897ca906770f57d5da2feefa6d_cgraph" id="aclass_c_log_ab9c474897ca906770f57d5da2feefa6d_cgraph">
+<area shape="rect" title="ログファイルフルパス名の取得" alt="" coords="5,56,165,83"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="213,5,392,32"/>
+<area shape="rect" href="class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="236,56,369,83"/>
+<area shape="rect" href="class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="239,107,366,133"/>
+<area shape="rect" href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="440,56,572,83"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_log_ab9c474897ca906770f57d5da2feefa6d_icgraph.png" border="0" usemap="#aclass_c_log_ab9c474897ca906770f57d5da2feefa6d_icgraph" alt=""/></div>
+<map name="aclass_c_log_ab9c474897ca906770f57d5da2feefa6d_icgraph" id="aclass_c_log_ab9c474897ca906770f57d5da2feefa6d_icgraph">
+<area shape="rect" title="ログファイルフルパス名の取得" alt="" coords="1357,297,1517,324"/>
+<area shape="rect" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="1189,272,1297,299"/>
+<area shape="rect" href="class_c_log.html#a525e7b49275b938e8ffaa42256983e20" title="ログ出力ラインバッファのログ出力" alt="" coords="1176,323,1309,349"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#abfa111bff1b107f9615bf57d5014f7f4" title="エラーログ出力" alt="" coords="971,385,1127,412"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="971,132,1128,159"/>
+<area shape="rect" href="class_c_camera_i_o.html#a1730843fe81498de96623f8669cdefc5" title="リファレンス（ホワイトバランス）の取得" alt="" coords="722,5,921,32"/>
+<area shape="rect" href="class_c_camera_i_o.html#a0579cb57b28f22477e9f0f27fbf5b845" title="キューブデータ（最終データ）の取得" alt="" coords="453,539,672,565"/>
+<area shape="rect" href="class_c_camera_i_o.html#a5aeea6f7c98f556616525063d302d720" title="カメラのクローズ" alt="" coords="497,364,628,391"/>
+<area shape="rect" href="class_c_camera_i_o.html#a2969ec4f1d88629fa2d89ae29c901460" title="フォーマットの取得" alt="" coords="743,360,899,387"/>
+<area shape="rect" href="class_c_camera_i_o.html#a6f3994fcc04dd4265e02a8aff3211796" title="IntegrationTimeの取得" alt="" coords="720,411,923,437"/>
+<area shape="rect" href="class_c_camera_i_o.html#a5af5cf5d929a1186903b2d586d76ddb5" title="システムフォーマットの取得" alt="" coords="721,563,922,589"/>
+<area shape="rect" href="class_c_camera_i_o.html#a840fb31e388d67d52c8e316ded6a9e21" title="リファレンス（ホワイトバランス）の読み込み" alt="" coords="471,473,654,500"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ae86f36b123901fbe038ff0f1669192bd" title="オープン" alt="" coords="753,715,890,741"/>
+<area shape="rect" href="class_c_camera_i_o.html#ac592e3623be0dba68f4db806da652cba" title="カメラのオープン" alt="" coords="499,208,627,235"/>
+<area shape="rect" href="class_c_camera_i_o.html#aa4c14720243ce00bb95950a601327637" title="フォーマットの設定" alt="" coords="743,107,899,133"/>
+<area shape="rect" href="class_c_camera_i_o.html#a81016636faf8f4329a1a664716c17de9" title="IntegrationTimeの設定" alt="" coords="461,309,664,336"/>
+<area shape="rect" href="class_c_camera_i_o.html#a366c8cfc6c2492079e3d7a63fffb076c" title="スキャンの開始" alt="" coords="744,259,899,285"/>
+<area shape="rect" href="class_c_camera_i_o.html#aca6555e75b8ed9fc8695fb547bfb52f6" title="スキャンの停止" alt="" coords="485,619,640,645"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a2b69faf84702201cc5dbfe3fcd202b32" title="ホワイトバランススキャンの要求" alt="" coords="240,251,388,293"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="240,407,388,449"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b289ccf358a0ad255596c59196a3bd0" title="スキャンデータイメージの取得" alt="" coords="491,739,634,781"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="491,674,634,715"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="239,739,389,781"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="243,805,385,846"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="5,805,175,846"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="223,609,405,650"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="240,674,388,715"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac31d4dac2937ba01a36d1a3b44b83d70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac31d4dac2937ba01a36d1a3b44b83d70">&#9670;&nbsp;</a></span>logWrite() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CLog::logWrite </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_c_log.html#a27b47974f6e8e389ff5652deace14d4a">LOGLEVEL</a>&#160;</td>
+          <td class="paramname"><em>level</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>prm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ログの出力 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">level</td><td>ログレベル</td></tr>
+    <tr><td class="paramname">prm</td><td>出力文字列</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_log_ac31d4dac2937ba01a36d1a3b44b83d70_cgraph.png" border="0" usemap="#aclass_c_log_ac31d4dac2937ba01a36d1a3b44b83d70_cgraph" alt=""/></div>
+<map name="aclass_c_log_ac31d4dac2937ba01a36d1a3b44b83d70_cgraph" id="aclass_c_log_ac31d4dac2937ba01a36d1a3b44b83d70_cgraph">
+<area shape="rect" title="ログの出力" alt="" coords="5,81,113,108"/>
+<area shape="rect" href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="161,56,321,83"/>
+<area shape="rect" href="class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf" title=" " alt="" coords="186,107,297,133"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="369,5,548,32"/>
+<area shape="rect" href="class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="392,56,525,83"/>
+<area shape="rect" href="class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="395,107,522,133"/>
+<area shape="rect" href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="596,56,728,83"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_log_ac31d4dac2937ba01a36d1a3b44b83d70_icgraph.png" border="0" usemap="#aclass_c_log_ac31d4dac2937ba01a36d1a3b44b83d70_icgraph" alt=""/></div>
+<map name="aclass_c_log_ac31d4dac2937ba01a36d1a3b44b83d70_icgraph" id="aclass_c_log_ac31d4dac2937ba01a36d1a3b44b83d70_icgraph">
+<area shape="rect" title="ログの出力" alt="" coords="1176,322,1284,348"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#abfa111bff1b107f9615bf57d5014f7f4" title="エラーログ出力" alt="" coords="971,423,1127,450"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="971,144,1128,171"/>
+<area shape="rect" href="class_c_camera_i_o.html#a1730843fe81498de96623f8669cdefc5" title="リファレンス（ホワイトバランス）の取得" alt="" coords="722,43,921,70"/>
+<area shape="rect" href="class_c_camera_i_o.html#a0579cb57b28f22477e9f0f27fbf5b845" title="キューブデータ（最終データ）の取得" alt="" coords="453,526,672,552"/>
+<area shape="rect" href="class_c_camera_i_o.html#a5aeea6f7c98f556616525063d302d720" title="カメラのクローズ" alt="" coords="497,383,628,410"/>
+<area shape="rect" href="class_c_camera_i_o.html#a2969ec4f1d88629fa2d89ae29c901460" title="フォーマットの取得" alt="" coords="743,347,899,374"/>
+<area shape="rect" href="class_c_camera_i_o.html#a6f3994fcc04dd4265e02a8aff3211796" title="IntegrationTimeの取得" alt="" coords="720,398,923,424"/>
+<area shape="rect" href="class_c_camera_i_o.html#a5af5cf5d929a1186903b2d586d76ddb5" title="システムフォーマットの取得" alt="" coords="721,499,922,526"/>
+<area shape="rect" href="class_c_camera_i_o.html#a840fb31e388d67d52c8e316ded6a9e21" title="リファレンス（ホワイトバランス）の読み込み" alt="" coords="471,631,654,658"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ae86f36b123901fbe038ff0f1669192bd" title="オープン" alt="" coords="753,752,890,779"/>
+<area shape="rect" href="class_c_camera_i_o.html#ac592e3623be0dba68f4db806da652cba" title="カメラのオープン" alt="" coords="499,271,627,298"/>
+<area shape="rect" href="class_c_camera_i_o.html#aa4c14720243ce00bb95950a601327637" title="フォーマットの設定" alt="" coords="743,246,899,272"/>
+<area shape="rect" href="class_c_camera_i_o.html#a81016636faf8f4329a1a664716c17de9" title="IntegrationTimeの設定" alt="" coords="461,326,664,352"/>
+<area shape="rect" href="class_c_camera_i_o.html#a366c8cfc6c2492079e3d7a63fffb076c" title="スキャンの開始" alt="" coords="485,170,640,196"/>
+<area shape="rect" href="class_c_camera_i_o.html#aca6555e75b8ed9fc8695fb547bfb52f6" title="スキャンの停止" alt="" coords="744,600,899,627"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a2b69faf84702201cc5dbfe3fcd202b32" title="ホワイトバランススキャンの要求" alt="" coords="240,264,388,305"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="240,376,388,417"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b289ccf358a0ad255596c59196a3bd0" title="スキャンデータイメージの取得" alt="" coords="491,712,634,753"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="491,777,634,818"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="239,646,389,688"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="243,712,385,753"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="5,712,175,753"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="223,777,405,818"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="240,842,388,884"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a33f44fd7d9c88646d180d02f1642dd6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33f44fd7d9c88646d180d02f1642dd6b">&#9670;&nbsp;</a></span>logWrite() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CLog::logWrite </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_c_log.html#a27b47974f6e8e389ff5652deace14d4a">LOGLEVEL</a>&#160;</td>
+          <td class="paramname"><em>level</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; CString &gt;&#160;</td>
+          <td class="paramname"><em>prms</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ログの出力 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">level</td><td>ログレベル</td></tr>
+    <tr><td class="paramname">prms</td><td>出力文字列群</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section remark"><dt>注釈</dt><dd>出力文字列群は行単位 </dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_log_a33f44fd7d9c88646d180d02f1642dd6b_cgraph.png" border="0" usemap="#aclass_c_log_a33f44fd7d9c88646d180d02f1642dd6b_cgraph" alt=""/></div>
+<map name="aclass_c_log_a33f44fd7d9c88646d180d02f1642dd6b_cgraph" id="aclass_c_log_a33f44fd7d9c88646d180d02f1642dd6b_cgraph">
+<area shape="rect" title="ログの出力" alt="" coords="5,81,113,108"/>
+<area shape="rect" href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="161,56,321,83"/>
+<area shape="rect" href="class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf" title=" " alt="" coords="186,107,297,133"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="369,5,548,32"/>
+<area shape="rect" href="class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="392,56,525,83"/>
+<area shape="rect" href="class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="395,107,522,133"/>
+<area shape="rect" href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="596,56,728,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a436d6df17bae35980711fdc4def47410"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a436d6df17bae35980711fdc4def47410">&#9670;&nbsp;</a></span>setFilePrefix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CLog::setFilePrefix </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>prefix</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ファイル名プレフィックスの設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">prefix</td><td>ファイル名プレフィックス</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4817e0304e663455ed573a4f905e2edf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4817e0304e663455ed573a4f905e2edf">&#9670;&nbsp;</a></span>setLineBuff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CLog::setLineBuff </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>buff</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ログ出力ラインバッファへの出力文字列の登録 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buff</td><td>出力文字列</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="abd64ffb8c3f7522d647df2444dcfdca0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd64ffb8c3f7522d647df2444dcfdca0">&#9670;&nbsp;</a></span>setLogPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CLog::setLogPath </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ログファイル出力ディレクトリの設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>ログファイル出力ディレクトリ</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_log_abd64ffb8c3f7522d647df2444dcfdca0_icgraph.png" border="0" usemap="#aclass_c_log_abd64ffb8c3f7522d647df2444dcfdca0_icgraph" alt=""/></div>
+<map name="aclass_c_log_abd64ffb8c3f7522d647df2444dcfdca0_icgraph" id="aclass_c_log_abd64ffb8c3f7522d647df2444dcfdca0_icgraph">
+<area shape="rect" title="ログファイル出力ディレクトリの設定" alt="" coords="144,5,271,32"/>
+<area shape="rect" href="class_c_log.html#aed650e01cd2278e8ea4acfd031ae39d7" title="初期化コンストラクタ" alt="" coords="5,5,96,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac48d7f36fc1419e93d2a294874f4b98e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac48d7f36fc1419e93d2a294874f4b98e">&#9670;&nbsp;</a></span>setSystemLogLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CLog::setSystemLogLevel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_c_log.html#a27b47974f6e8e389ff5652deace14d4a">LOGLEVEL</a>&#160;</td>
+          <td class="paramname"><em>level</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>システムのログレベル設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">level</td><td>ログレベル</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae51a9a6b80711b7a6f5088c61eb346cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae51a9a6b80711b7a6f5088c61eb346cf">&#9670;&nbsp;</a></span>writeLine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CLog::writeLine </td>
+          <td>(</td>
+          <td class="paramtype">std::wofstream &amp;&#160;</td>
+          <td class="paramname"><em>ofsswLog</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_c_log.html#a27b47974f6e8e389ff5652deace14d4a">LOGLEVEL</a>&#160;</td>
+          <td class="paramname"><em>level</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>prm</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p></p>
+<p>ライン出力</p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ofsswLog</td><td>StreamWriterインスタンス</td></tr>
+    <tr><td class="paramname">level</td><td>ログレベル</td></tr>
+    <tr><td class="paramname">prm</td><td>出力文字列</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_log_ae51a9a6b80711b7a6f5088c61eb346cf_icgraph.png" border="0" usemap="#aclass_c_log_ae51a9a6b80711b7a6f5088c61eb346cf_icgraph" alt=""/></div>
+<map name="aclass_c_log_ae51a9a6b80711b7a6f5088c61eb346cf_icgraph" id="aclass_c_log_ae51a9a6b80711b7a6f5088c61eb346cf_icgraph">
+<area shape="rect" title=" " alt="" coords="1357,297,1468,324"/>
+<area shape="rect" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="1189,272,1297,299"/>
+<area shape="rect" href="class_c_log.html#a525e7b49275b938e8ffaa42256983e20" title="ログ出力ラインバッファのログ出力" alt="" coords="1176,323,1309,349"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#abfa111bff1b107f9615bf57d5014f7f4" title="エラーログ出力" alt="" coords="971,385,1127,412"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="971,132,1128,159"/>
+<area shape="rect" href="class_c_camera_i_o.html#a1730843fe81498de96623f8669cdefc5" title="リファレンス（ホワイトバランス）の取得" alt="" coords="722,5,921,32"/>
+<area shape="rect" href="class_c_camera_i_o.html#a0579cb57b28f22477e9f0f27fbf5b845" title="キューブデータ（最終データ）の取得" alt="" coords="453,539,672,565"/>
+<area shape="rect" href="class_c_camera_i_o.html#a5aeea6f7c98f556616525063d302d720" title="カメラのクローズ" alt="" coords="497,364,628,391"/>
+<area shape="rect" href="class_c_camera_i_o.html#a2969ec4f1d88629fa2d89ae29c901460" title="フォーマットの取得" alt="" coords="743,360,899,387"/>
+<area shape="rect" href="class_c_camera_i_o.html#a6f3994fcc04dd4265e02a8aff3211796" title="IntegrationTimeの取得" alt="" coords="720,411,923,437"/>
+<area shape="rect" href="class_c_camera_i_o.html#a5af5cf5d929a1186903b2d586d76ddb5" title="システムフォーマットの取得" alt="" coords="721,563,922,589"/>
+<area shape="rect" href="class_c_camera_i_o.html#a840fb31e388d67d52c8e316ded6a9e21" title="リファレンス（ホワイトバランス）の読み込み" alt="" coords="471,473,654,500"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ae86f36b123901fbe038ff0f1669192bd" title="オープン" alt="" coords="753,715,890,741"/>
+<area shape="rect" href="class_c_camera_i_o.html#ac592e3623be0dba68f4db806da652cba" title="カメラのオープン" alt="" coords="499,208,627,235"/>
+<area shape="rect" href="class_c_camera_i_o.html#aa4c14720243ce00bb95950a601327637" title="フォーマットの設定" alt="" coords="743,107,899,133"/>
+<area shape="rect" href="class_c_camera_i_o.html#a81016636faf8f4329a1a664716c17de9" title="IntegrationTimeの設定" alt="" coords="461,309,664,336"/>
+<area shape="rect" href="class_c_camera_i_o.html#a366c8cfc6c2492079e3d7a63fffb076c" title="スキャンの開始" alt="" coords="744,259,899,285"/>
+<area shape="rect" href="class_c_camera_i_o.html#aca6555e75b8ed9fc8695fb547bfb52f6" title="スキャンの停止" alt="" coords="485,619,640,645"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a2b69faf84702201cc5dbfe3fcd202b32" title="ホワイトバランススキャンの要求" alt="" coords="240,251,388,293"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="240,407,388,449"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b289ccf358a0ad255596c59196a3bd0" title="スキャンデータイメージの取得" alt="" coords="491,739,634,781"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="491,674,634,715"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="239,739,389,781"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="243,805,385,846"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="5,805,175,846"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="223,609,405,650"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="240,674,388,715"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a525e7b49275b938e8ffaa42256983e20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a525e7b49275b938e8ffaa42256983e20">&#9670;&nbsp;</a></span>writeLineBuff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CLog::writeLineBuff </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_c_log.html#a27b47974f6e8e389ff5652deace14d4a">LOGLEVEL</a>&#160;</td>
+          <td class="paramname"><em>level</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ログ出力ラインバッファのログ出力 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">level</td><td>ログレベル</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section remark"><dt>注釈</dt><dd>ログ出力ラインバッファはクリアされる </dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_log_a525e7b49275b938e8ffaa42256983e20_cgraph.png" border="0" usemap="#aclass_c_log_a525e7b49275b938e8ffaa42256983e20_cgraph" alt=""/></div>
+<map name="aclass_c_log_a525e7b49275b938e8ffaa42256983e20_cgraph" id="aclass_c_log_a525e7b49275b938e8ffaa42256983e20_cgraph">
+<area shape="rect" title="ログ出力ラインバッファのログ出力" alt="" coords="5,56,139,83"/>
+<area shape="rect" href="class_c_log.html#abbe05506285ab384d581ab49fd4ffe02" title="ログ出力ラインバッファのクリア" alt="" coords="207,5,327,32"/>
+<area shape="rect" href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="187,56,347,83"/>
+<area shape="rect" href="class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf" title=" " alt="" coords="211,107,322,133"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="395,5,573,32"/>
+<area shape="rect" href="class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="417,56,551,83"/>
+<area shape="rect" href="class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="421,107,547,133"/>
+<area shape="rect" href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="621,56,753,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>C:/Users/kaneko/OneDrive/Project/JointAutomaticEvaluationSystem/WeldEvaluation/src/WeldEvaluation/WeldEvaluation/<a class="el" href="_c_log_8h_source.html">CLog.h</a></li>
+<li>C:/Users/kaneko/OneDrive/Project/JointAutomaticEvaluationSystem/WeldEvaluation/src/WeldEvaluation/WeldEvaluation/CLog.cpp</li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_c_log.html">CLog</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

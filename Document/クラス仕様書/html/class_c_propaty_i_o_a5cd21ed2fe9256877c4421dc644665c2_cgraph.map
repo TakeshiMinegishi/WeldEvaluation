@@ -1,0 +1,6 @@
+<map id="CPropatyIO::SetVerticalResolution" name="CPropatyIO::SetVerticalResolution">
+<area shape="rect" id="node1" title="縦方向の解像度の設定" alt="" coords="5,31,228,57"/>
+<area shape="rect" id="node2" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="286,5,418,32"/>
+<area shape="rect" id="node3" href="$class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="276,56,428,83"/>
+<area shape="rect" id="node4" href="$class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="476,56,623,83"/>
+</map>

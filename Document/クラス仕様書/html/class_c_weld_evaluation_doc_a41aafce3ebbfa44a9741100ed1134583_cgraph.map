@@ -1,0 +1,14 @@
+<map id="CWeldEvaluationDoc::ExistScanFile" name="CWeldEvaluationDoc::ExistScanFile">
+<area shape="rect" id="node1" title="スキャンファイルの設定有無判定" alt="" coords="5,270,148,311"/>
+<area shape="rect" id="node2" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1305,21,1437,48"/>
+<area shape="rect" id="node3" href="$class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="658,160,837,187"/>
+<area shape="rect" id="node4" href="$class_c_project_file_i_o.html#a9b2b2b42f5c25ec3e352dd5b2226b8a2" title="金属面スキャン画像ファイル名の取得" alt="" coords="199,299,365,341"/>
+<area shape="rect" id="node5" href="$class_c_project_file_i_o.html#a4c86e9e72a5fdb38be8698a214f4a21e" title="樹脂面スキャン画像ファイル名の取得" alt="" coords="198,365,366,406"/>
+<area shape="rect" id="node6" href="$class_c_project_file_i_o.html#ae329fa86b9074317f82eb6fb80d03f37" title="接合結果画像スキャン画像ファイル名の取得" alt="" coords="196,430,368,471"/>
+<area shape="rect" id="node7" href="$class_c_weld_evaluation_doc.html#ab9b811efdecb8b32d42d8eaeba752b23" title="ワークプロジェクトパスの取得" alt="" coords="207,153,357,194"/>
+<area shape="rect" id="node8" href="$class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="416,65,603,106"/>
+<area shape="rect" id="node12" href="$class_c_weld_evaluation_doc.html#a827c581753a1e8dab5c6a6437e8d1696" title="プロジェクトステータス取得" alt="" coords="429,182,590,223"/>
+<area shape="rect" id="node9" href="$class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="892,80,1064,107"/>
+<area shape="rect" id="node11" href="$class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="651,43,844,85"/>
+<area shape="rect" id="node10" href="$class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="1112,47,1257,73"/>
+</map>

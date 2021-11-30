@@ -1,0 +1,6 @@
+<map id="CWeldEvaluationView::OnDestroy" name="CWeldEvaluationView::OnDestroy">
+<area shape="rect" id="node1" title="ウインド破棄時処理" alt="" coords="5,5,153,47"/>
+<area shape="rect" id="node2" href="$class_c_weld_evaluation_doc.html#a0e46d3afc7df54ee0caa20ed6b832078" title="メインウインドの位置とサイズの設定" alt="" coords="201,5,344,47"/>
+<area shape="rect" id="node3" href="$class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="392,13,544,39"/>
+<area shape="rect" id="node4" href="$class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="592,13,739,39"/>
+</map>

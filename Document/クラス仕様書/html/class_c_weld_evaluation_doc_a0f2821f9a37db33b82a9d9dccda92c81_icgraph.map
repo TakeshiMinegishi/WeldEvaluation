@@ -1,0 +1,7 @@
+<map id="CWeldEvaluationDoc::ResultSetJointColor" name="CWeldEvaluationDoc::ResultSetJointColor">
+<area shape="rect" id="node1" title="接合結果の接合色の設定" alt="" coords="641,39,785,80"/>
+<area shape="rect" id="node2" href="$class_c_weld_evaluation_doc.html#a8cccd8cb66df552066d96c31b9255389" title="分類結果の画像データ取得" alt="" coords="421,31,593,87"/>
+<area shape="rect" id="node3" href="$class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="223,5,373,47"/>
+<area shape="rect" id="node4" href="$class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="227,71,369,112"/>
+<area shape="rect" id="node5" href="$class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="5,71,175,112"/>
+</map>

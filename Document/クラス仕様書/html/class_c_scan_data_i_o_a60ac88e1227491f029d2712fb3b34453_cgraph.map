@@ -1,0 +1,4 @@
+<map id="CScanDataIO::affine" name="CScanDataIO::affine">
+<area shape="rect" id="node1" title="アファイン変換" alt="" coords="5,5,144,32"/>
+<area shape="rect" id="node2" href="$class_c_scan_data_i_o.html#ac2db55ecbcb4a44780c8a551cc6ef66a" title="線形補間" alt="" coords="192,5,343,32"/>
+</map>

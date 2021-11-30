@@ -1,0 +1,4 @@
+<map id="CGraphWind::Draw" name="CGraphWind::Draw">
+<area shape="rect" id="node1" title="グラフ描画" alt="" coords="187,5,320,32"/>
+<area shape="rect" id="node2" href="$class_c_spectral_dlg.html#a779cbb744b5c248b1a9f663e609ece3f" title="スペクトルグラフの表示" alt="" coords="5,5,139,32"/>
+</map>

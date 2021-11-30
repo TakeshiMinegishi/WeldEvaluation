@@ -1,0 +1,4 @@
+<map id="CFileUtil::fileDelete" name="CFileUtil::fileDelete">
+<area shape="rect" id="node1" title="ファイルを削除する" alt="" coords="5,5,137,32"/>
+<area shape="rect" id="node2" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="185,5,317,32"/>
+</map>

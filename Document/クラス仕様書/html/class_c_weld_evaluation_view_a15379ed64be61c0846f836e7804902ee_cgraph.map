@@ -1,0 +1,6 @@
+<map id="CWeldEvaluationView::OnSpectrumeCloseRequest" name="CWeldEvaluationView::OnSpectrumeCloseRequest">
+<area shape="rect" id="node1" title="区間スペクトル表示ダイアログのクローズ" alt="" coords="5,5,196,47"/>
+<area shape="rect" id="node2" href="$class_c_weld_evaluation_doc.html#af4172c04d2d0a57fb781d69e51ddc97e" title="区間スペクトルダイアログの位置とサイズの取得" alt="" coords="244,5,388,47"/>
+<area shape="rect" id="node3" href="$class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="436,13,588,39"/>
+<area shape="rect" id="node4" href="$class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="636,13,783,39"/>
+</map>

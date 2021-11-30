@@ -1,0 +1,8 @@
+<map id="COprtTabPageSetting::LoadParamater" name="COprtTabPageSetting::LoadParamater">
+<area shape="rect" id="node1" title="パラメータの取得" alt="" coords="5,23,153,65"/>
+<area shape="rect" id="node2" href="$class_c_weld_evaluation_doc.html#ad9712f68619dcab924e5c06b439e1c75" title="名称の取得" alt="" coords="201,23,344,65"/>
+<area shape="rect" id="node3" href="$class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="395,5,567,32"/>
+<area shape="rect" id="node6" href="$class_c_propaty_i_o.html#adcab3ae7a0b14e93b5b7c781d4025986" title="名称の取得" alt="" coords="392,56,569,83"/>
+<area shape="rect" id="node4" href="$class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="617,5,763,32"/>
+<area shape="rect" id="node5" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="811,5,943,32"/>
+</map>

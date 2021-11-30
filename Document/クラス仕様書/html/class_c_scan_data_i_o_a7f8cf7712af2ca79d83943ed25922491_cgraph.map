@@ -1,0 +1,6 @@
+<map id="CScanDataIO::MatrixRotete" name="CScanDataIO::MatrixRotete">
+<area shape="rect" id="node1" title="マトリックス回転" alt="" coords="5,56,188,83"/>
+<area shape="rect" id="node2" href="$class_c_scan_data_i_o.html#a604a2f1e09bc8c6bcbad00c82b19a893" title="マトリックス初期化" alt="" coords="265,5,428,32"/>
+<area shape="rect" id="node3" href="$class_c_scan_data_i_o.html#a44d75ac4205c85d7a1fc1fee5674ea26" title="マトリックスかけ算" alt="" coords="236,56,457,83"/>
+<area shape="rect" id="node4" href="$class_c_scan_data_i_o.html#a0040aa2a3b7efdff821a2e6e4bbbfa48" title="マトリックス開放" alt="" coords="251,107,443,133"/>
+</map>

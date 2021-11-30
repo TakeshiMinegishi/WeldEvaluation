@@ -1,0 +1,10 @@
+<map id="CPropatyIO::ResinSetJointColor" name="CPropatyIO::ResinSetJointColor">
+<area shape="rect" id="node1" title="樹脂面の接合色の設定" alt="" coords="881,43,1059,84"/>
+<area shape="rect" id="node2" href="$class_c_weld_evaluation_doc.html#a21fcb772f7329ee52b9b1922b133eca0" title="スキャン情報の削除" alt="" coords="691,8,833,49"/>
+<area shape="rect" id="node4" href="$class_c_weld_evaluation_doc.html#aaf723bdc82ec7ede125b473a0ba36672" title="樹脂面の接合色の設定" alt="" coords="691,75,833,116"/>
+<area shape="rect" id="node3" href="$class_c_oprt_tab_page_scan.html#a325bd4d3b6c573140e8b23f901378767" title="スキャンボタン押下時処理" alt="" coords="421,5,643,47"/>
+<area shape="rect" id="node5" href="$class_c_weld_evaluation_doc.html#a8cccd8cb66df552066d96c31b9255389" title="分類結果の画像データ取得" alt="" coords="446,71,618,127"/>
+<area shape="rect" id="node6" href="$class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="223,45,373,87"/>
+<area shape="rect" id="node7" href="$class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="227,111,369,152"/>
+<area shape="rect" id="node8" href="$class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="5,111,175,152"/>
+</map>

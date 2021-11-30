@@ -1,0 +1,10 @@
+<map id="CScanDataIO::errorLog" name="CScanDataIO::errorLog">
+<area shape="rect" id="node1" title="エラーログ出力" alt="" coords="5,81,161,108"/>
+<area shape="rect" id="node2" href="$class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="209,81,317,108"/>
+<area shape="rect" id="node3" href="$class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="365,56,525,83"/>
+<area shape="rect" id="node8" href="$class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf" title=" " alt="" coords="390,107,501,133"/>
+<area shape="rect" id="node4" href="$class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="573,5,752,32"/>
+<area shape="rect" id="node5" href="$class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="596,56,729,83"/>
+<area shape="rect" id="node7" href="$class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="599,107,726,133"/>
+<area shape="rect" id="node6" href="$class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="800,56,932,83"/>
+</map>

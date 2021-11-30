@@ -1,0 +1,45 @@
+<map id="CWeldEvaluationDoc::Analize" name="CWeldEvaluationDoc::Analize">
+<area shape="rect" id="node1" title="解析の実施" alt="" coords="5,651,148,692"/>
+<area shape="rect" id="node2" href="$class_c_file_util.html#a390bb140d44dcbd206497e5efe5a76a8" title="ファイルを削除する" alt="" coords="1516,70,1648,97"/>
+<area shape="rect" id="node3" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1909,298,2041,325"/>
+<area shape="rect" id="node4" href="$class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="1262,900,1441,926"/>
+<area shape="rect" id="node5" href="$class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="783,232,935,258"/>
+<area shape="rect" id="node7" href="$class_c_weld_evaluation_doc.html#a20f4912ddc5aef772cd12ec334e55f04" title="スキャンデータファイルパス取得" alt="" coords="245,884,399,926"/>
+<area shape="rect" id="node14" href="$class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="1496,849,1668,876"/>
+<area shape="rect" id="node17" href="$class_c_project_file_i_o.html#a8edee7c70a837ef023b2356cf41f1055" title="スキャンデータのサイズ取得" alt="" coords="213,1001,431,1028"/>
+<area shape="rect" id="node18" href="$class_c_propaty_i_o.html#a16a55c3db357af77e875c008c5837dee" title="金属面の分類数の取得" alt="" coords="500,452,695,494"/>
+<area shape="rect" id="node23" href="$class_c_weld_evaluation_doc.html#a3f5f6a5e4e73e405f35dfd789d004e67" title="金属面の分類数の取得" alt="" coords="235,300,409,342"/>
+<area shape="rect" id="node24" href="$class_c_weld_evaluation_doc.html#a282b2232f82ad37165b305e66daf7066" title="金属面の接合割合の設定" alt="" coords="251,716,393,758"/>
+<area shape="rect" id="node27" href="$class_c_propaty_i_o.html#a0e15acb901cceb99e15113ca5d239e13" title="重なりピクセル数の取得" alt="" coords="496,118,699,159"/>
+<area shape="rect" id="node28" href="$class_c_propaty_i_o.html#a4ccce7edae07c0d331960ca1104aa375" title="樹脂面の分類数の取得" alt="" coords="499,387,695,428"/>
+<area shape="rect" id="node30" href="$class_c_weld_evaluation_doc.html#ab2690e8124c3eed981a213ad89ec2c6f" title="樹脂面の分類数の取得" alt="" coords="235,235,409,276"/>
+<area shape="rect" id="node31" href="$class_c_weld_evaluation_doc.html#a556e5795142b2a57d1f35f71809875cf" title="樹脂面の接合割合の設定" alt="" coords="251,586,393,627"/>
+<area shape="rect" id="node33" href="$class_c_propaty_i_o.html#a3c255aa66e4a529223b8fc4dcaf4df18" title="接合結果の分類数の取得" alt="" coords="497,519,697,560"/>
+<area shape="rect" id="node35" href="$class_c_weld_evaluation_doc.html#a1f6b84e20d4bedc5ceea6d96e9982cec" title="接合結果の分類数の取得" alt="" coords="233,418,411,459"/>
+<area shape="rect" id="node36" href="$class_c_weld_evaluation_doc.html#a3adb6695516f8c519543b29bdcef8f05" title="接合結果の接合割合の設定" alt="" coords="250,651,394,692"/>
+<area shape="rect" id="node38" href="$class_c_project_file_i_o.html#afca60f6ab0cd03984ed31d9748d2c40c" title="作成された金属面階層クラスタリング解析のクラス数の取得" alt="" coords="199,1052,445,1094"/>
+<area shape="rect" id="node39" href="$class_c_project_file_i_o.html#a29406d5c5257125f37cc8570c6925085" title="作成された金属面K&#45;Means解析のクラス数の取得" alt="" coords="747,735,972,776"/>
+<area shape="rect" id="node40" href="$class_c_project_file_i_o.html#a04f2933cae1ff9e3a08415659c5fadd6" title="作成された樹脂面階層クラスタリング解析のクラス数の取得" alt="" coords="198,1118,446,1159"/>
+<area shape="rect" id="node41" href="$class_c_project_file_i_o.html#ab4a20cfe0a148a81e85160f76cb20928" title="作成された樹脂面K&#45;Means解析のクラス数の取得" alt="" coords="209,1183,435,1224"/>
+<area shape="rect" id="node42" href="$class_c_project_file_i_o.html#a2dff18744914d9c6de7ee826b12dd08a" title="作成された接合結果階層クラスタリング解析のクラス数の取得" alt="" coords="196,1248,448,1290"/>
+<area shape="rect" id="node43" href="$class_c_project_file_i_o.html#a960936d797d0c1f6b30cec94aa57e241" title="作成された接合結果K&#45;Means解析のクラス数の取得" alt="" coords="207,1314,437,1355"/>
+<area shape="rect" id="node6" href="$class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="1716,400,1861,426"/>
+<area shape="rect" id="node8" href="$class_c_weld_evaluation_doc.html#a18363dcc891c5e076681195958f7ab18" title="スキャンファイルパス取得（拡張子なし）" alt="" coords="526,972,669,1014"/>
+<area shape="rect" id="node9" href="$class_c_project_file_i_o.html#a9b2b2b42f5c25ec3e352dd5b2226b8a2" title="金属面スキャン画像ファイル名の取得" alt="" coords="776,1002,943,1043"/>
+<area shape="rect" id="node10" href="$class_c_project_file_i_o.html#a4c86e9e72a5fdb38be8698a214f4a21e" title="樹脂面スキャン画像ファイル名の取得" alt="" coords="775,1067,943,1108"/>
+<area shape="rect" id="node11" href="$class_c_project_file_i_o.html#ae329fa86b9074317f82eb6fb80d03f37" title="接合結果画像スキャン画像ファイル名の取得" alt="" coords="773,1132,945,1174"/>
+<area shape="rect" id="node12" href="$class_c_weld_evaluation_doc.html#ab9b811efdecb8b32d42d8eaeba752b23" title="ワークプロジェクトパスの取得" alt="" coords="784,884,935,926"/>
+<area shape="rect" id="node13" href="$class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="1020,783,1207,824"/>
+<area shape="rect" id="node16" href="$class_c_weld_evaluation_doc.html#a827c581753a1e8dab5c6a6437e8d1696" title="プロジェクトステータス取得" alt="" coords="1033,1002,1194,1043"/>
+<area shape="rect" id="node15" href="$class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="1255,783,1448,824"/>
+<area shape="rect" id="node19" href="$class_c_configration_i_o.html#a502e7c8a4d1a173bf0637e9704ebd980" title="指定セクションのキーにを削除" alt="" coords="770,450,949,477"/>
+<area shape="rect" id="node20" href="$class_c_propaty_i_o.html#ab263d6b737c5fb9a6a75a8319506cddb" title="金属面の分類数の設定" alt="" coords="762,502,957,543"/>
+<area shape="rect" id="node21" href="$class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="1037,574,1189,601"/>
+<area shape="rect" id="node22" href="$class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="1278,577,1425,604"/>
+<area shape="rect" id="node25" href="$class_c_propaty_i_o.html#a4696f24d77def8e3b9d206b351c8ad66" title="金属面の接合割合の設定" alt="" coords="509,716,685,758"/>
+<area shape="rect" id="node26" href="$class_c_configration_i_o.html#a535689b2c4df043a729548de99f72a4a" title="指定セクションのキーに浮動小数点値を設定" alt="" coords="770,684,949,710"/>
+<area shape="rect" id="node29" href="$class_c_propaty_i_o.html#a6a2f279575582b3b5fd0fc78d44313bf" title="樹脂面の分類数の設定" alt="" coords="762,334,957,375"/>
+<area shape="rect" id="node32" href="$class_c_propaty_i_o.html#ab16492fd229e0e2ccf188fae8ca7f726" title="樹脂面の接合割合の設定" alt="" coords="509,586,686,627"/>
+<area shape="rect" id="node34" href="$class_c_propaty_i_o.html#a5d8a3b2d8be1e1c95293c525278ccc4b" title="接合結果の分類数の設定" alt="" coords="760,567,959,608"/>
+<area shape="rect" id="node37" href="$class_c_propaty_i_o.html#ab5d3cd61f8af29747e644c8891163c28" title="接合結果の接合割合の設定" alt="" coords="507,651,688,692"/>
+</map>

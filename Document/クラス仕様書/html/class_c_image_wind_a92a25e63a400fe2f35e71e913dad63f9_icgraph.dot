@@ -1,0 +1,30 @@
+digraph "CImageWind::OnPaint"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="CImageWind::OnPaint",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="描画処理"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="CImageWind::Erase",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_image_wind.html#a08cd8dd08faed0389c0d7483bef8534e",tooltip="画像の削除"];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="CWeldEvaluationView\l::ViewChangeRequest",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd",tooltip="表示変更リクエスト"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="CImageWind::MoveImage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_image_wind.html#a976c802d78b70d67d4477e5a6d7cc5f2",tooltip="画像の再配置"];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="CWeldEvaluationView\l::ImageScaling",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_weld_evaluation_view.html#aeb012272b34160f748163b0d03847772",tooltip="画像のスケーリング・移動"];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="CWeldEvaluationView\l::OnImageMoveing",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_weld_evaluation_view.html#adf3033ffebe857d0ea9fb23c17467be9",tooltip="画像移動通知"];
+  Node5 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="CWeldEvaluationView\l::OnImageScaling",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_weld_evaluation_view.html#a4c0c78466f258b6f3046af45d445830f",tooltip="画像スケーリング実施通知"];
+  Node4 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="CImageWind::Scaling",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_image_wind.html#a041ad6644ec295c977a80e998bce656a",tooltip="画像のスケーリング"];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="CImageWind::OnMouseWheel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_image_wind.html#a3d51539575f1777603ee01ba47a3090b",tooltip="マウスホイールを回転時処理"];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="CImageWind::OnMouseMove",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_image_wind.html#a8bea61ad1795e82fe41f1389cb45a31d",tooltip="マウス移動時処理"];
+  Node1 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="CImageWind::Reset",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_image_wind.html#a208bbd0dddb9dcc88e8eb1d5500a9352",tooltip="画像のリセット"];
+}
