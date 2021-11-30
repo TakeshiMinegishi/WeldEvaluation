@@ -1,9 +1,0 @@
-<map id="CWeldEvaluationDoc::SetDisplayMode" name="CWeldEvaluationDoc::SetDisplayMode">
-<area shape="rect" id="node1" title="表示モードの設定" alt="" coords="5,71,148,112"/>
-<area shape="rect" id="node2" href="$class_c_project_file_i_o.html#a72febda46d46ce0a691c704a6b1c0e22" title="金属画像表示タイプの設定" alt="" coords="198,5,365,47"/>
-<area shape="rect" id="node6" href="$class_c_project_file_i_o.html#a3423e2b69573bdb6fbcb3378eab42d18" title="樹脂画像表示タイプの設定" alt="" coords="198,71,365,112"/>
-<area shape="rect" id="node7" href="$class_c_project_file_i_o.html#a4d14fb09609fb48e540cb7851daccedc" title="接合結果画像表示タイプの設定" alt="" coords="196,136,367,177"/>
-<area shape="rect" id="node3" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="425,53,557,79"/>
-<area shape="rect" id="node4" href="$class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="415,103,567,130"/>
-<area shape="rect" id="node5" href="$class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="615,103,761,130"/>
-</map>

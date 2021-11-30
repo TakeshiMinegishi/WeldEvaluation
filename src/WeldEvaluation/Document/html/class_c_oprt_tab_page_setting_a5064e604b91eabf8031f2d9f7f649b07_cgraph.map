@@ -1,5 +1,0 @@
-<map id="COprtTabPageSetting::Update" name="COprtTabPageSetting::Update">
-<area shape="rect" id="node1" title="更新処理" alt="" coords="5,39,153,80"/>
-<area shape="rect" id="node2" href="$class_c_weld_evaluation_doc.html#a995e95e45492a4523045a6a59ce35467" title="プロジェクトへの分類結果データファイルパス取得" alt="" coords="201,5,393,47"/>
-<area shape="rect" id="node3" href="$class_c_weld_evaluation_doc.html#a3a1305db13ed5cb73a6debfd0b67c89a" title="プロジェクトからのスキャンイメージファイルパス取得" alt="" coords="226,71,369,112"/>
-</map>

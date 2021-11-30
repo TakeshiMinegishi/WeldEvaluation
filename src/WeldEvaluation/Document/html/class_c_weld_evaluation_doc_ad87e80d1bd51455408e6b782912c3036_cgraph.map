@@ -1,8 +1,0 @@
-<map id="CWeldEvaluationDoc::GetWorkProjectFolderPath" name="CWeldEvaluationDoc::GetWorkProjectFolderPath">
-<area shape="rect" id="node1" title="ワークプロジェクトのルートパス取得" alt="" coords="5,49,192,90"/>
-<area shape="rect" id="node2" href="$class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="247,5,426,32"/>
-<area shape="rect" id="node3" href="$class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="481,85,653,112"/>
-<area shape="rect" id="node6" href="$class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="240,107,433,149"/>
-<area shape="rect" id="node4" href="$class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="701,85,847,112"/>
-<area shape="rect" id="node5" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="895,85,1027,112"/>
-</map>

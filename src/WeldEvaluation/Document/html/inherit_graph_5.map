@@ -1,6 +1,0 @@
-<map id="クラス階層図" name="クラス階層図">
-<area shape="rect" id="node1" title=" " alt="" coords="5,56,72,83"/>
-<area shape="rect" id="node2" href="$class_c_graph_wind.html" title="CGraphWind ダイアログ" alt="" coords="121,5,217,32"/>
-<area shape="rect" id="node3" href="$class_c_image_wind.html" title="描画ウインドグラス" alt="" coords="121,56,217,83"/>
-<area shape="rect" id="node4" href="$class_c_spectral_dlg.html" title="区間スペクトル用ダイアログクラス" alt="" coords="120,107,219,133"/>
-</map>

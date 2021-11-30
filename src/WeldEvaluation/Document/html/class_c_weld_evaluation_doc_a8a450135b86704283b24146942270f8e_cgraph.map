@@ -1,7 +1,0 @@
-<map id="CWeldEvaluationDoc::SetVerticalResolution" name="CWeldEvaluationDoc::SetVerticalResolution">
-<area shape="rect" id="node1" title="縦方向の解像度の設定" alt="" coords="5,23,160,65"/>
-<area shape="rect" id="node2" href="$class_c_propaty_i_o.html#a5cd21ed2fe9256877c4421dc644665c2" title="縦方向の解像度の設定" alt="" coords="208,31,431,57"/>
-<area shape="rect" id="node3" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="489,5,621,32"/>
-<area shape="rect" id="node4" href="$class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="479,56,631,83"/>
-<area shape="rect" id="node5" href="$class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="679,56,825,83"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="CWeldEvaluationDoc::MetalGetJointRetio" name="CWeldEvaluationDoc::MetalGetJointRetio">
-<area shape="rect" id="node1" title="金属面の接合割合の取得" alt="" coords="5,19,148,61"/>
-<area shape="rect" id="node2" href="$class_c_configration_i_o.html#a460fe4c9b31d05649b998bcf78f2568d" title="指定セクションのキー値（浮動小数点）を取得" alt="" coords="421,5,600,32"/>
-<area shape="rect" id="node5" href="$class_c_propaty_i_o.html#a939aaef4c4b84ea0ea2add3357e0f4de" title="金属面の接合割合の取得" alt="" coords="196,49,373,90"/>
-<area shape="rect" id="node3" href="$class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="648,5,793,32"/>
-<area shape="rect" id="node4" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="841,31,973,57"/>
-</map>

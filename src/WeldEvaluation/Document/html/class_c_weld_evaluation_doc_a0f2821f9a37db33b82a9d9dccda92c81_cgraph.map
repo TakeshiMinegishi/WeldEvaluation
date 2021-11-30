@@ -1,6 +1,0 @@
-<map id="CWeldEvaluationDoc::ResultSetJointColor" name="CWeldEvaluationDoc::ResultSetJointColor">
-<area shape="rect" id="node1" title="接合結果の接合色の設定" alt="" coords="5,5,149,47"/>
-<area shape="rect" id="node2" href="$class_c_propaty_i_o.html#a16b3e539746c24e961b939c92634938c" title="接合結果の接合色の設定" alt="" coords="197,5,379,47"/>
-<area shape="rect" id="node3" href="$class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="427,13,579,39"/>
-<area shape="rect" id="node4" href="$class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="627,13,773,39"/>
-</map>

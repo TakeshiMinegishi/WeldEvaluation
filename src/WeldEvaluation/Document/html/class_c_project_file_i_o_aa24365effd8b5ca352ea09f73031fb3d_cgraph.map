@@ -1,6 +1,0 @@
-<map id="CProjectFileIO::GetNumbetOfMetalKMeansClassificationClass" name="CProjectFileIO::GetNumbetOfMetalKMeansClassificationClass">
-<area shape="rect" id="node1" title="作成された金属面K&#45;Means解析のクラス数の取得" alt="" coords="5,5,231,47"/>
-<area shape="rect" id="node2" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="672,13,804,39"/>
-<area shape="rect" id="node3" href="$class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="279,38,431,65"/>
-<area shape="rect" id="node4" href="$class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="479,38,624,65"/>
-</map>

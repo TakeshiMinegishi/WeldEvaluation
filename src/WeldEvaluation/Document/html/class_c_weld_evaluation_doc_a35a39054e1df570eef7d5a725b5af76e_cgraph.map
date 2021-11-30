@@ -1,9 +1,0 @@
-<map id="CWeldEvaluationDoc::GetVerticalScale" name="CWeldEvaluationDoc::GetVerticalScale">
-<area shape="rect" id="node1" title="取得データの縦方向拡縮率の取得" alt="" coords="5,43,148,85"/>
-<area shape="rect" id="node2" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1064,109,1196,136"/>
-<area shape="rect" id="node3" href="$class_c_weld_evaluation_doc.html#a55485766139b9685d1ed9a5e61a06e7b" title="撮影高さの取得" alt="" coords="440,43,583,85"/>
-<area shape="rect" id="node6" href="$class_c_weld_evaluation_doc.html#acb185b5cb5f8e080c3e082e6def82cb6" title="縦方向の解像度の取得" alt="" coords="196,102,352,143"/>
-<area shape="rect" id="node4" href="$class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="671,109,823,136"/>
-<area shape="rect" id="node5" href="$class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="871,109,1016,136"/>
-<area shape="rect" id="node7" href="$class_c_propaty_i_o.html#a6cc4479cfd0b46ed6189985fcf02bbad" title="縦方向の解像度の取得" alt="" coords="400,160,623,187"/>
-</map>

@@ -1,6 +1,0 @@
-<map id="CImageWind::ConvertImagePos" name="CImageWind::ConvertImagePos">
-<area shape="rect" id="node1" title="点の位置を上下反転させる" alt="" coords="397,58,603,85"/>
-<area shape="rect" id="node2" href="$class_c_weld_evaluation_view.html#aeb012272b34160f748163b0d03847772" title="画像のスケーリング・移動" alt="" coords="201,51,349,92"/>
-<area shape="rect" id="node3" href="$class_c_weld_evaluation_view.html#adf3033ffebe857d0ea9fb23c17467be9" title="画像移動通知" alt="" coords="5,5,153,47"/>
-<area shape="rect" id="node4" href="$class_c_weld_evaluation_view.html#a4c0c78466f258b6f3046af45d445830f" title="画像スケーリング実施通知" alt="" coords="5,84,153,125"/>
-</map>

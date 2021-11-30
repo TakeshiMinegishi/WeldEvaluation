@@ -1,5 +1,0 @@
-<map id="CWeldEvaluationDoc::GetSpectrumRange" name="CWeldEvaluationDoc::GetSpectrumRange">
-<area shape="rect" id="node1" title="スペクトルレンジの取得" alt="" coords="5,23,149,65"/>
-<area shape="rect" id="node2" href="$class_c_scan_data_i_o.html#a09a161f191779097aa003676ecb22714" title="バンド数の取得" alt="" coords="197,5,416,32"/>
-<area shape="rect" id="node3" href="$class_c_scan_data_i_o.html#a2e23bb8cbebd5d51292726ee0238adec" title="バンドのスペクトル値取得" alt="" coords="207,56,406,83"/>
-</map>

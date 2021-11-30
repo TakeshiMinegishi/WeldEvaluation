@@ -1,7 +1,0 @@
-<map id="CWeldEvaluationDoc::IsUpdateNumberOfClassifications" name="CWeldEvaluationDoc::IsUpdateNumberOfClassifications">
-<area shape="rect" id="node1" title="解析結果の分類数と設定の分類数が異なるかの判定" alt="" coords="440,71,663,112"/>
-<area shape="rect" id="node2" href="$class_c_prop_tab_page_parameter.html#aed639166205e0a1527c7e4bec6196af6" title="ステータスの更新" alt="" coords="223,71,392,112"/>
-<area shape="rect" id="node3" href="$class_c_prop_tab_page_parameter.html#ace1f9ec08dc88cef79340c4efab44c8e" title="ウインドアクティブ時処理" alt="" coords="5,5,175,47"/>
-<area shape="rect" id="node4" href="$class_c_prop_tab_page_parameter.html#a14f7d8b2d5db7edb3211c6c969dd4701" title="タイマー" alt="" coords="5,71,175,112"/>
-<area shape="rect" id="node5" href="$class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="15,136,165,177"/>
-</map>

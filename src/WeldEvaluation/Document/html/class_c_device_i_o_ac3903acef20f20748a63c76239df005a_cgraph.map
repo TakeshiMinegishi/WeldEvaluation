@@ -1,4 +1,0 @@
-<map id="CDeviceIO::ToHome" name="CDeviceIO::ToHome">
-<area shape="rect" id="node1" title="カメラをホームポジションへ移動" alt="" coords="5,5,144,32"/>
-<area shape="rect" id="node2" href="$class_c_device_i_o.html#afe3dcac15255e9b9658926a5db7c9220" title="カメラの移動" alt="" coords="192,5,312,32"/>
-</map>

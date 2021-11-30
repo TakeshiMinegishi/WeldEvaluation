@@ -1,7 +1,0 @@
-<map id="CWeldEvaluationDoc::ResinGetAnalysisMethod" name="CWeldEvaluationDoc::ResinGetAnalysisMethod">
-<area shape="rect" id="node1" title="樹脂面の解析方法の取得" alt="" coords="5,27,183,69"/>
-<area shape="rect" id="node2" href="$class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="255,5,407,32"/>
-<area shape="rect" id="node5" href="$class_c_propaty_i_o.html#a46c9543b5945bbe938d772d62a95028c" title="樹脂面の解析方法の取得" alt="" coords="231,57,432,98"/>
-<area shape="rect" id="node3" href="$class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="480,5,625,32"/>
-<area shape="rect" id="node4" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="673,5,805,32"/>
-</map>

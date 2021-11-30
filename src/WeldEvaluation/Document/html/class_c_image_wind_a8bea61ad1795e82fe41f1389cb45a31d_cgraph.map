@@ -1,5 +1,0 @@
-<map id="CImageWind::OnMouseMove" name="CImageWind::OnMouseMove">
-<area shape="rect" id="node1" title="マウス移動時処理" alt="" coords="5,31,196,57"/>
-<area shape="rect" id="node2" href="$class_c_image_wind.html#ab723314913cf21c2f4117715804f2594" title="クライアント座標からスキャン画像座標への変換" alt="" coords="244,5,423,32"/>
-<area shape="rect" id="node3" href="$class_c_image_wind.html#a92a25e63a400fe2f35e71e913dad63f9" title="描画処理" alt="" coords="258,56,409,83"/>
-</map>

@@ -1,4 +1,0 @@
-<map id="CFileUtil::getDir" name="CFileUtil::getDir">
-<area shape="rect" id="node1" title="ファイルパスからディレクトリを取得する" alt="" coords="5,5,119,32"/>
-<area shape="rect" id="node2" href="$class_c_file_util.html#acd0ab529d0f67b3a1d783e9b954c5576" title="フィルパスを分解する" alt="" coords="167,5,297,32"/>
-</map>

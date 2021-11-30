@@ -1,7 +1,0 @@
-<map id="CWeldEvaluationDoc::MetalGetJointColor" name="CWeldEvaluationDoc::MetalGetJointColor">
-<area shape="rect" id="node1" title="金属面の接合色の取得" alt="" coords="5,5,148,47"/>
-<area shape="rect" id="node2" href="$class_c_propaty_i_o.html#a50ade1ca7090d25d15b77806756afc6e" title="金属面の接合色の取得" alt="" coords="196,5,373,47"/>
-<area shape="rect" id="node3" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="815,13,947,39"/>
-<area shape="rect" id="node4" href="$class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="421,38,573,65"/>
-<area shape="rect" id="node5" href="$class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="621,38,767,65"/>
-</map>

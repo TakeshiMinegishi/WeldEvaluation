@@ -1,6 +1,0 @@
-<map id="CPropatyIO::WriteTestName" name="CPropatyIO::WriteTestName">
-<area shape="rect" id="node1" title="テスト名の保存" alt="" coords="5,31,192,57"/>
-<area shape="rect" id="node2" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="260,5,392,32"/>
-<area shape="rect" id="node3" href="$class_c_configration_i_o.html#a0fb34e01af48df8da81d80108ffa3d03" title="指定セクションのキーに文字列を設定" alt="" coords="240,56,412,83"/>
-<area shape="rect" id="node4" href="$class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="460,56,607,83"/>
-</map>

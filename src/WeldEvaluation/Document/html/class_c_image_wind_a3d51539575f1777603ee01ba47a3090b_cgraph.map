@@ -1,6 +1,0 @@
-<map id="CImageWind::OnMouseWheel" name="CImageWind::OnMouseWheel">
-<area shape="rect" id="node1" title="マウスホイールを回転時処理" alt="" coords="5,5,203,32"/>
-<area shape="rect" id="node2" href="$class_c_image_wind.html#a041ad6644ec295c977a80e998bce656a" title="画像のスケーリング" alt="" coords="251,5,397,32"/>
-<area shape="rect" id="node3" href="$class_c_image_wind.html#a976c802d78b70d67d4477e5a6d7cc5f2" title="画像の再配置" alt="" coords="445,5,615,32"/>
-<area shape="rect" id="node4" href="$class_c_image_wind.html#a92a25e63a400fe2f35e71e913dad63f9" title="描画処理" alt="" coords="663,5,813,32"/>
-</map>

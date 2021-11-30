@@ -1,4 +1,0 @@
-<map id="CWeldEvaluationView::OnReadResultFileStatus" name="CWeldEvaluationView::OnReadResultFileStatus">
-<area shape="rect" id="node1" title="解析結果ファイル読み込み状態通知" alt="" coords="5,5,179,47"/>
-<area shape="rect" id="node2" href="$class_c_weld_evaluation_doc.html#a4de63aca3396663c6ca1ff89496e44c0" title="解析処理中止リクエスト" alt="" coords="227,5,395,47"/>
-</map>

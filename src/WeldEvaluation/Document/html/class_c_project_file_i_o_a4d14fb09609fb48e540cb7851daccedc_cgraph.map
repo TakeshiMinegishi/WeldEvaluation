@@ -1,6 +1,0 @@
-<map id="CProjectFileIO::SetResultDisplayType" name="CProjectFileIO::SetResultDisplayType">
-<area shape="rect" id="node1" title="接合結果画像表示タイプの設定" alt="" coords="5,23,176,65"/>
-<area shape="rect" id="node2" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="234,5,366,32"/>
-<area shape="rect" id="node3" href="$class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="224,56,376,83"/>
-<area shape="rect" id="node4" href="$class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="424,56,571,83"/>
-</map>

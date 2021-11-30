@@ -1,4 +1,0 @@
-<map id="CPropTabPageSetting::OnVScroll" name="CPropTabPageSetting::OnVScroll">
-<area shape="rect" id="node1" title="垂直バースクロールクリック時処理" alt="" coords="204,5,355,47"/>
-<area shape="rect" id="node2" href="$class_c_prop_tab_page_setting.html#a7e6fc3814ec28480639e7900244ce6b1" title="マウスホイールの回転イベント" alt="" coords="5,5,156,47"/>
-</map>

@@ -1,8 +1,0 @@
-<map id="CImageWind::MoveImage" name="CImageWind::MoveImage">
-<area shape="rect" id="node1" title="画像の再配置" alt="" coords="447,89,616,115"/>
-<area shape="rect" id="node2" href="$class_c_weld_evaluation_view.html#aeb012272b34160f748163b0d03847772" title="画像のスケーリング・移動" alt="" coords="251,52,399,93"/>
-<area shape="rect" id="node3" href="$class_c_weld_evaluation_view.html#adf3033ffebe857d0ea9fb23c17467be9" title="画像移動通知" alt="" coords="30,5,178,47"/>
-<area shape="rect" id="node4" href="$class_c_weld_evaluation_view.html#a4c0c78466f258b6f3046af45d445830f" title="画像スケーリング実施通知" alt="" coords="30,81,178,123"/>
-<area shape="rect" id="node5" href="$class_c_image_wind.html#a041ad6644ec295c977a80e998bce656a" title="画像のスケーリング" alt="" coords="251,169,398,195"/>
-<area shape="rect" id="node6" href="$class_c_image_wind.html#a3d51539575f1777603ee01ba47a3090b" title="マウスホイールを回転時処理" alt="" coords="5,169,203,195"/>
-</map>

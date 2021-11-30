@@ -1,6 +1,0 @@
-<map id="CWeldEvaluationDoc::MetalSetJointRetio" name="CWeldEvaluationDoc::MetalSetJointRetio">
-<area shape="rect" id="node1" title="金属面の接合割合の設定" alt="" coords="5,5,148,47"/>
-<area shape="rect" id="node2" href="$class_c_propaty_i_o.html#a4696f24d77def8e3b9d206b351c8ad66" title="金属面の接合割合の設定" alt="" coords="196,5,372,47"/>
-<area shape="rect" id="node3" href="$class_c_configration_i_o.html#a535689b2c4df043a729548de99f72a4a" title="指定セクションのキーに浮動小数点値を設定" alt="" coords="420,13,599,39"/>
-<area shape="rect" id="node4" href="$class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="647,13,793,39"/>
-</map>

@@ -1,5 +1,0 @@
-<map id="CConfigrationIO::getDouble" name="CConfigrationIO::getDouble">
-<area shape="rect" id="node1" title="指定セクションのキー値（浮動小数点）を取得" alt="" coords="5,5,184,32"/>
-<area shape="rect" id="node2" href="$class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="232,5,377,32"/>
-<area shape="rect" id="node3" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="425,5,557,32"/>
-</map>

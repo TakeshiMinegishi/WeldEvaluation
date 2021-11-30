@@ -1,6 +1,0 @@
-<map id="CWeldEvaluationDoc::GetIntegrationTimeMs" name="CWeldEvaluationDoc::GetIntegrationTimeMs">
-<area shape="rect" id="node1" title="Integration_time_msの取得" alt="" coords="5,5,163,47"/>
-<area shape="rect" id="node2" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="631,13,763,39"/>
-<area shape="rect" id="node3" href="$class_c_configration_i_o.html#a460fe4c9b31d05649b998bcf78f2568d" title="指定セクションのキー値（浮動小数点）を取得" alt="" coords="211,38,389,65"/>
-<area shape="rect" id="node4" href="$class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="437,38,583,65"/>
-</map>

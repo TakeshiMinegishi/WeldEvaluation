@@ -1,6 +1,0 @@
-<map id="CScanDataIO::getWaveLength" name="CScanDataIO::getWaveLength">
-<area shape="rect" id="node1" title="バンドのスペクトル値取得" alt="" coords="437,46,636,73"/>
-<area shape="rect" id="node2" href="$class_c_weld_evaluation_doc.html#a482c242e79c4b82b34d23794280649b0" title="スペクトルレンジの取得" alt="" coords="245,39,389,80"/>
-<area shape="rect" id="node3" href="$class_c_weld_evaluation_view.html#acb9374b4f62b3b67625526f4b5d493b4" title="区間スペクトル表示ダイアログの設定" alt="" coords="5,5,197,47"/>
-<area shape="rect" id="node4" href="$class_c_weld_evaluation_view.html#a8805e4c9d110a33112c8b5e7af294f9e" title="スペクトルグラフの表示" alt="" coords="8,71,195,112"/>
-</map>

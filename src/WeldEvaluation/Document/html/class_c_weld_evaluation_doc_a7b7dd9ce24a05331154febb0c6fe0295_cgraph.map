@@ -1,9 +1,0 @@
-<map id="CWeldEvaluationDoc::SaveClassificationResultFile" name="CWeldEvaluationDoc::SaveClassificationResultFile">
-<area shape="rect" id="node1" title="分類結果の保存" alt="" coords="5,169,199,211"/>
-<area shape="rect" id="node2" href="$class_c_project_file_i_o.html#a87d2c57b9dab248bfe0d4c8cbbf0fc08" title="金属面階層クラスタリング分類結果ファイル名の設定" alt="" coords="249,5,415,47"/>
-<area shape="rect" id="node3" href="$class_c_project_file_i_o.html#a913ede70b8ff723115802ddde4a8bcfc" title="金属面k&#45;means分類結果ファイル名の設定" alt="" coords="249,71,415,112"/>
-<area shape="rect" id="node4" href="$class_c_project_file_i_o.html#ade11085a24593f7bd7068fcaca7ebfbf" title="樹脂面階層クラスタリング分類結果ファイル名の設定" alt="" coords="249,136,415,177"/>
-<area shape="rect" id="node5" href="$class_c_project_file_i_o.html#af243b766788b82ae92f56ade82816a02" title="樹脂面k&#45;means分類結果ファイル名の設定" alt="" coords="249,201,415,243"/>
-<area shape="rect" id="node6" href="$class_c_project_file_i_o.html#a5f2c6155e7ef10a8fe31f2f5257936ec" title="接合結果階層クラスタリングフ分類ァイル名の設定" alt="" coords="247,267,417,308"/>
-<area shape="rect" id="node7" href="$class_c_project_file_i_o.html#ab30e01036cf75b63c1de3f3b2f5129bb" title="接合結果k&#45;meansファイル名の設定" alt="" coords="247,332,417,373"/>
-</map>

@@ -1,8 +1,0 @@
-<map id="CScanDataIO::GetHeaderFilePrm" name="CScanDataIO::GetHeaderFilePrm">
-<area shape="rect" id="node1" title="ヘッダファイルから幅、高さを取得" alt="" coords="463,111,679,138"/>
-<area shape="rect" id="node2" href="$class_c_oprt_tab_page_initialize.html#a39a52da491a71f8afec8c1366284227a" title="パラメータの読み込み" alt="" coords="260,104,415,145"/>
-<area shape="rect" id="node3" href="$class_c_oprt_tab_page_initialize.html#ad26437c34391f67b3546182071900642" title="アイテムのアクティブ/ディアクティブ化" alt="" coords="31,5,186,47"/>
-<area shape="rect" id="node4" href="$class_c_oprt_tab_page_initialize.html#a51b47e6f52aacb9733fdc52ac320f573" title="アクティブ時処理" alt="" coords="31,71,186,112"/>
-<area shape="rect" id="node5" href="$class_c_oprt_tab_page_initialize.html#ab94bb92896d005e2ea95e3f7fe4f49e8" title="ホワイトバランスボタン押下時処理" alt="" coords="5,136,212,177"/>
-<area shape="rect" id="node6" href="$class_c_weld_evaluation_view.html#ae4f218a4e70e08689a0532384eb86fe5" title="設定ページの再読込" alt="" coords="35,201,183,243"/>
-</map>
