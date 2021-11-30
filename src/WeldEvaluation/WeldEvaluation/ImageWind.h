@@ -70,7 +70,8 @@ private:
 public:
 	void setType(int type);
 	void setMode(int mode);
-	void Erase();
+	void Erase(bool bClrPrm=true);
+	void Reset();
 	void Draw();
 	bool clientToScan(CPoint &pos);
 	bool ScanToclient(CPoint &pos);

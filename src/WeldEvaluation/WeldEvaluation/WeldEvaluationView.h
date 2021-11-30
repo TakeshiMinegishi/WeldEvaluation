@@ -158,6 +158,7 @@ public:
 	LRESULT OnAreaSpectrumGraphRequest(WPARAM wparam, LPARAM lparam);
 	LRESULT OnSpectrumeCloseRequest(WPARAM wparam, LPARAM lparam);
 	LRESULT OnAreaSpectrumeGraphSet(WPARAM wparam, LPARAM lparam);
+	LRESULT OnImageErace(WPARAM wparam, LPARAM lparam);
 
 	void FitItem();
 };

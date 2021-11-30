@@ -58,6 +58,7 @@ public:
 	void SetVirticalRange(double min, double max);
 	void GetVirticalRange(double &min, double& max);
 	void Draw(std::vector<std::vector<double>> &data, double offset = 0.0, bool AutoRange=false);
+	void DrawTxt(CPoint pos, CString txt);
 	void Erase();
 	void SetXLabel(CString min, CString max);
 	void SetYLabel(CString min, CString max);

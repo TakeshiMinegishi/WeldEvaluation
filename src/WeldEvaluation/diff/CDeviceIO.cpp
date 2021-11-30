@@ -167,21 +167,9 @@ int CDeviceIO::Init(CString DeviceName)
 			return -1;
 		}
 		else {
-#if 0
-			ret = DioResetDevice(Id);
-			if (ret != DIO_ERR_SUCCESS) {
-				char	szError[256];
-				DioGetErrorString(ret, szError);
-				CString msg;
-				msg.Format(_T("CDeviceIO::Init():DeviceName(%s): ID(%d) :Ret = %d : %S"), DeviceName, Id, ret, szError);
-				logOut(CString(__FILE__), __LINE__, msg);
-				return -1;
-			}
-#else
 			if (!IsReady(Id)) {
 				Id = -1;
 			}
-#endif
 		}
 	}
 	else {

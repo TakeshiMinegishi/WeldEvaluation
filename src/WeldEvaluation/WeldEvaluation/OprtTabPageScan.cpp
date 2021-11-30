@@ -179,6 +179,7 @@ void COprtTabPageScan::OnBnClickedBtnScan()
 		else {
 			// 関連データの削除
 			pDoc->DeleteContents(ScanID);
+			pWnd->SendMessage(WM_VIEW_CLER, (WPARAM)ScanID, NULL);
 		}
 	}
 	

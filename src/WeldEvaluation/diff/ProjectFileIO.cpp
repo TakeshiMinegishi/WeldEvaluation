@@ -126,10 +126,6 @@ void CProjectFileIO::Initialze()
 	m_SpectralGraphSectionVerticalStartPosition		= 0;		///< スペクトルグラフ（点指定）の垂直開始位置
 	m_SpectralGraphSectionHolizontalEndPosition		= 0;		///< スペクトルグラフ（点指定）の水平終了位置
 	m_SpectralGraphSectionVerticalEndPosition		= 0;		///< スペクトルグラフ（点指定）の垂直終了位置
-
-	m_ScanDataHolizontalSize						= 0;
-	m_ScanDataVerticalSize							= 0;
-
 }
 
 
@@ -252,9 +248,10 @@ bool CProjectFileIO::read(CString path)
 		m_SpectralGraphSectionVerticalEndPosition = 0;
 	}
 
+#if 0
 	m_ScanDataHolizontalSize = sys.getInt(_T("Common"), _T("scan_data_holizontal_size"));
 	m_ScanDataVerticalSize = sys.getInt(_T("Common"), _T("scan_data_vertical_size"));
-
+#endif
 	return true;
 }
 
@@ -280,6 +277,7 @@ bool CProjectFileIO::save(CString path)
 		bResult = false;
 	}
 
+#if 0
 	if (!sys.setInt(_T("Common"), _T("scan_data_holizontal_size"), m_ScanDataHolizontalSize)) {
 		bResult = false;
 	}
@@ -287,6 +285,7 @@ bool CProjectFileIO::save(CString path)
 	if (!sys.setInt(_T("Common"), _T("scan_data_vertical_size"), m_ScanDataVerticalSize)) {
 		bResult = false;
 	}
+#endif
 
 /*
 	// イメージデータへのルートパス
@@ -1046,6 +1045,7 @@ bool CProjectFileIO::SetSpectralGraphSectionEndPosition(int holizontal, int vert
 	return true;
 }
 
+#if 0
 /// <summary>
 /// スキャンデータのサイズ取得
 /// </summary>
@@ -1071,6 +1071,7 @@ bool CProjectFileIO::SetScanDataSize(int holizontal, int vertical)
 	m_ScanDataVerticalSize = vertical;
 	return true;
 }
+#endif
 
 /// <summary>
 /// パラメータファイルの読み込み

@@ -276,6 +276,7 @@ void CPropTabPageParameter::ViewJointRatio(int method, int id, int ViewJointRati
 		}
 			break;
 		}
+#if 1
 		if (m_cmbJoinratioTarget.GetCount() > 0) {
 			int selid = m_cmbJoinratioTarget.SetCurSel(ViewJointRatioNo);
 			CString sel;
@@ -284,6 +285,7 @@ void CPropTabPageParameter::ViewJointRatio(int method, int id, int ViewJointRati
 			m_strJoinratioTarget = sel;
 			m_cmbJoinratioTarget.SetWindowTextW(sel);
 		}
+#endif
 
 	}
 	UpdateData(false);

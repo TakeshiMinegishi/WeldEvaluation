@@ -659,6 +659,31 @@ void CGraphWind::Draw(std::vector<std::vector<double>> &data, double offset/*=0.
 	OnPaint();
 }
 
+void CGraphWind::DrawTxt(CPoint pos, CString txt)
+{
+	if (!m_bActive) {
+		return;
+	}
+	CDC		*pDC = GetDC();
+
+	// ダイアログのフォント取得
+	CFont *pFont = GetFont();
+	LOGFONT logfont;
+	pFont->GetLogFont(&logfont);
+	CFont font;
+	font.CreateFontIndirect(&logfont);
+	CFont *pFontOld = pDC->SelectObject(&font);
+
+	// 文字列のサイズ取得
+	CSize size;
+	size = pDC->GetOutputTextExtent(txt);
+
+	pDC->TextOut(pos.x, pos.y, txt);
+
+	pDC->SelectObject(pFontOld);
+	ReleaseDC(pDC);
+}
+
 /// <summary>
 /// グラフ削除
 /// </summary>

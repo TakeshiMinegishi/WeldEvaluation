@@ -298,10 +298,19 @@ UINT CWeldEvaluationDoc::GetVerticalResolution(void)
 		return sys.getInt(_T("ParamDefault"), _T("Vertical_resolution"));
 	}
 	else {
-		UINT val = m_PropatyIO.GetVerticalResolution();
+		UINT val = m_PropatyIO.GetScanDataVerticalResolution();
 		if (val == 0) {
-			CConfigrationIO sys(m_SystemFilePathName);
-			val = sys.getInt(_T("ParamDefault"), _T("Vertical_resolution"));
+			CString path = m_ProjectIO.GetProjectFilePath();
+			CConfigrationIO sys(path);
+			val = sys.getInt(_T("Common"), _T("scan_data_vertical_size"));
+			if (val == 0) {
+				CConfigrationIO sys(m_SystemFilePathName);
+				val = sys.getInt(_T("ParamDefault"), _T("Vertical_resolution"));
+			}
+			else {
+				m_PropatyIO.SetScanDataVerticalResolution(val);
+				sys.deleteKey(_T("Common"), _T("scan_data_vertical_size"));
+			}
 		}
 		return val;
 	}
@@ -318,7 +327,7 @@ bool CWeldEvaluationDoc::SetVerticalResolution(UINT VerticalResolution)
 		return false;
 	}
 	else {
-		return m_PropatyIO.SetVerticalResolution(VerticalResolution);
+		return m_PropatyIO.SetScanDataVerticalResolution(VerticalResolution);
 	}
 }
 
@@ -333,10 +342,19 @@ UINT CWeldEvaluationDoc::GetHorizontalResolution(void)
 		return sys.getInt(_T("ParamDefault"), _T("Horizontal_resolution"));
 	}
 	else {
-		UINT val = m_PropatyIO.GetHorizontalResolution();
+		UINT val = m_PropatyIO.GetScanDataHorizontalResolution();
 		if (val == 0) {
-			CConfigrationIO sys(m_SystemFilePathName);
-			val = sys.getInt(_T("ParamDefault"), _T("Horizontal_resolution"));
+			CString path = m_ProjectIO.GetProjectFilePath();
+			CConfigrationIO sys(path);
+			val = sys.getInt(_T("Common"), _T("scan_data_holizontal_size"));
+			if (val == 0) {
+				CConfigrationIO sys(m_SystemFilePathName);
+				val = sys.getInt(_T("ParamDefault"), _T("Horizontal_resolution"));
+			}
+			else {
+				m_PropatyIO.SetScanDataHorizontalResolution(val);
+				sys.deleteKey(_T("Common"), _T("scan_data_holizontal_size"));
+			}
 		}
 		return val;
 	}
@@ -353,7 +371,7 @@ bool CWeldEvaluationDoc::SetHorizontalResolution(UINT HorizontalResolution)
 		return false;
 	}
 	else {
-		return m_PropatyIO.SetHorizontalResolution(HorizontalResolution);
+		return m_PropatyIO.SetScanDataHorizontalResolution(HorizontalResolution);
 	}
 }
 
@@ -1174,7 +1192,7 @@ bool CWeldEvaluationDoc::SetSpectralGraphSectionEndPosition(int holizontal, int 
 /// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CWeldEvaluationDoc::GetScanDataSize(int &holizontal, int &vertical)
 {
-	return m_ProjectIO.GetScanDataSize(holizontal, vertical);
+	return m_PropatyIO.GetScanDataSize(holizontal, vertical);
 }
 
 /// <summary>
@@ -1185,7 +1203,7 @@ bool CWeldEvaluationDoc::GetScanDataSize(int &holizontal, int &vertical)
 /// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CWeldEvaluationDoc::SetScanDataSize(int holizontal, int vertical)
 {
-	return m_ProjectIO.SetScanDataSize(holizontal, vertical);
+	return m_PropatyIO.SetScanDataSize(holizontal, vertical);
 }
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -1928,9 +1946,9 @@ bool CWeldEvaluationDoc::NewProject()
 	uval = NumberOfOverridePixel();
 	m_PropatyIO.SetOverridePixelNumber(uval);
 	uval = GetHorizontalResolution();
-	m_PropatyIO.SetHorizontalResolution(uval);
+	m_PropatyIO.SetScanDataHorizontalResolution(uval);
 	uval = GetVerticalResolution();
-	m_PropatyIO.SetVerticalResolution(uval);
+	m_PropatyIO.SetScanDataVerticalResolution(uval);
 
 	//////////////////////////////////////////////////////////
 	// プロジェクトの設定
@@ -2205,15 +2223,15 @@ bool CWeldEvaluationDoc::SaveProject()
 			bResult = false;
 		}
 #endif
-		uval = pf.GetHorizontalResolution();
-		if (!m_PropatyIO.SetHorizontalResolution(uval)) {
+		uval = m_PropatyIO.GetScanDataHorizontalResolution();
+		if (!m_PropatyIO.SetScanDataHorizontalResolution(uval)) {
 			CString msg;
 			msg.Format(_T("横方向の解像度の設定に失敗しました。(%d)"),uval);
 			writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 			bResult = false;
 		}
-		uval = pf.GetVerticalResolution();
-		if (!m_PropatyIO.SetVerticalResolution(uval)) {
+		uval = m_PropatyIO.GetScanDataVerticalResolution();
+		if (!m_PropatyIO.SetScanDataVerticalResolution(uval)) {
 			CString msg;
 			msg.Format(_T("縦方向の解像度の設定に失敗しました。(%d)"), uval);
 			writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
@@ -3008,46 +3026,10 @@ bool CWeldEvaluationDoc::Analize(int ScanID, int AnalysisMethodID)
 		return false;
 	}
 
-	// 解析エリアの取得
-	int AnalysisAreaTLPointX = sys.getInt(_T("System"), _T("AnalysisAreaTLPointX"));
-	int AnalysisAreaTLPointY = sys.getInt(_T("System"), _T("AnalysisAreaTLPointY"));
-	int AnalysisAreaWidth = sys.getInt(_T("System"), _T("AnalysisAreaWidth"));
-	int AnalysisAreaHeight = sys.getInt(_T("System"), _T("AnalysisAreaHeight"));
-	int dataw, datah;
-	m_ProjectIO.GetScanDataSize(dataw, datah);
-	if ((dataw == 0) || (datah == 0)) {
-		CString msg;
-		msg.Format(_T("結合されたスキャンデータのサイズが正しくありません。Width=%d Height=%d"), dataw, datah);
-		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
-		return false;
-	}
-
-	if ((AnalysisAreaWidth <= 0) || (AnalysisAreaHeight <= 0)) {
-		AnalysisAreaTLPointX = 0;
-		AnalysisAreaTLPointY = 0;
-		AnalysisAreaWidth = dataw;
-		AnalysisAreaHeight = datah;
-		CString msg;
-		msg.Format(_T("解析エリアの値が正しくありません。全領域の解析をおこないます"));
-		writeLog(CLog::Warning, CString(__FILE__), __LINE__, msg);
-	}
-	if ((AnalysisAreaTLPointX + AnalysisAreaWidth) > dataw) {
-		AnalysisAreaWidth = dataw - AnalysisAreaTLPointX;
-	}
-	if ((AnalysisAreaTLPointY + AnalysisAreaHeight) > datah) {
-		AnalysisAreaHeight = datah - AnalysisAreaTLPointY;
-	}
-	if ((AnalysisAreaWidth < (int)m_PropatyIO.NumberOfOverridePixel()) || (AnalysisAreaHeight <= 0)) {
-		CString msg;
-		msg.Format(_T("解析エリアの値が正しくありません。Stert Point(%d, %d) Width=%d Height=%d"), AnalysisAreaTLPointX, AnalysisAreaTLPointY, AnalysisAreaWidth, AnalysisAreaHeight);
-		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
-		return false;
-	}
-
 	////////////////////////////////////////////////////////////////////
 	// 解析の実施
 	if (CFileUtil::fileExists(execpath)) {
-		prm.Format(_T("%s %s %d %d %d %d %d"), (LPCTSTR)ScanDataFilePath, (LPCTSTR)ClassificationDataFilePath, nClass, AnalysisAreaTLPointX, AnalysisAreaTLPointY, AnalysisAreaWidth, AnalysisAreaHeight);
+		prm.Format(_T("%s %s %d"), (LPCTSTR)ScanDataFilePath, (LPCTSTR)ClassificationDataFilePath, nClass);
 		CString cmd;
 		cmd.Format(_T("%s %s"), (LPCTSTR)execpath, (LPCTSTR)prm);
 		TCHAR pszText[1049], pszMpath[1049];
@@ -3410,11 +3392,7 @@ bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, int method,
 				writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 				return false;
 			}
-			int imgWidth = width;
-//			if ((imgWidth % Bpp) != 0) {
-//				imgWidth = (int)(imgWidth / Bpp)*Bpp + Bpp;
-//			}
-			unsigned char * p24Img = new unsigned char[imgWidth * height * Bpp];
+			unsigned char * p24Img = new unsigned char[width * height * Bpp];
 			BYTE *ptr = p24Img;
 			COLORREF *col = new COLORREF[nClass];
 			for (int id = 0; id < nClass; id++) {
@@ -3439,38 +3417,11 @@ bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, int method,
 				break;
 			}
 
-#if 0
 			for (int id = 0; id < data.size(); id++) {
-				if (data[id] < 0) {
-					*(ptr++) = 0;
-					*(ptr++) = 0;
-					*(ptr++) = 0;
-				}
-				else {
-					*(ptr++) = GetBValue(col[data[id]]);
-					*(ptr++) = GetGValue(col[data[id]]);
-					*(ptr++) = GetRValue(col[data[id]]);
-				}
+				*(ptr++) = GetBValue(col[data[id]]);
+				*(ptr++) = GetGValue(col[data[id]]);
+				*(ptr++) = GetRValue(col[data[id]]);
 			}
-#else
-			int id = 0;
-			for (int y = 0; y < height; y++) {
-				ptr = p24Img + (y*imgWidth)*Bpp;
-				for (int x = 0; x < width; x++) {
-					id = (y*width) + x;
-					if (data[id] < 0) {
-						*(ptr++) = 0;
-						*(ptr++) = 0;
-						*(ptr++) = 0;
-					}
-					else {
-						*(ptr++) = GetBValue(col[data[id]]);
-						*(ptr++) = GetGValue(col[data[id]]);
-						*(ptr++) = GetRValue(col[data[id]]);
-					}
-				}
-			}
-#endif
 			if (col) {
 				delete[] col;
 				col = nullptr;
@@ -3479,12 +3430,12 @@ bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, int method,
 			BITMAPINFOHEADER    bmInfohdr;
 			// Create the header info
 			bmInfohdr.biSize = sizeof(BITMAPINFOHEADER);
-			bmInfohdr.biWidth = imgWidth;
+			bmInfohdr.biWidth = width;
 			bmInfohdr.biHeight = -height;
 			bmInfohdr.biPlanes = 1;
 			bmInfohdr.biBitCount = (WORD)(Bpp * 8);
 			bmInfohdr.biCompression = BI_RGB;
-			bmInfohdr.biSizeImage = imgWidth * height * Bpp;
+			bmInfohdr.biSizeImage = width * height * Bpp;
 			bmInfohdr.biXPelsPerMeter = 0;
 			bmInfohdr.biYPelsPerMeter = 0;
 			bmInfohdr.biClrUsed = 0;
@@ -3494,9 +3445,9 @@ bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, int method,
 			bmInfo.bmiHeader = bmInfohdr;
 			bmInfo.bmiColors[0].rgbBlue = 255;
 
-			if (img.Create(imgWidth, height, 8 * Bpp, NULL)) {
+			if (img.Create(width, height, 8 * Bpp, NULL)) {
 				HDC dc = img.GetDC();
-				SetDIBitsToDevice(dc, 0, 0, imgWidth, height, 0, 0, 0, height, p24Img, &bmInfo, DIB_RGB_COLORS);
+				SetDIBitsToDevice(dc, 0, 0, width, height, 0, 0, 0, height, p24Img, &bmInfo, DIB_RGB_COLORS);
 				img.ReleaseDC();
 				img.Save(imagefile);
 			}

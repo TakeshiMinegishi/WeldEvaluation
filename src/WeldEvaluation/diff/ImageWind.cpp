@@ -240,7 +240,7 @@ void CImageWind::OnLButtonDown(UINT nFlags, CPoint point)
 			m_pLButtonDownosPos = point;
 			m_deltaPos = point;
 			// 全Viewを再描画
-//			GetParent()->Invalidate(FALSE);
+			GetParent()->Invalidate(FALSE);
 			GetParent()->UpdateWindow();
 		}
 	}
@@ -422,30 +422,12 @@ void CImageWind::setMode(int mode)
 /// <summary>
 /// 画像の削除
 /// </summary>
-/// <param name="bClrPrm">パラメータクリアフラグ</param>
-void CImageWind::Erase(bool bClrPrm/* = true*/)
+void CImageWind::Erase()
 {
 	m_bActive = false;
-	if (bClrPrm) {
-		m_zoomRetio = 1.0;
-		m_imageY = 0;
-		m_imageX = 0;
-	}
-	OnPaint();
-}
-
-/// <summary>
-/// 画像のリセット
-/// </summary>
-void  CImageWind::Reset()
-{
-	if (m_bActive) {
-		m_zoomRetio		= 1.0;
-		m_imageX		= m_orgImageX;
-		m_imageY		= m_orgImageY;
-		m_imageWidth	= m_orgImageWidth;
-		m_imageHeight	= m_orgImageHeight;
-	}
+	m_zoomRetio = 1.0;
+	m_imageY = 0;
+	m_imageX = 0;
 	OnPaint();
 }
 
@@ -492,10 +474,8 @@ void CImageWind::Draw()
 
 	m_imageWidth = (int)(m_orgImageWidth * m_zoomRetio);
 	m_imageHeight = (int)(m_orgImageHeight * m_zoomRetio);
-	if (fabs(m_zoomRetio - 1.0) <= 0.000001) {
-		m_imageX = m_orgImageX;
-		m_imageY = m_orgImageY;
-	}
+	m_imageX = m_orgImageX;
+	m_imageY = m_orgImageY;
 
 	pDC->SetStretchBltMode(HALFTONE);
 	pDC->SetStretchBltMode(COLORONCOLOR);
@@ -632,10 +612,8 @@ bool CImageWind::clientToScan(CPoint &pos)
 		((point.y < m_imageY) || (point.y >= (m_imageY + m_imageHeight)))) {
 		return false;
 	}
-//	point.x = (point.x - m_imageX) * m_pImg->GetHeight() / m_imageHeight;
-//	point.y = (point.y - m_imageY) * m_pImg->GetWidth() / m_imageWidth;
-	point.x = (point.x - m_imageX) * m_pImg->GetWidth() / m_imageWidth; 
-	point.y = (point.y - m_imageY) * m_pImg->GetHeight() / m_imageHeight;
+	point.x = (point.x - m_imageX) * m_pImg->GetHeight() / m_imageHeight;
+	point.y = (point.y - m_imageY) * m_pImg->GetWidth() / m_imageWidth;
 	pos = point;
 	return true;
 }

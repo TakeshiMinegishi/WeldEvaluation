@@ -314,23 +314,18 @@ bool CScanDataIO::LoadImage(int &height, int &width, int &bands, CImage &img)
 		offset[i] = norm[i].m_offset;
 	}
 #endif
-	int imageWidth = width;
-	if ((imageWidth % 8) != 0) {
-		imageWidth = (int)(imageWidth / 8) * 8 + 8;
-	}
+
 	bool bResult = true;
 	BITMAPINFOHEADER    bmInfohdr;
 	int Bpp = 3;
 	// Create the header info
 	bmInfohdr.biSize = sizeof(BITMAPINFOHEADER);
-	bmInfohdr.biWidth = imageWidth;
-//	bmInfohdr.biWidth = width;
+	bmInfohdr.biWidth = width;
 	bmInfohdr.biHeight = -height;
 	bmInfohdr.biPlanes = 1;
 	bmInfohdr.biBitCount = (WORD)(Bpp * 8);
 	bmInfohdr.biCompression = BI_RGB;
-//	bmInfohdr.biSizeImage = width * height * Bpp;
-	bmInfohdr.biSizeImage = imageWidth * height * Bpp;
+	bmInfohdr.biSizeImage = width * height * Bpp;
 	bmInfohdr.biXPelsPerMeter = 0;
 	bmInfohdr.biYPelsPerMeter = 0;
 	bmInfohdr.biClrUsed = 0;
@@ -347,7 +342,6 @@ bool CScanDataIO::LoadImage(int &height, int &width, int &bands, CImage &img)
 	float fval;
 	unsigned char r, g, b;
 	for (int row = 0; row < height; row++) {
-		ptr = p24Img + (row * imageWidth) * Bpp;
 		for (int col = 0; col < width; col++) {
 			if (col >= m_o_p_cube->format.width) {
 				r = g = b = 0;
@@ -368,18 +362,12 @@ bool CScanDataIO::LoadImage(int &height, int &width, int &bands, CImage &img)
 			*(ptr++) = g;
 			*(ptr++) = r;
 		}
-		for (int col = width; col < imageWidth; col++) {
-			*(ptr++) = 0;
-			*(ptr++) = 0;
-			*(ptr++) = 0;
-		}
+		ptr += 0;
 	}
 
-	if (img.Create(imageWidth, height, 8 * Bpp, NULL)) {
-//	if (img.Create(width, height, 8 * Bpp, NULL)) {
+	if (img.Create(width, height, 8 * Bpp, NULL)) {
 		HDC dc = img.GetDC();
-//		int ret = SetDIBitsToDevice(dc, 0, 0, width, height, 0, 0, 0, height, p24Img, &bmInfo, DIB_RGB_COLORS);
-		int ret = SetDIBitsToDevice(dc, 0, 0, imageWidth, height, 0, 0, 0, height, p24Img, &bmInfo, DIB_RGB_COLORS);
+		int ret = SetDIBitsToDevice(dc, 0, 0, width, height, 0, 0, 0, height, p24Img, &bmInfo, DIB_RGB_COLORS);
 		if(ret == 0) {
 			DWORD err = GetLastError();
 			LPVOID lpMsgBuf;

@@ -113,8 +113,8 @@ IDR_POPUP_MENU MENU
 BEGIN
     POPUP "popup_menue"
     BEGIN
-        MENUITEM "開く",                          IDS_PROJECT_OPEN
-        MENUITEM "削除",                          IDS_PROJECT_DELETE
+        MENUITEM "開く",                          ID_PROJECT_OPEN
+        MENUITEM "削除",                          ID_PROJECT_DELETE
     END
 END
 
@@ -353,15 +353,15 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "041104B0"
+        BLOCK "041104b0"
         BEGIN
-            VALUE "CompanyName", "TODO: <会社名>"
+            VALUE "CompanyName", "ARK INFORMATION SYSTEMS,INC"
             VALUE "FileDescription", "WeldEvaluation"
             VALUE "FileVersion", "1.0.0.1"
             VALUE "InternalName", "WeldEvaluation.exe"
-            VALUE "LegalCopyright", "TODO: (C) <会社名>.  All rights reserved."
+            VALUE "LegalCopyright", "Copyright  2021 ARK INFORMATION SYSTEMS,INC.  All rights reserved."
             VALUE "OriginalFilename", "WeldEvaluation.exe"
-            VALUE "ProductName", "TODO: <製品名>"
+            VALUE "ProductName", "WeldEvaluation"
             VALUE "ProductVersion", "1.0.0.1"
         END
     END
@@ -731,8 +731,8 @@ END
 
 STRINGTABLE
 BEGIN
-    IDS_PROJECT_OPEN        "開く"
-    IDS_PROJECT_DELETE      "削除"
+    ID_PROJECT_DELETE       "削除"
+    ID_PROJECT_OPEN         "開く"
 END
 
 #endif    // 日本語 (日本) resources

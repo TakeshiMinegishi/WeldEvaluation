@@ -44,7 +44,7 @@ BEGIN_MESSAGE_MAP(CWeldEvaluationView, CFormView)
 	ON_MESSAGE(WM_VIEW_CHANGE_REQUEST, OnViewChangeRequest)
 	ON_MESSAGE(WM_CHANGE_REGIST, OnChangeResistFolder)
 	ON_MESSAGE(WM_ANALYSE_REQUEST, OnAnalyzeRequest)
-	ON_MESSAGE(WM_RESIST_PROJECT, OnProjectResistRequest)
+	ON_MESSAGE(WM_RESIST_REGIST, OnProjectResistRequest)
 	ON_MESSAGE(WM_IMAGE_OUTPUT_REGIST, OnImageOutputRequest)
 	ON_MESSAGE(WM_IMAGE_SCALING, OnImageScaling)
 	ON_MESSAGE(WM_IMAGE_MOVEING, OnImageMoveing)
@@ -53,15 +53,15 @@ BEGIN_MESSAGE_MAP(CWeldEvaluationView, CFormView)
 	ON_MESSAGE(WM_AREA_SPECTRUM_GRAPH_REQUEST, OnAreaSpectrumGraphRequest)
 	ON_MESSAGE(WM_SPECTRUME_CLOSE_REQUEST, OnSpectrumeCloseRequest)
 	ON_MESSAGE(WM_AREA_SPECTRUM_GRAPH_SET, OnAreaSpectrumeGraphSet)
-	ON_MESSAGE(WM_VIEW_CLER, OnImageErace)
+	
 
 	ON_WM_NCDESTROY()
 	ON_WM_DESTROY()
 	ON_WM_MOUSEMOVE()
 	ON_WM_CLOSE()
 	ON_NOTIFY(NM_RCLICK, IDC_LST_REGIST_TEST, &CWeldEvaluationView::OnNMRClickLstRegistTest)
-	ON_COMMAND(ID_PROJECT_OPEN, &CWeldEvaluationView::OnProjectOpen)
-	ON_COMMAND(ID_PROJECT_DELETE, &CWeldEvaluationView::OnProjectDelete)
+	ON_COMMAND(IDS_PROJECT_OPEN, &CWeldEvaluationView::OnProjectOpen)
+	ON_COMMAND(IDS_PROJECT_DELETE, &CWeldEvaluationView::OnProjectDelete)
 	ON_COMMAND(ID_FILE_SAVE, &CWeldEvaluationView::OnFileSave)
 	ON_COMMAND(ID_FILE_NEW, &CWeldEvaluationView::OnProjectNew)
 END_MESSAGE_MAP()
@@ -1666,12 +1666,6 @@ LRESULT CWeldEvaluationView::OnProjectResistRequest(WPARAM wparam, LPARAM lparam
 		AfxMessageBox(msg,MB_OK|MB_ICONSTOP);
 		iResult = -1;
 	} else {
-		CString AppName, Title,sub;
-		sub = pDoc->GetTestName();
-		AppName.LoadString(AFX_IDS_APP_TITLE);
-		Title.Format(_T("%s - %s"), (LPCWSTR)sub, (LPCWSTR)AppName);
-		GetParentFrame()->SetWindowText(Title);
-
 		m_bUpdateOperation = false;
 		m_OprtSetting.UpddateResist(true,m_bReadMode);
 //		m_OprtSetting.UpddateResist(m_bUpdateOperation,m_bReadMode);
@@ -1947,7 +1941,7 @@ bool CWeldEvaluationView::ViewChangeRequest(int ScanID, int DisplayMode, bool re
 			}
 		}
 		else {
-			pImageWnd->Erase(false);
+			pImageWnd->Erase();
 		}
 		pPropPage->LoadParamater(ScanID);
 		pPropPage->ViewJointRatio(type, ScanID, -1);
@@ -1978,38 +1972,6 @@ LRESULT CWeldEvaluationView::OnViewChangeRequest(WPARAM wparam, LPARAM lparam)
 	return iResult;
 }
 
-/// <summary>
-/// 表示削除
-/// </summary>
-/// <param name="wparam">表示ターゲットID</param>
-/// <param name="lparam">未使用</param>
-/// <returns>成功場合は0、失敗場合は-1を返す</returns>
-LRESULT CWeldEvaluationView::OnImageErace(WPARAM wparam, LPARAM lparam)
-{
-	int ScanID = (int)wparam;
-
-	CImageWind *pImageWnd = nullptr;
-	switch (ScanID) {
-	case	CWeldEvaluationDoc::eResinSurface:		// 樹脂
-		m_pReginWnd->Erase();
-		m_pMetalWnd->Reset();
-		m_pResultWnd->Reset();
-		break;
-	case	CWeldEvaluationDoc::eMetalSurface:		// 金属
-		m_pReginWnd->Reset();
-		m_pMetalWnd->Erase();
-		m_pResultWnd->Reset();
-		break;
-	case	CWeldEvaluationDoc::eJoiningResult:		// 接合結果
-		m_pReginWnd->Reset();
-		m_pMetalWnd->Reset();
-		m_pResultWnd->Erase();
-		break;
-	default:
-		return -1;
-	}
-	return 0;
-}
 
 ///////////////////////////////////////////////////////////////////////////////////
 // 解析操作関連
@@ -2246,14 +2208,6 @@ LRESULT CWeldEvaluationView::OnSpectrumGraphRequest(WPARAM wparam, LPARAM lparam
 		m_pGraphWnd->SetVirticalRange(0.0, 1.2);
 		m_pGraphWnd->SetYLabel(_T("0.0"), _T("1.0"));
 		m_pGraphWnd->Draw(data, 0, false);
-#ifdef _DEBUG
-		{
-			CPoint p(100, 100);
-			CString txt;
-			txt.Format(_T("(%4d,%4d)"),pos.x,pos.y);
-			m_pGraphWnd->DrawTxt(p, txt);
-		}
-#endif
 	}
 
 	return 0;

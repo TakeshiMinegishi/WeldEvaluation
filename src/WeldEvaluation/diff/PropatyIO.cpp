@@ -18,6 +18,9 @@ CPropatyIO::CPropatyIO(void)
 	m_joinRetioFormat			= _T("%02d_Joining_ratio%03d");
 	m_joinColorFormat			= _T("%02d_Joining_color%03d");
 	m_nClassFormat				= _T("%02d_Number_of_classifications");
+
+	m_ScanDataHolizontalSize	= 0;		// スキャンデータ水平方向サイズ（撮影データからの縮退後のサイズ）
+	m_ScanDataVerticalSize		= 0;		// スキャンデータ垂直方向サイズ（撮影データからの縮退後のサイズ）
 }
 
 /// <summary>
@@ -80,6 +83,32 @@ bool CPropatyIO::read(CString path)
 	m_MetalAnalysisMethod	= sys.getInt(_T("MetalSurface"),_T("Analysis_method"));				// 金属面 解析方法
 	m_ResultAnalysisMethod	= sys.getInt(_T("JoiningResult"), _T("Analysis_method"));			// 接合結果 解析方法
 
+	int ival;
+	ival = sys.getInt(_T("Setting"), _T("scan_data_holizontal_size"));
+	if (ival == 0) {
+		UINT uval = sys.getInt(_T("Setting"), _T("Vertical_resolution"));
+		if (uval != 0) {
+			sys.setInt(_T("Setting"), _T("scan_data_holizontal_size"),uval);
+			sys.deleteKey(_T("Setting"), _T("Vertical_resolution"));
+		}
+		m_ScanDataHolizontalSize = uval;
+	}
+	else {
+		m_ScanDataHolizontalSize = ival;
+	}
+
+	ival = sys.getInt(_T("Setting"), _T("scan_data_vertical_size"));
+	if (ival == 0) {
+		UINT uval = sys.getInt(_T("Setting"), _T("Horizontal_resolution"));
+		if (uval != 0) {
+			sys.setInt(_T("Setting"), _T("scan_data_vertical_size"),uval);
+			sys.deleteKey(_T("Setting"), _T("Horizontal_resolution"));
+		}
+		m_ScanDataVerticalSize = uval;
+	}
+	else {
+		m_ScanDataVerticalSize = ival;
+	}
 	return true;
 }
 
@@ -109,18 +138,27 @@ bool CPropatyIO::save(CString path)
 	if (!sys.setInt(_T("Setting"),_T("Number_of_overlapping_pixels"),uval)) {
 		bResult = false;
 	}
+#if 0
 	uval = sys.getInt(_T("Setting"),_T("Integration_time_ms"));
 	if (!sys.setInt(_T("Setting"),_T("Integration_time_ms"),uval)) {
 		bResult = false;
 	}
-	uval = sys.getInt(_T("Setting"),_T("Vertical_resolution"));
-	if (!sys.setInt(_T("Setting"),_T("Vertical_resolution"),uval)) {
+	uval = sys.getInt(_T("Setting"), _T("Vertical_resolution"));
+	if (!sys.setInt(_T("Setting"), _T("Vertical_resolution"), uval)) {
 		bResult = false;
 	}
-	uval = sys.getInt(_T("Setting"),_T("Horizontal_resolution"));
-	if (!sys.setInt(_T("Setting"),_T("Horizontal_resolution"),uval)) {
+	uval = sys.getInt(_T("Setting"), _T("Horizontal_resolution"));
+	if (!sys.setInt(_T("Setting"), _T("Horizontal_resolution"), uval)) {
 		bResult = false;
 	}
+#else
+	if (!sys.setInt(_T("Setting"), _T("scan_data_holizontal_size"), m_ScanDataHolizontalSize)) {
+		bResult = false;
+	}
+	if (!sys.setInt(_T("Setting"), _T("scan_data_vertical_size"), m_ScanDataVerticalSize)) {
+		bResult = false;
+	}
+#endif
 
 	// Settingのダミー出力
 #if 0
@@ -163,6 +201,10 @@ bool CPropatyIO::save(CString path)
 		bResult = false;
 	}
 
+	//旧ファイルのデータ削除
+	if (!sys.deleteKey(_T("Setting"), _T("Integration_time_ms"))) {
+		bResult = false;
+	}
 	return bResult;
 }
 
@@ -345,13 +387,9 @@ bool CPropatyIO::SetOverridePixelNumber(UINT num)
 /// 縦方向の解像度の取得
 /// </summary>
 /// <returns>縦方向の解像度を返す</returns>
-UINT CPropatyIO::GetVerticalResolution(void)
+UINT CPropatyIO::GetScanDataVerticalResolution(void)
 {
-	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
-		return 0;
-	}
-	CConfigrationIO sys(m_ParamaterFilePath);
-	return sys.getInt(_T("Setting"), _T("Vertical_resolution"));
+	return m_ScanDataVerticalSize;
 }
 
 /// <summary>
@@ -359,15 +397,16 @@ UINT CPropatyIO::GetVerticalResolution(void)
 /// </summary>
 /// <param name="resolution">縦方向の解像度</param>
 /// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
-bool CPropatyIO::SetVerticalResolution(UINT resolution)
+bool CPropatyIO::SetScanDataVerticalResolution(UINT resolution)
 {
 	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
 		return false;
 	}
 	CConfigrationIO sys(m_ParamaterFilePath);
-	if (!sys.setInt(_T("Setting"), _T("Vertical_resolution"), resolution)) {
+	if (!sys.setInt(_T("Setting"), _T("scan_data_vertical_size"), resolution)) {
 		return false;
 	}
+	m_ScanDataVerticalSize = resolution;
 	return true;
 }
 
@@ -375,13 +414,9 @@ bool CPropatyIO::SetVerticalResolution(UINT resolution)
 /// 横方向の解像度の取得
 /// </summary>
 /// <returns>横方向の解像度を返す</returns>
-UINT CPropatyIO::GetHorizontalResolution(void)
+UINT CPropatyIO::GetScanDataHorizontalResolution(void)
 {
-	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
-		return 0;
-	}
-	CConfigrationIO sys(m_ParamaterFilePath);
-	return sys.getInt(_T("Setting"), _T("Horizontal_resolution"));
+	return m_ScanDataHolizontalSize;
 }
 
 /// <summary>
@@ -389,19 +424,19 @@ UINT CPropatyIO::GetHorizontalResolution(void)
 /// </summary>
 /// <param name="resolution">横方向の解像度</param>
 /// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
-bool CPropatyIO::SetHorizontalResolution(UINT resolution)
+bool CPropatyIO::SetScanDataHorizontalResolution(UINT resolution)
 {
 	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
 		return false;
 	}
 	CConfigrationIO sys(m_ParamaterFilePath);
-	if (!sys.setInt(_T("Setting"), _T("Horizontal_resolution"), resolution)) {
+	if (!sys.setInt(_T("Setting"), _T("scan_data_holizontal_size"), resolution)) {
 		return false;
 	}
+	m_ScanDataHolizontalSize = resolution;
 	return true;
 }
 
-#if 0
 /// <summary>
 /// スキャンデータのサイズ取得
 /// </summary>
@@ -427,7 +462,7 @@ bool CPropatyIO::SetScanDataSize(int holizontal, int vertical)
 	m_ScanDataVerticalSize = vertical;
 	return true;
 }
-#endif
+
 
 /// <summary>
 /// 樹脂面の分類数の取得
