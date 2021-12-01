@@ -17,7 +17,7 @@ cd "D:\WeldEvaluation\python"
 d:
 
 @rem コマンドの実行
-python kmeans.py --input_file %1 --output_file %2 --num_classes %3 --coord-x %4 --coord-y %5 --width %6 --height %7
+python kmeans.py --input_file %1 --output_file %2 --num_classes %3 --coord_x %4 --coord_y %5 --width %6 --height %7
 echo %ERRORLEVEL% > return.txt
 
 @rem Anaconda環境の解放

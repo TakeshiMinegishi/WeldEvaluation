@@ -13,14 +13,14 @@ if __name__ == "__main__":
     #入力ファイル・出力ファイル・クラス数を引数として設定
     parser = argparse.ArgumentParser()
     #入力ファイル
-    parser.add_argument("--input-file", type=str)
+    parser.add_argument("--input_file", type=str)
     #出力ファイル
-    parser.add_argument("--output-file", type=str)
+    parser.add_argument("--output_file", type=str)
     #クラス数
-    parser.add_argument("--num-classes", type=int)
+    parser.add_argument("--num_classes", type=int)
     #座標
-    parser.add_argument("--coord-x", type=int, default=0)
-    parser.add_argument("--coord-y", type=int, default=0)
+    parser.add_argument("--coord_x", type=int, default=0)
+    parser.add_argument("--coord_y", type=int, default=0)
     #有効領域の幅を指定
     parser.add_argument("--width", type=int, default=None)
     #有効領域の高さを指定
