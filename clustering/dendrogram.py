@@ -15,11 +15,18 @@ if __name__ == "__main__":
     #入力ファイル・出力ファイル・クラス数を引数として設定
     parser = argparse.ArgumentParser()
     #入力ファイル
-    parser.add_argument("--input_file", type=str)
+    parser.add_argument("--input-file", type=str)
     #出力ファイル
-    parser.add_argument("--output_file", type=str)
+    parser.add_argument("--output-file", type=str)
     #クラス数
-    parser.add_argument("--num_classes", type=int)
+    parser.add_argument("--num-classes", type=int)
+    #座標
+    parser.add_argument("--coord-x", type=int, default=0)
+    parser.add_argument("--coord-y", type=int, default=0)
+    #有効領域の幅を指定
+    parser.add_argument("--width", type=int, default=None)
+    #有効領域の高さを指定
+    parser.add_argument("--height", type=int, default=None)
     args = parser.parse_args()
 
     #抽出するデータ数を指定
@@ -35,10 +42,19 @@ if __name__ == "__main__":
         filestem, dirname = get_fileinfo(input_file)
         #拡張子を.rawに変更
         bn_file = os.path.join(dirname, filestem) + '.raw'
+        #有効領域の左上座標を取得
+        xy = (args.coord_x, args.coord_y)
+        #幅と高さを取得
+        valid_width = args.width if args.width is not None else width
+        valid_height = args.height if args.height is not None else height
+
+        #全要素が-1の行列を作成
+        result = -np.ones((height, width))
+
         #データの取得
-        bdata = get_bndata(bn_file, bands, height, width)
+        valid_data, end_x, end_y = get_bndata(bn_file, bands, height, width, xy, valid_height, valid_width)
         #データを抽出
-        ex_data = get_sumple(bdata, num_sample)
+        ex_data = get_sumple(valid_data, num_sample)
 
         #階層クラスタリングの実行
         Z = linkage(ex_data, method="ward", metric="euclidean")
@@ -49,12 +65,14 @@ if __name__ == "__main__":
         model.fit(ex_data, predict-1)
 
         #全データの結果を予測
-        predict = model.predict(bdata)
+        predict_all = model.predict(valid_data)
 
         #分類させた情報を(height,width)の形に整形
-        predict_out = predict.reshape(height,width)
+        predict_out = predict_all.reshape(valid_height,valid_width)
+        #データの統合
+        result[xy[1]:end_y, xy[0]:end_x] = predict_out
         #.csvの出力ファイルを作成
-        np.savetxt(args.output_file, predict_out, delimiter=',', fmt='%d')
+        np.savetxt(args.output_file, result, delimiter=',', fmt='%d')
         print("Done")
     except:
         #エラーの内容を表示
