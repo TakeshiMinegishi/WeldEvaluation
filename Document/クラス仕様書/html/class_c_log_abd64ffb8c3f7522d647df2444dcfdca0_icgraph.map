@@ -1,0 +1,4 @@
+<map id="CLog::setLogPath" name="CLog::setLogPath">
+<area shape="rect" id="node1" title="ログファイル出力ディレクトリの設定" alt="" coords="144,5,271,32"/>
+<area shape="rect" id="node2" href="$class_c_log.html#aed650e01cd2278e8ea4acfd031ae39d7" title="初期化コンストラクタ" alt="" coords="5,5,96,32"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="CWeldEvaluationDoc::MetalSetJointColor" name="CWeldEvaluationDoc::MetalSetJointColor">
+<area shape="rect" id="node1" title="金属面の接合色の設定" alt="" coords="5,5,148,47"/>
+<area shape="rect" id="node2" href="$class_c_propaty_i_o.html#a51608d8b45c5cc2bb21e34b6677244f0" title="金属面の接合色の設定" alt="" coords="196,5,372,47"/>
+<area shape="rect" id="node3" href="$class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="420,13,572,39"/>
+<area shape="rect" id="node4" href="$class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="620,13,767,39"/>
+</map>

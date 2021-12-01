@@ -1,0 +1,22 @@
+<map id="CPropatyIO::MetalGetNumberOfClass" name="CPropatyIO::MetalGetNumberOfClass">
+<area shape="rect" id="node1" title="金属面の分類数の取得" alt="" coords="763,275,957,316"/>
+<area shape="rect" id="node2" href="$class_c_weld_evaluation_doc.html#aec529b21bcd80053e9ace596cc28ee56" title="解析の実施" alt="" coords="262,136,405,177"/>
+<area shape="rect" id="node4" href="$class_c_weld_evaluation_doc.html#a21fcb772f7329ee52b9b1922b133eca0" title="スキャン情報の削除" alt="" coords="532,409,675,451"/>
+<area shape="rect" id="node6" href="$class_c_weld_evaluation_doc.html#aa36adf0d2fa7fdfe0e45f8048a539069" title="解析結果の分類数と設定の分類数が異なるかの判定" alt="" coords="492,81,715,123"/>
+<area shape="rect" id="node11" href="$class_c_weld_evaluation_doc.html#a8cccd8cb66df552066d96c31b9255389" title="分類結果の画像データ取得" alt="" coords="517,303,689,359"/>
+<area shape="rect" id="node14" href="$class_c_weld_evaluation_doc.html#a3f5f6a5e4e73e405f35dfd789d004e67" title="金属面の分類数の取得" alt="" coords="516,220,691,261"/>
+<area shape="rect" id="node17" href="$class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="532,500,675,541"/>
+<area shape="rect" id="node3" href="$class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8" title="解析実施要求" alt="" coords="16,136,164,177"/>
+<area shape="rect" id="node5" href="$class_c_oprt_tab_page_scan.html#a325bd4d3b6c573140e8b23f901378767" title="スキャンボタン押下時処理" alt="" coords="223,435,444,476"/>
+<area shape="rect" id="node7" href="$class_c_prop_tab_page_parameter.html#aed639166205e0a1527c7e4bec6196af6" title="ステータスの更新" alt="" coords="249,71,418,112"/>
+<area shape="rect" id="node8" href="$class_c_prop_tab_page_parameter.html#ace1f9ec08dc88cef79340c4efab44c8e" title="ウインドアクティブ時処理" alt="" coords="5,71,175,112"/>
+<area shape="rect" id="node9" href="$class_c_prop_tab_page_parameter.html#a14f7d8b2d5db7edb3211c6c969dd4701" title="タイマー" alt="" coords="5,5,175,47"/>
+<area shape="rect" id="node10" href="$class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="15,267,165,308"/>
+<area shape="rect" id="node12" href="$class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="262,369,405,411"/>
+<area shape="rect" id="node13" href="$class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="5,369,175,411"/>
+<area shape="rect" id="node15" href="$class_c_prop_tab_page_parameter.html#ad7424d25e6331b63ae51b09453bc61d9" title="パラメータをファイルから読み込む" alt="" coords="249,201,418,243"/>
+<area shape="rect" id="node16" href="$class_c_weld_evaluation_view.html#a266807bf8e8a7dd3fd73b2907300607d" title="プロパティページの再読込" alt="" coords="16,201,164,243"/>
+<area shape="rect" id="node18" href="$class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="262,565,405,607"/>
+<area shape="rect" id="node20" href="$class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="247,500,420,541"/>
+<area shape="rect" id="node19" href="$class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="7,565,173,607"/>
+</map>

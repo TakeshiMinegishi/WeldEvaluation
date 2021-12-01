@@ -1,0 +1,7 @@
+<map id="CGraphWind::OnPaint" name="CGraphWind::OnPaint">
+<area shape="rect" id="node1" title="描画処理" alt="" coords="384,56,535,83"/>
+<area shape="rect" id="node2" href="$class_c_graph_wind.html#a4c91a5a3fa6bc76b7f3e0e4ec960942f" title="グラフ描画" alt="" coords="195,5,328,32"/>
+<area shape="rect" id="node4" href="$class_c_graph_wind.html#a45f6955a443ae18cf854c4a0fe9bd734" title="グラフ削除" alt="" coords="192,56,331,83"/>
+<area shape="rect" id="node5" href="$class_c_spectral_dlg.html#a9805fbcf82816594a0a92cbe50cb9a6e" title="ウインドサイズの変更" alt="" coords="187,107,336,133"/>
+<area shape="rect" id="node3" href="$class_c_spectral_dlg.html#a779cbb744b5c248b1a9f663e609ece3f" title="スペクトルグラフの表示" alt="" coords="5,31,139,57"/>
+</map>

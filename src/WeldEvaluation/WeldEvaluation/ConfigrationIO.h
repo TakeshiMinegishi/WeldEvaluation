@@ -28,5 +28,7 @@ public:
 	bool setDouble(CString section, CString key, double value, CString filePath=_T(""));
 	CString getString(CString section, CString key, CString filePath=_T(""));
 	bool setString(CString section, CString key, CString& value, CString filePath=_T(""));
+	bool CConfigrationIO::deleteKey(CString section, CString key, CString filePath = _T(""));
+
 };
 

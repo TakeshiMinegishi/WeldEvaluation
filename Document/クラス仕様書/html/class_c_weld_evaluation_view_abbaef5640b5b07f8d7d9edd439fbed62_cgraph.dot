@@ -1,0 +1,14 @@
+digraph "CWeldEvaluationView::OnDestroy"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="CWeldEvaluationView\l::OnDestroy",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="ウインド破棄時処理"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="CWeldEvaluationDoc\l::SetWindRect",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_weld_evaluation_doc.html#a0e46d3afc7df54ee0caa20ed6b832078",tooltip="メインウインドの位置とサイズの設定"];
+  Node2 -> Node3 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="CConfigrationIO::setInt",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5",tooltip="指定セクションのキーに整数値を設定"];
+  Node3 -> Node4 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="CConfigrationIO::write",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2",tooltip="指定セクションのキーに値を設定"];
+}

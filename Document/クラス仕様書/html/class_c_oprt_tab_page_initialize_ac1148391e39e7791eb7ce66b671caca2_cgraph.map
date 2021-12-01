@@ -1,0 +1,7 @@
+<map id="COprtTabPageInitialize::AddNode" name="COprtTabPageInitialize::AddNode">
+<area shape="rect" id="node1" title="ホワイトバランス用画像撮影処理" alt="" coords="5,74,160,115"/>
+<area shape="rect" id="node2" href="$class_c_device_i_o.html#ab26f463bba0e20cbf0074700f5923b69" title="機器の初期化" alt="" coords="243,5,349,32"/>
+<area shape="rect" id="node3" href="$class_c_device_i_o.html#afe3dcac15255e9b9658926a5db7c9220" title="カメラの移動" alt="" coords="432,81,552,108"/>
+<area shape="rect" id="node4" href="$class_c_device_i_o.html#ac3903acef20f20748a63c76239df005a" title="カメラをホームポジションへ移動" alt="" coords="227,107,365,133"/>
+<area shape="rect" id="node5" href="$class_c_status_dlg_thread.html#a5b12b4fbcef88da4d589d79a521eb1a1" title="ステータスの更新" alt="" coords="208,158,384,199"/>
+</map>

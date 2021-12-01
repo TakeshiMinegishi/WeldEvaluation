@@ -1,0 +1,4 @@
+<map id="COprtTabPageInitialize::AddNode" name="COprtTabPageInitialize::AddNode">
+<area shape="rect" id="node1" title="ホワイトバランス用画像撮影処理" alt="" coords="260,5,415,47"/>
+<area shape="rect" id="node2" href="$class_c_oprt_tab_page_initialize.html#ab94bb92896d005e2ea95e3f7fe4f49e8" title="ホワイトバランスボタン押下時処理" alt="" coords="5,5,212,47"/>
+</map>

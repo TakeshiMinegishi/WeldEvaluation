@@ -314,18 +314,23 @@ bool CScanDataIO::LoadImage(int &height, int &width, int &bands, CImage &img)
 		offset[i] = norm[i].m_offset;
 	}
 #endif
-
+	int imageWidth = width;
+	if ((imageWidth % 8) != 0) {
+		imageWidth = (int)(imageWidth / 8) * 8 + 8;
+	}
 	bool bResult = true;
 	BITMAPINFOHEADER    bmInfohdr;
 	int Bpp = 3;
 	// Create the header info
 	bmInfohdr.biSize = sizeof(BITMAPINFOHEADER);
-	bmInfohdr.biWidth = width;
+	bmInfohdr.biWidth = imageWidth;
+//	bmInfohdr.biWidth = width;
 	bmInfohdr.biHeight = -height;
 	bmInfohdr.biPlanes = 1;
 	bmInfohdr.biBitCount = (WORD)(Bpp * 8);
 	bmInfohdr.biCompression = BI_RGB;
-	bmInfohdr.biSizeImage = width * height * Bpp;
+//	bmInfohdr.biSizeImage = width * height * Bpp;
+	bmInfohdr.biSizeImage = imageWidth * height * Bpp;
 	bmInfohdr.biXPelsPerMeter = 0;
 	bmInfohdr.biYPelsPerMeter = 0;
 	bmInfohdr.biClrUsed = 0;
@@ -342,6 +347,7 @@ bool CScanDataIO::LoadImage(int &height, int &width, int &bands, CImage &img)
 	float fval;
 	unsigned char r, g, b;
 	for (int row = 0; row < height; row++) {
+		ptr = p24Img + (row * imageWidth) * Bpp;
 		for (int col = 0; col < width; col++) {
 			if (col >= m_o_p_cube->format.width) {
 				r = g = b = 0;
@@ -362,12 +368,18 @@ bool CScanDataIO::LoadImage(int &height, int &width, int &bands, CImage &img)
 			*(ptr++) = g;
 			*(ptr++) = r;
 		}
-		ptr += 0;
+		for (int col = width; col < imageWidth; col++) {
+			*(ptr++) = 0;
+			*(ptr++) = 0;
+			*(ptr++) = 0;
+		}
 	}
 
-	if (img.Create(width, height, 8 * Bpp, NULL)) {
+	if (img.Create(imageWidth, height, 8 * Bpp, NULL)) {
+//	if (img.Create(width, height, 8 * Bpp, NULL)) {
 		HDC dc = img.GetDC();
-		int ret = SetDIBitsToDevice(dc, 0, 0, width, height, 0, 0, 0, height, p24Img, &bmInfo, DIB_RGB_COLORS);
+//		int ret = SetDIBitsToDevice(dc, 0, 0, width, height, 0, 0, 0, height, p24Img, &bmInfo, DIB_RGB_COLORS);
+		int ret = SetDIBitsToDevice(dc, 0, 0, imageWidth, height, 0, 0, 0, height, p24Img, &bmInfo, DIB_RGB_COLORS);
 		if(ret == 0) {
 			DWORD err = GetLastError();
 			LPVOID lpMsgBuf;
@@ -484,6 +496,35 @@ bool CScanDataIO::getBandSpectrum(std::vector<double> &BandSpectrum)
 		BandSpectrum[i] = m_o_p_cube->format.band_names[i];
 	}
 	return true;
+}
+
+/// <summary>
+/// バンド数の取得
+/// </summary>
+/// <returns>バンド数を返す</returns>
+int  CScanDataIO::GetNumberOfBand()
+{
+	if (m_o_p_cube == nullptr) {
+		return 0;
+	}
+	int bands = m_o_p_cube->format.nr_bands;
+	return bands;
+}
+
+/// <summary>
+/// バンドのスペクトル値取得
+/// </summary>
+/// <param name="index">バンドインデックス</param>
+/// <returns>スペクトル値を返す</returns>
+double CScanDataIO::getWaveLength(int index)
+{
+	if (m_o_p_cube == nullptr) {
+		return 0.0;
+	}
+	if ((index < 0) || (index >= m_o_p_cube->format.nr_bands)) {
+		return 0.0;
+	}
+	return m_o_p_cube->format.band_names[index];
 }
 
 #if 0	// 削除するコード
@@ -1170,7 +1211,7 @@ bool CScanDataIO::affine(int srcWidth, int srcHeight, float ***src, int dstWidth
 /// <param name="hscale">X軸拡縮率</param>
 /// <param name="vscale">Y軸拡縮率</param>
 /// <param name="dstWidth">変換先幅</param>
-/// <param name="distHeight">変換先高さ</param>
+/// <param name="dstHeight">変換先高さ</param>
 /// <param name="dst">変換先データ</param>
 /// <param name="bBicubic">線形補間有無フラグ</param>
 /// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
@@ -1202,7 +1243,7 @@ bool CScanDataIO::ScanDataConvert(int srcWidth, int srcHeight, int band, float *
 /// <summary>
 /// 変換データの開放
 /// </summary>
-/// <param name="distHeight">変換データ高さ</param>
+/// <param name="dstHeight">変換データ高さ</param>
 /// <param name="band">バンド数</param>
 /// <param name="dst">変換データ</param>
 void CScanDataIO::FreeConvertData(int dstHeight, int band, float ***& dst)
@@ -1283,6 +1324,12 @@ bool CScanDataIO::GetHeaderFilePrm(CString pathName, int &width, int &height)
 	return bResult;
 }
 
+/// <summary>
+/// 逆行列の算出
+/// </summary>
+/// <param name="nprm">次数</param>
+/// <param name="ppMat">元マトリックス</param>
+/// <param name="ppInvMat">逆行列マトリックス</param>
 void  CScanDataIO::MatrixInvers(int nprm, double **ppMat, double **ppInvMat)
 {
 	int i, j, k;
@@ -1330,6 +1377,13 @@ void  CScanDataIO::MatrixInvers(int nprm, double **ppMat, double **ppInvMat)
 	}
 }
 
+/// <summary>
+/// ホモグラフィーマトリックス取得
+/// </summary>
+/// <param name="srcPt">移動元頂点</param>
+/// <param name="dstPt">移動先頂点</param>
+/// <param name="prm">ホモグラフィーマトリックスパラメータ</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CScanDataIO::GetHomographyMatrix(CPoint srcPt[4], CPoint dstPt[4], double prm[])
 {
 	bool bResult = true;
@@ -1457,12 +1511,27 @@ bool CScanDataIO::GetHomographyMatrix(CPoint srcPt[4], CPoint dstPt[4], double p
 	return bResult;
 }
 
+/// <summary>
+/// 射影先点の取得
+/// </summary>
+/// <param name="SrcX">移動元X値</param>
+/// <param name="SrcY">移動元Y値</param>
+/// <param name="prm">ホモグラフィパラメータ</param>
+/// <param name="dTranX">移動先X値</param>
+/// <param name="dTranY">移動先Y値</param>
+/// @remark aのマトリックスを逆行列をaに設定
 void CScanDataIO::Projection(int SrcX, int SrcY, double prm[], double &dTranX, double &dTranY)
 {
 	dTranX = ((double)SrcX*prm[0] + (double)SrcY*prm[1] + prm[2]) /	((double)SrcX*prm[6] + (double)SrcY*prm[7] + 1);
 	dTranY = ((double)SrcX*prm[3] + (double)SrcY*prm[4] + prm[5]) /	((double)SrcX*prm[6] + (double)SrcY*prm[7] + 1);
 }
 
+/// <summary>
+/// マトリックス逆行列
+/// </summary>
+/// <param name="n">次数</param>
+/// <param name="a">マトリックス</param>
+/// @remark aのマトリックスを逆行列をaに設定
 void CScanDataIO::matinv(int n, double **a)
 {
 	int i, j, k;
@@ -1494,6 +1563,12 @@ void CScanDataIO::matinv(int n, double **a)
 	}
 }
 
+/// <summary>
+/// 射影変換
+/// </summary>
+/// <param name="vOrig">移動元データ</param>
+/// <param name="vTrans">移動先データ</param>
+/// <param name="aParam">ホモグラフィパラメータ</param>
 void CScanDataIO::Calc_ProjectionParam(vector<CPoint> &vOrig, vector<CPoint> &vTrans,double aParam[8])
 {
 	UINT i, j;
@@ -1602,6 +1677,14 @@ void CScanDataIO::Calc_ProjectionParam(vector<CPoint> &vOrig, vector<CPoint> &vT
 
 }
 
+/// <summary>
+/// 射影変換の移動元取得
+/// </summary>
+/// <param name="DstX">移動先X値</param>
+/// <param name="DstY">移動先Y値</param>
+/// <param name="prm">ホモグラフィパラメータ</param>
+/// <param name="SrcX">移動元X値</param>
+/// <param name="SrcY">移動元Y値</param>
 void CScanDataIO::ProjectionInvPos(int DstX, int DstY, double prm[], double &SrcX, double &SrcY)
 {
 	SrcX = ((prm[5] - DstY) / (prm[7] * DstY - prm[4]) - (prm[2] - DstX) / (prm[7] * DstX - prm[1]))

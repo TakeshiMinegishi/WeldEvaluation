@@ -52,6 +52,8 @@ private:
 
 	bool			m_bVisible;						///< 操作過不可フラグ
 
+	bool			m_bInitialized;					///< 初期化済みフラグ
+	CSize			m_minRect;						///< ウインド最小サイズ
 
 protected: // シリアル化からのみ作成します。
 	CWeldEvaluationDoc();
@@ -101,6 +103,7 @@ private:
 	bool CalcJoJointRetio(std::vector<int>data, int nClass, std::vector<double> &retio);
 	std::vector<int> CWeldEvaluationDoc::split(std::string& input, char delimiter, int size= 0);
 	void H2RGB(int h, BYTE &r, BYTE &g, BYTE &b);
+	void writeLog(CLog::LOGLEVEL level, CString filePath, long lineNo, CString msg);
 
 
 public:
@@ -119,7 +122,8 @@ public:
 	double	GetHorizontalScale();
 	CString GetWBFileName(void);
 	bool	SetWBFileName(CString WBFileName);
-
+	bool	GetMinWndSize(CSize &size);
+	bool	SetMinWndSize(CSize size);
 
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -134,28 +138,28 @@ public:
 	bool	SetVerticalResolution(UINT resolution);
 	UINT	GetHorizontalResolution();
 	bool	SetHorizontalResolution(UINT HorizontalResolution);
-	UINT	NumberOfOverridePixel();
+	UINT	NumberOfOverridePixel(void);
 	bool	SetOverridePixelNumber(UINT num);
 	//	UINT	NumberOfBand(void);
 	//	bool	SetNumberOfBand(UINT band);
-	UINT	ResinGetNumberOfClass(void);
-	bool	ResinSetNumberOfClass(UINT nClass);
+	UINT	ResinGetNumberOfClass(int method);
+	bool	ResinSetNumberOfClass(int method, UINT nClass);
 	double	ResinGetJointRetio(int method, int ViewJointRatioNo);
 	bool	ResinSetJointRetio(int method, int ViewJointRatioNo, double retio);
 	COLORREF ResinGetJointColor(int method, int ViewJointRatioNo);
 	bool	ResinSetJointColor(int method, int ViewJointRatioNo, COLORREF color);
 	int		ResinGetAnalysisMethod();
 	bool	ResinSetAnalysisMethod(int method);
-	UINT	MetalGetNumberOfClass(void);
-	bool	MetalSetNumberOfClass(UINT nClass);
+	UINT	MetalGetNumberOfClass(int method);
+	bool	MetalSetNumberOfClass(int method, UINT nClass);
 	double	MetalGetJointRetio(int method, int ViewJointRatioNo);
 	bool	MetalSetJointRetio(int method, int ViewJointRatioNo, double retio);
 	COLORREF MetalGetJointColor(int method, int ViewJointRatioNo);
 	bool	MetalSetJointColor(int method, int ViewJointRatioNo, COLORREF color);
 	int		MetalGetAnalysisMethod();
 	bool	MetalSetAnalysisMethod(int method);
-	UINT	ResultGetNumberOfClass(void);
-	bool	ResultSetNumberOfClass(UINT nClass);
+	UINT	ResultGetNumberOfClass(int method);
+	bool	ResultSetNumberOfClass(int method, UINT nClass);
 	double	ResultGetJointRetio(int method, int ViewJointRatioNo);
 	bool	ResultSetJointRetio(int method, int ViewJointRatioNo, double retio);
 	COLORREF ResultGetJointColor(int method, int ViewJointRatioNo);
@@ -209,7 +213,8 @@ public:
 	bool	ExistScanFile(int fileID);
 	CString GetScanDataName(int ScanID, CString Prefix);
 	bool	SaveScanImage(int ScanID);
-	bool	ExistClassificationResultFile(int fileID, int type);
+	bool	IsExistClassificationResultFile(int ScanID, int type);
+	bool	IsUpdateNumberOfClassifications(int ScanID, int method);
 	bool	SaveClassificationResultFile(int ScanID, int type);
 	CString GetDeviceName();
 	bool	IsCameraDummyApi();
@@ -218,7 +223,7 @@ public:
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//
-	bool	Analize(int targetID, int AnalysisMethodID);
+	bool	Analize(int ScanID, int AnalysisMethodID);
 	void	CalcResultStopRequest();
 
 	bool	LoadScanImage(int targetID, CImage &img, bool renew = false);
@@ -226,6 +231,7 @@ public:
 	bool	LoadClassificationResultImage(int targetID, int type, CImage &img, bool renew = false);
 	
 	bool	GetSpectrumData(int ScanID, CPoint &pos, std::vector<double> &data);
+	bool	GetSpectrumRange(int ScanID, double &min, double &max);
 	bool	WriteImage(CString writePath);
 	CString getScanDataFilePath(int ScanID);
 	CString GetTmpFolderName();
@@ -244,5 +250,6 @@ public:
 	void ClrWorkProject();
 
 	void DeleteContents(int ScanID);
+	bool DeleteProject(CString ProjentName);
 
 };

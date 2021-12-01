@@ -1,0 +1,1128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>WeldEvaluation: COprtTabPageAnalize クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">WeldEvaluation
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">ソース一式</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_c_oprt_tab_page_analize.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">公開型</a> &#124;
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="#pub-attribs">公開変数類</a> &#124;
+<a href="#pro-methods">限定公開メンバ関数</a> &#124;
+<a href="class_c_oprt_tab_page_analize-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">COprtTabPageAnalize クラス</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>操作タブ解析ページ管理クラス  
+ <a href="class_c_oprt_tab_page_analize.html#details">[詳解]</a></p>
+
+<p><code>#include &lt;<a class="el" href="_oprt_tab_page_analize_8h_source.html">OprtTabPageAnalize.h</a>&gt;</code></p>
+<div class="dynheader">
+COprtTabPageAnalize の継承関係図</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_oprt_tab_page_analize__inherit__graph.png" border="0" usemap="#a_c_oprt_tab_page_analize_inherit__map" alt="Inheritance graph"/></div>
+<map name="a_c_oprt_tab_page_analize_inherit__map" id="a_c_oprt_tab_page_analize_inherit__map">
+<area shape="rect" title="操作タブ解析ページ管理クラス" alt="" coords="5,80,156,107"/>
+<area shape="rect" title=" " alt="" coords="39,5,122,32"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">凡例</a>]</span></center></div>
+<div class="dynheader">
+COprtTabPageAnalize 連携図</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_oprt_tab_page_analize__coll__graph.png" border="0" usemap="#a_c_oprt_tab_page_analize_coll__map" alt="Collaboration graph"/></div>
+<map name="a_c_oprt_tab_page_analize_coll__map" id="a_c_oprt_tab_page_analize_coll__map">
+<area shape="rect" title="操作タブ解析ページ管理クラス" alt="" coords="5,80,156,107"/>
+<area shape="rect" title=" " alt="" coords="39,5,122,32"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">凡例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+公開型</h2></td></tr>
+<tr class="memitem:a3aa25fff6de6fc57a9bf100d4a61718f"><td class="memItemLeft" align="right" valign="top"><a id="a3aa25fff6de6fc57a9bf100d4a61718f"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>IDD</b> = IDD_OPERTAB_PAGE_ANALIZE
+ }</td></tr>
+<tr class="separator:a3aa25fff6de6fc57a9bf100d4a61718f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:a846ec7cec963027f7ab8f2a5f1d39723"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a846ec7cec963027f7ab8f2a5f1d39723">COprtTabPageAnalize</a> (CWnd *pParent=NULL)</td></tr>
+<tr class="memdesc:a846ec7cec963027f7ab8f2a5f1d39723"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンストラクタ  <a href="class_c_oprt_tab_page_analize.html#a846ec7cec963027f7ab8f2a5f1d39723">[詳解]</a><br /></td></tr>
+<tr class="separator:a846ec7cec963027f7ab8f2a5f1d39723"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a043e5c88a84364d4554e684ba1b20ecd"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a043e5c88a84364d4554e684ba1b20ecd">~COprtTabPageAnalize</a> ()</td></tr>
+<tr class="memdesc:a043e5c88a84364d4554e684ba1b20ecd"><td class="mdescLeft">&#160;</td><td class="mdescRight">デストラクタ  <a href="class_c_oprt_tab_page_analize.html#a043e5c88a84364d4554e684ba1b20ecd">[詳解]</a><br /></td></tr>
+<tr class="separator:a043e5c88a84364d4554e684ba1b20ecd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1734d789d2ad5f21d3de5804c4e477f9"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a1734d789d2ad5f21d3de5804c4e477f9">OnBnClickedBtnResinanalize</a> ()</td></tr>
+<tr class="memdesc:a1734d789d2ad5f21d3de5804c4e477f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂面分析実施選択時処理  <a href="class_c_oprt_tab_page_analize.html#a1734d789d2ad5f21d3de5804c4e477f9">[詳解]</a><br /></td></tr>
+<tr class="separator:a1734d789d2ad5f21d3de5804c4e477f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a440cf7fbd6d1f4d9fed816e9be37cfc4"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a440cf7fbd6d1f4d9fed816e9be37cfc4">OnBnClickedBtnMetalanalize</a> ()</td></tr>
+<tr class="memdesc:a440cf7fbd6d1f4d9fed816e9be37cfc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属面分析実施選択時処理  <a href="class_c_oprt_tab_page_analize.html#a440cf7fbd6d1f4d9fed816e9be37cfc4">[詳解]</a><br /></td></tr>
+<tr class="separator:a440cf7fbd6d1f4d9fed816e9be37cfc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4a655cbe98715cb64a8b5becc1a4bd7"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#aa4a655cbe98715cb64a8b5becc1a4bd7">OnBnClickedBtnSectionspectrumdisplay</a> ()</td></tr>
+<tr class="memdesc:aa4a655cbe98715cb64a8b5becc1a4bd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">区間スペクトル表示ボタン選択時処理  <a href="class_c_oprt_tab_page_analize.html#aa4a655cbe98715cb64a8b5becc1a4bd7">[詳解]</a><br /></td></tr>
+<tr class="separator:aa4a655cbe98715cb64a8b5becc1a4bd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae69d1c504a694b6b61840b1fe377e601"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#ae69d1c504a694b6b61840b1fe377e601">OnBnClickedRdoResinscan</a> ()</td></tr>
+<tr class="memdesc:ae69d1c504a694b6b61840b1fe377e601"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂面表示タイプスキャン選択時処理  <a href="class_c_oprt_tab_page_analize.html#ae69d1c504a694b6b61840b1fe377e601">[詳解]</a><br /></td></tr>
+<tr class="separator:ae69d1c504a694b6b61840b1fe377e601"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9f8a7e416776fe6187673306e5d3a85"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#ae9f8a7e416776fe6187673306e5d3a85">OnBnClickedRdoResinclasresult</a> ()</td></tr>
+<tr class="memdesc:ae9f8a7e416776fe6187673306e5d3a85"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂面表示タイプ分類結果選択時処理  <a href="class_c_oprt_tab_page_analize.html#ae9f8a7e416776fe6187673306e5d3a85">[詳解]</a><br /></td></tr>
+<tr class="separator:ae9f8a7e416776fe6187673306e5d3a85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13d39220b8346972e4eae2f1bc1ced22"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a13d39220b8346972e4eae2f1bc1ced22">OnBnClickedRdoMetalscan</a> ()</td></tr>
+<tr class="memdesc:a13d39220b8346972e4eae2f1bc1ced22"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属面表示タイプスキャン選択時処理  <a href="class_c_oprt_tab_page_analize.html#a13d39220b8346972e4eae2f1bc1ced22">[詳解]</a><br /></td></tr>
+<tr class="separator:a13d39220b8346972e4eae2f1bc1ced22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac82359ab4f3766594ccb083a112e9fe8"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#ac82359ab4f3766594ccb083a112e9fe8">OnBnClickedRdoMetalclasresult</a> ()</td></tr>
+<tr class="memdesc:ac82359ab4f3766594ccb083a112e9fe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属面表示タイプ分類結果選択時処理  <a href="class_c_oprt_tab_page_analize.html#ac82359ab4f3766594ccb083a112e9fe8">[詳解]</a><br /></td></tr>
+<tr class="separator:ac82359ab4f3766594ccb083a112e9fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e4c0695d90711c7c02c0dd2ea31ca71"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a6e4c0695d90711c7c02c0dd2ea31ca71">OnBnClickedRdoJointresultscan</a> ()</td></tr>
+<tr class="memdesc:a6e4c0695d90711c7c02c0dd2ea31ca71"><td class="mdescLeft">&#160;</td><td class="mdescRight">接合結果表示タイプスキャン選択時処理  <a href="class_c_oprt_tab_page_analize.html#a6e4c0695d90711c7c02c0dd2ea31ca71">[詳解]</a><br /></td></tr>
+<tr class="separator:a6e4c0695d90711c7c02c0dd2ea31ca71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adee2f539754700ef37d0e306b728e4d6"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#adee2f539754700ef37d0e306b728e4d6">OnBnClickedRdoJointresultclasresult</a> ()</td></tr>
+<tr class="memdesc:adee2f539754700ef37d0e306b728e4d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">接合結果表示タイプ分類結果選択時処理  <a href="class_c_oprt_tab_page_analize.html#adee2f539754700ef37d0e306b728e4d6">[詳解]</a><br /></td></tr>
+<tr class="separator:adee2f539754700ef37d0e306b728e4d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62f06351ba5608c0c52bca42a913833b"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a62f06351ba5608c0c52bca42a913833b">OnBnClickedRdoResinMethod1</a> ()</td></tr>
+<tr class="memdesc:a62f06351ba5608c0c52bca42a913833b"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂面解析方法k-means選択時処理  <a href="class_c_oprt_tab_page_analize.html#a62f06351ba5608c0c52bca42a913833b">[詳解]</a><br /></td></tr>
+<tr class="separator:a62f06351ba5608c0c52bca42a913833b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f016c43a40aea8aebe54cf5ea5e98e3"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a8f016c43a40aea8aebe54cf5ea5e98e3">OnBnClickedRdoResinMethod2</a> ()</td></tr>
+<tr class="memdesc:a8f016c43a40aea8aebe54cf5ea5e98e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂面解析方法階層クラスタリング選択時処理  <a href="class_c_oprt_tab_page_analize.html#a8f016c43a40aea8aebe54cf5ea5e98e3">[詳解]</a><br /></td></tr>
+<tr class="separator:a8f016c43a40aea8aebe54cf5ea5e98e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a149453a5283d6b91cad8848a18afb8f0"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a149453a5283d6b91cad8848a18afb8f0">OnBnClickedRdoMetalMethod1</a> ()</td></tr>
+<tr class="memdesc:a149453a5283d6b91cad8848a18afb8f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属面解析方法k-means選択時処理  <a href="class_c_oprt_tab_page_analize.html#a149453a5283d6b91cad8848a18afb8f0">[詳解]</a><br /></td></tr>
+<tr class="separator:a149453a5283d6b91cad8848a18afb8f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14e8bb16db62057f2bf9cbd512848dc4"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a14e8bb16db62057f2bf9cbd512848dc4">OnBnClickedRdoMetalMethod2</a> ()</td></tr>
+<tr class="memdesc:a14e8bb16db62057f2bf9cbd512848dc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属面解析方法階層クラスタリング選択時処理  <a href="class_c_oprt_tab_page_analize.html#a14e8bb16db62057f2bf9cbd512848dc4">[詳解]</a><br /></td></tr>
+<tr class="separator:a14e8bb16db62057f2bf9cbd512848dc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a87297aab04b7bd9f08caca1da10cbd"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a5a87297aab04b7bd9f08caca1da10cbd">OnBnClickedRdoJointMethod1</a> ()</td></tr>
+<tr class="memdesc:a5a87297aab04b7bd9f08caca1da10cbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">接続結果解析方法k-means選択時処理  <a href="class_c_oprt_tab_page_analize.html#a5a87297aab04b7bd9f08caca1da10cbd">[詳解]</a><br /></td></tr>
+<tr class="separator:a5a87297aab04b7bd9f08caca1da10cbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a734c44296f6c61bb086c00c428e1a5b0"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a734c44296f6c61bb086c00c428e1a5b0">OnBnClickedRdoJointMethod2</a> ()</td></tr>
+<tr class="memdesc:a734c44296f6c61bb086c00c428e1a5b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">接続結果解析方法階層クラスタリング選択時処理  <a href="class_c_oprt_tab_page_analize.html#a734c44296f6c61bb086c00c428e1a5b0">[詳解]</a><br /></td></tr>
+<tr class="separator:a734c44296f6c61bb086c00c428e1a5b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e34ecf125172ce6511511c2be79c9aa"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a4e34ecf125172ce6511511c2be79c9aa">OnBnClickedBtnJointanalize</a> ()</td></tr>
+<tr class="memdesc:a4e34ecf125172ce6511511c2be79c9aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">接合結果分析実施選択時処理  <a href="class_c_oprt_tab_page_analize.html#a4e34ecf125172ce6511511c2be79c9aa">[詳解]</a><br /></td></tr>
+<tr class="separator:a4e34ecf125172ce6511511c2be79c9aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e3e758966fef9cf2d85e8ed278466c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a0e3e758966fef9cf2d85e8ed278466c4">ItemActive</a> (bool bActive)</td></tr>
+<tr class="memdesc:a0e3e758966fef9cf2d85e8ed278466c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">アイテムのアクティブ/ディアクティブ化  <a href="class_c_oprt_tab_page_analize.html#a0e3e758966fef9cf2d85e8ed278466c4">[詳解]</a><br /></td></tr>
+<tr class="separator:a0e3e758966fef9cf2d85e8ed278466c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84d0a276b8897ee23001945ec1620d63"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a84d0a276b8897ee23001945ec1620d63">LoadParamater</a> ()</td></tr>
+<tr class="memdesc:a84d0a276b8897ee23001945ec1620d63"><td class="mdescLeft">&#160;</td><td class="mdescRight">パラメータの読み込み  <a href="class_c_oprt_tab_page_analize.html#a84d0a276b8897ee23001945ec1620d63">[詳解]</a><br /></td></tr>
+<tr class="separator:a84d0a276b8897ee23001945ec1620d63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38f8d98173effda10dafceec403207ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a38f8d98173effda10dafceec403207ee">ViewModeReset</a> (void)</td></tr>
+<tr class="memdesc:a38f8d98173effda10dafceec403207ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">表示モードリセット  <a href="class_c_oprt_tab_page_analize.html#a38f8d98173effda10dafceec403207ee">[詳解]</a><br /></td></tr>
+<tr class="separator:a38f8d98173effda10dafceec403207ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fb4d38b9f1ebfc342b00317c80f5536"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a5fb4d38b9f1ebfc342b00317c80f5536">GetAnalizeType</a> (int ItemID)</td></tr>
+<tr class="memdesc:a5fb4d38b9f1ebfc342b00317c80f5536"><td class="mdescLeft">&#160;</td><td class="mdescRight">解析手法の取得  <a href="class_c_oprt_tab_page_analize.html#a5fb4d38b9f1ebfc342b00317c80f5536">[詳解]</a><br /></td></tr>
+<tr class="separator:a5fb4d38b9f1ebfc342b00317c80f5536"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7b8979806e02ade8239a8184ff38922"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#aa7b8979806e02ade8239a8184ff38922">ChangeAnalizeType</a> (int ScanID)</td></tr>
+<tr class="memdesc:aa7b8979806e02ade8239a8184ff38922"><td class="mdescLeft">&#160;</td><td class="mdescRight">解析手法の切り換え  <a href="class_c_oprt_tab_page_analize.html#aa7b8979806e02ade8239a8184ff38922">[詳解]</a><br /></td></tr>
+<tr class="separator:aa7b8979806e02ade8239a8184ff38922"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad026ecbbc983699be043cf39cf611383"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#ad026ecbbc983699be043cf39cf611383">SetDisplayMode</a> (int ScanID, int mode)</td></tr>
+<tr class="memdesc:ad026ecbbc983699be043cf39cf611383"><td class="mdescLeft">&#160;</td><td class="mdescRight">表示方法の設定  <a href="class_c_oprt_tab_page_analize.html#ad026ecbbc983699be043cf39cf611383">[詳解]</a><br /></td></tr>
+<tr class="separator:ad026ecbbc983699be043cf39cf611383"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa71ab5bde07cddec6be91eb07639ce64"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#aa71ab5bde07cddec6be91eb07639ce64">IsChangedAnalizeType</a> ()</td></tr>
+<tr class="memdesc:aa71ab5bde07cddec6be91eb07639ce64"><td class="mdescLeft">&#160;</td><td class="mdescRight">解析方法が変更されたかの判定  <a href="class_c_oprt_tab_page_analize.html#aa71ab5bde07cddec6be91eb07639ce64">[詳解]</a><br /></td></tr>
+<tr class="separator:aa71ab5bde07cddec6be91eb07639ce64"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4428b3f5ac057074fd04960274404020"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a4428b3f5ac057074fd04960274404020">IsChangedDisplayMode</a> ()</td></tr>
+<tr class="memdesc:a4428b3f5ac057074fd04960274404020"><td class="mdescLeft">&#160;</td><td class="mdescRight">表示方法が変更されたかの判定  <a href="class_c_oprt_tab_page_analize.html#a4428b3f5ac057074fd04960274404020">[詳解]</a><br /></td></tr>
+<tr class="separator:a4428b3f5ac057074fd04960274404020"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+公開変数類</h2></td></tr>
+<tr class="memitem:a5249272493a429b023f3a80d396ccc9a"><td class="memItemLeft" align="right" valign="top"><a id="a5249272493a429b023f3a80d396ccc9a"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a5249272493a429b023f3a80d396ccc9a">m_ResinAnalizeType</a></td></tr>
+<tr class="memdesc:a5249272493a429b023f3a80d396ccc9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂面解析タイプ <br /></td></tr>
+<tr class="separator:a5249272493a429b023f3a80d396ccc9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcb494958b1a9e72594f19076c815662"><td class="memItemLeft" align="right" valign="top"><a id="adcb494958b1a9e72594f19076c815662"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#adcb494958b1a9e72594f19076c815662">m_MetalAnalizeType</a></td></tr>
+<tr class="memdesc:adcb494958b1a9e72594f19076c815662"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属面解析タイプ <br /></td></tr>
+<tr class="separator:adcb494958b1a9e72594f19076c815662"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae01090a96e9d553a8a3797a3fdb36fd"><td class="memItemLeft" align="right" valign="top"><a id="aae01090a96e9d553a8a3797a3fdb36fd"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#aae01090a96e9d553a8a3797a3fdb36fd">m_JointAnalizeType</a></td></tr>
+<tr class="memdesc:aae01090a96e9d553a8a3797a3fdb36fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">接合結果解析タイプ <br /></td></tr>
+<tr class="separator:aae01090a96e9d553a8a3797a3fdb36fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a220410d7902aded116a4ea80a291ba28"><td class="memItemLeft" align="right" valign="top"><a id="a220410d7902aded116a4ea80a291ba28"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a220410d7902aded116a4ea80a291ba28">m_ResinDisplayMode</a></td></tr>
+<tr class="memdesc:a220410d7902aded116a4ea80a291ba28"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂面表示タイプ <br /></td></tr>
+<tr class="separator:a220410d7902aded116a4ea80a291ba28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a411b22a437f8e35fe72d3f4ed792d5af"><td class="memItemLeft" align="right" valign="top"><a id="a411b22a437f8e35fe72d3f4ed792d5af"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a411b22a437f8e35fe72d3f4ed792d5af">m_MetalDisplayMode</a></td></tr>
+<tr class="memdesc:a411b22a437f8e35fe72d3f4ed792d5af"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属面表示タイプ <br /></td></tr>
+<tr class="separator:a411b22a437f8e35fe72d3f4ed792d5af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a975ba491c60360172d9e31fc6f955b83"><td class="memItemLeft" align="right" valign="top"><a id="a975ba491c60360172d9e31fc6f955b83"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a975ba491c60360172d9e31fc6f955b83">m_ResultDisplayMode</a></td></tr>
+<tr class="memdesc:a975ba491c60360172d9e31fc6f955b83"><td class="mdescLeft">&#160;</td><td class="mdescRight">接合結果表示タイプ <br /></td></tr>
+<tr class="separator:a975ba491c60360172d9e31fc6f955b83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2759b61ec453642304d2a90614cd7f1"><td class="memItemLeft" align="right" valign="top"><a id="aa2759b61ec453642304d2a90614cd7f1"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#aa2759b61ec453642304d2a90614cd7f1">m_bChangedAnalizeType</a></td></tr>
+<tr class="memdesc:aa2759b61ec453642304d2a90614cd7f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">解析方法変更有無フラグ <br /></td></tr>
+<tr class="separator:aa2759b61ec453642304d2a90614cd7f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f20d30f347480409ca438f38a980999"><td class="memItemLeft" align="right" valign="top"><a id="a5f20d30f347480409ca438f38a980999"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a5f20d30f347480409ca438f38a980999">m_bChangedDisplayMode</a></td></tr>
+<tr class="memdesc:a5f20d30f347480409ca438f38a980999"><td class="mdescLeft">&#160;</td><td class="mdescRight">表示方法変更有無フラグ <br /></td></tr>
+<tr class="separator:a5f20d30f347480409ca438f38a980999"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+限定公開メンバ関数</h2></td></tr>
+<tr class="memitem:a6e27aa12b2e92630bb049895397c109c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_oprt_tab_page_analize.html#a6e27aa12b2e92630bb049895397c109c">DoDataExchange</a> (CDataExchange *pDX)</td></tr>
+<tr class="memdesc:a6e27aa12b2e92630bb049895397c109c"><td class="mdescLeft">&#160;</td><td class="mdescRight">データエクスチェンジ処理  <a href="class_c_oprt_tab_page_analize.html#a6e27aa12b2e92630bb049895397c109c">[詳解]</a><br /></td></tr>
+<tr class="separator:a6e27aa12b2e92630bb049895397c109c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>操作タブ解析ページ管理クラス </p>
+</div><h2 class="groupheader">構築子と解体子</h2>
+<a id="a846ec7cec963027f7ab8f2a5f1d39723"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a846ec7cec963027f7ab8f2a5f1d39723">&#9670;&nbsp;</a></span>COprtTabPageAnalize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">COprtTabPageAnalize::COprtTabPageAnalize </td>
+          <td>(</td>
+          <td class="paramtype">CWnd *&#160;</td>
+          <td class="paramname"><em>pParent</em> = <code>NULL</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>コンストラクタ </p>
+
+</div>
+</div>
+<a id="a043e5c88a84364d4554e684ba1b20ecd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a043e5c88a84364d4554e684ba1b20ecd">&#9670;&nbsp;</a></span>~COprtTabPageAnalize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">COprtTabPageAnalize::~COprtTabPageAnalize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>デストラクタ </p>
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="aa7b8979806e02ade8239a8184ff38922"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7b8979806e02ade8239a8184ff38922">&#9670;&nbsp;</a></span>ChangeAnalizeType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void COprtTabPageAnalize::ChangeAnalizeType </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ScanID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>解析手法の切り換え </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ScanID</td><td>スキャンID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section remark"><dt>注釈</dt><dd>チェックされている手法を未チェックの手法に切り換える </dd></dl>
+
+</div>
+</div>
+<a id="a6e27aa12b2e92630bb049895397c109c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e27aa12b2e92630bb049895397c109c">&#9670;&nbsp;</a></span>DoDataExchange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void COprtTabPageAnalize::DoDataExchange </td>
+          <td>(</td>
+          <td class="paramtype">CDataExchange *&#160;</td>
+          <td class="paramname"><em>pDX</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>データエクスチェンジ処理 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pDX</td><td>CDataExchangeオブジェクト</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5fb4d38b9f1ebfc342b00317c80f5536"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fb4d38b9f1ebfc342b00317c80f5536">&#9670;&nbsp;</a></span>GetAnalizeType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int COprtTabPageAnalize::GetAnalizeType </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ItemID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>解析手法の取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ItemID</td><td>表示ターゲットID</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>解析手法を返す</dd></dl>
+
+</div>
+</div>
+<a id="aa71ab5bde07cddec6be91eb07639ce64"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa71ab5bde07cddec6be91eb07639ce64">&#9670;&nbsp;</a></span>IsChangedAnalizeType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool COprtTabPageAnalize::IsChangedAnalizeType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>解析方法が変更されたかの判定 </p>
+<dl class="section return"><dt>戻り値</dt><dd>変更されていればtrue、されていなければfalseを返す</dd></dl>
+<dl class="section remark"><dt>注釈</dt><dd>切り換え処理が実施されるまで有効 </dd></dl>
+
+</div>
+</div>
+<a id="a4428b3f5ac057074fd04960274404020"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4428b3f5ac057074fd04960274404020">&#9670;&nbsp;</a></span>IsChangedDisplayMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool COprtTabPageAnalize::IsChangedDisplayMode </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>表示方法が変更されたかの判定 </p>
+<dl class="section return"><dt>戻り値</dt><dd>変更されていればtrue、されていなければfalseを返す</dd></dl>
+<dl class="section remark"><dt>注釈</dt><dd>切り換え処理が実施されるまで有効 </dd></dl>
+
+</div>
+</div>
+<a id="a0e3e758966fef9cf2d85e8ed278466c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e3e758966fef9cf2d85e8ed278466c4">&#9670;&nbsp;</a></span>ItemActive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void COprtTabPageAnalize::ItemActive </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bActive</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>アイテムのアクティブ/ディアクティブ化 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bActive</td><td>アクティブフラグ</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a84d0a276b8897ee23001945ec1620d63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84d0a276b8897ee23001945ec1620d63">&#9670;&nbsp;</a></span>LoadParamater()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void COprtTabPageAnalize::LoadParamater </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>パラメータの読み込み </p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_oprt_tab_page_analize_a84d0a276b8897ee23001945ec1620d63_cgraph.png" border="0" usemap="#aclass_c_oprt_tab_page_analize_a84d0a276b8897ee23001945ec1620d63_cgraph" alt=""/></div>
+<map name="aclass_c_oprt_tab_page_analize_a84d0a276b8897ee23001945ec1620d63_cgraph" id="aclass_c_oprt_tab_page_analize_a84d0a276b8897ee23001945ec1620d63_cgraph">
+<area shape="rect" title="パラメータの読み込み" alt="" coords="5,185,156,227"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ab81bb09791e3edcf133e9bc0321cd4a1" title="解析方法の取得" alt="" coords="204,120,348,161"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a6fb9f31759c4175b40446be90447a42f" title="表示モードの取得" alt="" coords="205,217,347,259"/>
+<area shape="rect" href="class_c_propaty_i_o.html#aaae96a2403eedacf849805121c1b9ae1" title="金属面の解析方法の取得" alt="" coords="399,5,599,47"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a46c9543b5945bbe938d772d62a95028c" title="樹脂面の解析方法の取得" alt="" coords="398,71,599,112"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a7760f6ded7e2fcb8a413d39a1d8e77b9" title="接合結果の解析方法の取得" alt="" coords="396,136,601,177"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a01bc129069b3ba05ed979729f88be551" title="金属画像表示タイプの取得" alt="" coords="415,201,582,243"/>
+<area shape="rect" href="class_c_project_file_i_o.html#ae824553dca5d5e1f69ea7e4687dd1588" title="樹脂画像表示タイプの取得" alt="" coords="415,267,583,308"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a3ff4f09ff5ba28cac5284611c2f4a628" title="接合結果画像表示タイプの取得" alt="" coords="413,332,585,373"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1043,274,1175,301"/>
+<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="649,249,801,275"/>
+<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="849,249,995,275"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_oprt_tab_page_analize_a84d0a276b8897ee23001945ec1620d63_icgraph.png" border="0" usemap="#aclass_c_oprt_tab_page_analize_a84d0a276b8897ee23001945ec1620d63_icgraph" alt=""/></div>
+<map name="aclass_c_oprt_tab_page_analize_a84d0a276b8897ee23001945ec1620d63_icgraph" id="aclass_c_oprt_tab_page_analize_a84d0a276b8897ee23001945ec1620d63_icgraph">
+<area shape="rect" title="パラメータの読み込み" alt="" coords="201,5,352,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae4f218a4e70e08689a0532384eb86fe5" title="設定ページの再読込" alt="" coords="5,5,153,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4e34ecf125172ce6511511c2be79c9aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e34ecf125172ce6511511c2be79c9aa">&#9670;&nbsp;</a></span>OnBnClickedBtnJointanalize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void COprtTabPageAnalize::OnBnClickedBtnJointanalize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>接合結果分析実施選択時処理 </p>
+
+</div>
+</div>
+<a id="a440cf7fbd6d1f4d9fed816e9be37cfc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a440cf7fbd6d1f4d9fed816e9be37cfc4">&#9670;&nbsp;</a></span>OnBnClickedBtnMetalanalize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void COprtTabPageAnalize::OnBnClickedBtnMetalanalize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>金属面分析実施選択時処理 </p>
+
+</div>
+</div>
+<a id="a1734d789d2ad5f21d3de5804c4e477f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1734d789d2ad5f21d3de5804c4e477f9">&#9670;&nbsp;</a></span>OnBnClickedBtnResinanalize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void COprtTabPageAnalize::OnBnClickedBtnResinanalize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>樹脂面分析実施選択時処理 </p>
+
+</div>
+</div>
+<a id="aa4a655cbe98715cb64a8b5becc1a4bd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4a655cbe98715cb64a8b5becc1a4bd7">&#9670;&nbsp;</a></span>OnBnClickedBtnSectionspectrumdisplay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void COprtTabPageAnalize::OnBnClickedBtnSectionspectrumdisplay </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>区間スペクトル表示ボタン選択時処理 </p>
+
+</div>
+</div>
+<a id="a5a87297aab04b7bd9f08caca1da10cbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a87297aab04b7bd9f08caca1da10cbd">&#9670;&nbsp;</a></span>OnBnClickedRdoJointMethod1()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void COprtTabPageAnalize::OnBnClickedRdoJointMethod1 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>接続結果解析方法k-means選択時処理 </p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_oprt_tab_page_analize_a5a87297aab04b7bd9f08caca1da10cbd_cgraph.png" border="0" usemap="#aclass_c_oprt_tab_page_analize_a5a87297aab04b7bd9f08caca1da10cbd_cgraph" alt=""/></div>
+<map name="aclass_c_oprt_tab_page_analize_a5a87297aab04b7bd9f08caca1da10cbd_cgraph" id="aclass_c_oprt_tab_page_analize_a5a87297aab04b7bd9f08caca1da10cbd_cgraph">
+<area shape="rect" title="接続結果解析方法k&#45;means選択時処理" alt="" coords="5,185,212,227"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a6fb9f31759c4175b40446be90447a42f" title="表示モードの取得" alt="" coords="260,120,403,161"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aa3188290e41d704b8c34cb8dfd8f2a1d" title="解析方法の設定" alt="" coords="260,217,403,259"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a01bc129069b3ba05ed979729f88be551" title="金属画像表示タイプの取得" alt="" coords="469,5,636,47"/>
+<area shape="rect" href="class_c_project_file_i_o.html#ae824553dca5d5e1f69ea7e4687dd1588" title="樹脂画像表示タイプの取得" alt="" coords="469,71,637,112"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a3ff4f09ff5ba28cac5284611c2f4a628" title="接合結果画像表示タイプの取得" alt="" coords="467,136,639,177"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1096,78,1228,105"/>
+<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="703,53,855,79"/>
+<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="903,53,1048,79"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a5c053cec7083e77d1f285f262f4ddbd1" title="金属面の解析方法の設定" alt="" coords="453,201,652,243"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ac179aa732fd5e8373f6deeb918367fdc" title="樹脂面の解析方法の設定" alt="" coords="453,267,653,308"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a80b10d181a91d1536e78be10dcf4e50c" title="接合結果の解析方法の設定" alt="" coords="451,332,655,373"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a734c44296f6c61bb086c00c428e1a5b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a734c44296f6c61bb086c00c428e1a5b0">&#9670;&nbsp;</a></span>OnBnClickedRdoJointMethod2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void COprtTabPageAnalize::OnBnClickedRdoJointMethod2 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>接続結果解析方法階層クラスタリング選択時処理 </p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_oprt_tab_page_analize_a734c44296f6c61bb086c00c428e1a5b0_cgraph.png" border="0" usemap="#aclass_c_oprt_tab_page_analize_a734c44296f6c61bb086c00c428e1a5b0_cgraph" alt=""/></div>
+<map name="aclass_c_oprt_tab_page_analize_a734c44296f6c61bb086c00c428e1a5b0_cgraph" id="aclass_c_oprt_tab_page_analize_a734c44296f6c61bb086c00c428e1a5b0_cgraph">
+<area shape="rect" title="接続結果解析方法階層クラスタリング選択時処理" alt="" coords="5,185,212,227"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a6fb9f31759c4175b40446be90447a42f" title="表示モードの取得" alt="" coords="260,120,403,161"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aa3188290e41d704b8c34cb8dfd8f2a1d" title="解析方法の設定" alt="" coords="260,217,403,259"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a01bc129069b3ba05ed979729f88be551" title="金属画像表示タイプの取得" alt="" coords="469,5,636,47"/>
+<area shape="rect" href="class_c_project_file_i_o.html#ae824553dca5d5e1f69ea7e4687dd1588" title="樹脂画像表示タイプの取得" alt="" coords="469,71,637,112"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a3ff4f09ff5ba28cac5284611c2f4a628" title="接合結果画像表示タイプの取得" alt="" coords="467,136,639,177"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1096,78,1228,105"/>
+<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="703,53,855,79"/>
+<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="903,53,1048,79"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a5c053cec7083e77d1f285f262f4ddbd1" title="金属面の解析方法の設定" alt="" coords="453,201,652,243"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ac179aa732fd5e8373f6deeb918367fdc" title="樹脂面の解析方法の設定" alt="" coords="453,267,653,308"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a80b10d181a91d1536e78be10dcf4e50c" title="接合結果の解析方法の設定" alt="" coords="451,332,655,373"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="adee2f539754700ef37d0e306b728e4d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adee2f539754700ef37d0e306b728e4d6">&#9670;&nbsp;</a></span>OnBnClickedRdoJointresultclasresult()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void COprtTabPageAnalize::OnBnClickedRdoJointresultclasresult </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>接合結果表示タイプ分類結果選択時処理 </p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_oprt_tab_page_analize_adee2f539754700ef37d0e306b728e4d6_cgraph.png" border="0" usemap="#aclass_c_oprt_tab_page_analize_adee2f539754700ef37d0e306b728e4d6_cgraph" alt=""/></div>
+<map name="aclass_c_oprt_tab_page_analize_adee2f539754700ef37d0e306b728e4d6_cgraph" id="aclass_c_oprt_tab_page_analize_adee2f539754700ef37d0e306b728e4d6_cgraph">
+<area shape="rect" title="接合結果表示タイプ分類結果選択時処理" alt="" coords="5,71,249,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a8c3734ada4777e97073fd72a094bf46f" title="表示モードの設定" alt="" coords="297,71,440,112"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a72febda46d46ce0a691c704a6b1c0e22" title="金属画像表示タイプの設定" alt="" coords="490,5,657,47"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a3423e2b69573bdb6fbcb3378eab42d18" title="樹脂画像表示タイプの設定" alt="" coords="490,71,657,112"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a4d14fb09609fb48e540cb7851daccedc" title="接合結果画像表示タイプの設定" alt="" coords="488,136,659,177"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="717,53,849,79"/>
+<area shape="rect" href="class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="707,103,859,130"/>
+<area shape="rect" href="class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="907,103,1053,130"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6e4c0695d90711c7c02c0dd2ea31ca71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e4c0695d90711c7c02c0dd2ea31ca71">&#9670;&nbsp;</a></span>OnBnClickedRdoJointresultscan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void COprtTabPageAnalize::OnBnClickedRdoJointresultscan </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>接合結果表示タイプスキャン選択時処理 </p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_oprt_tab_page_analize_a6e4c0695d90711c7c02c0dd2ea31ca71_cgraph.png" border="0" usemap="#aclass_c_oprt_tab_page_analize_a6e4c0695d90711c7c02c0dd2ea31ca71_cgraph" alt=""/></div>
+<map name="aclass_c_oprt_tab_page_analize_a6e4c0695d90711c7c02c0dd2ea31ca71_cgraph" id="aclass_c_oprt_tab_page_analize_a6e4c0695d90711c7c02c0dd2ea31ca71_cgraph">
+<area shape="rect" title="接合結果表示タイプスキャン選択時処理" alt="" coords="5,71,221,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a8c3734ada4777e97073fd72a094bf46f" title="表示モードの設定" alt="" coords="269,71,412,112"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a72febda46d46ce0a691c704a6b1c0e22" title="金属画像表示タイプの設定" alt="" coords="462,5,629,47"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a3423e2b69573bdb6fbcb3378eab42d18" title="樹脂画像表示タイプの設定" alt="" coords="462,71,629,112"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a4d14fb09609fb48e540cb7851daccedc" title="接合結果画像表示タイプの設定" alt="" coords="460,136,631,177"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="689,53,821,79"/>
+<area shape="rect" href="class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="679,103,831,130"/>
+<area shape="rect" href="class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="879,103,1025,130"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_oprt_tab_page_analize_a6e4c0695d90711c7c02c0dd2ea31ca71_icgraph.png" border="0" usemap="#aclass_c_oprt_tab_page_analize_a6e4c0695d90711c7c02c0dd2ea31ca71_icgraph" alt=""/></div>
+<map name="aclass_c_oprt_tab_page_analize_a6e4c0695d90711c7c02c0dd2ea31ca71_icgraph" id="aclass_c_oprt_tab_page_analize_a6e4c0695d90711c7c02c0dd2ea31ca71_icgraph">
+<area shape="rect" title="接合結果表示タイプスキャン選択時処理" alt="" coords="204,5,420,47"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#ad026ecbbc983699be043cf39cf611383" title="表示方法の設定" alt="" coords="5,5,156,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac82359ab4f3766594ccb083a112e9fe8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac82359ab4f3766594ccb083a112e9fe8">&#9670;&nbsp;</a></span>OnBnClickedRdoMetalclasresult()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void COprtTabPageAnalize::OnBnClickedRdoMetalclasresult </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>金属面表示タイプ分類結果選択時処理 </p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_oprt_tab_page_analize_ac82359ab4f3766594ccb083a112e9fe8_cgraph.png" border="0" usemap="#aclass_c_oprt_tab_page_analize_ac82359ab4f3766594ccb083a112e9fe8_cgraph" alt=""/></div>
+<map name="aclass_c_oprt_tab_page_analize_ac82359ab4f3766594ccb083a112e9fe8_cgraph" id="aclass_c_oprt_tab_page_analize_ac82359ab4f3766594ccb083a112e9fe8_cgraph">
+<area shape="rect" title="金属面表示タイプ分類結果選択時処理" alt="" coords="5,71,223,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a8c3734ada4777e97073fd72a094bf46f" title="表示モードの設定" alt="" coords="271,71,413,112"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a72febda46d46ce0a691c704a6b1c0e22" title="金属画像表示タイプの設定" alt="" coords="463,5,630,47"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a3423e2b69573bdb6fbcb3378eab42d18" title="樹脂画像表示タイプの設定" alt="" coords="463,71,630,112"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a4d14fb09609fb48e540cb7851daccedc" title="接合結果画像表示タイプの設定" alt="" coords="461,136,632,177"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="690,53,822,79"/>
+<area shape="rect" href="class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="680,103,832,130"/>
+<area shape="rect" href="class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="880,103,1027,130"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a149453a5283d6b91cad8848a18afb8f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a149453a5283d6b91cad8848a18afb8f0">&#9670;&nbsp;</a></span>OnBnClickedRdoMetalMethod1()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void COprtTabPageAnalize::OnBnClickedRdoMetalMethod1 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>金属面解析方法k-means選択時処理 </p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_oprt_tab_page_analize_a149453a5283d6b91cad8848a18afb8f0_cgraph.png" border="0" usemap="#aclass_c_oprt_tab_page_analize_a149453a5283d6b91cad8848a18afb8f0_cgraph" alt=""/></div>
+<map name="aclass_c_oprt_tab_page_analize_a149453a5283d6b91cad8848a18afb8f0_cgraph" id="aclass_c_oprt_tab_page_analize_a149453a5283d6b91cad8848a18afb8f0_cgraph">
+<area shape="rect" title="金属面解析方法k&#45;means選択時処理" alt="" coords="5,185,216,227"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a6fb9f31759c4175b40446be90447a42f" title="表示モードの取得" alt="" coords="264,120,407,161"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aa3188290e41d704b8c34cb8dfd8f2a1d" title="解析方法の設定" alt="" coords="264,217,407,259"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a01bc129069b3ba05ed979729f88be551" title="金属画像表示タイプの取得" alt="" coords="473,5,640,47"/>
+<area shape="rect" href="class_c_project_file_i_o.html#ae824553dca5d5e1f69ea7e4687dd1588" title="樹脂画像表示タイプの取得" alt="" coords="473,71,641,112"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a3ff4f09ff5ba28cac5284611c2f4a628" title="接合結果画像表示タイプの取得" alt="" coords="471,136,643,177"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1100,78,1232,105"/>
+<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="707,53,859,79"/>
+<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="907,53,1052,79"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a5c053cec7083e77d1f285f262f4ddbd1" title="金属面の解析方法の設定" alt="" coords="457,201,656,243"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ac179aa732fd5e8373f6deeb918367fdc" title="樹脂面の解析方法の設定" alt="" coords="457,267,657,308"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a80b10d181a91d1536e78be10dcf4e50c" title="接合結果の解析方法の設定" alt="" coords="455,332,659,373"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a14e8bb16db62057f2bf9cbd512848dc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14e8bb16db62057f2bf9cbd512848dc4">&#9670;&nbsp;</a></span>OnBnClickedRdoMetalMethod2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void COprtTabPageAnalize::OnBnClickedRdoMetalMethod2 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>金属面解析方法階層クラスタリング選択時処理 </p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_oprt_tab_page_analize_a14e8bb16db62057f2bf9cbd512848dc4_cgraph.png" border="0" usemap="#aclass_c_oprt_tab_page_analize_a14e8bb16db62057f2bf9cbd512848dc4_cgraph" alt=""/></div>
+<map name="aclass_c_oprt_tab_page_analize_a14e8bb16db62057f2bf9cbd512848dc4_cgraph" id="aclass_c_oprt_tab_page_analize_a14e8bb16db62057f2bf9cbd512848dc4_cgraph">
+<area shape="rect" title="金属面解析方法階層クラスタリング選択時処理" alt="" coords="5,185,216,227"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a6fb9f31759c4175b40446be90447a42f" title="表示モードの取得" alt="" coords="264,120,407,161"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aa3188290e41d704b8c34cb8dfd8f2a1d" title="解析方法の設定" alt="" coords="264,217,407,259"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a01bc129069b3ba05ed979729f88be551" title="金属画像表示タイプの取得" alt="" coords="473,5,640,47"/>
+<area shape="rect" href="class_c_project_file_i_o.html#ae824553dca5d5e1f69ea7e4687dd1588" title="樹脂画像表示タイプの取得" alt="" coords="473,71,641,112"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a3ff4f09ff5ba28cac5284611c2f4a628" title="接合結果画像表示タイプの取得" alt="" coords="471,136,643,177"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1100,78,1232,105"/>
+<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="707,53,859,79"/>
+<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="907,53,1052,79"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a5c053cec7083e77d1f285f262f4ddbd1" title="金属面の解析方法の設定" alt="" coords="457,201,656,243"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ac179aa732fd5e8373f6deeb918367fdc" title="樹脂面の解析方法の設定" alt="" coords="457,267,657,308"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a80b10d181a91d1536e78be10dcf4e50c" title="接合結果の解析方法の設定" alt="" coords="455,332,659,373"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a13d39220b8346972e4eae2f1bc1ced22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13d39220b8346972e4eae2f1bc1ced22">&#9670;&nbsp;</a></span>OnBnClickedRdoMetalscan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void COprtTabPageAnalize::OnBnClickedRdoMetalscan </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>金属面表示タイプスキャン選択時処理 </p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_oprt_tab_page_analize_a13d39220b8346972e4eae2f1bc1ced22_cgraph.png" border="0" usemap="#aclass_c_oprt_tab_page_analize_a13d39220b8346972e4eae2f1bc1ced22_cgraph" alt=""/></div>
+<map name="aclass_c_oprt_tab_page_analize_a13d39220b8346972e4eae2f1bc1ced22_cgraph" id="aclass_c_oprt_tab_page_analize_a13d39220b8346972e4eae2f1bc1ced22_cgraph">
+<area shape="rect" title="金属面表示タイプスキャン選択時処理" alt="" coords="5,71,195,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a8c3734ada4777e97073fd72a094bf46f" title="表示モードの設定" alt="" coords="243,71,385,112"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a72febda46d46ce0a691c704a6b1c0e22" title="金属画像表示タイプの設定" alt="" coords="435,5,602,47"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a3423e2b69573bdb6fbcb3378eab42d18" title="樹脂画像表示タイプの設定" alt="" coords="435,71,602,112"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a4d14fb09609fb48e540cb7851daccedc" title="接合結果画像表示タイプの設定" alt="" coords="433,136,604,177"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="662,53,794,79"/>
+<area shape="rect" href="class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="652,103,804,130"/>
+<area shape="rect" href="class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="852,103,999,130"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_oprt_tab_page_analize_a13d39220b8346972e4eae2f1bc1ced22_icgraph.png" border="0" usemap="#aclass_c_oprt_tab_page_analize_a13d39220b8346972e4eae2f1bc1ced22_icgraph" alt=""/></div>
+<map name="aclass_c_oprt_tab_page_analize_a13d39220b8346972e4eae2f1bc1ced22_icgraph" id="aclass_c_oprt_tab_page_analize_a13d39220b8346972e4eae2f1bc1ced22_icgraph">
+<area shape="rect" title="金属面表示タイプスキャン選択時処理" alt="" coords="204,5,393,47"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#ad026ecbbc983699be043cf39cf611383" title="表示方法の設定" alt="" coords="5,5,156,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ae9f8a7e416776fe6187673306e5d3a85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9f8a7e416776fe6187673306e5d3a85">&#9670;&nbsp;</a></span>OnBnClickedRdoResinclasresult()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void COprtTabPageAnalize::OnBnClickedRdoResinclasresult </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>樹脂面表示タイプ分類結果選択時処理 </p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_oprt_tab_page_analize_ae9f8a7e416776fe6187673306e5d3a85_cgraph.png" border="0" usemap="#aclass_c_oprt_tab_page_analize_ae9f8a7e416776fe6187673306e5d3a85_cgraph" alt=""/></div>
+<map name="aclass_c_oprt_tab_page_analize_ae9f8a7e416776fe6187673306e5d3a85_cgraph" id="aclass_c_oprt_tab_page_analize_ae9f8a7e416776fe6187673306e5d3a85_cgraph">
+<area shape="rect" title="樹脂面表示タイプ分類結果選択時処理" alt="" coords="5,71,224,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a8c3734ada4777e97073fd72a094bf46f" title="表示モードの設定" alt="" coords="272,71,415,112"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a72febda46d46ce0a691c704a6b1c0e22" title="金属画像表示タイプの設定" alt="" coords="465,5,631,47"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a3423e2b69573bdb6fbcb3378eab42d18" title="樹脂画像表示タイプの設定" alt="" coords="465,71,631,112"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a4d14fb09609fb48e540cb7851daccedc" title="接合結果画像表示タイプの設定" alt="" coords="463,136,633,177"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="691,53,823,79"/>
+<area shape="rect" href="class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="681,103,833,130"/>
+<area shape="rect" href="class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="881,103,1028,130"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a62f06351ba5608c0c52bca42a913833b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62f06351ba5608c0c52bca42a913833b">&#9670;&nbsp;</a></span>OnBnClickedRdoResinMethod1()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void COprtTabPageAnalize::OnBnClickedRdoResinMethod1 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>樹脂面解析方法k-means選択時処理 </p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_oprt_tab_page_analize_a62f06351ba5608c0c52bca42a913833b_cgraph.png" border="0" usemap="#aclass_c_oprt_tab_page_analize_a62f06351ba5608c0c52bca42a913833b_cgraph" alt=""/></div>
+<map name="aclass_c_oprt_tab_page_analize_a62f06351ba5608c0c52bca42a913833b_cgraph" id="aclass_c_oprt_tab_page_analize_a62f06351ba5608c0c52bca42a913833b_cgraph">
+<area shape="rect" title="樹脂面解析方法k&#45;means選択時処理" alt="" coords="5,185,217,227"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a6fb9f31759c4175b40446be90447a42f" title="表示モードの取得" alt="" coords="265,120,408,161"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aa3188290e41d704b8c34cb8dfd8f2a1d" title="解析方法の設定" alt="" coords="265,217,408,259"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a01bc129069b3ba05ed979729f88be551" title="金属画像表示タイプの取得" alt="" coords="475,5,641,47"/>
+<area shape="rect" href="class_c_project_file_i_o.html#ae824553dca5d5e1f69ea7e4687dd1588" title="樹脂画像表示タイプの取得" alt="" coords="474,71,642,112"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a3ff4f09ff5ba28cac5284611c2f4a628" title="接合結果画像表示タイプの取得" alt="" coords="472,136,644,177"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1101,78,1233,105"/>
+<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="708,53,860,79"/>
+<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="908,53,1053,79"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a5c053cec7083e77d1f285f262f4ddbd1" title="金属面の解析方法の設定" alt="" coords="459,201,657,243"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ac179aa732fd5e8373f6deeb918367fdc" title="樹脂面の解析方法の設定" alt="" coords="458,267,658,308"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a80b10d181a91d1536e78be10dcf4e50c" title="接合結果の解析方法の設定" alt="" coords="456,332,660,373"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8f016c43a40aea8aebe54cf5ea5e98e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f016c43a40aea8aebe54cf5ea5e98e3">&#9670;&nbsp;</a></span>OnBnClickedRdoResinMethod2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void COprtTabPageAnalize::OnBnClickedRdoResinMethod2 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>樹脂面解析方法階層クラスタリング選択時処理 </p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_oprt_tab_page_analize_a8f016c43a40aea8aebe54cf5ea5e98e3_cgraph.png" border="0" usemap="#aclass_c_oprt_tab_page_analize_a8f016c43a40aea8aebe54cf5ea5e98e3_cgraph" alt=""/></div>
+<map name="aclass_c_oprt_tab_page_analize_a8f016c43a40aea8aebe54cf5ea5e98e3_cgraph" id="aclass_c_oprt_tab_page_analize_a8f016c43a40aea8aebe54cf5ea5e98e3_cgraph">
+<area shape="rect" title="樹脂面解析方法階層クラスタリング選択時処理" alt="" coords="5,185,217,227"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a6fb9f31759c4175b40446be90447a42f" title="表示モードの取得" alt="" coords="265,120,408,161"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aa3188290e41d704b8c34cb8dfd8f2a1d" title="解析方法の設定" alt="" coords="265,217,408,259"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a01bc129069b3ba05ed979729f88be551" title="金属画像表示タイプの取得" alt="" coords="475,5,641,47"/>
+<area shape="rect" href="class_c_project_file_i_o.html#ae824553dca5d5e1f69ea7e4687dd1588" title="樹脂画像表示タイプの取得" alt="" coords="474,71,642,112"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a3ff4f09ff5ba28cac5284611c2f4a628" title="接合結果画像表示タイプの取得" alt="" coords="472,136,644,177"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1101,78,1233,105"/>
+<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="708,53,860,79"/>
+<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="908,53,1053,79"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a5c053cec7083e77d1f285f262f4ddbd1" title="金属面の解析方法の設定" alt="" coords="459,201,657,243"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ac179aa732fd5e8373f6deeb918367fdc" title="樹脂面の解析方法の設定" alt="" coords="458,267,658,308"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a80b10d181a91d1536e78be10dcf4e50c" title="接合結果の解析方法の設定" alt="" coords="456,332,660,373"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ae69d1c504a694b6b61840b1fe377e601"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae69d1c504a694b6b61840b1fe377e601">&#9670;&nbsp;</a></span>OnBnClickedRdoResinscan()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void COprtTabPageAnalize::OnBnClickedRdoResinscan </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>樹脂面表示タイプスキャン選択時処理 </p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_oprt_tab_page_analize_ae69d1c504a694b6b61840b1fe377e601_cgraph.png" border="0" usemap="#aclass_c_oprt_tab_page_analize_ae69d1c504a694b6b61840b1fe377e601_cgraph" alt=""/></div>
+<map name="aclass_c_oprt_tab_page_analize_ae69d1c504a694b6b61840b1fe377e601_cgraph" id="aclass_c_oprt_tab_page_analize_ae69d1c504a694b6b61840b1fe377e601_cgraph">
+<area shape="rect" title="樹脂面表示タイプスキャン選択時処理" alt="" coords="5,71,196,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a8c3734ada4777e97073fd72a094bf46f" title="表示モードの設定" alt="" coords="244,71,387,112"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a72febda46d46ce0a691c704a6b1c0e22" title="金属画像表示タイプの設定" alt="" coords="437,5,603,47"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a3423e2b69573bdb6fbcb3378eab42d18" title="樹脂画像表示タイプの設定" alt="" coords="437,71,603,112"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a4d14fb09609fb48e540cb7851daccedc" title="接合結果画像表示タイプの設定" alt="" coords="435,136,605,177"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="663,53,795,79"/>
+<area shape="rect" href="class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="653,103,805,130"/>
+<area shape="rect" href="class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="853,103,1000,130"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_oprt_tab_page_analize_ae69d1c504a694b6b61840b1fe377e601_icgraph.png" border="0" usemap="#aclass_c_oprt_tab_page_analize_ae69d1c504a694b6b61840b1fe377e601_icgraph" alt=""/></div>
+<map name="aclass_c_oprt_tab_page_analize_ae69d1c504a694b6b61840b1fe377e601_icgraph" id="aclass_c_oprt_tab_page_analize_ae69d1c504a694b6b61840b1fe377e601_icgraph">
+<area shape="rect" title="樹脂面表示タイプスキャン選択時処理" alt="" coords="204,5,395,47"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#ad026ecbbc983699be043cf39cf611383" title="表示方法の設定" alt="" coords="5,5,156,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad026ecbbc983699be043cf39cf611383"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad026ecbbc983699be043cf39cf611383">&#9670;&nbsp;</a></span>SetDisplayMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int COprtTabPageAnalize::SetDisplayMode </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ScanID</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>mode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>表示方法の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ScanID</td><td>スキャンID</td></tr>
+    <tr><td class="paramname">mode</td><td>表示モード</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>表示モードを返す</dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_oprt_tab_page_analize_ad026ecbbc983699be043cf39cf611383_cgraph.png" border="0" usemap="#aclass_c_oprt_tab_page_analize_ad026ecbbc983699be043cf39cf611383_cgraph" alt=""/></div>
+<map name="aclass_c_oprt_tab_page_analize_ad026ecbbc983699be043cf39cf611383_cgraph" id="aclass_c_oprt_tab_page_analize_ad026ecbbc983699be043cf39cf611383_cgraph">
+<area shape="rect" title="表示方法の設定" alt="" coords="5,71,156,112"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a6e4c0695d90711c7c02c0dd2ea31ca71" title="接合結果表示タイプスキャン選択時処理" alt="" coords="204,5,420,47"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a13d39220b8346972e4eae2f1bc1ced22" title="金属面表示タイプスキャン選択時処理" alt="" coords="217,71,407,112"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#ae69d1c504a694b6b61840b1fe377e601" title="樹脂面表示タイプスキャン選択時処理" alt="" coords="217,136,407,177"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a8c3734ada4777e97073fd72a094bf46f" title="表示モードの設定" alt="" coords="468,71,611,112"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a72febda46d46ce0a691c704a6b1c0e22" title="金属画像表示タイプの設定" alt="" coords="661,5,827,47"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a3423e2b69573bdb6fbcb3378eab42d18" title="樹脂画像表示タイプの設定" alt="" coords="661,71,827,112"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a4d14fb09609fb48e540cb7851daccedc" title="接合結果画像表示タイプの設定" alt="" coords="659,136,829,177"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="887,53,1019,79"/>
+<area shape="rect" href="class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="877,103,1029,130"/>
+<area shape="rect" href="class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="1077,103,1224,130"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a38f8d98173effda10dafceec403207ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38f8d98173effda10dafceec403207ee">&#9670;&nbsp;</a></span>ViewModeReset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void COprtTabPageAnalize::ViewModeReset </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>表示モードリセット </p>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>C:/Users/kaneko/OneDrive/Project/JointAutomaticEvaluationSystem/WeldEvaluation/src/WeldEvaluation/WeldEvaluation/<a class="el" href="_oprt_tab_page_analize_8h_source.html">OprtTabPageAnalize.h</a></li>
+<li>C:/Users/kaneko/OneDrive/Project/JointAutomaticEvaluationSystem/WeldEvaluation/src/WeldEvaluation/WeldEvaluation/OprtTabPageAnalize.cpp</li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

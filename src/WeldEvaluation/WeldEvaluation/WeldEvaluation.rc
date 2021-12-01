@@ -109,6 +109,15 @@ BEGIN
     END
 END
 
+IDR_POPUP_MENU MENU
+BEGIN
+    POPUP "popup_menue"
+    BEGIN
+        MENUITEM "開く",                          ID_PROJECT_OPEN
+        MENUITEM "削除",                          ID_PROJECT_DELETE
+    END
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -117,19 +126,20 @@ END
 
 IDR_MAINFRAME ACCELERATORS
 BEGIN
-    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL
-    "O",            ID_FILE_OPEN,           VIRTKEY, CONTROL
-    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL
-    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL
-    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL
-    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL
-    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL
-    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT
-    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT
-    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL
-    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT
-    VK_F6,          ID_NEXT_PANE,           VIRTKEY 
-    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT
+    "C",            ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_COPY,           VIRTKEY, CONTROL, NOINVERT
+    VK_DELETE,      ID_EDIT_CUT,            VIRTKEY, SHIFT, NOINVERT
+    "X",            ID_EDIT_CUT,            VIRTKEY, CONTROL, NOINVERT
+    "V",            ID_EDIT_PASTE,          VIRTKEY, CONTROL, NOINVERT
+    VK_INSERT,      ID_EDIT_PASTE,          VIRTKEY, SHIFT, NOINVERT
+    VK_BACK,        ID_EDIT_UNDO,           VIRTKEY, ALT, NOINVERT
+    "Z",            ID_EDIT_UNDO,           VIRTKEY, CONTROL, NOINVERT
+    "N",            ID_FILE_NEW,            VIRTKEY, CONTROL, NOINVERT
+    "S",            ID_FILE_SAVE,           VIRTKEY, CONTROL, NOINVERT
+    VK_F6,          ID_NEXT_PANE,           VIRTKEY, NOINVERT
+    VK_F6,          ID_PREV_PANE,           VIRTKEY, SHIFT, NOINVERT
+    VK_DELETE,      ID_PROJECT_DELETE,      VIRTKEY, NOINVERT
+    "O",            ID_PROJECT_OPEN,        VIRTKEY, CONTROL, NOINVERT
 END
 
 
@@ -149,21 +159,21 @@ BEGIN
     DEFPUSHBUTTON   "OK",IDOK,113,41,50,14,WS_GROUP
 END
 
-IDD_WELDEVALUATION_FORM DIALOGEX 0, 0, 801, 544
+IDD_WELDEVALUATION_FORM DIALOGEX 0, 0, 801, 608
 STYLE DS_SETFONT | WS_CHILD | WS_BORDER
 FONT 9, "MS UI Gothic", 0, 0, 0x1
 BEGIN
     PUSHBUTTON      "新規検査",IDC_BTN_NEWPRJ,7,7,118,14
-    CONTROL         "",IDC_LST_REGIST_TEST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOSCROLL | NOT WS_VISIBLE | WS_BORDER | WS_TABSTOP,7,30,118,502
+    CONTROL         "",IDC_LST_REGIST_TEST,"SysListView32",LVS_REPORT | LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | LVS_NOSCROLL | NOT WS_VISIBLE | WS_BORDER | WS_TABSTOP,7,31,118,565
     CTEXT           "ここに樹脂面画像が表示される",IDC_STC_RESINIMG_VIEW,140,7,440,165,SS_CENTERIMAGE | WS_BORDER
     CTEXT           "ここに金属面画像が表示される",IDC_STC_METALIMG_VIEW,140,187,440,165,SS_CENTERIMAGE | WS_BORDER
-    CTEXT           "ここに結果画像が表示される",IDC_STC_RESULTIMG_VIEW,140,367,440,165,SS_CENTERIMAGE | WS_BORDER
+    CTEXT           "ここに結果画像が表示される",IDC_STC_RESULTIMG_VIEW,140,431,440,165,SS_CENTERIMAGE | WS_BORDER
     CONTROL         "",IDC_TAB_OPERATION,"SysTabControl32",0x0,595,153,196,208
     CTEXT           "ここにページが表示される",IDC_STC_OPRTABPAG_CLIENT,602,177,182,175,SS_CENTERIMAGE
-    CONTROL         "",IDC_TAB_PROPATY,"SysTabControl32",TCS_SCROLLOPPOSITE,594,369,197,163
-    CTEXT           "ここにページが表示される",IDC_STC_PROPTABPAG_CLIENT,602,390,182,117,SS_CENTERIMAGE
-    PUSHBUTTON      "更新",IDC_BTN_PROP_UPDATE,677,513,50,14
-    PUSHBUTTON      "キャンセル",IDC_BTN_PROP_CANCEL,732,513,50,14
+    CONTROL         "",IDC_TAB_PROPATY,"SysTabControl32",TCS_SCROLLOPPOSITE,594,366,197,230
+    CTEXT           "ここにページが表示される",IDC_STC_PROPTABPAG_CLIENT,602,390,182,179,SS_CENTERIMAGE
+    PUSHBUTTON      "更新",IDC_BTN_PROP_UPDATE,677,575,50,14
+    PUSHBUTTON      "キャンセル",IDC_BTN_PROP_CANCEL,732,575,50,14
     CONTROL         "",IDC_STC_GRAPH_WND,"Static",SS_BLACKFRAME,595,7,196,140
 END
 
@@ -182,6 +192,7 @@ BEGIN
     COMBOBOX        IDC_CMB_JOINRATIO_TARGET_LABEL,161,44,34,48,CBS_DROPDOWN | WS_VSCROLL | WS_TABSTOP
     LTEXT           "対象：",IDC_STC_JOINRATIO_TARGET_LABEL,114,44,20,13,SS_CENTERIMAGE
     CONTROL         "",IDC_STC_IDCOLOR,"Static",SS_BLACKRECT,138,44,20,13
+    LTEXT           "スタティック",IDC_MSG_FEILD,15,65,181,8
 END
 
 IDD_PROPTAB_PAGE_SETTING DIALOGEX 0, 0, 211, 156
@@ -298,8 +309,6 @@ IDD_IMAGE_WIND DIALOGEX 0, 0, 309, 176
 STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,198,155,50,14
-    PUSHBUTTON      "キャンセル",IDCANCEL,252,155,50,14
 END
 
 IDD_PROGRESS_DLG DIALOGEX 0, 0, 309, 62
@@ -344,15 +353,15 @@ VS_VERSION_INFO VERSIONINFO
 BEGIN
     BLOCK "StringFileInfo"
     BEGIN
-        BLOCK "041104B0"
+        BLOCK "041104b0"
         BEGIN
-            VALUE "CompanyName", "TODO: <会社名>"
+            VALUE "CompanyName", "ARK INFORMATION SYSTEMS,INC"
             VALUE "FileDescription", "WeldEvaluation"
             VALUE "FileVersion", "1.0.0.1"
             VALUE "InternalName", "WeldEvaluation.exe"
-            VALUE "LegalCopyright", "TODO: (C) <会社名>.  All rights reserved."
+            VALUE "LegalCopyright", "Copyright  2021 ARK INFORMATION SYSTEMS,INC.  All rights reserved."
             VALUE "OriginalFilename", "WeldEvaluation.exe"
-            VALUE "ProductName", "TODO: <製品名>"
+            VALUE "ProductName", "WeldEvaluation"
             VALUE "ProductVersion", "1.0.0.1"
         END
     END
@@ -384,7 +393,7 @@ BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 791
         TOPMARGIN, 7
-        BOTTOMMARGIN, 532
+        BOTTOMMARGIN, 596
     END
 
     IDD_PROPTAB_PAGE_PARAM, DIALOG
@@ -513,6 +522,11 @@ BEGIN
 END
 
 IDD_OPERTAB_PAGE_INITIALIZE AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_IMAGE_WIND AFX_DIALOG_LAYOUT
 BEGIN
     0
 END
@@ -696,12 +710,29 @@ BEGIN
     IDM_PRJREGIST_OVERWRITE "同じ登録名称が存在します\n上書きしますか？\n上書きをした場合、以前のデータは破棄されます。"
     DM_PRJREGIST_EXISTUPDATE "データが更新されています。\n更新されているデータを破棄しますか?"
     IDM_ANALYZE_SUCCESS     "解析処理が正常終了しました"
+    IDS_EXIST_REPAIRABLEDATA "修復可能な登録データ[%s]が存在します。\n修復しますか？"
+    IDS_REPAIR_COMPLEAT     "修復が完了しました。"
+    IDM_CHANGED_NUMBEROFCLASS "クラス数が更新されています。\n更新を破棄しますか？"
+    IDM_DELETE              "削除してよろしいですか？ "
+    IDM_DELETE_ACTIVEPROJECT "編集中のデータです。\n削除しますか？"
 END
 
 STRINGTABLE
 BEGIN
     IDF_JOININGRETIO        """%02d_Joining_ratio%03d"""
     IDF_JOININGCOLOR        """%02d_Joining_color%03d"""
+END
+
+STRINGTABLE
+BEGIN
+    IDM_ERR_FAIL_REGIST     "修復に失敗完了しました。"
+    IDM_ERR_NOTEXIST_ANALIZEDATA "解析対象が存在しません"
+END
+
+STRINGTABLE
+BEGIN
+    ID_PROJECT_DELETE       "削除"
+    ID_PROJECT_OPEN         "開く"
 END
 
 #endif    // 日本語 (日本) resources

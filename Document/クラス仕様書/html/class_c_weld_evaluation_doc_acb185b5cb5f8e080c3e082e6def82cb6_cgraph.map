@@ -1,0 +1,7 @@
+<map id="CWeldEvaluationDoc::GetVerticalResolution" name="CWeldEvaluationDoc::GetVerticalResolution">
+<area shape="rect" id="node1" title="縦方向の解像度の取得" alt="" coords="5,23,161,65"/>
+<area shape="rect" id="node2" href="$class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="480,5,632,32"/>
+<area shape="rect" id="node5" href="$class_c_propaty_i_o.html#a6cc4479cfd0b46ed6189985fcf02bbad" title="縦方向の解像度の取得" alt="" coords="209,56,432,83"/>
+<area shape="rect" id="node3" href="$class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="680,5,825,32"/>
+<area shape="rect" id="node4" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="873,31,1005,57"/>
+</map>

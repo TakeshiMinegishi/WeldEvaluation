@@ -1,0 +1,12 @@
+<map id="CScanDataIO::ScanDataConvert" name="CScanDataIO::ScanDataConvert">
+<area shape="rect" id="node1" title="スキャンデータ変換" alt="" coords="5,157,215,184"/>
+<area shape="rect" id="node2" href="$class_c_scan_data_i_o.html#a60ac88e1227491f029d2712fb3b34453" title="アファイン変換" alt="" coords="285,5,423,32"/>
+<area shape="rect" id="node4" href="$class_c_scan_data_i_o.html#a604a2f1e09bc8c6bcbad00c82b19a893" title="マトリックス初期化" alt="" coords="523,107,685,133"/>
+<area shape="rect" id="node5" href="$class_c_scan_data_i_o.html#a84e33245e08bae869355778b20225bd2" title="マトリックス逆行列" alt="" coords="265,309,443,336"/>
+<area shape="rect" id="node6" href="$class_c_scan_data_i_o.html#adb7babb36596d23134297e99d174156d" title="マトリックス移動" alt="" coords="267,107,441,133"/>
+<area shape="rect" id="node8" href="$class_c_scan_data_i_o.html#a0040aa2a3b7efdff821a2e6e4bbbfa48" title="マトリックス開放" alt="" coords="508,208,700,235"/>
+<area shape="rect" id="node9" href="$class_c_scan_data_i_o.html#a7f8cf7712af2ca79d83943ed25922491" title="マトリックス回転" alt="" coords="263,157,445,184"/>
+<area shape="rect" id="node10" href="$class_c_scan_data_i_o.html#a0ee71c72d008ff044f4f0d001bc78c36" title="マトリックス拡縮" alt="" coords="265,208,443,235"/>
+<area shape="rect" id="node3" href="$class_c_scan_data_i_o.html#ac2db55ecbcb4a44780c8a551cc6ef66a" title="線形補間" alt="" coords="529,5,679,32"/>
+<area shape="rect" id="node7" href="$class_c_scan_data_i_o.html#a44d75ac4205c85d7a1fc1fee5674ea26" title="マトリックスかけ算" alt="" coords="493,157,715,184"/>
+</map>

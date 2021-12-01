@@ -1,0 +1,11 @@
+<map id="CPropatyIO::GetTestName" name="CPropatyIO::GetTestName">
+<area shape="rect" id="node1" title="名称の取得" alt="" coords="631,111,808,138"/>
+<area shape="rect" id="node2" href="$class_c_weld_evaluation_doc.html#ad9712f68619dcab924e5c06b439e1c75" title="名称の取得" alt="" coords="440,71,583,112"/>
+<area shape="rect" id="node7" href="$class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="440,136,583,177"/>
+<area shape="rect" id="node3" href="$class_c_oprt_tab_page_setting.html#a435aa7bd1f703c116dd18e3135dc5e19" title="パラメータの取得" alt="" coords="231,5,379,47"/>
+<area shape="rect" id="node5" href="$class_c_weld_evaluation_view.html#a1c8f728724d0615945c96bc74bf24e76" title="プロジェクト削除" alt="" coords="231,71,379,112"/>
+<area shape="rect" id="node6" href="$class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="219,136,392,177"/>
+<area shape="rect" id="node4" href="$class_c_weld_evaluation_view.html#ae4f218a4e70e08689a0532384eb86fe5" title="設定ページの再読込" alt="" coords="14,5,162,47"/>
+<area shape="rect" id="node8" href="$class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,201,377,243"/>
+<area shape="rect" id="node9" href="$class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,201,171,243"/>
+</map>

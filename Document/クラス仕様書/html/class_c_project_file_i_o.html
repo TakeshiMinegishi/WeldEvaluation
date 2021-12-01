@@ -1,0 +1,3024 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>WeldEvaluation: CProjectFileIO クラス</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">WeldEvaluation
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">ソース一式</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 構築: Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'検索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','検索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('class_c_project_file_i_o.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">公開型</a> &#124;
+<a href="#pub-methods">公開メンバ関数</a> &#124;
+<a href="class_c_project_file_i_o-members.html">全メンバ一覧</a>  </div>
+  <div class="headertitle">
+<div class="title">CProjectFileIO クラス</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>プロジェクトファイルIOクラス  
+ <a href="class_c_project_file_i_o.html#details">[詳解]</a></p>
+
+<p><code>#include &lt;<a class="el" href="_project_file_i_o_8h_source.html">ProjectFileIO.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+公開型</h2></td></tr>
+<tr class="memitem:ae20a0a6e09864a4eca6929b18eed59ea"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="class_c_project_file_i_o.html#ae20a0a6e09864a4eca6929b18eed59eaaf01c780dbf084679c1ab28a24ad6b699">eResinSurface</a> = 0
+, <a class="el" href="class_c_project_file_i_o.html#ae20a0a6e09864a4eca6929b18eed59eaa0135adc978edf83f5087b9d43ff4cd84">eMetalSurface</a> = 1
+, <a class="el" href="class_c_project_file_i_o.html#ae20a0a6e09864a4eca6929b18eed59eaae08fe2ba3c46cda84cdd27ab93d3a562">eJoiningResult</a> = 2
+ }</td></tr>
+<tr class="memdesc:ae20a0a6e09864a4eca6929b18eed59ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">対象種別用列挙  <a href="class_c_project_file_i_o.html#ae20a0a6e09864a4eca6929b18eed59ea">[詳解]</a><br /></td></tr>
+<tr class="separator:ae20a0a6e09864a4eca6929b18eed59ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+公開メンバ関数</h2></td></tr>
+<tr class="memitem:ab84fd188aba5023e2f25dfa3f2e142c9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#ab84fd188aba5023e2f25dfa3f2e142c9">CProjectFileIO</a> (void)</td></tr>
+<tr class="memdesc:ab84fd188aba5023e2f25dfa3f2e142c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">コンストラクタ  <a href="class_c_project_file_i_o.html#ab84fd188aba5023e2f25dfa3f2e142c9">[詳解]</a><br /></td></tr>
+<tr class="separator:ab84fd188aba5023e2f25dfa3f2e142c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19976c153c46b2d471d2b8024fab7ef4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a19976c153c46b2d471d2b8024fab7ef4">~CProjectFileIO</a> (void)</td></tr>
+<tr class="memdesc:a19976c153c46b2d471d2b8024fab7ef4"><td class="mdescLeft">&#160;</td><td class="mdescRight">デストラクタ  <a href="class_c_project_file_i_o.html#a19976c153c46b2d471d2b8024fab7ef4">[詳解]</a><br /></td></tr>
+<tr class="separator:a19976c153c46b2d471d2b8024fab7ef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4be8e2c3ecdc21cd9528a2913b76a8ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a4be8e2c3ecdc21cd9528a2913b76a8ce">Initialze</a> ()</td></tr>
+<tr class="memdesc:a4be8e2c3ecdc21cd9528a2913b76a8ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">プロジェクトの初期化  <a href="class_c_project_file_i_o.html#a4be8e2c3ecdc21cd9528a2913b76a8ce">[詳解]</a><br /></td></tr>
+<tr class="separator:a4be8e2c3ecdc21cd9528a2913b76a8ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a202239b515e5f244f93e9747ac0a82"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a7a202239b515e5f244f93e9747ac0a82">GetProjectFilePath</a> ()</td></tr>
+<tr class="memdesc:a7a202239b515e5f244f93e9747ac0a82"><td class="mdescLeft">&#160;</td><td class="mdescRight">プロジェクトファイルパスの取得  <a href="class_c_project_file_i_o.html#a7a202239b515e5f244f93e9747ac0a82">[詳解]</a><br /></td></tr>
+<tr class="separator:a7a202239b515e5f244f93e9747ac0a82"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f6f9e4209cde2d4786f4ec7db1cd0a2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a6f6f9e4209cde2d4786f4ec7db1cd0a2">SetProjectFilePath</a> (CString path)</td></tr>
+<tr class="memdesc:a6f6f9e4209cde2d4786f4ec7db1cd0a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">プロジェクトファイルパスの設定  <a href="class_c_project_file_i_o.html#a6f6f9e4209cde2d4786f4ec7db1cd0a2">[詳解]</a><br /></td></tr>
+<tr class="separator:a6f6f9e4209cde2d4786f4ec7db1cd0a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9685ab0e4adf6c717aab36e761cde3d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#aa9685ab0e4adf6c717aab36e761cde3d">Str2Date</a> (CString str, COleDateTime &amp;date)</td></tr>
+<tr class="memdesc:aa9685ab0e4adf6c717aab36e761cde3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">文字列から日付への変換  <a href="class_c_project_file_i_o.html#aa9685ab0e4adf6c717aab36e761cde3d">[詳解]</a><br /></td></tr>
+<tr class="separator:aa9685ab0e4adf6c717aab36e761cde3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0e69301612025484e6de9a010cc80f1"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#af0e69301612025484e6de9a010cc80f1">Date2Str</a> (COleDateTime date)</td></tr>
+<tr class="memdesc:af0e69301612025484e6de9a010cc80f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">日付から文字列への変換  <a href="class_c_project_file_i_o.html#af0e69301612025484e6de9a010cc80f1">[詳解]</a><br /></td></tr>
+<tr class="separator:af0e69301612025484e6de9a010cc80f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add069fabcf1444b3e071d325dcb55f02"><td class="memItemLeft" align="right" valign="top">COleDateTime&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#add069fabcf1444b3e071d325dcb55f02">GetCreeateDay</a> ()</td></tr>
+<tr class="memdesc:add069fabcf1444b3e071d325dcb55f02"><td class="mdescLeft">&#160;</td><td class="mdescRight">作成日の取得  <a href="class_c_project_file_i_o.html#add069fabcf1444b3e071d325dcb55f02">[詳解]</a><br /></td></tr>
+<tr class="separator:add069fabcf1444b3e071d325dcb55f02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0093e512c08df1a77eefb0cea07eb6d1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a0093e512c08df1a77eefb0cea07eb6d1">SetCreateDay</a> (COleDateTime date)</td></tr>
+<tr class="memdesc:a0093e512c08df1a77eefb0cea07eb6d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">作成日の設定  <a href="class_c_project_file_i_o.html#a0093e512c08df1a77eefb0cea07eb6d1">[詳解]</a><br /></td></tr>
+<tr class="separator:a0093e512c08df1a77eefb0cea07eb6d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf99e8084287e91dc479bfdd99175b34"><td class="memItemLeft" align="right" valign="top">COleDateTime&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#aaf99e8084287e91dc479bfdd99175b34">GetUpdateDay</a> ()</td></tr>
+<tr class="memdesc:aaf99e8084287e91dc479bfdd99175b34"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新日の取得  <a href="class_c_project_file_i_o.html#aaf99e8084287e91dc479bfdd99175b34">[詳解]</a><br /></td></tr>
+<tr class="separator:aaf99e8084287e91dc479bfdd99175b34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a971f5f23c04ddb91dc03b10aeb6e58ab"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a971f5f23c04ddb91dc03b10aeb6e58ab">SetUpdateDay</a> (COleDateTime date)</td></tr>
+<tr class="memdesc:a971f5f23c04ddb91dc03b10aeb6e58ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">更新日の設定  <a href="class_c_project_file_i_o.html#a971f5f23c04ddb91dc03b10aeb6e58ab">[詳解]</a><br /></td></tr>
+<tr class="separator:a971f5f23c04ddb91dc03b10aeb6e58ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa55eac2bd7d274c475a9afe818283837"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#aa55eac2bd7d274c475a9afe818283837">GetImageDataRootPath</a> ()</td></tr>
+<tr class="memdesc:aa55eac2bd7d274c475a9afe818283837"><td class="mdescLeft">&#160;</td><td class="mdescRight">イメージデータへのルートパスの取得  <a href="class_c_project_file_i_o.html#aa55eac2bd7d274c475a9afe818283837">[詳解]</a><br /></td></tr>
+<tr class="separator:aa55eac2bd7d274c475a9afe818283837"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75d0972c4de362586eed671a1471fd57"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a75d0972c4de362586eed671a1471fd57">SetImageDataRootPath</a> (CString rootPath)</td></tr>
+<tr class="memdesc:a75d0972c4de362586eed671a1471fd57"><td class="mdescLeft">&#160;</td><td class="mdescRight">イメージデータへのルートパスの設定  <a href="class_c_project_file_i_o.html#a75d0972c4de362586eed671a1471fd57">[詳解]</a><br /></td></tr>
+<tr class="separator:a75d0972c4de362586eed671a1471fd57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c86e9e72a5fdb38be8698a214f4a21e"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a4c86e9e72a5fdb38be8698a214f4a21e">GetResinScanImageFile</a> ()</td></tr>
+<tr class="memdesc:a4c86e9e72a5fdb38be8698a214f4a21e"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂面スキャン画像ファイル名の取得  <a href="class_c_project_file_i_o.html#a4c86e9e72a5fdb38be8698a214f4a21e">[詳解]</a><br /></td></tr>
+<tr class="separator:a4c86e9e72a5fdb38be8698a214f4a21e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9d388f1b406dc039232bba05e0f0710"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#ac9d388f1b406dc039232bba05e0f0710">SetResinScanImageFile</a> (CString fileName)</td></tr>
+<tr class="memdesc:ac9d388f1b406dc039232bba05e0f0710"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂面スキャン画像ファイル名の設定  <a href="class_c_project_file_i_o.html#ac9d388f1b406dc039232bba05e0f0710">[詳解]</a><br /></td></tr>
+<tr class="separator:ac9d388f1b406dc039232bba05e0f0710"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae6d4bf73f85b5b344ed1357215b3b30"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#aae6d4bf73f85b5b344ed1357215b3b30">GetResinDendrogramClassFile</a> ()</td></tr>
+<tr class="memdesc:aae6d4bf73f85b5b344ed1357215b3b30"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂面階層クラスタリング分類結果ファイル名の取得  <a href="class_c_project_file_i_o.html#aae6d4bf73f85b5b344ed1357215b3b30">[詳解]</a><br /></td></tr>
+<tr class="separator:aae6d4bf73f85b5b344ed1357215b3b30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade11085a24593f7bd7068fcaca7ebfbf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#ade11085a24593f7bd7068fcaca7ebfbf">SetResinDendrogramClassFile</a> (CString fileName)</td></tr>
+<tr class="memdesc:ade11085a24593f7bd7068fcaca7ebfbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂面階層クラスタリング分類結果ファイル名の設定  <a href="class_c_project_file_i_o.html#ade11085a24593f7bd7068fcaca7ebfbf">[詳解]</a><br /></td></tr>
+<tr class="separator:ade11085a24593f7bd7068fcaca7ebfbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a2015d01cd40d33db6d24a4be5659b4"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a2a2015d01cd40d33db6d24a4be5659b4">GetResinKmeansClassFile</a> ()</td></tr>
+<tr class="memdesc:a2a2015d01cd40d33db6d24a4be5659b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂面k-means分類結果ファイル名の取得  <a href="class_c_project_file_i_o.html#a2a2015d01cd40d33db6d24a4be5659b4">[詳解]</a><br /></td></tr>
+<tr class="separator:a2a2015d01cd40d33db6d24a4be5659b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af243b766788b82ae92f56ade82816a02"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#af243b766788b82ae92f56ade82816a02">SetResinKmeansClassFile</a> (CString fileName)</td></tr>
+<tr class="memdesc:af243b766788b82ae92f56ade82816a02"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂面k-means分類結果ファイル名の設定  <a href="class_c_project_file_i_o.html#af243b766788b82ae92f56ade82816a02">[詳解]</a><br /></td></tr>
+<tr class="separator:af243b766788b82ae92f56ade82816a02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae824553dca5d5e1f69ea7e4687dd1588"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#ae824553dca5d5e1f69ea7e4687dd1588">GetResinDisplayType</a> ()</td></tr>
+<tr class="memdesc:ae824553dca5d5e1f69ea7e4687dd1588"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂画像表示タイプの取得  <a href="class_c_project_file_i_o.html#ae824553dca5d5e1f69ea7e4687dd1588">[詳解]</a><br /></td></tr>
+<tr class="separator:ae824553dca5d5e1f69ea7e4687dd1588"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3423e2b69573bdb6fbcb3378eab42d18"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a3423e2b69573bdb6fbcb3378eab42d18">SetResinDisplayType</a> (int displayType)</td></tr>
+<tr class="memdesc:a3423e2b69573bdb6fbcb3378eab42d18"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂画像表示タイプの設定  <a href="class_c_project_file_i_o.html#a3423e2b69573bdb6fbcb3378eab42d18">[詳解]</a><br /></td></tr>
+<tr class="separator:a3423e2b69573bdb6fbcb3378eab42d18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17a7cf6bda65afc323c7aa861f2f9073"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a17a7cf6bda65afc323c7aa861f2f9073">GetResinAnalizeMethod</a> ()</td></tr>
+<tr class="memdesc:a17a7cf6bda65afc323c7aa861f2f9073"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂面解析方法の取得  <a href="class_c_project_file_i_o.html#a17a7cf6bda65afc323c7aa861f2f9073">[詳解]</a><br /></td></tr>
+<tr class="separator:a17a7cf6bda65afc323c7aa861f2f9073"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69adb6cfa350af3852dc6538d41608ea"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a69adb6cfa350af3852dc6538d41608ea">SetResinAnalizeMethod</a> (int method)</td></tr>
+<tr class="memdesc:a69adb6cfa350af3852dc6538d41608ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">樹脂面解析方法の設定  <a href="class_c_project_file_i_o.html#a69adb6cfa350af3852dc6538d41608ea">[詳解]</a><br /></td></tr>
+<tr class="separator:a69adb6cfa350af3852dc6538d41608ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a540586e210abae9454c8a31572f087f9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a540586e210abae9454c8a31572f087f9">GetNumbetOfResinDendrogramClassificationClass</a> ()</td></tr>
+<tr class="memdesc:a540586e210abae9454c8a31572f087f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">作成された樹脂面階層クラスタリング解析のクラス数の取得  <a href="class_c_project_file_i_o.html#a540586e210abae9454c8a31572f087f9">[詳解]</a><br /></td></tr>
+<tr class="separator:a540586e210abae9454c8a31572f087f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04f2933cae1ff9e3a08415659c5fadd6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a04f2933cae1ff9e3a08415659c5fadd6">SetNumbetOfResinDendrogramClassificationClass</a> (int nClass)</td></tr>
+<tr class="memdesc:a04f2933cae1ff9e3a08415659c5fadd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">作成された樹脂面階層クラスタリング解析のクラス数の取得  <a href="class_c_project_file_i_o.html#a04f2933cae1ff9e3a08415659c5fadd6">[詳解]</a><br /></td></tr>
+<tr class="separator:a04f2933cae1ff9e3a08415659c5fadd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a312e3eef362c64e0bc43c54c2f7782"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a9a312e3eef362c64e0bc43c54c2f7782">GetNumbetOfResinKMeansClassificationClass</a> ()</td></tr>
+<tr class="memdesc:a9a312e3eef362c64e0bc43c54c2f7782"><td class="mdescLeft">&#160;</td><td class="mdescRight">作成された樹脂面K-Means解析のクラス数の取得  <a href="class_c_project_file_i_o.html#a9a312e3eef362c64e0bc43c54c2f7782">[詳解]</a><br /></td></tr>
+<tr class="separator:a9a312e3eef362c64e0bc43c54c2f7782"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4a20cfe0a148a81e85160f76cb20928"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#ab4a20cfe0a148a81e85160f76cb20928">SetNumbetOfResinKMeansClassificationClass</a> (int nClass)</td></tr>
+<tr class="memdesc:ab4a20cfe0a148a81e85160f76cb20928"><td class="mdescLeft">&#160;</td><td class="mdescRight">作成された樹脂面K-Means解析のクラス数の取得  <a href="class_c_project_file_i_o.html#ab4a20cfe0a148a81e85160f76cb20928">[詳解]</a><br /></td></tr>
+<tr class="separator:ab4a20cfe0a148a81e85160f76cb20928"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b2b2b42f5c25ec3e352dd5b2226b8a2"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a9b2b2b42f5c25ec3e352dd5b2226b8a2">GetMetalScanImageFile</a> ()</td></tr>
+<tr class="memdesc:a9b2b2b42f5c25ec3e352dd5b2226b8a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属面スキャン画像ファイル名の取得  <a href="class_c_project_file_i_o.html#a9b2b2b42f5c25ec3e352dd5b2226b8a2">[詳解]</a><br /></td></tr>
+<tr class="separator:a9b2b2b42f5c25ec3e352dd5b2226b8a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfecde3135f2edba90dc45c2df2f9d2f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#acfecde3135f2edba90dc45c2df2f9d2f">SetMetalScanImageFile</a> (CString fileName)</td></tr>
+<tr class="memdesc:acfecde3135f2edba90dc45c2df2f9d2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属面スキャン画像ファイル名の設定  <a href="class_c_project_file_i_o.html#acfecde3135f2edba90dc45c2df2f9d2f">[詳解]</a><br /></td></tr>
+<tr class="separator:acfecde3135f2edba90dc45c2df2f9d2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f192428bc182caecf3be5dae9efad8b"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a3f192428bc182caecf3be5dae9efad8b">GetMetalDendrogramClassFile</a> ()</td></tr>
+<tr class="memdesc:a3f192428bc182caecf3be5dae9efad8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属面階層クラスタリング分類結果ファイル名の取得  <a href="class_c_project_file_i_o.html#a3f192428bc182caecf3be5dae9efad8b">[詳解]</a><br /></td></tr>
+<tr class="separator:a3f192428bc182caecf3be5dae9efad8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87d2c57b9dab248bfe0d4c8cbbf0fc08"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a87d2c57b9dab248bfe0d4c8cbbf0fc08">SetMetalDendrogramClassFile</a> (CString fileName)</td></tr>
+<tr class="memdesc:a87d2c57b9dab248bfe0d4c8cbbf0fc08"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属面階層クラスタリング分類結果ファイル名の設定  <a href="class_c_project_file_i_o.html#a87d2c57b9dab248bfe0d4c8cbbf0fc08">[詳解]</a><br /></td></tr>
+<tr class="separator:a87d2c57b9dab248bfe0d4c8cbbf0fc08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8b296680f53e3ccda6d546cd98d5817"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#aa8b296680f53e3ccda6d546cd98d5817">GetMetalKmeansClassFile</a> ()</td></tr>
+<tr class="memdesc:aa8b296680f53e3ccda6d546cd98d5817"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属面k-means分類結果ファイル名の取得  <a href="class_c_project_file_i_o.html#aa8b296680f53e3ccda6d546cd98d5817">[詳解]</a><br /></td></tr>
+<tr class="separator:aa8b296680f53e3ccda6d546cd98d5817"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a913ede70b8ff723115802ddde4a8bcfc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a913ede70b8ff723115802ddde4a8bcfc">SetMetalKmeansClassFile</a> (CString fileName)</td></tr>
+<tr class="memdesc:a913ede70b8ff723115802ddde4a8bcfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属面k-means分類結果ファイル名の設定  <a href="class_c_project_file_i_o.html#a913ede70b8ff723115802ddde4a8bcfc">[詳解]</a><br /></td></tr>
+<tr class="separator:a913ede70b8ff723115802ddde4a8bcfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01bc129069b3ba05ed979729f88be551"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a01bc129069b3ba05ed979729f88be551">GetMetalDisplayType</a> ()</td></tr>
+<tr class="memdesc:a01bc129069b3ba05ed979729f88be551"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属画像表示タイプの取得  <a href="class_c_project_file_i_o.html#a01bc129069b3ba05ed979729f88be551">[詳解]</a><br /></td></tr>
+<tr class="separator:a01bc129069b3ba05ed979729f88be551"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72febda46d46ce0a691c704a6b1c0e22"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a72febda46d46ce0a691c704a6b1c0e22">SetMetalDisplayType</a> (int displayType)</td></tr>
+<tr class="memdesc:a72febda46d46ce0a691c704a6b1c0e22"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属画像表示タイプの設定  <a href="class_c_project_file_i_o.html#a72febda46d46ce0a691c704a6b1c0e22">[詳解]</a><br /></td></tr>
+<tr class="separator:a72febda46d46ce0a691c704a6b1c0e22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adfb10b8a5e2bd9ca350d9f4ae32f2e65"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#adfb10b8a5e2bd9ca350d9f4ae32f2e65">GetMetalAnalizeMethod</a> ()</td></tr>
+<tr class="memdesc:adfb10b8a5e2bd9ca350d9f4ae32f2e65"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属面解析方法の取得  <a href="class_c_project_file_i_o.html#adfb10b8a5e2bd9ca350d9f4ae32f2e65">[詳解]</a><br /></td></tr>
+<tr class="separator:adfb10b8a5e2bd9ca350d9f4ae32f2e65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0171cd0011459cd17b7ef064bf82b43e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a0171cd0011459cd17b7ef064bf82b43e">SetMetalAnalizeMethod</a> (int method)</td></tr>
+<tr class="memdesc:a0171cd0011459cd17b7ef064bf82b43e"><td class="mdescLeft">&#160;</td><td class="mdescRight">金属面解析方法の設定  <a href="class_c_project_file_i_o.html#a0171cd0011459cd17b7ef064bf82b43e">[詳解]</a><br /></td></tr>
+<tr class="separator:a0171cd0011459cd17b7ef064bf82b43e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a2577553898e8f904e761a703701134"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a4a2577553898e8f904e761a703701134">GetNumbetOfMetalDendrogramClassificationClass</a> ()</td></tr>
+<tr class="memdesc:a4a2577553898e8f904e761a703701134"><td class="mdescLeft">&#160;</td><td class="mdescRight">作成された金属面階層クラスタリング解析のクラス数の取得  <a href="class_c_project_file_i_o.html#a4a2577553898e8f904e761a703701134">[詳解]</a><br /></td></tr>
+<tr class="separator:a4a2577553898e8f904e761a703701134"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afca60f6ab0cd03984ed31d9748d2c40c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#afca60f6ab0cd03984ed31d9748d2c40c">SetNumbetOfMetalDendrogramClassificationClass</a> (int nClass)</td></tr>
+<tr class="memdesc:afca60f6ab0cd03984ed31d9748d2c40c"><td class="mdescLeft">&#160;</td><td class="mdescRight">作成された金属面階層クラスタリング解析のクラス数の取得  <a href="class_c_project_file_i_o.html#afca60f6ab0cd03984ed31d9748d2c40c">[詳解]</a><br /></td></tr>
+<tr class="separator:afca60f6ab0cd03984ed31d9748d2c40c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa24365effd8b5ca352ea09f73031fb3d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#aa24365effd8b5ca352ea09f73031fb3d">GetNumbetOfMetalKMeansClassificationClass</a> ()</td></tr>
+<tr class="memdesc:aa24365effd8b5ca352ea09f73031fb3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">作成された金属面K-Means解析のクラス数の取得  <a href="class_c_project_file_i_o.html#aa24365effd8b5ca352ea09f73031fb3d">[詳解]</a><br /></td></tr>
+<tr class="separator:aa24365effd8b5ca352ea09f73031fb3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29406d5c5257125f37cc8570c6925085"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a29406d5c5257125f37cc8570c6925085">SetNumbetOfMetalKMeansClassificationClass</a> (int nClass)</td></tr>
+<tr class="memdesc:a29406d5c5257125f37cc8570c6925085"><td class="mdescLeft">&#160;</td><td class="mdescRight">作成された金属面K-Means解析のクラス数の取得  <a href="class_c_project_file_i_o.html#a29406d5c5257125f37cc8570c6925085">[詳解]</a><br /></td></tr>
+<tr class="separator:a29406d5c5257125f37cc8570c6925085"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae329fa86b9074317f82eb6fb80d03f37"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#ae329fa86b9074317f82eb6fb80d03f37">GetResultScanImageFile</a> ()</td></tr>
+<tr class="memdesc:ae329fa86b9074317f82eb6fb80d03f37"><td class="mdescLeft">&#160;</td><td class="mdescRight">接合結果画像スキャン画像ファイル名の取得  <a href="class_c_project_file_i_o.html#ae329fa86b9074317f82eb6fb80d03f37">[詳解]</a><br /></td></tr>
+<tr class="separator:ae329fa86b9074317f82eb6fb80d03f37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8efda1ffb2c625303783594afde887e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#aa8efda1ffb2c625303783594afde887e">SetResultScanImageFile</a> (CString fileName)</td></tr>
+<tr class="memdesc:aa8efda1ffb2c625303783594afde887e"><td class="mdescLeft">&#160;</td><td class="mdescRight">接合結果画像スキャン画像ファイル名の設定  <a href="class_c_project_file_i_o.html#aa8efda1ffb2c625303783594afde887e">[詳解]</a><br /></td></tr>
+<tr class="separator:aa8efda1ffb2c625303783594afde887e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2432ec82243b19889a977debb04edbd"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#af2432ec82243b19889a977debb04edbd">GetResultDendrogramClassFile</a> ()</td></tr>
+<tr class="memdesc:af2432ec82243b19889a977debb04edbd"><td class="mdescLeft">&#160;</td><td class="mdescRight">接合結果階層クラスタリング分類ファイル名の取得  <a href="class_c_project_file_i_o.html#af2432ec82243b19889a977debb04edbd">[詳解]</a><br /></td></tr>
+<tr class="separator:af2432ec82243b19889a977debb04edbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f2c6155e7ef10a8fe31f2f5257936ec"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a5f2c6155e7ef10a8fe31f2f5257936ec">SetResultDendrogramClassFile</a> (CString fileName)</td></tr>
+<tr class="memdesc:a5f2c6155e7ef10a8fe31f2f5257936ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">接合結果階層クラスタリングフ分類ァイル名の設定  <a href="class_c_project_file_i_o.html#a5f2c6155e7ef10a8fe31f2f5257936ec">[詳解]</a><br /></td></tr>
+<tr class="separator:a5f2c6155e7ef10a8fe31f2f5257936ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b51e3d39f58ad16e4ed5ca7899fc644"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a6b51e3d39f58ad16e4ed5ca7899fc644">GetResultKmeansClassFile</a> ()</td></tr>
+<tr class="memdesc:a6b51e3d39f58ad16e4ed5ca7899fc644"><td class="mdescLeft">&#160;</td><td class="mdescRight">接合結果k-meansファイル名の取得  <a href="class_c_project_file_i_o.html#a6b51e3d39f58ad16e4ed5ca7899fc644">[詳解]</a><br /></td></tr>
+<tr class="separator:a6b51e3d39f58ad16e4ed5ca7899fc644"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab30e01036cf75b63c1de3f3b2f5129bb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#ab30e01036cf75b63c1de3f3b2f5129bb">SetResultKmeansClassFile</a> (CString fileName)</td></tr>
+<tr class="memdesc:ab30e01036cf75b63c1de3f3b2f5129bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">接合結果k-meansファイル名の設定  <a href="class_c_project_file_i_o.html#ab30e01036cf75b63c1de3f3b2f5129bb">[詳解]</a><br /></td></tr>
+<tr class="separator:ab30e01036cf75b63c1de3f3b2f5129bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ff4f09ff5ba28cac5284611c2f4a628"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a3ff4f09ff5ba28cac5284611c2f4a628">GetResultDisplayType</a> ()</td></tr>
+<tr class="memdesc:a3ff4f09ff5ba28cac5284611c2f4a628"><td class="mdescLeft">&#160;</td><td class="mdescRight">接合結果画像表示タイプの取得  <a href="class_c_project_file_i_o.html#a3ff4f09ff5ba28cac5284611c2f4a628">[詳解]</a><br /></td></tr>
+<tr class="separator:a3ff4f09ff5ba28cac5284611c2f4a628"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d14fb09609fb48e540cb7851daccedc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a4d14fb09609fb48e540cb7851daccedc">SetResultDisplayType</a> (int displayType)</td></tr>
+<tr class="memdesc:a4d14fb09609fb48e540cb7851daccedc"><td class="mdescLeft">&#160;</td><td class="mdescRight">接合結果画像表示タイプの設定  <a href="class_c_project_file_i_o.html#a4d14fb09609fb48e540cb7851daccedc">[詳解]</a><br /></td></tr>
+<tr class="separator:a4d14fb09609fb48e540cb7851daccedc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae35a48964637c012eed32aedd96065f9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#ae35a48964637c012eed32aedd96065f9">GetResultAnalizeMethod</a> ()</td></tr>
+<tr class="memdesc:ae35a48964637c012eed32aedd96065f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">接合結果解析方法の取得  <a href="class_c_project_file_i_o.html#ae35a48964637c012eed32aedd96065f9">[詳解]</a><br /></td></tr>
+<tr class="separator:ae35a48964637c012eed32aedd96065f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1277da325faaf62f616034734290e46"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#af1277da325faaf62f616034734290e46">SetResultAnalizeMethod</a> (int method)</td></tr>
+<tr class="memdesc:af1277da325faaf62f616034734290e46"><td class="mdescLeft">&#160;</td><td class="mdescRight">接合結果解析方法の設定  <a href="class_c_project_file_i_o.html#af1277da325faaf62f616034734290e46">[詳解]</a><br /></td></tr>
+<tr class="separator:af1277da325faaf62f616034734290e46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad62582b628c9d78cc62c681b740fd81f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#ad62582b628c9d78cc62c681b740fd81f">GetNumbetOfResultDendrogramClassificationClass</a> ()</td></tr>
+<tr class="memdesc:ad62582b628c9d78cc62c681b740fd81f"><td class="mdescLeft">&#160;</td><td class="mdescRight">作成された接合結果階層クラスタリング解析のクラス数の取得  <a href="class_c_project_file_i_o.html#ad62582b628c9d78cc62c681b740fd81f">[詳解]</a><br /></td></tr>
+<tr class="separator:ad62582b628c9d78cc62c681b740fd81f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dff18744914d9c6de7ee826b12dd08a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a2dff18744914d9c6de7ee826b12dd08a">SetNumbetOfResultDendrogramClassificationClass</a> (int nClass)</td></tr>
+<tr class="memdesc:a2dff18744914d9c6de7ee826b12dd08a"><td class="mdescLeft">&#160;</td><td class="mdescRight">作成された接合結果階層クラスタリング解析のクラス数の取得  <a href="class_c_project_file_i_o.html#a2dff18744914d9c6de7ee826b12dd08a">[詳解]</a><br /></td></tr>
+<tr class="separator:a2dff18744914d9c6de7ee826b12dd08a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a868c93480f80c6edcd09a38880b534e1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a868c93480f80c6edcd09a38880b534e1">GetNumbetOfResultKMeansClassificationClass</a> ()</td></tr>
+<tr class="memdesc:a868c93480f80c6edcd09a38880b534e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">作成された接合結果K-Means解析のクラス数の取得  <a href="class_c_project_file_i_o.html#a868c93480f80c6edcd09a38880b534e1">[詳解]</a><br /></td></tr>
+<tr class="separator:a868c93480f80c6edcd09a38880b534e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a960936d797d0c1f6b30cec94aa57e241"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a960936d797d0c1f6b30cec94aa57e241">SetNumbetOfResultKMeansClassificationClass</a> (int nClass)</td></tr>
+<tr class="memdesc:a960936d797d0c1f6b30cec94aa57e241"><td class="mdescLeft">&#160;</td><td class="mdescRight">作成された接合結果K-Means解析のクラス数の取得  <a href="class_c_project_file_i_o.html#a960936d797d0c1f6b30cec94aa57e241">[詳解]</a><br /></td></tr>
+<tr class="separator:a960936d797d0c1f6b30cec94aa57e241"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5d060e8199f9b13ff223b568b855621"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#aa5d060e8199f9b13ff223b568b855621">Str2Pos</a> (CString str, int &amp;holizontal, int &amp;bvertical)</td></tr>
+<tr class="memdesc:aa5d060e8199f9b13ff223b568b855621"><td class="mdescLeft">&#160;</td><td class="mdescRight">文字列からポイントへの変換  <a href="class_c_project_file_i_o.html#aa5d060e8199f9b13ff223b568b855621">[詳解]</a><br /></td></tr>
+<tr class="separator:aa5d060e8199f9b13ff223b568b855621"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2009329c9e8ef2b83520394b1a22709"><td class="memItemLeft" align="right" valign="top">UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#af2009329c9e8ef2b83520394b1a22709">GetSpectralGraphPointTarget</a> ()</td></tr>
+<tr class="memdesc:af2009329c9e8ef2b83520394b1a22709"><td class="mdescLeft">&#160;</td><td class="mdescRight">スペクトルグラフ（点指定）の対象の取得  <a href="class_c_project_file_i_o.html#af2009329c9e8ef2b83520394b1a22709">[詳解]</a><br /></td></tr>
+<tr class="separator:af2009329c9e8ef2b83520394b1a22709"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad40104bda14b608c02afe06c9b676f02"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#ad40104bda14b608c02afe06c9b676f02">SetSpectralGraphPointTarget</a> (UINT targetID)</td></tr>
+<tr class="memdesc:ad40104bda14b608c02afe06c9b676f02"><td class="mdescLeft">&#160;</td><td class="mdescRight">スペクトルグラフ（点指定）の対象の設定  <a href="class_c_project_file_i_o.html#ad40104bda14b608c02afe06c9b676f02">[詳解]</a><br /></td></tr>
+<tr class="separator:ad40104bda14b608c02afe06c9b676f02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49c7cd445cbff3f5e962fd19dee36cd2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a49c7cd445cbff3f5e962fd19dee36cd2">GetSpectralGraphPointPosition</a> (int &amp;holizontal, int &amp;bvertical)</td></tr>
+<tr class="memdesc:a49c7cd445cbff3f5e962fd19dee36cd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">スペクトルグラフ（点指定）の位置の取得  <a href="class_c_project_file_i_o.html#a49c7cd445cbff3f5e962fd19dee36cd2">[詳解]</a><br /></td></tr>
+<tr class="separator:a49c7cd445cbff3f5e962fd19dee36cd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1930679a997bd4fc4ea6ca681f07c321"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a1930679a997bd4fc4ea6ca681f07c321">SetSpectralGraphPointPosition</a> (int holizontal, int bvertical)</td></tr>
+<tr class="memdesc:a1930679a997bd4fc4ea6ca681f07c321"><td class="mdescLeft">&#160;</td><td class="mdescRight">スペクトルグラフ（点指定）の位置の設定  <a href="class_c_project_file_i_o.html#a1930679a997bd4fc4ea6ca681f07c321">[詳解]</a><br /></td></tr>
+<tr class="separator:a1930679a997bd4fc4ea6ca681f07c321"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70748a36f8ea3d405495dbf6b03c0d43"><td class="memItemLeft" align="right" valign="top">UINT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a70748a36f8ea3d405495dbf6b03c0d43">GetSpectralGraphSectionTarget</a> ()</td></tr>
+<tr class="memdesc:a70748a36f8ea3d405495dbf6b03c0d43"><td class="mdescLeft">&#160;</td><td class="mdescRight">スペクトルグラフ（区間指定）の対象の取得  <a href="class_c_project_file_i_o.html#a70748a36f8ea3d405495dbf6b03c0d43">[詳解]</a><br /></td></tr>
+<tr class="separator:a70748a36f8ea3d405495dbf6b03c0d43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cf2f4915e54c9527b5a65c24bc1f594"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a4cf2f4915e54c9527b5a65c24bc1f594">SetSpectralGraphSectionTarget</a> (UINT targetID)</td></tr>
+<tr class="memdesc:a4cf2f4915e54c9527b5a65c24bc1f594"><td class="mdescLeft">&#160;</td><td class="mdescRight">スペクトルグラフ（区間指定）の対象の設定  <a href="class_c_project_file_i_o.html#a4cf2f4915e54c9527b5a65c24bc1f594">[詳解]</a><br /></td></tr>
+<tr class="separator:a4cf2f4915e54c9527b5a65c24bc1f594"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbb94052951e330c8cb39897e54ba4a0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#acbb94052951e330c8cb39897e54ba4a0">GetSpectralGraphSectionStartPosition</a> (int &amp;holizontal, int &amp;bvertical)</td></tr>
+<tr class="memdesc:acbb94052951e330c8cb39897e54ba4a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">スペクトルグラフ（区間指定）の開始位置の取得  <a href="class_c_project_file_i_o.html#acbb94052951e330c8cb39897e54ba4a0">[詳解]</a><br /></td></tr>
+<tr class="separator:acbb94052951e330c8cb39897e54ba4a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e8ad8dfb8991f249dee7e4015b47c6a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a8e8ad8dfb8991f249dee7e4015b47c6a">SetSpectralGraphSectionStartPosition</a> (int holizontal, int bvertical)</td></tr>
+<tr class="memdesc:a8e8ad8dfb8991f249dee7e4015b47c6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">スペクトルグラフ（区間指定）の開始位置の設定  <a href="class_c_project_file_i_o.html#a8e8ad8dfb8991f249dee7e4015b47c6a">[詳解]</a><br /></td></tr>
+<tr class="separator:a8e8ad8dfb8991f249dee7e4015b47c6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2821dfd554f1dba2a31db24dee4f209b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a2821dfd554f1dba2a31db24dee4f209b">GetSpectralGraphSectionEndPosition</a> (int &amp;holizontal, int &amp;bvertical)</td></tr>
+<tr class="memdesc:a2821dfd554f1dba2a31db24dee4f209b"><td class="mdescLeft">&#160;</td><td class="mdescRight">スペクトルグラフ（区間指定）の終了位置の取得  <a href="class_c_project_file_i_o.html#a2821dfd554f1dba2a31db24dee4f209b">[詳解]</a><br /></td></tr>
+<tr class="separator:a2821dfd554f1dba2a31db24dee4f209b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a078a206d26ee0fed722770eabf39cd5f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a078a206d26ee0fed722770eabf39cd5f">SetSpectralGraphSectionEndPosition</a> (int holizontal, int bvertical)</td></tr>
+<tr class="memdesc:a078a206d26ee0fed722770eabf39cd5f"><td class="mdescLeft">&#160;</td><td class="mdescRight">スペクトルグラフ（区間指定）の終了位置の設定  <a href="class_c_project_file_i_o.html#a078a206d26ee0fed722770eabf39cd5f">[詳解]</a><br /></td></tr>
+<tr class="separator:a078a206d26ee0fed722770eabf39cd5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8edee7c70a837ef023b2356cf41f1055"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a8edee7c70a837ef023b2356cf41f1055">GetScanDataSize</a> (int &amp;holizontal, int &amp;vertical)</td></tr>
+<tr class="memdesc:a8edee7c70a837ef023b2356cf41f1055"><td class="mdescLeft">&#160;</td><td class="mdescRight">スキャンデータのサイズ取得  <a href="class_c_project_file_i_o.html#a8edee7c70a837ef023b2356cf41f1055">[詳解]</a><br /></td></tr>
+<tr class="separator:a8edee7c70a837ef023b2356cf41f1055"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac679c944c7b5335fa5910645461c5ef"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#aac679c944c7b5335fa5910645461c5ef">SetScanDataSize</a> (int holizontal, int vertical)</td></tr>
+<tr class="memdesc:aac679c944c7b5335fa5910645461c5ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">スキャンデータのサイズ設定  <a href="class_c_project_file_i_o.html#aac679c944c7b5335fa5910645461c5ef">[詳解]</a><br /></td></tr>
+<tr class="separator:aac679c944c7b5335fa5910645461c5ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a659e5931885ed15759f868773e07d47d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a659e5931885ed15759f868773e07d47d">Read</a> (CString path=_T(&quot;&quot;))</td></tr>
+<tr class="memdesc:a659e5931885ed15759f868773e07d47d"><td class="mdescLeft">&#160;</td><td class="mdescRight">パラメータファイルの読み込み  <a href="class_c_project_file_i_o.html#a659e5931885ed15759f868773e07d47d">[詳解]</a><br /></td></tr>
+<tr class="separator:a659e5931885ed15759f868773e07d47d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d17a1a5554d49705db9a462536d437f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a5d17a1a5554d49705db9a462536d437f">Save</a> (bool bUpdate=true, CString path=_T(&quot;&quot;))</td></tr>
+<tr class="memdesc:a5d17a1a5554d49705db9a462536d437f"><td class="mdescLeft">&#160;</td><td class="mdescRight">パラメータファイルの書き込み  <a href="class_c_project_file_i_o.html#a5d17a1a5554d49705db9a462536d437f">[詳解]</a><br /></td></tr>
+<tr class="separator:a5d17a1a5554d49705db9a462536d437f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">詳解</h2>
+<div class="textblock"><p>プロジェクトファイルIOクラス </p>
+</div><h2 class="groupheader">列挙型メンバ詳解</h2>
+<a id="ae20a0a6e09864a4eca6929b18eed59ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae20a0a6e09864a4eca6929b18eed59ea">&#9670;&nbsp;</a></span>anonymous enum</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">anonymous enum</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>対象種別用列挙 </p>
+<table class="fieldtable">
+<tr><th colspan="2">列挙値</th></tr><tr><td class="fieldname"><a id="ae20a0a6e09864a4eca6929b18eed59eaaf01c780dbf084679c1ab28a24ad6b699"></a>eResinSurface&#160;</td><td class="fielddoc"><p>樹脂 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae20a0a6e09864a4eca6929b18eed59eaa0135adc978edf83f5087b9d43ff4cd84"></a>eMetalSurface&#160;</td><td class="fielddoc"><p>金属 </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ae20a0a6e09864a4eca6929b18eed59eaae08fe2ba3c46cda84cdd27ab93d3a562"></a>eJoiningResult&#160;</td><td class="fielddoc"><p>接合結果 </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">構築子と解体子</h2>
+<a id="ab84fd188aba5023e2f25dfa3f2e142c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab84fd188aba5023e2f25dfa3f2e142c9">&#9670;&nbsp;</a></span>CProjectFileIO()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjectFileIO::CProjectFileIO </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>コンストラクタ </p>
+<p>&lt; プロジェクトファイルへのパス</p>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_ab84fd188aba5023e2f25dfa3f2e142c9_cgraph.png" border="0" usemap="#aclass_c_project_file_i_o_ab84fd188aba5023e2f25dfa3f2e142c9_cgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_ab84fd188aba5023e2f25dfa3f2e142c9_cgraph" id="aclass_c_project_file_i_o_ab84fd188aba5023e2f25dfa3f2e142c9_cgraph">
+<area shape="rect" title="コンストラクタ" alt="" coords="5,5,169,47"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a4be8e2c3ecdc21cd9528a2913b76a8ce" title="プロジェクトの初期化" alt="" coords="217,13,376,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a19976c153c46b2d471d2b8024fab7ef4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19976c153c46b2d471d2b8024fab7ef4">&#9670;&nbsp;</a></span>~CProjectFileIO()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CProjectFileIO::~CProjectFileIO </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>デストラクタ </p>
+
+</div>
+</div>
+<h2 class="groupheader">関数詳解</h2>
+<a id="af0e69301612025484e6de9a010cc80f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0e69301612025484e6de9a010cc80f1">&#9670;&nbsp;</a></span>Date2Str()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CProjectFileIO::Date2Str </td>
+          <td>(</td>
+          <td class="paramtype">COleDateTime&#160;</td>
+          <td class="paramname"><em>date</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>日付から文字列への変換 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">date</td><td>日付</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>日付を表す文字列を返す</dd></dl>
+
+</div>
+</div>
+<a id="add069fabcf1444b3e071d325dcb55f02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add069fabcf1444b3e071d325dcb55f02">&#9670;&nbsp;</a></span>GetCreeateDay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">COleDateTime CProjectFileIO::GetCreeateDay </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>作成日の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>作成日を返す</dd></dl>
+
+</div>
+</div>
+<a id="aa55eac2bd7d274c475a9afe818283837"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa55eac2bd7d274c475a9afe818283837">&#9670;&nbsp;</a></span>GetImageDataRootPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CProjectFileIO::GetImageDataRootPath </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>イメージデータへのルートパスの取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>イメージデータへのルートパスを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_aa55eac2bd7d274c475a9afe818283837_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_aa55eac2bd7d274c475a9afe818283837_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_aa55eac2bd7d274c475a9afe818283837_icgraph" id="aclass_c_project_file_i_o_aa55eac2bd7d274c475a9afe818283837_icgraph">
+<area shape="rect" title="イメージデータへのルートパスの取得" alt="" coords="631,39,801,80"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="440,39,583,80"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,5,377,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="219,71,392,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,5,171,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="adfb10b8a5e2bd9ca350d9f4ae32f2e65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adfb10b8a5e2bd9ca350d9f4ae32f2e65">&#9670;&nbsp;</a></span>GetMetalAnalizeMethod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CProjectFileIO::GetMetalAnalizeMethod </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>金属面解析方法の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>樹脂面解析方法を返す</dd></dl>
+
+</div>
+</div>
+<a id="a3f192428bc182caecf3be5dae9efad8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f192428bc182caecf3be5dae9efad8b">&#9670;&nbsp;</a></span>GetMetalDendrogramClassFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CProjectFileIO::GetMetalDendrogramClassFile </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>金属面階層クラスタリング分類結果ファイル名の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>金属面階層クラスタリング分類結果ファイル名を返す</dd></dl>
+
+</div>
+</div>
+<a id="a01bc129069b3ba05ed979729f88be551"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a01bc129069b3ba05ed979729f88be551">&#9670;&nbsp;</a></span>GetMetalDisplayType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CProjectFileIO::GetMetalDisplayType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>金属画像表示タイプの取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>金属画像表示タイプを返す</dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a01bc129069b3ba05ed979729f88be551_cgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a01bc129069b3ba05ed979729f88be551_cgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a01bc129069b3ba05ed979729f88be551_cgraph" id="aclass_c_project_file_i_o_a01bc129069b3ba05ed979729f88be551_cgraph">
+<area shape="rect" title="金属画像表示タイプの取得" alt="" coords="5,5,172,47"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="613,13,745,39"/>
+<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="220,38,372,65"/>
+<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="420,38,565,65"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a01bc129069b3ba05ed979729f88be551_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a01bc129069b3ba05ed979729f88be551_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a01bc129069b3ba05ed979729f88be551_icgraph" id="aclass_c_project_file_i_o_a01bc129069b3ba05ed979729f88be551_icgraph">
+<area shape="rect" title="金属画像表示タイプの取得" alt="" coords="652,300,819,341"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a6fb9f31759c4175b40446be90447a42f" title="表示モードの取得" alt="" coords="461,300,604,341"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a84d0a276b8897ee23001945ec1620d63" title="パラメータの読み込み" alt="" coords="232,5,383,47"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a5a87297aab04b7bd9f08caca1da10cbd" title="接続結果解析方法k&#45;means選択時処理" alt="" coords="204,71,411,112"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a734c44296f6c61bb086c00c428e1a5b0" title="接続結果解析方法階層クラスタリング選択時処理" alt="" coords="204,136,411,177"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a149453a5283d6b91cad8848a18afb8f0" title="金属面解析方法k&#45;means選択時処理" alt="" coords="202,201,413,243"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a14e8bb16db62057f2bf9cbd512848dc4" title="金属面解析方法階層クラスタリング選択時処理" alt="" coords="202,267,413,308"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a62f06351ba5608c0c52bca42a913833b" title="樹脂面解析方法k&#45;means選択時処理" alt="" coords="201,332,413,373"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a8f016c43a40aea8aebe54cf5ea5e98e3" title="樹脂面解析方法階層クラスタリング選択時処理" alt="" coords="201,397,413,439"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="216,463,399,504"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="233,528,381,569"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a9384bbeab5745f5806acd59d1e1fb84c" title="スキャンの要求" alt="" coords="233,593,381,635"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae4f218a4e70e08689a0532384eb86fe5" title="設定ページの再読込" alt="" coords="5,5,153,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aa8b296680f53e3ccda6d546cd98d5817"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8b296680f53e3ccda6d546cd98d5817">&#9670;&nbsp;</a></span>GetMetalKmeansClassFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CProjectFileIO::GetMetalKmeansClassFile </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>金属面k-means分類結果ファイル名の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>金属面分類結果k-meansファイル名を返す</dd></dl>
+
+</div>
+</div>
+<a id="a9b2b2b42f5c25ec3e352dd5b2226b8a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b2b2b42f5c25ec3e352dd5b2226b8a2">&#9670;&nbsp;</a></span>GetMetalScanImageFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CProjectFileIO::GetMetalScanImageFile </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>金属面スキャン画像ファイル名の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>金属面スキャン画像ファイル名を返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a9b2b2b42f5c25ec3e352dd5b2226b8a2_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a9b2b2b42f5c25ec3e352dd5b2226b8a2_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a9b2b2b42f5c25ec3e352dd5b2226b8a2_icgraph" id="aclass_c_project_file_i_o_a9b2b2b42f5c25ec3e352dd5b2226b8a2_icgraph">
+<area shape="rect" title="金属面スキャン画像ファイル名の取得" alt="" coords="1115,127,1281,168"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a41aafce3ebbfa44a9741100ed1134583" title="スキャンファイルの設定有無判定" alt="" coords="728,57,871,99"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a18363dcc891c5e076681195958f7ab18" title="スキャンファイルパス取得（拡張子なし）" alt="" coords="924,156,1067,197"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#a325bd4d3b6c573140e8b23f901378767" title="スキャンボタン押下時処理" alt="" coords="453,148,675,189"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#a14f7d8b2d5db7edb3211c6c969dd4701" title="タイマー" alt="" coords="479,31,649,72"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="239,16,389,57"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="243,125,385,167"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="5,125,175,167"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a21fcb772f7329ee52b9b1922b133eca0" title="スキャン情報の削除" alt="" coords="728,188,871,229"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a20f4912ddc5aef772cd12ec334e55f04" title="スキャンデータファイルパス取得" alt="" coords="723,279,876,320"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="725,123,873,164"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aec529b21bcd80053e9ace596cc28ee56" title="解析の実施" alt="" coords="493,396,635,437"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8" title="解析実施要求" alt="" coords="240,371,388,412"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b289ccf358a0ad255596c59196a3bd0" title="スキャンデータイメージの取得" alt="" coords="493,213,635,255"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="493,279,635,320"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="223,227,405,268"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="240,292,388,333"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4a2577553898e8f904e761a703701134"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a2577553898e8f904e761a703701134">&#9670;&nbsp;</a></span>GetNumbetOfMetalDendrogramClassificationClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CProjectFileIO::GetNumbetOfMetalDendrogramClassificationClass </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>作成された金属面階層クラスタリング解析のクラス数の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>クラス数を返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a4a2577553898e8f904e761a703701134_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a4a2577553898e8f904e761a703701134_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a4a2577553898e8f904e761a703701134_icgraph" id="aclass_c_project_file_i_o_a4a2577553898e8f904e761a703701134_icgraph">
+<area shape="rect" title="作成された金属面階層クラスタリング解析のクラス数の取得" alt="" coords="711,71,957,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aa36adf0d2fa7fdfe0e45f8048a539069" title="解析結果の分類数と設定の分類数が異なるかの判定" alt="" coords="440,71,663,112"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#aed639166205e0a1527c7e4bec6196af6" title="ステータスの更新" alt="" coords="223,71,392,112"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#ace1f9ec08dc88cef79340c4efab44c8e" title="ウインドアクティブ時処理" alt="" coords="5,5,175,47"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#a14f7d8b2d5db7edb3211c6c969dd4701" title="タイマー" alt="" coords="5,71,175,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="15,136,165,177"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aa24365effd8b5ca352ea09f73031fb3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa24365effd8b5ca352ea09f73031fb3d">&#9670;&nbsp;</a></span>GetNumbetOfMetalKMeansClassificationClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CProjectFileIO::GetNumbetOfMetalKMeansClassificationClass </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>作成された金属面K-Means解析のクラス数の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>クラス数を返す</dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_aa24365effd8b5ca352ea09f73031fb3d_cgraph.png" border="0" usemap="#aclass_c_project_file_i_o_aa24365effd8b5ca352ea09f73031fb3d_cgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_aa24365effd8b5ca352ea09f73031fb3d_cgraph" id="aclass_c_project_file_i_o_aa24365effd8b5ca352ea09f73031fb3d_cgraph">
+<area shape="rect" title="作成された金属面K&#45;Means解析のクラス数の取得" alt="" coords="5,5,231,47"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="672,13,804,39"/>
+<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="279,38,431,65"/>
+<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="479,38,624,65"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_aa24365effd8b5ca352ea09f73031fb3d_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_aa24365effd8b5ca352ea09f73031fb3d_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_aa24365effd8b5ca352ea09f73031fb3d_icgraph" id="aclass_c_project_file_i_o_aa24365effd8b5ca352ea09f73031fb3d_icgraph">
+<area shape="rect" title="作成された金属面K&#45;Means解析のクラス数の取得" alt="" coords="711,71,936,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aa36adf0d2fa7fdfe0e45f8048a539069" title="解析結果の分類数と設定の分類数が異なるかの判定" alt="" coords="440,71,663,112"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#aed639166205e0a1527c7e4bec6196af6" title="ステータスの更新" alt="" coords="223,71,392,112"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#ace1f9ec08dc88cef79340c4efab44c8e" title="ウインドアクティブ時処理" alt="" coords="5,5,175,47"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#a14f7d8b2d5db7edb3211c6c969dd4701" title="タイマー" alt="" coords="5,71,175,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="15,136,165,177"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a540586e210abae9454c8a31572f087f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a540586e210abae9454c8a31572f087f9">&#9670;&nbsp;</a></span>GetNumbetOfResinDendrogramClassificationClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CProjectFileIO::GetNumbetOfResinDendrogramClassificationClass </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>作成された樹脂面階層クラスタリング解析のクラス数の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>クラス数を返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a540586e210abae9454c8a31572f087f9_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a540586e210abae9454c8a31572f087f9_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a540586e210abae9454c8a31572f087f9_icgraph" id="aclass_c_project_file_i_o_a540586e210abae9454c8a31572f087f9_icgraph">
+<area shape="rect" title="作成された樹脂面階層クラスタリング解析のクラス数の取得" alt="" coords="711,71,959,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aa36adf0d2fa7fdfe0e45f8048a539069" title="解析結果の分類数と設定の分類数が異なるかの判定" alt="" coords="440,71,663,112"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#aed639166205e0a1527c7e4bec6196af6" title="ステータスの更新" alt="" coords="223,71,392,112"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#ace1f9ec08dc88cef79340c4efab44c8e" title="ウインドアクティブ時処理" alt="" coords="5,5,175,47"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#a14f7d8b2d5db7edb3211c6c969dd4701" title="タイマー" alt="" coords="5,71,175,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="15,136,165,177"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9a312e3eef362c64e0bc43c54c2f7782"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a312e3eef362c64e0bc43c54c2f7782">&#9670;&nbsp;</a></span>GetNumbetOfResinKMeansClassificationClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CProjectFileIO::GetNumbetOfResinKMeansClassificationClass </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>作成された樹脂面K-Means解析のクラス数の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>クラス数を返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a9a312e3eef362c64e0bc43c54c2f7782_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a9a312e3eef362c64e0bc43c54c2f7782_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a9a312e3eef362c64e0bc43c54c2f7782_icgraph" id="aclass_c_project_file_i_o_a9a312e3eef362c64e0bc43c54c2f7782_icgraph">
+<area shape="rect" title="作成された樹脂面K&#45;Means解析のクラス数の取得" alt="" coords="711,71,937,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aa36adf0d2fa7fdfe0e45f8048a539069" title="解析結果の分類数と設定の分類数が異なるかの判定" alt="" coords="440,71,663,112"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#aed639166205e0a1527c7e4bec6196af6" title="ステータスの更新" alt="" coords="223,71,392,112"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#ace1f9ec08dc88cef79340c4efab44c8e" title="ウインドアクティブ時処理" alt="" coords="5,5,175,47"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#a14f7d8b2d5db7edb3211c6c969dd4701" title="タイマー" alt="" coords="5,71,175,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="15,136,165,177"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad62582b628c9d78cc62c681b740fd81f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad62582b628c9d78cc62c681b740fd81f">&#9670;&nbsp;</a></span>GetNumbetOfResultDendrogramClassificationClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CProjectFileIO::GetNumbetOfResultDendrogramClassificationClass </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>作成された接合結果階層クラスタリング解析のクラス数の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>クラス数を返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_ad62582b628c9d78cc62c681b740fd81f_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_ad62582b628c9d78cc62c681b740fd81f_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_ad62582b628c9d78cc62c681b740fd81f_icgraph" id="aclass_c_project_file_i_o_ad62582b628c9d78cc62c681b740fd81f_icgraph">
+<area shape="rect" title="作成された接合結果階層クラスタリング解析のクラス数の取得" alt="" coords="711,71,963,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aa36adf0d2fa7fdfe0e45f8048a539069" title="解析結果の分類数と設定の分類数が異なるかの判定" alt="" coords="440,71,663,112"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#aed639166205e0a1527c7e4bec6196af6" title="ステータスの更新" alt="" coords="223,71,392,112"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#ace1f9ec08dc88cef79340c4efab44c8e" title="ウインドアクティブ時処理" alt="" coords="5,5,175,47"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#a14f7d8b2d5db7edb3211c6c969dd4701" title="タイマー" alt="" coords="5,71,175,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="15,136,165,177"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a868c93480f80c6edcd09a38880b534e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a868c93480f80c6edcd09a38880b534e1">&#9670;&nbsp;</a></span>GetNumbetOfResultKMeansClassificationClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CProjectFileIO::GetNumbetOfResultKMeansClassificationClass </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>作成された接合結果K-Means解析のクラス数の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>クラス数を返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a868c93480f80c6edcd09a38880b534e1_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a868c93480f80c6edcd09a38880b534e1_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a868c93480f80c6edcd09a38880b534e1_icgraph" id="aclass_c_project_file_i_o_a868c93480f80c6edcd09a38880b534e1_icgraph">
+<area shape="rect" title="作成された接合結果K&#45;Means解析のクラス数の取得" alt="" coords="711,71,941,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aa36adf0d2fa7fdfe0e45f8048a539069" title="解析結果の分類数と設定の分類数が異なるかの判定" alt="" coords="440,71,663,112"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#aed639166205e0a1527c7e4bec6196af6" title="ステータスの更新" alt="" coords="223,71,392,112"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#ace1f9ec08dc88cef79340c4efab44c8e" title="ウインドアクティブ時処理" alt="" coords="5,5,175,47"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#a14f7d8b2d5db7edb3211c6c969dd4701" title="タイマー" alt="" coords="5,71,175,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="15,136,165,177"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7a202239b515e5f244f93e9747ac0a82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a202239b515e5f244f93e9747ac0a82">&#9670;&nbsp;</a></span>GetProjectFilePath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CProjectFileIO::GetProjectFilePath </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>プロジェクトファイルパスの取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>プロジェクトファイルパスを返す</dd></dl>
+
+</div>
+</div>
+<a id="a17a7cf6bda65afc323c7aa861f2f9073"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17a7cf6bda65afc323c7aa861f2f9073">&#9670;&nbsp;</a></span>GetResinAnalizeMethod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CProjectFileIO::GetResinAnalizeMethod </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>樹脂面解析方法の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>樹脂面解析方法を返す</dd></dl>
+
+</div>
+</div>
+<a id="aae6d4bf73f85b5b344ed1357215b3b30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae6d4bf73f85b5b344ed1357215b3b30">&#9670;&nbsp;</a></span>GetResinDendrogramClassFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CProjectFileIO::GetResinDendrogramClassFile </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>樹脂面階層クラスタリング分類結果ファイル名の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>樹脂面クラスタリング分類結果ファイル名を返す</dd></dl>
+
+</div>
+</div>
+<a id="ae824553dca5d5e1f69ea7e4687dd1588"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae824553dca5d5e1f69ea7e4687dd1588">&#9670;&nbsp;</a></span>GetResinDisplayType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CProjectFileIO::GetResinDisplayType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>樹脂画像表示タイプの取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>樹脂画像表示タイプを返す</dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_ae824553dca5d5e1f69ea7e4687dd1588_cgraph.png" border="0" usemap="#aclass_c_project_file_i_o_ae824553dca5d5e1f69ea7e4687dd1588_cgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_ae824553dca5d5e1f69ea7e4687dd1588_cgraph" id="aclass_c_project_file_i_o_ae824553dca5d5e1f69ea7e4687dd1588_cgraph">
+<area shape="rect" title="樹脂画像表示タイプの取得" alt="" coords="5,5,173,47"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="615,13,747,39"/>
+<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="221,38,373,65"/>
+<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="421,38,567,65"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_ae824553dca5d5e1f69ea7e4687dd1588_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_ae824553dca5d5e1f69ea7e4687dd1588_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_ae824553dca5d5e1f69ea7e4687dd1588_icgraph" id="aclass_c_project_file_i_o_ae824553dca5d5e1f69ea7e4687dd1588_icgraph">
+<area shape="rect" title="樹脂画像表示タイプの取得" alt="" coords="652,300,820,341"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a6fb9f31759c4175b40446be90447a42f" title="表示モードの取得" alt="" coords="461,300,604,341"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a84d0a276b8897ee23001945ec1620d63" title="パラメータの読み込み" alt="" coords="232,5,383,47"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a5a87297aab04b7bd9f08caca1da10cbd" title="接続結果解析方法k&#45;means選択時処理" alt="" coords="204,71,411,112"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a734c44296f6c61bb086c00c428e1a5b0" title="接続結果解析方法階層クラスタリング選択時処理" alt="" coords="204,136,411,177"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a149453a5283d6b91cad8848a18afb8f0" title="金属面解析方法k&#45;means選択時処理" alt="" coords="202,201,413,243"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a14e8bb16db62057f2bf9cbd512848dc4" title="金属面解析方法階層クラスタリング選択時処理" alt="" coords="202,267,413,308"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a62f06351ba5608c0c52bca42a913833b" title="樹脂面解析方法k&#45;means選択時処理" alt="" coords="201,332,413,373"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a8f016c43a40aea8aebe54cf5ea5e98e3" title="樹脂面解析方法階層クラスタリング選択時処理" alt="" coords="201,397,413,439"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="216,463,399,504"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="233,528,381,569"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a9384bbeab5745f5806acd59d1e1fb84c" title="スキャンの要求" alt="" coords="233,593,381,635"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae4f218a4e70e08689a0532384eb86fe5" title="設定ページの再読込" alt="" coords="5,5,153,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2a2015d01cd40d33db6d24a4be5659b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a2015d01cd40d33db6d24a4be5659b4">&#9670;&nbsp;</a></span>GetResinKmeansClassFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CProjectFileIO::GetResinKmeansClassFile </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>樹脂面k-means分類結果ファイル名の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>樹脂面k-means分類結果ファイル名を返す</dd></dl>
+
+</div>
+</div>
+<a id="a4c86e9e72a5fdb38be8698a214f4a21e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c86e9e72a5fdb38be8698a214f4a21e">&#9670;&nbsp;</a></span>GetResinScanImageFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CProjectFileIO::GetResinScanImageFile </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>樹脂面スキャン画像ファイル名の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>樹脂面スキャン画像ファイル名を返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a4c86e9e72a5fdb38be8698a214f4a21e_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a4c86e9e72a5fdb38be8698a214f4a21e_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a4c86e9e72a5fdb38be8698a214f4a21e_icgraph" id="aclass_c_project_file_i_o_a4c86e9e72a5fdb38be8698a214f4a21e_icgraph">
+<area shape="rect" title="樹脂面スキャン画像ファイル名の取得" alt="" coords="1115,127,1283,168"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a41aafce3ebbfa44a9741100ed1134583" title="スキャンファイルの設定有無判定" alt="" coords="728,57,871,99"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a18363dcc891c5e076681195958f7ab18" title="スキャンファイルパス取得（拡張子なし）" alt="" coords="924,156,1067,197"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#a325bd4d3b6c573140e8b23f901378767" title="スキャンボタン押下時処理" alt="" coords="453,148,675,189"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#a14f7d8b2d5db7edb3211c6c969dd4701" title="タイマー" alt="" coords="479,31,649,72"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="239,16,389,57"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="243,125,385,167"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="5,125,175,167"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a21fcb772f7329ee52b9b1922b133eca0" title="スキャン情報の削除" alt="" coords="728,188,871,229"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a20f4912ddc5aef772cd12ec334e55f04" title="スキャンデータファイルパス取得" alt="" coords="723,279,876,320"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="725,123,873,164"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aec529b21bcd80053e9ace596cc28ee56" title="解析の実施" alt="" coords="493,396,635,437"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8" title="解析実施要求" alt="" coords="240,371,388,412"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b289ccf358a0ad255596c59196a3bd0" title="スキャンデータイメージの取得" alt="" coords="493,213,635,255"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="493,279,635,320"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="223,227,405,268"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="240,292,388,333"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ae35a48964637c012eed32aedd96065f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae35a48964637c012eed32aedd96065f9">&#9670;&nbsp;</a></span>GetResultAnalizeMethod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CProjectFileIO::GetResultAnalizeMethod </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>接合結果解析方法の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>接合結果解析方法を返す</dd></dl>
+
+</div>
+</div>
+<a id="af2432ec82243b19889a977debb04edbd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2432ec82243b19889a977debb04edbd">&#9670;&nbsp;</a></span>GetResultDendrogramClassFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CProjectFileIO::GetResultDendrogramClassFile </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>接合結果階層クラスタリング分類ファイル名の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>接合結果階層クラスタリング分類ファイル名を返す</dd></dl>
+
+</div>
+</div>
+<a id="a3ff4f09ff5ba28cac5284611c2f4a628"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ff4f09ff5ba28cac5284611c2f4a628">&#9670;&nbsp;</a></span>GetResultDisplayType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CProjectFileIO::GetResultDisplayType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>接合結果画像表示タイプの取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>接合結果画像表示タイプを返す</dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a3ff4f09ff5ba28cac5284611c2f4a628_cgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a3ff4f09ff5ba28cac5284611c2f4a628_cgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a3ff4f09ff5ba28cac5284611c2f4a628_cgraph" id="aclass_c_project_file_i_o_a3ff4f09ff5ba28cac5284611c2f4a628_cgraph">
+<area shape="rect" title="接合結果画像表示タイプの取得" alt="" coords="5,5,177,47"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="619,13,751,39"/>
+<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="225,38,377,65"/>
+<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="425,38,571,65"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a3ff4f09ff5ba28cac5284611c2f4a628_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a3ff4f09ff5ba28cac5284611c2f4a628_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a3ff4f09ff5ba28cac5284611c2f4a628_icgraph" id="aclass_c_project_file_i_o_a3ff4f09ff5ba28cac5284611c2f4a628_icgraph">
+<area shape="rect" title="接合結果画像表示タイプの取得" alt="" coords="652,300,824,341"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a6fb9f31759c4175b40446be90447a42f" title="表示モードの取得" alt="" coords="461,300,604,341"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a84d0a276b8897ee23001945ec1620d63" title="パラメータの読み込み" alt="" coords="232,5,383,47"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a5a87297aab04b7bd9f08caca1da10cbd" title="接続結果解析方法k&#45;means選択時処理" alt="" coords="204,71,411,112"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a734c44296f6c61bb086c00c428e1a5b0" title="接続結果解析方法階層クラスタリング選択時処理" alt="" coords="204,136,411,177"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a149453a5283d6b91cad8848a18afb8f0" title="金属面解析方法k&#45;means選択時処理" alt="" coords="202,201,413,243"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a14e8bb16db62057f2bf9cbd512848dc4" title="金属面解析方法階層クラスタリング選択時処理" alt="" coords="202,267,413,308"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a62f06351ba5608c0c52bca42a913833b" title="樹脂面解析方法k&#45;means選択時処理" alt="" coords="201,332,413,373"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a8f016c43a40aea8aebe54cf5ea5e98e3" title="樹脂面解析方法階層クラスタリング選択時処理" alt="" coords="201,397,413,439"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="216,463,399,504"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="233,528,381,569"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a9384bbeab5745f5806acd59d1e1fb84c" title="スキャンの要求" alt="" coords="233,593,381,635"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae4f218a4e70e08689a0532384eb86fe5" title="設定ページの再読込" alt="" coords="5,5,153,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6b51e3d39f58ad16e4ed5ca7899fc644"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b51e3d39f58ad16e4ed5ca7899fc644">&#9670;&nbsp;</a></span>GetResultKmeansClassFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CProjectFileIO::GetResultKmeansClassFile </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>接合結果k-meansファイル名の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>接合結果k-meansファイル名を返す</dd></dl>
+
+</div>
+</div>
+<a id="ae329fa86b9074317f82eb6fb80d03f37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae329fa86b9074317f82eb6fb80d03f37">&#9670;&nbsp;</a></span>GetResultScanImageFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CProjectFileIO::GetResultScanImageFile </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>接合結果画像スキャン画像ファイル名の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>接合結果画像スキャン画像ファイル名を返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_ae329fa86b9074317f82eb6fb80d03f37_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_ae329fa86b9074317f82eb6fb80d03f37_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_ae329fa86b9074317f82eb6fb80d03f37_icgraph" id="aclass_c_project_file_i_o_ae329fa86b9074317f82eb6fb80d03f37_icgraph">
+<area shape="rect" title="接合結果画像スキャン画像ファイル名の取得" alt="" coords="1115,127,1287,168"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a41aafce3ebbfa44a9741100ed1134583" title="スキャンファイルの設定有無判定" alt="" coords="728,57,871,99"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a18363dcc891c5e076681195958f7ab18" title="スキャンファイルパス取得（拡張子なし）" alt="" coords="924,156,1067,197"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#a325bd4d3b6c573140e8b23f901378767" title="スキャンボタン押下時処理" alt="" coords="453,148,675,189"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#a14f7d8b2d5db7edb3211c6c969dd4701" title="タイマー" alt="" coords="479,31,649,72"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="239,16,389,57"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="243,125,385,167"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="5,125,175,167"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a21fcb772f7329ee52b9b1922b133eca0" title="スキャン情報の削除" alt="" coords="728,188,871,229"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a20f4912ddc5aef772cd12ec334e55f04" title="スキャンデータファイルパス取得" alt="" coords="723,279,876,320"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="725,123,873,164"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aec529b21bcd80053e9ace596cc28ee56" title="解析の実施" alt="" coords="493,396,635,437"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8" title="解析実施要求" alt="" coords="240,371,388,412"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b289ccf358a0ad255596c59196a3bd0" title="スキャンデータイメージの取得" alt="" coords="493,213,635,255"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="493,279,635,320"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="223,227,405,268"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="240,292,388,333"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8edee7c70a837ef023b2356cf41f1055"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8edee7c70a837ef023b2356cf41f1055">&#9670;&nbsp;</a></span>GetScanDataSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::GetScanDataSize </td>
+          <td>(</td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>holizontal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>vertical</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スキャンデータのサイズ取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">holizontal</td><td>水平値</td></tr>
+    <tr><td class="paramname">vertical</td><td>垂直値</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a8edee7c70a837ef023b2356cf41f1055_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a8edee7c70a837ef023b2356cf41f1055_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a8edee7c70a837ef023b2356cf41f1055_icgraph" id="aclass_c_project_file_i_o_a8edee7c70a837ef023b2356cf41f1055_icgraph">
+<area shape="rect" title="スキャンデータのサイズ取得" alt="" coords="832,50,1051,77"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aec529b21bcd80053e9ace596cc28ee56" title="解析の実施" alt="" coords="641,8,784,49"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a8af3aff5f5a24234512bb784fc4df822" title="プロジェクトからスキャンデータの縦横サイズの取得" alt="" coords="641,75,784,116"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8" title="解析実施要求" alt="" coords="433,5,581,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a8cccd8cb66df552066d96c31b9255389" title="分類結果の画像データ取得" alt="" coords="421,71,593,127"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="223,45,373,87"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="227,111,369,152"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="5,111,175,152"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a49c7cd445cbff3f5e962fd19dee36cd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49c7cd445cbff3f5e962fd19dee36cd2">&#9670;&nbsp;</a></span>GetSpectralGraphPointPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::GetSpectralGraphPointPosition </td>
+          <td>(</td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>holizontal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>vertical</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スペクトルグラフ（点指定）の位置の取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">holizontal</td><td>水平値</td></tr>
+    <tr><td class="paramname">vertical</td><td>垂直値</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a49c7cd445cbff3f5e962fd19dee36cd2_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a49c7cd445cbff3f5e962fd19dee36cd2_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a49c7cd445cbff3f5e962fd19dee36cd2_icgraph" id="aclass_c_project_file_i_o_a49c7cd445cbff3f5e962fd19dee36cd2_icgraph">
+<area shape="rect" title="スペクトルグラフ（点指定）の位置の取得" alt="" coords="495,39,677,80"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a4d73aeb4901a8e64596b44084254800b" title="プロジェクトからのスペクトルグラフ（点指定）の位置の取得" alt="" coords="236,39,447,80"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="5,5,188,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="23,71,171,112"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af2009329c9e8ef2b83520394b1a22709"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2009329c9e8ef2b83520394b1a22709">&#9670;&nbsp;</a></span>GetSpectralGraphPointTarget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CProjectFileIO::GetSpectralGraphPointTarget </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スペクトルグラフ（点指定）の対象の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>スペクトルグラフ（点指定）の対象を返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_af2009329c9e8ef2b83520394b1a22709_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_af2009329c9e8ef2b83520394b1a22709_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_af2009329c9e8ef2b83520394b1a22709_icgraph" id="aclass_c_project_file_i_o_af2009329c9e8ef2b83520394b1a22709_icgraph">
+<area shape="rect" title="スペクトルグラフ（点指定）の対象の取得" alt="" coords="253,5,436,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a67f246b4e19e89febdd152cb00337dad" title="プロジェクトからのスペクトルグラフ（点指定）の対象の取得" alt="" coords="5,5,205,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2821dfd554f1dba2a31db24dee4f209b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2821dfd554f1dba2a31db24dee4f209b">&#9670;&nbsp;</a></span>GetSpectralGraphSectionEndPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::GetSpectralGraphSectionEndPosition </td>
+          <td>(</td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>holizontal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>vertical</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スペクトルグラフ（区間指定）の終了位置の取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">holizontal</td><td>水平値</td></tr>
+    <tr><td class="paramname">vertical</td><td>垂直値</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a2821dfd554f1dba2a31db24dee4f209b_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a2821dfd554f1dba2a31db24dee4f209b_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a2821dfd554f1dba2a31db24dee4f209b_icgraph" id="aclass_c_project_file_i_o_a2821dfd554f1dba2a31db24dee4f209b_icgraph">
+<area shape="rect" title="スペクトルグラフ（区間指定）の終了位置の取得" alt="" coords="255,13,437,54"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#af308265948b0e7ba24d76ae5159a7873" title="プロジェクトからのスペクトルグラフ（区間指定）の終了位置の取得" alt="" coords="5,5,207,61"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="acbb94052951e330c8cb39897e54ba4a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbb94052951e330c8cb39897e54ba4a0">&#9670;&nbsp;</a></span>GetSpectralGraphSectionStartPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::GetSpectralGraphSectionStartPosition </td>
+          <td>(</td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>holizontal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>vertical</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スペクトルグラフ（区間指定）の開始位置の取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">holizontal</td><td>水平値</td></tr>
+    <tr><td class="paramname">vertical</td><td>垂直値</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_acbb94052951e330c8cb39897e54ba4a0_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_acbb94052951e330c8cb39897e54ba4a0_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_acbb94052951e330c8cb39897e54ba4a0_icgraph" id="aclass_c_project_file_i_o_acbb94052951e330c8cb39897e54ba4a0_icgraph">
+<area shape="rect" title="スペクトルグラフ（区間指定）の開始位置の取得" alt="" coords="260,13,443,54"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a3bb219378d9f88dc9aed34ca347827f8" title="プロジェクトからのスペクトルグラフ（区間指定）の開始位置の取得" alt="" coords="5,5,212,61"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a70748a36f8ea3d405495dbf6b03c0d43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70748a36f8ea3d405495dbf6b03c0d43">&#9670;&nbsp;</a></span>GetSpectralGraphSectionTarget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">UINT CProjectFileIO::GetSpectralGraphSectionTarget </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スペクトルグラフ（区間指定）の対象の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>スペクトルグラフ（区間指定）の対象を返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a70748a36f8ea3d405495dbf6b03c0d43_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a70748a36f8ea3d405495dbf6b03c0d43_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a70748a36f8ea3d405495dbf6b03c0d43_icgraph" id="aclass_c_project_file_i_o_a70748a36f8ea3d405495dbf6b03c0d43_icgraph">
+<area shape="rect" title="スペクトルグラフ（区間指定）の対象の取得" alt="" coords="268,5,451,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a8d5eafd841e9ee42609019047a66550b" title="プロジェクトからのスペクトルグラフ（区間指定）の対象の取得" alt="" coords="5,5,220,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aaf99e8084287e91dc479bfdd99175b34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf99e8084287e91dc479bfdd99175b34">&#9670;&nbsp;</a></span>GetUpdateDay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">COleDateTime CProjectFileIO::GetUpdateDay </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>更新日の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>更新日を返す</dd></dl>
+
+</div>
+</div>
+<a id="a4be8e2c3ecdc21cd9528a2913b76a8ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4be8e2c3ecdc21cd9528a2913b76a8ce">&#9670;&nbsp;</a></span>Initialze()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CProjectFileIO::Initialze </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>プロジェクトの初期化 </p>
+<p>&lt; 作成日</p>
+<p>&lt; 更新簿</p>
+<p>&lt; イメージデータへのルートパス</p>
+<p>&lt; 樹脂面スキャン画像ファイル名</p>
+<p>&lt; 樹脂面階層クラスタリング分類結果ファイル名</p>
+<p>&lt; 樹脂面k-means分類結果ファイル名</p>
+<p>&lt; 金属面スキャン画像ファイル名</p>
+<p>&lt; 金属面階層クラスタリング分類結果ファイル名</p>
+<p>&lt; 金属面k-means分類結果ファイル名</p>
+<p>&lt; 接合結果画像スキャン画像ファイル名</p>
+<p>&lt; 接合結果階層クラスタリング分類結果ファイル名</p>
+<p>&lt; 接合結果k-means分類結果ファイル名</p>
+<p>&lt; 樹脂面の表示対象解析方法</p>
+<p>&lt; 金属面の表示対象解析方法</p>
+<p>&lt; 結果の表示対象解析方法</p>
+<p>&lt; 樹脂面分類結果階層クラスタリング分類数</p>
+<p>&lt; 樹脂面分類結果k-means分類数</p>
+<p>&lt; 金属面分類結果階層クラスタリング分類数</p>
+<p>&lt; 金属面分類結果k-means分類数</p>
+<p>&lt; 結果階層クラスタリング分類数</p>
+<p>&lt; 結果階層クラスタリング分類数</p>
+<p>&lt; スペクトルグラフ（点指定）の対象</p>
+<p>&lt; スペクトルグラフ（点指定）の水平位置</p>
+<p>&lt; スペクトルグラフ（点指定）の垂直位置</p>
+<p>&lt; スペクトルグラフ（区間指定）の対象</p>
+<p>&lt; スペクトルグラフ（点指定）の水平開始位置</p>
+<p>&lt; スペクトルグラフ（点指定）の垂直開始位置</p>
+<p>&lt; スペクトルグラフ（点指定）の水平終了位置</p>
+<p>&lt; スペクトルグラフ（点指定）の垂直終了位置</p>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a4be8e2c3ecdc21cd9528a2913b76a8ce_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a4be8e2c3ecdc21cd9528a2913b76a8ce_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a4be8e2c3ecdc21cd9528a2913b76a8ce_icgraph" id="aclass_c_project_file_i_o_a4be8e2c3ecdc21cd9528a2913b76a8ce_icgraph">
+<area shape="rect" title="プロジェクトの初期化" alt="" coords="843,46,1001,73"/>
+<area shape="rect" href="class_c_project_file_i_o.html#ab84fd188aba5023e2f25dfa3f2e142c9" title="コンストラクタ" alt="" coords="631,5,795,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="641,71,784,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#acceb13e1dba62f59383094194ecf9774" title="プロジェクトの削除" alt="" coords="440,5,583,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547" title="新規プロジェクト作成" alt="" coords="440,71,583,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="440,136,583,177"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1c8f728724d0615945c96bc74bf24e76" title="プロジェクト削除" alt="" coords="231,5,379,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,100,171,141"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,129,377,171"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="219,195,392,236"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a659e5931885ed15759f868773e07d47d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a659e5931885ed15759f868773e07d47d">&#9670;&nbsp;</a></span>Read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::Read </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>path</em> = <code>_T(&quot;&quot;)</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>パラメータファイルの読み込み </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>パラメータファイルへのパス</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a659e5931885ed15759f868773e07d47d_cgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a659e5931885ed15759f868773e07d47d_cgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a659e5931885ed15759f868773e07d47d_cgraph" id="aclass_c_project_file_i_o_a659e5931885ed15759f868773e07d47d_cgraph">
+<area shape="rect" title="パラメータファイルの読み込み" alt="" coords="5,5,149,32"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="197,5,329,32"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a659e5931885ed15759f868773e07d47d_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a659e5931885ed15759f868773e07d47d_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a659e5931885ed15759f868773e07d47d_icgraph" id="aclass_c_project_file_i_o_a659e5931885ed15759f868773e07d47d_icgraph">
+<area shape="rect" title="パラメータファイルの読み込み" alt="" coords="427,46,571,73"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="236,39,379,80"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="5,5,188,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="23,71,171,112"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a5d17a1a5554d49705db9a462536d437f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d17a1a5554d49705db9a462536d437f">&#9670;&nbsp;</a></span>Save()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::Save </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bUpdate</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>path</em> = <code>_T(&quot;&quot;)</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>パラメータファイルの書き込み </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bUpdate</td><td>更新フラグ</td></tr>
+    <tr><td class="paramname">path</td><td>パラメータファイルへのパス</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a5d17a1a5554d49705db9a462536d437f_cgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a5d17a1a5554d49705db9a462536d437f_cgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a5d17a1a5554d49705db9a462536d437f_cgraph" id="aclass_c_project_file_i_o_a5d17a1a5554d49705db9a462536d437f_cgraph">
+<area shape="rect" title="パラメータファイルの書き込み" alt="" coords="5,5,148,32"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="196,5,328,32"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a5d17a1a5554d49705db9a462536d437f_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a5d17a1a5554d49705db9a462536d437f_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a5d17a1a5554d49705db9a462536d437f_icgraph" id="aclass_c_project_file_i_o_a5d17a1a5554d49705db9a462536d437f_icgraph">
+<area shape="rect" title="パラメータファイルの書き込み" alt="" coords="821,111,964,138"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="631,73,773,115"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="440,136,583,177"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#acceb13e1dba62f59383094194ecf9774" title="プロジェクトの削除" alt="" coords="440,5,583,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547" title="新規プロジェクト作成" alt="" coords="440,71,583,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1c8f728724d0615945c96bc74bf24e76" title="プロジェクト削除" alt="" coords="231,5,379,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,100,171,141"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,129,377,171"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="219,195,392,236"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0093e512c08df1a77eefb0cea07eb6d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0093e512c08df1a77eefb0cea07eb6d1">&#9670;&nbsp;</a></span>SetCreateDay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetCreateDay </td>
+          <td>(</td>
+          <td class="paramtype">COleDateTime&#160;</td>
+          <td class="paramname"><em>date</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>作成日の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">date</td><td>日付</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a0093e512c08df1a77eefb0cea07eb6d1_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a0093e512c08df1a77eefb0cea07eb6d1_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a0093e512c08df1a77eefb0cea07eb6d1_icgraph" id="aclass_c_project_file_i_o_a0093e512c08df1a77eefb0cea07eb6d1_icgraph">
+<area shape="rect" title="作成日の設定" alt="" coords="631,46,825,73"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="440,39,583,80"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,5,377,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="219,71,392,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,5,171,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a75d0972c4de362586eed671a1471fd57"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75d0972c4de362586eed671a1471fd57">&#9670;&nbsp;</a></span>SetImageDataRootPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetImageDataRootPath </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>rootPath</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>イメージデータへのルートパスの設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rootPath</td><td>ルートパス</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a75d0972c4de362586eed671a1471fd57_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a75d0972c4de362586eed671a1471fd57_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a75d0972c4de362586eed671a1471fd57_icgraph" id="aclass_c_project_file_i_o_a75d0972c4de362586eed671a1471fd57_icgraph">
+<area shape="rect" title="イメージデータへのルートパスの設定" alt="" coords="821,104,991,145"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="631,73,773,115"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="440,136,583,177"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#acceb13e1dba62f59383094194ecf9774" title="プロジェクトの削除" alt="" coords="440,5,583,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547" title="新規プロジェクト作成" alt="" coords="440,71,583,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1c8f728724d0615945c96bc74bf24e76" title="プロジェクト削除" alt="" coords="231,5,379,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,100,171,141"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,129,377,171"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="219,195,392,236"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0171cd0011459cd17b7ef064bf82b43e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0171cd0011459cd17b7ef064bf82b43e">&#9670;&nbsp;</a></span>SetMetalAnalizeMethod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetMetalAnalizeMethod </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>method</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>金属面解析方法の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">method</td><td>解析方法</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a87d2c57b9dab248bfe0d4c8cbbf0fc08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87d2c57b9dab248bfe0d4c8cbbf0fc08">&#9670;&nbsp;</a></span>SetMetalDendrogramClassFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetMetalDendrogramClassFile </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>fileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>金属面階層クラスタリング分類結果ファイル名の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileName</td><td>金属面階層クラスタリング分類結果ファイル名</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a87d2c57b9dab248bfe0d4c8cbbf0fc08_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a87d2c57b9dab248bfe0d4c8cbbf0fc08_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a87d2c57b9dab248bfe0d4c8cbbf0fc08_icgraph" id="aclass_c_project_file_i_o_a87d2c57b9dab248bfe0d4c8cbbf0fc08_icgraph">
+<area shape="rect" title="金属面階層クラスタリング分類結果ファイル名の設定" alt="" coords="1063,104,1229,145"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b7dd9ce24a05331154febb0c6fe0295" title="分類結果の保存" alt="" coords="821,104,1015,145"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="631,73,773,115"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="440,136,583,177"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#acceb13e1dba62f59383094194ecf9774" title="プロジェクトの削除" alt="" coords="440,5,583,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547" title="新規プロジェクト作成" alt="" coords="440,71,583,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1c8f728724d0615945c96bc74bf24e76" title="プロジェクト削除" alt="" coords="231,5,379,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,100,171,141"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,129,377,171"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="219,195,392,236"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a72febda46d46ce0a691c704a6b1c0e22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72febda46d46ce0a691c704a6b1c0e22">&#9670;&nbsp;</a></span>SetMetalDisplayType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetMetalDisplayType </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>displayType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>金属画像表示タイプの設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">displayType</td><td>金属画像表示タイプ</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a72febda46d46ce0a691c704a6b1c0e22_cgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a72febda46d46ce0a691c704a6b1c0e22_cgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a72febda46d46ce0a691c704a6b1c0e22_cgraph" id="aclass_c_project_file_i_o_a72febda46d46ce0a691c704a6b1c0e22_cgraph">
+<area shape="rect" title="金属画像表示タイプの設定" alt="" coords="5,23,172,65"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="230,5,362,32"/>
+<area shape="rect" href="class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="220,56,372,83"/>
+<area shape="rect" href="class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="420,56,567,83"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a72febda46d46ce0a691c704a6b1c0e22_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a72febda46d46ce0a691c704a6b1c0e22_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a72febda46d46ce0a691c704a6b1c0e22_icgraph" id="aclass_c_project_file_i_o_a72febda46d46ce0a691c704a6b1c0e22_icgraph">
+<area shape="rect" title="金属画像表示タイプの設定" alt="" coords="687,201,853,243"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a8c3734ada4777e97073fd72a094bf46f" title="表示モードの設定" alt="" coords="496,201,639,243"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#adee2f539754700ef37d0e306b728e4d6" title="接合結果表示タイプ分類結果選択時処理" alt="" coords="204,5,448,47"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a6e4c0695d90711c7c02c0dd2ea31ca71" title="接合結果表示タイプスキャン選択時処理" alt="" coords="218,71,434,112"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#ac82359ab4f3766594ccb083a112e9fe8" title="金属面表示タイプ分類結果選択時処理" alt="" coords="217,136,435,177"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a13d39220b8346972e4eae2f1bc1ced22" title="金属面表示タイプスキャン選択時処理" alt="" coords="231,201,421,243"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#ae9f8a7e416776fe6187673306e5d3a85" title="樹脂面表示タイプ分類結果選択時処理" alt="" coords="217,267,435,308"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#ae69d1c504a694b6b61840b1fe377e601" title="樹脂面表示タイプスキャン選択時処理" alt="" coords="231,332,421,373"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="251,397,401,439"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#ad026ecbbc983699be043cf39cf611383" title="表示方法の設定" alt="" coords="5,201,156,243"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a913ede70b8ff723115802ddde4a8bcfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a913ede70b8ff723115802ddde4a8bcfc">&#9670;&nbsp;</a></span>SetMetalKmeansClassFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetMetalKmeansClassFile </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>fileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>金属面k-means分類結果ファイル名の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileName</td><td>金属面分類結果k-meansファイル名</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a913ede70b8ff723115802ddde4a8bcfc_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a913ede70b8ff723115802ddde4a8bcfc_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a913ede70b8ff723115802ddde4a8bcfc_icgraph" id="aclass_c_project_file_i_o_a913ede70b8ff723115802ddde4a8bcfc_icgraph">
+<area shape="rect" title="金属面k&#45;means分類結果ファイル名の設定" alt="" coords="1063,104,1229,145"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b7dd9ce24a05331154febb0c6fe0295" title="分類結果の保存" alt="" coords="821,104,1015,145"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="631,73,773,115"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="440,136,583,177"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#acceb13e1dba62f59383094194ecf9774" title="プロジェクトの削除" alt="" coords="440,5,583,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547" title="新規プロジェクト作成" alt="" coords="440,71,583,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1c8f728724d0615945c96bc74bf24e76" title="プロジェクト削除" alt="" coords="231,5,379,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,100,171,141"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,129,377,171"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="219,195,392,236"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="acfecde3135f2edba90dc45c2df2f9d2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfecde3135f2edba90dc45c2df2f9d2f">&#9670;&nbsp;</a></span>SetMetalScanImageFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetMetalScanImageFile </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>fileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>金属面スキャン画像ファイル名の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileName</td><td>金属面スキャン画像ファイル名</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_acfecde3135f2edba90dc45c2df2f9d2f_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_acfecde3135f2edba90dc45c2df2f9d2f_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_acfecde3135f2edba90dc45c2df2f9d2f_icgraph" id="aclass_c_project_file_i_o_acfecde3135f2edba90dc45c2df2f9d2f_icgraph">
+<area shape="rect" title="金属面スキャン画像ファイル名の設定" alt="" coords="821,104,988,145"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="631,71,773,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aabe96759afcb4dd3eca9e96f158bc7ae" title="スキャンデータの保存" alt="" coords="631,136,773,177"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#acceb13e1dba62f59383094194ecf9774" title="プロジェクトの削除" alt="" coords="440,5,583,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547" title="新規プロジェクト作成" alt="" coords="440,71,583,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="440,136,583,177"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1c8f728724d0615945c96bc74bf24e76" title="プロジェクト削除" alt="" coords="231,5,379,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,100,171,141"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,129,377,171"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="219,195,392,236"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="afca60f6ab0cd03984ed31d9748d2c40c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afca60f6ab0cd03984ed31d9748d2c40c">&#9670;&nbsp;</a></span>SetNumbetOfMetalDendrogramClassificationClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetNumbetOfMetalDendrogramClassificationClass </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nClass</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>作成された金属面階層クラスタリング解析のクラス数の取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nClass</td><td>クラス数</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_afca60f6ab0cd03984ed31d9748d2c40c_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_afca60f6ab0cd03984ed31d9748d2c40c_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_afca60f6ab0cd03984ed31d9748d2c40c_icgraph" id="aclass_c_project_file_i_o_afca60f6ab0cd03984ed31d9748d2c40c_icgraph">
+<area shape="rect" title="作成された金属面階層クラスタリング解析のクラス数の取得" alt="" coords="392,5,639,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aec529b21bcd80053e9ace596cc28ee56" title="解析の実施" alt="" coords="201,5,344,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8" title="解析実施要求" alt="" coords="5,5,153,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a29406d5c5257125f37cc8570c6925085"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29406d5c5257125f37cc8570c6925085">&#9670;&nbsp;</a></span>SetNumbetOfMetalKMeansClassificationClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetNumbetOfMetalKMeansClassificationClass </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nClass</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>作成された金属面K-Means解析のクラス数の取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nClass</td><td>クラス数</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a29406d5c5257125f37cc8570c6925085_cgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a29406d5c5257125f37cc8570c6925085_cgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a29406d5c5257125f37cc8570c6925085_cgraph" id="aclass_c_project_file_i_o_a29406d5c5257125f37cc8570c6925085_cgraph">
+<area shape="rect" title="作成された金属面K&#45;Means解析のクラス数の取得" alt="" coords="5,23,231,65"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="289,5,421,32"/>
+<area shape="rect" href="class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="279,56,431,83"/>
+<area shape="rect" href="class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="479,56,625,83"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a29406d5c5257125f37cc8570c6925085_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a29406d5c5257125f37cc8570c6925085_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a29406d5c5257125f37cc8570c6925085_icgraph" id="aclass_c_project_file_i_o_a29406d5c5257125f37cc8570c6925085_icgraph">
+<area shape="rect" title="作成された金属面K&#45;Means解析のクラス数の取得" alt="" coords="392,5,617,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aec529b21bcd80053e9ace596cc28ee56" title="解析の実施" alt="" coords="201,5,344,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8" title="解析実施要求" alt="" coords="5,5,153,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a04f2933cae1ff9e3a08415659c5fadd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a04f2933cae1ff9e3a08415659c5fadd6">&#9670;&nbsp;</a></span>SetNumbetOfResinDendrogramClassificationClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetNumbetOfResinDendrogramClassificationClass </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nClass</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>作成された樹脂面階層クラスタリング解析のクラス数の取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nClass</td><td>クラス数</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a04f2933cae1ff9e3a08415659c5fadd6_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a04f2933cae1ff9e3a08415659c5fadd6_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a04f2933cae1ff9e3a08415659c5fadd6_icgraph" id="aclass_c_project_file_i_o_a04f2933cae1ff9e3a08415659c5fadd6_icgraph">
+<area shape="rect" title="作成された樹脂面階層クラスタリング解析のクラス数の取得" alt="" coords="392,5,640,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aec529b21bcd80053e9ace596cc28ee56" title="解析の実施" alt="" coords="201,5,344,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8" title="解析実施要求" alt="" coords="5,5,153,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab4a20cfe0a148a81e85160f76cb20928"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4a20cfe0a148a81e85160f76cb20928">&#9670;&nbsp;</a></span>SetNumbetOfResinKMeansClassificationClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetNumbetOfResinKMeansClassificationClass </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nClass</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>作成された樹脂面K-Means解析のクラス数の取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nClass</td><td>クラス数</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_ab4a20cfe0a148a81e85160f76cb20928_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_ab4a20cfe0a148a81e85160f76cb20928_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_ab4a20cfe0a148a81e85160f76cb20928_icgraph" id="aclass_c_project_file_i_o_ab4a20cfe0a148a81e85160f76cb20928_icgraph">
+<area shape="rect" title="作成された樹脂面K&#45;Means解析のクラス数の取得" alt="" coords="392,5,619,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aec529b21bcd80053e9ace596cc28ee56" title="解析の実施" alt="" coords="201,5,344,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8" title="解析実施要求" alt="" coords="5,5,153,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2dff18744914d9c6de7ee826b12dd08a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dff18744914d9c6de7ee826b12dd08a">&#9670;&nbsp;</a></span>SetNumbetOfResultDendrogramClassificationClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetNumbetOfResultDendrogramClassificationClass </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nClass</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>作成された接合結果階層クラスタリング解析のクラス数の取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nClass</td><td>クラス数</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a2dff18744914d9c6de7ee826b12dd08a_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a2dff18744914d9c6de7ee826b12dd08a_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a2dff18744914d9c6de7ee826b12dd08a_icgraph" id="aclass_c_project_file_i_o_a2dff18744914d9c6de7ee826b12dd08a_icgraph">
+<area shape="rect" title="作成された接合結果階層クラスタリング解析のクラス数の取得" alt="" coords="392,5,644,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aec529b21bcd80053e9ace596cc28ee56" title="解析の実施" alt="" coords="201,5,344,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8" title="解析実施要求" alt="" coords="5,5,153,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a960936d797d0c1f6b30cec94aa57e241"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a960936d797d0c1f6b30cec94aa57e241">&#9670;&nbsp;</a></span>SetNumbetOfResultKMeansClassificationClass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetNumbetOfResultKMeansClassificationClass </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nClass</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>作成された接合結果K-Means解析のクラス数の取得 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nClass</td><td>クラス数</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a960936d797d0c1f6b30cec94aa57e241_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a960936d797d0c1f6b30cec94aa57e241_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a960936d797d0c1f6b30cec94aa57e241_icgraph" id="aclass_c_project_file_i_o_a960936d797d0c1f6b30cec94aa57e241_icgraph">
+<area shape="rect" title="作成された接合結果K&#45;Means解析のクラス数の取得" alt="" coords="392,5,623,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aec529b21bcd80053e9ace596cc28ee56" title="解析の実施" alt="" coords="201,5,344,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8" title="解析実施要求" alt="" coords="5,5,153,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6f6f9e4209cde2d4786f4ec7db1cd0a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f6f9e4209cde2d4786f4ec7db1cd0a2">&#9670;&nbsp;</a></span>SetProjectFilePath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetProjectFilePath </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>プロジェクトファイルパスの設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td>プロジェクトファイルパス</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a6f6f9e4209cde2d4786f4ec7db1cd0a2_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a6f6f9e4209cde2d4786f4ec7db1cd0a2_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a6f6f9e4209cde2d4786f4ec7db1cd0a2_icgraph" id="aclass_c_project_file_i_o_a6f6f9e4209cde2d4786f4ec7db1cd0a2_icgraph">
+<area shape="rect" title="プロジェクトファイルパスの設定" alt="" coords="861,152,1036,193"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="671,57,813,99"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="460,136,603,177"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="671,240,813,281"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad97fb1fff98c1ec282fed06254c44e4f" title="ワークからプロジェクトへ移動" alt="" coords="671,123,813,164"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#acceb13e1dba62f59383094194ecf9774" title="プロジェクトの削除" alt="" coords="460,5,603,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547" title="新規プロジェクト作成" alt="" coords="460,71,603,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1c8f728724d0615945c96bc74bf24e76" title="プロジェクト削除" alt="" coords="231,5,379,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,100,171,141"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,129,377,171"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="219,195,392,236"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="440,292,623,333"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="457,227,605,268"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a69adb6cfa350af3852dc6538d41608ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69adb6cfa350af3852dc6538d41608ea">&#9670;&nbsp;</a></span>SetResinAnalizeMethod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetResinAnalizeMethod </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>method</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>樹脂面解析方法の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">method</td><td>解析方法</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="ade11085a24593f7bd7068fcaca7ebfbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade11085a24593f7bd7068fcaca7ebfbf">&#9670;&nbsp;</a></span>SetResinDendrogramClassFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetResinDendrogramClassFile </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>fileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>樹脂面階層クラスタリング分類結果ファイル名の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileName</td><td>樹脂面階層クラスタリング分類結果ファイル名</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_ade11085a24593f7bd7068fcaca7ebfbf_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_ade11085a24593f7bd7068fcaca7ebfbf_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_ade11085a24593f7bd7068fcaca7ebfbf_icgraph" id="aclass_c_project_file_i_o_ade11085a24593f7bd7068fcaca7ebfbf_icgraph">
+<area shape="rect" title="樹脂面階層クラスタリング分類結果ファイル名の設定" alt="" coords="1063,104,1229,145"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b7dd9ce24a05331154febb0c6fe0295" title="分類結果の保存" alt="" coords="821,104,1015,145"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="631,73,773,115"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="440,136,583,177"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#acceb13e1dba62f59383094194ecf9774" title="プロジェクトの削除" alt="" coords="440,5,583,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547" title="新規プロジェクト作成" alt="" coords="440,71,583,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1c8f728724d0615945c96bc74bf24e76" title="プロジェクト削除" alt="" coords="231,5,379,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,100,171,141"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,129,377,171"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="219,195,392,236"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a3423e2b69573bdb6fbcb3378eab42d18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3423e2b69573bdb6fbcb3378eab42d18">&#9670;&nbsp;</a></span>SetResinDisplayType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetResinDisplayType </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>displayType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>樹脂画像表示タイプの設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">displayType</td><td>樹脂画像表示タイプ</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a3423e2b69573bdb6fbcb3378eab42d18_cgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a3423e2b69573bdb6fbcb3378eab42d18_cgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a3423e2b69573bdb6fbcb3378eab42d18_cgraph" id="aclass_c_project_file_i_o_a3423e2b69573bdb6fbcb3378eab42d18_cgraph">
+<area shape="rect" title="樹脂画像表示タイプの設定" alt="" coords="5,23,172,65"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="230,5,362,32"/>
+<area shape="rect" href="class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="220,56,372,83"/>
+<area shape="rect" href="class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="420,56,567,83"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a3423e2b69573bdb6fbcb3378eab42d18_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a3423e2b69573bdb6fbcb3378eab42d18_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a3423e2b69573bdb6fbcb3378eab42d18_icgraph" id="aclass_c_project_file_i_o_a3423e2b69573bdb6fbcb3378eab42d18_icgraph">
+<area shape="rect" title="樹脂画像表示タイプの設定" alt="" coords="687,201,853,243"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a8c3734ada4777e97073fd72a094bf46f" title="表示モードの設定" alt="" coords="496,201,639,243"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#adee2f539754700ef37d0e306b728e4d6" title="接合結果表示タイプ分類結果選択時処理" alt="" coords="204,5,448,47"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a6e4c0695d90711c7c02c0dd2ea31ca71" title="接合結果表示タイプスキャン選択時処理" alt="" coords="218,71,434,112"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#ac82359ab4f3766594ccb083a112e9fe8" title="金属面表示タイプ分類結果選択時処理" alt="" coords="217,136,435,177"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a13d39220b8346972e4eae2f1bc1ced22" title="金属面表示タイプスキャン選択時処理" alt="" coords="231,201,421,243"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#ae9f8a7e416776fe6187673306e5d3a85" title="樹脂面表示タイプ分類結果選択時処理" alt="" coords="217,267,435,308"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#ae69d1c504a694b6b61840b1fe377e601" title="樹脂面表示タイプスキャン選択時処理" alt="" coords="231,332,421,373"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="251,397,401,439"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#ad026ecbbc983699be043cf39cf611383" title="表示方法の設定" alt="" coords="5,201,156,243"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af243b766788b82ae92f56ade82816a02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af243b766788b82ae92f56ade82816a02">&#9670;&nbsp;</a></span>SetResinKmeansClassFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetResinKmeansClassFile </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>fileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>樹脂面k-means分類結果ファイル名の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileName</td><td>樹脂面k-means分類結果ファイル名</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_af243b766788b82ae92f56ade82816a02_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_af243b766788b82ae92f56ade82816a02_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_af243b766788b82ae92f56ade82816a02_icgraph" id="aclass_c_project_file_i_o_af243b766788b82ae92f56ade82816a02_icgraph">
+<area shape="rect" title="樹脂面k&#45;means分類結果ファイル名の設定" alt="" coords="1063,104,1229,145"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b7dd9ce24a05331154febb0c6fe0295" title="分類結果の保存" alt="" coords="821,104,1015,145"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="631,73,773,115"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="440,136,583,177"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#acceb13e1dba62f59383094194ecf9774" title="プロジェクトの削除" alt="" coords="440,5,583,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547" title="新規プロジェクト作成" alt="" coords="440,71,583,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1c8f728724d0615945c96bc74bf24e76" title="プロジェクト削除" alt="" coords="231,5,379,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,100,171,141"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,129,377,171"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="219,195,392,236"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac9d388f1b406dc039232bba05e0f0710"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac9d388f1b406dc039232bba05e0f0710">&#9670;&nbsp;</a></span>SetResinScanImageFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetResinScanImageFile </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>fileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>樹脂面スキャン画像ファイル名の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileName</td><td>樹脂面スキャン画像ファイル名</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_ac9d388f1b406dc039232bba05e0f0710_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_ac9d388f1b406dc039232bba05e0f0710_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_ac9d388f1b406dc039232bba05e0f0710_icgraph" id="aclass_c_project_file_i_o_ac9d388f1b406dc039232bba05e0f0710_icgraph">
+<area shape="rect" title="樹脂面スキャン画像ファイル名の設定" alt="" coords="821,104,988,145"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="631,71,773,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aabe96759afcb4dd3eca9e96f158bc7ae" title="スキャンデータの保存" alt="" coords="631,136,773,177"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#acceb13e1dba62f59383094194ecf9774" title="プロジェクトの削除" alt="" coords="440,5,583,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547" title="新規プロジェクト作成" alt="" coords="440,71,583,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="440,136,583,177"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1c8f728724d0615945c96bc74bf24e76" title="プロジェクト削除" alt="" coords="231,5,379,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,100,171,141"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,129,377,171"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="219,195,392,236"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af1277da325faaf62f616034734290e46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1277da325faaf62f616034734290e46">&#9670;&nbsp;</a></span>SetResultAnalizeMethod()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetResultAnalizeMethod </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>method</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>接合結果解析方法の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">method</td><td>解析方法</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="a5f2c6155e7ef10a8fe31f2f5257936ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f2c6155e7ef10a8fe31f2f5257936ec">&#9670;&nbsp;</a></span>SetResultDendrogramClassFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetResultDendrogramClassFile </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>fileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>接合結果階層クラスタリングフ分類ァイル名の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileName</td><td>接合結果階層クラスタリング分類ファイル名</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a5f2c6155e7ef10a8fe31f2f5257936ec_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a5f2c6155e7ef10a8fe31f2f5257936ec_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a5f2c6155e7ef10a8fe31f2f5257936ec_icgraph" id="aclass_c_project_file_i_o_a5f2c6155e7ef10a8fe31f2f5257936ec_icgraph">
+<area shape="rect" title="接合結果階層クラスタリングフ分類ァイル名の設定" alt="" coords="1063,104,1233,145"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b7dd9ce24a05331154febb0c6fe0295" title="分類結果の保存" alt="" coords="821,104,1015,145"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="631,73,773,115"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="440,136,583,177"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#acceb13e1dba62f59383094194ecf9774" title="プロジェクトの削除" alt="" coords="440,5,583,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547" title="新規プロジェクト作成" alt="" coords="440,71,583,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1c8f728724d0615945c96bc74bf24e76" title="プロジェクト削除" alt="" coords="231,5,379,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,100,171,141"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,129,377,171"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="219,195,392,236"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4d14fb09609fb48e540cb7851daccedc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d14fb09609fb48e540cb7851daccedc">&#9670;&nbsp;</a></span>SetResultDisplayType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetResultDisplayType </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>displayType</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>接合結果画像表示タイプの設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">displayType</td><td>接合結果画像表示タイプ</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a4d14fb09609fb48e540cb7851daccedc_cgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a4d14fb09609fb48e540cb7851daccedc_cgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a4d14fb09609fb48e540cb7851daccedc_cgraph" id="aclass_c_project_file_i_o_a4d14fb09609fb48e540cb7851daccedc_cgraph">
+<area shape="rect" title="接合結果画像表示タイプの設定" alt="" coords="5,23,176,65"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="234,5,366,32"/>
+<area shape="rect" href="class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="224,56,376,83"/>
+<area shape="rect" href="class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="424,56,571,83"/>
+</map>
+</div>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a4d14fb09609fb48e540cb7851daccedc_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a4d14fb09609fb48e540cb7851daccedc_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a4d14fb09609fb48e540cb7851daccedc_icgraph" id="aclass_c_project_file_i_o_a4d14fb09609fb48e540cb7851daccedc_icgraph">
+<area shape="rect" title="接合結果画像表示タイプの設定" alt="" coords="687,201,857,243"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a8c3734ada4777e97073fd72a094bf46f" title="表示モードの設定" alt="" coords="496,201,639,243"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#adee2f539754700ef37d0e306b728e4d6" title="接合結果表示タイプ分類結果選択時処理" alt="" coords="204,5,448,47"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a6e4c0695d90711c7c02c0dd2ea31ca71" title="接合結果表示タイプスキャン選択時処理" alt="" coords="218,71,434,112"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#ac82359ab4f3766594ccb083a112e9fe8" title="金属面表示タイプ分類結果選択時処理" alt="" coords="217,136,435,177"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#a13d39220b8346972e4eae2f1bc1ced22" title="金属面表示タイプスキャン選択時処理" alt="" coords="231,201,421,243"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#ae9f8a7e416776fe6187673306e5d3a85" title="樹脂面表示タイプ分類結果選択時処理" alt="" coords="217,267,435,308"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#ae69d1c504a694b6b61840b1fe377e601" title="樹脂面表示タイプスキャン選択時処理" alt="" coords="231,332,421,373"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="251,397,401,439"/>
+<area shape="rect" href="class_c_oprt_tab_page_analize.html#ad026ecbbc983699be043cf39cf611383" title="表示方法の設定" alt="" coords="5,201,156,243"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab30e01036cf75b63c1de3f3b2f5129bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab30e01036cf75b63c1de3f3b2f5129bb">&#9670;&nbsp;</a></span>SetResultKmeansClassFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetResultKmeansClassFile </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>fileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>接合結果k-meansファイル名の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileName</td><td>接合結果k-meansファイル名</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_ab30e01036cf75b63c1de3f3b2f5129bb_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_ab30e01036cf75b63c1de3f3b2f5129bb_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_ab30e01036cf75b63c1de3f3b2f5129bb_icgraph" id="aclass_c_project_file_i_o_ab30e01036cf75b63c1de3f3b2f5129bb_icgraph">
+<area shape="rect" title="接合結果k&#45;meansファイル名の設定" alt="" coords="1063,104,1233,145"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b7dd9ce24a05331154febb0c6fe0295" title="分類結果の保存" alt="" coords="821,104,1015,145"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="631,73,773,115"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="440,136,583,177"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#acceb13e1dba62f59383094194ecf9774" title="プロジェクトの削除" alt="" coords="440,5,583,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547" title="新規プロジェクト作成" alt="" coords="440,71,583,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1c8f728724d0615945c96bc74bf24e76" title="プロジェクト削除" alt="" coords="231,5,379,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,100,171,141"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,129,377,171"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="219,195,392,236"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aa8efda1ffb2c625303783594afde887e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8efda1ffb2c625303783594afde887e">&#9670;&nbsp;</a></span>SetResultScanImageFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetResultScanImageFile </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>fileName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>接合結果画像スキャン画像ファイル名の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fileName</td><td>接合結果画像スキャン画像ファイル名</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_aa8efda1ffb2c625303783594afde887e_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_aa8efda1ffb2c625303783594afde887e_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_aa8efda1ffb2c625303783594afde887e_icgraph" id="aclass_c_project_file_i_o_aa8efda1ffb2c625303783594afde887e_icgraph">
+<area shape="rect" title="接合結果画像スキャン画像ファイル名の設定" alt="" coords="821,104,992,145"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="631,71,773,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aabe96759afcb4dd3eca9e96f158bc7ae" title="スキャンデータの保存" alt="" coords="631,136,773,177"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#acceb13e1dba62f59383094194ecf9774" title="プロジェクトの削除" alt="" coords="440,5,583,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547" title="新規プロジェクト作成" alt="" coords="440,71,583,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="440,136,583,177"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1c8f728724d0615945c96bc74bf24e76" title="プロジェクト削除" alt="" coords="231,5,379,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,100,171,141"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,129,377,171"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="219,195,392,236"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aac679c944c7b5335fa5910645461c5ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac679c944c7b5335fa5910645461c5ef">&#9670;&nbsp;</a></span>SetScanDataSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetScanDataSize </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>holizontal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>vertical</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スキャンデータのサイズ設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">holizontal</td><td>水平値</td></tr>
+    <tr><td class="paramname">vertical</td><td>垂直値</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_aac679c944c7b5335fa5910645461c5ef_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_aac679c944c7b5335fa5910645461c5ef_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_aac679c944c7b5335fa5910645461c5ef_icgraph" id="aclass_c_project_file_i_o_aac679c944c7b5335fa5910645461c5ef_icgraph">
+<area shape="rect" title="スキャンデータのサイズ設定" alt="" coords="392,13,609,39"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ae7045640e6bae7358867d4e09772fb7f" title="プロジェクトへのスキャンデータの縦横サイズの設定" alt="" coords="201,5,344,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="5,5,153,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1930679a997bd4fc4ea6ca681f07c321"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1930679a997bd4fc4ea6ca681f07c321">&#9670;&nbsp;</a></span>SetSpectralGraphPointPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetSpectralGraphPointPosition </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>holizontal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>vertical</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スペクトルグラフ（点指定）の位置の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">holizontal</td><td>水平値</td></tr>
+    <tr><td class="paramname">vertical</td><td>垂直値</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a1930679a997bd4fc4ea6ca681f07c321_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a1930679a997bd4fc4ea6ca681f07c321_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a1930679a997bd4fc4ea6ca681f07c321_icgraph" id="aclass_c_project_file_i_o_a1930679a997bd4fc4ea6ca681f07c321_icgraph">
+<area shape="rect" title="スペクトルグラフ（点指定）の位置の設定" alt="" coords="264,5,447,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a97e53739d35a1e0322ddfd4ff78a69fd" title="プロジェクトへのスペクトルグラフ（点指定）の位置の設定" alt="" coords="5,5,216,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad40104bda14b608c02afe06c9b676f02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad40104bda14b608c02afe06c9b676f02">&#9670;&nbsp;</a></span>SetSpectralGraphPointTarget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetSpectralGraphPointTarget </td>
+          <td>(</td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>targetID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スペクトルグラフ（点指定）の対象の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">targetID</td><td>スペクトルグラフ（点指定）の対象</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_ad40104bda14b608c02afe06c9b676f02_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_ad40104bda14b608c02afe06c9b676f02_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_ad40104bda14b608c02afe06c9b676f02_icgraph" id="aclass_c_project_file_i_o_ad40104bda14b608c02afe06c9b676f02_icgraph">
+<area shape="rect" title="スペクトルグラフ（点指定）の対象の設定" alt="" coords="252,5,435,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a16cfb6a6ecf1fab5702ea2fff4aeb88a" title="プロジェクトへのスペクトルグラフ（点指定）の対象の設定" alt="" coords="5,5,204,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a078a206d26ee0fed722770eabf39cd5f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a078a206d26ee0fed722770eabf39cd5f">&#9670;&nbsp;</a></span>SetSpectralGraphSectionEndPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetSpectralGraphSectionEndPosition </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>holizontal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>vertical</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スペクトルグラフ（区間指定）の終了位置の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">holizontal</td><td>水平値</td></tr>
+    <tr><td class="paramname">vertical</td><td>垂直値</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a078a206d26ee0fed722770eabf39cd5f_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a078a206d26ee0fed722770eabf39cd5f_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a078a206d26ee0fed722770eabf39cd5f_icgraph" id="aclass_c_project_file_i_o_a078a206d26ee0fed722770eabf39cd5f_icgraph">
+<area shape="rect" title="スペクトルグラフ（区間指定）の終了位置の設定" alt="" coords="253,13,436,54"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a56ae26e703826d3af117d9152a42332b" title="プロジェクトへのスペクトルグラフ（区間指定）の終了位置の設定" alt="" coords="5,5,205,61"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8e8ad8dfb8991f249dee7e4015b47c6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e8ad8dfb8991f249dee7e4015b47c6a">&#9670;&nbsp;</a></span>SetSpectralGraphSectionStartPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetSpectralGraphSectionStartPosition </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>holizontal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>vertical</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スペクトルグラフ（区間指定）の開始位置の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">holizontal</td><td>水平値</td></tr>
+    <tr><td class="paramname">vertical</td><td>垂直値</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a8e8ad8dfb8991f249dee7e4015b47c6a_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a8e8ad8dfb8991f249dee7e4015b47c6a_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a8e8ad8dfb8991f249dee7e4015b47c6a_icgraph" id="aclass_c_project_file_i_o_a8e8ad8dfb8991f249dee7e4015b47c6a_icgraph">
+<area shape="rect" title="スペクトルグラフ（区間指定）の開始位置の設定" alt="" coords="259,13,441,54"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#adc8e3a4dc39666fa3a1035bf4fef28ff" title="プロジェクトへのスペクトルグラフ（区間指定）の開始位置の設定" alt="" coords="5,5,211,61"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4cf2f4915e54c9527b5a65c24bc1f594"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cf2f4915e54c9527b5a65c24bc1f594">&#9670;&nbsp;</a></span>SetSpectralGraphSectionTarget()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetSpectralGraphSectionTarget </td>
+          <td>(</td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>targetID</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>スペクトルグラフ（区間指定）の対象の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">targetID</td><td>スペクトルグラフ（区間指定）の対象</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a4cf2f4915e54c9527b5a65c24bc1f594_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a4cf2f4915e54c9527b5a65c24bc1f594_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a4cf2f4915e54c9527b5a65c24bc1f594_icgraph" id="aclass_c_project_file_i_o_a4cf2f4915e54c9527b5a65c24bc1f594_icgraph">
+<area shape="rect" title="スペクトルグラフ（区間指定）の対象の設定" alt="" coords="267,5,449,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0399fb1ca3a2791953ab4b94aa1f279a" title="プロジェクトへのスペクトルグラフ（区間指定）の対象の設定" alt="" coords="5,5,219,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a971f5f23c04ddb91dc03b10aeb6e58ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a971f5f23c04ddb91dc03b10aeb6e58ab">&#9670;&nbsp;</a></span>SetUpdateDay()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetUpdateDay </td>
+          <td>(</td>
+          <td class="paramtype">COleDateTime&#160;</td>
+          <td class="paramname"><em>date</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>更新日の設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">date</td><td>日付</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a971f5f23c04ddb91dc03b10aeb6e58ab_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a971f5f23c04ddb91dc03b10aeb6e58ab_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a971f5f23c04ddb91dc03b10aeb6e58ab_icgraph" id="aclass_c_project_file_i_o_a971f5f23c04ddb91dc03b10aeb6e58ab_icgraph">
+<area shape="rect" title="更新日の設定" alt="" coords="631,46,829,73"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="440,39,583,80"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,5,377,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="219,71,392,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,5,171,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aa9685ab0e4adf6c717aab36e761cde3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9685ab0e4adf6c717aab36e761cde3d">&#9670;&nbsp;</a></span>Str2Date()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::Str2Date </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">COleDateTime &amp;&#160;</td>
+          <td class="paramname"><em>date</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>文字列から日付への変換 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>日付を表す文字列</td></tr>
+    <tr><td class="paramname">date</td><td>日付</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<a id="aa5d060e8199f9b13ff223b568b855621"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa5d060e8199f9b13ff223b568b855621">&#9670;&nbsp;</a></span>Str2Pos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::Str2Pos </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>holizontal</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;&#160;</td>
+          <td class="paramname"><em>vertical</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>文字列からポイントへの変換 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>文字列</td></tr>
+    <tr><td class="paramname">holizontal</td><td>水平値</td></tr>
+    <tr><td class="paramname">vertical</td><td>垂直値</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+
+</div>
+</div>
+<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
+<li>C:/Users/kaneko/OneDrive/Project/JointAutomaticEvaluationSystem/WeldEvaluation/src/WeldEvaluation/WeldEvaluation/<a class="el" href="_project_file_i_o_8h_source.html">ProjectFileIO.h</a></li>
+<li>C:/Users/kaneko/OneDrive/Project/JointAutomaticEvaluationSystem/WeldEvaluation/src/WeldEvaluation/WeldEvaluation/ProjectFileIO.cpp</li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></li>
+    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
+  </ul>
+</div>
+</body>
+</html>

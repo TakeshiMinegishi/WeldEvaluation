@@ -1,0 +1,7 @@
+<map id="CWeldEvaluationDoc::GetTestName" name="CWeldEvaluationDoc::GetTestName">
+<area shape="rect" id="node1" title="名称の取得" alt="" coords="423,71,565,112"/>
+<area shape="rect" id="node2" href="$class_c_oprt_tab_page_setting.html#a435aa7bd1f703c116dd18e3135dc5e19" title="パラメータの取得" alt="" coords="214,5,362,47"/>
+<area shape="rect" id="node4" href="$class_c_weld_evaluation_view.html#a1c8f728724d0615945c96bc74bf24e76" title="プロジェクト削除" alt="" coords="214,71,362,112"/>
+<area shape="rect" id="node5" href="$class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="201,136,375,177"/>
+<area shape="rect" id="node3" href="$class_c_weld_evaluation_view.html#ae4f218a4e70e08689a0532384eb86fe5" title="設定ページの再読込" alt="" coords="5,5,153,47"/>
+</map>

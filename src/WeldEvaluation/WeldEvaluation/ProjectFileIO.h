@@ -39,6 +39,16 @@ private:
 	int				m_MetalDisplayType;								///< 金属画像表示タイプ
 	int				m_ResultDisplayType;							///< 結果画像表示タイプ
 */
+	int				m_ResinActiveAnalizeMethod;						///< 樹脂面の表示対象解析方法
+	int				m_MetalActiveAnalizeMethod;						///< 金属面の表示対象解析方法
+	int				m_ResultActiveAnalizeMethod;					///< 結果の表示対象解析方法
+
+	int				m_nResinDendrogramClassificationClass;			///< 樹脂面分類結果階層クラスタリング分類数
+	int				m_nResinKMeansClassificationClass;				///< 樹脂面分類結果k-means分類数
+	int				m_nMetalDendrogramClassificationClass;			///< 金属面分類結果階層クラスタリング分類数
+	int				m_nMetalKMeansClassificationClass;				///< 金属面分類結果k-means分類数
+	int				m_nResultDendrogramClassificationClass;			///< 結果階層クラスタリング分類数
+	int				m_nResultMeansClassificationClass;				///< 結果階層クラスタリング分類数
 
 	UINT			m_SpectralGraphPointTarget;						///< スペクトルグラフ（点指定）の対象
 	int				m_SpectralGraphPointHolizontalPosition;			///< スペクトルグラフ（点指定）の水平位置
@@ -52,7 +62,6 @@ private:
 
 	int				m_ScanDataHolizontalSize;
 	int				m_ScanDataVerticalSize;
-
 
 private:
 	bool read(CString path);
@@ -91,6 +100,12 @@ public:
 	bool SetResinKmeansClassFile(CString fileName);
 	int GetResinDisplayType();
 	bool SetResinDisplayType(int displayType);
+	int GetResinAnalizeMethod();
+	bool SetResinAnalizeMethod(int method);
+	int GetNumbetOfResinDendrogramClassificationClass();
+	bool SetNumbetOfResinDendrogramClassificationClass(int nClass);
+	int GetNumbetOfResinKMeansClassificationClass();
+	bool SetNumbetOfResinKMeansClassificationClass(int nClass);
 
 	CString GetMetalScanImageFile();
 	bool SetMetalScanImageFile(CString fileName);
@@ -100,6 +115,12 @@ public:
 	bool SetMetalKmeansClassFile(CString fileName);
 	int GetMetalDisplayType();
 	bool SetMetalDisplayType(int displayType);
+	int GetMetalAnalizeMethod();
+	bool SetMetalAnalizeMethod(int method);
+	int GetNumbetOfMetalDendrogramClassificationClass();
+	bool SetNumbetOfMetalDendrogramClassificationClass(int nClass);
+	int GetNumbetOfMetalKMeansClassificationClass();
+	bool SetNumbetOfMetalKMeansClassificationClass(int nClass);
 
 	CString GetResultScanImageFile();
 	bool SetResultScanImageFile(CString fileName);
@@ -109,6 +130,12 @@ public:
 	bool SetResultKmeansClassFile(CString fileName);
 	int GetResultDisplayType();
 	bool SetResultDisplayType(int displayType);
+	int GetResultAnalizeMethod();
+	bool SetResultAnalizeMethod(int method);
+	int GetNumbetOfResultDendrogramClassificationClass();
+	bool SetNumbetOfResultDendrogramClassificationClass(int nClass);
+	int GetNumbetOfResultKMeansClassificationClass();
+	bool SetNumbetOfResultKMeansClassificationClass(int nClass);
 
 	bool Str2Pos(CString str,int &holizontal, int &bvertical);
 

@@ -7,6 +7,7 @@
 #include "afxdialogex.h"
 #include "message.h"
 #include <vector>
+#include "ScanDataIO.h"
 
 
 // CImageWind ダイアログ
@@ -15,6 +16,7 @@ IMPLEMENT_DYNAMIC(CImageWind, CDialog)
 
 #define BG_INIT_COLOR		RGB(0, 0, 0)		///< 初期カラー値
 #define BG_COLOR			RGB(0, 0, 0)		///< バックグラウンドカラー
+#define ZoomSpep			0.1
 
 /// <summary>
 /// コンストラクタ
@@ -238,7 +240,7 @@ void CImageWind::OnLButtonDown(UINT nFlags, CPoint point)
 			m_pLButtonDownosPos = point;
 			m_deltaPos = point;
 			// 全Viewを再描画
-			GetParent()->Invalidate(FALSE);
+//			GetParent()->Invalidate(FALSE);
 			GetParent()->UpdateWindow();
 		}
 	}
@@ -306,13 +308,6 @@ void CImageWind::OnMouseMove(UINT nFlags, CPoint point)
 		}
 	}
 
-#if 0
-	if (m_bButtonDown && m_bActive) {
-		if (nFlags == MK_CONTROL) {
-//			TRACE(_T("OnMouseMove(%d,%d)\n"), point.x, point.y);
-		}
-	}
-#endif
 	CDialog::OnMouseMove(nFlags, point);
 }
 
@@ -327,71 +322,6 @@ void CImageWind::OnMouseMove(UINT nFlags, CPoint point)
 /// @remark 回転距離zDelta 値は120の倍数
 BOOL CImageWind::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 {
-#if 0
-	if (m_bActive) {
-		CPoint pos = pt;
-		ScreenToClient(&pos);
-
-		CRect rect;
-		GetClientRect(&rect);
-		CPoint delta;
-		delta.x = pos.x - rect.Width() / 2;
-		delta.y = pos.y - rect.Height() / 2;
-		m_imageX -= delta.x;
-		m_imageY -= delta.y;
-
-		m_zoomRetio += ((double)zDelta / 120.0) * 0.1;
-		m_imageWidth = (int)(m_orgImageWidth * m_zoomRetio);
-		m_imageHeight = (int)(m_orgImageHeight * m_zoomRetio);;
-
-		if (m_imageWidth > m_imageHeight) {
-			if (m_imageHeight < rect.Height()) {
-				m_zoomRetio = 1.0;
-				m_imageWidth = m_orgImageWidth;
-				m_imageHeight = m_orgImageHeight;
-				m_imageY = (int)((rect.Height() - m_imageHeight) / 2.0);
-			}
-			if (m_imageWidth < rect.Width()) {
-				m_imageX = (int)((rect.Width() - m_imageWidth) / 2.0);
-			}
-			else {
-
-			}
-		}
-		else {
-			if (m_imageHeight < rect.Height()) {
-				m_imageY = (int)((rect.Height() - m_imageHeight) / 2.0);
-			}
-			if (m_imageWidth < rect.Width()) {
-				m_zoomRetio = 1.0;
-				m_imageWidth = m_orgImageWidth;
-				m_imageHeight = m_orgImageHeight;
-				m_imageX = (int)((rect.Width() - m_imageWidth) / 2.0);
-			}
-		}
-
-		if (m_imageWidth > rect.Width()) {
-			if (m_imageX > 0) {
-				m_imageX = 0;
-			}
-			else if ((rect.Width() - m_imageWidth) > m_imageX) {
-				m_imageX = (rect.Width() - m_imageWidth);
-			}
-		}
-
-		if (m_imageHeight > 0) {
-			if (m_imageY > 0) {
-				m_imageY = 0;
-			}
-			else if ((rect.Height() - m_imageHeight) > m_imageY) {
-				m_imageY = (rect.Height() - m_imageHeight);
-			}
-		}
-
-//		TRACE(_T("pos(%d,%d) Width= %d height = %d (%lf)\n"), pos.x, pos.y, m_imageWidth, m_imageHeight, m_zoomRetio);
-		OnPaint();
-	}
-#else
 	if (m_bActive) {
 		CPoint pos = pt;
 		ScreenToClient(&pos);
@@ -400,17 +330,14 @@ BOOL CImageWind::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 		GetClientRect(&rect);
 
 		CPoint delta;
-//		delta.x = pos.x - rect.Width() / 2;
-//		delta.y = pos.y - rect.Height() / 2;
-//		pos.x = m_imageX - delta.x;
-//		pos.y = m_imageY - delta.y;
-		double scalingRetio = m_zoomRetio + ((double)zDelta / 120.0) * 0.1;
-
+		double scalingRetio = m_zoomRetio + ((double)zDelta / 120.0) * ZoomSpep;
+		if (scalingRetio < 1.0) {
+			scalingRetio = 1.0;
+		}
 		Scaling(scalingRetio, pos);
 		CRect ImageRect(m_imageX, m_imageY, m_imageX + m_imageWidth, m_imageY + m_imageHeight);
 		GetParent()->SendMessage(WM_IMAGE_SCALING, (WPARAM)m_Type, (LPARAM)&ImageRect);
 	}
-#endif
 	return CDialog::OnMouseWheel(nFlags, zDelta, pt);
 }
 
@@ -495,12 +422,30 @@ void CImageWind::setMode(int mode)
 /// <summary>
 /// 画像の削除
 /// </summary>
-void CImageWind::Erase()
+/// <param name="bClrPrm">パラメータクリアフラグ</param>
+void CImageWind::Erase(bool bClrPrm/* = true*/)
 {
 	m_bActive = false;
-	m_zoomRetio = 1.0;
-	m_imageY = (int)0.0;
-	m_imageX = (int)0.0;
+	if (bClrPrm) {
+		m_zoomRetio = 1.0;
+		m_imageY = 0;
+		m_imageX = 0;
+	}
+	OnPaint();
+}
+
+/// <summary>
+/// 画像のリセット
+/// </summary>
+void  CImageWind::Reset()
+{
+	if (m_bActive) {
+		m_zoomRetio		= 1.0;
+		m_imageX		= m_orgImageX;
+		m_imageY		= m_orgImageY;
+		m_imageWidth	= m_orgImageWidth;
+		m_imageHeight	= m_orgImageHeight;
+	}
 	OnPaint();
 }
 
@@ -547,8 +492,10 @@ void CImageWind::Draw()
 
 	m_imageWidth = (int)(m_orgImageWidth * m_zoomRetio);
 	m_imageHeight = (int)(m_orgImageHeight * m_zoomRetio);
-	m_imageX = m_orgImageX;
-	m_imageY = m_orgImageY;
+	if (fabs(m_zoomRetio - 1.0) <= 0.000001) {
+		m_imageX = m_orgImageX;
+		m_imageY = m_orgImageY;
+	}
 
 	pDC->SetStretchBltMode(HALFTONE);
 	pDC->SetStretchBltMode(COLORONCOLOR);
@@ -580,7 +527,6 @@ bool CImageWind::MoveImage(int x, int y, int width, int height, double scaingRet
 	return true;
 }
 
-#include "ScanDataIO.h"
 /// <summary>
 /// 画像のスケーリング
 /// </summary>
@@ -592,90 +538,33 @@ void CImageWind::Scaling(double ScalingRetio, CPoint pt)
 		return;
 	}
 
-#if 0
 	CRect rect;
 	GetClientRect(&rect);
 	int imageX = 0;
 	int imageY = 0;
 	double zoomRetio = ScalingRetio;
 
-//pt.x = rect.Width() / 2;
-//pt.y = rect.Height() / 2;
-//zoomRetio = 2.0;
-
-	/////////////////////////////////////////////////////////
-	//
 	int imageBX = (int)((rect.Width()  - m_imageWidth ) / 2.0);
 	int imageBY = (int)((rect.Height() - m_imageHeight) / 2.0);
-	int deltaDX = imageBX - m_imageX;
-	int deltaDY = imageBY - m_imageY;
+	int deltaDX = (int)((imageBX - m_imageX) / m_zoomRetio);
+	int deltaDY = (int)((imageBY - m_imageY) / m_zoomRetio);
 
-#if 1
 	CPoint delta;
-	int imageWidth = (int)(m_orgImageWidth * zoomRetio);
+	int imageWidth	= (int)(m_orgImageWidth  * zoomRetio);
 	int imageHeight = (int)(m_orgImageHeight * zoomRetio);
-//	imageX = (int)((rect.Width() - imageWidth) / 2.0) - ( deltaDX * zoomRetio);
-//	imageY = (int)((rect.Height() - imageHeight) / 2.0) - (deltaDY * zoomRetio);
-	imageX = (int)((rect.Width() - imageWidth) / 2.0);
-	imageY = (int)((rect.Height() - imageHeight) / 2.0);
+	imageX = (int)(((rect.Width()  - imageWidth)  / 2.0) - (deltaDX * zoomRetio));
+	imageY = (int)(((rect.Height() - imageHeight) / 2.0) - (deltaDY * zoomRetio));
 
-	delta.x = pt.x - rect.Width() / 2;
-	delta.y = pt.y - rect.Height() / 2;
-	imageX = (int)(imageX - (delta.x * zoomRetio));
-	imageY = (int)(imageY - (delta.y * zoomRetio));
-#else 
-	double	xv = m_imageX - imageBX;
-	double	pxv = ScalingRetio * xv + (ScalingRetio - 1.0)*pt.x;
-	int	ivx = (int)(pxv - ((m_orgImageWidth * zoomRetio) / 2.0));
-	double	yv = m_imageY - imageBY;
-	double	pyv = ScalingRetio * yv + (ScalingRetio - 1.0)*pt.y;
-	int	ivy = (int)(pyv - ((m_orgImageWidth * zoomRetio) / 2.0));
-	CPoint delta;
-	int imageWidth = (int)(m_orgImageWidth * zoomRetio);
-	int imageHeight = (int)(m_orgImageHeight * zoomRetio);
-	imageX = ivx;
-	imageY = ivy;
-#endif
-	/////////////////////////////////////////////////////////
-
-#if 0
-	double dx, dy, sx, sy;
-	CScanDataIO sc;
-	double **mat = sc.MatrixInit();
-
-	sx = (double)m_imageX;
-	sy = (double)m_imageY;
-	sc.MatrixMove(mat, pt.x*zoomRetio, pt.y*zoomRetio);
-	sc.MatrixScale(mat, zoomRetio, zoomRetio);
-	sc.MatrixMove(mat, -pt.x, -pt.y);
-	dx = mat[0][0] * (double)sx + mat[0][1] * (double)sy + mat[0][2];
-	dy = mat[1][0] * (double)sx + mat[1][1] * (double)sy + mat[1][2];
-	sc.MatrixRelease(mat);
-	imageX = (int)dx;
-	imageY = (int)dy;
-#endif
-
-//m_imageX, m_imageY, m_imageX + m_imageWidth, m_imageY + m_imageHeight
-#else
-	CRect rect;
-	GetClientRect(&rect);
-	double zoomRetio = ScalingRetio;
-
-	// 画像でのカーソル位置の計算（クライアント領域）
-	int imgX = pt.x - m_imageX;
-	int imgY = pt.y - m_imageY;
-
-	double deltaX = (double)imgX / (double)m_imageWidth;
-	double deltaY = (double)imgY / (double)m_imageHeight;
-
-	// 左上座標を計算（クライアント領域）
-	int imageX = pt.x - m_orgImageWidth * deltaX * zoomRetio;
-	int imageY = pt.y - m_orgImageHeight * deltaY * zoomRetio;
-
-	// 表示画像の大きさを計算（クライアント領域）
-	int imageWidth = (int)(m_orgImageWidth * zoomRetio);
-	int imageHeight = (int)(m_orgImageHeight * zoomRetio);
-#endif
+	delta.x = (LONG)(pt.x * ZoomSpep / (zoomRetio * m_zoomRetio));
+	delta.y = (LONG)(pt.y * ZoomSpep / (zoomRetio * m_zoomRetio));
+	if (zoomRetio > m_zoomRetio) {
+		imageX += delta.x;
+		imageY += delta.y;
+	}
+	else {
+		imageX += delta.x;
+		imageY += delta.y;
+	}
 
 	if (zoomRetio <= 1.0) {
 		zoomRetio = 1.0;
@@ -685,75 +574,28 @@ void CImageWind::Scaling(double ScalingRetio, CPoint pt)
 		imageX = (int)((rect.Width()  - imageWidth ) / 2.0);
 	}
 	else {
-#if 0
-		if (imageWidth > imageHeight) {
-			if (imageHeight < rect.Height()) {
-				imageY = (int)((rect.Height() - imageHeight) / 2.0);
+		if (imageWidth < rect.Width()) {
+			imageX = (int)((rect.Width() - imageWidth) / 2.0);
+		}
+		else if (imageWidth > rect.Width()) {
+			if (imageX > 0) {
+				imageX = 0;
 			}
-			if (imageWidth < rect.Width()) {
-				imageX = (int)((rect.Width() - imageWidth) / 2.0);
+			else if ((imageX + imageWidth) < rect.Width()) {
+				imageX = rect.Width() - imageWidth;
 			}
-			else {
+		}
 
+		if (imageHeight < rect.Height()) {
+			imageY = (int)((rect.Height() - imageHeight) / 2.0);
+		}
+		else if (imageHeight > rect.Height()) {
+			if (imageY > 0) {
+				imageY = 0;
 			}
-		}
-		else {
-			if (imageHeight < rect.Height()) {
-				imageY = (int)((rect.Height() - imageHeight) / 2.0);
+			else if ((imageY + imageHeight) < rect.Height()) {
+				imageY = rect.Height() - imageHeight;
 			}
-			if (imageWidth < rect.Width()) {
-				imageX = (int)((rect.Width() - imageWidth) / 2.0);
-			}
-		}
-#endif
-	}
-#if 0
-	if (imageWidth > rect.Width()) {
-		if (imageX > 0) {
-			imageX = 0;
-		}
-		else if ((rect.Width() - imageWidth) > imageX) {
-			imageX = (rect.Width() - imageWidth);
-		}
-	}
-	else {
-		imageX = (int)((rect.Width() - imageWidth) / 2.0);
-	}
-
-	if (imageHeight > rect.Height()) {
-		if (imageY > 0) {
-			imageY = 0;
-		}
-		else if ((rect.Height() - imageHeight) > imageY) {
-			imageY = (rect.Height() - imageHeight);
-		}
-	}
-	else {
-		imageY = (int)((rect.Height() - imageHeight) / 2.0);
-	}
-#endif
-
-	if (imageWidth < rect.Width()) {
-		imageX = (int)((rect.Width() - imageWidth) / 2.0);
-	}
-	else if (imageWidth > rect.Width()) {
-		if (imageX > 0) {
-			imageX = 0;
-		}
-		else if ((imageX + imageWidth) < rect.Width()) {
-			imageX = rect.Width() - imageWidth;
-		}
-	}
-
-	if (imageHeight < rect.Height()) {
-		imageY = (int)((rect.Height() - imageHeight) / 2.0);
-	}
-	else if (imageHeight > rect.Height()) {
-		if (imageY > 0) {
-			imageY = 0;
-		}
-		else if ((imageY + imageHeight) < rect.Height()) {
-			imageY = rect.Height() - imageHeight;
 		}
 	}
 
@@ -790,8 +632,10 @@ bool CImageWind::clientToScan(CPoint &pos)
 		((point.y < m_imageY) || (point.y >= (m_imageY + m_imageHeight)))) {
 		return false;
 	}
-	point.x = (point.x - m_imageX) * m_pImg->GetHeight() / m_imageHeight;
-	point.y = (point.y - m_imageY) * m_pImg->GetWidth() / m_imageWidth;
+//	point.x = (point.x - m_imageX) * m_pImg->GetHeight() / m_imageHeight;
+//	point.y = (point.y - m_imageY) * m_pImg->GetWidth() / m_imageWidth;
+	point.x = (point.x - m_imageX) * m_pImg->GetWidth() / m_imageWidth; 
+	point.y = (point.y - m_imageY) * m_pImg->GetHeight() / m_imageHeight;
 	pos = point;
 	return true;
 }
@@ -823,7 +667,7 @@ void CImageWind::SetImagePos(CRect &rect)
 /// <summary>
 /// 点の位置を上下反転させる
 /// </summary>
-/// <param name="rect">点の位置</param>
+/// <param name="pos">点の位置</param>
 /// <returns>反転した座標点を返す</returns>
 CPoint CImageWind::ConvertImagePos(CPoint pos)
 {

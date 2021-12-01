@@ -8,16 +8,28 @@
 #define		InpputPort		0
 #define		TimeOverCount	12000
 
+/// <summary>
+/// コンストラクタ
+/// </summary>
 CDeviceIO::CDeviceIO()
 {
 	m_demoMode = false;
 }
 
+/// <summary>
+/// デストラクタ
+/// </summary>
 CDeviceIO::~CDeviceIO()
 {
 
 }
 
+/// <summary>
+/// ログ出力
+/// </summary>
+/// <param name="filePath">ソースファイル名</param>
+/// <param name="lineNo">ソースライン番号</param>
+/// <param name="msg">メッセージ</param>
 void CDeviceIO::logOut(CString filePath, long lineNo, CString msg)
 {
 	CLog log;
@@ -27,6 +39,11 @@ void CDeviceIO::logOut(CString filePath, long lineNo, CString msg)
 	AfxMessageBox(ErrMsg, MB_OK | MB_ICONSTOP);
 }
 
+/// <summary>
+/// レディー判定
+/// </summary>
+/// <param name="id">機器ＩＤ</param>
+/// <returns>レディー状態ならばtrue、そうで無ければfalseを返す</returns>
 bool CDeviceIO::IsReady(int id)
 {
 	bool bResult = false;
@@ -45,7 +62,14 @@ bool CDeviceIO::IsReady(int id)
 	return bResult;
 }
 
-bool CDeviceIO::PortOut(int id, int portNo, int value) 
+/// <summary>
+/// ポート出力
+/// </summary>
+/// <param name="id">機器ＩＤ</param>
+/// <param name="portNo">ポート番号</param>
+/// <param name="value">設定値</param>
+/// <returns>成功した場合はtrue、そう無ければfalseを返す</returns>
+bool CDeviceIO::PortOut(int id, int portNo, int value)
 {
 	bool bResult = false;
 	if (m_demoMode) {
@@ -87,6 +111,11 @@ bool CDeviceIO::PortOut(int id, int portNo, int value)
 	return bResult;
 }
 
+/// <summary>
+/// パルス出力
+/// </summary>
+/// <param name="id">機器ＩＤ</param>
+/// <returns>成功した場合はtrue、そう無ければfalseを返す</returns>
 bool CDeviceIO::sendPals(int id)
 {
 	bool bResult = false;
@@ -104,6 +133,11 @@ bool CDeviceIO::sendPals(int id)
 	return bResult;
 }
 
+/// <summary>
+/// 機器の初期化
+/// </summary>
+/// <param name="DeviceName">機器名</param>
+/// <returns>成功した場合は機器IDを返す、失敗した場合は-1を返す</returns>
 int CDeviceIO::Init(CString DeviceName)
 {
 	long			ret;
@@ -157,6 +191,9 @@ int CDeviceIO::Init(CString DeviceName)
 	return (int)Id;
 }
 
+/// <summary>
+/// 機器のクローズ
+/// </summary>
 void CDeviceIO::Close(int id)
 {
 	if (!m_demoMode) {
@@ -164,6 +201,12 @@ void CDeviceIO::Close(int id)
 	}
 }
 
+/// <summary>
+/// カメラの移動
+/// </summary>
+/// <param name="id">機器ID</param>
+/// <param name="pos">移動位置</param>
+/// <returns>成功した場合は機器IDを返す、失敗した場合は-1を返す</returns>
 bool CDeviceIO::Move(int id, int pos)
 {
 	if ((pos < 0) || (pos > 0x19)) {
@@ -183,6 +226,11 @@ bool CDeviceIO::Move(int id, int pos)
 	return bResult;
 }
 
+/// <summary>
+/// カメラをホームポジションへ移動
+/// </summary>
+/// <param name="id">機器ID</param>
+/// <returns>成功した場合は機器IDを返す、失敗した場合は-1を返す</returns>
 bool CDeviceIO::ToHome(int id)
 {
 	bool bResult = Move(id, 0);

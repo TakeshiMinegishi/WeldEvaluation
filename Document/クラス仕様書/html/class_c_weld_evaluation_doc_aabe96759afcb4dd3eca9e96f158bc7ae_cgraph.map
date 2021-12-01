@@ -1,0 +1,8 @@
+<map id="CWeldEvaluationDoc::SaveScanImage" name="CWeldEvaluationDoc::SaveScanImage">
+<area shape="rect" id="node1" title="スキャンデータの保存" alt="" coords="5,104,148,145"/>
+<area shape="rect" id="node2" href="$class_c_weld_evaluation_doc.html#acdf5f510e085ec177dc0a70d9b4ab986" title="スキャンデータ名の取得" alt="" coords="210,5,353,47"/>
+<area shape="rect" id="node4" href="$class_c_project_file_i_o.html#acfecde3135f2edba90dc45c2df2f9d2f" title="金属面スキャン画像ファイル名の設定" alt="" coords="198,71,365,112"/>
+<area shape="rect" id="node5" href="$class_c_project_file_i_o.html#ac9d388f1b406dc039232bba05e0f0710" title="樹脂面スキャン画像ファイル名の設定" alt="" coords="198,136,365,177"/>
+<area shape="rect" id="node6" href="$class_c_project_file_i_o.html#aa8efda1ffb2c625303783594afde887e" title="接合結果画像スキャン画像ファイル名の設定" alt="" coords="196,201,367,243"/>
+<area shape="rect" id="node3" href="$class_c_propaty_i_o.html#a63d5f780046e125660e2e9b51e754ad5" title="プロジェクト名の取得" alt="" coords="415,13,608,39"/>
+</map>

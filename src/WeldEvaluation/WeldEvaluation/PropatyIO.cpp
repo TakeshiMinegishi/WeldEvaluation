@@ -8,15 +8,16 @@
 /// </summary>
 CPropatyIO::CPropatyIO(void)
 {
-	m_ParamaterFilePath	= _T("");
-	m_ProjectName	=_T("");		///< プロジェクト名
-	m_TestName	=_T("");			///< 名称
-	m_ResinAnalysisMethod	= 0;	///< 樹脂面 解析方法
-	m_MetalAnalysisMethod	= 0;	///< 金属面 解析方法
-	m_ResultAnalysisMethod	= 0;	///< 接合結果 解析方法
+	m_ParamaterFilePath			= _T("");
+	m_ProjectName				= _T("");	// プロジェクト名
+	m_TestName					= _T("");	// 名称
+	m_ResinAnalysisMethod		= 0;		// 樹脂面 解析方法
+	m_MetalAnalysisMethod		= 0;		// 金属面 解析方法
+	m_ResultAnalysisMethod		= 0;		// 接合結果 解析方法
 
-	m_joinRetioFormat = _T("%02d_Joining_ratio%03d");
-	m_joinColorFormat = _T("%02d_Joining_color%03d");
+	m_joinRetioFormat			= _T("%02d_Joining_ratio%03d");
+	m_joinColorFormat			= _T("%02d_Joining_color%03d");
+	m_nClassFormat				= _T("%02d_Number_of_classifications");
 }
 
 /// <summary>
@@ -205,6 +206,12 @@ bool CPropatyIO::SetTestName(CString name)
 	return true;
 }
 
+/// <summary>
+/// プロジェクト名の保存
+/// </summary>
+/// <param name="PropatyFilePath">プロパティファイルへのパス</param>
+/// <param name="ProjectName">プロジェクト名</param>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
 bool CPropatyIO::WriteProjectName(CString PropatyFilePath, CString ProjectName)
 {
 	if (!CFileUtil::fileExists(PropatyFilePath)) {
@@ -220,6 +227,12 @@ bool CPropatyIO::WriteProjectName(CString PropatyFilePath, CString ProjectName)
 	return bResult;
 }
 
+/// <summary>
+/// テスト名の保存
+/// </summary>
+/// <param name="PropatyFilePath">プロパティファイルへのパス</param>
+/// <param name="TestName">テスト名</param>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
 bool CPropatyIO::WriteTestName(CString PropatyFilePath, CString TestName)
 {
 	if (!CFileUtil::fileExists(PropatyFilePath)) {
@@ -388,34 +401,76 @@ bool CPropatyIO::SetHorizontalResolution(UINT resolution)
 	return true;
 }
 
+#if 0
+/// <summary>
+/// スキャンデータのサイズ取得
+/// </summary>
+/// <param name="holizontal">水平値</param>
+/// <param name="vertical">垂直値</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
+bool CPropatyIO::GetScanDataSize(int &holizontal, int &vertical)
+{
+	holizontal = m_ScanDataHolizontalSize;
+	vertical	= m_ScanDataVerticalSize;
+	return true;
+}
+
+/// <summary>
+/// スキャンデータのサイズ設定
+/// </summary>
+/// <param name="holizontal">水平値</param>
+/// <param name="vertical">垂直値</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
+bool CPropatyIO::SetScanDataSize(int holizontal, int vertical)
+{
+	m_ScanDataHolizontalSize = holizontal;
+	m_ScanDataVerticalSize = vertical;
+	return true;
+}
+#endif
 
 /// <summary>
 /// 樹脂面の分類数の取得
 /// </summary>
+/// <param name="method">解析方法</param>
 /// <returns>樹脂面の分類数を返す</returns>
-UINT CPropatyIO::ResinGetNumberOfClass(void)
+UINT CPropatyIO::ResinGetNumberOfClass(int method)
 {
 	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
 		return 0;
 	}
 	CConfigrationIO sys(m_ParamaterFilePath);
 	// 樹脂面 分類数
-	return sys.getInt(_T("ResinSurface"),_T("Number_of_classifications"));
+	CString key;
+	key.Format(m_nClassFormat, method);
+	UINT nClass = sys.getInt(_T("ResinSurface"), key);
+	if (nClass == 0) {
+		nClass = sys.getInt(_T("ResinSurface"), _T("Number_of_classifications"));
+		if (nClass <= 0) {
+			nClass = 10;
+		}
+		ResinSetNumberOfClass(method, nClass);
+		sys.deleteKey(_T("ResinSurface"), _T("Number_of_classifications"));
+	}
+	return nClass;
 }
 
 /// <summary>
 /// 樹脂面の分類数の設定
 /// </summary>
+/// <param name="method">解析方法</param>
 /// <param name="nClass">樹脂面の分類数</param>
 /// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
-bool CPropatyIO::ResinSetNumberOfClass(UINT nClass)
+bool CPropatyIO::ResinSetNumberOfClass(int method, UINT nClass)
 {
 	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
 		return false;
 	}
 	CConfigrationIO sys(m_ParamaterFilePath);
 	// 樹脂面 分類数
-	if (!sys.setInt(_T("ResinSurface"),_T("Number_of_classifications"),nClass)) {
+	CString key;
+	key.Format(m_nClassFormat, method);
+	if (!sys.setInt(_T("ResinSurface"),key,nClass)) {
 		return false;
 	}
 	return true;
@@ -532,28 +587,44 @@ bool CPropatyIO::ResinSetAnalysisMethod(int method)
 /// <summary>
 /// 金属面の分類数の取得
 /// </summary>
+/// <param name="method">解析方法</param>
 /// <returns>金属面の分類数を返す</returns>
-UINT CPropatyIO::MetalGetNumberOfClass(void)
+UINT CPropatyIO::MetalGetNumberOfClass(int method)
 {
 	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
-		return false;
+		return 0;
 	}
 	CConfigrationIO sys(m_ParamaterFilePath);
-	return sys.getInt(_T("MetalSurface"),_T("Number_of_classifications"));
+	// 金属面の分類数
+	CString key;
+	key.Format(m_nClassFormat, method);
+	UINT nClass = sys.getInt(_T("MetalSurface"), key);
+	if (nClass == 0) {
+		nClass = sys.getInt(_T("MetalSurface"), _T("Number_of_classifications"));
+		if (nClass <= 0) {
+			nClass = 10;
+		}
+		MetalSetNumberOfClass(method, nClass);
+		sys.deleteKey(_T("MetalSurface"), _T("Number_of_classifications"));
+	}
+	return nClass;
 }
 
 /// <summary>
 /// 金属面の分類数の設定
 /// </summary>
+/// <param name="method">解析方法</param>
 /// <param name="nClass">金属面の分類数</param>
 /// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
-bool CPropatyIO::MetalSetNumberOfClass(UINT nClass)
+bool CPropatyIO::MetalSetNumberOfClass(int method,UINT nClass)
 {
 //	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
 //		return false;
 //	}
 	CConfigrationIO sys(m_ParamaterFilePath);
-	if (!sys.setInt(_T("MetalSurface"),_T("Number_of_classifications"),nClass)) {
+	CString key;
+	key.Format(m_nClassFormat, method);
+	if (!sys.setInt(_T("MetalSurface"),key,nClass)) {
 		return false;
 	}
 	return true;
@@ -664,30 +735,45 @@ bool CPropatyIO::MetalSetAnalysisMethod(int method)
 /// <summary>
 /// 接合結果の分類数の取得
 /// </summary>
+/// <param name="method">解析方法</param>
 /// <returns>接合結果の分類数を返す</returns>
-UINT CPropatyIO::ResultGetNumberOfClass(void)
+UINT CPropatyIO::ResultGetNumberOfClass(int method)
 {
 	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
-		return false;
+		return 0;
 	}
 	CConfigrationIO sys(m_ParamaterFilePath);
 	// 接合結果 分類数
-	return sys.getInt(_T("JoiningResult"),_T("Number_of_classifications"));
+	CString key;
+	key.Format(m_nClassFormat, method);
+	UINT nClass = sys.getInt(_T("JoiningResult"), key);
+	if (nClass == 0) {
+		nClass = sys.getInt(_T("JoiningResult"), _T("Number_of_classifications"));
+		if (nClass <= 0) {
+			nClass = 10;
+		}
+		ResultSetNumberOfClass(method, nClass);
+		sys.deleteKey(_T("JoiningResult"), _T("Number_of_classifications"));
+	}
+	return nClass;
 }
 
 /// <summary>
 /// 接合結果の分類数の設定
 /// </summary>
+/// <param name="method">解析方法</param>
 /// <param name="nClass">接合結果の分類数</param>
 /// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
-bool CPropatyIO::ResultSetNumberOfClass(UINT nClass)
+bool CPropatyIO::ResultSetNumberOfClass(int method, UINT nClass)
 {
 //	if (!CFileUtil::fileExists(m_ParamaterFilePath)) {
 //		return false;
 //	}
 	CConfigrationIO sys(m_ParamaterFilePath);
 	// 接合結果 分類数
-	if (!sys.setInt(_T("JoiningResult"),_T("Number_of_classifications"),nClass)) {
+	CString key;
+	key.Format(m_nClassFormat, method);
+	if (!sys.setInt(_T("JoiningResult"),key,nClass)) {
 		return false;
 	}
 	return true;

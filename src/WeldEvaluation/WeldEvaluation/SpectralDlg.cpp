@@ -223,6 +223,28 @@ void CSpectralDlg::OnSize(UINT nType, int cx, int cy)
 }
 
 /// <summary>
+/// 水平軸ラベル設定
+/// </summary>
+/// <param name="min">最小値ラベル</param>
+/// <param name="max">最大値ラベル</param>
+void CSpectralDlg::SetXLabel(CString min, CString max)
+{
+	m_XMinLabel = min;
+	m_XMaxLabel = max;
+}
+
+/// <summary>
+/// 垂直軸ラベル設定
+/// </summary>
+/// <param name="min">最小値ラベル</param>
+/// <param name="max">最大値ラベル</param>
+void CSpectralDlg::SetYLabel(CString min, CString max)
+{
+	m_YMinLabel = min;
+	m_YMaxLabel = max;
+}
+
+/// <summary>
 /// スペクトルグラフの表示
 /// </summary>
 /// <param name="data">表示データ群</param>
@@ -235,5 +257,7 @@ void CSpectralDlg::draw(std::vector<std::vector<double>> data)
 	double h = (double)rect.Height() / 2.0;
 	double offset = (int)(h / (double)data.size() + 0.5);
 	m_pGraphWnd->Erase();
+	m_pGraphWnd->SetXLabel(m_XMinLabel, m_XMaxLabel);
+	m_pGraphWnd->SetYLabel(m_YMinLabel, m_YMaxLabel);
 	m_pGraphWnd->Draw(m_data, offset, false);
 }

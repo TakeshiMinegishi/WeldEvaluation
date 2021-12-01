@@ -17,6 +17,11 @@ private:
 	CRect								m_bfClientSize;					///< 拡縮時ダイアログサイズ
 	std::vector<std::vector<double>>	m_data;							///< 表示グラフデータ
 
+	CString		m_YMinLabel;						///< Y軸最小値ラベル
+	CString		m_YMaxLabel;						///< Y軸最大値ラベル
+	CString		m_XMinLabel;						///< X軸最小値ラベル
+	CString		m_XMaxLabel;						///< X軸最大値ラベル
+
 public:
 	CSpectralDlg(CWnd* pParent = nullptr);   // 標準コンストラクター
 	virtual ~CSpectralDlg();
@@ -40,4 +45,6 @@ public:
 
 public:
 	void draw(std::vector<std::vector<double>> data);
+	void SetXLabel(CString min, CString max);
+	void SetYLabel(CString min, CString max);
 };

@@ -1,0 +1,4 @@
+<map id="CImageWind::OnLButtonDown" name="CImageWind::OnLButtonDown">
+<area shape="rect" id="node1" title="マウス左ボタン押下時処理" alt="" coords="5,5,204,32"/>
+<area shape="rect" id="node2" href="$class_c_image_wind.html#ab723314913cf21c2f4117715804f2594" title="クライアント座標からスキャン画像座標への変換" alt="" coords="252,5,431,32"/>
+</map>

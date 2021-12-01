@@ -1,0 +1,5 @@
+<map id="CPropatyIO::MetalSetNumberOfClass" name="CPropatyIO::MetalSetNumberOfClass">
+<area shape="rect" id="node1" title="金属面の分類数の設定" alt="" coords="5,5,200,47"/>
+<area shape="rect" id="node2" href="$class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="248,13,400,39"/>
+<area shape="rect" id="node3" href="$class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="448,13,595,39"/>
+</map>

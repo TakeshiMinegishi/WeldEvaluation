@@ -42,6 +42,7 @@ void CPropTabPageParameter::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_CMB_JOINRATIO_TARGET_LABEL, m_cmbJoinratioTarget);
 	DDX_CBString(pDX, IDC_CMB_JOINRATIO_TARGET_LABEL, m_strJoinratioTarget);
 	DDX_Control(pDX, IDC_STC_IDCOLOR, m_stcIDColor);
+	DDX_Control(pDX, IDC_MSG_FEILD, m_stcMsgFeild);
 }
 
 
@@ -154,38 +155,46 @@ void CPropTabPageParameter::OnEnKillfocusEdtNumofclass()
 		// 更新ボタンの更新
 		UpdateCmbJoinratioTargetLabel(false);
 		CWnd *pWnd = GetParent()->GetParent();
-		pWnd->SendMessage(WM_UPDATEREQUEST_PROPPAGE,(WPARAM)true,(LPARAM)0);
+		pWnd->SendMessage(WM_UPDATEREQUEST_PROPPAGE,(WPARAM)true,(LPARAM)m_PageID);
 	}
+}
+
+/// <summary>
+/// 設定中のクラス数の取得
+/// </summary>
+/// <returns>ラス数を返す</returns>
+int CPropTabPageParameter::GetNumbetOfClass()
+{
+	return m_NumberOfClass;
 }
 
 /// <summary>
 /// パラメータをファイルから読み込む
 /// </summary>
-/// <param name="AnalyzeMethod">解析方法</param>
 /// <param name="id">更新対インデックス</param>
 void CPropTabPageParameter::LoadParamater(int id)
 {
 	CWeldEvaluationDoc *pDoc = GetDocument();
 	UpdateData(true);
+	int AnalyzeMethod = pDoc->GetAnalysisMethod(id);
 
 	switch(id) {
 	case	CWeldEvaluationDoc::eResinSurface	:	// 樹脂
 		{
-			m_NumberOfClass = pDoc->ResinGetNumberOfClass();
+			m_NumberOfClass = pDoc->ResinGetNumberOfClass(AnalyzeMethod);
 		}
 		break;
 	case	CWeldEvaluationDoc::eMetalSurface	:	// 金属
 		{
-			m_NumberOfClass = pDoc->MetalGetNumberOfClass();
+			m_NumberOfClass = pDoc->MetalGetNumberOfClass(AnalyzeMethod);
 		}
 		break;
 	case	CWeldEvaluationDoc::eJoiningResult	:	// 接合結果
 		{
-			m_NumberOfClass = pDoc->ResultGetNumberOfClass();
+			m_NumberOfClass = pDoc->ResultGetNumberOfClass(AnalyzeMethod);
 		}
 		break;
 	}
-	int AnalyzeMethod = pDoc->GetAnalysisMethod(id);
 	int dataid  = m_cmbJoinratioTarget.GetCurSel();
 	if (dataid < 0) {
 		ViewJointRatio(AnalyzeMethod, dataid, -1);
@@ -212,7 +221,7 @@ void CPropTabPageParameter::ViewJointRatio(int method, int id, int ViewJointRati
 				int selid = m_cmbJoinratioTarget.SelectString(-1, m_strJoinratioTarget);
 				if (id == CB_ERR) {
 					ViewJointRatioNo = 0;
-					int selid = m_cmbJoinratioTarget.SetCurSel(0);
+					selid = m_cmbJoinratioTarget.SetCurSel(0);
 				}
 				else {
 					ViewJointRatioNo = selid;
@@ -223,7 +232,7 @@ void CPropTabPageParameter::ViewJointRatio(int method, int id, int ViewJointRati
 				ViewJointRatioNo = 0;
 				int selid = m_cmbJoinratioTarget.SelectString(-1, m_strJoinratioTarget);
 				if (id == CB_ERR) {
-					int selid = m_cmbJoinratioTarget.SetCurSel(0);
+					selid = m_cmbJoinratioTarget.SetCurSel(0);
 				}
 			}
 
@@ -267,7 +276,6 @@ void CPropTabPageParameter::ViewJointRatio(int method, int id, int ViewJointRati
 		}
 			break;
 		}
-#if 1
 		if (m_cmbJoinratioTarget.GetCount() > 0) {
 			int selid = m_cmbJoinratioTarget.SetCurSel(ViewJointRatioNo);
 			CString sel;
@@ -276,7 +284,6 @@ void CPropTabPageParameter::ViewJointRatio(int method, int id, int ViewJointRati
 			m_strJoinratioTarget = sel;
 			m_cmbJoinratioTarget.SetWindowTextW(sel);
 		}
-#endif
 
 	}
 	UpdateData(false);
@@ -319,26 +326,27 @@ bool CPropTabPageParameter::Update(int index)
 	bool bResult = false;
 	UpdateData(true);
 	CWeldEvaluationDoc *pDoc = GetDocument();
+	int AnarizeMethod = pDoc->GetAnalysisMethod(m_PageID);
 
 	switch(index) {
 	case	CWeldEvaluationDoc::eResinSurface	:	// 樹脂
 		{
-			bResult = pDoc->ResinSetNumberOfClass(m_NumberOfClass);
+		bResult = pDoc->ResinSetNumberOfClass(AnarizeMethod,m_NumberOfClass);
 		}
 		break;
 	case	CWeldEvaluationDoc::eMetalSurface	:	// 金属
 		{
-			bResult = pDoc->MetalSetNumberOfClass(m_NumberOfClass);
+			bResult = pDoc->MetalSetNumberOfClass(AnarizeMethod,m_NumberOfClass);
 		}
 		break;
 	case	CWeldEvaluationDoc::eJoiningResult	:	// 接合結果
 		{
-			bResult = pDoc->ResultSetNumberOfClass(m_NumberOfClass);
+			bResult = pDoc->ResultSetNumberOfClass(AnarizeMethod,m_NumberOfClass);
 		}
 		break;
 	}
 	UpdateData(false);
-	return false;
+	return bResult;
 }
 
 /// <summary>
@@ -395,9 +403,12 @@ void CPropTabPageParameter::OnCbnSelchangeCmbJoinratioTargetLabel()
 /// <summary>
 /// 対象コンボボックスラベル変更時処理
 /// </summary>
-void CPropTabPageParameter::UpdateCmbJoinratioTargetLabel(bool renew)
+void CPropTabPageParameter::UpdateCmbJoinratioTargetLabel(bool renew, int nClass/* = -1*/)
 {
 	UpdateData(true);
+	if (nClass > 0) {
+		m_NumberOfClass = nClass;
+	}
 	int itemCount = m_cmbJoinratioTarget.GetCount();
 	if ((renew) || (m_cmbJoinratioTarget.GetCount() != (int)m_NumberOfClass)) {
 		CString strJoinratioTarget = m_strJoinratioTarget;
@@ -420,7 +431,7 @@ void CPropTabPageParameter::UpdateCmbJoinratioTargetLabel(bool renew)
 			}
 		} else if (itemCount < (int)m_NumberOfClass) {
 			m_cmbJoinratioTarget.ResetContent();
-			for (int i =itemCount ; i < (int)m_NumberOfClass; i++) {
+			for (int i =0 ; i < (int)m_NumberOfClass; i++) {
 				TCHAR sval[255];
 				if (_itot_s(i+1,sval,255,10) == 0) {
 					CString strLabel = sval;
@@ -428,22 +439,8 @@ void CPropTabPageParameter::UpdateCmbJoinratioTargetLabel(bool renew)
 					m_cmbJoinratioTarget.SetItemData(id,i);
 				}
 			}
+			itemCount = m_NumberOfClass;
 			m_cmbJoinratioTarget.SetCurSel(0);
-#if 0
-			CString str;
-			int id = m_cmbJoinratioTarget.SetCurSel(0);
-			for (int i = 0; i < (int)m_NumberOfClass; i++) {
-				m_cmbJoinratioTarget.GetLBText(i, str);
-				int id = m_cmbJoinratioTarget.SelectString(-1,str);
-				int data = m_cmbJoinratioTarget.GetItemData(id);
-				for (int j = 0; j < m_cmbJoinratioTarget.GetCount(); j++) {
-					if (m_cmbJoinratioTarget.GetItemData(id) == i + 1) {
-						m_cmbJoinratioTarget.GetLBText(j, str);
-						int x = 0;
-					}
-				}
-			}
-#endif
 		}
 	}
 	UpdateData(false);
@@ -460,19 +457,51 @@ void CPropTabPageParameter::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinim
 
 	CDialogEx::OnActivate(nState, pWndOther, bMinimized);
 
+	CWeldEvaluationDoc *pDoc = GetDocument();
+	int AnarizeMethod = pDoc->GetAnalysisMethod(m_PageID);
+
 	UpdateCmbJoinratioTargetLabel(true);
 
 	CString strJoinratioTarget = m_strJoinratioTarget;
 	int selid = m_cmbJoinratioTarget.SelectString(-1, strJoinratioTarget);
 	if (selid != CB_ERR) {
-		CWeldEvaluationDoc *pDoc = GetDocument();
-		int AnarizeMethod = pDoc->GetAnalysisMethod(m_PageID);
 		CPropTabPageParameter::ViewJointRatio(AnarizeMethod, m_PageID, (int)m_cmbJoinratioTarget.GetItemData(selid));
 	}
+
+	UpdateStatus();
+
 	UINT timerID = 1;
-	UINT interval = 100;
+	UINT interval = 50;
 	SetTimer(timerID, interval, NULL);
 }
+
+/// <summary>
+/// ステータスの更新
+/// </summary>
+void CPropTabPageParameter::UpdateStatus()
+{
+	CWeldEvaluationDoc *pDoc = GetDocument();
+	int AnarizeMethod = pDoc->GetAnalysisMethod(m_PageID);
+
+	if (!pDoc->IsExistClassificationResultFile(m_PageID, AnarizeMethod)) {
+		ViewJointRatio(AnarizeMethod, m_PageID, m_cmbJoinratioTarget.GetCurSel());
+		CString msg = _T("解析が未実施です。");
+		m_stcMsgFeild.SetWindowText(msg);
+		m_stcMsgFeild.ShowWindow(SW_SHOW);
+	}
+	else {
+		if (pDoc->IsUpdateNumberOfClassifications(m_PageID, AnarizeMethod)) {
+			CString msg = _T("分類数が変更されています。解析を実施してください。");
+			m_stcMsgFeild.SetWindowText(msg);
+			m_stcMsgFeild.ShowWindow(SW_SHOW);
+		}
+		else {
+			m_stcMsgFeild.SetWindowText(_T(""));
+			m_stcMsgFeild.ShowWindow(SW_HIDE);
+		}
+	}
+}
+
 
 /// <summary>
 /// 対象コンボボックスのエディットボックスフォーカス消失時処理
@@ -493,14 +522,31 @@ void CPropTabPageParameter::OnCbnKillfocusCmbJoinratioTargetLabel()
 	UpdateData(false);
 }
 
+/// <summary>
+/// コントロール描画時処理
+/// </summary>
+/// <param name="pDC">子ウィンドウの表示コンテキスト</param>
+/// <param name="pWnd">色を求めるコントロールへのポインタ</param>
+/// <param name="nCtlColor">ントロールの種類</param>
+/// <returns>コントロールの背景を描画するために使用されるブラシへのハンドルを返す</returns>
 HBRUSH CPropTabPageParameter::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
 
 	HBRUSH hbr = CDialogEx::OnCtlColor(pDC, pWnd, nCtlColor);
+	int id = pWnd->GetDlgCtrlID();
+	switch (id) {
+	case IDC_MSG_FEILD:
+		pDC->SetTextColor(RGB(255, 0, 0));
+		break;
+
+	}
 	return hbr;
 }
 
-
+/// <summary>
+/// タイマー
+/// </summary>
+/// <param name="nIDEvent">タイマーの識別子</param>
 void CPropTabPageParameter::OnTimer(UINT_PTR nIDEvent)
 {
 	CWeldEvaluationDoc *pDoc = GetDocument();
@@ -518,6 +564,7 @@ void CPropTabPageParameter::OnTimer(UINT_PTR nIDEvent)
 			CPropTabPageParameter::ViewJointRatio(AnarizeMethod, m_PageID, (int)m_cmbJoinratioTarget.GetItemData(selid));
 		}
 	}
+	UpdateStatus();
 
 	KillTimer(nIDEvent);
 	CDialogEx::OnTimer(nIDEvent);

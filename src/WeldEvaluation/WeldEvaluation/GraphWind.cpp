@@ -24,11 +24,16 @@ CGraphWind::CGraphWind(CWnd* pParent /*=NULL*/)
 	m_bActive		= false;
 	m_bAutoRange	= false;
 	m_offset		= 0.0;
-	m_holMin		= 0.0;			///< 水平方向最小値
-	m_holMax		= 0.0;			///< 水平方向最大値
-	m_verMin		= 0.0;			///< 垂直方向最小値
-	m_verMax		= 0.0;			///< 垂直方向最立ち
+	m_holMin		= 0.0;			// 水平方向最小値
+	m_holMax		= 0.0;			// 水平方向最大値
+	m_verMin		= 0.0;			// 垂直方向最小値
+	m_verMax		= 0.0;			// 垂直方向最立ち
 	m_pBmp			= nullptr;
+
+	YMinLabel		= _T("");		// Y軸最小値ラベル
+	YMaxLabel		= _T("");		// Y軸最大値ラベル
+	XMinLabel		= _T("");		// X軸最小値ラベル
+	XMaxLabel		= _T("");		// X軸最大値ラベル
 }
 
 /// <summary>
@@ -90,8 +95,27 @@ void CGraphWind::OnPaint()
 	m_DrawArea.right = rect.right - 10;
 
 	CDC		*pDC = GetDC();
+
+	// ダイアログのフォント取得
+	CFont *pFont = GetFont();
+	LOGFONT logfont;
+	pFont->GetLogFont(&logfont);
+	CFont font;
+	font.CreateFontIndirect(&logfont);
+	CFont *pFontOld = pDC->SelectObject(&font);
+
+	// 文字列のサイズ取得
+	CSize size;
+	size = pDC->GetOutputTextExtent(_T("400nm"));
+	m_DrawArea.bottom -= size.cy + 5;
+	size = pDC->GetOutputTextExtent(_T("0.0"));
+	m_DrawArea.left += size.cx + 5;
+
+	pDC->SelectObject(pFontOld);
+
 	CreateBackground(rect);
 	DrawFrame(pDC, m_DrawArea);
+	DrawLabel(pDC, m_DrawArea);
 	DrawGraph(pDC, m_DrawArea);
 	ReleaseDC(pDC);
 #else
@@ -356,6 +380,28 @@ void CGraphWind::GetVirticalRange(double &min, double& max)
 }
 
 /// <summary>
+/// 水平軸ラベル設定
+/// </summary>
+/// <param name="min">最小値ラベル</param>
+/// <param name="max">最大値ラベル</param>
+void CGraphWind::SetXLabel(CString min, CString max)
+{
+	XMinLabel = min;
+	XMaxLabel = max;
+}
+
+/// <summary>
+/// 垂直軸ラベル設定
+/// </summary>
+/// <param name="min">最小値ラベル</param>
+/// <param name="max">最大値ラベル</param>
+void CGraphWind::SetYLabel(CString min, CString max)
+{
+	YMinLabel = min;
+	YMaxLabel = max;
+}
+
+/// <summary>
 /// 垂直方向領域判定（物理値）
 /// </summary>
 /// <param name="data">データ</param>
@@ -416,6 +462,54 @@ void CGraphWind::DrawFrame(CDC *pDC, CRect area)
 
 	pDC->SelectObject(orgPen);
 	delete framePen;
+}
+
+/// <summary>
+/// ラベル描画
+/// </summary>
+void CGraphWind::DrawLabel(CDC *pDC, CRect area)
+{
+	if (!m_bActive) {
+		return;
+	}
+
+	if (pDC == NULL)
+	{
+		return;
+	}
+
+	// ダイアログのフォント取得
+	CFont *pFont = GetFont();
+	LOGFONT logfont;
+	pFont->GetLogFont(&logfont);
+	CFont font;
+	font.CreateFontIndirect(&logfont);
+	CFont *pFontOld = pDC->SelectObject(&font);
+
+	// 文字列のサイズ取得
+	CSize size;
+
+	// X軸最小値ラベル
+	if (!XMinLabel.IsEmpty()) {
+		size = pDC->GetOutputTextExtent(XMinLabel);
+		pDC->TextOut(area.left, area.bottom + 5, XMinLabel);
+	}
+	// X軸最大値ラベル
+	if (!XMaxLabel.IsEmpty()) {
+		size = pDC->GetOutputTextExtent(XMaxLabel);
+		pDC->TextOut(area.right - size.cx, area.bottom + 5, XMaxLabel);
+	}
+	// Y軸最小値ラベル
+	if (!YMinLabel.IsEmpty()) {
+		size = pDC->GetOutputTextExtent(YMinLabel);
+		pDC->TextOut(area.left - size.cx - 5, area.bottom - size.cy, YMinLabel);
+	}
+	// Y軸最大値ラベル
+	if (!YMaxLabel.IsEmpty()) {
+		size = pDC->GetOutputTextExtent(YMaxLabel);
+		pDC->TextOut(area.left - size.cx - 5, area.top, YMaxLabel);
+	}
+	pDC->SelectObject(pFontOld);
 }
 
 /// <summary>
@@ -524,6 +618,11 @@ void CGraphWind::makeImage(CRect &rect)
 	m_pBmp->CreateCompatibleBitmap(pDC, rect.Width(), rect.Height());
 	DC.SelectObject(*m_pBmp);
 
+	// ダイアログのフォント取得
+	CFont *pFont = GetFont();
+	LOGFONT logfont;
+	pFont->GetLogFont(&logfont);
+
 	DrawFrame(pDC, rect);
 	DrawGraph(pDC, rect);
 
@@ -558,6 +657,31 @@ void CGraphWind::Draw(std::vector<std::vector<double>> &data, double offset/*=0.
 //	makeImage(m_DrawArea);
 
 	OnPaint();
+}
+
+void CGraphWind::DrawTxt(CPoint pos, CString txt)
+{
+	if (!m_bActive) {
+		return;
+	}
+	CDC		*pDC = GetDC();
+
+	// ダイアログのフォント取得
+	CFont *pFont = GetFont();
+	LOGFONT logfont;
+	pFont->GetLogFont(&logfont);
+	CFont font;
+	font.CreateFontIndirect(&logfont);
+	CFont *pFontOld = pDC->SelectObject(&font);
+
+	// 文字列のサイズ取得
+	CSize size;
+	size = pDC->GetOutputTextExtent(txt);
+
+	pDC->TextOut(pos.x, pos.y, txt);
+
+	pDC->SelectObject(pFontOld);
+	ReleaseDC(pDC);
 }
 
 /// <summary>

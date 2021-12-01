@@ -25,6 +25,7 @@ private:
 	int			m_ResultAnalysisMethod;		///< 結果面 解析方法
 	CString		m_joinRetioFormat;			///< 接合比フォーマット
 	CString		m_joinColorFormat;			///< 接合色フォーマット
+	CString		m_nClassFormat;				///< 分類数フォーマット  
 
 
 private:
@@ -62,8 +63,8 @@ public:
 	UINT GetHorizontalResolution(void);
 	bool SetHorizontalResolution(UINT resolution);
 
-	UINT ResinGetNumberOfClass(void);
-	bool ResinSetNumberOfClass(UINT nClass);
+	UINT ResinGetNumberOfClass(int method);
+	bool ResinSetNumberOfClass(int method,UINT nClass);
 	double ResinGetJointRetio(int method, int ViewJointRatioNo);
 	bool ResinSetJointRetio(int method, int ViewJointRatioNo, double retio);
 	COLORREF ResinGetJointColor(int method, int ViewJointRatioNo);
@@ -71,8 +72,8 @@ public:
 	int ResinGetAnalysisMethod();
 	bool ResinSetAnalysisMethod(int method);
 
-	UINT MetalGetNumberOfClass(void);
-	bool MetalSetNumberOfClass(UINT nClass);
+	UINT MetalGetNumberOfClass(int method);
+	bool MetalSetNumberOfClass(int method,UINT nClass);
 	double MetalGetJointRetio(int method, int ViewJointRatioNo);
 	bool MetalSetJointRetio(int method, int ViewJointRatioNo, double retio);
 	COLORREF MetalGetJointColor(int method, int ViewJointRatioNo);
@@ -80,8 +81,8 @@ public:
 	int MetalGetAnalysisMethod();
 	bool MetalSetAnalysisMethod(int method);
 
-	UINT ResultGetNumberOfClass(void);
-	bool ResultSetNumberOfClass(UINT nClass);
+	UINT ResultGetNumberOfClass(int method);
+	bool ResultSetNumberOfClass(int method, UINT nClass);
 	double ResultGetJointRetio(int method, int ViewJointRatioNo);
 	bool ResultSetJointRetio(int method, int ViewJointRatioNo, double retio);
 	COLORREF ResultGetJointColor(int method, int ViewJointRatioNo);

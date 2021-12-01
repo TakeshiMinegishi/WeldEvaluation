@@ -1,0 +1,11 @@
+<map id="CWeldEvaluationDoc::MetalGetNumberOfClass" name="CWeldEvaluationDoc::MetalGetNumberOfClass">
+<area shape="rect" id="node1" title="金属面の分類数の取得" alt="" coords="5,27,180,69"/>
+<area shape="rect" id="node2" href="$class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="492,5,644,32"/>
+<area shape="rect" id="node5" href="$class_c_propaty_i_o.html#a16a55c3db357af77e875c008c5837dee" title="金属面の分類数の取得" alt="" coords="228,57,423,98"/>
+<area shape="rect" id="node3" href="$class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="717,5,862,32"/>
+<area shape="rect" id="node4" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="921,31,1053,57"/>
+<area shape="rect" id="node6" href="$class_c_configration_i_o.html#a502e7c8a4d1a173bf0637e9704ebd980" title="指定セクションのキーにを削除" alt="" coords="479,107,657,133"/>
+<area shape="rect" id="node7" href="$class_c_propaty_i_o.html#ab263d6b737c5fb9a6a75a8319506cddb" title="金属面の分類数の設定" alt="" coords="471,158,665,199"/>
+<area shape="rect" id="node8" href="$class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="713,165,865,192"/>
+<area shape="rect" id="node9" href="$class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="913,165,1060,192"/>
+</map>

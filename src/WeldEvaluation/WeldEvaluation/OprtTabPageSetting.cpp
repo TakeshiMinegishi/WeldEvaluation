@@ -160,7 +160,7 @@ void COprtTabPageSetting::OnBnClickedBtnRegist()
 		// Error
 	}
 
-	if (pWnd->SendMessage(WM_RESIST_REGIST,NULL,NULL) != 0) {
+	if (pWnd->SendMessage(WM_RESIST_PROJECT,NULL,NULL) != 0) {
 		// Error
 	}
 }

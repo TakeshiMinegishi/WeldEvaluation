@@ -1,0 +1,12 @@
+<map id="CProjectFileIO::SetResultDisplayType" name="CProjectFileIO::SetResultDisplayType">
+<area shape="rect" id="node1" title="接合結果画像表示タイプの設定" alt="" coords="687,201,857,243"/>
+<area shape="rect" id="node2" href="$class_c_weld_evaluation_doc.html#a8c3734ada4777e97073fd72a094bf46f" title="表示モードの設定" alt="" coords="496,201,639,243"/>
+<area shape="rect" id="node3" href="$class_c_oprt_tab_page_analize.html#adee2f539754700ef37d0e306b728e4d6" title="接合結果表示タイプ分類結果選択時処理" alt="" coords="204,5,448,47"/>
+<area shape="rect" id="node4" href="$class_c_oprt_tab_page_analize.html#a6e4c0695d90711c7c02c0dd2ea31ca71" title="接合結果表示タイプスキャン選択時処理" alt="" coords="218,71,434,112"/>
+<area shape="rect" id="node6" href="$class_c_oprt_tab_page_analize.html#ac82359ab4f3766594ccb083a112e9fe8" title="金属面表示タイプ分類結果選択時処理" alt="" coords="217,136,435,177"/>
+<area shape="rect" id="node7" href="$class_c_oprt_tab_page_analize.html#a13d39220b8346972e4eae2f1bc1ced22" title="金属面表示タイプスキャン選択時処理" alt="" coords="231,201,421,243"/>
+<area shape="rect" id="node8" href="$class_c_oprt_tab_page_analize.html#ae9f8a7e416776fe6187673306e5d3a85" title="樹脂面表示タイプ分類結果選択時処理" alt="" coords="217,267,435,308"/>
+<area shape="rect" id="node9" href="$class_c_oprt_tab_page_analize.html#ae69d1c504a694b6b61840b1fe377e601" title="樹脂面表示タイプスキャン選択時処理" alt="" coords="231,332,421,373"/>
+<area shape="rect" id="node10" href="$class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="251,397,401,439"/>
+<area shape="rect" id="node5" href="$class_c_oprt_tab_page_analize.html#ad026ecbbc983699be043cf39cf611383" title="表示方法の設定" alt="" coords="5,201,156,243"/>
+</map>

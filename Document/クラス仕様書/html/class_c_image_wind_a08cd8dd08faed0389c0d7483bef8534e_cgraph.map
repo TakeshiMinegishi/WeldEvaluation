@@ -1,0 +1,4 @@
+<map id="CImageWind::Erase" name="CImageWind::Erase">
+<area shape="rect" id="node1" title="画像の削除" alt="" coords="5,5,144,32"/>
+<area shape="rect" id="node2" href="$class_c_image_wind.html#a92a25e63a400fe2f35e71e913dad63f9" title="描画処理" alt="" coords="192,5,343,32"/>
+</map>

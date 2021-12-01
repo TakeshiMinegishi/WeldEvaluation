@@ -23,6 +23,7 @@ public:
 // オーバーライド
 public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
+	afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
 
 // 実装
 public:

@@ -1,0 +1,9 @@
+<map id="CSpectralDlg::draw" name="CSpectralDlg::draw">
+<area shape="rect" id="node1" title="スペクトルグラフの表示" alt="" coords="5,107,139,133"/>
+<area shape="rect" id="node2" href="$class_c_graph_wind.html#a4c91a5a3fa6bc76b7f3e0e4ec960942f" title="グラフ描画" alt="" coords="221,5,354,32"/>
+<area shape="rect" id="node4" href="$class_c_graph_wind.html#a45f6955a443ae18cf854c4a0fe9bd734" title="グラフ削除" alt="" coords="218,56,357,83"/>
+<area shape="rect" id="node5" href="$class_c_graph_wind.html#a70b24a99aa2ea35df62cbfaf15be3fe7" title="垂直方向領域設定（物理値）" alt="" coords="187,107,388,133"/>
+<area shape="rect" id="node6" href="$class_c_graph_wind.html#a4d999dfdb4d1621109e04bcf4f0ee4c6" title="水平軸ラベル設定" alt="" coords="206,157,369,184"/>
+<area shape="rect" id="node7" href="$class_c_graph_wind.html#a7718ab9796a2540407db9012f0437b50" title="垂直軸ラベル設定" alt="" coords="205,208,369,235"/>
+<area shape="rect" id="node3" href="$class_c_graph_wind.html#ab66f255e1be2794e8d059daaa6193150" title="描画処理" alt="" coords="436,31,587,57"/>
+</map>

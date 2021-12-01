@@ -106,6 +106,17 @@ void CProjectFileIO::Initialze()
 	m_ResultDendrogramClassFile						= _T("");	///< 接合結果階層クラスタリング分類結果ファイル名
 	m_ResultKmeansClassFile							= _T("");	///< 接合結果k-means分類結果ファイル名
 
+	m_ResinActiveAnalizeMethod						= 0;		///< 樹脂面の表示対象解析方法
+	m_MetalActiveAnalizeMethod						= 0;		///< 金属面の表示対象解析方法
+	m_ResultActiveAnalizeMethod						= 0;		///< 結果の表示対象解析方法
+
+	m_nResinDendrogramClassificationClass			= 0;		///< 樹脂面分類結果階層クラスタリング分類数
+	m_nResinKMeansClassificationClass				= 0;		///< 樹脂面分類結果k-means分類数
+	m_nMetalDendrogramClassificationClass			= 0;		///< 金属面分類結果階層クラスタリング分類数
+	m_nMetalKMeansClassificationClass				= 0;		///< 金属面分類結果k-means分類数
+	m_nResultDendrogramClassificationClass			= 0;		///< 結果階層クラスタリング分類数
+	m_nResultMeansClassificationClass				= 0;		///< 結果階層クラスタリング分類数
+
 	m_SpectralGraphPointTarget						= 0;		///< スペクトルグラフ（点指定）の対象
 	m_SpectralGraphPointHolizontalPosition			= 0;		///< スペクトルグラフ（点指定）の水平位置
 	m_SpectralGraphPointVerticalPosition			= 0;		///< スペクトルグラフ（点指定）の垂直位置
@@ -208,6 +219,17 @@ bool CProjectFileIO::read(CString path)
 	m_ResultDendrogramClassFile = sys.getString(_T("JoiningResult"), _T("dendrogram_classification"));		// 結果階層クラスタリングファイル名
 	m_ResultKmeansClassFile = sys.getString(_T("JoiningResult"), _T("kmeans_classification"));				// 結果k-meansファイル名
 
+	m_ResinActiveAnalizeMethod				= sys.getInt(_T("ResinSurface"), _T("analize_method"));			// 樹脂面の表示対象解析方法
+	m_MetalActiveAnalizeMethod				= sys.getInt(_T("MetalSurface"), _T("analize_method"));			// 金属面の表示対象解析方法
+	m_ResultActiveAnalizeMethod				= sys.getInt(_T("JoiningResult"), _T("analize_method"));			// 結果の表示対象解析方法
+
+	m_nResinDendrogramClassificationClass	= sys.getInt(_T("ResinSurface"), _T("dendrogram_classification_nclass"));		// 樹脂面分類結果階層クラスタリング分類数
+	m_nResinKMeansClassificationClass		= sys.getInt(_T("ResinSurface"), _T("kmeans_classification_nclass"));			// 樹脂面分類結果k-means分類数
+	m_nMetalDendrogramClassificationClass	= sys.getInt(_T("MetalSurface"), _T("dendrogram_classification_nclass"));		// 金属面分類結果階層クラスタリング分類数
+	m_nMetalKMeansClassificationClass		= sys.getInt(_T("MetalSurface"), _T("kmeans_classification_nclass"));			// 金属面分類結果k-means分類数
+	m_nResultDendrogramClassificationClass	= sys.getInt(_T("JoiningResult"), _T("dendrogram_classification_nclass"));;		// 結果階層クラスタリング分類数
+	m_nResultMeansClassificationClass		= sys.getInt(_T("JoiningResult"), _T("kmeans_classification_nclass"));;			// 結果k-means分類数
+
 	m_SpectralGraphPointTarget = sys.getInt(_T("SpectralGraphPoint"),_T("target"));							// スペクトルグラフ（点指定）の対象
 	// スペクトルグラフ（点指定）の位置
 	str = sys.getString(_T("SpectralGraphPoint"),_T("position"));
@@ -308,6 +330,43 @@ bool CProjectFileIO::save(CString path)
 	}
 	// 接合結果k-means分類結果ファイル名
 	if (!sys.setString(_T("JoiningResult"), _T("kmeans_classification"), m_ResultKmeansClassFile)) {
+		bResult = false;
+	}
+
+	// 樹脂面の表示対象解析方法
+	if (!sys.setInt(_T("ResinSurface"), _T("analize_method"), m_ResinActiveAnalizeMethod)) {
+		bResult = false;
+	}
+	// 金属面の表示対象解析方法
+	if (!sys.setInt(_T("MetalSurface"), _T("analize_method"), m_MetalActiveAnalizeMethod)) {
+		bResult = false;
+	}
+	// 結果の表示対象解析方法
+	if (!sys.setInt(_T("JoiningResult"), _T("analize_method"), m_ResultActiveAnalizeMethod)) {
+		bResult = false;
+	}
+	// 樹脂面分類結果階層クラスタリング分類数
+	if (!sys.setInt(_T("ResinSurface"), _T("dendrogram_classification_nclass"), m_nResinDendrogramClassificationClass)) {
+		bResult = false;
+	}
+	// 樹脂面分類結果k-means分類数
+	if (!sys.setInt(_T("ResinSurface"), _T("kmeans_classification_nclass"), m_nResinKMeansClassificationClass)) {
+		bResult = false;
+	}
+	// 金属面分類結果階層クラスタリング分類数
+	if (!sys.setInt(_T("MetalSurface"), _T("dendrogram_classification_nclass"), m_nMetalDendrogramClassificationClass)) {
+		bResult = false;
+	}
+	// 金属面分類結果k-means分類数
+	if (!sys.setInt(_T("MetalSurface"), _T("kmeans_classification_nclass"), m_nMetalKMeansClassificationClass)) {
+		bResult = false;
+	}
+	// 結果階層クラスタリング分類数
+	if (!sys.setInt(_T("JoiningResult"), _T("dendrogram_classification_nclass"), m_nResultDendrogramClassificationClass)) {
+		bResult = false;
+	}
+	// 結果k-means分類数
+	if (!sys.setInt(_T("JoiningResult"), _T("kmeans_classification_nclass"), m_nResultMeansClassificationClass)) {
 		bResult = false;
 	}
 
@@ -485,6 +544,65 @@ bool CProjectFileIO::SetResinDisplayType(int displayType)
 	return sys.setInt(_T("ResinSurface"),_T("display_type"),displayType);
 }
 
+/// <summary>
+/// 樹脂面解析方法の取得
+/// </summary>
+/// <returns>樹脂面解析方法を返す</returns>
+int CProjectFileIO::GetResinAnalizeMethod()
+{
+	return m_ResinActiveAnalizeMethod;
+}
+
+/// <summary>
+/// 樹脂面解析方法の設定
+/// </summary>
+/// <param name="method">解析方法</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
+bool CProjectFileIO::SetResinAnalizeMethod(int method)
+{
+	m_ResinActiveAnalizeMethod = method;
+	return true;
+}
+
+/// <summary>
+/// 作成された樹脂面階層クラスタリング解析のクラス数の取得
+/// </summary>
+/// <returns>クラス数を返す</returns>
+int CProjectFileIO::GetNumbetOfResinDendrogramClassificationClass()
+{
+	return m_nResinDendrogramClassificationClass;
+}
+
+/// <summary>
+/// 作成された樹脂面階層クラスタリング解析のクラス数の取得
+/// </summary>
+/// <param name="nClass">クラス数</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
+bool CProjectFileIO::SetNumbetOfResinDendrogramClassificationClass(int nClass)
+{
+	m_nResinDendrogramClassificationClass = nClass;
+	return true;
+}
+
+/// <summary>
+/// 作成された樹脂面K-Means解析のクラス数の取得
+/// </summary>
+/// <returns>クラス数を返す</returns>
+int CProjectFileIO::GetNumbetOfResinKMeansClassificationClass()
+{
+	return m_nResinKMeansClassificationClass;
+}
+
+/// <summary>
+/// 作成された樹脂面K-Means解析のクラス数の取得
+/// </summary>
+/// <param name="nClass">クラス数</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
+bool CProjectFileIO::SetNumbetOfResinKMeansClassificationClass(int nClass)
+{
+	m_nResinKMeansClassificationClass = nClass;
+	return true;
+}
 
 /// <summary>
 /// 金属面スキャン画像ファイル名の取得
@@ -574,6 +692,73 @@ bool CProjectFileIO::SetMetalDisplayType(int displayType)
 }
 
 /// <summary>
+/// 金属面解析方法の取得
+/// </summary>
+/// <returns>樹脂面解析方法を返す</returns>
+int CProjectFileIO::GetMetalAnalizeMethod()
+{
+	return m_MetalActiveAnalizeMethod;
+}
+
+/// <summary>
+/// 金属面解析方法の設定
+/// </summary>
+/// <param name="method">解析方法</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
+bool CProjectFileIO::SetMetalAnalizeMethod(int method)
+{
+	m_MetalActiveAnalizeMethod = method;
+	return true;
+}
+
+/// <summary>
+/// 作成された金属面階層クラスタリング解析のクラス数の取得
+/// </summary>
+/// <returns>クラス数を返す</returns>
+int CProjectFileIO::GetNumbetOfMetalDendrogramClassificationClass()
+{
+	return m_nMetalDendrogramClassificationClass;
+}
+
+/// <summary>
+/// 作成された金属面階層クラスタリング解析のクラス数の取得
+/// </summary>
+/// <param name="nClass">クラス数</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
+bool CProjectFileIO::SetNumbetOfMetalDendrogramClassificationClass(int nClass)
+{
+	m_nMetalDendrogramClassificationClass = nClass;
+	return true;
+}
+
+/// <summary>
+/// 作成された金属面K-Means解析のクラス数の取得
+/// </summary>
+/// <returns>クラス数を返す</returns>
+int CProjectFileIO::GetNumbetOfMetalKMeansClassificationClass()
+{
+	if (!CFileUtil::fileExists(m_ProjectFilePath)) {
+		return false;
+	}
+	CConfigrationIO sys(m_ProjectFilePath);
+	return sys.getInt(_T("MetalSurface"), _T("kmeans_classification_nclass"));
+}
+
+/// <summary>
+/// 作成された金属面K-Means解析のクラス数の取得
+/// </summary>
+/// <param name="nClass">クラス数</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
+bool CProjectFileIO::SetNumbetOfMetalKMeansClassificationClass(int nClass)
+{
+	if (!CFileUtil::fileExists(m_ProjectFilePath)) {
+		return false;
+	}
+	CConfigrationIO sys(m_ProjectFilePath);
+	return sys.setInt(_T("MetalSurface"), _T("kmeans_classification_nclass"), nClass);
+}
+
+/// <summary>
 /// 接合結果画像スキャン画像ファイル名の取得
 /// </summary>
 /// <returns>接合結果画像スキャン画像ファイル名を返す</returns>
@@ -632,7 +817,6 @@ bool CProjectFileIO::SetResultKmeansClassFile(CString fileName)
 	m_ResultKmeansClassFile = fileName;
 	return true;
 }
-
 /// <summary>
 /// 接合結果画像表示タイプの取得
 /// </summary>
@@ -658,6 +842,67 @@ bool CProjectFileIO::SetResultDisplayType(int displayType)
 	}
 	CConfigrationIO sys(m_ProjectFilePath);
 	return sys.setInt(_T("JoiningResult"),_T("display_type"),displayType);
+}
+
+
+/// <summary>
+/// 接合結果解析方法の取得
+/// </summary>
+/// <returns>接合結果解析方法を返す</returns>
+int CProjectFileIO::GetResultAnalizeMethod()
+{
+	return m_ResultActiveAnalizeMethod;
+}
+
+/// <summary>
+/// 接合結果解析方法の設定
+/// </summary>
+/// <param name="method">解析方法</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
+bool CProjectFileIO::SetResultAnalizeMethod(int method)
+{
+	m_ResultActiveAnalizeMethod = method;
+	return true;
+}
+
+/// <summary>
+/// 作成された接合結果階層クラスタリング解析のクラス数の取得
+/// </summary>
+/// <returns>クラス数を返す</returns>
+int CProjectFileIO::GetNumbetOfResultDendrogramClassificationClass()
+{
+	return m_nResultDendrogramClassificationClass;
+}
+
+/// <summary>
+/// 作成された接合結果階層クラスタリング解析のクラス数の取得
+/// </summary>
+/// <param name="nClass">クラス数</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
+bool CProjectFileIO::SetNumbetOfResultDendrogramClassificationClass(int nClass)
+{
+	m_nResultDendrogramClassificationClass = nClass;
+	return true;
+}
+
+/// <summary>
+/// 作成された接合結果K-Means解析のクラス数の取得
+/// </summary>
+/// <returns>クラス数を返す</returns>
+int CProjectFileIO::GetNumbetOfResultKMeansClassificationClass()
+{
+	return m_nResultMeansClassificationClass;
+}
+
+/// <summary>
+/// 作成された接合結果K-Means解析のクラス数の取得
+/// </summary>
+/// <param name="nClass">クラス数</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
+bool CProjectFileIO::SetNumbetOfResultKMeansClassificationClass(int nClass)
+{
+	m_nResultMeansClassificationClass = nClass;
+	return true;
 }
 
 /// <summary>
@@ -801,6 +1046,12 @@ bool CProjectFileIO::SetSpectralGraphSectionEndPosition(int holizontal, int vert
 	return true;
 }
 
+/// <summary>
+/// スキャンデータのサイズ取得
+/// </summary>
+/// <param name="holizontal">水平値</param>
+/// <param name="vertical">垂直値</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CProjectFileIO::GetScanDataSize(int &holizontal, int &vertical)
 {
 	holizontal	= m_ScanDataHolizontalSize;
@@ -808,6 +1059,12 @@ bool CProjectFileIO::GetScanDataSize(int &holizontal, int &vertical)
 	return true;
 }
 
+/// <summary>
+/// スキャンデータのサイズ設定
+/// </summary>
+/// <param name="holizontal">水平値</param>
+/// <param name="vertical">垂直値</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
 bool CProjectFileIO::SetScanDataSize(int holizontal, int vertical)
 {
 	m_ScanDataHolizontalSize = holizontal;
