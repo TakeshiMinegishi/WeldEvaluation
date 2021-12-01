@@ -1306,8 +1306,7 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 	bool bHomography = true;		// 射影変換可否フラグ
 	double aParam[8];				// 射影変換パラメータ
 	float *p = new float[band];		// 線形補間結果格納用
-	vector<CPoint> vOrign = { {22,119},{30,982},{2019,974},{2013,106} };
-	vector<CPoint> vTrans = { {25,114},{25,976},{2017,976},{2017,114} };
+	vector<CPoint> vOrign,vTrans;
 	if (!pDoc->GetHomographyPoint(vOrign, vTrans)) {
 		bHomography = false;
 	}
@@ -1355,6 +1354,7 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		pStatus->UpdateStatus(buff);
 		scn.ScanDataConvert(width, height, band, (float ***)cube_corrected->ppp_data, hscale, vscale, dstW, dstH, dst,false);
 
+		bool bBicubic = false; //線形補間使用フラグ
 		if (bHomography) {	// 射影変換
 			for (int h = 0; h < dstH; h++) {
 				for (int w = 0; w < dstW; w++) {
@@ -1364,9 +1364,11 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 						continue;
 					}
 					else {
-						scn.bicubic(dst, dstW, dstH, band, (float)sx, (float)sy, p);
-						for (int b = 0; b < band; b++) {
-							dst[b][h][w] = p[b];
+						if (bBicubic) {
+							scn.bicubic(dst, dstW, dstH, band, (float)sx, (float)sy, p);
+							for (int b = 0; b < band; b++) {
+								dst[b][h][w] = p[b];
+							}
 						}
 					}
 				}

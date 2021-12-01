@@ -84,6 +84,26 @@ bool CProjectFileIO::SetProjectName(CString projectname)
 */
 
 /// <summary>
+/// バージョンの取得の取得
+/// </summary>
+/// <returns>バージョンを返す</returns>
+CString CProjectFileIO::GetVersion()
+{
+	return m_Version;
+}
+
+/// <summary>
+/// バージョンの設定
+/// </summary>
+/// <param name="version">バージョン</param>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
+bool CProjectFileIO::SetVersion(CString version)
+{
+	m_Version = version;
+	return true;
+}
+
+/// <summary>
 /// プロジェクトの初期化
 /// </summary>
 void CProjectFileIO::Initialze()
@@ -92,6 +112,7 @@ void CProjectFileIO::Initialze()
 
 	m_CreeateDay = COleDateTime(1960,11,18,0,0,0);				///< 作成日
 	m_UpdateDay = COleDateTime(1960,11,18,0,0,0);				///< 更新簿
+	m_Version = _T("");
 	m_ImageDataRootPath								= _T("");	///< イメージデータへのルートパス
 
 	m_ResinScanImageFile							= _T("");	///< 樹脂面スキャン画像ファイル名
@@ -186,6 +207,8 @@ bool CProjectFileIO::read(CString path)
 	CConfigrationIO sys(path);
 	CString str;
 
+	m_Version = sys.getString(_T("Common"), _T("Version"));
+
 	// 作成日
 	str = sys.getString(_T("Common"),_T("create_date"));
 	if (!str.IsEmpty()) {
@@ -268,6 +291,10 @@ bool CProjectFileIO::save(CString path)
 	bool bResult = true;
 	CConfigrationIO sys(path);
 	CString str;
+
+	if (!sys.setString(_T("Common"), _T("Version"), m_Version)) {
+		bResult = false;
+	}
 
 	// 作成日
 	str = Date2Str(m_CreeateDay);

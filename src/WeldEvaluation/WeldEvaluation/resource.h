@@ -9,6 +9,8 @@
 #define IDR_WeldEvaluationTYPE          130
 #define IDS_PROPATYFILENAME             150
 #define IDS_PROJECTFILENAME             151
+#define IDS_PROJECTFILE_VERSION         152
+#define IDS_PARAMETERFILE_VERSION       153
 #define IDS_REGTEST_LABEL               200
 #define IDS_PROPTAB_RESIN               210
 #define IDS_PROPTAB_METAL               211
@@ -149,6 +151,7 @@
 #define IDC_STC_MESSAGE                 1081
 #define IDC_MSG_FEILD                   1082
 #define IDC_BTN_INVERS                  1083
+#define IDC_BUTTON1                     1084
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_PROJECT_DELETE               32773
@@ -160,9 +163,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        331
+#define _APS_NEXT_RESOURCE_VALUE        332
 #define _APS_NEXT_COMMAND_VALUE         32777
-#define _APS_NEXT_CONTROL_VALUE         1084
+#define _APS_NEXT_CONTROL_VALUE         1085
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

@@ -204,6 +204,7 @@ public:
 
 	bool	NewProject();
 	bool	OpenProject(CString RegistedTestName);
+	bool	ProjectUpdate();
 	bool	CloseProject(bool bSave=false);
 	bool	SaveProject();
 	CString GetActiveRegistedTest();

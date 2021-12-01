@@ -1833,34 +1833,32 @@ bool CWeldEvaluationDoc::NewProject()
 	// 射影変換の確認用コーディング
 	////////////////////////////////////////////////////////////////
 	{
+		AtlTrace(_T("##### 射影変換の確認 #####\n"));
+		double aParam[8], ppt[2];
 		CScanDataIO sc;
-		CPoint srcPt[4] = { {22,119},{30,982},{2019,974},{2013,106} };
-		CPoint dstPt[4] = { {25,114},{25,976},{2017,976},{2017,114} };
-		double prm[8];
+		vector<CPoint> vOrign,vTrans;
+		GetHomographyPoint(vOrign, vTrans);
 
-		vector<CPoint> vOrig = { {22,119},{30,982},{2019,974},{2013,106} };
-		vector<CPoint> vTrans = { {25,114},{25,976},{2017,976},{2017,114} };
-		double aParam[8]; 
-
-		double pt[2],ppt[2];
-		sc.GetHomographyMatrix(srcPt, dstPt, prm);
-		sc.Calc_ProjectionParam(vOrig, vTrans, aParam);
+		double tolerance = 0.000001;
+		bool bProjResult = true;
+		sc.Calc_ProjectionParam(vOrign, vTrans, aParam);
 		for (int i = 0; i < 4; i++) {
-			sc.Projection(dstPt[i].x, dstPt[i].y, prm, pt[0], pt[1]);
-			if ((pt[0] != (double)dstPt[i].x) || (pt[1] != (double)dstPt[i].y)) {
-				int a = 0;
+			sc.Projection(vOrign[i].x, vOrign[i].y, aParam, ppt[0], ppt[1]);
+			if ((fabs(ppt[0] - (double)vTrans[i].x) > tolerance) || (fabs(ppt[1] - (double)vTrans[i].y) > tolerance) ) {
+				AtlTrace(_T("FAIL:Orign->Trans:(%.2lf,%2.lf) -> (%.2lf,%2.lf):(%.2lf,%2.lf)\n"), vOrign[i].x, vOrign[i].y, vTrans[i].x, vTrans[i].y, ppt[0], ppt[1]);
+				bProjResult = false;
 			}
-			else {
-				int a = 0;
+			sc.ProjectionInvPos(vTrans[i].x, vTrans[i].y, aParam, ppt[0], ppt[1]);
+			if ((fabs(ppt[0] - (double)vOrign[i].x) > tolerance) || (fabs(ppt[1] - (double)vOrign[i].y) > tolerance)) {
+				AtlTrace(_T("FAIL:Trans->Orign:(%.2lf,%2.lf) -> (%.2lf,%2.lf):(%.2lf,%2.lf)\n"), vTrans[i].x, vTrans[i].y, vOrign[i].x, vOrign[i].y, ppt[0], ppt[1]);
+				bProjResult = false;
 			}
-			sc.Projection(vOrig[i].x, vOrig[i].y, aParam, ppt[0], ppt[1]);
-			if ((pt[0] != (double)dstPt[i].x) || (pt[1] != (double)dstPt[i].y)) {
-				int a = 0;
-			}
-			else {
-				int a = 0;
-			}
-			int a = 0;
+		}
+		if (bProjResult) {
+			AtlTrace(_T("##### 射影変換:成功 #####\n"));
+		}
+		else {
+			AtlTrace(_T("##### 射影変換:失敗 #####\n"));
 		}
 	}
 	////////////////////////////////////////////////////////////////
@@ -1875,6 +1873,7 @@ bool CWeldEvaluationDoc::NewProject()
 	CString tmpFolder = GetRegistedFolder();
 	PushProject(tmpFolder,_T(""));
 	CString WrokPrjectPath = GetWorkProjectPath();
+	CString version;
 
 	m_ActiveRegisttedTestName = tmpFolder;
 	m_ActiveRegisttedTestFolder = WrokPrjectPath;
@@ -1925,6 +1924,9 @@ bool CWeldEvaluationDoc::NewProject()
 		}
 	}
 
+	version.LoadString(IDS_PARAMETERFILE_VERSION);
+	m_PropatyIO.SetVersion(version);
+		
 	m_PropatyIO.Save(false);
 	m_PropatyIO.SetTestName(prjName);
 
@@ -2000,6 +2002,8 @@ bool CWeldEvaluationDoc::NewProject()
 	SaveClassificationResultFile(eJoiningResult, AnalizeTypeKMeans);		// k-means
 	SaveClassificationResultFile(eJoiningResult, AnalizeTypeHiClustering);	// 階層クラスタリング
 
+	version.LoadString(IDS_PROJECTFILE_VERSION);
+	m_ProjectIO.SetVersion(version);
 	m_ProjectIO.Save(false);
 
 	m_OpenType = 2;
@@ -2018,6 +2022,9 @@ bool CWeldEvaluationDoc::OpenProject(CString RegistedTestName)
 	CString PopatyFileName,ProjecName, ProjectFileName;
 	PopatyFileName.LoadStringW(IDS_PROPATYFILENAME);
 	ProjecName.LoadStringW(IDS_PROJECTFILENAME);
+
+	m_ProjectIO.Initialze();
+	m_PropatyIO.Initialze();
 
 	// プロジェクトフォルダ取得
 	CString folder = GetRegistedFolder();
@@ -2043,6 +2050,7 @@ bool CWeldEvaluationDoc::OpenProject(CString RegistedTestName)
 		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	}
+
 
 	if (!m_PropatyIO.SetParamaterFilePath(ParamaterFilePaht)) {
 		m_PropatyIO.SetParamaterFilePath(m_ParamaterFilePaht);
@@ -2110,7 +2118,105 @@ bool CWeldEvaluationDoc::OpenProject(CString RegistedTestName)
 		m_ResultScanData.open(path);
 	}
 
+	ProjectUpdate();
+
 	m_OpenType = 1;
+	return true;
+}
+
+/// <summary>
+/// プロジェクトの更新
+/// </summary>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
+bool CWeldEvaluationDoc::ProjectUpdate()
+{
+	CConfigrationIO sys(m_SystemFilePathName);
+	CConfigrationIO prm(m_PropatyIO.GetParamaterFilePath());
+	CConfigrationIO prj(m_ProjectIO.GetProjectFilePath());
+
+	CString prjVersion, proVersion, fileVersion, key;
+	int iVal;
+	proVersion.LoadString(IDS_PARAMETERFILE_VERSION);
+	fileVersion = m_PropatyIO.GetVersion();
+	if (proVersion.CollateNoCase(fileVersion) != 0) {
+		CString AnalizeTypeKMeansKey, AnalizeTypeHiClusteringKey;
+		AnalizeTypeKMeansKey.Format(_T("%02d_Number_of_classifications"), AnalizeTypeKMeans);
+		AnalizeTypeHiClusteringKey.Format(_T("%02d_Number_of_classifications"), AnalizeTypeHiClustering);
+
+		iVal = prm.getInt(_T("ResinSurface"), _T("Number_of_classifications"));
+		if (iVal == 0) {
+			iVal = sys.getInt(_T("ParamDefault"), _T("ResinSurface_Number_of_classifications"));
+		}
+		prm.setInt(_T("ResinSurface"), AnalizeTypeKMeansKey, iVal);
+		prm.setInt(_T("ResinSurface"), AnalizeTypeHiClusteringKey, iVal);
+		prm.deleteKey(_T("ResinSurface"), _T("Number_of_classifications"));
+
+		iVal = prm.getInt(_T("MetalSurface"), _T("Number_of_classifications"));
+		if (iVal == 0) {
+			iVal = sys.getInt(_T("ParamDefault"), _T("MetalSurface_Number_of_classifications"));
+		}
+		prm.setInt(_T("MetalSurface"), AnalizeTypeKMeansKey, iVal);
+		prm.setInt(_T("MetalSurface"), AnalizeTypeHiClusteringKey, iVal);
+		prm.deleteKey(_T("MetalSurface"), _T("Number_of_classifications"));
+
+		iVal = prm.getInt(_T("JoiningResult"), _T("Number_of_classifications"));
+		if (iVal == 0) {
+			iVal = sys.getInt(_T("ParamDefault"), _T("JoiningResult_Number_of_classifications"));
+		}
+		prm.setInt(_T("JoiningResult"), AnalizeTypeKMeansKey, iVal);
+		prm.setInt(_T("JoiningResult"), AnalizeTypeHiClusteringKey, iVal);
+		prm.deleteKey(_T("JoiningResult"), _T("Number_of_classifications"));
+	}
+
+	prjVersion.LoadString(IDS_PROJECTFILE_VERSION);
+	fileVersion = m_ProjectIO.GetVersion();
+	if (prjVersion.CollateNoCase(fileVersion) != 0) {
+		CString AnalizeTypeKMeansKey, AnalizeTypeHiClusteringKey, sVal;
+		AnalizeTypeKMeansKey.Format(_T("%02d_Number_of_classifications"), AnalizeTypeKMeans);
+		AnalizeTypeHiClusteringKey.Format(_T("%02d_Number_of_classifications"), AnalizeTypeHiClustering);
+
+		// 樹脂面
+		sVal = sys.getString(_T("ParamDefault"), _T("ResinSurface_Analysis_method"));
+		if (sVal.CollateNoCase(_T("k_means")) == 0) {
+			prj.setInt(_T("ResinSurface"), _T("analize_method"), AnalizeTypeKMeans);
+		}
+		else {
+			prj.setInt(_T("ResinSurface"), _T("analize_method"), AnalizeTypeHiClustering);
+		}
+		iVal = prm.getInt(_T("ResinSurface"), AnalizeTypeKMeansKey);
+		prj.setInt(_T("ResinSurface"), _T("kmeans_classification_nclass"), iVal);
+		iVal = prm.getInt(_T("ResinSurface"), AnalizeTypeHiClusteringKey);
+		prj.setInt(_T("ResinSurface"), _T("dendrogram_classification_nclass"), iVal);
+
+		// 金属面
+		sVal = sys.getString(_T("ParamDefault"), _T("MetalSurface_Analysis_method"));
+		if (sVal.CollateNoCase(_T("k_means")) == 0) {
+			prj.setInt(_T("MetalSurface"), _T("analize_method"), AnalizeTypeKMeans);
+		}
+		else {
+			prj.setInt(_T("MetalSurface"), _T("analize_method"), AnalizeTypeHiClustering);
+		}
+		iVal = prm.getInt(_T("MetalSurface"), AnalizeTypeKMeansKey);
+		prj.setInt(_T("MetalSurface"), _T("kmeans_classification_nclass"), iVal);
+		iVal = prm.getInt(_T("MetalSurface"), AnalizeTypeHiClusteringKey);
+		prj.setInt(_T("MetalSurface"), _T("dendrogram_classification_nclass"), iVal);
+
+		// 結合結果
+		sVal = sys.getString(_T("ParamDefault"), _T("MetalSurface_Analysis_method"));
+		if (sVal.CollateNoCase(_T("k_means")) == 0) {
+			prj.setInt(_T("MetalSurface"), _T("analize_method"), AnalizeTypeKMeans);
+		}
+		else {
+			prj.setInt(_T("MetalSurface"), _T("analize_method"), AnalizeTypeHiClustering);
+		}
+		iVal = prm.getInt(_T("MetalSurface"), AnalizeTypeKMeansKey);
+		prj.setInt(_T("MetalSurface"), _T("kmeans_classification_nclass"), iVal);
+		iVal = prm.getInt(_T("MetalSurface"), AnalizeTypeHiClusteringKey);
+		prj.setInt(_T("MetalSurface"), _T("dendrogram_classification_nclass"), iVal);
+	}
+	m_PropatyIO.SetVersion(proVersion);
+	m_ProjectIO.SetVersion(prjVersion);
+
 	return true;
 }
 
@@ -3027,11 +3133,7 @@ bool CWeldEvaluationDoc::Analize(int ScanID, int AnalysisMethodID)
 	////////////////////////////////////////////////////////////////////
 	// 解析の実施
 	if (CFileUtil::fileExists(execpath)) {
-#if 0
-		prm.Format(_T("%s %s %d %d %d %d %d"), (LPCTSTR)ScanDataFilePath, (LPCTSTR)ClassificationDataFilePath, nClass, AnalysisAreaTLPointX, AnalysisAreaTLPointY, AnalysisAreaWidth, AnalysisAreaHeight);
-#else
 		prm.Format(_T("%s %s %d %d %d %d %d"), (LPCTSTR)ScanDataFilePath, (LPCTSTR)ClassificationDataFilePath, nClass, AnalizetlPos.x, AnalizetlPos.y, AnalizeSze.cx, AnalizeSze.cy);
-#endif
 		CString cmd;
 		cmd.Format(_T("%s %s"), (LPCTSTR)execpath, (LPCTSTR)prm);
 		TCHAR pszText[1049], pszMpath[1049];

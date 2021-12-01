@@ -18,6 +18,7 @@ public:
 private:
 	CString		m_ParamaterFilePath;		///< パラメータファイルへのパス
 
+	CString		m_Version;					///< プロパティファイルバージョン
 	CString		m_ProjectName;				///< プロジェクト名
 	CString		m_TestName;					///< 名称
 	int			m_ResinAnalysisMethod;		///< 樹脂面 解析方法
@@ -36,9 +37,11 @@ public:
 	CPropatyIO(void);
 	~CPropatyIO(void);
 
+	void Initialze(void);
+	CString GetVersion();
+	bool SetVersion(CString version);
 	CString GetParamaterFilePath();
 	bool SetParamaterFilePath(CString path);
-
 
 	CString MakeProjectName(CString TestName, COleDateTime date, int nunber);
 	CString GetProjectName();

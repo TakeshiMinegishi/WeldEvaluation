@@ -8,13 +8,7 @@
 /// </summary>
 CPropatyIO::CPropatyIO(void)
 {
-	m_ParamaterFilePath			= _T("");
-	m_ProjectName				= _T("");	// プロジェクト名
-	m_TestName					= _T("");	// 名称
-	m_ResinAnalysisMethod		= 0;		// 樹脂面 解析方法
-	m_MetalAnalysisMethod		= 0;		// 金属面 解析方法
-	m_ResultAnalysisMethod		= 0;		// 接合結果 解析方法
-
+	Initialze();
 	m_joinRetioFormat			= _T("%02d_Joining_ratio%03d");
 	m_joinColorFormat			= _T("%02d_Joining_color%03d");
 	m_nClassFormat				= _T("%02d_Number_of_classifications");
@@ -25,6 +19,20 @@ CPropatyIO::CPropatyIO(void)
 /// </summary>
 CPropatyIO::~CPropatyIO(void)
 {
+}
+
+/// <summary>
+/// パラメータの初期化
+/// </summary>
+void CPropatyIO::Initialze(void)
+{
+	m_Version = _T("");
+	m_ParamaterFilePath = _T("");
+	m_ProjectName = _T("");	// プロジェクト名
+	m_TestName = _T("");	// 名称
+	m_ResinAnalysisMethod = 0;		// 樹脂面 解析方法
+	m_MetalAnalysisMethod = 0;		// 金属面 解析方法
+	m_ResultAnalysisMethod = 0;		// 接合結果 解析方法
 }
 
 /// <summary>
@@ -74,7 +82,8 @@ CString CPropatyIO::MakeProjectName(CString TestName, COleDateTime date, int num
 bool CPropatyIO::read(CString path)
 {
 	CConfigrationIO sys(path);
-	m_ProjectName			= sys.getString(_T("Common"),_T("Projent_name"));;					// プロジェクト名
+	m_Version				= sys.getString(_T("Common"), _T("Version"));
+	m_ProjectName			= sys.getString(_T("Common"),_T("Projent_name"));					// プロジェクト名
 	m_TestName				= sys.getString(_T("Common"),_T("Test_name"));						// 名称
 	m_ResinAnalysisMethod	= sys.getInt(_T("ResinSurface"),_T("Analysis_method"));				// 樹脂面 解析方法
 	m_MetalAnalysisMethod	= sys.getInt(_T("MetalSurface"),_T("Analysis_method"));				// 金属面 解析方法
@@ -92,6 +101,11 @@ bool CPropatyIO::save(CString path)
 {
 	bool bResult = true;
 	CConfigrationIO sys(path);
+
+	// バージョン
+	if (!sys.setString(_T("Common"), _T("Version"), m_Version)) {
+		bResult = false;
+	}
 
 	// プロジェクト名
 	if (!sys.setString(_T("Common"),_T("Projent_name"),m_ProjectName)) {
@@ -164,6 +178,26 @@ bool CPropatyIO::save(CString path)
 	}
 
 	return bResult;
+}
+
+/// <summary>
+/// バージョンの取得の取得
+/// </summary>
+/// <returns>バージョンを返す</returns>
+CString CPropatyIO::GetVersion()
+{
+	return m_Version;
+}
+
+/// <summary>
+/// バージョンの設定
+/// </summary>
+/// <param name="version">バージョン</param>
+/// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
+bool CPropatyIO::SetVersion(CString version)
+{
+	m_Version = version;
+	return true;
 }
 
 /// <summary>

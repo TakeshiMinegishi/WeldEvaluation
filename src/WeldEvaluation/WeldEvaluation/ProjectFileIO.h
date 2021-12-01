@@ -17,6 +17,7 @@ public:
 
 private:
 	CString			m_ProjectFilePath;								///< プロジェクトファイルへのパス
+	CString			m_Version;										///< プロパティファイルバージョン
 
 	COleDateTime	m_CreeateDay;									///< 作成日
 	COleDateTime	m_UpdateDay;									///< 更新簿
@@ -71,6 +72,8 @@ public:
 	CProjectFileIO(void);
 	~CProjectFileIO(void);
 
+	CString GetVersion();
+	bool SetVersion(CString version);
 	void Initialze();
 
 	CString GetProjectFilePath();
