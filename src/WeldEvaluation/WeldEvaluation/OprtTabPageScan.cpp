@@ -45,6 +45,10 @@ void COprtTabPageScan::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(COprtTabPageScan, CDialogEx)
 	ON_WM_ACTIVATE()
 	ON_BN_CLICKED(IDC_BTN_SCAN, &COprtTabPageScan::OnBnClickedBtnScan)
+	ON_BN_CLICKED(IDC_BTN_INVERS, &COprtTabPageScan::OnBnClickedBtnInvers)
+	ON_BN_CLICKED(IDC_RDO_REGIN, &COprtTabPageScan::OnBnClickedRdoRegin)
+	ON_BN_CLICKED(IDC_RDO_METAL, &COprtTabPageScan::OnBnClickedRdoMetal)
+	ON_BN_CLICKED(IDC_RSO_RESULT, &COprtTabPageScan::OnBnClickedRsoResult)
 END_MESSAGE_MAP()
 
 
@@ -77,6 +81,9 @@ void COprtTabPageScan::ItemActive(bool bActive)
 	ItemEnable(IDC_RSO_RESULT,bActive);
 	ItemEnable(IDC_BTN_SCAN,bActive);
 	ItemEnable(IDC_BTN_CANCEL,bActive);
+	if (bActive) {
+		UpdateInversBtnState();
+	}
 }
 
 /// <summary>
@@ -134,6 +141,7 @@ void COprtTabPageScan::OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized)
 	}
 	m_ScanTarget = id;
 	UpdateData(false);
+	UpdateInversBtnState();
 }
 
 /// <summary>
@@ -219,4 +227,125 @@ void COprtTabPageScan::OnBnClickedBtnScan()
 /// <param name="rect">フィッティング領域</param>
 void COprtTabPageScan::FitRect(CRect rect)
 {
+}
+
+/// <summary>
+/// 「上下反転」ボタンの状態更新
+/// </summary>
+void COprtTabPageScan::UpdateInversBtnState()
+{
+	UpdateData(true);
+	int ScanID = -1;
+	bool status = false;
+	switch (m_ScanTarget) {
+	case	0:
+		ScanID = CWeldEvaluationDoc::eResinSurface;
+		break;
+	case	1:
+		ScanID = CWeldEvaluationDoc::eMetalSurface;
+		break;
+	case	2:
+		ScanID = CWeldEvaluationDoc::eJoiningResult;
+		break;
+	default:
+		return;
+	}
+	
+	if (ScanID >= 0) {
+		CFormView *pWnd = (CFormView *)GetParent()->GetParent();
+		CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
+		if (pDoc->ExistScanFile(ScanID)) {
+			status = true;
+		}
+	}
+	ItemEnable(IDC_BTN_INVERS, status);
+}
+
+/// <summary>
+/// 「上下反転」ボタン押下時処理
+/// </summary>
+void COprtTabPageScan::OnBnClickedBtnInvers()
+{
+	CWaitCursor wcursol;
+	bool bResult = false;
+	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
+	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
+	bool bDeltedAnalizeData = false;
+	if (pDoc->IsOpen()) {
+
+		int ScanID = -1;
+		UpdateData(true);
+		switch (m_ScanTarget) {
+		case	0:
+			ScanID = CWeldEvaluationDoc::eResinSurface;
+			break;
+		case	1:
+			ScanID = CWeldEvaluationDoc::eMetalSurface;
+			break;
+		case	2:
+			ScanID = CWeldEvaluationDoc::eJoiningResult;
+			break;
+		default:
+			return;
+		}
+		if (ScanID >= 0) {
+			if (pDoc->ExistScanFile(ScanID)) {
+				int result;
+				if (pWnd->SendMessage(WM_INVERS_REQUEST, (WPARAM)ScanID, (LPARAM)&result) == 0) {
+					if (result == 1) {
+						bDeltedAnalizeData = true;
+					}
+					else {
+						bDeltedAnalizeData = false;
+					}
+					bResult = true;
+				}
+			}
+		}
+	}
+
+	CString msg;
+	if (bResult) {
+		if (!bDeltedAnalizeData) {
+			msg.LoadString(IDM_INVERS_SUCCESS);
+			AfxMessageBox(msg, MB_OK | MB_ICONINFORMATION);
+		}
+		else {
+			// 解析データが削除されている
+			CString s1, s2, s3;
+			s1.LoadString(IDM_INVERS_SUCCESS);
+			s2.LoadString(IDM_DELETED_ANALIZEDATA);
+			s3.LoadString(IDM_REANALIZE_REQUEST);
+			msg.Format(_T("%s。\n%s。 %s。"), s1, s2, s3);
+			AfxMessageBox(msg, MB_OK | MB_ICONWARNING);
+		}
+	}
+	else {
+		msg.LoadString(IDM_ERR_INVERS_FAIL);
+		AfxMessageBox(msg, MB_OK | MB_ICONSTOP);
+	}
+}
+
+/// <summary>
+/// 「樹脂面」ラジオボタンボタン押下時処理
+/// </summary>
+void COprtTabPageScan::OnBnClickedRdoRegin()
+{
+	UpdateInversBtnState();
+}
+
+/// <summary>
+/// 「金属面」ラジオボタンボタン押下時処理
+/// </summary>
+void COprtTabPageScan::OnBnClickedRdoMetal()
+{
+	UpdateInversBtnState();
+}
+
+/// <summary>
+/// 「接合結果」ラジオボタンボタン押下時処理
+/// </summary>
+void COprtTabPageScan::OnBnClickedRsoResult()
+{
+	UpdateInversBtnState();
 }

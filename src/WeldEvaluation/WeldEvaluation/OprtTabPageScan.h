@@ -30,9 +30,17 @@ public:
 	int m_ScanTarget;	///< スキャンターゲット
 
 public:
-	void ItemActive(bool bActive);
-	void LoadParamater();
 	afx_msg void OnActivate(UINT nState, CWnd* pWndOther, BOOL bMinimized);
 	afx_msg void OnBnClickedBtnScan();
+	afx_msg void OnBnClickedBtnInvers();
+
+public:
+	void ItemActive(bool bActive);
+	void LoadParamater();
 	void FitRect(CRect rect);
+	void COprtTabPageScan::UpdateInversBtnState();
+
+	afx_msg void OnBnClickedRdoRegin();
+	afx_msg void OnBnClickedRdoMetal();
+	afx_msg void OnBnClickedRsoResult();
 };

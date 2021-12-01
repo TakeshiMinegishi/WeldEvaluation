@@ -11,9 +11,9 @@
 // 名前空間
 using namespace std;
 
-    /// <summary>
-    /// ログ出力用クラス
-    /// </summary>
+/// <summary>
+/// ログ出力用クラス
+/// </summary>
 class  CLog
 {
 public:

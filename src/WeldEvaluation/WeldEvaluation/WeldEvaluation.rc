@@ -262,7 +262,8 @@ BEGIN
     CONTROL         "接合結果",IDC_RSO_RESULT,"Button",BS_AUTORADIOBUTTON,14,62,48,10
     PUSHBUTTON      "キャンセル",IDCANCEL,144,139,58,17,NOT WS_VISIBLE | WS_DISABLED
     PUSHBUTTON      "スキャン",IDC_BTN_SCAN,139,22,50,14
-    PUSHBUTTON      "キャンセル",IDC_BTN_CANCEL,139,42,50,14,NOT WS_VISIBLE | WS_DISABLED
+    PUSHBUTTON      "キャンセル",IDC_BTN_CANCEL,139,54,50,14,NOT WS_VISIBLE | WS_DISABLED
+    PUSHBUTTON      "上下反転",IDC_BTN_INVERS,139,38,50,14
 END
 
 IDD_OPERTAB_PAGE_SETTING DIALOGEX 0, 0, 208, 161
@@ -531,6 +532,11 @@ BEGIN
     0
 END
 
+IDD_OPERTAB_PAGE_SCAN AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
 
 /////////////////////////////////////////////////////////////////////////////
 //
@@ -715,6 +721,9 @@ BEGIN
     IDM_CHANGED_NUMBEROFCLASS "クラス数が更新されています。\n更新を破棄しますか？"
     IDM_DELETE              "削除してよろしいですか？ "
     IDM_DELETE_ACTIVEPROJECT "編集中のデータです。\n削除しますか？"
+    IDM_INVERS_SUCCESS      "データの反転が完了しました"
+    IDM_DELETED_ANALIZEDATA "解析データが削除されました"
+    IDM_REANALIZE_REQUEST   "解析の実施を行ってください"
 END
 
 STRINGTABLE
@@ -727,6 +736,7 @@ STRINGTABLE
 BEGIN
     IDM_ERR_FAIL_REGIST     "修復に失敗完了しました。"
     IDM_ERR_NOTEXIST_ANALIZEDATA "解析対象が存在しません"
+    IDM_ERR_INVERS_FAIL     "データの反転に失敗しました"
 END
 
 STRINGTABLE

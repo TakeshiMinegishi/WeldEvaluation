@@ -104,6 +104,7 @@ private:
 	std::vector<int> CWeldEvaluationDoc::split(std::string& input, char delimiter, int size= 0);
 	void H2RGB(int h, BYTE &r, BYTE &g, BYTE &b);
 	void writeLog(CLog::LOGLEVEL level, CString filePath, long lineNo, CString msg);
+	bool getAnalizeArea(CPoint &tlPos, CSize &size);
 
 
 public:
@@ -237,6 +238,9 @@ public:
 	CString GetTmpFolderName();
 	CString GetTmpFolderPath();
 	bool	DeleteScanImageFilePath(int ScanID);
+	bool	InversScanData(int ScanID);
+	bool	InversAnalizeData(int ScanID);
+	bool	IsInversAnalizeData(int ScanID);
 
 	CString GetWorkProjectFolderName();
 	CString GetWorkProjectFolderPath();
@@ -249,6 +253,7 @@ public:
 	bool PopProject(CString ResistPath, CString ProjentName);
 	void ClrWorkProject();
 
+	void DeleteAnalizeData(int ScanID);
 	void DeleteContents(int ScanID);
 	bool DeleteProject(CString ProjentName);
 

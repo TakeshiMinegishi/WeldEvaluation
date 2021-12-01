@@ -659,6 +659,11 @@ void CGraphWind::Draw(std::vector<std::vector<double>> &data, double offset/*=0.
 	OnPaint();
 }
 
+/// <summary>
+/// テキスト描画
+/// </summary>
+/// <param name="pos">表示位置</param>
+/// <param name="txt">テキスト</param>
 void CGraphWind::DrawTxt(CPoint pos, CString txt)
 {
 	if (!m_bActive) {

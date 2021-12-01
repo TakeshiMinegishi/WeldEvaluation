@@ -55,12 +55,16 @@
 #define IDM_CHANGED_NUMBEROFCLASS       519
 #define IDM_DELETE                      520
 #define IDM_DELETE_ACTIVEPROJECT        521
+#define IDM_INVERS_SUCCESS              522
+#define IDM_DELETED_ANALIZEDATA         523
+#define IDM_REANALIZE_REQUEST           524
 #define IDM_ERR_NOTOPEN_REGTEST         700
 #define IDM_ERR_SCAN                    701
 #define IDM_ERR_PROJECT_SAVE            702
 #define IDM_ERR_NOT_ANALYZE             703
 #define IDM_ERR_FAIL_REGIST             704
 #define IDM_ERR_NOTEXIST_ANALIZEDATA    705
+#define IDM_ERR_INVERS_FAIL             706
 #define IDF_JOININGRETIO                900
 #define IDF_JOININGCOLOR                901
 #define IDC_BTN_NEWPRJ                  1000
@@ -144,6 +148,7 @@
 #define IDC_STC_IDCOLOR                 1080
 #define IDC_STC_MESSAGE                 1081
 #define IDC_MSG_FEILD                   1082
+#define IDC_BTN_INVERS                  1083
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_PROJECT_DELETE               32773
@@ -155,9 +160,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        330
+#define _APS_NEXT_RESOURCE_VALUE        331
 #define _APS_NEXT_COMMAND_VALUE         32777
-#define _APS_NEXT_CONTROL_VALUE         1083
+#define _APS_NEXT_CONTROL_VALUE         1084
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

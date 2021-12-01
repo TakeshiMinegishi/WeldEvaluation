@@ -58,7 +58,6 @@ bool CScanDataIO::open(CString pathName, bool bReload/*=false*/ )
 	m_o_p_cube = new CubeFloat();
 	HSI_RETURN result = commonLoadCube(m_o_p_cube, pathName);
 	if (result != HSI_OK) {
-#if 1
 		m_localData = true;
 		CStdioFile tfd;
 		// headerデータ出力
@@ -150,11 +149,6 @@ bool CScanDataIO::open(CString pathName, bool bReload/*=false*/ )
 			}
 			m_o_p_cube->ppp_data = ppp_data;
 		}
-#else
-		errorLog(CString(__FILE__), __LINE__, _T("commonLoadCube()"), result);
-		close();
-		return false;
-#endif
 	}
 	m_pathName = pathName;
 	return true;
@@ -169,7 +163,7 @@ void CScanDataIO::close()
 		m_pathName = _T("");
 		if (m_localData) {
 			int band = m_o_p_cube->format.nr_bands;
-			int widht = m_o_p_cube->format.width;
+//			int widht = m_o_p_cube->format.width;
 			int height = m_o_p_cube->format.height;
 			for (int b = 0; b < band; b++) {
 				for (int h = 0; h < height; h++) {
@@ -281,55 +275,22 @@ bool CScanDataIO::LoadImage(int &height, int &width, int &bands, CImage &img)
 	int band[3];
 	getRGBBandSpectrum(band[0], band[1], band[2]);
 
-	float dnormalizer = (float)255.0;
-
-#if false
-	HANDLE *hThreads = new HANDLE[3];
-	Normalizer norm[3]{
-		{m_o_p_cube,band[0],height,width,0.0,0.0},
-		{m_o_p_cube,band[1],height,width,0.0,0.0},
-		{m_o_p_cube,band[2],height,width,0.0,0.0}
-	};
-
-	for (int i = 0; i < 3; i++)
-	{
-		hThreads[i] = (HANDLE)_beginthread(
-			&CScanDataIO::executeNomalizerLauncher,	// ランチャを起動
-			0,
-			&norm[i]);
-	}
-
-	WaitForMultipleObjects(
-		3, //スレッド数
-		hThreads, //スレッドハンドルの配列
-		TRUE, //待機オプション
-		INFINITE);//タイムアウト時間
-
-	if (hThreads) {
-		delete hThreads;
-		hThreads = nullptr;
-	}
-	for (int i = 0; i < 3; i++) {
-		noemal[i] = norm[i].m_normalizer;
-		offset[i] = norm[i].m_offset;
-	}
-#endif
+	// イメージの横サイズバウンダリ調整
 	int imageWidth = width;
 	if ((imageWidth % 8) != 0) {
 		imageWidth = (int)(imageWidth / 8) * 8 + 8;
 	}
+
 	bool bResult = true;
 	BITMAPINFOHEADER    bmInfohdr;
 	int Bpp = 3;
 	// Create the header info
 	bmInfohdr.biSize = sizeof(BITMAPINFOHEADER);
 	bmInfohdr.biWidth = imageWidth;
-//	bmInfohdr.biWidth = width;
 	bmInfohdr.biHeight = -height;
 	bmInfohdr.biPlanes = 1;
 	bmInfohdr.biBitCount = (WORD)(Bpp * 8);
 	bmInfohdr.biCompression = BI_RGB;
-//	bmInfohdr.biSizeImage = width * height * Bpp;
 	bmInfohdr.biSizeImage = imageWidth * height * Bpp;
 	bmInfohdr.biXPelsPerMeter = 0;
 	bmInfohdr.biYPelsPerMeter = 0;
@@ -343,8 +304,7 @@ bool CScanDataIO::LoadImage(int &height, int &width, int &bands, CImage &img)
 	unsigned char * p24Img = new unsigned char[bmInfohdr.biSizeImage*8];
 	unsigned char * ptr = p24Img;
 
-
-	float fval;
+	float dnormalizer = (float)255.0;
 	unsigned char r, g, b;
 	for (int row = 0; row < height; row++) {
 		ptr = p24Img + (row * imageWidth) * Bpp;
@@ -376,23 +336,25 @@ bool CScanDataIO::LoadImage(int &height, int &width, int &bands, CImage &img)
 	}
 
 	if (img.Create(imageWidth, height, 8 * Bpp, NULL)) {
-//	if (img.Create(width, height, 8 * Bpp, NULL)) {
 		HDC dc = img.GetDC();
-//		int ret = SetDIBitsToDevice(dc, 0, 0, width, height, 0, 0, 0, height, p24Img, &bmInfo, DIB_RGB_COLORS);
 		int ret = SetDIBitsToDevice(dc, 0, 0, imageWidth, height, 0, 0, 0, height, p24Img, &bmInfo, DIB_RGB_COLORS);
 		if(ret == 0) {
 			DWORD err = GetLastError();
 			LPVOID lpMsgBuf;
 			FormatMessage(
-				FORMAT_MESSAGE_ALLOCATE_BUFFER  //      テキストのメモリ割り当てを要求する
-				| FORMAT_MESSAGE_FROM_SYSTEM    //      エラーメッセージはWindowsが用意しているものを使用
-				| FORMAT_MESSAGE_IGNORE_INSERTS,//      次の引数を無視してエラーコードに対するエラーメッセージを作成する
-				NULL, err, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),//   言語を指定
-				(LPTSTR)&lpMsgBuf,                          //      メッセージテキストが保存されるバッファへのポインタ
+				FORMAT_MESSAGE_ALLOCATE_BUFFER							// テキストのメモリ割り当てを要求する
+				| FORMAT_MESSAGE_FROM_SYSTEM							// エラーメッセージはWindowsが用意しているものを使用
+				| FORMAT_MESSAGE_IGNORE_INSERTS,						// 次の引数を無視してエラーコードに対するエラーメッセージを作成する
+				NULL, err, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),	// 言語を指定
+				(LPTSTR)&lpMsgBuf,										// メッセージテキストが保存されるバッファへのポインタ
 				0,
 				NULL);
-//			AfxMessageBox((LPCTSTR)lpMsgBuf, MB_OK | MB_ICONINFORMATION);
+			//				AfxMessageBox((LPCTSTR)lpMsgBuf, MB_OK | MB_ICONINFORMATION);
 			LocalFree(lpMsgBuf);
+
+			CString msg;
+			msg.Format(_T("画像の作成に失敗しました。:%s"), static_cast<LPCWSTR>(lpMsgBuf));
+			writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 			bResult = false;
 		}
 		img.ReleaseDC();
@@ -526,6 +488,86 @@ double CScanDataIO::getWaveLength(int index)
 	}
 	return m_o_p_cube->format.band_names[index];
 }
+
+/// <summary>
+/// スキャンデータの上下反転
+/// </summary>
+/// <returns>成功の場合はtrue、失敗の場合はfalseを返す</returns>
+bool CScanDataIO::InversData()
+{
+	if (m_o_p_cube == nullptr) {
+		return false;
+	}
+
+	int height = m_o_p_cube->format.height;
+	int width = m_o_p_cube->format.width;
+	int band = m_o_p_cube->format.nr_bands;
+	int hheight = height / 2;
+	float  *buff = new float[width];
+
+	for (int h = 0; h < hheight; h++) {
+		for (int b = 0; b < band; b++) {
+			memcpy(buff, m_o_p_cube->ppp_data[b][h], sizeof(float)*width);
+			memcpy(m_o_p_cube->ppp_data[b][h], m_o_p_cube->ppp_data[b][height-1-h], sizeof(float)*width);
+			memcpy(m_o_p_cube->ppp_data[b][height - 1 - h], buff, sizeof(float)*width);
+		}
+	}
+	if (buff) {
+		delete[] buff;
+	}
+	return true;
+}
+
+/// <summary>
+/// RAWデータの保存
+/// </summary>
+/// <param name="pathName">パス名</param>
+/// <returns>成功の場合はtrue、失敗の場合はfalseを返す</returns>
+bool CScanDataIO::saveRawData(CString pathName)
+{
+	if (m_o_p_cube == nullptr) {
+		return false;
+	}
+
+	bool bResult = false;
+	CFile fd;
+	if (fd.Open(pathName, CFile::modeWrite | CFile::modeCreate | CFile::typeBinary)) {
+		for (int b = 0; b < m_o_p_cube->format.nr_bands; b++) {
+			for (int h = 0; h < m_o_p_cube->format.height; h++) {
+				fd.Write(m_o_p_cube->ppp_data[b][h], sizeof(float)*m_o_p_cube->format.width);
+			}
+		}
+		fd.Close();
+		bResult = true;
+	}
+	return bResult;
+}
+
+/// <summary>
+/// RAWデータの読み込み
+/// </summary>
+/// <param name="pathName">パス名</param>
+/// <returns>成功の場合はtrue、失敗の場合はfalseを返す</returns>
+bool CScanDataIO::readRawData(CString pathName)
+{
+	if (m_o_p_cube == nullptr) {
+		return false;
+	}
+
+	bool bResult = false;
+	CFile fd;
+	if (fd.Open(pathName, CFile::modeRead | CFile::typeBinary)) {
+		for (int b = 0; b < m_o_p_cube->format.nr_bands; b++) {
+			for (int h = 0; h < m_o_p_cube->format.height; h++) {
+				fd.Read(m_o_p_cube->ppp_data[b][h], sizeof(float)*m_o_p_cube->format.width);
+			}
+		}
+		fd.Close();
+		bResult = true;
+	}
+	return bResult;
+}
+
 
 #if 0	// 削除するコード
 typedef struct {
@@ -1286,7 +1328,6 @@ bool CScanDataIO::GetHeaderFilePrm(CString pathName, int &width, int &height)
 	if (tfd.Open(pathName, CFile::modeRead | CFile::typeText)) {
 		CString buf;
 		CString key, val;
-		int byteoder, datatype;
 		while (tfd.ReadString(buf)) {
 			int id = buf.FindOneOf(_T("="));
 			if (id == -1) {
@@ -1692,4 +1733,5 @@ void CScanDataIO::ProjectionInvPos(int DstX, int DstY, double prm[], double &Src
 	SrcY = ((prm[5] - DstY) / (prm[6] * DstY - prm[3]) - (prm[2] - DstX) / (prm[6] * DstX - prm[0]))
 			/ ((prm[1] - prm[7] * DstX) / (prm[6] * DstX - prm[0]) - (prm[4] - prm[7] * DstY) / (prm[6] * DstY - prm[3]));
 }
+
 

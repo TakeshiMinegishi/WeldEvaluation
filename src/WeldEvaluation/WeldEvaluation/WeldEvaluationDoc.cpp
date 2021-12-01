@@ -93,7 +93,7 @@ void CWeldEvaluationDoc::SetVisible(bool bVisible)
 /// <summary>
 /// 新規プロジェクト作成
 /// </summary>
-/// <returns>成功した場合はTRUE、失敗した場合はFALSE以外を返す</returns>
+/// <returns>成功した場合はTRUE、失敗した場合はFALSEを返す</returns>
 BOOL CWeldEvaluationDoc::OnNewDocument()
 {
 	if (IsWorkProjectUpdated()) {
@@ -117,10 +117,17 @@ BOOL CWeldEvaluationDoc::OnNewDocument()
 		}
 	}
 
-	if (!CDocument::OnNewDocument())
+	if (!CDocument::OnNewDocument()) {
+		CString msg;
+		msg.Format(_T("新規プロジェクトの作成に失敗しました。"));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return FALSE;
+	}
 
 	if (!NewProject()) {
+		CString msg;
+		msg.Format(_T("新規プロジェクトの作成に失敗しました。"));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return FALSE;
 	}
 	return TRUE;
@@ -247,6 +254,9 @@ CString CWeldEvaluationDoc::GetProjectName()
 bool CWeldEvaluationDoc::SetProjectName(CString projectname)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
+		CString msg;
+		msg.Format(_T("プロジェクト名の設定の設定に失敗しました。"));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	} else {
 		return m_PropatyIO.SetProjectName(projectname);
@@ -315,6 +325,9 @@ UINT CWeldEvaluationDoc::GetVerticalResolution(void)
 bool CWeldEvaluationDoc::SetVerticalResolution(UINT VerticalResolution)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
+		CString msg;
+		msg.Format(_T("縦方向の解像度の設定に失敗しました。"));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	}
 	else {
@@ -350,6 +363,9 @@ UINT CWeldEvaluationDoc::GetHorizontalResolution(void)
 bool CWeldEvaluationDoc::SetHorizontalResolution(UINT HorizontalResolution)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
+		CString msg;
+		msg.Format(_T("横方向の解像度の設定に失敗しました。"));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	}
 	else {
@@ -386,6 +402,9 @@ UINT CWeldEvaluationDoc::NumberOfOverridePixel(void)
 bool CWeldEvaluationDoc::SetOverridePixelNumber(UINT num)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
+		CString msg;
+		msg.Format(_T("重なりピクセル数の設定に失敗しました。"));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	}
 	else {
@@ -484,6 +503,9 @@ UINT CWeldEvaluationDoc::ResinGetNumberOfClass(int method)
 bool CWeldEvaluationDoc::ResinSetNumberOfClass(int method, UINT nClass)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
+		CString msg;
+		msg.Format(_T("樹脂面の分類数の設定に失敗しました。(method=%d, nClass=%d, retio=%lf)"), method, nClass);
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	} else {
 		return m_PropatyIO.ResinSetNumberOfClass(method,nClass);
@@ -521,6 +543,9 @@ double CWeldEvaluationDoc::ResinGetJointRetio(int method, int ViewJointRatioNo)
 bool CWeldEvaluationDoc::ResinSetJointRetio(int method, int ViewJointRatioNo, double retio)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
+		CString msg;
+		msg.Format(_T("樹脂面の接合割合の設定に失敗しました。(method=%d, no=%d, retio=%lf)"), method, ViewJointRatioNo, retio);
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	} else {
 		return m_PropatyIO.ResinSetJointRetio(method,ViewJointRatioNo, retio);
@@ -552,6 +577,9 @@ COLORREF CWeldEvaluationDoc::ResinGetJointColor(int method, int ViewJointRatioNo
 bool CWeldEvaluationDoc::ResinSetJointColor(int method, int ViewJointRatioNo, COLORREF color)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
+		CString msg;
+		msg.Format(_T("樹脂面の接合色の設定に失敗しました。(method=%d, no=%d, color=%ld)"), method, ViewJointRatioNo, color);
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	}
 	else {
@@ -582,6 +610,9 @@ int CWeldEvaluationDoc::ResinGetAnalysisMethod()
 bool CWeldEvaluationDoc::ResinSetAnalysisMethod(int method)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
+		CString msg;
+		msg.Format(_T("樹脂面の解析方法の設定に失敗しました。(method=%d)"), method);
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	} else {
 		return m_PropatyIO.ResinSetAnalysisMethod(method);
@@ -617,6 +648,9 @@ UINT CWeldEvaluationDoc::MetalGetNumberOfClass(int method)
 bool CWeldEvaluationDoc::MetalSetNumberOfClass(int method, UINT nClass)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
+		CString msg;
+		msg.Format(_T("金属面の分類数の設定に失敗しました。(method=%d, nClass=%d, retio=%lf)"), method, nClass);
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	} else {
 		return m_PropatyIO.MetalSetNumberOfClass(method, nClass);
@@ -760,7 +794,7 @@ bool CWeldEvaluationDoc::ResultSetNumberOfClass(int method, UINT nClass)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
 		CString msg;
-		msg.Format(_T("接合結果の分類数の設定に失敗しました。(nCladd=%d)"), nClass);
+		msg.Format(_T("接合結果の分類数の設定に失敗しました。(method=%d, nClass=%d, retio=%lf)"), method, nClass);
 		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	} else {
@@ -1415,6 +1449,9 @@ bool CWeldEvaluationDoc::GetWindRect(CRect &rect)
 	rect.bottom = top + hight;
 	rect.right = left + width;
 	if ((width <= 0) || (hight <= 0) || (top < 0) || (left < 0)) {
+		CString msg;
+		msg.Format(_T("メインウインドの位置とサイズの取得に失敗しました。(pos=(%d,%d) width=%d height=%d"), left, top, width, hight);
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	} else {
 		return true;
@@ -1455,6 +1492,9 @@ bool CWeldEvaluationDoc::GetSpectralDlgRect(CRect &rect)
 	rect.bottom = top + hight;
 	rect.right = left + width;
 	if ((width <= 0) || (hight <= 0) || (top < 0) || (left < 0)) {
+		CString msg;
+		msg.Format(_T("区間スペクトルダイアログの位置とサイズの取得に失敗しました。(pos=(%d,%d) width=%d height=%d"), left, top, width, hight);
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	}
 	else {
@@ -1611,6 +1651,9 @@ int CWeldEvaluationDoc::GetShootingHeight()
 UINT CWeldEvaluationDoc::NumberOfBand(void)
 {
 	if (!CFileUtil::fileExists(m_SystemFilePathName)) {
+		CString msg;
+		msg.Format(_T("バンド数の取得に失敗しました。"));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return 0;
 	}
 	CConfigrationIO sys(m_SystemFilePathName);
@@ -1625,6 +1668,9 @@ UINT CWeldEvaluationDoc::NumberOfBand(void)
 bool CWeldEvaluationDoc::SetNumberOfBand(UINT band)
 {
 	if (!CFileUtil::fileExists(m_SystemFilePathName)) {
+		CString msg;
+		msg.Format(_T("バンド数の設定に失敗しました。(バンド数=%d)"),band);
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	}
 	CConfigrationIO sys(m_SystemFilePathName);
@@ -2119,54 +2165,13 @@ bool CWeldEvaluationDoc::SaveProject()
 	}
 
 	COleDateTime date = COleDateTime::GetCurrentTime();
-#if 1
+
 	CString rootPath = GetWorkProjectFolderPath();
 	CString NewProject = GetWorkProjectStatus(rootPath, _T("NewProject"));
 	if (NewProject.CollateNoCase(_T("TRUE")) == 0) {
 		m_ProjectIO.SetCreateDay(date);
 	}
 	m_ActiveRegisttedTestName = TestName;
-
-#else
-	CString prjName = m_PropatyIO.GetProjectName();
-	CString ProjectFileName;
-	CString folder = GetRegistedFolder();
-	if (prjName.IsEmpty() || (m_OpenType == 2)) {
-		// 新規
-		prjName = TestName;
-		CString PathName = CFileUtil::FilePathCombine(folder, prjName);
-		if (CFileUtil::fileExists(PathName)) {
-			CString msg;
-			msg.LoadString(IDM_PRJREGIST_OVERWRITE);
-			if (AfxMessageBox(msg, MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON1) == IDNO) {
-				return true;
-			}
-		}
-		else {
-#if 0
-			if (!CreateDirectory(PathName, NULL)) {
-				return false;
-			}
-#endif
-		}
-		m_ActiveRegisttedTestName = prjName;
-//		m_ActiveRegisttedTestFolder = PathName;
-		m_ProjectIO.SetCreateDay(date);
-	}
-	else {
-		CString PathName = CFileUtil::FilePathCombine(folder, prjName);
-		if (!CFileUtil::fileExists(PathName)) {
-			if (!CreateDirectory(PathName, NULL)) {
-				return false;
-			}
-			m_ActiveRegisttedTestName = prjName;
-			m_ActiveRegisttedTestFolder = PathName;
-			m_ProjectIO.SetCreateDay(date);
-		}
-	}
-	ProjectFileName.Format(_T("%s.prj"), (LPCWSTR)prjName);
-	m_PropatyIO.SetProjectName(prjName);
-#endif
 
 	CString projectFileName;
 	projectFileName.LoadString(IDS_PROJECTFILENAME);
@@ -2195,16 +2200,6 @@ bool CWeldEvaluationDoc::SaveProject()
 		bool bResult = true;
 		CPropatyIO pf;
 		pf.SetParamaterFilePath(tmpParamFilePath);
-#if 0
-		uval = pf.NumberOfOverridePixel();
-		if (!m_PropatyIO.SetOverridePixelNumber(uval)) {
-			bResult = false;
-		}
-		dval = pf.GetIntegrationTimeMs();
-		if (!m_PropatyIO.SetIntegrationTimeMs(dval)) {
-			bResult = false;
-		}
-#endif
 		uval = pf.GetHorizontalResolution();
 		if (!m_PropatyIO.SetHorizontalResolution(uval)) {
 			CString msg;
@@ -2275,18 +2270,8 @@ bool CWeldEvaluationDoc::SaveProject()
 		}
 	}
 
-#if 0
-	CString path;
-	CString ImageRootPath = m_ProjectIO.GetImageDataRootPath();
-	if (ImageRootPath == _T("")) {
-		if (!m_ProjectIO.SetImageDataRootPath(m_ActiveRegisttedTestFolder)) {
-		}
-		ImageRootPath = m_ProjectIO.GetImageDataRootPath();
-	}
-#else
 	CString path;
 	CString ImageRootPath = m_ActiveRegisttedTestFolder;
-#endif
 
 	m_ProjectIO.SetUpdateDay(date);
 	CString filename;
@@ -2378,8 +2363,6 @@ bool CWeldEvaluationDoc::SaveProject()
 		}
 	}
 
-
-////////////////////////////
 //	m_ProjectFilePaht = CFileUtil::FilePathCombine(m_ActiveRegisttedTestFolder,ProjectFileName);
 	m_ProjectIO.SetProjectFilePath(m_ProjectFilePaht);
 	if (!m_ProjectIO.Save(false)) {
@@ -2485,34 +2468,13 @@ bool CWeldEvaluationDoc::getResultFile(CString path, vector<int>& data)
 	}
 	
 	data.clear();
-#if 0
-	int h = m_PropatyIO.GetHorizontalResolution();
-	int v = m_PropatyIO.GetVerticalResolution();
-#else
 	int h, v;
 	GetScanDataSize(h, v);
-#endif
 	data.resize(h*v);
 
 	string line;
 	int id = 0;
 	while (getline(ifs, line)) {
-#if 0
-		vector<int> strvec = split(line, ',',h);
-		for (int i=0; i<strvec.size();i++){
-			data[id++] = strvec[i];
-			if (pView) {
-				UINT readPos = (UINT)ifs.tellg();
-				pView->SendMessage(WM_READ_RESULT_STATUS,READ_RESULT_READ,readPos);
-			}
-			if (m_CalcResultStopRequest) {	// 処理停止リクエスト
-				if (pView) {
-					pView->SendMessage(WM_READ_RESULT_STATUS,READ_RESULT_END,NULL);
-				}
-				return false;
-			}
-		}
-#else
 		if (split(line, ',', id, data)) {
 			if (pView) {
 				UINT readPos = (UINT)ifs.tellg();
@@ -2529,7 +2491,6 @@ bool CWeldEvaluationDoc::getResultFile(CString path, vector<int>& data)
 		else {
 			return false;
 		}
-#endif
 	}
 	if (pView) {
 		pView->SendMessage(WM_READ_RESULT_STATUS,READ_RESULT_END,NULL);
@@ -2663,7 +2624,6 @@ bool CWeldEvaluationDoc::SaveScanImage(int ScanID)
 		}
 		return false;
 	}
-
 	return true;
 }
 
@@ -2742,12 +2702,6 @@ bool CWeldEvaluationDoc::SaveClassificationResultFile(int ScanID, int method)
 		if (method == AnalizeTypeKMeans)
 		{
 			fileName = _T("ResinDendrogramClassification.csv");
-			////////////////////////////////////////////////////////////////////
-			//
-			// 保存処理を行う
-			// 保存に成功したらプロジェクトへ登録
-			//
-			////////////////////////////////////////////////////////////////////
 			if (!m_ProjectIO.SetResinDendrogramClassFile(fileName)) {
 				CString msg;
 				msg.Format(_T("樹脂面階層クラスタリング分類結果ファイル名の設定に失敗しました。(%s)"), static_cast<LPCWSTR>(fileName));
@@ -2758,12 +2712,6 @@ bool CWeldEvaluationDoc::SaveClassificationResultFile(int ScanID, int method)
 		else if (method == AnalizeTypeHiClustering)
 		{
 			fileName = _T("ResinkmeansClassification.csv");
-			////////////////////////////////////////////////////////////////////
-			//
-			// 保存処理を行う
-			// 保存に成功したらプロジェクトへ登録
-			//
-			////////////////////////////////////////////////////////////////////
 			if (!m_ProjectIO.SetResinKmeansClassFile(fileName)) {
 				CString msg;
 				msg.Format(_T("樹脂面k-means分類結果ファイル名の設定に失敗しました。(%s)"), static_cast<LPCWSTR>(fileName));
@@ -2776,12 +2724,6 @@ bool CWeldEvaluationDoc::SaveClassificationResultFile(int ScanID, int method)
 		if (method == AnalizeTypeKMeans)
 		{
 			fileName = _T("MetalDendrogramClassification.csv");
-			////////////////////////////////////////////////////////////////////
-			//
-			// 保存処理を行う
-			// 保存に成功したらプロジェクトへ登録
-			//
-			////////////////////////////////////////////////////////////////////
 			if (!m_ProjectIO.SetMetalDendrogramClassFile(fileName)) {
 				CString msg;
 				msg.Format(_T("金属面階層クラスタリング分類結果ファイル名の設定に失敗しました。(%s)"), static_cast<LPCWSTR>(fileName));
@@ -2791,12 +2733,6 @@ bool CWeldEvaluationDoc::SaveClassificationResultFile(int ScanID, int method)
 		}
 		else if (method == AnalizeTypeHiClustering) {
 			fileName = _T("MetalkmeansClassification.csv");
-			////////////////////////////////////////////////////////////////////
-			//
-			// 保存処理を行う
-			// 保存に成功したらプロジェクトへ登録
-			//
-			////////////////////////////////////////////////////////////////////
 			if (!m_ProjectIO.SetMetalKmeansClassFile(fileName)) {
 				CString msg;
 				msg.Format(_T("金属面k-means分類結果ファイル名の設定に失敗しました。(%s)"), static_cast<LPCWSTR>(fileName));
@@ -2809,12 +2745,6 @@ bool CWeldEvaluationDoc::SaveClassificationResultFile(int ScanID, int method)
 		if (method == AnalizeTypeKMeans)
 		{
 			fileName = _T("ResultDendrogramClassification.csv");
-			////////////////////////////////////////////////////////////////////
-			//
-			// 保存処理を行う
-			// 保存に成功したらプロジェクトへ登録
-			//
-			////////////////////////////////////////////////////////////////////
 			if (!m_ProjectIO.SetResultDendrogramClassFile(fileName)) {
 				CString msg;
 				msg.Format(_T("接合結果階層クラスタリングフ分類ァイル名の設定に失敗しました。(%s)"), static_cast<LPCWSTR>(fileName));
@@ -2824,12 +2754,6 @@ bool CWeldEvaluationDoc::SaveClassificationResultFile(int ScanID, int method)
 		}
 		else if (method == AnalizeTypeHiClustering) {
 			fileName = _T("ResultkmeansClassification.csv");
-			////////////////////////////////////////////////////////////////////
-			//
-			// 保存処理を行う
-			// 保存に成功したらプロジェクトへ登録
-			//
-			////////////////////////////////////////////////////////////////////
 			if (!m_ProjectIO.SetResultKmeansClassFile(fileName)) {
 				CString msg;
 				msg.Format(_T("接合結果k-meansファイル名の設定に失敗しました。(%s)"), static_cast<LPCWSTR>(fileName));
@@ -2927,6 +2851,45 @@ bool CWeldEvaluationDoc::CalcJoJointRetio(vector<int> data, int nClass, vector<d
 	return true;
 }
 
+bool CWeldEvaluationDoc::getAnalizeArea(CPoint &tlPos, CSize &size)
+{
+	CConfigrationIO sys(m_SystemFilePathName);
+	int AnalysisAreaTLPointX = sys.getInt(_T("System"), _T("AnalysisAreaTLPointX"));
+	int AnalysisAreaTLPointY = sys.getInt(_T("System"), _T("AnalysisAreaTLPointY"));
+	int AnalysisAreaWidth = sys.getInt(_T("System"), _T("AnalysisAreaWidth"));
+	int AnalysisAreaHeight = sys.getInt(_T("System"), _T("AnalysisAreaHeight"));
+	int dataw, datah;
+	m_ProjectIO.GetScanDataSize(dataw, datah);
+	if ((dataw == 0) || (datah == 0)) {
+		CString msg;
+		msg.Format(_T("結合されたスキャンデータのサイズが正しくありません。Width=%d Height=%d"), dataw, datah);
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
+		return false;
+	}
+
+	if ((AnalysisAreaWidth <= 0) || (AnalysisAreaHeight <= 0)) {
+		AnalysisAreaTLPointX = 0;
+		AnalysisAreaTLPointY = 0;
+		AnalysisAreaWidth = dataw;
+		AnalysisAreaHeight = datah;
+		CString msg;
+		msg.Format(_T("解析エリアの値が正しくありません。解析エリアを全領域に設定します"));
+		writeLog(CLog::Warning, CString(__FILE__), __LINE__, msg);
+	}
+	if ((AnalysisAreaTLPointX + AnalysisAreaWidth) > dataw) {
+		AnalysisAreaWidth = dataw - AnalysisAreaTLPointX;
+	}
+	if ((AnalysisAreaTLPointY + AnalysisAreaHeight) > datah) {
+		AnalysisAreaHeight = datah - AnalysisAreaTLPointY;
+	}
+
+	tlPos.x = AnalysisAreaTLPointX;
+	tlPos.y = AnalysisAreaTLPointY;
+	size.cx = AnalysisAreaWidth;
+	size.cy = AnalysisAreaHeight;
+	return true;
+}
+
 /// <summary>
 /// 解析の実施
 /// </summary>
@@ -3009,6 +2972,7 @@ bool CWeldEvaluationDoc::Analize(int ScanID, int AnalysisMethodID)
 	}
 
 	// 解析エリアの取得
+#if 0
 	int AnalysisAreaTLPointX = sys.getInt(_T("System"), _T("AnalysisAreaTLPointX"));
 	int AnalysisAreaTLPointY = sys.getInt(_T("System"), _T("AnalysisAreaTLPointY"));
 	int AnalysisAreaWidth = sys.getInt(_T("System"), _T("AnalysisAreaWidth"));
@@ -3043,11 +3007,31 @@ bool CWeldEvaluationDoc::Analize(int ScanID, int AnalysisMethodID)
 		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	}
+#else
+	CPoint AnalizetlPos;
+	CSize AnalizeSze;
+	if (!getAnalizeArea(AnalizetlPos, AnalizeSze)) {
+		CString msg;
+		msg.Format(_T("解析エリアの値が正しくありません"));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
+		return false;
+	}
+	if ((AnalizeSze.cx < (int)m_PropatyIO.NumberOfOverridePixel()) || (AnalizeSze.cy <= 0)) {
+		CString msg;
+		msg.Format(_T("解析エリアの値が正しくありません。Stert Point(%d, %d) Width=%d Height=%d"), AnalizetlPos.x, AnalizetlPos.y, AnalizeSze.cx, AnalizeSze.cy);
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
+		return false;
+	}
+#endif
 
 	////////////////////////////////////////////////////////////////////
 	// 解析の実施
 	if (CFileUtil::fileExists(execpath)) {
+#if 0
 		prm.Format(_T("%s %s %d %d %d %d %d"), (LPCTSTR)ScanDataFilePath, (LPCTSTR)ClassificationDataFilePath, nClass, AnalysisAreaTLPointX, AnalysisAreaTLPointY, AnalysisAreaWidth, AnalysisAreaHeight);
+#else
+		prm.Format(_T("%s %s %d %d %d %d %d"), (LPCTSTR)ScanDataFilePath, (LPCTSTR)ClassificationDataFilePath, nClass, AnalizetlPos.x, AnalizetlPos.y, AnalizeSze.cx, AnalizeSze.cy);
+#endif
 		CString cmd;
 		cmd.Format(_T("%s %s"), (LPCTSTR)execpath, (LPCTSTR)prm);
 		TCHAR pszText[1049], pszMpath[1049];
@@ -3221,7 +3205,7 @@ bool CWeldEvaluationDoc::LoadScanImage(int ScanID, CImage &img, bool renew/* = f
 	}
 
 	imagefile = getScanImageFilePath(ScanID);
-	if (!CFileUtil::fileExists(imagefile)) {
+	if ((renew) || (!CFileUtil::fileExists(imagefile))) {
 		CScanDataIO *pSdio = nullptr;
 
 		int width, height, nBand;
@@ -3280,6 +3264,184 @@ bool CWeldEvaluationDoc::DeleteScanImageFilePath(int ScanID)
 		return CFileUtil::fileDelete(scanImageFile);
 	}
 	return true;
+}
+
+/// <summary>
+/// スキャンデータの上下反転
+/// </summary>
+/// <param name="ScanID">対象スキャンID</param>
+/// <returns>成功の場合はtrue、失敗の場合はfalseを返す</returns>
+bool CWeldEvaluationDoc::InversScanData(int ScanID)
+{
+	CScanDataIO *pSdio = nullptr;
+	switch (ScanID) {
+	case	eResinSurface:	///< 樹脂
+		pSdio = &m_ResinScanData;
+		break;
+	case	eMetalSurface:	///< 金属
+		pSdio = &m_MetalScanData;
+		break;
+	case	eJoiningResult:	///< 接合結果
+		pSdio = &m_ResultScanData;
+		break;
+	default:
+		return false;
+	}
+
+	bool bResult = true;
+	CString pathName = getScanDataPath(ScanID);
+	CString fPathName = pathName + _T(".raw");
+	if (pSdio->InversData()) {
+		CString tmp = fPathName + _T(".tmp");
+		bResult = pSdio->saveRawData(tmp);
+		if (bResult) {
+			CString bak = fPathName + _T(".bak");
+			CFileUtil::fileDelete(bak);
+			CFile::Rename(fPathName, bak);
+			CFile::Rename(tmp, fPathName);
+			CFileUtil::fileDelete(bak);
+		}
+	}
+	else {
+		bResult = false;
+		if (!pSdio->readRawData(fPathName)) {
+		}
+	}
+	return bResult;
+}
+
+/// <summary>
+/// 解析データの上下反転
+/// </summary>
+/// <param name="ScanID">対象スキャンID</param>
+/// <returns>成功の場合はtrue、失敗の場合はfalseを返す</returns>
+bool CWeldEvaluationDoc::InversAnalizeData(int ScanID)
+{
+	CString ScanDataFilePath, ClassificationDataFilePath, imgPaht;
+	ScanDataFilePath = getScanDataFilePath(ScanID);
+	if (!CFileUtil::fileExists(ScanDataFilePath)) {
+		return true;
+	}
+
+	int method[] = { AnalizeTypeKMeans ,AnalizeTypeHiClustering };
+
+	CStdioFile tfd;
+	bool bResult = true;
+	CString buf;
+	vector<CString> lines;
+	int width, height;
+	GetScanDataSize(width, height);
+	lines.resize(height);
+	for (int metodID = 0; metodID < 2; metodID++) {
+		ClassificationDataFilePath = getClassificationDataFilePath(ScanID, method[metodID]);
+		if (!CFileUtil::fileExists(ClassificationDataFilePath)) {
+			continue;
+		}
+
+		if (tfd.Open(ClassificationDataFilePath, CFile::modeReadWrite | CFile::typeText)) {
+			CString key, val;
+			int i = height-1;
+			bool bOverflow = false;
+			lines.clear();
+			lines.resize(height);
+			while (tfd.ReadString(buf)) {
+				if (i < 0) {
+					bOverflow = true;
+					bResult = false;
+					break;
+				}
+				lines[i] = buf;
+				i--;
+			}
+			if (!bOverflow) {
+				tfd.SeekToBegin();
+				for (i = 0; i < height; i++) {
+					tfd.WriteString(lines[i]+_T("\n"));
+				}
+				tfd.Close();
+
+				imgPaht = ClassificationDataFilePath + _T(".bmp");
+				if (CFileUtil::fileExists(imgPaht)) {
+					CFileUtil::fileDelete(imgPaht);
+				}
+			}
+			else {
+				tfd.Close();
+			}
+		}
+		else {
+			bResult = false;
+		}
+	}
+	lines.clear();
+	lines.shrink_to_fit();
+	return bResult;
+}
+
+/// <summary>
+/// 解析データの上下反転可否判定
+/// </summary>
+/// <param name="ScanID">対象スキャンID</param>
+/// <returns>可能の場合はtrue、不可能の場合はfalseを返す</returns>
+///@remark 解析エリアの上と下の幅が異なる場合は反転できない
+bool CWeldEvaluationDoc::IsInversAnalizeData(int ScanID)
+{
+#if 1
+	int width, height;
+	GetScanDataSize(width, height);
+	CPoint tlPos;
+	CSize size;
+	if (!getAnalizeArea(tlPos, size)) {
+		return false;
+	}
+
+	if ((height - (tlPos.y + size.cy)) == tlPos.y) {
+		return true;
+	}
+	else {
+		return false;
+	}
+#else
+
+	CConfigrationIO sys(m_SystemFilePathName);
+	int AnalysisAreaTLPointY = sys.getInt(_T("System"), _T("AnalysisAreaTLPointY"));
+	int AnalysisAreaHeight = sys.getInt(_T("System"), _T("AnalysisAreaHeight"));
+	if (AnalysisAreaHeight <= 0) {
+		AnalysisAreaTLPointY = 0;
+		AnalysisAreaHeight = height;
+	}
+
+	if ((height - (AnalysisAreaTLPointY + AnalysisAreaHeight)) == AnalysisAreaTLPointY) {
+		return true;
+	}
+	else {
+		return false;
+	}
+#endif
+}
+
+/// <summary>
+/// 解析データの削除
+/// </summary>
+/// <param name="ScanID">対象スキャンID</param>
+void CWeldEvaluationDoc::DeleteAnalizeData(int ScanID)
+{
+	CString ClassificationDataFilePath, imgPaht;
+	int method[] = { AnalizeTypeKMeans ,AnalizeTypeHiClustering };
+	for (int metodID = 0; metodID < 2; metodID++) {
+		ClassificationDataFilePath = getClassificationDataFilePath(ScanID, method[metodID]);
+		if (ClassificationDataFilePath.IsEmpty()) {
+			continue;
+		}
+		if (CFileUtil::fileExists(ClassificationDataFilePath)) {
+			CFileUtil::fileDelete(ClassificationDataFilePath);
+		}
+
+		imgPaht = ClassificationDataFilePath + _T(".bmp");
+		if (CFileUtil::fileExists(imgPaht)) {
+			CFileUtil::fileDelete(imgPaht);
+		}
+	}
 }
 
 /// <summary>
@@ -3393,6 +3555,11 @@ bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, int method,
 				nClass = m_PropatyIO.ResultGetNumberOfClass(method);
 				break;
 			default:
+				{
+					CString msg;
+					msg.Format(_T("未定義のスキャンIDが設定されました。(%d)"), targetID);
+					writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
+				}
 				return false;
 			}
 
@@ -3410,11 +3577,12 @@ bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, int method,
 				writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 				return false;
 			}
-			int imgWidth = width;
-//			if ((imgWidth % Bpp) != 0) {
-//				imgWidth = (int)(imgWidth / Bpp)*Bpp + Bpp;
-//			}
-			unsigned char * p24Img = new unsigned char[imgWidth * height * Bpp];
+			// イメージの横サイズバウンダリ調整
+			int imageWidth = width;
+			if ((imageWidth % 8) != 0) {
+				imageWidth = (int)(imageWidth / 8) * 8 + 8;
+			}
+			unsigned char * p24Img = new unsigned char[imageWidth * height * Bpp];
 			BYTE *ptr = p24Img;
 			COLORREF *col = new COLORREF[nClass];
 			for (int id = 0; id < nClass; id++) {
@@ -3439,23 +3607,9 @@ bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, int method,
 				break;
 			}
 
-#if 0
-			for (int id = 0; id < data.size(); id++) {
-				if (data[id] < 0) {
-					*(ptr++) = 0;
-					*(ptr++) = 0;
-					*(ptr++) = 0;
-				}
-				else {
-					*(ptr++) = GetBValue(col[data[id]]);
-					*(ptr++) = GetGValue(col[data[id]]);
-					*(ptr++) = GetRValue(col[data[id]]);
-				}
-			}
-#else
 			int id = 0;
 			for (int y = 0; y < height; y++) {
-				ptr = p24Img + (y*imgWidth)*Bpp;
+				ptr = p24Img + (y*imageWidth)*Bpp;
 				for (int x = 0; x < width; x++) {
 					id = (y*width) + x;
 					if (data[id] < 0) {
@@ -3469,8 +3623,13 @@ bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, int method,
 						*(ptr++) = GetRValue(col[data[id]]);
 					}
 				}
+				for (int x = width; x < imageWidth; x++) {
+					*(ptr++) = 0;
+					*(ptr++) = 0;
+					*(ptr++) = 0;
+				}
 			}
-#endif
+
 			if (col) {
 				delete[] col;
 				col = nullptr;
@@ -3479,12 +3638,12 @@ bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, int method,
 			BITMAPINFOHEADER    bmInfohdr;
 			// Create the header info
 			bmInfohdr.biSize = sizeof(BITMAPINFOHEADER);
-			bmInfohdr.biWidth = imgWidth;
+			bmInfohdr.biWidth = imageWidth;
 			bmInfohdr.biHeight = -height;
 			bmInfohdr.biPlanes = 1;
 			bmInfohdr.biBitCount = (WORD)(Bpp * 8);
 			bmInfohdr.biCompression = BI_RGB;
-			bmInfohdr.biSizeImage = imgWidth * height * Bpp;
+			bmInfohdr.biSizeImage = imageWidth * height * Bpp;
 			bmInfohdr.biXPelsPerMeter = 0;
 			bmInfohdr.biYPelsPerMeter = 0;
 			bmInfohdr.biClrUsed = 0;
@@ -3494,15 +3653,28 @@ bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, int method,
 			bmInfo.bmiHeader = bmInfohdr;
 			bmInfo.bmiColors[0].rgbBlue = 255;
 
-			if (img.Create(imgWidth, height, 8 * Bpp, NULL)) {
+			if (img.Create(imageWidth, height, 8 * Bpp, NULL)) {
 				HDC dc = img.GetDC();
-				SetDIBitsToDevice(dc, 0, 0, imgWidth, height, 0, 0, 0, height, p24Img, &bmInfo, DIB_RGB_COLORS);
+				SetDIBitsToDevice(dc, 0, 0, imageWidth, height, 0, 0, 0, height, p24Img, &bmInfo, DIB_RGB_COLORS);
 				img.ReleaseDC();
 				img.Save(imagefile);
 			}
 			else {
+				DWORD err = GetLastError();
+				LPVOID lpMsgBuf;
+				FormatMessage(
+					FORMAT_MESSAGE_ALLOCATE_BUFFER							// テキストのメモリ割り当てを要求する
+					| FORMAT_MESSAGE_FROM_SYSTEM							// エラーメッセージはWindowsが用意しているものを使用
+					| FORMAT_MESSAGE_IGNORE_INSERTS,						// 次の引数を無視してエラーコードに対するエラーメッセージを作成する
+					NULL, err, MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),	// 言語を指定
+					(LPTSTR)&lpMsgBuf,										// メッセージテキストが保存されるバッファへのポインタ
+					0,
+					NULL);
+//				AfxMessageBox((LPCTSTR)lpMsgBuf, MB_OK | MB_ICONINFORMATION);
+				LocalFree(lpMsgBuf);
+
 				CString msg;
-				msg.Format(_T("画像の作成に失敗しました。"));
+				msg.Format(_T("画像の作成に失敗しました。:%s"), static_cast<LPCWSTR>(lpMsgBuf));
 				writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 				bResult = false;
 			}

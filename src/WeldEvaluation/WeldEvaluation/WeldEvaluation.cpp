@@ -205,3 +205,4 @@ void CWeldEvaluationApp::OnAppAbout()
 }
 
 // CWeldEvaluationApp メッセージ ハンドラー
+

@@ -86,5 +86,8 @@ public:
 	void Calc_ProjectionParam(vector<CPoint> &vOrig, vector<CPoint> &vTrans, double aParam[8]);
 	void ProjectionInvPos(int DstX, int DstY, double prm[], double &SrcX, double &SrcY);
 
+	bool InversData();
+	bool saveRawData(CString pathName);
+	bool readRawData(CString pathName);
 };
 

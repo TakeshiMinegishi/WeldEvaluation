@@ -54,6 +54,7 @@ BEGIN_MESSAGE_MAP(CWeldEvaluationView, CFormView)
 	ON_MESSAGE(WM_SPECTRUME_CLOSE_REQUEST, OnSpectrumeCloseRequest)
 	ON_MESSAGE(WM_AREA_SPECTRUM_GRAPH_SET, OnAreaSpectrumeGraphSet)
 	ON_MESSAGE(WM_VIEW_CLER, OnImageErace)
+	ON_MESSAGE(WM_INVERS_REQUEST, OnInversRequest)
 
 	ON_WM_NCDESTROY()
 	ON_WM_DESTROY()
@@ -479,7 +480,7 @@ void CWeldEvaluationView::OnSize(UINT nType, int cx, int cy)
 			rect6.right = lpRect.right - leftsps;
 			rect6.left = rect6.right - w;
 			moveh = rect3.bottom - rect6.bottom;
-			int hsps = rect5.top - rect4.bottom;
+//			int hsps = rect5.top - rect4.bottom;
 			rect4.bottom += moveh;
 
 
@@ -1150,14 +1151,14 @@ LRESULT CWeldEvaluationView::OnScanRequest(WPARAM wparam, LPARAM lparam)
 				DisplayMode = pDoc->GetDisplayMode(CWeldEvaluationDoc::eMetalSurface);
 				if (DisplayMode == CWeldEvaluationDoc::DisplayModeScan) {
 					ViewChangeRequest(CWeldEvaluationDoc::eMetalSurface, DisplayMode, true);
-					m_pReginWnd->Invalidate();
+					m_pMetalWnd->Invalidate();
 				}
 				break;
 			case	CWeldEvaluationDoc::eJoiningResult:
 				DisplayMode = pDoc->GetDisplayMode(CWeldEvaluationDoc::eJoiningResult);
 				if (DisplayMode == CWeldEvaluationDoc::DisplayModeScan) {
 					ViewChangeRequest(CWeldEvaluationDoc::eJoiningResult, DisplayMode, true);
-					m_pReginWnd->Invalidate();
+					m_pResultWnd->Invalidate();
 				}
 				break;
 			}
@@ -1216,8 +1217,8 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		return false;
 	}
 	
-	int HorizontalResolution = pDoc->GetHorizontalResolution();
-	int VerticalResolution = pDoc->GetVerticalResolution();
+//	int HorizontalResolution = pDoc->GetHorizontalResolution();
+//	int VerticalResolution = pDoc->GetVerticalResolution();
 
 	// カメラ設定
 	int band	= pDoc->NumberOfBand();
@@ -1532,6 +1533,68 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		cube = nullptr;
 	}
 	return bResult;
+}
+
+/// <summary>
+/// データ反転の要求
+/// </summary>
+/// <param name="wparam"> スキャンID</param>
+/// <param name="lparam"> 結果</param>
+/// <returns>成功した場合は0、失敗した場合は-1を返す</returns>
+LRESULT CWeldEvaluationView::OnInversRequest(WPARAM wparam, LPARAM lparam)
+{
+	int ScanID = (int)wparam;
+	int *Result = (int *)lparam;
+	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
+
+//	int type = m_OprtAnalize.GetAnalizeType(ScanID);
+
+	m_OprtAnalize.SetDisplayMode(ScanID, CWeldEvaluationDoc::DisplayModeScan);
+
+	if (!pDoc->ExistScanFile(ScanID)) {
+		*Result = -1;
+		return -1;
+	}
+
+	if (!pDoc->InversScanData(ScanID)) {
+		*Result = -1;
+		return -1;
+	}
+
+	ViewChangeRequest(ScanID, CWeldEvaluationDoc::DisplayModeScan, true);
+	m_pReginWnd->Invalidate();
+
+	switch (ScanID) {
+	case	CWeldEvaluationDoc::eResinSurface:
+		m_pReginWnd->Invalidate();
+		break;
+	case	CWeldEvaluationDoc::eMetalSurface:
+		m_pMetalWnd->Invalidate();
+		break;
+	case	CWeldEvaluationDoc::eJoiningResult:
+		m_pResultWnd->Invalidate();
+		break;
+	}
+	pDoc->SetWorkProjectUpdteStatus(true);
+
+	*Result = 0;
+	if (pDoc->IsInversAnalizeData(ScanID)) {
+		if (!pDoc->InversAnalizeData(ScanID)) {
+			// 解析データの反転に失敗
+			*Result = 1;
+		}
+	}
+	else {
+		// 反転できない解析データ
+		*Result = 1;
+	}
+
+	// 解析データが反転できない場合は解析データを削除
+	if (*Result == 1) {
+		pDoc->DeleteAnalizeData(ScanID);
+	}
+
+	return 0;
 }
 
 /// <summary>
@@ -1871,6 +1934,7 @@ LRESULT CWeldEvaluationView::OnImageMoveing(WPARAM wparam, LPARAM lparam)
 /// <returns>成功場合はtrue、失敗場合はfalseを返す</returns>
 bool CWeldEvaluationView::ViewChangeRequest(int ScanID, int DisplayMode, bool renew/*=false*/)
 {
+	CWaitCursor wcursol;
 	bool bResult = true;
 	int NumberOfClass = 0;
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
@@ -1988,7 +2052,7 @@ LRESULT CWeldEvaluationView::OnImageErace(WPARAM wparam, LPARAM lparam)
 {
 	int ScanID = (int)wparam;
 
-	CImageWind *pImageWnd = nullptr;
+//	CImageWind *pImageWnd = nullptr;
 	switch (ScanID) {
 	case	CWeldEvaluationDoc::eResinSurface:		// 樹脂
 		m_pReginWnd->Erase();
@@ -2023,6 +2087,7 @@ LRESULT CWeldEvaluationView::OnImageErace(WPARAM wparam, LPARAM lparam)
 /// <returns>成功場合は0、失敗場合は-1を返す</returns>
 LRESULT CWeldEvaluationView::OnAnalyzeRequest(WPARAM wparam, LPARAM lparam)
 {
+	CWaitCursor wcursol;
 	int targetID = (int)wparam;
 	int AnalyzeMethod = (int)lparam;
 	int iResult = 0;
@@ -2109,9 +2174,9 @@ LRESULT CWeldEvaluationView::OnAnalyzeRequest(WPARAM wparam, LPARAM lparam)
 			int iCnt = (int)m_PropTab.GetSize();
 			for (int i = 0; i < iCnt; i++) {
 				if (pDlg == m_PropTab.GetAt(i)) {
-					WPARAM wparam = WA_ACTIVE & 0xFFFF;
-					LPARAM lparam = (LPARAM)pDlg->m_hWnd;
-					m_PropTab.GetAt(i)->SendMessage(WM_ACTIVATE, wparam, lparam);
+					WPARAM lwparam = WA_ACTIVE & 0xFFFF;
+					LPARAM llparam = (LPARAM)pDlg->m_hWnd;
+					m_PropTab.GetAt(i)->SendMessage(WM_ACTIVATE, lwparam, llparam);
 					m_PropTab.GetAt(i)->ShowWindow(SW_SHOW);
 					m_tabPropaty.SetCurSel(i);
 				}
