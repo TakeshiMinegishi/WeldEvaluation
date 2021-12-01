@@ -1,10 +1,10 @@
 <map id="CWeldEvaluationDoc::GetVerticalResolution" name="CWeldEvaluationDoc::GetVerticalResolution">
-<area shape="rect" id="node1" title="縦方向の解像度の取得" alt="" coords="837,135,993,176"/>
-<area shape="rect" id="node2" href="$class_c_weld_evaluation_doc.html#a35a39054e1df570eef7d5a725b5af76e" title="取得データの縦方向拡縮率の取得" alt="" coords="643,8,785,49"/>
+<area shape="rect" id="node1" title="縦方向の解像度の取得" alt="" coords="837,169,993,211"/>
+<area shape="rect" id="node2" href="$class_c_weld_evaluation_doc.html#a35a39054e1df570eef7d5a725b5af76e" title="取得データの縦方向拡縮率の取得" alt="" coords="643,39,785,80"/>
+<area shape="rect" id="node4" href="$class_c_prop_tab_page_setting.html#a11a96b76db0c9f575e8f84ad3d3bcf09" title="パラメータの読み込み" alt="" coords="639,136,789,177"/>
+<area shape="rect" id="node7" href="$class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="643,231,785,272"/>
+<area shape="rect" id="node15" href="$class_c_prop_tab_page_setting.html#acefe73a52687d98a8a6e6f01ef270b01" title="更新処理" alt="" coords="639,325,789,367"/>
 <area shape="rect" id="node3" href="$class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="441,5,589,47"/>
-<area shape="rect" id="node4" href="$class_c_prop_tab_page_setting.html#a11a96b76db0c9f575e8f84ad3d3bcf09" title="パラメータの読み込み" alt="" coords="639,135,789,176"/>
-<area shape="rect" id="node7" href="$class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="643,229,785,271"/>
-<area shape="rect" id="node15" href="$class_c_prop_tab_page_setting.html#acefe73a52687d98a8a6e6f01ef270b01" title="更新処理" alt="" coords="639,353,789,395"/>
 <area shape="rect" id="node5" href="$class_c_prop_tab_page_setting.html#ad176661bbe7c6d157814d81897d50f7d" title="ウインドアクティブ時処理" alt="" coords="440,71,591,112"/>
 <area shape="rect" id="node6" href="$class_c_weld_evaluation_view.html#a266807bf8e8a7dd3fd73b2907300607d" title="プロパティページの再読込" alt="" coords="441,136,589,177"/>
 <area shape="rect" id="node8" href="$class_c_weld_evaluation_doc.html#acceb13e1dba62f59383094194ecf9774" title="プロジェクトの削除" alt="" coords="444,201,587,243"/>

@@ -12,6 +12,7 @@ var class_c_scan_data_i_o =
     [ "GetNumberOfBand", "class_c_scan_data_i_o.html#a09a161f191779097aa003676ecb22714", null ],
     [ "GetSpectrumData", "class_c_scan_data_i_o.html#a74d0fa98822d49575c08acb1e72c128c", null ],
     [ "getWaveLength", "class_c_scan_data_i_o.html#a2e23bb8cbebd5d51292726ee0238adec", null ],
+    [ "InversData", "class_c_scan_data_i_o.html#ac825d0592b26302e385508e7f97db658", null ],
     [ "LoadImage", "class_c_scan_data_i_o.html#a3be95afdfa7914f7a2acbc003048e3ff", null ],
     [ "matinv", "class_c_scan_data_i_o.html#adfccaf34324ec4409764e689ab839661", null ],
     [ "MatrixInit", "class_c_scan_data_i_o.html#a604a2f1e09bc8c6bcbad00c82b19a893", null ],
@@ -25,7 +26,9 @@ var class_c_scan_data_i_o =
     [ "open", "class_c_scan_data_i_o.html#ae86f36b123901fbe038ff0f1669192bd", null ],
     [ "Projection", "class_c_scan_data_i_o.html#a2892a7fb2783d6eb6808c35c620a200d", null ],
     [ "ProjectionInvPos", "class_c_scan_data_i_o.html#aa39614b53408689ab3187d7a78948ac9", null ],
+    [ "readRawData", "class_c_scan_data_i_o.html#aa32e2e51834f95184395a9be632645b2", null ],
     [ "release", "class_c_scan_data_i_o.html#a74d77b0c697e9eab35f6f233be162c27", null ],
+    [ "saveRawData", "class_c_scan_data_i_o.html#a2dac09e00376d629d1b43de3434633d6", null ],
     [ "ScanDataConvert", "class_c_scan_data_i_o.html#a89ce5196b4c620e4bc204d585204cd43", null ],
     [ "SetRGBWavelength", "class_c_scan_data_i_o.html#a3ba9d84a8f4d7ee6c78590ac210f41a4", null ]
 ];

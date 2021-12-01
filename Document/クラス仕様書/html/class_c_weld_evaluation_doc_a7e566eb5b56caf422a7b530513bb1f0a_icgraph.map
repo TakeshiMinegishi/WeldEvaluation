@@ -2,7 +2,7 @@
 <area shape="rect" id="node1" title="プロジェクトステータス設定" alt="" coords="1347,157,1507,199"/>
 <area shape="rect" id="node2" href="$class_c_weld_evaluation_doc.html#ad97fb1fff98c1ec282fed06254c44e4f" title="ワークからプロジェクトへ移動" alt="" coords="671,27,813,68"/>
 <area shape="rect" id="node8" href="$class_c_weld_evaluation_doc.html#a051b247732fab46470782bf66c3cf332" title="プロジェクトをワークへ移動" alt="" coords="887,157,1030,199"/>
-<area shape="rect" id="node15" href="$class_c_weld_evaluation_doc.html#aacd463c0c66894d78faa479f9cf975f8" title="プロジェクトの更新ステータス設定" alt="" coords="1104,267,1299,308"/>
+<area shape="rect" id="node15" href="$class_c_weld_evaluation_doc.html#aacd463c0c66894d78faa479f9cf975f8" title="プロジェクトの更新ステータス設定" alt="" coords="1104,296,1299,337"/>
 <area shape="rect" id="node3" href="$class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547" title="新規プロジェクト作成" alt="" coords="460,5,603,47"/>
 <area shape="rect" id="node5" href="$class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="460,71,603,112"/>
 <area shape="rect" id="node4" href="$class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,5,171,47"/>
@@ -16,6 +16,7 @@
 <area shape="rect" id="node14" href="$class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="457,267,605,308"/>
 <area shape="rect" id="node16" href="$class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8" title="解析実施要求" alt="" coords="885,325,1033,367"/>
 <area shape="rect" id="node17" href="$class_c_weld_evaluation_view.html#abe37d4d745f7fdf7f9bc35880d553c2a" title="プロパティ更新ボタン押下時処理" alt="" coords="861,391,1056,432"/>
-<area shape="rect" id="node18" href="$class_c_weld_evaluation_view.html#a9384bbeab5745f5806acd59d1e1fb84c" title="スキャンの要求" alt="" coords="885,456,1033,497"/>
-<area shape="rect" id="node19" href="$class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="883,521,1034,563"/>
+<area shape="rect" id="node18" href="$class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="885,456,1033,497"/>
+<area shape="rect" id="node19" href="$class_c_weld_evaluation_view.html#a9384bbeab5745f5806acd59d1e1fb84c" title="スキャンの要求" alt="" coords="885,521,1033,563"/>
+<area shape="rect" id="node20" href="$class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="883,587,1034,628"/>
 </map>

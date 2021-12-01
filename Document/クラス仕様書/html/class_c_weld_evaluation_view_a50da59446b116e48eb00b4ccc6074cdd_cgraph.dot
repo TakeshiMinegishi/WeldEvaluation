@@ -102,10 +102,10 @@ digraph "CWeldEvaluationView::ViewChangeRequest"
   Node64 -> Node66 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node66 [label="CWeldEvaluationDoc\l::getScanDataFilePath",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$class_c_weld_evaluation_doc.html#a20f4912ddc5aef772cd12ec334e55f04",tooltip="スキャンデータファイルパス取得"];
   Node64 -> Node68 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node68 [label="CScanDataIO::LoadImage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_scan_data_i_o.html#a3be95afdfa7914f7a2acbc003048e3ff",tooltip="画像データ取得"];
-  Node64 -> Node69 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node69 [label="CScanDataIO::open",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$class_c_scan_data_i_o.html#ae86f36b123901fbe038ff0f1669192bd",tooltip="オープン"];
-  Node69 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node68 [label="CScanDataIO::LoadImage",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$class_c_scan_data_i_o.html#a3be95afdfa7914f7a2acbc003048e3ff",tooltip="画像データ取得"];
+  Node64 -> Node76 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node76 [label="CScanDataIO::open",height=0.2,width=0.4,color="red", fillcolor="white", style="filled",URL="$class_c_scan_data_i_o.html#ae86f36b123901fbe038ff0f1669192bd",tooltip="オープン"];
+  Node76 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node64 -> Node80 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node80 [label="CScanDataIO::SetRGBWavelength",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_scan_data_i_o.html#a3ba9d84a8f4d7ee6c78590ac210f41a4",tooltip="カラー波長の設定"];
   Node1 -> Node47 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];

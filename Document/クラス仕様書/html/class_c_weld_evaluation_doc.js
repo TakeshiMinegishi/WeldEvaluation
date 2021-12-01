@@ -53,6 +53,7 @@ var class_c_weld_evaluation_doc =
     [ "GetWorkProjectFolderPath", "class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036", null ],
     [ "GetWorkProjectPath", "class_c_weld_evaluation_doc.html#ab9b811efdecb8b32d42d8eaeba752b23", null ],
     [ "GetWorkProjectStatus", "class_c_weld_evaluation_doc.html#a827c581753a1e8dab5c6a6437e8d1696", null ],
+    [ "InversScanData", "class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e", null ],
     [ "IsCameraDummyApi", "class_c_weld_evaluation_doc.html#a7aff2c8f3a98f64977aad4f698b46cf1", null ],
     [ "IsExistClassificationResultFile", "class_c_weld_evaluation_doc.html#a1abe4fffe8e272745b3cf9225d36328d", null ],
     [ "IsNew", "class_c_weld_evaluation_doc.html#a31cda5ced4a1f67350be5d355ba62c6c", null ],

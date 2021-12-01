@@ -26,6 +26,7 @@ var class_c_weld_evaluation_view =
     [ "OnImageOutputRequest", "class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f", null ],
     [ "OnImageScaling", "class_c_weld_evaluation_view.html#a4c0c78466f258b6f3046af45d445830f", null ],
     [ "OnInitialUpdate", "class_c_weld_evaluation_view.html#a39ea2ecbca5482ae982384cccc27c7ce", null ],
+    [ "OnInversRequest", "class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594", null ],
     [ "OnMouseMove", "class_c_weld_evaluation_view.html#aa29b1952bb4c1bcc3e7618bd50445d3a", null ],
     [ "OnNMDblclkLstRegistTest", "class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911", null ],
     [ "OnNMRClickLstRegistTest", "class_c_weld_evaluation_view.html#afbf1ecce79d71762fcc4867fdb50e75c", null ],

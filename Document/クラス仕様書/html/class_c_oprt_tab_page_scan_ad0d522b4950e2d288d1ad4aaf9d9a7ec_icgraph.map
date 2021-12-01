@@ -1,0 +1,9 @@
+<map id="COprtTabPageScan::UpdateInversBtnState" name="COprtTabPageScan::UpdateInversBtnState">
+<area shape="rect" id="node1" title="「上下反転」ボタンの状態更新" alt="" coords="544,115,731,156"/>
+<area shape="rect" id="node2" href="$class_c_oprt_tab_page_scan.html#a5d3d95517a402ff2a779ab4a4770a80a" title="アイテムのアクティブ/ディアクティブ化" alt="" coords="283,13,488,39"/>
+<area shape="rect" id="node4" href="$class_c_oprt_tab_page_scan.html#a1736e8cd2fe121b17a05a8017b11c3f1" title="ウインドアクティブ時処理" alt="" coords="281,63,489,90"/>
+<area shape="rect" id="node5" href="$class_c_oprt_tab_page_scan.html#abbc7af9bda32c6f7a780ddb615f6184b" title="「金属面」ラジオボタンボタン押下時処理" alt="" coords="275,115,496,156"/>
+<area shape="rect" id="node6" href="$class_c_oprt_tab_page_scan.html#a55515cc27a1271c4095fcd2aff4bb152" title="「樹脂面」ラジオボタンボタン押下時処理" alt="" coords="275,180,496,221"/>
+<area shape="rect" id="node7" href="$class_c_oprt_tab_page_scan.html#aa1589d572bfefc5cec4e460ea04080de" title="「接合結果」ラジオボタンボタン押下時処理" alt="" coords="275,245,496,287"/>
+<area shape="rect" id="node3" href="$class_c_oprt_tab_page_scan.html#a325bd4d3b6c573140e8b23f901378767" title="スキャンボタン押下時処理" alt="" coords="5,5,227,47"/>
+</map>

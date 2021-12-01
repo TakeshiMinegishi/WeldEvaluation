@@ -1,4 +1,5 @@
 <map id="CWeldEvaluationDoc::IsOpen" name="CWeldEvaluationDoc::IsOpen">
-<area shape="rect" id="node1" title="プロジェクトのオープン判定" alt="" coords="275,5,417,47"/>
-<area shape="rect" id="node2" href="$class_c_oprt_tab_page_scan.html#a325bd4d3b6c573140e8b23f901378767" title="スキャンボタン押下時処理" alt="" coords="5,5,227,47"/>
+<area shape="rect" id="node1" title="プロジェクトのオープン判定" alt="" coords="275,39,417,80"/>
+<area shape="rect" id="node2" href="$class_c_oprt_tab_page_scan.html#a6b87d0ef6afcfc5a37e5bfa25d13c06d" title="「上下反転」ボタン押下時処理" alt="" coords="5,5,227,47"/>
+<area shape="rect" id="node3" href="$class_c_oprt_tab_page_scan.html#a325bd4d3b6c573140e8b23f901378767" title="スキャンボタン押下時処理" alt="" coords="5,71,227,112"/>
 </map>
