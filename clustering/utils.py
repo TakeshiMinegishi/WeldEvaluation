@@ -31,7 +31,9 @@ def get_data(input_file):
     return bands,data_type,height,width
 
 #バイナリデータを取得
-def get_bndata(bn_file, bands, height, width):
+def get_bndata(bn_file, bands, height, width, xy, valid_height, valid_width):
+    x,y = xy
+    
     #バイナリファイルを開く
     with open(bn_file) as f:
         recttype = np.dtype(np.float32)
@@ -43,9 +45,14 @@ def get_bndata(bn_file, bands, height, width):
     bdata = np.where(bdata > 100, 100, bdata)
     #(bands,height,width)の形に整形
     bdata = bdata.reshape([bands, height, width])
+    #有効領域の抽出
+    end_x = x + valid_width if x + valid_width < width else width
+    end_y = y + valid_height if y + valid_height < height else height
+    valid_data = bdata[:, y:end_y, x:end_x]
     #(bands,height,width)→(height,width,bands)に変形し、(height*width,bands)の形に直す
     bdata_new = bdata.transpose(1,2,0).reshape(-1,bands)
-    return bdata_new
+    valid_new = valid_data.transpose(1,2,0).reshape(-1,bands)
+    return valid_new, end_x, end_y
 
 #ファイルの情報を取得する。(ファイル名・ディレクトリ名)
 def get_fileinfo(f):
@@ -58,6 +65,11 @@ def get_fileinfo(f):
 
 #データを抽出する.
 def get_sumple(data, num_sample):
+    end = num_sample
+    if len(data) < num_sample:
+        end = len(data)
+    #データのシャッフル
     shuffle_data = np.random.permutation(data)
-    new_data = shuffle_data[:num_sample,:]
+    new_data = shuffle_data[:end,:]
     return new_data
+
