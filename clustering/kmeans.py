@@ -2,11 +2,16 @@ import argparse
 import os
 import sys
 import traceback
+import random
 
 from sklearn.cluster import KMeans
 import numpy as np
 
 from utils import get_data, get_bndata, get_fileinfo
+
+# 乱数のシードを設定
+random.seed(42)
+np.random.seed(42)
 
 #処理を実行する
 if __name__ == "__main__":

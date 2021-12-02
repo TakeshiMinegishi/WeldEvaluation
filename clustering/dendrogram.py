@@ -2,6 +2,7 @@ import argparse
 import os
 import sys
 import traceback
+import random
 
 import numpy as np
 from scipy.cluster.hierarchy import dendrogram, linkage, fcluster
@@ -9,6 +10,9 @@ from sklearn.ensemble import RandomForestClassifier
 
 from utils import get_data, get_bndata, get_fileinfo, get_sumple
 
+# 乱数のシードを設定
+random.seed(42)
+np.random.seed(42)
 
 #処理を実行する
 if __name__ == "__main__":
