@@ -197,13 +197,21 @@ void CWeldEvaluationView::OnInitialUpdate()
 	CString strTitle;
 	//////////////////////////////////////
 	//	操作パネルタブの設定
-	strTitle.LoadString(IDS_OPRTAB_INIT);
+	if (!strTitle.LoadString(IDS_OPRTAB_INIT)) {
+		strTitle = _T("初期化");
+	}
 	m_tabOperation.InsertItem(0,strTitle);
-	strTitle.LoadString(IDS_OPRTAB_SETTING);
+	if (!strTitle.LoadString(IDS_OPRTAB_SETTING)) {
+		strTitle = _T("設定");
+	}
 	m_tabOperation.InsertItem(1,strTitle);
-	strTitle.LoadString(IDS_OPRTAB_SCAN);
+	if (!strTitle.LoadString(IDS_OPRTAB_SCAN)) {
+		strTitle = _T("スキャン");
+	}
 	m_tabOperation.InsertItem(2,strTitle);
-	strTitle.LoadString(IDS_OPRTAB_ANARIZE);
+	if (!strTitle.LoadString(IDS_OPRTAB_ANARIZE)) {
+		strTitle = _T("解析");
+	}
 	m_tabOperation.InsertItem(3,strTitle);
 
 	bool bResult;
@@ -223,13 +231,21 @@ void CWeldEvaluationView::OnInitialUpdate()
 	//////////////////////////////////////
 	//	プロパティタブの設定
 	int propId = 0;
-	strTitle.LoadString(IDS_PROPTAB_RESIN);
+	if (!strTitle.LoadString(IDS_PROPTAB_RESIN)) {
+		strTitle = _T("樹脂面");
+	}
 	m_tabPropaty.InsertItem(propId++,strTitle);
-	strTitle.LoadString(IDS_PROPTAB_METAL);
+	if (!strTitle.LoadString(IDS_PROPTAB_METAL)) {
+		strTitle = _T("金属面");
+	}
 	m_tabPropaty.InsertItem(propId++,strTitle);
-	strTitle.LoadString(IDS_PROPTAB_RESULT);
+	if (!strTitle.LoadString(IDS_PROPTAB_RESULT)) {
+		strTitle = _T("接合結果");
+	}
 	m_tabPropaty.InsertItem(propId++,strTitle);
-	strTitle.LoadString(IDS_PROPTAB_OVERALL);
+	if (!strTitle.LoadString(IDS_PROPTAB_OVERALL)) {
+		strTitle = _T("全体");
+	}
 	m_tabPropaty.InsertItem(propId++,strTitle);
 
 	bResult = m_PropResinPage.Create(CPropTabPageParameter::IDD,&m_stcPropTabPageClient);
@@ -654,7 +670,9 @@ void CWeldEvaluationView::OnNMDblclkLstRegistTest(NMHDR *pNMHDR, LRESULT *pResul
 
 	if (pDoc->IsWorkProjectUpdated()) {
 		CString msg;
-		msg.LoadString(DM_PRJREGIST_EXISTUPDATE);
+		if (!msg.LoadString(IDM_PRJREGIST_EXISTUPDATE)) {
+			msg = _T("データが更新されています。\n更新されているデータを破棄しますか?");
+		}
 		if (AfxMessageBox(msg, MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON1) == IDNO) {
 			return;
 		}
@@ -708,13 +726,17 @@ void CWeldEvaluationView::OnNMDblclkLstRegistTest(NMHDR *pNMHDR, LRESULT *pResul
 		pDoc->GetSpectralGraphPointPosition(holizontal,vertical);
 
 		CString msg,AppName;
-		AppName.LoadString(AFX_IDS_APP_TITLE);
+		if (!AppName.LoadString(AFX_IDS_APP_TITLE)) {
+			AppName = _T("WeldEvaluation");
+		}
 		msg.Format(_T("%s - %s"), (LPCWSTR)str, (LPCWSTR)AppName);
 		GetParentFrame()->SetWindowText(msg);
 		pDoc->SetWorkProjectUpdteStatus(false);
 	} else {
 		CString msg,fmt;
-		fmt.LoadString(IDM_ERR_NOTOPEN_REGTEST);
+		if (!fmt.LoadString(IDM_ERR_NOTOPEN_REGTEST)) {
+			fmt = _T("登録済み試験 [%s] を開くことができませんでした。");
+		}
 		msg.Format(fmt, (LPCWSTR)str);
 		AfxMessageBox(msg,MB_OK|MB_ICONSTOP);
 	}
@@ -805,8 +827,12 @@ void CWeldEvaluationView::OnTcnSelchangeTabPropaty(NMHDR *pNMHDR, LRESULT *pResu
 		ConfirmChange(m_SelPropPageId);
 		if ((m_SelPropPageId != SelIdx) && (m_bUpdatePropaty)) {
 			CString	msg,sub;
-			msg.LoadString(IDM_PROPUPDATE);
-			sub.LoadStringW(IDM_CHECKOFUPDATE);
+			if (!msg.LoadString(IDM_PROPUPDATE)) {
+				msg = _T("プロパティが変更されています。");
+			}
+			if (!sub.LoadStringW(IDM_CHECKOFUPDATE)) {
+				sub = _T("更新しますか？");
+			}
 			msg += _T("\n") + sub;
 			if (AfxMessageBox(msg,MB_YESNO| MB_ICONWARNING |MB_DEFBUTTON1) == IDYES) {
 				UpdatePropaty(m_SelPropPageId);
@@ -1314,6 +1340,15 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		scn.Calc_ProjectionParam(vOrign, vTrans, aParam);
 	}
 
+	dst = new float**[band];
+	for (int b = 0; b < band; b++) {
+		dst[b] = new float*[height];
+		for (int y = 0; y < height; y++) {
+			dst[b][y] = new float[width];
+			ZeroMemory(dst[b][y], sizeof(float)*width);
+		}
+	}
+
 	double *pWavelength = nullptr;
 	for (int pos = 0; pos < DivisionNumber; pos++) {
 		if (!pStatus->m_Valid) {  // キャンセルボタンが押された場合は何もせずに終了
@@ -1352,28 +1387,70 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		// スキャンデータ変換処理
 		buff.Format(_T("Scaning : %d/%d(%d %%) Converting..."), pos + 1, DivisionNumber, (int)((pos + 1) * 100 / DivisionNumber));
 		pStatus->UpdateStatus(buff);
-		scn.ScanDataConvert(width, height, band, (float ***)cube_corrected->ppp_data, hscale, vscale, dstW, dstH, dst,false);
 
-		bool bBicubic = false; //線形補間使用フラグ
+		float ***pTmp = nullptr;
+		scn.ScanDataConvert(width, height, band, (float ***)cube_corrected->ppp_data, hscale, vscale, dstW, dstH, pTmp,false);
+
+		bool bBicubic = true; //線形補間使用フラグ
 		if (bHomography) {	// 射影変換
 			for (int h = 0; h < dstH; h++) {
 				for (int w = 0; w < dstW; w++) {
 					double sx, sy;
 					scn.ProjectionInvPos(w, h, aParam, sx, sy);
+#if 0
 					if (((sx < 0) || (sx >= dstW)) || ((sy < 0) || (sy >= dstH))) {
+						for (int b = 0; b < band; b++) {
+							dst[b][h][w] = -1;
+						}
 						continue;
 					}
 					else {
 						if (bBicubic) {
-							scn.bicubic(dst, dstW, dstH, band, (float)sx, (float)sy, p);
+							scn.bicubic(pTmp, dstW, dstH, band, (float)sx, (float)sy, p);
 							for (int b = 0; b < band; b++) {
 								dst[b][h][w] = p[b];
 							}
 						}
 					}
+#else
+					if (sx < 0.0) {
+						sx = 0.0;
+					}
+					else if (sx >= dstW) {
+						sx = dstW - 1;
+					}
+					if (sy < 0.0) {
+						sy = 0.0;
+					}
+					else if (sy >= dstH) {
+						sy = dstH - 1;
+					}
+					if (bBicubic) {
+						scn.bicubic(pTmp, dstW, dstH, band, (float)sx, (float)sy, p);
+						for (int b = 0; b < band; b++) {
+							dst[b][h][w] = p[b];
+						}
+					}
+#endif
 				}
 			}
 		}
+
+		if (pTmp) {
+			for (int b = 0; b < band; b++) {
+				for (int h = 0; h < dstH; h++) {
+					if (pTmp[b][h]) {
+						delete[] pTmp[b][h];
+						pTmp[b][h] = nullptr;
+					}
+				}
+				delete[] pTmp[b];
+				pTmp[b] = nullptr;
+			}
+			delete[] pTmp;
+			pTmp = nullptr;
+		}
+
 		/////////////////////////////////////////////////////////////////
 		// スキャンデータ結合処理
 		if (outH < dstH) {
@@ -1420,23 +1497,23 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 			}
 			jointPos += dstW - offset;
 		}
-
-		if (dst) {
-			for (int b = 0; b < band; b++) {
-				for (int h = 0; h < dstH; h++) {
-					if (dst[b][h]) {
-						delete[] dst[b][h];
-						dst[b][h] = nullptr;
-					}
-				}
-				delete[] dst[b];
-				dst[b] = nullptr;
-			}
-			delete[] dst;
-			dst = nullptr;
-		}
 		commonDeallocateCube(cube_corrected);
 		commonDeallocateCube(cube);
+	}
+
+	if (dst) {
+		for (int b = 0; b < band; b++) {
+			for (int h = 0; h < height; h++) {
+				if (dst[b][h]) {
+					delete[] dst[b][h];
+					dst[b][h] = nullptr;
+				}
+			}
+			delete[] dst[b];
+			dst[b] = nullptr;
+		}
+		delete[] dst;
+		dst = nullptr;
 	}
 
 	if (p) {
@@ -1452,7 +1529,7 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 	device.Close(ID);
 	commonDeallocateCube(reference_corrected);
 	if (reference_corrected) {
-		delete[] reference_corrected;
+		delete reference_corrected;
 	}
 
 	pStatus->UpdateStatus(_T("Closing..."));
@@ -1472,7 +1549,7 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 			CFileUtil::WriteUTF8ToSJIS(tfd, buf);
 			buf.Format(_T("byte order = %d"), 0);
 			CFileUtil::WriteUTF8ToSJIS(tfd, buf);
-			buf.Format(_T("data type = %d"), sizeof(float));
+			buf.Format(_T("data type = %d"), (int)sizeof(float));
 			CFileUtil::WriteUTF8ToSJIS(tfd, buf);
 			buf.Format(_T("file type = %s"), _T("ENVI Standard"));
 			CFileUtil::WriteUTF8ToSJIS(tfd, buf);
@@ -1488,9 +1565,11 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 			buf = _T("wavelength = {");
 			CFileUtil::WriteUTF8ToSJIS(tfd, buf);
 
+			CString tmp;
 			buf.Format(_T("%.8lf"), pWavelength[0]);
 			for (int b = 1; b < band; b++) {
-				buf.Format(_T("%s,%.8lf"), (LPCWSTR)buf, pWavelength[b]);
+				tmp.Format(_T("%s,%.8lf"), (LPCWSTR)buf, pWavelength[b]);
+				buf = tmp;
 			}
 			CFileUtil::WriteUTF8ToSJIS(tfd, buf);
 			buf = _T("}");
@@ -1614,7 +1693,9 @@ LRESULT CWeldEvaluationView::OnWBScanExistCheck(WPARAM wparam, LPARAM lparam)
 	CString chkPath = CFileUtil::FilePathCombine(registedFolde, fname);
 	if (CFileUtil::fileExists(chkPath)) {
 		CString msg;
-		msg.LoadString(IDM_EXISTWBSCANFILE);
+		if (!msg.LoadString(IDM_EXISTWBSCANFILE)) {
+			msg = _T("ホワイトバランスデータは取得済みです。\n取得しなおしますか？");
+		}
 		if (AfxMessageBox(msg, MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON1) != IDYES) {
 			return 1;
 		}
@@ -1646,7 +1727,9 @@ LRESULT CWeldEvaluationView::OnWBScanRequest(WPARAM wparam, LPARAM lparam)
 			if (device.ToHome(ID)) {
 				if (device.Move(ID, 1)) {
 					if (pStatus->m_Valid) {  // キャンセルボタンが押されていない
-						buff.LoadString(IDS_PREPANING);
+						if (!buff.LoadString(IDS_PREPANING)) {
+							buff = _T("準備中...");
+						}
 						pStatus->UpdateStatus(buff);
 						/////////////////////////////////////////////////////////
 						// ホワイトバランスデータの撮影
@@ -1663,13 +1746,17 @@ LRESULT CWeldEvaluationView::OnWBScanRequest(WPARAM wparam, LPARAM lparam)
 						if (CFileUtil::fileExists(SnapscanFile)) {
 							bool dummyApi = pDoc->IsCameraDummyApi();
 							if (cam.Open(SnapscanFile, dummyApi)) {
-								buff.LoadString(IDM_SCANNING);
+								if (!buff.LoadString(IDM_SCANNING)) {
+									buff = _T("スキャン中...");
+								}
 								pStatus->UpdateStatus(buff);
 								if (cam.setIntegrationTime(speed)) {
 									if (cam.StartScan()) {
 										if (cam.AcquireReference(registedFolde,WBFileName)) {
 											*Result = 0;
-											buff.LoadString(IDM_SCAN_SUCCESS);
+											if (!buff.LoadString(IDM_SCAN_SUCCESS)) {
+												buff = _T("スキャン処理が正常に終了しました。");
+											}
 											pStatus->UpdateStatus(buff);
 										}
 										else {
@@ -1698,14 +1785,18 @@ LRESULT CWeldEvaluationView::OnWBScanRequest(WPARAM wparam, LPARAM lparam)
 						}
 					}
 					else {
-						buff.LoadString(IDM_SCAN_CANCELD);
+						if (!buff.LoadString(IDM_SCAN_CANCELD)) {
+							buff = _T("スキャン処理がキャンセルされました。");
+						}
 						AfxMessageBox(buff, MB_OK | MB_ICONWARNING);
 					}
 				}
 			}
 		}
 		else {
-			buff.LoadString(IDM_SCAN_CANCELD);
+			if (!buff.LoadString(IDM_SCAN_CANCELD)) {
+				buff = _T("スキャン処理がキャンセルされました。");
+			}
 			AfxMessageBox(buff, MB_OK | MB_ICONWARNING);
 		}
 	}
@@ -1727,13 +1818,17 @@ LRESULT CWeldEvaluationView::OnProjectResistRequest(WPARAM wparam, LPARAM lparam
 	CWaitCursor waitCursol;
 	if (!pDoc->SaveProject()) {
 		CString msg;
-		msg.LoadString(IDM_ERR_PROJECT_SAVE);
+		if (!msg.LoadString(IDM_ERR_PROJECT_SAVE)) {
+			msg = _T("登録に失敗しました。");
+		}
 		AfxMessageBox(msg,MB_OK|MB_ICONSTOP);
 		iResult = -1;
 	} else {
 		CString AppName, Title,sub;
 		sub = pDoc->GetTestName();
-		AppName.LoadString(AFX_IDS_APP_TITLE);
+		if (!AppName.LoadString(AFX_IDS_APP_TITLE)) {
+			AppName = _T("WeldEvaluation");
+		}
 		Title.Format(_T("%s - %s"), (LPCWSTR)sub, (LPCWSTR)AppName);
 		GetParentFrame()->SetWindowText(Title);
 
@@ -1780,7 +1875,9 @@ LRESULT CWeldEvaluationView::OnImageOutputRequest(WPARAM wparam, LPARAM lparam)
 	}
 
 	CString label;
-	label.LoadString(IDS_LBL_FOLDERSELECT);
+	if (!label.LoadString(IDS_LBL_FOLDERSELECT)) {
+		label = _T("フォルダ選択");
+	}
 
 	if (CFileUtil::SelectFolder(this->m_hWnd, ImagePath, buff, BIF_RETURNONLYFSDIRS, label)) {
 		CString writePath = buff;
@@ -1992,7 +2089,9 @@ bool CWeldEvaluationView::ViewChangeRequest(int ScanID, int DisplayMode, bool re
 			int newNCluss = pPropPage->GetNumbetOfClass();
 			if (BeforNumberOfClass != newNCluss) {
 				CString msg;
-				msg.LoadString(IDM_CHANGED_NUMBEROFCLASS);
+				if (!msg.LoadString(IDM_CHANGED_NUMBEROFCLASS)) {
+					msg = _T("クラス数が更新されています。\n更新を破棄しますか？");
+				}
 				if (AfxMessageBox(msg, MB_YESNO | MB_ICONWARNING | MB_DEFBUTTON1) == IDNO) {
 					m_OprtAnalize.ChangeAnalizeType(ScanID);
 					return true;
@@ -2099,7 +2198,9 @@ LRESULT CWeldEvaluationView::OnAnalyzeRequest(WPARAM wparam, LPARAM lparam)
 	// 改正対象が存在するかをチェック
 	if (!CFileUtil::fileExists(ScanDataFilePath)) {
 		CString msg;
-		msg.LoadString(IDM_ERR_NOTEXIST_ANALIZEDATA);
+		if (!msg.LoadString(IDM_ERR_NOTEXIST_ANALIZEDATA)) {
+			msg = _T("解析対象が存在しません");
+		}
 		AfxMessageBox(msg, MB_OK | MB_ICONSTOP);
 		return -1;
 	}
@@ -2116,7 +2217,9 @@ LRESULT CWeldEvaluationView::OnAnalyzeRequest(WPARAM wparam, LPARAM lparam)
 		}
 		if (bUpdate) {
 			CString msg;
-			msg.LoadString(DM_PRJREGIST_EXISTUPDATE);
+			if (!msg.LoadString(IDM_PRJREGIST_EXISTUPDATE)) {
+				msg = _T("データが更新されています。\n更新されているデータを破棄しますか?");
+			}
 			if (AfxMessageBox(msg, MB_YESNO | MB_ICONWARNING | MB_DEFBUTTON1) == IDNO) {
 				return -1;
 			}
@@ -2139,7 +2242,9 @@ LRESULT CWeldEvaluationView::OnAnalyzeRequest(WPARAM wparam, LPARAM lparam)
 	m_OprtSetting.Update();
 	if (iResult < 0) {
 		CString msg;
-		msg.LoadString(IDM_ERR_NOT_ANALYZE);
+		if (!msg.LoadString(IDM_ERR_NOT_ANALYZE)) {
+			msg = _T("解析処理に失敗しました");
+		}
 		AfxMessageBox(msg,MB_OK|MB_ICONSTOP);
 	}
 	else {
@@ -2190,7 +2295,9 @@ LRESULT CWeldEvaluationView::OnAnalyzeRequest(WPARAM wparam, LPARAM lparam)
 
 		// 解析終了メッセージ
 		CString	msg;
-		msg.LoadString(IDM_ANALYZE_SUCCESS);
+		if (!msg.LoadString(IDM_ANALYZE_SUCCESS)) {
+			msg = _T("解析処理が正常終了しました");
+		}
 		AfxMessageBox(msg, MB_OK | MB_ICONINFORMATION);
 	}
 
@@ -2221,9 +2328,13 @@ LRESULT CWeldEvaluationView::OnReadResultFileStatus(WPARAM wparam, LPARAM lparam
 				m_pProgress = new CProgressDlg(this);
 			}
 			CString str;
-			str.LoadString(IDM_RESULT_READ_TITLE);
+			if (!str.LoadString(IDM_RESULT_READ_TITLE)) {
+				str = _T("結果ファイルの読み込");
+			}
 			m_pProgress->setTitle(str);
-			str.LoadString(IDM_RESULT_READ_INIT);
+			if (!str.LoadString(IDM_RESULT_READ_INIT)) {
+				str = _T("読み込み準備中・・・");
+			}
 			m_pProgress->setlabel(str);
 			m_pProgress->setRange(0,value);
 			m_pProgress->setPosition(0);
@@ -2239,7 +2350,9 @@ LRESULT CWeldEvaluationView::OnReadResultFileStatus(WPARAM wparam, LPARAM lparam
 				m_pProgress->getRange(min,max);
 				double per = (double)value / (double)(max - min);
 				CString str,fmt;
-				fmt.LoadString(IDM_RESULT_READING);
+				if (!fmt.LoadString(IDM_RESULT_READING)) {
+					fmt = _T("読み込み中：%d/%d (%.2lf[%%])");
+				}
 				str.Format(fmt,value, (max - min),per*100);
 				m_pProgress->setlabel(str);
 				m_pProgress->setPosition(value);
@@ -2575,7 +2688,9 @@ LRESULT CWeldEvaluationView::OnChangeResistFolder(WPARAM wparam, LPARAM lparam)
 void CWeldEvaluationView::UnSellectProject()
 {
 	CString msg,AppName;
-	AppName.LoadString(AFX_IDS_APP_TITLE);
+	if (!AppName.LoadString(AFX_IDS_APP_TITLE)) {
+		AppName = _T("WeldEvaluation");
+	}
 	msg.Format(_T("%s"), (LPCWSTR)AppName);
 	GetParentFrame()->SetWindowText(msg);
 
@@ -2599,7 +2714,9 @@ void CWeldEvaluationView::OnBnClickedBtnNewprj()
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
 	if (pDoc->IsWorkProjectUpdated()) {
 		CString msg;
-		msg.LoadString(DM_PRJREGIST_EXISTUPDATE);
+		if (!msg.LoadString(IDM_PRJREGIST_EXISTUPDATE)) {
+			msg = _T("データが更新されています。\n更新されているデータを破棄しますか?");
+		}
 		if (AfxMessageBox(msg, MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON1) == IDNO) {
 			return;
 		}
@@ -2610,8 +2727,12 @@ void CWeldEvaluationView::OnBnClickedBtnNewprj()
 
 	pDoc->OnNewDocument();
 	CString msg,sub,AppName;
-	sub.LoadString(IDS_NEW);
-	AppName.LoadString(AFX_IDS_APP_TITLE);
+	if (!sub.LoadString(IDS_NEW)) {
+		sub = _T("新規");
+	}
+	if (!AppName.LoadString(AFX_IDS_APP_TITLE)) {
+		AppName = _T("WeldEvaluation");
+	}
 	msg.Format(_T("%s - %s"), (LPCWSTR)sub, (LPCWSTR)AppName);
 	GetParentFrame()->SetWindowText(msg);
 	m_bReadMode = false;
@@ -2715,7 +2836,6 @@ bool CWeldEvaluationView::ImageScaling(int targetID, CRect rect)
 		pImageWnd2->MoveImage(pos2.x, pos2.y, rect.Width(), rect.Height(), scalingRetio);
 //		pImageWnd2->MoveImage(pos2.x, pos2.y, rect.Width(), rect.Height(), scalingRetio);
 	}
-	TRACE(_T("Pos(%d,%d)->Pos1(%d,%d),Pos2(%d,%d)\n"), pos.x, pos.y, pos1.x, pos1.y, pos2.x, pos2.y);
 	return bResult;
 }
 
@@ -2785,7 +2905,9 @@ void CWeldEvaluationView::OnProjectOpen()
 
 	if (pDoc->IsWorkProjectUpdated()) {
 		CString msg;
-		msg.LoadString(DM_PRJREGIST_EXISTUPDATE);
+		if (!msg.LoadString(IDM_PRJREGIST_EXISTUPDATE)) {
+			msg = _T("データが更新されています。\n更新されているデータを破棄しますか?");
+		}
 		if (AfxMessageBox(msg, MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON1) == IDNO) {
 			return;
 		}
@@ -2839,14 +2961,18 @@ void CWeldEvaluationView::OnProjectOpen()
 		pDoc->GetSpectralGraphPointPosition(holizontal, vertical);
 
 		CString msg, AppName;
-		AppName.LoadString(AFX_IDS_APP_TITLE);
+		if (!AppName.LoadString(AFX_IDS_APP_TITLE)) {
+			AppName = _T("WeldEvaluation");
+		}
 		msg.Format(_T("%s - %s"), (LPCWSTR)str, (LPCWSTR)AppName);
 		GetParentFrame()->SetWindowText(msg);
 		pDoc->SetWorkProjectUpdteStatus(false);
 	}
 	else {
 		CString msg, fmt;
-		fmt.LoadString(IDM_ERR_NOTOPEN_REGTEST);
+		if (!fmt.LoadString(IDM_ERR_NOTOPEN_REGTEST)) {
+			fmt = _T("登録済み試験 [%s] を開くことができませんでした。");
+		}
 		msg.Format(fmt, (LPCWSTR)str);
 		AfxMessageBox(msg, MB_OK | MB_ICONSTOP);
 	}
@@ -2867,14 +2993,18 @@ void CWeldEvaluationView::OnProjectDelete()
 	CString strTestName = pDoc->GetTestName();
 	if (str.Compare(strTestName) == 0) {
 		CString msg;
-		msg.LoadString(IDM_DELETE_ACTIVEPROJECT);
+		if (!msg.LoadString(IDM_DELETE_ACTIVEPROJECT)) {
+			msg = _T("編集中のデータです。\n削除しますか？");
+		}
 		if (AfxMessageBox(msg, MB_YESNO | MB_ICONWARNING | MB_DEFBUTTON1) == IDNO) {
 			return;
 		}
 	}
 	else {
 		CString msg;
-		msg.LoadString(IDM_DELETE);
+		if (!msg.LoadString(IDM_DELETE)) {
+			msg = _T("削除してよろしいですか？ ");
+		}
 		if (AfxMessageBox(msg, MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON1) == IDNO) {
 			return;
 		}

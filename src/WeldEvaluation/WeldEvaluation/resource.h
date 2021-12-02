@@ -50,7 +50,7 @@
 #define IDM_RESULT_READING              512
 #define IDM_PRJREGIST_SUCCESS           513
 #define IDM_PRJREGIST_OVERWRITE         514
-#define DM_PRJREGIST_EXISTUPDATE        515
+#define IDM_PRJREGIST_EXISTUPDATE       515
 #define IDM_ANALYZE_SUCCESS             516
 #define IDS_EXIST_REPAIRABLEDATA        517
 #define IDS_REPAIR_COMPLEAT             518

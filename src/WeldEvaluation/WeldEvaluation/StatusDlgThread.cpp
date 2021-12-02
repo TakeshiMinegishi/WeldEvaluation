@@ -9,6 +9,7 @@ IMPLEMENT_DYNCREATE(CStatusDlgThread, CWinThread)
 /// </summary>
 CStatusDlgThread::CStatusDlgThread(void) : m_Valid(true)
 {
+	m_bResult = false;
 }
 
 /// <summary>

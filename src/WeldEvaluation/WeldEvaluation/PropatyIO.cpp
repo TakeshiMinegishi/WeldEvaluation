@@ -117,7 +117,6 @@ bool CPropatyIO::save(CString path)
 	}
 
 	// Settingのダミー出力
-	double dval;
 	UINT uval;
 	uval = sys.getInt(_T("Setting"),_T("Number_of_overlapping_pixels"));
 	if (!sys.setInt(_T("Setting"),_T("Number_of_overlapping_pixels"),uval)) {

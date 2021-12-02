@@ -722,7 +722,7 @@ BEGIN
     IDM_RESULT_READING      "読み込み中：%d/%d (%.2lf[%%])"
     IDM_PRJREGIST_SUCCESS   "登録が完了しました。"
     IDM_PRJREGIST_OVERWRITE "同じ登録名称が存在します\n上書きしますか？\n上書きをした場合、以前のデータは破棄されます。"
-    DM_PRJREGIST_EXISTUPDATE "データが更新されています。\n更新されているデータを破棄しますか?"
+    IDM_PRJREGIST_EXISTUPDATE "データが更新されています。\n更新されているデータを破棄しますか?"
     IDM_ANALYZE_SUCCESS     "解析処理が正常終了しました"
     IDS_EXIST_REPAIRABLEDATA "修復可能な登録データ[%s]が存在します。\n修復しますか？"
     IDS_REPAIR_COMPLEAT     "修復が完了しました。"

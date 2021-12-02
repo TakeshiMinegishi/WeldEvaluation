@@ -36,7 +36,7 @@ CString CFileUtil::GetModulePath()
 		}
 	}
 	if (szPath) {
-		delete szPath;
+		delete [] szPath;
 		szPath = nullptr;
 	}
 	return path;
@@ -191,7 +191,7 @@ bool CFileUtil::Copy(CString src, CString dst, bool bOverwrite)
 bool CFileUtil::splitPath(CString path, CString &drive, CString &dir, CString &fname, CString &ext)
 {
 	bool bResult = false;
-	TCHAR szFullPath[MAX_PATH];
+	TCHAR szFullPath[MAX_PATH] = _T("");
 	TCHAR szDrive[MAX_PATH] = _T(""), szPath[MAX_PATH] = _T(""), szFName[MAX_PATH] = _T(""), szExt[MAX_PATH] = _T("");
 	drive = _T("");
 	dir = _T("");

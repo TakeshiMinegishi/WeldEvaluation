@@ -54,6 +54,7 @@ CWeldEvaluationDoc::CWeldEvaluationDoc()
 	m_bVisible					= false;
 	m_bInitialized				= false;
 	m_minRect					= CSize(0, 0);
+	m_CalcResultStopRequest		= false;
 }
 
 /// <summary>
@@ -101,16 +102,22 @@ BOOL CWeldEvaluationDoc::OnNewDocument()
 		if (!m_bVisible) {
 			CString rootPath = GetWorkProjectFolderPath();
 			CString prjName = GetWorkProjectStatus(rootPath, _T("ProjectName"));
-			fmt.LoadString(IDS_EXIST_REPAIRABLEDATA);
+			if (!fmt.LoadString(IDS_EXIST_REPAIRABLEDATA)) {
+				fmt = _T("修復可能な登録データ[%s]が存在します。\n修復しますか？");
+			}
 			msg.Format(fmt, (LPCTSTR)prjName);
 			if (AfxMessageBox(msg, MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON1) != IDNO) {
 				CString resistFolder = GetRegistedFolder();
 				if (!PopProject(resistFolder, prjName)) {
-					msg.LoadString(IDM_ERR_FAIL_REGIST);
+					if (!msg.LoadString(IDM_ERR_FAIL_REGIST)) {
+						msg = _T("修復に失敗完了しました。");
+					}
 					AfxMessageBox(msg, MB_ICONSTOP);
 				}
 				else {
-					msg.LoadString(IDS_REPAIR_COMPLEAT);
+					if (!msg.LoadString(IDS_REPAIR_COMPLEAT)) {
+						msg = _T("修復が完了しました。");
+					}
 					AfxMessageBox(msg, MB_ICONINFORMATION);
 				}
 			}
@@ -504,7 +511,7 @@ bool CWeldEvaluationDoc::ResinSetNumberOfClass(int method, UINT nClass)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
 		CString msg;
-		msg.Format(_T("樹脂面の分類数の設定に失敗しました。(method=%d, nClass=%d, retio=%lf)"), method, nClass);
+		msg.Format(_T("樹脂面の分類数の設定に失敗しました。(method=%d, nClass=%d)"), method, nClass);
 		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	} else {
@@ -649,7 +656,7 @@ bool CWeldEvaluationDoc::MetalSetNumberOfClass(int method, UINT nClass)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
 		CString msg;
-		msg.Format(_T("金属面の分類数の設定に失敗しました。(method=%d, nClass=%d, retio=%lf)"), method, nClass);
+		msg.Format(_T("金属面の分類数の設定に失敗しました。(method=%d, nClass=%d)"), method, nClass);
 		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	} else {
@@ -794,7 +801,7 @@ bool CWeldEvaluationDoc::ResultSetNumberOfClass(int method, UINT nClass)
 {
 	if (m_ActiveRegisttedTestName.IsEmpty()) {
 		CString msg;
-		msg.Format(_T("接合結果の分類数の設定に失敗しました。(method=%d, nClass=%d, retio=%lf)"), method, nClass);
+		msg.Format(_T("接合結果の分類数の設定に失敗しました。(method=%d, nClass=%d)"), method, nClass);
 		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	} else {
@@ -1264,9 +1271,13 @@ CString CWeldEvaluationDoc::SetRegistedTestFolder(void)
 	m_ActiveRegisttedTestFolder = CFileUtil::FilePathCombine(folder,m_ActiveRegisttedTestName);
 
 	CString ParmaterFileName;
-	ParmaterFileName.LoadString(IDS_PROPATYFILENAME);
+	if (!ParmaterFileName.LoadString(IDS_PROPATYFILENAME)) {
+		ParmaterFileName = _T("parameter.inf");
+	}
 	CString projectFileName;
-	projectFileName.LoadString(IDS_PROJECTFILENAME);
+	if (!projectFileName.LoadString(IDS_PROJECTFILENAME)) {
+		projectFileName = _T("WeldEvalution.prj");
+	}
 	m_ParamaterFilePaht = CFileUtil::FilePathCombine(m_ActiveRegisttedTestFolder,ParmaterFileName);
 	m_ProjectFilePaht = CFileUtil::FilePathCombine(m_ActiveRegisttedTestFolder, projectFileName);
 
@@ -1887,9 +1898,13 @@ bool CWeldEvaluationDoc::NewProject()
 	}
 
 	CString paramFileName;
-	paramFileName.LoadString(IDS_PROPATYFILENAME);
+	if (!paramFileName.LoadString(IDS_PROPATYFILENAME)) {
+		paramFileName = _T("parameter.inf");
+	}
 	CString projectFileName;
-	projectFileName.LoadString(IDS_PROJECTFILENAME);
+	if (!projectFileName.LoadString(IDS_PROJECTFILENAME)) {
+		projectFileName = _T("WeldEvalution.prj");
+	}
 
 	m_ParamaterFilePaht = CFileUtil::FilePathCombine(m_ActiveRegisttedTestFolder, paramFileName);
 	m_ProjectFilePaht	= CFileUtil::FilePathCombine(m_ActiveRegisttedTestFolder, projectFileName);
@@ -1924,7 +1939,9 @@ bool CWeldEvaluationDoc::NewProject()
 		}
 	}
 
-	version.LoadString(IDS_PARAMETERFILE_VERSION);
+	if (!version.LoadString(IDS_PARAMETERFILE_VERSION)) {
+		version = _T("");
+	}
 	m_PropatyIO.SetVersion(version);
 		
 	m_PropatyIO.Save(false);
@@ -2002,7 +2019,9 @@ bool CWeldEvaluationDoc::NewProject()
 	SaveClassificationResultFile(eJoiningResult, AnalizeTypeKMeans);		// k-means
 	SaveClassificationResultFile(eJoiningResult, AnalizeTypeHiClustering);	// 階層クラスタリング
 
-	version.LoadString(IDS_PROJECTFILE_VERSION);
+	if (!version.LoadString(IDS_PROJECTFILE_VERSION)) {
+		version = _T("");
+	}
 	m_ProjectIO.SetVersion(version);
 	m_ProjectIO.Save(false);
 
@@ -2020,8 +2039,12 @@ bool CWeldEvaluationDoc::OpenProject(CString RegistedTestName)
 {
 	CWaitCursor waitCursol;
 	CString PopatyFileName,ProjecName, ProjectFileName;
-	PopatyFileName.LoadStringW(IDS_PROPATYFILENAME);
-	ProjecName.LoadStringW(IDS_PROJECTFILENAME);
+	if (!PopatyFileName.LoadString(IDS_PROPATYFILENAME)) {
+		PopatyFileName = _T("parameter.inf");
+	}
+	if (!ProjecName.LoadString(IDS_PROJECTFILENAME)) {
+		ProjecName = _T("WeldEvalution.prj");
+	}
 
 	m_ProjectIO.Initialze();
 	m_PropatyIO.Initialze();
@@ -2136,7 +2159,9 @@ bool CWeldEvaluationDoc::ProjectUpdate()
 
 	CString prjVersion, proVersion, fileVersion, key;
 	int iVal;
-	proVersion.LoadString(IDS_PARAMETERFILE_VERSION);
+	if (!proVersion.LoadString(IDS_PARAMETERFILE_VERSION)) {
+		proVersion = _T("");
+	}
 	fileVersion = m_PropatyIO.GetVersion();
 	if (proVersion.CollateNoCase(fileVersion) != 0) {
 		CString AnalizeTypeKMeansKey, AnalizeTypeHiClusteringKey;
@@ -2168,7 +2193,9 @@ bool CWeldEvaluationDoc::ProjectUpdate()
 		prm.deleteKey(_T("JoiningResult"), _T("Number_of_classifications"));
 	}
 
-	prjVersion.LoadString(IDS_PROJECTFILE_VERSION);
+	if (!prjVersion.LoadString(IDS_PROJECTFILE_VERSION)) {
+		prjVersion = _T("");
+	}
 	fileVersion = m_ProjectIO.GetVersion();
 	if (prjVersion.CollateNoCase(fileVersion) != 0) {
 		CString AnalizeTypeKMeansKey, AnalizeTypeHiClusteringKey, sVal;
@@ -2280,9 +2307,13 @@ bool CWeldEvaluationDoc::SaveProject()
 	m_ActiveRegisttedTestName = TestName;
 
 	CString projectFileName;
-	projectFileName.LoadString(IDS_PROJECTFILENAME);
+	if (!projectFileName.LoadString(IDS_PROJECTFILENAME)) {
+		projectFileName = _T("WeldEvalution.prj");
+	}
 	CString ParmaterFileName;
-	ParmaterFileName.LoadString(IDS_PROPATYFILENAME);
+	if (!ParmaterFileName.LoadString(IDS_PROPATYFILENAME)) {
+		ParmaterFileName = _T("parameter.inf");
+	}
 
 	m_ParamaterFilePaht = CFileUtil::FilePathCombine(m_ActiveRegisttedTestFolder,ParmaterFileName);
 	m_PropatyIO.SetParamaterFilePath(m_ParamaterFilePaht);
@@ -2493,10 +2524,14 @@ bool CWeldEvaluationDoc::SaveProject()
 	CString msg;
 	CString folder = GetRegistedFolder();
 	if (!PopProject(folder, m_ActiveRegisttedTestName)) {
-		msg.LoadString(IDM_ERR_PROJECT_SAVE);
+		if (!msg.LoadString(IDM_ERR_PROJECT_SAVE)) {
+			msg = _T("登録に失敗しました。");
+		}
 	}
 	else {
-		msg.LoadString(IDM_PRJREGIST_SUCCESS);
+		if (!msg.LoadString(IDM_PRJREGIST_SUCCESS)) {
+			msg = _T("登録が完了しました。");
+		}
 	}
 	AfxMessageBox(msg, MB_ICONINFORMATION);
 	return true;
@@ -2939,12 +2974,30 @@ bool CWeldEvaluationDoc::CalcJoJointRetio(vector<int> data, int nClass, vector<d
 	retio.resize(nClass);
 	retio.reserve(nClass);
 
+	int dataw, datah;
+	GetScanDataSize(dataw, datah);
+	if (data.size() != (dataw * datah)) {
+		CString msg;
+		msg.Format(_T("データサイズがスキャンデータのサイズと一致しません。widht=%d Height=%d :データサイズ=%d"), dataw, datah, data.size());
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
+		return false;
+	}
+	CPoint AnzLTPos;
+	CSize AnzSize;
+	if (!getAnalizeArea(AnzLTPos, AnzSize)) {
+		CString msg;
+		msg.Format(_T("解析エリアが取得できませんでした。"));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
+		return false;
+	}
+
 	std::map<int,int> sum;
 	for (int i = 0; i < nClass; i++) {
 		sum[i] = 0;
 	}
 
-	for (int i = 0; i < data.size(); i++) {
+#if 0
+	for (int i = 0; i < (int)data.size(); i++) {
 		if ((data[i] < 0) || (data[i] >= nClass)) {
 			continue;
 		}
@@ -2954,6 +3007,34 @@ bool CWeldEvaluationDoc::CalcJoJointRetio(vector<int> data, int nClass, vector<d
 	for (int i = 0; i < nClass; i++) {
 		retio[i] = (double)sum[i] / (double)data.size();
 	}
+#else
+	int nData = 0;
+	int id = 0;
+	int minH = AnzLTPos.y - 1;
+	int minW = AnzLTPos.x - 1;
+	int maxH = AnzLTPos.y + AnzSize.cy - 1;
+	int maxW = AnzLTPos.x + AnzSize.cx - 1;
+	for (int h = 0; h < datah; h++) {
+		if ((h < minH) || (h >= maxH)) {
+			continue;
+		}
+		id = h * dataw;
+		for (int w = 0; w < dataw; w++) {
+			if ((w < minW) || (w >= maxW)) {
+				continue;
+			}
+			if ((data[id+w] < 0) || (data[id+w] >= nClass)) {
+				continue;
+			}
+			sum[data[id+w]] += 1;
+			nData++;
+		}
+	}
+
+	for (int i = 0; i < nClass; i++) {
+		retio[i] = (double)sum[i] / (double)nData;
+	}
+#endif
 	return true;
 }
 
@@ -3222,7 +3303,7 @@ bool CWeldEvaluationDoc::Analize(int ScanID, int AnalysisMethodID)
 	if (SetNumbetOfClass) {
 		if ((m_ProjectIO.*SetNumbetOfClass)(nClass)) {
 			CString msg;
-			msg.Format(_T("解析実施情報の保存に失敗しました。:ScanID=%d,解析方法=%d"), static_cast<LPCWSTR>(returnfile), ScanID, AnalysisMethodID);
+			msg.Format(_T("解析実施情報の保存に失敗しました。:ScanID=%d,解析方法=%d"), ScanID, AnalysisMethodID);
 			writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		}
 	}
@@ -3250,6 +3331,15 @@ bool CWeldEvaluationDoc::Analize(int ScanID, int AnalysisMethodID)
 		return false;
 	}
 	else {
+		int dataw, datah;
+		GetScanDataSize(dataw, datah);
+		if (data.size() != (dataw * datah)) {
+			CString msg;
+			msg.Format(_T("データサイズがスキャンデータのサイズと一致しません。:ScanID=%d,widht=%d Height=%d :データサイズ=%d"), ScanID, dataw, datah, data.size());
+			writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
+			return false;
+		}
+
 		if (!CalcJoJointRetio(data, nClass, retio)) {
 			CString msg;
 			msg.Format(_T("接合率の取得に失敗しました。:ScanID=%d,解析方法=%d"), ScanID, AnalysisMethodID);
@@ -3259,7 +3349,7 @@ bool CWeldEvaluationDoc::Analize(int ScanID, int AnalysisMethodID)
 	}
 
 	if (ScanID == eResinSurface) {
-		for (int ViewJointRatioNo = 0; ViewJointRatioNo < retio.size(); ViewJointRatioNo++) {
+		for (int ViewJointRatioNo = 0; ViewJointRatioNo < (int)retio.size(); ViewJointRatioNo++) {
 			if (!ResinSetJointRetio(AnalysisMethodID, ViewJointRatioNo,retio[ViewJointRatioNo]*100.0)) {
 				CString msg;
 				msg.Format(_T("樹脂面の接合割合の設定に失敗しました。(ScanID=%d、解析方法=%d、接合面番号=%d,樹脂面の接合割合=%lf)"), ScanID, AnalysisMethodID, ViewJointRatioNo, retio[ViewJointRatioNo] * 100.0);
@@ -3268,7 +3358,7 @@ bool CWeldEvaluationDoc::Analize(int ScanID, int AnalysisMethodID)
 			}
 		}
 	} else if (ScanID == eMetalSurface) {
-		for (int ViewJointRatioNo = 0; ViewJointRatioNo < retio.size(); ViewJointRatioNo++) {
+		for (int ViewJointRatioNo = 0; ViewJointRatioNo < (int)retio.size(); ViewJointRatioNo++) {
 			if (!MetalSetJointRetio(AnalysisMethodID, ViewJointRatioNo,retio[ViewJointRatioNo]*100.0)) {
 				CString msg;
 				msg.Format(_T("金属面の接合割合の設定に失敗しました。(ScanID=%d、解析方法=%d、接合面番号=%d,金属面の接合割合=%lf)"), ScanID, AnalysisMethodID, ViewJointRatioNo, retio[ViewJointRatioNo] * 100.0);
@@ -3277,7 +3367,7 @@ bool CWeldEvaluationDoc::Analize(int ScanID, int AnalysisMethodID)
 			}
 		}
 	} else if (ScanID == eJoiningResult) {
-		for (int ViewJointRatioNo = 0; ViewJointRatioNo < retio.size(); ViewJointRatioNo++) {
+		for (int ViewJointRatioNo = 0; ViewJointRatioNo < (int)retio.size(); ViewJointRatioNo++) {
 			if (!ResultSetJointRetio(AnalysisMethodID,ViewJointRatioNo, retio[ViewJointRatioNo] * 100.0)) {
 				CString msg;
 				msg.Format(_T("接合結果の接合割合の設定に失敗しました。(ScanID=%d、解析方法=%d、接合面番号=%d,接合結果の接合割合=%lf)"), ScanID, AnalysisMethodID, ViewJointRatioNo, retio[ViewJointRatioNo] * 100.0);
@@ -3673,9 +3763,9 @@ bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, int method,
 			int width, height;
 			GetScanDataSize(width, height);
 #endif
-			if (data.size() != (width * height)) {
+			if ((int)data.size() != (width * height)) {
 				CString msg;
-				msg.Format(_T("データサイズが異常です。(size=%d)"), data.size());
+				msg.Format(_T("データサイズが異常です。(size=%d)"), (int)data.size());
 				writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 				return false;
 			}
@@ -3842,7 +3932,7 @@ bool CWeldEvaluationDoc::GetSpectrumData(int ScanID, CPoint &pos, std::vector<do
 	default:
 		{
 			CString msg;
-			msg.Format(_T("不明のスキャンIDが指定されています"), ScanID);
+			msg.Format(_T("不明のスキャンIDが指定されています(ScanID=%d)"), ScanID);
 			writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		}
 		return false;
@@ -4166,11 +4256,13 @@ bool CWeldEvaluationDoc::PopProject(CString ResistPath, CString ProjentName)
 	}
 
 	CString ParmaterFileName;
-	ParmaterFileName.LoadString(IDS_PROPATYFILENAME);
+	if (!ParmaterFileName.LoadString(IDS_PROPATYFILENAME)) {
+		ParmaterFileName = _T("parameter.inf");
+	}
 	CString projectFileName;
-	CString paramFileName;
-	projectFileName.LoadString(IDS_PROJECTFILENAME);
-	paramFileName.LoadString(IDS_PROPATYFILENAME);
+	if (!projectFileName.LoadString(IDS_PROJECTFILENAME)) {
+		projectFileName = _T("WeldEvalution.prj");
+	}
 
 	CString PropatyFilePath = CFileUtil::FilePathCombine(ResistPath, ProjentName);
 	PropatyFilePath = CFileUtil::FilePathCombine(PropatyFilePath, ParmaterFileName);
@@ -4178,7 +4270,7 @@ bool CWeldEvaluationDoc::PopProject(CString ResistPath, CString ProjentName)
 	CPropatyIO::WriteTestName(PropatyFilePath, ProjentName);
 
 	m_ActiveRegisttedTestFolder = GetWorkProjectPath();
-	m_ParamaterFilePaht = CFileUtil::FilePathCombine(m_ActiveRegisttedTestFolder, paramFileName);
+	m_ParamaterFilePaht = CFileUtil::FilePathCombine(m_ActiveRegisttedTestFolder, ParmaterFileName);
 	m_ProjectFilePaht = CFileUtil::FilePathCombine(m_ActiveRegisttedTestFolder, projectFileName);
 
 	m_PropatyIO.SetParamaterFilePath(m_ParamaterFilePaht);

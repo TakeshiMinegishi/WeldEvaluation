@@ -9,6 +9,7 @@
 #include <locale>
 
 //#define NotLog
+#pragma warning(disable:26444)
 
 /// <summary>
 /// std::stringをLPCWSTRに変換する
@@ -172,6 +173,7 @@ bool CLog::checkLogLevel(LOGLEVEL level)
 /// </summary>
 CLog::CLog()
 {
+	m_sysLogLevel = LOGLEVEL::Non;
 #ifndef NotLog
     Initiaize();
 #endif
@@ -184,6 +186,7 @@ CLog::CLog()
 /// <param name="prefix">ファイル名プレフィックス</param>
 CLog::CLog(CString path, CString prefix)
 {
+	m_sysLogLevel = LOGLEVEL::Non;
 #ifndef NotLog
     Initiaize();
     if (prefix != "")
@@ -367,7 +370,7 @@ void CLog::writeLine(std::wofstream  &ofsswLog, LOGLEVEL level, CString prm)
         ofsswLog << L"[" << "20" << localTime.tm_year - 100 << L"/" << setw(2) << setfill(L'0') << localTime.tm_mon + 1 << L"/" << setw(2) << setfill(L'0') << localTime.tm_mday;
         ofsswLog << L" " << setw(2) << setfill(L'0') << localTime.tm_hour << ":" << setw(2) << setfill(L'0') << localTime.tm_min << L":" << setw(2) << setfill(L'0') << localTime.tm_sec << "]";
         ofsswLog << L":" << buf << std::endl;
-		delete buf;
+		delete [] buf;
 
         // 例外発生のチェック
         std::ios_base::iostate state = ofsswLog.rdstate();

@@ -123,7 +123,6 @@ void CImageWind::OnPaint()
 			bmp->GetBitmap(&bm);
 			pDC->SetStretchBltMode(COLORONCOLOR);
 			pDC->StretchBlt(m_imageX, m_imageY, m_imageWidth, m_imageHeight, &cDC, 0, 0, bm.bmWidth, bm.bmHeight, SRCCOPY);
-			TRACE(_T("OnPaint(%d) X=%d Y=%d, W=%d H=%d\n"), m_Type, m_imageX, m_imageY, m_imageWidth, m_imageHeight);
 
 			cDC.SelectObject(oldBMP);
 		}
@@ -522,7 +521,6 @@ bool CImageWind::MoveImage(int x, int y, int width, int height, double scaingRet
 	m_imageHeight	= height;
 	m_zoomRetio		= scaingRetio;
 
-	TRACE(_T("Type:%d pos(%d,%d) IW= %d IH = %d (%lf)\n"),m_Type, x, y, m_imageWidth, m_imageHeight, m_zoomRetio);
 	OnPaint();
 	return true;
 }
@@ -676,9 +674,6 @@ CPoint CImageWind::ConvertImagePos(CPoint pos)
 	GetWindowRect(rect);
 
 	rpos.x = pos.x;
-//	rpos.y = rect.Height() - (m_imageHeight + pos.y);
-//	rpos.y = m_imageHeight - rect.Height() - pos.y;
 	rpos.y = rect.Height() + pos.y - m_imageHeight - m_imageY;
-	TRACE(_T("Type:%d Y:%d->%d VH=%d IH=%d IY=%d\n"),m_Type, pos.y,rpos.y, rect.Height(), m_imageHeight, m_imageY);
 	return rpos;
 }

@@ -301,7 +301,11 @@ bool CScanDataIO::LoadImage(int &height, int &width, int &bands, CImage &img)
 	bmInfo.bmiHeader = bmInfohdr;
 	bmInfo.bmiColors[0].rgbBlue = 255;
 
-	unsigned char * p24Img = new unsigned char[bmInfohdr.biSizeImage*8];
+	unsigned char * p24Img = nullptr;
+	p24Img = new unsigned char[bmInfohdr.biSizeImage*8];
+	if (p24Img == nullptr) {
+		return false;
+	}
 	unsigned char * ptr = p24Img;
 
 	float dnormalizer = (float)255.0;
@@ -934,6 +938,12 @@ bool CScanDataIO::bicubic(float *** srcdata, int width, int height, int band, fl
 	float c = (float)(dx * (1.0 - dy));
 	float d = dx * dy;
 
+//	{
+//		CString dbg;
+//		dbg.Format(_T(" LT:(%4d,%4d) x a=%.4f LB:(%4d,%4d) x a=%.4f RT:(%4d,%4d) x a=%.4f RB:(%4d,%4d) x a=%.4f\n"), x0,y0,a, x0, y1, b, x1, y0, c, x1, y1, d);
+//		OutputDebugString(dbg);
+//	}
+
 	for (int bd = 0; bd < band; bd++) {
 		p[bd] = srcdata[bd][y0][x0] * a + srcdata[bd][y1][x0] * b + srcdata[bd][y0][x1] * c + srcdata[bd][y1][x0] * d;
 	}
@@ -1428,126 +1438,156 @@ void  CScanDataIO::MatrixInvers(int nprm, double **ppMat, double **ppInvMat)
 bool CScanDataIO::GetHomographyMatrix(CPoint srcPt[4], CPoint dstPt[4], double prm[])
 {
 	bool bResult = true;
-	double **dATA, **dATA_I;
+	double **dATA = nullptr, **dATA_I = nullptr;
 	int i;
 
-	dATA	= new double*[8];
-	dATA_I	= new double*[8];
+	try {
+		dATA	= new double*[8];
+		dATA_I	= new double*[8];
 
-	for (i = 0; i < 8; i++)
-	{
-		dATA[i]		= new double[8];
-		dATA_I[i]	= new double[8];
+		for (i = 0; i < 8; i++)
+		{
+			dATA[i]		= new double[8];
+			if (dATA[i]) {
+				ZeroMemory(dATA[i], sizeof(double) * 8);
+			} 
+			dATA_I[i]	= new double[8];
+			if (dATA_I[i]) {
+				ZeroMemory(dATA_I[i], sizeof(double) * 8);
+			}
+		}
+
+		dATA[0][0] = (double)srcPt[0].x;
+		dATA[0][1] = (double)srcPt[0].y;
+		dATA[0][2] =  1.0;
+		dATA[0][3] =  0.0;
+		dATA[0][4] =  0.0;
+		dATA[0][5] =  0.0;
+		dATA[0][6] = -1.0 * (double)dstPt[0].x * (double)srcPt[0].x;
+		dATA[0][7] = -1.0 * (double)dstPt[0].x * (double)srcPt[0].y;
+		dATA[1][0] = (double)srcPt[1].x;
+		dATA[1][1] = (double)srcPt[1].y;
+		dATA[1][2] =  1.0;
+		dATA[1][3] =  0.0;
+		dATA[1][4] =  0.0;
+		dATA[1][5] =  0.0;
+		dATA[1][6] = -1.0 * (double)dstPt[1].x * (double)srcPt[1].x;
+		dATA[1][7] = -1.0 * (double)dstPt[1].x * (double)srcPt[1].y;
+		dATA[2][0] = (double)srcPt[2].x;
+		dATA[2][1] = (double)srcPt[2].y;
+		dATA[2][2] =  1.0;
+		dATA[2][3] =  0.0;
+		dATA[2][4] =  0.0;
+		dATA[2][5] =  0.0;
+		dATA[2][6] = -1.0 * (double)dstPt[2].x * (double)srcPt[2].x;
+		dATA[2][7] = -1.0 * (double)dstPt[2].x * (double)srcPt[2].y;
+		dATA[3][0] = (double)srcPt[3].x;
+		dATA[3][1] = (double)srcPt[3].y;
+		dATA[3][2] =  1.0;
+		dATA[3][3] =  0.0;
+		dATA[3][4] =  0.0;
+		dATA[3][5] =  0.0;
+		dATA[3][6] = -1.0 * (double)dstPt[3].x * (double)srcPt[3].x;
+		dATA[3][7] = -1.0 * (double)dstPt[3].x * (double)srcPt[3].y;
+		dATA[4][0] =  0.0;
+		dATA[4][1] =  0.0;
+		dATA[4][2] =  0.0;
+		dATA[4][3] = (double)srcPt[0].x;
+		dATA[4][4] = (double)srcPt[0].y;
+		dATA[4][5] =  1.0;
+		dATA[4][6] = -1.0 * (double)dstPt[0].y * (double)srcPt[0].x;
+		dATA[4][7] = -1.0 * (double)dstPt[0].y * (double)srcPt[0].y;
+		dATA[5][0] =  0.0;
+		dATA[5][1] =  0.0;
+		dATA[5][2] =  0.0;
+		dATA[5][3] = (double)srcPt[1].x;
+		dATA[5][4] = (double)srcPt[1].y;
+		dATA[5][5] =  1.0;
+		dATA[5][6] = -1.0 * (double)dstPt[1].y * (double)srcPt[1].x;
+		dATA[5][7] = -1.0 * (double)dstPt[1].y * (double)srcPt[1].y;
+		dATA[6][0] =  0.0;
+		dATA[6][1] =  0.0;
+		dATA[6][2] =  0.0;
+		dATA[6][3] = (double)srcPt[2].x;
+		dATA[6][4] = (double)srcPt[2].y;
+		dATA[6][5] =  1.0;
+		dATA[6][6] = -1.0 * (double)dstPt[2].y * (double)srcPt[2].x;
+		dATA[6][7] = -1.0 * (double)dstPt[2].y * (double)srcPt[2].y;
+		dATA[7][0] =  0.0;
+		dATA[7][1] =  0.0;
+		dATA[7][2] =  0.0;
+		dATA[7][3] = (double)srcPt[3].x;
+		dATA[7][4] = (double)srcPt[3].y;
+		dATA[7][5] =  1.0;
+		dATA[7][6] = -1.0 * (double)dstPt[3].y * (double)srcPt[3].x;
+		dATA[7][7] = -1.0 * (double)dstPt[3].y * (double)srcPt[3].y;
+
+		// ‹ts—ñ
+	//	MatrixInvers(8, dATA, dATA_I);
+
+		prm[0] =	dATA_I[0][0] * (double)dstPt[0].x + dATA_I[0][1] * (double)dstPt[1].x +
+					dATA_I[0][2] * (double)dstPt[2].x + dATA_I[0][3] * (double)dstPt[3].x +
+					dATA_I[0][4] * (double)dstPt[0].y + dATA_I[0][5] * (double)dstPt[1].y +
+					dATA_I[0][6] * (double)dstPt[2].y + dATA_I[0][7] * (double)dstPt[3].y;
+		prm[1] =	dATA_I[1][0] * (double)dstPt[0].x + dATA_I[1][1] * (double)dstPt[1].x +
+					dATA_I[1][2] * (double)dstPt[2].x + dATA_I[1][3] * (double)dstPt[3].x +
+					dATA_I[1][4] * (double)dstPt[0].y + dATA_I[1][5] * (double)dstPt[1].y +
+					dATA_I[1][6] * (double)dstPt[2].y + dATA_I[1][7] * (double)dstPt[3].y;
+		prm[2] =	dATA_I[2][0] * (double)dstPt[0].x + dATA_I[2][1] * (double)dstPt[1].x +
+					dATA_I[2][2] * (double)dstPt[2].x + dATA_I[2][3] * (double)dstPt[3].x +
+					dATA_I[2][4] * (double)dstPt[0].y + dATA_I[2][5] * (double)dstPt[1].y +
+					dATA_I[2][6] * (double)dstPt[2].y + dATA_I[2][7] * (double)dstPt[3].y;
+		prm[3] =	dATA_I[3][0] * (double)dstPt[0].x + dATA_I[3][1] * (double)dstPt[1].x +
+					dATA_I[3][2] * (double)dstPt[2].x + dATA_I[3][3] * (double)dstPt[3].x +
+					dATA_I[3][4] * (double)dstPt[0].y + dATA_I[3][5] * (double)dstPt[1].y +
+					dATA_I[3][6] * (double)dstPt[2].y + dATA_I[3][7] * (double)dstPt[3].y;
+		prm[4] =	dATA_I[4][0] * (double)dstPt[0].x + dATA_I[4][1] * (double)dstPt[1].x +
+					dATA_I[4][2] * (double)dstPt[2].x + dATA_I[4][3] * (double)dstPt[3].x +
+					dATA_I[4][4] * (double)dstPt[0].y + dATA_I[4][5] * (double)dstPt[1].y +
+					dATA_I[4][6] * (double)dstPt[2].y + dATA_I[4][7] * (double)dstPt[3].y;
+		prm[5] =	dATA_I[5][0] * (double)dstPt[0].x + dATA_I[5][1] * (double)dstPt[1].x +
+					dATA_I[5][2] * (double)dstPt[2].x + dATA_I[5][3] * (double)dstPt[3].x +
+					dATA_I[5][4] * (double)dstPt[0].y + dATA_I[5][5] * (double)dstPt[1].y +
+					dATA_I[5][6] * (double)dstPt[2].y + dATA_I[5][7] * (double)dstPt[3].y;
+		prm[6] =	dATA_I[6][0] * (double)dstPt[0].x + dATA_I[6][1] * (double)dstPt[1].x +
+					dATA_I[6][2] * (double)dstPt[2].x + dATA_I[6][3] * (double)dstPt[3].x +
+					dATA_I[6][4] * (double)dstPt[0].y + dATA_I[6][5] * (double)dstPt[1].y +
+					dATA_I[6][6] * (double)dstPt[2].y + dATA_I[6][7] * (double)dstPt[3].y;
+		prm[7] =	dATA_I[7][0] * (double)dstPt[0].x + dATA_I[7][1] * (double)dstPt[1].x +
+					dATA_I[7][2] * (double)dstPt[2].x + dATA_I[7][3] * (double)dstPt[3].x +
+					dATA_I[7][4] * (double)dstPt[0].y + dATA_I[7][5] * (double)dstPt[1].y +
+					dATA_I[7][6] * (double)dstPt[2].y + dATA_I[7][7] * (double)dstPt[3].y;
+
+		for (i = 0; i < 8; i++)
+		{
+			delete dATA[i];
+			delete dATA_I[i];
+		}
+		delete [] dATA;
+		delete [] dATA_I;
 	}
+	catch (...) {
+		if (dATA) {
+			for (i = 0; i < 8; i++)
+			{
+				if (dATA[i]) {
+					delete dATA[i];
+				}
+			}
+			delete[] dATA;
+		}
 
-	dATA[0][0] = srcPt[0].x;
-	dATA[0][1] = srcPt[0].y;
-	dATA[0][2] = 1;
-	dATA[0][3] = 0;
-	dATA[0][4] = 0;
-	dATA[0][5] = 0;
-	dATA[0][6] = -1 * dstPt[0].x * srcPt[0].x;
-	dATA[0][7] = -1 * dstPt[0].x * srcPt[0].y;
-	dATA[1][0] = srcPt[1].x;
-	dATA[1][1] = srcPt[1].y;
-	dATA[1][2] = 1;
-	dATA[1][3] = 0;
-	dATA[1][4] = 0;
-	dATA[1][5] = 0;
-	dATA[1][6] = -1 * dstPt[1].x * srcPt[1].x;
-	dATA[1][7] = -1 * dstPt[1].x * srcPt[1].y;
-	dATA[2][0] = srcPt[2].x;
-	dATA[2][1] = srcPt[2].y;
-	dATA[2][2] = 1;
-	dATA[2][3] = 0;
-	dATA[2][4] = 0;
-	dATA[2][5] = 0;
-	dATA[2][6] = -1 * dstPt[2].x * srcPt[2].x;
-	dATA[2][7] = -1 * dstPt[2].x * srcPt[2].y;
-	dATA[3][0] = srcPt[3].x;
-	dATA[3][1] = srcPt[3].y;
-	dATA[3][2] = 1;
-	dATA[3][3] = 0;
-	dATA[3][4] = 0;
-	dATA[3][5] = 0;
-	dATA[3][6] = -1 * dstPt[3].x * srcPt[3].x;
-	dATA[3][7] = -1 * dstPt[3].x * srcPt[3].y;
-	dATA[4][0] = 0;
-	dATA[4][1] = 0;
-	dATA[4][2] = 0;
-	dATA[4][3] = srcPt[0].x;
-	dATA[4][4] = srcPt[0].y;
-	dATA[4][5] = 1;
-	dATA[4][6] = -1 * dstPt[0].y * srcPt[0].x;
-	dATA[4][7] = -1 * dstPt[0].y * srcPt[0].y;
-	dATA[5][0] = 0;
-	dATA[5][1] = 0;
-	dATA[5][2] = 0;
-	dATA[5][3] = srcPt[1].x;
-	dATA[5][4] = srcPt[1].y;
-	dATA[5][5] = 1;
-	dATA[5][6] = -1 * dstPt[1].y * srcPt[1].x;
-	dATA[5][7] = -1 * dstPt[1].y * srcPt[1].y;
-	dATA[6][0] = 0;
-	dATA[6][1] = 0;
-	dATA[6][2] = 0;
-	dATA[6][3] = srcPt[2].x;
-	dATA[6][4] = srcPt[2].y;
-	dATA[6][5] = 1;
-	dATA[6][6] = -1 * dstPt[2].y * srcPt[2].x;
-	dATA[6][7] = -1 * dstPt[2].y * srcPt[2].y;
-	dATA[7][0] = 0;
-	dATA[7][1] = 0;
-	dATA[7][2] = 0;
-	dATA[7][3] = srcPt[3].x;
-	dATA[7][4] = srcPt[3].y;
-	dATA[7][5] = 1;
-	dATA[7][6] = -1 * dstPt[3].y * srcPt[3].x;
-	dATA[7][7] = -1 * dstPt[3].y * srcPt[3].y;
-
-	// ‹ts—ñ
-//	MatrixInvers(8, dATA, dATA_I);
-
-	prm[0] =	dATA_I[0][0] * dstPt[0].x + dATA_I[0][1] * dstPt[1].x +
-				dATA_I[0][2] * dstPt[2].x + dATA_I[0][3] * dstPt[3].x +
-				dATA_I[0][4] * dstPt[0].y + dATA_I[0][5] * dstPt[1].y +
-				dATA_I[0][6] * dstPt[2].y + dATA_I[0][7] * dstPt[3].y;
-	prm[1] =	dATA_I[1][0] * dstPt[0].x + dATA_I[1][1] * dstPt[1].x +
-				dATA_I[1][2] * dstPt[2].x + dATA_I[1][3] * dstPt[3].x +
-				dATA_I[1][4] * dstPt[0].y + dATA_I[1][5] * dstPt[1].y +
-				dATA_I[1][6] * dstPt[2].y + dATA_I[1][7] * dstPt[3].y;
-	prm[2] =	dATA_I[2][0] * dstPt[0].x + dATA_I[2][1] * dstPt[1].x +
-				dATA_I[2][2] * dstPt[2].x + dATA_I[2][3] * dstPt[3].x +
-				dATA_I[2][4] * dstPt[0].y + dATA_I[2][5] * dstPt[1].y +
-				dATA_I[2][6] * dstPt[2].y + dATA_I[2][7] * dstPt[3].y;
-	prm[3] =	dATA_I[3][0] * dstPt[0].x + dATA_I[3][1] * dstPt[1].x +
-				dATA_I[3][2] * dstPt[2].x + dATA_I[3][3] * dstPt[3].x +
-				dATA_I[3][4] * dstPt[0].y + dATA_I[3][5] * dstPt[1].y +
-				dATA_I[3][6] * dstPt[2].y + dATA_I[3][7] * dstPt[3].y;
-	prm[4] =	dATA_I[4][0] * dstPt[0].x + dATA_I[4][1] * dstPt[1].x +
-				dATA_I[4][2] * dstPt[2].x + dATA_I[4][3] * dstPt[3].x +
-				dATA_I[4][4] * dstPt[0].y + dATA_I[4][5] * dstPt[1].y +
-				dATA_I[4][6] * dstPt[2].y + dATA_I[4][7] * dstPt[3].y;
-	prm[5] =	dATA_I[5][0] * dstPt[0].x + dATA_I[5][1] * dstPt[1].x +
-				dATA_I[5][2] * dstPt[2].x + dATA_I[5][3] * dstPt[3].x +
-				dATA_I[5][4] * dstPt[0].y + dATA_I[5][5] * dstPt[1].y +
-				dATA_I[5][6] * dstPt[2].y + dATA_I[5][7] * dstPt[3].y;
-	prm[6] =	dATA_I[6][0] * dstPt[0].x + dATA_I[6][1] * dstPt[1].x +
-				dATA_I[6][2] * dstPt[2].x + dATA_I[6][3] * dstPt[3].x +
-				dATA_I[6][4] * dstPt[0].y + dATA_I[6][5] * dstPt[1].y +
-				dATA_I[6][6] * dstPt[2].y + dATA_I[6][7] * dstPt[3].y;
-	prm[7] =	dATA_I[7][0] * dstPt[0].x + dATA_I[7][1] * dstPt[1].x +
-				dATA_I[7][2] * dstPt[2].x + dATA_I[7][3] * dstPt[3].x +
-				dATA_I[7][4] * dstPt[0].y + dATA_I[7][5] * dstPt[1].y +
-				dATA_I[7][6] * dstPt[2].y + dATA_I[7][7] * dstPt[3].y;
-
-	for (i = 0; i < 8; i++)
-	{
-		delete dATA[i];
-		delete dATA_I[i];
+		if (dATA_I) {
+			for (i = 0; i < 8; i++)
+			{
+				if (dATA_I[i]) {
+					delete dATA_I[i];
+				}
+			}
+			delete[] dATA_I;
+		}
+		bResult = false;
 	}
-	delete dATA;
-	delete dATA_I;
 
 	return bResult;
 }
@@ -1714,7 +1754,7 @@ void CScanDataIO::Calc_ProjectionParam(vector<CPoint> &vOrig, vector<CPoint> &vT
 	{
 		delete dA[i];
 	}
-	delete dA;
+	delete [] dA;
 
 }
 

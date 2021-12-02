@@ -32,10 +32,10 @@ public:
     };
 
 private:
-    vector<CString>  m_linebuffs;    ///< ラインバッファ
-    LOGLEVEL        m_sysLogLevel;  ///< システムのログレベル
-    CString          m_logPath;      ///< ログ出力ディレクトリ
-    CString          m_prefix;       ///< ファイル名プレフィックス
+    vector<CString>  m_linebuffs;		///< ラインバッファ
+    LOGLEVEL         m_sysLogLevel;		///< システムのログレベル
+    CString          m_logPath;			///< ログ出力ディレクトリ
+    CString          m_prefix;			///< ファイル名プレフィックス
 
 private:
     bool Initiaize();

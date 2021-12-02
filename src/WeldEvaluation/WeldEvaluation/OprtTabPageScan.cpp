@@ -179,7 +179,9 @@ void COprtTabPageScan::OnBnClickedBtnScan()
 	ItemActive(false);
 	CString	msg;
 	if (bExist) {
-		msg.LoadString(IDM_EXISTSCANIMAGE);
+		if (!msg.LoadString(IDM_EXISTSCANIMAGE)) {
+			msg = _T("スキャン画像が存在します。\n再取得をおこないますか？");
+		}
 		if (AfxMessageBox(msg,MB_YESNO|MB_ICONQUESTION|MB_DEFBUTTON1) != IDYES) {
 			ItemActive(true);
 			return;
@@ -202,20 +204,28 @@ void COprtTabPageScan::OnBnClickedBtnScan()
 					UpdateData(false);
 				}
 			}
-			msg.LoadString(IDM_SCAN_SUCCESS);
+			if (!msg.LoadString(IDM_SCAN_SUCCESS)) {
+				msg = _T("スキャン処理が正常に終了しました。");
+			}
 			AfxMessageBox(msg,MB_OK|MB_ICONINFORMATION);
 			break;
 		case	1	:		// スキャンキャンセル
-			msg.LoadString(IDM_SCAN_CANCELD);
+			if (!msg.LoadString(IDM_SCAN_CANCELD)) {
+				msg = _T("スキャン処理がキャンセルされました。");
+			}
 			AfxMessageBox(msg,MB_OK|MB_ICONWARNING);
 			break;
 		default	:
-			msg.LoadString(IDM_ERR_SCAN);
+			if (!msg.LoadString(IDM_ERR_SCAN)) {
+				msg = _T("スキャンに失敗しました");
+			}
 			AfxMessageBox(msg,MB_OK|MB_ICONSTOP);
 			break;
 		}
 	} else {
-		msg.LoadString(IDM_ERR_SCAN);
+		if (!msg.LoadString(IDM_ERR_SCAN)) {
+			msg = _T("スキャンに失敗しました");
+		}
 		AfxMessageBox(msg,MB_OK|MB_ICONSTOP);
 	}
 	ItemActive(true);
@@ -307,21 +317,31 @@ void COprtTabPageScan::OnBnClickedBtnInvers()
 	CString msg;
 	if (bResult) {
 		if (!bDeltedAnalizeData) {
-			msg.LoadString(IDM_INVERS_SUCCESS);
+			if (!msg.LoadString(IDM_INVERS_SUCCESS)) {
+				msg = _T("データの反転が完了しました");
+			}
 			AfxMessageBox(msg, MB_OK | MB_ICONINFORMATION);
 		}
 		else {
 			// 解析データが削除されている
 			CString s1, s2, s3;
-			s1.LoadString(IDM_INVERS_SUCCESS);
-			s2.LoadString(IDM_DELETED_ANALIZEDATA);
-			s3.LoadString(IDM_REANALIZE_REQUEST);
-			msg.Format(_T("%s。\n%s。 %s。"), s1, s2, s3);
+			if (!s1.LoadString(IDM_INVERS_SUCCESS)) {
+				s1 = _T("データの反転が完了しました");
+			}
+			if (!s2.LoadString(IDM_DELETED_ANALIZEDATA)) {
+				s2 = _T("解析データが削除されました");
+			}
+			if (!s3.LoadString(IDM_REANALIZE_REQUEST)) {
+				s3 = _T("解析の実施を行ってください");
+			}
+			msg.Format(_T("%s。\n%s。 %s。"), static_cast<LPCWSTR>(s1), static_cast<LPCWSTR>(s2), static_cast<LPCWSTR>(s3));
 			AfxMessageBox(msg, MB_OK | MB_ICONWARNING);
 		}
 	}
 	else {
-		msg.LoadString(IDM_ERR_INVERS_FAIL);
+		if (!msg.LoadString(IDM_ERR_INVERS_FAIL)) {
+			msg = _T("データの反転に失敗しました");
+		}
 		AfxMessageBox(msg, MB_OK | MB_ICONSTOP);
 	}
 }

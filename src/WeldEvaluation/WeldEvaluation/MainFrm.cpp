@@ -116,7 +116,9 @@ void CMainFrame::OnClose()
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetActiveDocument();
 	if (pDoc->IsWorkProjectUpdated()) {
 		CString msg;
-		msg.LoadString(DM_PRJREGIST_EXISTUPDATE);
+		if (!msg.LoadString(IDM_PRJREGIST_EXISTUPDATE)) {
+			msg = _T("データが更新されています。\n更新されているデータを破棄しますか?");
+		}
 		if (AfxMessageBox(msg, MB_YESNO | MB_ICONQUESTION | MB_DEFBUTTON1) == IDNO) {
 			return;
 		}

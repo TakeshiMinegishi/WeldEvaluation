@@ -162,7 +162,7 @@ int CDeviceIO::Init(CString DeviceName)
 			char	szError[256];
 			DioGetErrorString(ret, szError);
 			CString msg;
-			msg.Format(_T("CDeviceIO::Init():DeviceName(%s):Ret = %d : %S"), (LPCTSTR)DeviceName, ret, (LPCTSTR)szError);
+			msg.Format(_T("CDeviceIO::Init():DeviceName(%s):Ret = %d : %s"), static_cast<LPCWSTR>(DeviceName), ret, static_cast<LPCWSTR>(CString(szError)));
 			logOut(CString(__FILE__), __LINE__, msg);
 			return -1;
 		}

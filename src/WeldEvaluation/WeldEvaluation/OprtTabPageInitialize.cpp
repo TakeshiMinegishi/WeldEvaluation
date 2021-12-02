@@ -98,7 +98,9 @@ void COprtTabPageInitialize::OnBnClickedBtnWhitebarance()
 		Sleep(0);
 	}
 	CString msg;
-	msg.LoadString(IDS_PREPANING);
+	if (!msg.LoadString(IDS_PREPANING)) {
+		msg = _T("準備中...");
+	}
 	pThread->UpdateStatus(msg);
 	AddNode(pThread);  // すごく重い処理
 
@@ -109,11 +111,15 @@ void COprtTabPageInitialize::OnBnClickedBtnWhitebarance()
 	WaitForSingleObject(pThread->m_hThread, 30000);	// スレッドの終了を30秒だけ待ってやる（ほぼ0秒のはず
 
 	if (!pThread->m_bResult) {
-		msg.LoadString(IDM_ERR_SCAN);
+		if (!msg.LoadString(IDM_ERR_SCAN)) {
+			msg = _T("スキャンに失敗しました");
+		}
 		AfxMessageBox(msg, MB_OK | MB_ICONSTOP);
 	}
 	else {
-		msg.LoadString(IDM_SCAN_SUCCESS);
+		if (!msg.LoadString(IDM_SCAN_SUCCESS)) {
+			msg = _T("スキャン処理が正常に終了しました。");
+		}
 		AfxMessageBox(msg, MB_OK | MB_ICONINFORMATION);
 	}
 	delete pThread;
