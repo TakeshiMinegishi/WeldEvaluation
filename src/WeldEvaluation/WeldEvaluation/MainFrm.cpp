@@ -10,6 +10,7 @@
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
+#define _FREE_WIND_SIZE_
 #endif
 
 // CMainFrame
@@ -20,6 +21,12 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_WM_CREATE()
 	ON_WM_CLOSE()
 	ON_WM_GETMINMAXINFO()
+	ON_WM_NCLBUTTONDBLCLK()
+	ON_WM_NCMOUSEMOVE()
+	ON_WM_NCLBUTTONUP()
+	ON_WM_NCLBUTTONDOWN()
+//	ON_WM_WINDOWPOSCHANGING()
+	ON_WM_WINDOWPOSCHANGED()
 END_MESSAGE_MAP()
 
 static UINT indicators[] =
@@ -75,7 +82,7 @@ BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 	::DestroyMenu(cs.hMenu);
 	//DeleteObject(cs.hMenu);
 	cs.hMenu = NULL;
-#ifndef _DEBUG
+#ifndef _FREE_WIND_SIZE_
 	cs.style &= ~(WS_MAXIMIZEBOX | WS_THICKFRAME);
 #endif
 	if( !CFrameWnd::PreCreateWindow(cs) )
@@ -145,3 +152,143 @@ void CMainFrame::OnGetMinMaxInfo(MINMAXINFO* lpMMI)
 	}
 }
 
+/// <summary>
+/// 非クライアント領域内左ボタンダブルクリック時の処理
+/// </summary>
+/// <param name="nHitTest">ヒットテストコード</param>
+/// <param name="point">カーソル位置</param>
+void CMainFrame::OnNcLButtonDblClk(UINT nHitTest, CPoint point)
+{
+#ifndef _FREE_WIND_SIZE_
+	if (HTCAPTION != nHitTest) {
+		CFrameWnd::OnNcLButtonDblClk(nHitTest, point);
+	}
+#else
+	CFrameWnd::OnNcLButtonDblClk(nHitTest, point);
+#endif
+}
+
+/// <summary>
+/// 非クライアント領域内マウス移動時の処理
+/// </summary>
+/// <param name="nHitTest">ヒットテストコード</param>
+/// <param name="point">カーソル位置</param>
+void CMainFrame::OnNcMouseMove(UINT nHitTest, CPoint point)
+{
+#ifndef _FREE_WIND_SIZE_
+	if (HTCAPTION != nHitTest) {
+		CFrameWnd::OnNcMouseMove(nHitTest, point);
+	}
+#else
+	CFrameWnd::OnNcMouseMove(nHitTest, point);
+#endif
+}
+
+/// <summary>
+/// 非クライアント領域内マウス左ボタン押下時の処理
+/// </summary>
+/// <param name="nHitTest">ヒットテストコード</param>
+/// <param name="point">カーソル位置</param>
+void CMainFrame::OnNcLButtonUp(UINT nHitTest, CPoint point)
+{
+#ifndef _FREE_WIND_SIZE_
+	if (HTCAPTION != nHitTest) {
+		CFrameWnd::OnNcLButtonUp(nHitTest, point);
+	}
+#else
+	CFrameWnd::OnNcLButtonUp(nHitTest, point);
+#endif
+}
+
+/// <summary>
+/// 非クライアント領域内マウス左ボタン押上時の処理
+/// </summary>
+/// <param name="nHitTest">ヒットテストコード</param>
+/// <param name="point">カーソル位置</param>
+void CMainFrame::OnNcLButtonDown(UINT nHitTest, CPoint point)
+{
+#ifndef _FREE_WIND_SIZE_
+	if (HTCAPTION != nHitTest) {
+		CFrameWnd::OnNcLButtonUp(nHitTest, point);
+	}
+#else
+	CFrameWnd::OnNcLButtonUp(nHitTest, point);
+#endif
+}
+
+/// <summary>
+/// ウインドメッセージディスパッチ前の処理
+/// </summary>
+/// <param name="pMsg">メッセージ</param>
+/// <returns>ディスパッチすべきでない場合はtrue、ディスパッチが必要な場合はfalseを返す</returns>
+BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
+{
+#ifndef _FREE_WIND_SIZE_
+	switch (pMsg->message)
+	{
+	case WM_SYSCOMMAND:
+		{
+			int command = (__int32)(pMsg->wParam) & 0xfff0;
+			if (command == SC_MOVE || command == SC_TASKLIST || command == SC_RESTORE || command == SC_VSCROLL || command == SC_HSCROLL) {
+				return true;
+			}
+		}
+		break;
+	}
+
+	if ((GetKeyState(VK_LWIN) < 0) || (GetKeyState(VK_RWIN) < 0)) {
+		return true;
+	}
+#endif
+	return CFrameWnd::PreTranslateMessage(pMsg);
+}
+
+#if 0
+/// <summary>
+/// ウインドの位置、サイズが変更中の呼び出し
+/// </summary>
+/// <param name="lpwndpos">WINDOWPOS構造体へのポインタ</param>
+void CMainFrame::OnWindowPosChanging(WINDOWPOS* lpwndpos)
+{
+#ifndef _FREE_WIND_SIZE_
+	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetActiveDocument();
+	if (pDoc) {
+		if (pDoc->IsNew() || pDoc->IsOpen()) {
+			if ((!IsIconic()) && (!IsZoomed())) {
+				lpwndpos->x = 0;
+				lpwndpos->y = 0;
+				lpwndpos->cx = 0;
+				lpwndpos->cy = 0;
+				lpwndpos->flags = SWP_NOMOVE | SWP_NOSIZE;
+			}
+		}
+	}
+#endif
+	CFrameWnd::OnWindowPosChanging(lpwndpos);
+}
+#endif
+
+#if 1
+/// <summary>
+/// ウインドの位置、サイズが変更された時の処理
+/// </summary>
+/// <param name="lpwndpos">WINDOWPOS構造体へのポインタ</param>
+void CMainFrame::OnWindowPosChanged(WINDOWPOS* lpwndpos)
+{
+#ifndef _FREE_WIND_SIZE_
+	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetActiveDocument();
+	if (pDoc) {
+		if (pDoc->IsNew() || pDoc->IsOpen()) {
+			if ((!IsIconic()) && (!IsZoomed())) {
+				lpwndpos->x = 0;
+				lpwndpos->y = 0;
+				lpwndpos->cx = 0;
+				lpwndpos->cy = 0;
+				lpwndpos->flags = SWP_NOMOVE | SWP_NOSIZE;
+			}
+		}
+	}
+#endif
+	CFrameWnd::OnWindowPosChanged(lpwndpos);
+}
+#endif

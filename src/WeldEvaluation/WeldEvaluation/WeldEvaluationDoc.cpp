@@ -2611,7 +2611,7 @@ bool CWeldEvaluationDoc::getResultFile(CString path, vector<int>& data)
 	data.clear();
 	int h, v;
 	GetScanDataSize(h, v);
-	data.resize(h*v);
+	data.resize((__int64)h*v);
 
 	string line;
 	int id = 0;
@@ -2976,9 +2976,9 @@ bool CWeldEvaluationDoc::CalcJoJointRetio(vector<int> data, int nClass, vector<d
 
 	int dataw, datah;
 	GetScanDataSize(dataw, datah);
-	if (data.size() != (dataw * datah)) {
+	if ((int)data.size() != ((__int64)dataw * datah)) {
 		CString msg;
-		msg.Format(_T("データサイズがスキャンデータのサイズと一致しません。widht=%d Height=%d :データサイズ=%d"), dataw, datah, data.size());
+		msg.Format(_T("データサイズがスキャンデータのサイズと一致しません。widht=%d Height=%d :データサイズ=%d"), dataw, datah, (int)data.size());
 		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	}
@@ -3023,10 +3023,10 @@ bool CWeldEvaluationDoc::CalcJoJointRetio(vector<int> data, int nClass, vector<d
 			if ((w < minW) || (w >= maxW)) {
 				continue;
 			}
-			if ((data[id+w] < 0) || (data[id+w] >= nClass)) {
+			if ((data[(__int64)id+w] < 0) || (data[(__int64)id+w] >= nClass)) {
 				continue;
 			}
-			sum[data[id+w]] += 1;
+			sum[data[(__int64)id+w]] += 1;
 			nData++;
 		}
 	}
@@ -3333,9 +3333,9 @@ bool CWeldEvaluationDoc::Analize(int ScanID, int AnalysisMethodID)
 	else {
 		int dataw, datah;
 		GetScanDataSize(dataw, datah);
-		if (data.size() != (dataw * datah)) {
+		if ((int)data.size() != ((__int64)dataw * datah)) {
 			CString msg;
-			msg.Format(_T("データサイズがスキャンデータのサイズと一致しません。:ScanID=%d,widht=%d Height=%d :データサイズ=%d"), ScanID, dataw, datah, data.size());
+			msg.Format(_T("データサイズがスキャンデータのサイズと一致しません。:ScanID=%d,widht=%d Height=%d :データサイズ=%d"), ScanID, dataw, datah, (int)data.size());
 			writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 			return false;
 		}
@@ -3698,7 +3698,7 @@ COLORREF CWeldEvaluationDoc::GetClassColor(int id, int nClass)
 {
 	COLORREF col;
 	unsigned char r, g, b;
-	int h = (int)((double)id * (240.0 / (double)(nClass - 1) + 0.5));
+	int h = (int)((double)id * (240.0 / (double)((__int64)nClass - 1) + 0.5));
 	H2RGB(h, r, g, b);
 	col = RGB(r, g, b);
 	return col;
@@ -3774,7 +3774,7 @@ bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, int method,
 			if ((imageWidth % 8) != 0) {
 				imageWidth = (int)(imageWidth / 8) * 8 + 8;
 			}
-			unsigned char * p24Img = new unsigned char[imageWidth * height * Bpp];
+			unsigned char * p24Img = new unsigned char[(__int64)imageWidth * (__int64)height * Bpp];
 			BYTE *ptr = p24Img;
 			COLORREF *col = new COLORREF[nClass];
 			for (int id = 0; id < nClass; id++) {
@@ -3801,7 +3801,7 @@ bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, int method,
 
 			int id = 0;
 			for (int y = 0; y < height; y++) {
-				ptr = p24Img + (y*imageWidth)*Bpp;
+				ptr = p24Img + (__int64)((__int64)y*imageWidth)*Bpp;
 				for (int x = 0; x < width; x++) {
 					id = (y*width) + x;
 					if (data[id] < 0) {

@@ -24,13 +24,18 @@ IMPLEMENT_DYNAMIC(CImageWind, CDialog)
 CImageWind::CImageWind(CWnd* pParent /*=NULL*/)
 	: CDialog(CImageWind::IDD, pParent)
 {
-	m_bActive		= false;
-	m_Type			= eResinSurface;
-	m_mode			= 0;
-	m_bButtonDown	= false;
-	m_bAriaSelect	= false;
-	m_pImg			= nullptr;
-	m_zoomRetio		= 1.0;
+	m_bActive			= false;
+	m_Type				= eResinSurface;
+	m_mode				= 0;
+	m_bButtonDown		= false;
+	m_bAriaSelect		= false;
+	m_pImg				= nullptr;
+	m_zoomRetio			= 1.0;
+
+	m_orgImageWidth		= 0;
+	m_orgImageHeight	= 0;
+	m_orgImageX			= 0;
+	m_orgImageY			= 0;
 }
 
 /// <summary>
@@ -542,16 +547,16 @@ void CImageWind::Scaling(double ScalingRetio, CPoint pt)
 	int imageY = 0;
 	double zoomRetio = ScalingRetio;
 
-	int imageBX = (int)((rect.Width()  - m_imageWidth ) / 2.0);
-	int imageBY = (int)((rect.Height() - m_imageHeight) / 2.0);
-	int deltaDX = (int)((imageBX - m_imageX) / m_zoomRetio);
-	int deltaDY = (int)((imageBY - m_imageY) / m_zoomRetio);
+	int imageBX = (int)(((__int64)rect.Width()  - m_imageWidth ) / 2.0);
+	int imageBY = (int)(((__int64)rect.Height() - m_imageHeight) / 2.0);
+	int deltaDX = (int)(((__int64)imageBX - m_imageX) / m_zoomRetio);
+	int deltaDY = (int)(((__int64)imageBY - m_imageY) / m_zoomRetio);
 
 	CPoint delta;
 	int imageWidth	= (int)(m_orgImageWidth  * zoomRetio);
 	int imageHeight = (int)(m_orgImageHeight * zoomRetio);
-	imageX = (int)(((rect.Width()  - imageWidth)  / 2.0) - (deltaDX * zoomRetio));
-	imageY = (int)(((rect.Height() - imageHeight) / 2.0) - (deltaDY * zoomRetio));
+	imageX = (int)((((__int64)rect.Width()  - imageWidth)  / 2.0) - (deltaDX * zoomRetio));
+	imageY = (int)((((__int64)rect.Height() - imageHeight) / 2.0) - (deltaDY * zoomRetio));
 
 	delta.x = (LONG)(pt.x * ZoomSpep / (zoomRetio * m_zoomRetio));
 	delta.y = (LONG)(pt.y * ZoomSpep / (zoomRetio * m_zoomRetio));
@@ -568,31 +573,31 @@ void CImageWind::Scaling(double ScalingRetio, CPoint pt)
 		zoomRetio = 1.0;
 		imageWidth = m_orgImageWidth;
 		imageHeight = m_orgImageHeight;
-		imageY = (int)((rect.Height() - imageHeight) / 2.0);
-		imageX = (int)((rect.Width()  - imageWidth ) / 2.0);
+		imageY = (int)(((__int64)rect.Height() - imageHeight) / 2.0);
+		imageX = (int)(((__int64)rect.Width()  - imageWidth ) / 2.0);
 	}
 	else {
 		if (imageWidth < rect.Width()) {
-			imageX = (int)((rect.Width() - imageWidth) / 2.0);
+			imageX = (int)(((__int64)rect.Width() - imageWidth) / 2.0);
 		}
 		else if (imageWidth > rect.Width()) {
 			if (imageX > 0) {
 				imageX = 0;
 			}
 			else if ((imageX + imageWidth) < rect.Width()) {
-				imageX = rect.Width() - imageWidth;
+				imageX = (__int64)rect.Width() - imageWidth;
 			}
 		}
 
 		if (imageHeight < rect.Height()) {
-			imageY = (int)((rect.Height() - imageHeight) / 2.0);
+			imageY = (int)(((__int64)rect.Height() - imageHeight) / 2.0);
 		}
 		else if (imageHeight > rect.Height()) {
 			if (imageY > 0) {
 				imageY = 0;
 			}
 			else if ((imageY + imageHeight) < rect.Height()) {
-				imageY = rect.Height() - imageHeight;
+				imageY = (__int64)rect.Height() - imageHeight;
 			}
 		}
 	}

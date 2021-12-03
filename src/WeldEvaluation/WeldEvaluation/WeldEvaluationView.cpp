@@ -1212,7 +1212,24 @@ LRESULT CWeldEvaluationView::OnScanRequest(WPARAM wparam, LPARAM lparam)
 bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 {
 	CWaitCursor waitCursol;
-	CDeviceIO device;
+
+	bool			bResult = true;
+	CString			fname				= _T("");
+	CString			SnapscanFile		= _T("");
+	CString			WBFileName			= _T("");
+	CString			registedFolde		= _T("");
+	CString			spectralFilePath	= _T("");
+	CScanDataIO		scn;
+	float *			p = nullptr;			// 線形補間結果格納用
+	vector<CPoint>	vOrign, vTrans;			// 線形補間用パラメータ
+	double *		pWavelength			= nullptr;
+//	CubeFloat *		cube				= nullptr;
+	CubeFloat *		cube_corrected		= nullptr;
+	CubeFloat *		reference_corrected = nullptr;
+	float ***		dst					= nullptr;
+	float ***		outData				= nullptr;
+	int				outH = 0, outW = 0;
+	int				dstW = 0, dstH = 0;
 
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
 	CString deviceName = pDoc->GetDeviceName();
@@ -1233,28 +1250,37 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		ProjectPath = pDoc->getScanDataPath(ScanID);
 	}
 
+	// カメラ設定
+	int band = pDoc->NumberOfBand();
+	int width = pDoc->GetShootingWidth();
+	int height = pDoc->GetShootingHeight();
+	int offset = pDoc->NumberOfOverridePixel();
+	double speed = pDoc->GetIntegrationTimeMs();
+	CCameraIO cam(width, height, band);
+
+	CDeviceIO device;
 	int ID = device.Init(deviceName);
 	if (ID < 0) {
 		logOut(CString(__FILE__), __LINE__,_T("ScanImage():デバイスの初期化に失敗した"));
 		return false;
 	}
+	// キャンセルのチェック
+	if (!pStatus->m_Valid) {
+		bResult = true;
+		goto SCanFinalize;
+	}
 	if (!device.ToHome(ID)) {
 		logOut(CString(__FILE__), __LINE__, _T("ScanImage():ホームポジションへの移動に失敗した"));
 		return false;
 	}
-	
-//	int HorizontalResolution = pDoc->GetHorizontalResolution();
-//	int VerticalResolution = pDoc->GetVerticalResolution();
+	// キャンセルのチェック
+	if (!pStatus->m_Valid) {
+		bResult = true;
+		goto SCanFinalize;
+	}
 
-	// カメラ設定
-	int band	= pDoc->NumberOfBand();
-	int width	= pDoc->GetShootingWidth();
-	int height	= pDoc->GetShootingHeight();
-	int offset	= pDoc->NumberOfOverridePixel();
-	double speed = pDoc->GetIntegrationTimeMs();
-	CCameraIO cam(width, height, band);
 
-	CString SnapscanFile = pDoc->getSnapscanFile();
+	SnapscanFile = pDoc->getSnapscanFile();
 	if (!CFileUtil::fileExists(SnapscanFile)) {
 		CString msg;
 		msg.Format(_T("ScanImage():SnapscanFileが見つからない[%s]"), (LPCTSTR)SnapscanFile);
@@ -1266,50 +1292,68 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		logOut(CString(__FILE__), __LINE__, _T("ScanImage():カメラをオープンできませんでした"));
 		return false;
 	}
+	// キャンセルのチェック
+	if (!pStatus->m_Valid) {
+		bResult = true;
+		goto SCanFinalize;
+	}
 	if (!cam.setIntegrationTime(speed)) {
 		CString msg;
 		msg.Format(_T("ScanImage():IntegrationTimeの設定に失敗しました[%lf]"), speed);
 		logOut(CString(__FILE__), __LINE__, msg);
 		return false;
 	}
-	if (!cam.StartScan()) {
-		logOut(CString(__FILE__), __LINE__, _T("ScanImage():スキャンの開始に失敗しました"));
-		return false;
+	// キャンセルのチェック
+	if (!pStatus->m_Valid) {
+		bResult = true;
+		goto SCanFinalize;
 	}
 
-	CString registedFolde = pDoc->GetRegistedFolder();
-	CString WBFileName = pDoc->GetWBFileName();
-	CubeFloat *reference_corrected = new CubeFloat();
+	registedFolde = pDoc->GetRegistedFolder();
+	WBFileName = pDoc->GetWBFileName();
+	reference_corrected = new CubeFloat();
 	if (!cam.LoadReference(*reference_corrected, registedFolde, WBFileName)) {
 		logOut(CString(__FILE__), __LINE__, _T("ScanImage():ホワイトバランスデータのロードに失敗しました"));
 		return false;
 	}
 
 	// 一時ファイル保存先パス設定
-	bool bResult = true;
-	CString spectralFilePath = pDoc->GetTmpFolderPath();
+	spectralFilePath = pDoc->GetTmpFolderPath();
 	if (!CFileUtil::fileExists(spectralFilePath)) {
 		if (!CreateDirectory(spectralFilePath, NULL)) {
 			spectralFilePath = pDoc->GetRegistedFolder();
 		}
 	}
 
-	CubeFloat  *cube_corrected = new CubeFloat();
-	CScanDataIO scn;
+	// キャンセルのチェック
+	if (!pStatus->m_Valid) {
+		bResult = true;
+		goto SCanFinalize;
+	}
+	if (!cam.StartScan()) {
+		logOut(CString(__FILE__), __LINE__, _T("ScanImage():スキャンの開始に失敗しました"));
+		return false;
+	}
+	// キャンセルのチェック
+	if (!pStatus->m_Valid) {
+		cam.StopScan();
+		bResult = true;
+		goto SCanFinalize;
+	}
+
+	cube_corrected = new CubeFloat();
+	*cube_corrected = { 0 };
+
 	double hscale = pDoc->GetHorizontalScale();
 	double vscale = pDoc->GetVerticalScale();
 	// 変換後のデータは90度回転させるので、縦横が入れ替わる
-	int dstW = (int)(height * vscale);
-	int dstH = (int)(width * hscale);
-	float ***dst = nullptr;
-	float ***outData = nullptr;
+	dstW = (int)(height * vscale);
+	dstH = (int)(width * hscale);
 
 	//////////////////////////////////////////////////////////////////////////////
-	CubeFloat *cube = new CubeFloat();
-	CString fname;
+//	cube = new CubeFloat();
 	int DivisionNumber = pDoc->GetDivisionNumber();
-	int outH = dstH;
-	int outW;
+	outH = dstH;
 	if (dstW < offset) {
 		return false;
 	}
@@ -1321,18 +1365,33 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 	}
 	int jointPos = 0;
 	outData = (float ***)malloc(sizeof(float **)*band);
-	for (int b = 0; b < band; b++) {
-		outData[b] = (float**)malloc(sizeof(float **)*dstH);
-		for (int h = 0; h < dstH; h++) {
-			outData[b][h] = (float*)malloc(sizeof(float *)*outW);
-			ZeroMemory(outData[b][h], sizeof(float *)*outW);
+	if (outData) {
+		for (int b = 0; b < band; b++) {
+			outData[b] = (float**)malloc(sizeof(float **)*dstH);
+			if (outData[b]) {
+				for (int h = 0; h < dstH; h++) {
+					outData[b][h] = (float*)malloc(sizeof(float *)*outW);
+					if (outData[b][h]) {
+						ZeroMemory(outData[b][h], sizeof(float *)*outW);
+					}
+					else {
+						bResult = false;
+						goto SCanFinalize;
+					}
+				}
+			}
+			else {
+				bResult = false;
+				goto SCanFinalize;
+			}
 		}
+	} else {
+		return false;
 	}
 
 	bool bHomography = true;		// 射影変換可否フラグ
 	double aParam[8];				// 射影変換パラメータ
-	float *p = new float[band];		// 線形補間結果格納用
-	vector<CPoint> vOrign,vTrans;
+	p = new float[band];		// 線形補間結果格納用
 	if (!pDoc->GetHomographyPoint(vOrign, vTrans)) {
 		bHomography = false;
 	}
@@ -1349,17 +1408,14 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		}
 	}
 
-	double *pWavelength = nullptr;
 	for (int pos = 0; pos < DivisionNumber; pos++) {
-		if (!pStatus->m_Valid) {  // キャンセルボタンが押された場合は何もせずに終了
+		// キャンセルのチェック
+		if (!pStatus->m_Valid) {
 			cam.StopScan();
-			commonDeallocateCube(reference_corrected);
-			if (reference_corrected) {
-				delete[] reference_corrected;
-			}
 			bResult = true;
-			break;
+			goto SCanFinalize;
 		}
+
 		if (!device.Move(ID, pos)) {
 			break;
 		}
@@ -1367,6 +1423,13 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		CString buff;
 		buff.Format(_T("Scaning : %d/%d(%d %%)"), pos+1, DivisionNumber, (int)((pos+1) * 100 / DivisionNumber));
 		pStatus->UpdateStatus(buff);
+
+		// キャンセルのチェック
+		if (!pStatus->m_Valid) {
+			cam.StopScan();
+			bResult = true;
+			goto SCanFinalize;
+		}
 		/////////////////////////////////////////////////////////
 		// スキャン実施
 		/////////////////////////////////////////////////////////
@@ -1375,6 +1438,13 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		if (!cam.AcquireSpectralCube(spectralFilePath,fname, *reference_corrected, *cube_corrected)) {
 			bResult = false;
 			break;
+		}
+		// キャンセルのチェック
+		if (!pStatus->m_Valid) {
+			cam.StopScan();
+			commonDeallocateCube(cube_corrected);
+			bResult = true;
+			goto SCanFinalize;
 		}
 		if (!pWavelength) {
 			pWavelength = new double[band];
@@ -1397,33 +1467,17 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 				for (int w = 0; w < dstW; w++) {
 					double sx, sy;
 					scn.ProjectionInvPos(w, h, aParam, sx, sy);
-#if 0
-					if (((sx < 0) || (sx >= dstW)) || ((sy < 0) || (sy >= dstH))) {
-						for (int b = 0; b < band; b++) {
-							dst[b][h][w] = -1;
-						}
-						continue;
-					}
-					else {
-						if (bBicubic) {
-							scn.bicubic(pTmp, dstW, dstH, band, (float)sx, (float)sy, p);
-							for (int b = 0; b < band; b++) {
-								dst[b][h][w] = p[b];
-							}
-						}
-					}
-#else
 					if (sx < 0.0) {
 						sx = 0.0;
 					}
 					else if (sx >= dstW) {
-						sx = dstW - 1;
+						sx = (double)((__int64)dstW - 1);
 					}
 					if (sy < 0.0) {
 						sy = 0.0;
 					}
 					else if (sy >= dstH) {
-						sy = dstH - 1;
+						sy = (double)((__int64)dstH - 1);
 					}
 					if (bBicubic) {
 						scn.bicubic(pTmp, dstW, dstH, band, (float)sx, (float)sy, p);
@@ -1431,7 +1485,6 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 							dst[b][h][w] = p[b];
 						}
 					}
-#endif
 				}
 			}
 		}
@@ -1451,14 +1504,26 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 			pTmp = nullptr;
 		}
 
+		// キャンセルのチェック
+		if (!pStatus->m_Valid) {
+			cam.StopScan();
+			commonDeallocateCube(cube_corrected);
+			bResult = true;
+			goto SCanFinalize;
+		}
+
 		/////////////////////////////////////////////////////////////////
 		// スキャンデータ結合処理
 		if (outH < dstH) {
 			for (int b = 0; b < band; b++) {
 				outData[b] = (float**)realloc(outData[b],(sizeof(float **)*dstH));
-				for (int h = outH; h < dstH; h++) {
-					outData[b][h] = (float*)malloc(sizeof(float *)*outW);
-					ZeroMemory(outData[b][h], sizeof(float *)*outW);
+				if (outData[b]) {
+					for (int h = outH; h < dstH; h++) {
+						outData[b][h] = (float*)malloc(sizeof(float *)*outW);
+						if (outData[b][h]) {
+							ZeroMemory(outData[b][h], sizeof(float *)*outW);
+						}
+					}
 				}
 			}
 			outH = dstH;
@@ -1477,7 +1542,7 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 			if (jointPos + dstW > outW) {
 				for (int b = 0; b < band; b++) {
 					for (int h = 0; h < outH; h++) {
-						outData[b][h] = (float *)realloc(outData[b][h], jointPos + dstW);
+						outData[b][h] = (float *)realloc(outData[b][h], (__int64)jointPos + dstW);
 					}
 				}
 				outW = jointPos + dstW;
@@ -1492,15 +1557,16 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 						float delta = (float)w / (float)offset;
 						outData[b][h][jointPos + w] = outData[b][h][jointPos + w]*(1.0f-delta) + dst[b][h][w]*delta;
 					}
-					memcpy(&outData[b][h][jointPos + offset], &dst[b][h][offset], sizeof(float)*(dstW - offset));
+					memcpy(&outData[b][h][jointPos + offset], &dst[b][h][offset], sizeof(float)*((__int64)dstW - offset));
 				}
 			}
 			jointPos += dstW - offset;
 		}
 		commonDeallocateCube(cube_corrected);
-		commonDeallocateCube(cube);
+//		commonDeallocateCube(cube);
 	}
 
+SCanFinalize:
 	if (dst) {
 		for (int b = 0; b < band; b++) {
 			for (int h = 0; h < height; h++) {
@@ -1527,15 +1593,17 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 	}
 	cam.Close();
 	device.Close(ID);
-	commonDeallocateCube(reference_corrected);
 	if (reference_corrected) {
-		delete reference_corrected;
+		commonDeallocateCube(reference_corrected);
+		if (reference_corrected) {
+			delete reference_corrected;
+		}
 	}
 
 	pStatus->UpdateStatus(_T("Closing..."));
 	///////////////////////////////////////////////////////////////////////////////////
 	// データの保存
-	if (bResult) {
+	if (bResult && pStatus->m_Valid) {
 		CString headerFile = ProjectPath + _T(".hdr");
 		CString rawFile = ProjectPath + _T(".raw");
 
@@ -1598,21 +1666,25 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 
 	if (outData) {
 		for (int b = 0; b < band; b++) {
-			for (int h = 0; h < dstH; h++) {
-				free(outData[b][h]);
-				outData[b][h] = nullptr;
+			if (outData[b]) {
+				for (int h = 0; h < dstH; h++) {
+					if (outData[b][h]) {
+						free(outData[b][h]);
+						outData[b][h] = nullptr;
+					}
+				}
+				free(outData[b]);
+				outData[b] = nullptr;
 			}
-			free(outData[b]);
-			outData[b] = nullptr;
 		}
 		free(outData);
 		outData = nullptr;
 	}
 
-	if (cube) {
-		delete cube;
-		cube = nullptr;
-	}
+//	if (cube) {
+//		delete cube;
+//		cube = nullptr;
+//	}
 	return bResult;
 }
 
@@ -1857,6 +1929,9 @@ LRESULT CWeldEvaluationView::OnImageOutputRequest(WPARAM wparam, LPARAM lparam)
 	CString ImagePath = pDoc->GetScanImagePath(CWeldEvaluationDoc::eResinSurface);
 	int buffSize = 1024;
 	TCHAR *buff = new TCHAR[buffSize];
+	if (buff == nullptr) {
+		return iResult;
+	}
 	int size;
 	while (1) {
 		size = GetCurrentDirectory(sizeof(TCHAR)*buffSize, buff);
@@ -1886,7 +1961,6 @@ LRESULT CWeldEvaluationView::OnImageOutputRequest(WPARAM wparam, LPARAM lparam)
 	if (buff) {
 		delete[] buff;
 	}
-
 	return iResult;
 }
 
@@ -2348,7 +2422,7 @@ LRESULT CWeldEvaluationView::OnReadResultFileStatus(WPARAM wparam, LPARAM lparam
 			if (m_pProgress != nullptr) {
 				int min,max;
 				m_pProgress->getRange(min,max);
-				double per = (double)value / (double)(max - min);
+				double per = (double)value / (double)((__int64)max - min);
 				CString str,fmt;
 				if (!fmt.LoadString(IDM_RESULT_READING)) {
 					fmt = _T("読み込み中：%d/%d (%.2lf[%%])");
@@ -2584,15 +2658,15 @@ LRESULT CWeldEvaluationView::OnAreaSpectrumeGraphSet(WPARAM wparam, LPARAM lpara
 		}
 		int sz = pos[1].x - pos[0].x;
 		data.resize(sz);
-		double a = (double)(pos[1].y - pos[0].y) / (double)sz;
-		double b = (double)(pos[1].x * pos[0].y - pos[0].x * pos[1].y) / (double)sz;
+		double a = (double)((__int64)pos[1].y - pos[0].y) / (double)sz;
+		double b = (double)((__int64)((__int64)pos[1].x * pos[0].y) - (__int64)pos[0].x * pos[1].y) / (double)sz;
 		int x;
 		if (bInv) {
 			int blockid = sz - 1;
 			for (int i = 0; i < sz; i++) {
 				x = pos[0].x + i;
 				point = CPoint(x, (int)(a*x + b));
-				if (pDoc->GetSpectrumData(ScanID, point, data[blockid-i])) {
+				if (pDoc->GetSpectrumData(ScanID, point, data[(__int64)blockid-i])) {
 				}
 			}
 		}
@@ -2616,15 +2690,15 @@ LRESULT CWeldEvaluationView::OnAreaSpectrumeGraphSet(WPARAM wparam, LPARAM lpara
 		}
 		int sz = pos[1].y - pos[0].y;
 		data.resize(sz);
-		double a = (double)(pos[1].x - pos[0].x) / (double)sz;
-		double b = (double)(pos[1].y * pos[0].x - pos[0].y * pos[1].x) / (double)sz;
+		double a = (double)((__int64)pos[1].x - pos[0].x) / (double)sz;
+		double b = (double)((__int64)((__int64)pos[1].y * pos[0].x) - (__int64)pos[0].y * pos[1].x) / (double)sz;
 		int y;
 		if (bInv) {
 			int blockid = sz - 1;
 			for (int i = 0; i < sz; i++) {
 				y = pos[0].y + i;
 				point = CPoint((int)(a*y + b), y);
-				if (pDoc->GetSpectrumData(ScanID, point, data[blockid -i])) {
+				if (pDoc->GetSpectrumData(ScanID, point, data[(__int64)blockid -i])) {
 				}
 			}
 		}

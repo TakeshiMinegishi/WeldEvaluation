@@ -8,6 +8,7 @@
 #include "WeldEvaluationDoc.h"
 #include "message.h"
 
+#pragma warning(disable:4100)
 
 // COprtTabPageScan ダイアログ
 

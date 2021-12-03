@@ -557,8 +557,10 @@ void CGraphWind::DrawGraph(CDC *pDC, CRect area)
 	COLORREF dcol;
 	double v = 0.0;
 	int zeroLine = (int)(m_offset + 0.5)*(nGraph - 1);
-	for (int i = nGraph - 1; i >= 0; i--) {
-		H2RGB((int)(lh+hs*(nGraph-i-1)), dcol);
+	int i;
+	for (i = nGraph - 1; i >= 0; i--) {
+		H2RGB((int)(lh+hs*((__int64)nGraph - i - 1)),
+			dcol);
 		CPen *graphPen = new CPen;
 		graphPen->CreatePen(PS_SOLID, 1, dcol);
 		pDC->SelectObject(graphPen);

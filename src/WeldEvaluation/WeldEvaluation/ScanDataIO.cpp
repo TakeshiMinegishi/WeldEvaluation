@@ -119,13 +119,15 @@ bool CScanDataIO::open(CString pathName, bool bReload/*=false*/ )
 					}
 					buf.Trim();
 					if (!buf.IsEmpty()) {
-						dval = _ttof(val);
-						m_o_p_cube->format.band_names[cnt] = dval;
+						if (cnt < m_o_p_cube->format.nr_bands) {
+							dval = _ttof(val);
+							m_o_p_cube->format.band_names[cnt] = dval;
+						}
 					}
 					tfd.ReadString(buf);
 				}
 			}
-			m_o_p_cube->format.size_bytes = m_o_p_cube->format.width * m_o_p_cube->format.height * m_o_p_cube->format.nr_bands * sizeof(float);
+			m_o_p_cube->format.size_bytes = (int)((__int64)m_o_p_cube->format.width *	(__int64)m_o_p_cube->format.height * (__int64)m_o_p_cube->format.nr_bands * 	sizeof(float));
 			tfd.Close();
 
 			float ***ppp_data = new float **[m_o_p_cube->format.nr_bands];
@@ -302,7 +304,7 @@ bool CScanDataIO::LoadImage(int &height, int &width, int &bands, CImage &img)
 	bmInfo.bmiColors[0].rgbBlue = 255;
 
 	unsigned char * p24Img = nullptr;
-	p24Img = new unsigned char[bmInfohdr.biSizeImage*8];
+	p24Img = new unsigned char[(__int64)bmInfohdr.biSizeImage*8];
 	if (p24Img == nullptr) {
 		return false;
 	}
@@ -311,7 +313,7 @@ bool CScanDataIO::LoadImage(int &height, int &width, int &bands, CImage &img)
 	float dnormalizer = (float)255.0;
 	unsigned char r, g, b;
 	for (int row = 0; row < height; row++) {
-		ptr = p24Img + (row * imageWidth) * Bpp;
+		ptr = p24Img + (__int64)((__int64)row * imageWidth) * Bpp;
 		for (int col = 0; col < width; col++) {
 			if (col >= m_o_p_cube->format.width) {
 				r = g = b = 0;

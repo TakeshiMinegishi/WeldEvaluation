@@ -24,6 +24,8 @@ public:
 public:
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	afx_msg void OnGetMinMaxInfo(MINMAXINFO* lpMMI);
+	virtual BOOL PreTranslateMessage(MSG* pMsg);
+
 
 // 実装
 public:
@@ -40,6 +42,13 @@ protected:  // コントロール バー用メンバー
 protected:
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnClose();
+	afx_msg void OnNcLButtonDblClk(UINT nHitTest, CPoint point);
+	afx_msg void OnNcMouseMove(UINT nHitTest, CPoint point);
+	afx_msg void OnNcLButtonUp(UINT nHitTest, CPoint point);
+	afx_msg void OnNcLButtonDown(UINT nHitTest, CPoint point);
+
+//	afx_msg void OnWindowPosChanging(WINDOWPOS* lpwndpos);
+	afx_msg void OnWindowPosChanged(WINDOWPOS* lpwndpos);
 
 	DECLARE_MESSAGE_MAP()
 

@@ -1,6 +1,7 @@
 ﻿#include "stdafx.h"
 #include "FileUtil.h"
 
+#pragma warning(disable:4100)
 
 /// <summary>
 /// コンストラクタ
@@ -372,7 +373,7 @@ bool CFileUtil::SelectFolder(HWND hWnd, LPCTSTR lpDefFolder, LPTSTR lpSelectPath
 		brows.lpfn = &BrowseCallbackProc;
 		brows.iImage = (int)NULL;
 		//フォルダ選択ダイアログの表示
-		pIDlist = SHBrowseForFolder(&brows);
+		pIDlist = (ITEMIDLIST *)SHBrowseForFolder(&brows);
 		if (pIDlist == NULL) {
 			// キャンセル
 			return false;

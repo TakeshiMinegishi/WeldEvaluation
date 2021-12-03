@@ -33,7 +33,6 @@ private:
 	CPoint		m_pLButtonDownosPos;			///< 左ボタン押下位置
 	bool		m_bButtonDown;					///< 左ボタン押下フラグ
 	bool		m_bAriaSelect;					///< 範囲選択フラグ（区間スペクトル用）
-	UINT		m_nFlag;						///< キーフラグ
 
 	int			m_orgImageWidth;				///< 表示画像幅
 	int			m_orgImageHeight;				///< 表示画像高さ
