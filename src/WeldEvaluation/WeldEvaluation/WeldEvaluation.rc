@@ -745,6 +745,7 @@ BEGIN
     IDM_ERR_FAIL_REGIST     "修復に失敗完了しました。"
     IDM_ERR_NOTEXIST_ANALIZEDATA "解析対象が存在しません"
     IDM_ERR_INVERS_FAIL     "データの反転に失敗しました"
+    IDM_ERR_FAILDCREATEIMAGE "画像の作成に失敗しました。:%s"
 END
 
 STRINGTABLE

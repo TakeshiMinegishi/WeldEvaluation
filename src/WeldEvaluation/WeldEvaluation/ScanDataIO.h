@@ -48,18 +48,6 @@ public:
 	int  GetNumberOfBand();
 	double getWaveLength(int index);
 
-#if 0	// çÌèúÇ∑ÇÈÉRÅ[Éh
-	bool joinInit();
-	bool join(CString pathName, int nOverlap);
-	bool joinend(CString outpathName);
-
-	void aff_trans(float **src, float **dst, int srcWidth, int srcHeight, int dstWidth, int dstHeight, double coef[6]);
-	void calc_aff_coef(double HScale, double VScale, double Angle, int offsetX, int offsetY, int OutWidth, int OutHeight, double coef[6]);
-
-	bool scale(int width, int height, CString outpathPath, CString outName);
-	bool affine(int width, int height, double deg, int ofsetX, int offsetY, CString outpathPath, CString outName);
-#endif
-
 	bool bicubic(float *** srcdata, int width, int height, int band, float orignX, float orignY, float *p);
 
 	static void writeLog(CLog::LOGLEVEL level, CString filePath, long lineNo, CString msg);

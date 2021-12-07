@@ -42,6 +42,9 @@ CScanDataIO::~CScanDataIO(void)
 bool CScanDataIO::open(CString pathName, bool bReload/*=false*/ )
 {
 	if (!CFileUtil::fileExists(pathName)) {
+		CString msg;
+		msg.Format(_T("CScanDataIO::open():ファイルが存在しません(%s)。"), static_cast<LPCWSTR>(pathName));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	}
 
@@ -267,6 +270,9 @@ void CScanDataIO::SetRGBWavelength(double r, double g, double b)
 bool CScanDataIO::LoadImage(int &height, int &width, int &bands, CImage &img)
 {
 	if (m_o_p_cube == nullptr) {
+		CString msg;
+		msg.Format(_T("CScanDataIO::LoadImage():データがOpenされていません。m_o_p_cube=null"));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	}
 
@@ -306,8 +312,12 @@ bool CScanDataIO::LoadImage(int &height, int &width, int &bands, CImage &img)
 	unsigned char * p24Img = nullptr;
 	p24Img = new unsigned char[(__int64)bmInfohdr.biSizeImage*8];
 	if (p24Img == nullptr) {
+		CString msg;
+		msg.Format(_T("CScanDataIO::LoadImage():イメージ領域の確保に失敗しました。"));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	}
+	ZeroMemory(p24Img, (__int64)bmInfohdr.biSizeImage * 8);
 	unsigned char * ptr = p24Img;
 
 	float dnormalizer = (float)255.0;
@@ -358,14 +368,18 @@ bool CScanDataIO::LoadImage(int &height, int &width, int &bands, CImage &img)
 			//				AfxMessageBox((LPCTSTR)lpMsgBuf, MB_OK | MB_ICONINFORMATION);
 			LocalFree(lpMsgBuf);
 
-			CString msg;
-			msg.Format(_T("画像の作成に失敗しました。:%s"), static_cast<LPCWSTR>(lpMsgBuf));
+			CString msg,fmt;
+			fmt = _T("画像の作成に失敗しました。:%s");
+			msg.Format(fmt, static_cast<LPCWSTR>(lpMsgBuf));
 			writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 			bResult = false;
 		}
 		img.ReleaseDC();
 	}
 	else {
+		CString msg;
+		msg.Format(_T("CScanDataIO::LoadImage():ビットマップの作成に失敗しました。"));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		bResult = false;
 	}
 
@@ -386,9 +400,15 @@ bool CScanDataIO::GetSpectrumData(CPoint &pos, std::vector<double> &data)
 {
 	bool bResult = true;
 	if (m_o_p_cube == nullptr) {
+		CString msg;
+		msg.Format(_T("CScanDataIO::GetSpectrumData():データがOpenされていません。m_o_p_cube=null"));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	}
 	if (((pos.x < 0) || (pos.x >= m_o_p_cube->format.width)) || ((pos.y < 0) || (pos.y >= m_o_p_cube->format.height))) {
+		CString msg;
+		msg.Format(_T("CScanDataIO::GetSpectrumData():スペクトル取得位置が不正です。pos=(%d,%d)"),pos.x,pos.y);
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	}
 	int bands = m_o_p_cube->format.nr_bands;
@@ -411,6 +431,9 @@ bool CScanDataIO::GetSpectrumData(CPoint &pos, std::vector<double> &data)
 bool CScanDataIO::getRGBBandSpectrum(int &RBand, int &GBand, int &BBand)
 {
 	if (m_o_p_cube == nullptr) {
+		CString msg;
+		msg.Format(_T("CScanDataIO::getRGBBandSpectrum():データがOpenされていません。m_o_p_cube=null"));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	}
 
@@ -419,6 +442,9 @@ bool CScanDataIO::getRGBBandSpectrum(int &RBand, int &GBand, int &BBand)
 
 	int bands = m_o_p_cube->format.nr_bands;
 	if (bands <= 0) {
+		CString msg;
+		msg.Format(_T("CScanDataIO::getRGBBandSpectrum():バンド値が正しくありません。m_o_p_cube->format.nr_bands=%d"), bands);
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	}
 
@@ -455,6 +481,9 @@ bool CScanDataIO::getRGBBandSpectrum(int &RBand, int &GBand, int &BBand)
 bool CScanDataIO::getBandSpectrum(std::vector<double> &BandSpectrum)
 {
 	if (m_o_p_cube == nullptr) {
+		CString msg;
+		msg.Format(_T("CScanDataIO::getBandSpectrum():データがOpenされていません。m_o_p_cube=null"));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	}
 	int bands = m_o_p_cube->format.nr_bands;
@@ -473,6 +502,9 @@ bool CScanDataIO::getBandSpectrum(std::vector<double> &BandSpectrum)
 int  CScanDataIO::GetNumberOfBand()
 {
 	if (m_o_p_cube == nullptr) {
+		CString msg;
+		msg.Format(_T("CScanDataIO::GetNumberOfBand():データがOpenされていません。m_o_p_cube=null"));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return 0;
 	}
 	int bands = m_o_p_cube->format.nr_bands;
@@ -487,6 +519,9 @@ int  CScanDataIO::GetNumberOfBand()
 double CScanDataIO::getWaveLength(int index)
 {
 	if (m_o_p_cube == nullptr) {
+		CString msg;
+		msg.Format(_T("CScanDataIO::getWaveLength():データがOpenされていません。m_o_p_cube=null"));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return 0.0;
 	}
 	if ((index < 0) || (index >= m_o_p_cube->format.nr_bands)) {
@@ -502,6 +537,9 @@ double CScanDataIO::getWaveLength(int index)
 bool CScanDataIO::InversData()
 {
 	if (m_o_p_cube == nullptr) {
+		CString msg;
+		msg.Format(_T("CScanDataIO::InversData():データがOpenされていません。m_o_p_cube=null"));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	}
 
@@ -532,6 +570,9 @@ bool CScanDataIO::InversData()
 bool CScanDataIO::saveRawData(CString pathName)
 {
 	if (m_o_p_cube == nullptr) {
+		CString msg;
+		msg.Format(_T("CScanDataIO::saveRawData():データがOpenされていません。m_o_p_cube=null"));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	}
 
@@ -546,6 +587,11 @@ bool CScanDataIO::saveRawData(CString pathName)
 		fd.Close();
 		bResult = true;
 	}
+	else {
+		CString msg;
+		msg.Format(_T("CScanDataIO::saveRawData():RAWデータの保存に失敗しました。[%s]"), static_cast<LPCWSTR>(pathName));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
+	}
 	return bResult;
 }
 
@@ -557,6 +603,9 @@ bool CScanDataIO::saveRawData(CString pathName)
 bool CScanDataIO::readRawData(CString pathName)
 {
 	if (m_o_p_cube == nullptr) {
+		CString msg;
+		msg.Format(_T("CScanDataIO::readRawData():データがOpenされていません。m_o_p_cube=null"));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	}
 
@@ -573,338 +622,6 @@ bool CScanDataIO::readRawData(CString pathName)
 	}
 	return bResult;
 }
-
-
-#if 0	// 削除するコード
-typedef struct {
-	int		m_sx;
-	int		m_sy;
-	int		m_tx;
-	int		m_ty;
-	double	m_diff;
-} sDifPos;
-
-bool CScanDataIO::joinInit()
-{
-	try {
-		for (int b = 0; b > m_data.size(); b++) {
-			for (int r = 0; r > m_data[b].size(); r++) {
-				m_data[b][r].clear();
-			}
-			m_data[b].clear();
-		}
-		m_data.clear();
-
-		int bands = m_o_p_cube->format.nr_bands;
-		int height = m_o_p_cube->format.height;
-		int width = m_o_p_cube->format.width;
-
-		m_data.resize(bands);
-		for (int b = 0; b < bands; b++) {
-			m_data[b].resize(height);
-			for (int row = 0; row < height; row++) {
-				m_data[b][row].resize(width);
-			}
-		}
-
-		for (int b = 0; b < bands; b++) {
-			for (int row = 0; row < height; row++) {
-				for (int col = 0; col < width; col++) {
-					m_data[b][row][col] = m_o_p_cube->ppp_data[b][row][col];
-				}
-			}
-		}
-	}
-	catch (...) {
-		return false;
-	}
-	return true;
-}
-
-bool CScanDataIO::join(CString pathName, int nOverlap)
-{
-	CScanDataIO target;
-	if (!target.open(pathName, true)) {
-		return false;
-	}
-	int bands = target.m_o_p_cube->format.nr_bands;
-
-	int xrange = m_o_p_cube->format.width / 10;
-	int ssx = m_o_p_cube->format.width / 2 - xrange / 2;
-	int sex = m_o_p_cube->format.width / 2 + xrange / 2;
-
-	float min_diff = -1.0;
-	vector<sDifPos> difPos;
-	float sdata, diff,sums;
-	int band = 0;
-	vector<float> diffs;
-	vector<vector<float>> list;
-	int svx, svy;
-
-	int sy = ((m_o_p_cube->format.height - 1) - nOverlap) - nOverlap/2;
-
-	for (int x = 0; x < xrange; x++) {
-		for (int y = 0; y < nOverlap; y++) {
-			sums = 0.0;
-			int dx = x - xrange / 2;
-			for (int sx = ssx+dx; sx < sex+dx; sx++) {
-				sdata = 0.0;
-				for (int row = 0; row < nOverlap; row++)
-				{
-					diff = fabs(m_o_p_cube->ppp_data[band][sy + y + row][sx] - target.m_o_p_cube->ppp_data[band][row][sx]);
-					sdata += diff;
-				}
-				sums += sdata / nOverlap;
-			}
-			sums /= xrange;
-			diffs.push_back(sums);
-			if ((min_diff < 0.0) || (min_diff > sums)) {
-				min_diff = sums;
-				svx = x;
-				svy = y;
-			}
-		}
-		list.push_back(diffs);
-		diffs.clear();
-	}
-
-	int offset_col = -3;
-	int offset_row = -3;
-	int resizewidth = m_o_p_cube->format.width + target.m_o_p_cube->format.width + offset_col;
-	int jrow = offset_row;
-	for (int b = 0; b < bands; b++) {
-		for (int row = 0; row < jrow; row++, jrow++) {
-			m_data[b][row].resize(resizewidth);
-			for (int col = offset_col; col < target.m_o_p_cube->format.width; col++) {
-				if (col < 0) {
-					continue;
-				}
-				m_data[b][row][col] = 0.0;
-			}
-		}
-		for (int row = 0; row < target.m_o_p_cube->format.height; row++, jrow++) {
-			if (jrow < 0) {
-				continue;
-			}
-			m_data[b][row].resize(resizewidth);
-			for (int col = offset_col; col < target.m_o_p_cube->format.width; col++) {
-				if (col < 0) {
-					continue;
-				}
-				m_data[b][row][col] = target.m_o_p_cube->ppp_data[b][row][col];
-			}
-		}
-		for (int row = jrow; row < m_o_p_cube->format.height; row++, jrow++) {
-			m_data[b][row].resize(resizewidth);
-			for (int col = offset_col; col < target.m_o_p_cube->format.width; col++) {
-				if (col < 0) {
-					continue;
-				}
-				m_data[b][row][col] = 0.0;
-			}
-		}
-	}
-
-	target.close();
-	return true;
-}
-
-bool CScanDataIO::joinend(CString outpathName)
-{
-	if (m_data.size() <= 0) {
-		return false;
-	}
-	if (m_data[0].size() <= 0) {
-		return false;
-	}
-	if (m_data[0][0].size() <= 0) {
-		return false;
-	}
-
-	int band = (int)m_data.size();
-	int width = (int)m_data[0][0].size();
-	int height = (int)m_data[0].size();
-
-
-	float *** ppp_data;
-	ppp_data = new float **[m_data.size()];
-	for (int b = 0; b < band; b++) {
-		ppp_data[b] = new float*[m_data[b].size()];
-		for (int r = 0; r < height; r++) {
-			ppp_data[b][r] = new float[m_data[b][r].size()];
-			for (int c = 0; c < width; c++) {
-				ppp_data[b][r][c] = m_data[b][r][c];
-			}
-		}
-	}
-
-	int m_o_p_cube_height = m_o_p_cube->format.height;
-	int m_o_p_cube_bands = m_o_p_cube->format.nr_bands;
-
-	for (int b = 0; b > m_o_p_cube_bands; b++) {
-		for (int r = 0; r > m_o_p_cube_height; r++) {
-			if (m_o_p_cube->ppp_data[b][r]) {
-				delete[] m_o_p_cube->ppp_data[b][r];
-			}
-		}
-		delete[] m_o_p_cube->ppp_data[b];
-	}
-	delete[] m_o_p_cube->ppp_data;
-
-	m_o_p_cube->ppp_data = ppp_data;
-	m_o_p_cube->format.width = width;
-	m_o_p_cube->format.height = height;
-
-	return true;
-}
-
-bool CScanDataIO::scale(int width, int height, CString outpathPath, CString outName)
-{
-	int X_SIZE = m_o_p_cube->format.width;
-	int Y_SIZE = m_o_p_cube->format.height;
-	double zx	= (double)width / (double)m_o_p_cube->format.width;
-	double zy	= (double)height / (double)m_o_p_cube->format.height;
-	int band	= m_o_p_cube->format.nr_bands;
-
-	float *** ppp_data;
-	ppp_data = new float **[band];
-	for (int b = 0; b < band; b++) {
-		ppp_data[b] = new float*[Y_SIZE];
-		for (int h = 0; h < Y_SIZE; h++) {
-			ppp_data[b][h] = new float[X_SIZE];
-			ZeroMemory(ppp_data[b][h], sizeof(float)*X_SIZE);
-		}
-	}
-
-	int		i, j, m, n, d;
-	float	x, y, p, q;
-	int		xs = m_o_p_cube->format.width / 2;
-	int		ys = m_o_p_cube->format.height / 2;
-
-	for (int b = 0; b < band; b++) {
-		for (i = -ys; i < ys; i++) {
-			for (j = -xs; j < xs; j++) {
-				y = (float)(i / zy);
-				x = (float)(j / zx);
-				if (y > 0) m = (int)y;
-				else m = (int)(y - 1);
-				if (x > 0) n = (int)x;
-				else n = (int)(x - 1);
-				q = y - m;
-				p = x - n;
-				if (q == 1) { q = 0; m = m + 1; }
-				if (p == 1) { p = 0; n = n + 1; }
-				if ((m >= -ys) && (m < ys) && (n >= -xs) && (n < xs)) {
-					d = (int)((1.0 - q)*((1.0 - p) * m_o_p_cube->ppp_data[b][m + ys][n + xs]
-						+ p * m_o_p_cube->ppp_data[b][m + ys][n + 1 + xs])
-						+ q * ((1.0 - p) * m_o_p_cube->ppp_data[b][m + 1 + ys][n + xs]
-							+ p * m_o_p_cube->ppp_data[b][m + 1 + ys][n + 1 + xs]));
-				}
-				else {
-					d = 0;
-				}
-
-//				ppp_data[b][(int)((i + ys)*zy)][(int)((j + xs)*zx)] = d;
-				ppp_data[b][i + ys][j + xs] = (float)d;
-			}
-		}
-	}
-
-	CubeFloat*	o_p_cube = new CubeFloat();
-	o_p_cube->format = m_o_p_cube->format;
-	o_p_cube->format.width	= width;
-	o_p_cube->format.height = height;
-	o_p_cube->format.size_bytes = width * height * band * sizeof(float);
-
-	o_p_cube->info = m_o_p_cube->info;
-	o_p_cube->p_reserved = m_o_p_cube->p_reserved;
-	o_p_cube->ppp_data = ppp_data;
-
-	HSI_RETURN return_val = commonSaveCube(*o_p_cube, outpathPath, outName, FF_ENVI);
-	if (HSI_OK != return_val)
-	{
-		errorLog(CString(__FILE__), __LINE__, _T("SaveCube (cube)"), return_val);
-		return false;
-	}
-	return true;
-}
-
-void CScanDataIO::calc_aff_coef(double HScale, double VScale, double Angle, int InWidth, int InHeight, int OutWidth, int OutHeight, double coef[6])
-{
-	double PI = 3.141592648777698869248;
-	double rad = (PI / 180.0) * Angle;
-
-	//　左上、右上、左下、右下の順に配列
-	double dX[4], dY[4];
-	double MinX, MinY;
-
-	coef[0] = HScale * cos(rad);
-	if (fabs(coef[0]) < 1.0E-6) {
-		coef[0] = 0.0;
-	}
-	coef[1] = VScale * sin(rad);
-	if (fabs(coef[1]) < 1.0E-6) {
-		coef[1] = 0.0;
-	}
-	coef[3] = -1 * HScale * sin(rad);
-	if (fabs(coef[3]) < 1.0E-6) {
-		coef[3] = 0.0;
-	}
-	coef[4] = VScale * cos(rad);
-	if (fabs(coef[4]) < 1.0E-6) {
-		coef[4] = 0.0;
-	}
-
-	//変換後の4隅の座標を計算する
-	dX[0] = 0.0;
-	dX[1] = coef[0] * (double)(InWidth);
-	dX[2] = coef[1] * (double)(InHeight);
-	dX[3] = (double)OutWidth;
-	dY[0] = 0.0;
-	dY[1] = coef[3] * (double)(InWidth);
-	dY[2] = coef[4] * (double)(InHeight);
-	dY[3] = (double)OutHeight;
-
-	//変換後の座標値の最大値と最小値を求める。
-	MinX = dX[0];
-	MinY = dY[0];
-
-	for (int i = 1; i < 4; i++)
-	{
-		if (MinX > dX[i]) MinX = dX[i];
-		if (MinY > dY[i]) MinY = dY[i];
-	}
-
-	//変換後の座標が負にならないように平行移動量を決定する。
-	coef[2] = -1 * MinX;
-	coef[5] = -1 * MinY;
-}
-
-void CScanDataIO::aff_trans(float **src, float **dst, int srcWidth, int srcHeight, int dstWidth, int dstHeight, double coef[6])
-{
-	int r, c;
-	int nRow, nCol;
-	double dRow, dCol;
-
-	for (r = 0; r < dstHeight; r++) {
-		for (c = 0; c < dstWidth; c++) {
-			dCol = coef[0] * (double)c + coef[1] * (double)r + coef[2];
-			dRow = coef[3] * (double)c + coef[4] * (double)r + coef[5];
-			nCol = (int)floor(dCol + 0.5);
-			nRow = (int)floor(dRow + 0.5);
-
-			if ((nCol < 0) || (nCol >= srcWidth) || (nRow < 0) || (nRow >= srcHeight)) {
-				dst[r][c] = 0.0;
-			}
-			else {
-				dst[r][c] = src[nRow][nCol];
-			}
-		}
-	}
-
-	return;
-}
-#endif
 
 /// <summary>
 /// 線形補間
@@ -963,7 +680,7 @@ void CScanDataIO::writeLog(CLog::LOGLEVEL level, CString filePath, long lineNo, 
 {
 	CLog log;
 	CString ErrMsg;
-	ErrMsg.Format(_T(" File:%s Line:%ld:%s"), (LPCTSTR)filePath, lineNo, (LPCTSTR)msg);
+	ErrMsg.Format(_T(" File:%s Line:%ld:%s"), static_cast<LPCWSTR>(filePath), lineNo, static_cast<LPCWSTR>(msg));
 	log.logWrite(level, ErrMsg);
 }
 
@@ -1033,7 +750,7 @@ void CScanDataIO::errorLog(CString filePath, long lineNo, CString i_caller_name,
 
 	CLog log;
 	CString ErrMsg;
-	ErrMsg.Format(_T(" File:%s Line:%ld:%s:%s"), (LPCTSTR)filePath, lineNo, (LPCTSTR)i_caller_name, (LPCTSTR)errs);
+	ErrMsg.Format(_T(" File:%s Line:%ld:%s:%s"), static_cast<LPCWSTR>(filePath), lineNo, static_cast<LPCWSTR>(i_caller_name), static_cast<LPCWSTR>(errs));
 	log.logWrite(CLog::LOGLEVEL::Error, ErrMsg);
 	return;
 }
@@ -1331,6 +1048,9 @@ bool CScanDataIO::GetHeaderFilePrm(CString pathName, int &width, int &height)
 {
 	bool bResult = true;
 	if (!CFileUtil::fileExists(pathName)) {
+		CString msg;
+		msg.Format(_T("CScanDataIO::GetHeaderFilePrm():ファイルが存在しません。(%s)"), static_cast<LPCWSTR>(pathName));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		return false;
 	}
 
@@ -1372,6 +1092,9 @@ bool CScanDataIO::GetHeaderFilePrm(CString pathName, int &width, int &height)
 		tfd.Close();
 	}
 	if ((find & 0x03) != 0x03) {
+		CString msg;
+		msg.Format(_T("CScanDataIO::GetHeaderFilePrm():ファイルが壊れている可能性があります。(%s)"), static_cast<LPCWSTR>(pathName));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 		bResult = false;
 	}
 	return bResult;
@@ -1444,8 +1167,8 @@ bool CScanDataIO::GetHomographyMatrix(CPoint srcPt[4], CPoint dstPt[4], double p
 	int i;
 
 	try {
-		dATA	= new double*[8];
-		dATA_I	= new double*[8];
+		dATA = (double **)new double *[8]{ nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr };
+		dATA_I	= (double **)new double *[8]{ nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr,nullptr };
 
 		for (i = 0; i < 8; i++)
 		{
@@ -1589,6 +1312,9 @@ bool CScanDataIO::GetHomographyMatrix(CPoint srcPt[4], CPoint dstPt[4], double p
 			delete[] dATA_I;
 		}
 		bResult = false;
+		CString msg;
+		msg.Format(_T("CScanDataIO::GetHomographyMatrix():ホモグラフィーマトリックスの算出に失敗しました。"));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 	}
 
 	return bResult;

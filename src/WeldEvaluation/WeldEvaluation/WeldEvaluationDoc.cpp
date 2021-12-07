@@ -3865,8 +3865,11 @@ bool CWeldEvaluationDoc::LoadClassificationResultImage(int targetID, int method,
 //				AfxMessageBox((LPCTSTR)lpMsgBuf, MB_OK | MB_ICONINFORMATION);
 				LocalFree(lpMsgBuf);
 
-				CString msg;
-				msg.Format(_T("画像の作成に失敗しました。:%s"), static_cast<LPCWSTR>(lpMsgBuf));
+				CString msg,fmt;
+				if (!fmt.LoadString(IDM_ERR_FAILDCREATEIMAGE)) {
+					fmt = _T("画像の作成に失敗しました。:%s");
+				}
+				msg.Format(fmt, static_cast<LPCWSTR>(lpMsgBuf));
 				writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
 				bResult = false;
 			}
@@ -4354,6 +4357,32 @@ void CWeldEvaluationDoc::DeleteContents(int ScanID)
 			}
 		}
 		break;
+	}
+}
+
+/// <summary>
+/// ホワイトバランスファイルの削除
+/// </summary>
+void CWeldEvaluationDoc::DeleteWBFile(CString title/* = _T("")*/)
+{
+	CString registedFolde = GetRegistedFolder();
+	CString WBFileName;
+	if (title.IsEmpty()) {
+		WBFileName = GetWBFileName();
+	}
+	else {
+		WBFileName = title;
+	}
+	CString WBFileNameHdr = WBFileName + _T(".hdr");
+	CString WBFileNameRaw = WBFileName + _T(".raw");
+	CString path;
+	path = CFileUtil::FilePathCombine(registedFolde, WBFileNameHdr);
+	if (CFileUtil::fileExists(path)) {
+		CFileUtil::fileDelete(path);
+	}
+	path = CFileUtil::FilePathCombine(registedFolde, WBFileNameRaw);
+	if (CFileUtil::fileExists(path)) {
+		CFileUtil::fileDelete(path);
 	}
 }
 

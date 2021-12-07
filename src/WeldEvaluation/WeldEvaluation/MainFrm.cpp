@@ -25,7 +25,6 @@ BEGIN_MESSAGE_MAP(CMainFrame, CFrameWnd)
 	ON_WM_NCMOUSEMOVE()
 	ON_WM_NCLBUTTONUP()
 	ON_WM_NCLBUTTONDOWN()
-//	ON_WM_WINDOWPOSCHANGING()
 	ON_WM_WINDOWPOSCHANGED()
 END_MESSAGE_MAP()
 
@@ -243,32 +242,6 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 	return CFrameWnd::PreTranslateMessage(pMsg);
 }
 
-#if 0
-/// <summary>
-/// ウインドの位置、サイズが変更中の呼び出し
-/// </summary>
-/// <param name="lpwndpos">WINDOWPOS構造体へのポインタ</param>
-void CMainFrame::OnWindowPosChanging(WINDOWPOS* lpwndpos)
-{
-#ifndef _FREE_WIND_SIZE_
-	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetActiveDocument();
-	if (pDoc) {
-		if (pDoc->IsNew() || pDoc->IsOpen()) {
-			if ((!IsIconic()) && (!IsZoomed())) {
-				lpwndpos->x = 0;
-				lpwndpos->y = 0;
-				lpwndpos->cx = 0;
-				lpwndpos->cy = 0;
-				lpwndpos->flags = SWP_NOMOVE | SWP_NOSIZE;
-			}
-		}
-	}
-#endif
-	CFrameWnd::OnWindowPosChanging(lpwndpos);
-}
-#endif
-
-#if 1
 /// <summary>
 /// ウインドの位置、サイズが変更された時の処理
 /// </summary>
@@ -291,4 +264,3 @@ void CMainFrame::OnWindowPosChanged(WINDOWPOS* lpwndpos)
 #endif
 	CFrameWnd::OnWindowPosChanged(lpwndpos);
 }
-#endif

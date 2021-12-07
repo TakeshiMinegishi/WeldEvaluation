@@ -59,6 +59,11 @@ bool CDeviceIO::IsReady(int id)
 		Sleep(10);
 		wcnt++;
 	}
+	if (!bResult) {
+		CString msg;
+		msg.Format(_T("CDeviceIO::IsReady():機器がレディー状態ではありません:ID=%d"),id);
+		logOut(CString(__FILE__), __LINE__, msg);
+	}
 	return bResult;
 }
 
@@ -210,6 +215,9 @@ void CDeviceIO::Close(int id)
 bool CDeviceIO::Move(int id, int pos)
 {
 	if ((pos < 0) || (pos > 0x19)) {
+		CString msg;
+		msg.Format(_T("CDeviceIO::Move():カメラの移動値が正しくありません。ID(%d):Position(%d)"), id, pos);
+		logOut(CString(__FILE__), __LINE__, msg);
 		return false;
 	}
 

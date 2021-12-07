@@ -6,7 +6,10 @@
 /// <summary>
 /// コンストラクタ
 /// </summary>
-CPropatyIO::CPropatyIO(void)
+CPropatyIO::CPropatyIO(void):
+	m_ResinAnalysisMethod(0),
+	m_MetalAnalysisMethod(0),
+	m_ResultAnalysisMethod(0)
 {
 	Initialze();
 	m_joinRetioFormat			= _T("%02d_Joining_ratio%03d");

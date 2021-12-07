@@ -9,6 +9,7 @@
 #include "FileUtil.h"
 
 #pragma warning(disable:4100)
+#pragma warning(disable:26454)
 
 // CPropTabPageSetting ダイアログ
 
@@ -27,6 +28,9 @@ CPropTabPageSetting::CPropTabPageSetting(CWnd* pParent /*=NULL*/)
 	, m_WBFileName(_T(""))
 	, m_ScrollBerPos(0)
 	, m_ShutterSpeed(0)
+	, m_MinScrollPos(0)
+	, m_MaxScrollPos(0)
+	, m_ScrollDelta(0)
 {
 	m_PageID = 99999;
 }

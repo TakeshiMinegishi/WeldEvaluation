@@ -256,6 +256,7 @@ public:
 
 	void DeleteAnalizeData(int ScanID);
 	void DeleteContents(int ScanID);
+	void DeleteWBFile(CString title=_T(""));
 	bool DeleteProject(CString ProjentName);
 
 };

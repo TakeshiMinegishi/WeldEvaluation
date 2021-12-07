@@ -22,6 +22,7 @@
 
 #pragma warning(disable:4800)
 #pragma warning(disable:4100)
+#pragma warning(disable:26454)
 
 using namespace std;
 
@@ -1251,11 +1252,18 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 	}
 
 	// カメラ設定
+	int offset = pDoc->NumberOfOverridePixel();
 	int band = pDoc->NumberOfBand();
 	int width = pDoc->GetShootingWidth();
 	int height = pDoc->GetShootingHeight();
-	int offset = pDoc->NumberOfOverridePixel();
 	double speed = pDoc->GetIntegrationTimeMs();
+	if ((band <= 0) || (width <= 0) || (height <= 0)) {
+		CString msg;
+		msg.Format(_T("ScanImage():パラメータが異常です。band=%d, widht=%d,height=%d"), band, width, height);
+		logOut(CString(__FILE__), __LINE__,msg );
+		return false;
+	}
+
 	CCameraIO cam(width, height, band);
 
 	CDeviceIO device;
@@ -1349,6 +1357,11 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 	// 変換後のデータは90度回転させるので、縦横が入れ替わる
 	dstW = (int)(height * vscale);
 	dstH = (int)(width * hscale);
+	if ((dstW <= 0) || (dstH <= 0)) {
+		cam.StopScan();
+		bResult = false;
+		goto SCanFinalize;
+	}
 
 	//////////////////////////////////////////////////////////////////////////////
 //	cube = new CubeFloat();
@@ -1365,7 +1378,7 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 	}
 	int jointPos = 0;
 	outData = (float ***)malloc(sizeof(float **)*band);
-	if (outData) {
+	if (outData != NULL) {
 		for (int b = 0; b < band; b++) {
 			outData[b] = (float**)malloc(sizeof(float **)*dstH);
 			if (outData[b]) {
@@ -1515,15 +1528,23 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		/////////////////////////////////////////////////////////////////
 		// スキャンデータ結合処理
 		if (outH < dstH) {
+			float **pptmp = nullptr;
 			for (int b = 0; b < band; b++) {
-				outData[b] = (float**)realloc(outData[b],(sizeof(float **)*dstH));
-				if (outData[b]) {
+				pptmp = (float**)realloc(outData[b],(sizeof(float **)*dstH));
+				if (pptmp) {
+					outData[b] = pptmp;
 					for (int h = outH; h < dstH; h++) {
 						outData[b][h] = (float*)malloc(sizeof(float *)*outW);
 						if (outData[b][h]) {
 							ZeroMemory(outData[b][h], sizeof(float *)*outW);
 						}
 					}
+				}
+				else {
+					cam.StopScan();
+					commonDeallocateCube(cube_corrected);
+					bResult = false;
+					goto SCanFinalize;
 				}
 			}
 			outH = dstH;
@@ -1540,9 +1561,19 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		}
 		else {
 			if (jointPos + dstW > outW) {
+				float *ptmp = nullptr;
 				for (int b = 0; b < band; b++) {
 					for (int h = 0; h < outH; h++) {
-						outData[b][h] = (float *)realloc(outData[b][h], (__int64)jointPos + dstW);
+						ptmp = (float *)realloc(outData[b][h], (__int64)jointPos + dstW);
+						if (ptmp) {
+							outData[b][h] = ptmp;
+						}
+						else {
+							cam.StopScan();
+							commonDeallocateCube(cube_corrected);
+							bResult = false;
+							goto SCanFinalize;
+						}
 					}
 				}
 				outW = jointPos + dstW;
@@ -1670,7 +1701,7 @@ SCanFinalize:
 				for (int h = 0; h < dstH; h++) {
 					if (outData[b][h]) {
 						free(outData[b][h]);
-						outData[b][h] = nullptr;
+						outData[b][h] = (float*)nullptr;
 					}
 				}
 				free(outData[b]);
@@ -1795,84 +1826,97 @@ LRESULT CWeldEvaluationView::OnWBScanRequest(WPARAM wparam, LPARAM lparam)
 	CDeviceIO device;
 	int ID = device.Init(deviceName);
 	if (ID >= 0) {
-		if (pStatus->m_Valid) {  // キャンセルボタンが押されていない
-			if (device.ToHome(ID)) {
-				if (device.Move(ID, 1)) {
-					if (pStatus->m_Valid) {  // キャンセルボタンが押されていない
-						if (!buff.LoadString(IDS_PREPANING)) {
-							buff = _T("準備中...");
+		if (!pStatus->m_Valid) {  // キャンセルボタンが押さた
+			goto WBScanRequestCancel;
+		}
+
+		if (device.ToHome(ID)) {
+			if (!pStatus->m_Valid) {  // キャンセルボタンが押さた
+				goto WBScanRequestCancel;
+			}
+			if (device.Move(ID, 1)) {
+				if (!pStatus->m_Valid) {  // キャンセルボタンが押さた
+					goto WBScanRequestCancel;
+				}
+
+				if (!buff.LoadString(IDS_PREPANING)) {
+					buff = _T("準備中...");
+				}
+				pStatus->UpdateStatus(buff);
+				/////////////////////////////////////////////////////////
+				// ホワイトバランスデータの撮影
+				/////////////////////////////////////////////////////////
+				int band = pDoc->NumberOfBand();
+				int width = pDoc->GetShootingWidth();
+				int height = pDoc->GetShootingHeight();
+				double speed = pDoc->GetIntegrationTimeMs();
+				CCameraIO cam(width, height,band);
+				if (!pStatus->m_Valid) {  // キャンセルボタンが押さた
+					goto WBScanRequestCancel;
+				}
+				CString SnapscanFile = pDoc->getSnapscanFile();
+				if (CFileUtil::fileExists(SnapscanFile)) {
+					bool dummyApi = pDoc->IsCameraDummyApi();
+					if (cam.Open(SnapscanFile, dummyApi)) {
+						if (!buff.LoadString(IDM_SCANNING)) {
+							buff = _T("スキャン中...");
+						}
+						if (!pStatus->m_Valid) {  // キャンセルボタンが押さた
+							goto WBScanRequestCancel;
 						}
 						pStatus->UpdateStatus(buff);
-						/////////////////////////////////////////////////////////
-						// ホワイトバランスデータの撮影
-						/////////////////////////////////////////////////////////
-						int band = pDoc->NumberOfBand();
-//						int width = pDoc->GetHorizontalResolution();
-//						int height = pDoc->GetVerticalResolution();
-						int width = pDoc->GetShootingWidth();
-						int height = pDoc->GetShootingHeight();
-						double speed = pDoc->GetIntegrationTimeMs();
-						CCameraIO cam(width, height,band);
-
-						CString SnapscanFile = pDoc->getSnapscanFile();
-						if (CFileUtil::fileExists(SnapscanFile)) {
-							bool dummyApi = pDoc->IsCameraDummyApi();
-							if (cam.Open(SnapscanFile, dummyApi)) {
-								if (!buff.LoadString(IDM_SCANNING)) {
-									buff = _T("スキャン中...");
+						if (cam.setIntegrationTime(speed)) {
+							if (cam.StartScan()) {
+								if (!pStatus->m_Valid) {  // キャンセルボタンが押さた
+									cam.Close();
+									goto WBScanRequestCancel;
 								}
-								pStatus->UpdateStatus(buff);
-								if (cam.setIntegrationTime(speed)) {
-									if (cam.StartScan()) {
-										if (cam.AcquireReference(registedFolde,WBFileName)) {
-											*Result = 0;
-											if (!buff.LoadString(IDM_SCAN_SUCCESS)) {
-												buff = _T("スキャン処理が正常に終了しました。");
-											}
-											pStatus->UpdateStatus(buff);
-										}
-										else {
-											logOut(CString(__FILE__), __LINE__, _T("OnWBScanRequest():ホワイトバランスデータの取得に失敗しました"));
-										}
+								if (cam.AcquireReference(registedFolde,WBFileName)) {
+									if (!pStatus->m_Valid) {  // キャンセルボタンが押さた
+										pDoc->DeleteWBFile(WBFileName);
+										cam.Close();
+										goto WBScanRequestCancel;
 									}
-									else {
-										logOut(CString(__FILE__), __LINE__, _T("OnWBScanRequest():スキャンの開始に失敗しました"));
+									*Result = 0;
+									if (!buff.LoadString(IDM_SCAN_SUCCESS)) {
+										buff = _T("スキャン処理が正常に終了しました。");
 									}
+									pStatus->UpdateStatus(buff);
 								}
 								else {
-									CString msg;
-									msg.Format(_T("OnWBScanRequest():IntegrationTimeの設定に失敗しました[%lf]"), speed);
-									logOut(CString(__FILE__), __LINE__, msg);
+									logOut(CString(__FILE__), __LINE__, _T("OnWBScanRequest():ホワイトバランスデータの取得に失敗しました"));
 								}
-								cam.Close();
 							}
 							else {
-								logOut(CString(__FILE__), __LINE__, _T("OnWBScanRequest():カメラをオープンできませんでした"));
+								logOut(CString(__FILE__), __LINE__, _T("OnWBScanRequest():スキャンの開始に失敗しました"));
 							}
 						}
 						else {
 							CString msg;
-							msg.Format(_T("OnWBScanRequest():SnapscanFileが見つからない[%s]"), (LPCTSTR)SnapscanFile);
+							msg.Format(_T("OnWBScanRequest():IntegrationTimeの設定に失敗しました[%lf]"), speed);
 							logOut(CString(__FILE__), __LINE__, msg);
 						}
+						cam.Close();
 					}
 					else {
-						if (!buff.LoadString(IDM_SCAN_CANCELD)) {
-							buff = _T("スキャン処理がキャンセルされました。");
-						}
-						AfxMessageBox(buff, MB_OK | MB_ICONWARNING);
+						logOut(CString(__FILE__), __LINE__, _T("OnWBScanRequest():カメラをオープンできませんでした"));
 					}
+				}
+				else {
+					CString msg;
+					msg.Format(_T("OnWBScanRequest():SnapscanFileが見つからない[%s]"), (LPCTSTR)SnapscanFile);
+					logOut(CString(__FILE__), __LINE__, msg);
 				}
 			}
 		}
-		else {
-			if (!buff.LoadString(IDM_SCAN_CANCELD)) {
-				buff = _T("スキャン処理がキャンセルされました。");
-			}
-			AfxMessageBox(buff, MB_OK | MB_ICONWARNING);
-		}
 	}
-
+	return 0;
+WBScanRequestCancel:
+	if (!buff.LoadString(IDM_SCAN_CANCELD)) {
+		buff = _T("スキャン処理がキャンセルされました。");
+	}
+	AfxMessageBox(buff, MB_OK | MB_ICONWARNING);
+	*Result = 1;
 	return 0;
 }
 
@@ -1934,7 +1978,7 @@ LRESULT CWeldEvaluationView::OnImageOutputRequest(WPARAM wparam, LPARAM lparam)
 	}
 	int size;
 	while (1) {
-		size = GetCurrentDirectory(sizeof(TCHAR)*buffSize, buff);
+		size = GetCurrentDirectoryW(buffSize, buff);
 		if (size < buffSize) {
 			ImagePath = buff;
 			break;
@@ -2908,7 +2952,6 @@ bool CWeldEvaluationView::ImageScaling(int targetID, CRect rect)
 	}
 	if (pImageWnd2) {
 		pImageWnd2->MoveImage(pos2.x, pos2.y, rect.Width(), rect.Height(), scalingRetio);
-//		pImageWnd2->MoveImage(pos2.x, pos2.y, rect.Width(), rect.Height(), scalingRetio);
 	}
 	return bResult;
 }

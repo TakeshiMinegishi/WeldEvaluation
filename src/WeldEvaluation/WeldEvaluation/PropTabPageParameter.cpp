@@ -6,6 +6,7 @@
 #include "PropTabPageParameter.h"
 #include "afxdialogex.h"
 
+#pragma warning(disable:26454)
 
 // CPropTabPageParameter ダイアログ
 

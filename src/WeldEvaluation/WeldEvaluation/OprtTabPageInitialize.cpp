@@ -103,8 +103,7 @@ void COprtTabPageInitialize::OnBnClickedBtnWhitebarance()
 	}
 	pThread->UpdateStatus(msg);
 	AddNode(pThread);  // すごく重い処理
-
-	if (pThread->m_Valid) {  // キャンセルボタンが押された場合
+	if (pThread->m_Dlg) {
 		pThread->m_Dlg.PostMessage(WM_COMMAND, IDOK); // Statusダイアログを閉じる
 	}
 
@@ -117,10 +116,12 @@ void COprtTabPageInitialize::OnBnClickedBtnWhitebarance()
 		AfxMessageBox(msg, MB_OK | MB_ICONSTOP);
 	}
 	else {
-		if (!msg.LoadString(IDM_SCAN_SUCCESS)) {
-			msg = _T("スキャン処理が正常に終了しました。");
+		if (!pThread->m_Valid) {
+			if (!msg.LoadString(IDM_SCAN_SUCCESS)) {
+				msg = _T("スキャン処理が正常に終了しました。");
+			}
+			AfxMessageBox(msg, MB_OK | MB_ICONINFORMATION);
 		}
-		AfxMessageBox(msg, MB_OK | MB_ICONINFORMATION);
 	}
 	delete pThread;
 	LoadParamater();
@@ -139,10 +140,16 @@ void COprtTabPageInitialize::AddNode(CStatusDlgThread* pStatus)
 	CFormView *pWnd = (CFormView *)GetParent()->GetParent();
 	int result;
 	LRESULT iret = pWnd->SendMessage(WM_WBSCAN_REQUES, (WPARAM)pStatus, (LPARAM)&result);
-	if ((iret != 0) || (result != 0)) {
+	if ((iret != 0) || (result < 0)) {
 		pStatus->m_bResult = false;
 	}
 	else {
+		if (result == 1) {
+			pStatus->m_Valid = true;
+		}
+		else {
+			pStatus->m_Valid = false;
+		}
 		pStatus->m_bResult = true;
 	}
 

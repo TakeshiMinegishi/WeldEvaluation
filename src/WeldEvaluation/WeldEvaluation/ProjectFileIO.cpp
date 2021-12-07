@@ -7,7 +7,27 @@
 /// <summary>
 /// コンストラクタ
 /// </summary>
-CProjectFileIO::CProjectFileIO(void)
+CProjectFileIO::CProjectFileIO(void) :
+	m_ResinActiveAnalizeMethod(0),
+	m_MetalActiveAnalizeMethod(0),
+	m_ResultActiveAnalizeMethod(0),
+	m_nResinDendrogramClassificationClass(0),
+	m_nResinKMeansClassificationClass(0),
+	m_nMetalDendrogramClassificationClass(0),
+	m_nMetalKMeansClassificationClass(0),
+	m_nResultDendrogramClassificationClass(0),
+	m_nResultMeansClassificationClass(0),
+	m_SpectralGraphPointTarget(0),
+	m_SpectralGraphPointHolizontalPosition(0),
+	m_SpectralGraphPointVerticalPosition(0),
+	m_SpectralGraphSectionTarget(0),
+	m_SpectralGraphSectionHolizontalStartPosition(0),
+	m_SpectralGraphSectionVerticalStartPosition(0),
+	m_SpectralGraphSectionHolizontalEndPosition(0),
+	m_SpectralGraphSectionVerticalEndPosition(0),
+	m_ScanDataHolizontalSize(0),
+	m_ScanDataVerticalSize(0)
+
 {
 	m_ProjectFilePath = _T("");///< プロジェクトファイルへのパス
 	Initialze();

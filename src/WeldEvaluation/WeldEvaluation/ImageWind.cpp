@@ -22,7 +22,11 @@ IMPLEMENT_DYNAMIC(CImageWind, CDialog)
 /// コンストラクタ
 /// </summary>
 CImageWind::CImageWind(CWnd* pParent /*=NULL*/)
-	: CDialog(CImageWind::IDD, pParent)
+	: CDialog(CImageWind::IDD, pParent),
+	m_imageWidth(0),
+	m_imageHeight(0),
+	m_imageX(0),
+	m_imageY(0)
 {
 	m_bActive			= false;
 	m_Type				= eResinSurface;

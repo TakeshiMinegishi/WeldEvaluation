@@ -46,8 +46,6 @@ protected:
 	afx_msg void OnNcMouseMove(UINT nHitTest, CPoint point);
 	afx_msg void OnNcLButtonUp(UINT nHitTest, CPoint point);
 	afx_msg void OnNcLButtonDown(UINT nHitTest, CPoint point);
-
-//	afx_msg void OnWindowPosChanging(WINDOWPOS* lpwndpos);
 	afx_msg void OnWindowPosChanged(WINDOWPOS* lpwndpos);
 
 	DECLARE_MESSAGE_MAP()

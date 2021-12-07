@@ -67,6 +67,7 @@
 #define IDM_ERR_FAIL_REGIST             704
 #define IDM_ERR_NOTEXIST_ANALIZEDATA    705
 #define IDM_ERR_INVERS_FAIL             706
+#define IDM_ERR_FAILDCREATEIMAGE        707
 #define IDF_JOININGRETIO                900
 #define IDF_JOININGCOLOR                901
 #define IDC_BTN_NEWPRJ                  1000

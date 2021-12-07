@@ -7,7 +7,12 @@
 /// <summary>
 /// コンストラクタ
 /// </summary>
-CCameraIO::CCameraIO()
+CCameraIO::CCameraIO():
+m_handle(0x00),
+m_cube_format({ 0 }),
+m_cube({ 0 }),
+m_dark_reference({ 0 }),
+m_correction_matrix({ 0 })
 {
 	CameraPrmInit();
 	m_width				= 2048;
@@ -25,7 +30,12 @@ CCameraIO::CCameraIO()
 /// <param name="widht">データ幅</param>
 /// <param name="height">データ高さ</param>
 /// <param name="band">バンドサイズ</param>
-CCameraIO::CCameraIO(int widht, int height, int band)
+CCameraIO::CCameraIO(int widht, int height, int band):
+m_handle(0x00),
+m_cube_format({ 0 }),
+m_cube({ 0 }),
+m_dark_reference({ 0 }),
+m_correction_matrix({ 0 })
 {
 	InitLlogger();
 	CameraPrmInit();
