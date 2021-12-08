@@ -3459,7 +3459,7 @@ bool CWeldEvaluationDoc::DeleteScanImageFilePath(int ScanID)
 }
 
 /// <summary>
-/// スキャンデータの上下反転
+/// スキャンデータの反転
 /// </summary>
 /// <param name="ScanID">対象スキャンID</param>
 /// <returns>成功の場合はtrue、失敗の場合はfalseを返す</returns>
@@ -3503,7 +3503,7 @@ bool CWeldEvaluationDoc::InversScanData(int ScanID)
 }
 
 /// <summary>
-/// 解析データの上下反転
+/// 解析データの反転
 /// </summary>
 /// <param name="ScanID">対象スキャンID</param>
 /// <returns>成功の場合はtrue、失敗の場合はfalseを返す</returns>
@@ -3517,12 +3517,13 @@ bool CWeldEvaluationDoc::InversAnalizeData(int ScanID)
 
 	int method[] = { AnalizeTypeKMeans ,AnalizeTypeHiClustering };
 
-	CStdioFile tfd;
 	bool bResult = true;
-	CString buf;
-	vector<CString> lines;
 	int width, height;
 	GetScanDataSize(width, height);
+#if 0
+	CStdioFile tfd;
+	CString buf;
+	vector<CString> lines;
 	lines.resize(height);
 	for (int metodID = 0; metodID < 2; metodID++) {
 		ClassificationDataFilePath = getClassificationDataFilePath(ScanID, method[metodID]);
@@ -3532,7 +3533,7 @@ bool CWeldEvaluationDoc::InversAnalizeData(int ScanID)
 
 		if (tfd.Open(ClassificationDataFilePath, CFile::modeReadWrite | CFile::typeText)) {
 			CString key, val;
-			int i = height-1;
+			int i = height - 1;
 			bool bOverflow = false;
 			lines.clear();
 			lines.resize(height);
@@ -3548,7 +3549,7 @@ bool CWeldEvaluationDoc::InversAnalizeData(int ScanID)
 			if (!bOverflow) {
 				tfd.SeekToBegin();
 				for (i = 0; i < height; i++) {
-					tfd.WriteString(lines[i]+_T("\n"));
+					tfd.WriteString(lines[i] + _T("\n"));
 				}
 				tfd.Close();
 
@@ -3567,18 +3568,136 @@ bool CWeldEvaluationDoc::InversAnalizeData(int ScanID)
 	}
 	lines.clear();
 	lines.shrink_to_fit();
+
+#else
+	float ***ana = nullptr;
+	try {
+		CString buf, val;
+		CStdioFile tfd;
+		ana = new float **[2]();
+		if (ana) {
+			for (int i = 0; i < 2; i++) {
+				ana[i] = new float *[height]();
+				for (int h = 0; h < height; h++) {
+					ana[i][h] = new float[width]();
+				}
+			}
+		}
+
+		CScanDataIO scn;
+		double **mat = scn.MatrixInit();
+		scn.MatrixMove(mat, width / 2, height / 2);
+		scn.MatrixRotete(mat, 180);
+		scn.MatrixMove(mat, -width / 2, -height / 2);
+		scn.MatrixInvers(mat);
+
+		for (int metodID = 0; metodID < 2; metodID++) {
+			ClassificationDataFilePath = getClassificationDataFilePath(ScanID, method[metodID]);
+			if (!CFileUtil::fileExists(ClassificationDataFilePath)) {
+				continue;
+			}
+
+			if (tfd.Open(ClassificationDataFilePath, CFile::modeReadWrite | CFile::typeText)) {
+				int id, w = 0, h = 0;
+				while (tfd.ReadString(buf)) {
+					if (!buf.IsEmpty()) {
+						w = 0;
+						while (w < width) {
+							id = buf.FindOneOf(_T(","));
+							if (id >= 0) {
+								val = buf.Mid(0, id);
+								ana[0][h*width][w++] = (float)_ttof(val);
+								if (buf.GetLength() < (id + 1)) {
+									val = buf;
+									ana[0][h*width][w] = (float)_ttof(val);
+									break;
+								}
+								else {
+									buf = buf.Mid(id + 1);
+								}
+							}
+							else {
+								buf.Trim();
+								if (buf.GetLength() > 1) {
+									ana[0][h*width][w] = (float)_ttof(val);
+								}
+								break;
+							}
+						}
+					}
+					if (w != (width-1)) {
+							// error
+							scn.MatrixRelease(mat);
+							bResult = false;
+							goto InversAnalizeDataFinal;
+					}
+					h++;
+				}
+				if (h != (height-1)) {
+					// error
+					tfd.Close();
+					scn.MatrixRelease(mat);
+					bResult = false;
+					goto InversAnalizeDataFinal;
+				}
+			}
+			if (scn.affine(width, height, &ana[0], width, height, &ana[1], 1, mat, false)) {
+				CString tmp;
+				tfd.SeekToBegin();
+				for (int h = 0; h < height; h++) {
+					buf.Format(_T("%d,"),(int)(ana[1][h][0]+.5));
+					for (int w = 1; w < width; w++) {
+						tmp.Format(_T("%s,%d"), static_cast<LPCWSTR>(buf), (int)(ana[1][h][w]+.5));
+						buf = tmp;
+					}
+					tfd.WriteString(buf);
+				}
+				tfd.Close();
+			}
+			else {
+				// error
+				tfd.Close();
+				scn.MatrixRelease(mat);
+				bResult = false;
+				goto InversAnalizeDataFinal;
+			}
+		}
+		scn.MatrixRelease(mat);
+	}
+	catch (...) {
+		bResult = false;
+	}
+#endif // 0
+
+InversAnalizeDataFinal:
+	if (ana) {
+		for (int i = 0; i < 2; i++) {
+			if (ana[i]) {
+				for (int h = 0; h < height; h++) {
+					if (ana[i][h]) {
+						delete[] ana[i][h];
+						ana[i][h] = nullptr;
+					}
+				}
+				delete[] ana[i];
+				ana[i] = nullptr;
+			}
+		}
+		delete[] ana;
+		ana = nullptr;
+	}
+
 	return bResult;
 }
 
 /// <summary>
-/// 解析データの上下反転可否判定
+/// 解析データの反転可否判定
 /// </summary>
 /// <param name="ScanID">対象スキャンID</param>
 /// <returns>可能の場合はtrue、不可能の場合はfalseを返す</returns>
-///@remark 解析エリアの上と下の幅が異なる場合は反転できない
+///@remark 解析エリアの上と下または右と左の幅が異なる場合は反転できない
 bool CWeldEvaluationDoc::IsInversAnalizeData(int ScanID)
 {
-#if 1
 	int width, height;
 	GetScanDataSize(width, height);
 	CPoint tlPos;
@@ -3588,28 +3707,16 @@ bool CWeldEvaluationDoc::IsInversAnalizeData(int ScanID)
 	}
 
 	if ((height - (tlPos.y + size.cy)) == tlPos.y) {
-		return true;
+		if ((width - (tlPos.x + size.cx)) == tlPos.x) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	else {
 		return false;
 	}
-#else
-
-	CConfigrationIO sys(m_SystemFilePathName);
-	int AnalysisAreaTLPointY = sys.getInt(_T("System"), _T("AnalysisAreaTLPointY"));
-	int AnalysisAreaHeight = sys.getInt(_T("System"), _T("AnalysisAreaHeight"));
-	if (AnalysisAreaHeight <= 0) {
-		AnalysisAreaTLPointY = 0;
-		AnalysisAreaHeight = height;
-	}
-
-	if ((height - (AnalysisAreaTLPointY + AnalysisAreaHeight)) == AnalysisAreaTLPointY) {
-		return true;
-	}
-	else {
-		return false;
-	}
-#endif
 }
 
 /// <summary>

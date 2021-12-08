@@ -1111,6 +1111,18 @@ void CWeldEvaluationView::ReloadSetting(int settingID)
 	}
 }
 
+/// <summary>
+/// オペレーションタブの有効化
+/// </summary>
+/// <param name="bActive"> 有効フラグ</param>
+void CWeldEvaluationView::EnableOperation(bool bActive)
+{
+	m_OprtInitialize.ItemActive(bActive);
+	m_OprtSetting.ItemActive(bActive);
+	m_OprtScan.ItemActive(bActive);
+	m_OprtAnalize.ItemActive(bActive);
+}
+
 ///////////////////////////////////////////////////////////////////////////////////
 // スキャン処理関連
 //
@@ -1124,6 +1136,7 @@ void CWeldEvaluationView::ReloadSetting(int settingID)
 LRESULT CWeldEvaluationView::OnScanRequest(WPARAM wparam, LPARAM lparam)
 {
 	EnablePropaty(false);
+	EnableOperation(false);
 
 	int ScanID = (int)wparam;
 	int *Result = (int *)lparam;
@@ -1197,6 +1210,7 @@ LRESULT CWeldEvaluationView::OnScanRequest(WPARAM wparam, LPARAM lparam)
 	WaitForSingleObject(pThread->m_hThread, 30000);	// スレッドの終了を30秒だけ待ってやる（ほぼ0秒のはず
 	delete pThread;
 	EnablePropaty(true);
+	EnableOperation(true);
 	m_bUpdateOperation = true;
 	m_OprtSetting.UpddateResist(m_bUpdateOperation,m_bReadMode);
 	m_OprtSetting.Update();
@@ -1762,6 +1776,7 @@ LRESULT CWeldEvaluationView::OnInversRequest(WPARAM wparam, LPARAM lparam)
 	pDoc->SetWorkProjectUpdteStatus(true);
 
 	*Result = 0;
+#if 0
 	if (pDoc->IsInversAnalizeData(ScanID)) {
 		if (!pDoc->InversAnalizeData(ScanID)) {
 			// 解析データの反転に失敗
@@ -1772,7 +1787,12 @@ LRESULT CWeldEvaluationView::OnInversRequest(WPARAM wparam, LPARAM lparam)
 		// 反転できない解析データ
 		*Result = 1;
 	}
-
+#else
+//	if (!pDoc->InversAnalizeData(ScanID)) {
+		// 解析データの反転に失敗
+		*Result = 1;
+//	}
+#endif
 	// 解析データが反転できない場合は解析データを削除
 	if (*Result == 1) {
 		pDoc->DeleteAnalizeData(ScanID);
@@ -2203,6 +2223,7 @@ bool CWeldEvaluationView::ViewChangeRequest(int ScanID, int DisplayMode, bool re
 		}
 	}
 	else {
+		bool bRenew = true;
 		if (m_OprtAnalize.IsChangedAnalizeType()) {
 			int newNCluss = pPropPage->GetNumbetOfClass();
 			if (BeforNumberOfClass != newNCluss) {
@@ -2218,11 +2239,12 @@ bool CWeldEvaluationView::ViewChangeRequest(int ScanID, int DisplayMode, bool re
 			if (NumberOfClass != newNCluss) {
 				pPropPage->UpdateCmbJoinratioTargetLabel(true, NumberOfClass);
 			}
+			bRenew = true;
 		}
 		int type = m_OprtAnalize.GetAnalizeType(ScanID);
 		if (pDoc->IsExistClassificationResultFile(ScanID, type)) {
 			CImage *pImg = pImageWnd->GetImage();
-			if (pDoc->LoadClassificationResultImage(ScanID, type, *pImg,true)) {
+			if (pDoc->LoadClassificationResultImage(ScanID, type, *pImg, bRenew)) {
 				pImageWnd->Draw();
 			}
 			else {
@@ -2311,6 +2333,8 @@ LRESULT CWeldEvaluationView::OnAnalyzeRequest(WPARAM wparam, LPARAM lparam)
 	int AnalyzeMethod = (int)lparam;
 	int iResult = 0;
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
+	EnablePropaty(false);
+	EnableOperation(false);
 
 	CString ScanDataFilePath = pDoc->getScanDataFilePath(targetID);
 	// 改正対象が存在するかをチェック
@@ -2320,6 +2344,8 @@ LRESULT CWeldEvaluationView::OnAnalyzeRequest(WPARAM wparam, LPARAM lparam)
 			msg = _T("解析対象が存在しません");
 		}
 		AfxMessageBox(msg, MB_OK | MB_ICONSTOP);
+		EnablePropaty(true);
+		EnableOperation(true);
 		return -1;
 	}
 
@@ -2339,6 +2365,8 @@ LRESULT CWeldEvaluationView::OnAnalyzeRequest(WPARAM wparam, LPARAM lparam)
 				msg = _T("データが更新されています。\n更新されているデータを破棄しますか?");
 			}
 			if (AfxMessageBox(msg, MB_YESNO | MB_ICONWARNING | MB_DEFBUTTON1) == IDNO) {
+				EnablePropaty(true);
+				EnableOperation(true);
 				return -1;
 			}
 			OnBnClickedBtnPropCancel();
@@ -2418,6 +2446,8 @@ LRESULT CWeldEvaluationView::OnAnalyzeRequest(WPARAM wparam, LPARAM lparam)
 		}
 		AfxMessageBox(msg, MB_OK | MB_ICONINFORMATION);
 	}
+	EnablePropaty(true);
+	EnableOperation(true);
 
 	return iResult;
 }

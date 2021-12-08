@@ -136,6 +136,8 @@ public:
 	void EnableSetting(bool bActive);
 	void ReloadSetting(int settingID);
 
+	void EnableOperation(bool bActive);
+
 	LRESULT OnScanRequest(WPARAM wparam, LPARAM lparam);
 
 	LRESULT OnWBScanExistCheck(WPARAM wparam, LPARAM lparam);

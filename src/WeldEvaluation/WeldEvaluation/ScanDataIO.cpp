@@ -531,7 +531,7 @@ double CScanDataIO::getWaveLength(int index)
 }
 
 /// <summary>
-/// スキャンデータの上下反転
+/// スキャンデータの反転
 /// </summary>
 /// <returns>成功の場合はtrue、失敗の場合はfalseを返す</returns>
 bool CScanDataIO::InversData()
@@ -543,9 +543,11 @@ bool CScanDataIO::InversData()
 		return false;
 	}
 
+	bool bResult = true;
 	int height = m_o_p_cube->format.height;
 	int width = m_o_p_cube->format.width;
 	int band = m_o_p_cube->format.nr_bands;
+#if 0	// 上下反転
 	int hheight = height / 2;
 	float  *buff = new float[width];
 
@@ -559,7 +561,61 @@ bool CScanDataIO::InversData()
 	if (buff) {
 		delete[] buff;
 	}
-	return true;
+#else	// 180度回転
+	float ***dst = nullptr;
+	dst = { 0 };
+	double **mat = MatrixInit();
+	try {
+		dst = new float**[band]();
+		for (int b = 0; b < band; b++) {
+			dst[b] = new float *[height]();
+			for (int h = 0; h < height; h++) {
+				dst[b][h] = new float[width]();
+				ZeroMemory(dst[b][h], sizeof(float)*width);
+			}
+		}
+
+		MatrixMove(mat, width / 2, height / 2);
+		MatrixRotete(mat, 180);
+		MatrixMove(mat, -width / 2, -height / 2);
+		MatrixInvers(mat);
+
+		if (affine(width, height, (float ***)m_o_p_cube->ppp_data, width, height, dst, band, mat, false)) {
+			for (int b = 0; b < band; b++) {
+				for (int h = 0; h < height; h++) {
+					memcpy(m_o_p_cube->ppp_data[b][h], dst[b][h], sizeof(float)*width);
+				}
+			}
+		}
+		else {
+			bResult = false;
+		}
+	}
+	catch (...) {
+		bResult = false;
+	}
+
+	if (dst) {
+		for (int b = 0; b < band; b++) {
+			if (dst[b]) {
+				for (int h = 0; h < height; h++) {
+					if (dst[b][h]) {
+						delete [] dst[b][h];
+						dst[b][h] = nullptr;
+					}
+				}
+				delete [] dst[b];
+				dst[b] = nullptr;
+			}
+		}
+		delete [] dst;
+		dst = nullptr;
+	}
+
+	MatrixRelease(mat);
+
+#endif
+	return bResult;
 }
 
 /// <summary>
