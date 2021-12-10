@@ -20,7 +20,7 @@ public:
 	int				m_ResinDisplayMode;			///< 樹脂面表示タイプ
 	int				m_MetalDisplayMode;			///< 金属面表示タイプ
 	int				m_ResultDisplayMode;		///< 接合結果表示タイプ
-	bool			m_bChangedAnalizeType;		///< 解析方法変更有無フラグ
+	bool			m_bChangedAnalize;			///< 解析変更有無フラグ
 	bool			m_bChangedDisplayMode;		///< 表示方法変更有無フラグ
 
 public:
@@ -63,6 +63,7 @@ public:
 	int GetAnalizeType(int ItemID);
 	void ChangeAnalizeType(int ScanID);
 	int SetDisplayMode(int ScanID, int mode);
-	bool IsChangedAnalizeType();
+	bool IsChangedAnalize();
+	void SetChangedAnalizeFlag(bool bFlag);
 	bool IsChangedDisplayMode();
 };

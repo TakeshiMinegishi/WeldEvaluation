@@ -22,6 +22,9 @@
 
 #pragma warning(disable:4800)
 #pragma warning(disable:4100)
+#ifndef _DEBUG
+#pragma warning(disable:6001)
+#endif
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -3606,10 +3609,10 @@ bool CWeldEvaluationDoc::InversAnalizeData(int ScanID)
 							id = buf.FindOneOf(_T(","));
 							if (id >= 0) {
 								val = buf.Mid(0, id);
-								ana[0][h*width][w++] = (float)_ttof(val);
+								ana[0][h][w++] = (float)_ttof(val);
 								if (buf.GetLength() < (id + 1)) {
 									val = buf;
-									ana[0][h*width][w] = (float)_ttof(val);
+									ana[0][h][w] = (float)_ttof(val);
 									break;
 								}
 								else {
@@ -3619,7 +3622,7 @@ bool CWeldEvaluationDoc::InversAnalizeData(int ScanID)
 							else {
 								buf.Trim();
 								if (buf.GetLength() > 1) {
-									ana[0][h*width][w] = (float)_ttof(val);
+									ana[0][h][w] = (float)_ttof(val);
 								}
 								break;
 							}
@@ -3633,7 +3636,7 @@ bool CWeldEvaluationDoc::InversAnalizeData(int ScanID)
 					}
 					h++;
 				}
-				if (h != (height-1)) {
+				if (h != height) {
 					// error
 					tfd.Close();
 					scn.MatrixRelease(mat);
@@ -3641,22 +3644,24 @@ bool CWeldEvaluationDoc::InversAnalizeData(int ScanID)
 					goto InversAnalizeDataFinal;
 				}
 			}
+			tfd.Close();
 			if (scn.affine(width, height, &ana[0], width, height, &ana[1], 1, mat, false)) {
 				CString tmp;
-				tfd.SeekToBegin();
-				for (int h = 0; h < height; h++) {
-					buf.Format(_T("%d,"),(int)(ana[1][h][0]+.5));
-					for (int w = 1; w < width; w++) {
-						tmp.Format(_T("%s,%d"), static_cast<LPCWSTR>(buf), (int)(ana[1][h][w]+.5));
-						buf = tmp;
+				if (tfd.Open(ClassificationDataFilePath, CFile::modeCreate | CFile::modeWrite | CFile::typeText)) {
+					for (int h = 0; h < height; h++) {
+						buf.Format(_T("%d"), (int)(ana[1][h][0] + .5));
+						for (int w = 1; w < width; w++) {
+							tmp.Format(_T("%s,%d"), static_cast<LPCWSTR>(buf), (int)(ana[1][h][w] + .5));
+							buf = tmp;
+						}
+						buf += _T("\n");
+						tfd.WriteString(buf);
 					}
-					tfd.WriteString(buf);
+					tfd.Close();
 				}
-				tfd.Close();
 			}
 			else {
 				// error
-				tfd.Close();
 				scn.MatrixRelease(mat);
 				bResult = false;
 				goto InversAnalizeDataFinal;
@@ -3670,7 +3675,7 @@ bool CWeldEvaluationDoc::InversAnalizeData(int ScanID)
 #endif // 0
 
 InversAnalizeDataFinal:
-	if (ana) {
+		if (ana) {
 		for (int i = 0; i < 2; i++) {
 			if (ana[i]) {
 				for (int h = 0; h < height; h++) {
@@ -3706,8 +3711,8 @@ bool CWeldEvaluationDoc::IsInversAnalizeData(int ScanID)
 		return false;
 	}
 
-	if ((height - (tlPos.y + size.cy)) == tlPos.y) {
-		if ((width - (tlPos.x + size.cx)) == tlPos.x) {
+	if ((height -size.cy) == tlPos.y) {
+		if ((width - size.cx) == tlPos.x) {
 			return true;
 		}
 		else {

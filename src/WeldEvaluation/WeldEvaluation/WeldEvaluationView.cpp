@@ -1775,12 +1775,15 @@ LRESULT CWeldEvaluationView::OnInversRequest(WPARAM wparam, LPARAM lparam)
 	}
 	pDoc->SetWorkProjectUpdteStatus(true);
 
-	*Result = 0;
-#if 0
+#if 1
+	* Result = 0;
 	if (pDoc->IsInversAnalizeData(ScanID)) {
 		if (!pDoc->InversAnalizeData(ScanID)) {
 			// 解析データの反転に失敗
 			*Result = 1;
+		}
+		else {
+			m_OprtAnalize.SetChangedAnalizeFlag(true);
 		}
 	}
 	else {
@@ -1788,10 +1791,7 @@ LRESULT CWeldEvaluationView::OnInversRequest(WPARAM wparam, LPARAM lparam)
 		*Result = 1;
 	}
 #else
-//	if (!pDoc->InversAnalizeData(ScanID)) {
-		// 解析データの反転に失敗
-		*Result = 1;
-//	}
+	*Result = 1;
 #endif
 	// 解析データが反転できない場合は解析データを削除
 	if (*Result == 1) {
@@ -2223,8 +2223,8 @@ bool CWeldEvaluationView::ViewChangeRequest(int ScanID, int DisplayMode, bool re
 		}
 	}
 	else {
-		bool bRenew = true;
-		if (m_OprtAnalize.IsChangedAnalizeType()) {
+		bool bRenew = renew;
+		if (m_OprtAnalize.IsChangedAnalize()) {
 			int newNCluss = pPropPage->GetNumbetOfClass();
 			if (BeforNumberOfClass != newNCluss) {
 				CString msg;
@@ -2241,6 +2241,7 @@ bool CWeldEvaluationView::ViewChangeRequest(int ScanID, int DisplayMode, bool re
 			}
 			bRenew = true;
 		}
+		m_OprtAnalize.SetChangedAnalizeFlag(false);
 		int type = m_OprtAnalize.GetAnalizeType(ScanID);
 		if (pDoc->IsExistClassificationResultFile(ScanID, type)) {
 			CImage *pImg = pImageWnd->GetImage();

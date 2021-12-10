@@ -25,7 +25,7 @@ COprtTabPageAnalize::COprtTabPageAnalize(CWnd* pParent /*=NULL*/)
 	, m_MetalDisplayMode(0)
 	, m_ResultDisplayMode(0)
 {
-	m_bChangedAnalizeType = false;
+	m_bChangedAnalize = false;
 	m_bChangedDisplayMode = false;
 }
 
@@ -167,13 +167,12 @@ void COprtTabPageAnalize::OnBnClickedRdoResinMethod1()
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eResinSurface,CWeldEvaluationDoc::AnalizeTypeKMeans);
 	if (m_ResinAnalizeType == 0) {
-		m_bChangedAnalizeType = true;
+		SetChangedAnalizeFlag(true);
 		if (pWnd) {
 			if (pDoc->GetDisplayMode(CWeldEvaluationDoc::eResinSurface) != CWeldEvaluationDoc::DisplayModeScan) {
 				pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eResinSurface, CWeldEvaluationDoc::DisplayModeResult);
 			}
 		}
-		m_bChangedAnalizeType = false;
 	}
 }
 
@@ -191,13 +190,12 @@ void COprtTabPageAnalize::OnBnClickedRdoResinMethod2()
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eResinSurface,CWeldEvaluationDoc::AnalizeTypeHiClustering);
 	if (m_ResinAnalizeType == 1) {
-		m_bChangedAnalizeType = true;
+		SetChangedAnalizeFlag(true);
 		if (pWnd) {
 			if (pDoc->GetDisplayMode(CWeldEvaluationDoc::eResinSurface) != CWeldEvaluationDoc::DisplayModeScan) {
 				pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eResinSurface, CWeldEvaluationDoc::DisplayModeResult);
 			}
 		}
-		m_bChangedAnalizeType = false;
 	}
 }
 
@@ -215,13 +213,12 @@ void COprtTabPageAnalize::OnBnClickedRdoMetalMethod1()
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eMetalSurface,CWeldEvaluationDoc::AnalizeTypeKMeans);
 	if (m_MetalAnalizeType == 0) {
-		m_bChangedAnalizeType = true;
+		SetChangedAnalizeFlag(true);
 		if (pWnd) {
 			if (pDoc->GetDisplayMode(CWeldEvaluationDoc::eMetalSurface) != CWeldEvaluationDoc::DisplayModeScan) {
 				pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eMetalSurface, CWeldEvaluationDoc::DisplayModeResult);
 			}
 		}
-		m_bChangedAnalizeType = false;
 	}
 }
 
@@ -239,13 +236,12 @@ void COprtTabPageAnalize::OnBnClickedRdoMetalMethod2()
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)pWnd->GetDocument();
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eMetalSurface,CWeldEvaluationDoc::AnalizeTypeHiClustering);
 	if (m_MetalAnalizeType == 1) {
-		m_bChangedAnalizeType = true;
+		SetChangedAnalizeFlag(true);
 		if (pWnd) {
 			if (pDoc->GetDisplayMode(CWeldEvaluationDoc::eMetalSurface) != CWeldEvaluationDoc::DisplayModeScan) {
 				pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eMetalSurface, CWeldEvaluationDoc::DisplayModeResult);
 			}
 		}
-		m_bChangedAnalizeType = false;
 	}
 }
 
@@ -264,13 +260,12 @@ void COprtTabPageAnalize::OnBnClickedRdoJointMethod1()
 	}
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eJoiningResult, CWeldEvaluationDoc::AnalizeTypeKMeans);
 	if (m_JointAnalizeType == 0) {
-		m_bChangedAnalizeType = true;
+		SetChangedAnalizeFlag(true);
 		if (pWnd) {
 			if (pDoc->GetDisplayMode(CWeldEvaluationDoc::eJoiningResult) != CWeldEvaluationDoc::DisplayModeScan) {
 				pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eJoiningResult, CWeldEvaluationDoc::DisplayModeResult);
 			}
 		}
-		m_bChangedAnalizeType = false;
 	}
 }
 
@@ -289,13 +284,12 @@ void COprtTabPageAnalize::OnBnClickedRdoJointMethod2()
 	}
 	pDoc->SetAnalysisMethod(CWeldEvaluationDoc::eJoiningResult, CWeldEvaluationDoc::AnalizeTypeHiClustering);
 	if (m_JointAnalizeType == 1) {
-		m_bChangedAnalizeType = true;
+		SetChangedAnalizeFlag(true);
 		if (pWnd) {
 			if (pDoc->GetDisplayMode(CWeldEvaluationDoc::eJoiningResult) != CWeldEvaluationDoc::DisplayModeScan) {
 				pWnd->SendMessage(WM_VIEW_CHANGE_REQUEST, CWeldEvaluationDoc::eJoiningResult, CWeldEvaluationDoc::DisplayModeResult);
 			}
 		}
-		m_bChangedAnalizeType = false;
 	}
 }
 
@@ -590,10 +584,20 @@ int COprtTabPageAnalize::SetDisplayMode(int ScanID, int mode)
 /// </summary>
 /// <returns>変更されていればtrue、されていなければfalseを返す</returns>
 /// @remark 切り換え処理が実施されるまで有効
-bool COprtTabPageAnalize::IsChangedAnalizeType()
+bool COprtTabPageAnalize::IsChangedAnalize()
 {
-	return m_bChangedAnalizeType;
+	return m_bChangedAnalize;
 }
+
+/// <summary>
+/// 解析方法変更フラグのリセット
+/// </summary>
+/// <param name="bFlag">変更有無設定</param>
+void COprtTabPageAnalize::SetChangedAnalizeFlag(bool bFlag)
+{
+	m_bChangedAnalize = bFlag;
+}
+
 
 /// <summary>
 /// 表示方法が変更されたかの判定

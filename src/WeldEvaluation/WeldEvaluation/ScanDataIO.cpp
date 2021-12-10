@@ -4,6 +4,9 @@
 #include <iostream>
 #include <vector>
 
+#ifndef _DEBUG
+#pragma warning(disable:6001)
+#endif
 
 #define dRSpectrum	700.0		///< 赤のスペクトル値
 #define dGSpectrum	546.1		///< 緑のスペクトル値
@@ -562,8 +565,7 @@ bool CScanDataIO::InversData()
 		delete[] buff;
 	}
 #else	// 180度回転
-	float ***dst = nullptr;
-	dst = { 0 };
+	float ***dst = (float***)nullptr;
 	double **mat = MatrixInit();
 	try {
 		dst = new float**[band]();
@@ -595,7 +597,7 @@ bool CScanDataIO::InversData()
 		bResult = false;
 	}
 
-	if (dst) {
+	if (dst!=nullptr) {
 		for (int b = 0; b < band; b++) {
 			if (dst[b]) {
 				for (int h = 0; h < height; h++) {
