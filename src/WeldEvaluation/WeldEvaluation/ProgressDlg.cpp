@@ -15,7 +15,7 @@ IMPLEMENT_DYNAMIC(CProgressDlg, CDialogEx)
 /// <summary>
 /// コンストラクタ
 /// </summary>
-CProgressDlg::CProgressDlg(CWnd* pParent /*=NULL*/)
+CProgressDlg::CProgressDlg(bool bEnableCancel /*= true*/, CWnd* pParent /*=NULL*/)
 	: CDialogEx(CProgressDlg::IDD, pParent)
 	, m_stcStatusLabel(_T(""))
 {
@@ -26,6 +26,7 @@ CProgressDlg::CProgressDlg(CWnd* pParent /*=NULL*/)
 	m_pos		= 0;
 	m_resolution = 0.0;
 	m_pParentWnd	= pParent;
+	m_bEnableCancel = bEnableCancel;
 }
 
 /// <summary>
@@ -66,7 +67,13 @@ BOOL CProgressDlg::OnInitDialog()
 		
 	m_prgress.SetRange(0,100);
 	m_prgress.SetPos((int)(m_pos * m_resolution));
-
+	if (!m_bEnableCancel) {
+		CWnd *pWnd = GetDlgItem(IDCANCEL);
+		if (pWnd) {
+			pWnd->EnableWindow(false);
+			pWnd->ShowWindow(SW_HIDE);
+		}
+	}
 	return TRUE;
 }
 
@@ -138,6 +145,6 @@ void CProgressDlg::setPosition(UINT pos)
 void CProgressDlg::OnBnClickedCancel()
 {
 //	CWnd *pWnd = GetParent();
-	m_pParentWnd->PostMessage(WM_READ_RESULT_STATUS,READ_RESULT_STOP,NULL);
+	m_pParentWnd->PostMessage(WM_READ_RESULT_STATUS, PROGRESS_STOP,NULL);
 	//	CDialogEx::OnCancel();
 }

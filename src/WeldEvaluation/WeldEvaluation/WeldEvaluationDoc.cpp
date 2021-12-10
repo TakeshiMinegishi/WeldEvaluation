@@ -2596,13 +2596,13 @@ bool CWeldEvaluationDoc::getResultFile(CString path, vector<int>& data)
 			UINT begPos = (UINT)ifs.tellg();	//ファイル先頭インデクスを取得
 			fileSize = eofPos - begPos;			//末尾-先頭でファイルサイズを計算
 		}
-		pView->SendMessage(WM_READ_RESULT_STATUS,READ_RESULT_INIT,fileSize);
+		pView->SendMessage(WM_READ_RESULT_STATUS, PROGRESS_INIT,fileSize);
 	}
 
 	if (!ifs.is_open())
 	{
 		if (pView) {
-			pView->SendMessage(WM_READ_RESULT_STATUS,READ_RESULT_END,NULL);
+			pView->SendMessage(WM_READ_RESULT_STATUS, PROGRESS_END,NULL);
 		}
 		CString msg;
 		msg.Format(_T("解析結果の取得に失敗しました。(%s)"), static_cast<LPCWSTR>(path));
@@ -2622,12 +2622,12 @@ bool CWeldEvaluationDoc::getResultFile(CString path, vector<int>& data)
 		if (split(line, ',', id, data)) {
 			if (pView) {
 				UINT readPos = (UINT)ifs.tellg();
-				pView->SendMessage(WM_READ_RESULT_STATUS, READ_RESULT_READ, readPos);
+				pView->SendMessage(WM_READ_RESULT_STATUS, PROGRESS_UPDATE, readPos);
 			}
 
 			if (m_CalcResultStopRequest) {	// 処理停止リクエスト
 				if (pView) {
-					pView->SendMessage(WM_READ_RESULT_STATUS, READ_RESULT_END, NULL);
+					pView->SendMessage(WM_READ_RESULT_STATUS, PROGRESS_END, NULL);
 				}
 				return false;
 			}
@@ -2637,7 +2637,7 @@ bool CWeldEvaluationDoc::getResultFile(CString path, vector<int>& data)
 		}
 	}
 	if (pView) {
-		pView->SendMessage(WM_READ_RESULT_STATUS,READ_RESULT_END,NULL);
+		pView->SendMessage(WM_READ_RESULT_STATUS, PROGRESS_END,NULL);
 	}
 	return true;
 }
@@ -3468,6 +3468,15 @@ bool CWeldEvaluationDoc::DeleteScanImageFilePath(int ScanID)
 /// <returns>成功の場合はtrue、失敗の場合はfalseを返す</returns>
 bool CWeldEvaluationDoc::InversScanData(int ScanID)
 {
+	CView *pView = nullptr;
+	POSITION p = GetFirstViewPosition();
+	if (p != NULL) {
+		pView = GetNextView(p);
+		if (pView) {
+			pView->SendMessage(WM_INVERS_STATUS, PROGRESS_UPDATE, 0);
+		}
+	}
+
 	CScanDataIO *pSdio = nullptr;
 	switch (ScanID) {
 	case	eResinSurface:	///< 樹脂
@@ -3486,7 +3495,7 @@ bool CWeldEvaluationDoc::InversScanData(int ScanID)
 	bool bResult = true;
 	CString pathName = getScanDataPath(ScanID);
 	CString fPathName = pathName + _T(".raw");
-	if (pSdio->InversData()) {
+	if (pSdio->InversData(pView)) {
 		CString tmp = fPathName + _T(".tmp");
 		bResult = pSdio->saveRawData(tmp);
 		if (bResult) {
@@ -3512,6 +3521,12 @@ bool CWeldEvaluationDoc::InversScanData(int ScanID)
 /// <returns>成功の場合はtrue、失敗の場合はfalseを返す</returns>
 bool CWeldEvaluationDoc::InversAnalizeData(int ScanID)
 {
+	CView *pView = nullptr;
+	POSITION p = GetFirstViewPosition();
+	if (p != NULL) {
+		pView = GetNextView(p);
+	}
+
 	CString ScanDataFilePath, ClassificationDataFilePath, imgPaht;
 	ScanDataFilePath = getScanDataFilePath(ScanID);
 	if (!CFileUtil::fileExists(ScanDataFilePath)) {
@@ -3594,6 +3609,18 @@ bool CWeldEvaluationDoc::InversAnalizeData(int ScanID)
 		scn.MatrixMove(mat, -width / 2, -height / 2);
 		scn.MatrixInvers(mat);
 
+		int pos = 0;
+		int retio = 0;
+		// 解析結果数の取得
+		int cnt = 0;
+		for (int metodID = 0; metodID < 2; metodID++) {
+			ClassificationDataFilePath = getClassificationDataFilePath(ScanID, method[metodID]);
+			if (CFileUtil::fileExists(ClassificationDataFilePath)) {
+				cnt++;
+			}
+		}
+
+		double base = cnt * 2 * height * width;
 		for (int metodID = 0; metodID < 2; metodID++) {
 			ClassificationDataFilePath = getClassificationDataFilePath(ScanID, method[metodID]);
 			if (!CFileUtil::fileExists(ClassificationDataFilePath)) {
@@ -3610,6 +3637,13 @@ bool CWeldEvaluationDoc::InversAnalizeData(int ScanID)
 							if (id >= 0) {
 								val = buf.Mid(0, id);
 								ana[0][h][w++] = (float)_ttof(val);
+								if (pView) {
+									if (retio != (int)(((double)pos / (double)base) * 100.0)) {
+										retio = (int)(((double)pos / (double)base) * 100.0);
+										pView->SendMessage(WM_INVERS_STATUS, PROGRESS_UPDATE, retio);
+									}
+								}
+								pos++;
 								if (buf.GetLength() < (id + 1)) {
 									val = buf;
 									ana[0][h][w] = (float)_ttof(val);
@@ -3656,6 +3690,13 @@ bool CWeldEvaluationDoc::InversAnalizeData(int ScanID)
 						}
 						buf += _T("\n");
 						tfd.WriteString(buf);
+						pos += width;
+						if (pView) {
+							if (retio != (int)(((double)pos / (double)base) * 100.0)) {
+								retio = (int)(((double)pos / (double)base) * 100.0);
+								pView->SendMessage(WM_INVERS_STATUS, PROGRESS_UPDATE, retio);
+							}
+						}
 					}
 					tfd.Close();
 				}

@@ -56,6 +56,7 @@ BEGIN_MESSAGE_MAP(CWeldEvaluationView, CFormView)
 	ON_MESSAGE(WM_AREA_SPECTRUM_GRAPH_SET, OnAreaSpectrumeGraphSet)
 	ON_MESSAGE(WM_VIEW_CLER, OnImageErace)
 	ON_MESSAGE(WM_INVERS_REQUEST, OnInversRequest)
+	ON_MESSAGE(WM_INVERS_STATUS, OnInversStatus)
 
 	ON_WM_NCDESTROY()
 	ON_WM_DESTROY()
@@ -1746,18 +1747,22 @@ LRESULT CWeldEvaluationView::OnInversRequest(WPARAM wparam, LPARAM lparam)
 	CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
 
 //	int type = m_OprtAnalize.GetAnalizeType(ScanID);
+	OnInversStatus(PROGRESS_INIT,100);
 
 	m_OprtAnalize.SetDisplayMode(ScanID, CWeldEvaluationDoc::DisplayModeScan);
 
 	if (!pDoc->ExistScanFile(ScanID)) {
+		OnInversStatus(PROGRESS_END, NULL);
 		*Result = -1;
 		return -1;
 	}
 
 	if (!pDoc->InversScanData(ScanID)) {
+		OnInversStatus(PROGRESS_END, NULL);
 		*Result = -1;
 		return -1;
 	}
+	OnInversStatus(PROGRESS_UPDATE, 100);
 
 	ViewChangeRequest(ScanID, CWeldEvaluationDoc::DisplayModeScan, true);
 	m_pReginWnd->Invalidate();
@@ -1778,6 +1783,9 @@ LRESULT CWeldEvaluationView::OnInversRequest(WPARAM wparam, LPARAM lparam)
 #if 1
 	* Result = 0;
 	if (pDoc->IsInversAnalizeData(ScanID)) {
+		CString str = _T("解析結果の反転処理");
+		OnInversStatus(PROGRESS_SET_TITLE, (LPARAM)((LPCTSTR)str));
+		OnInversStatus(PROGRESS_UPDATE, 0);
 		if (!pDoc->InversAnalizeData(ScanID)) {
 			// 解析データの反転に失敗
 			*Result = 1;
@@ -1793,12 +1801,92 @@ LRESULT CWeldEvaluationView::OnInversRequest(WPARAM wparam, LPARAM lparam)
 #else
 	*Result = 1;
 #endif
+	OnInversStatus(PROGRESS_END, NULL);
 	// 解析データが反転できない場合は解析データを削除
 	if (*Result == 1) {
 		pDoc->DeleteAnalizeData(ScanID);
 	}
 
 	return 0;
+}
+
+LRESULT CWeldEvaluationView::OnInversStatus(WPARAM wparam, LPARAM lparam)
+{
+	// メッセージがキューにたまってしまうのでメッセージポンプして処理を通す
+	MSG msg;
+	while (PeekMessage(&msg, m_hWnd, 0, 0, PM_REMOVE)) {
+		TranslateMessage(&msg);
+		DispatchMessage(&msg);
+	}
+
+	UINT type = (UINT)wparam;
+	switch (type) {
+	case	PROGRESS_SET_TITLE:
+		{
+			if (m_pProgress != nullptr) {
+				CString str = (CString)((LPCTSTR)lparam);
+				m_pProgress->SetWindowTextW(str);
+			}
+		}
+		break;
+	case	PROGRESS_INIT:		// 処理開始
+		{
+			UINT value = (UINT)lparam;
+			if (m_pProgress == nullptr) {
+				m_pProgress = new CProgressDlg(false,this);
+			}
+			CString str;
+			if (!str.LoadString(IDM_INVERS_SCANDATA_TITLE)) {
+				str = _T("スキャンデータ反転処理");
+			}
+			m_pProgress->setTitle(str);
+			if (!str.LoadString(IDM_INVERS_INIT)) {
+				str = _T("反転処理準備中・・・");
+			}
+			m_pProgress->setlabel(str);
+
+			m_pProgress->setRange(0, value);
+			m_pProgress->setPosition(0);
+			m_pProgress->Create(CProgressDlg::IDD, this);
+			m_pProgress->ShowWindow(SW_SHOW);
+			m_pProgress->UpdateWindow();
+		}
+		break;
+	case	PROGRESS_UPDATE:		// 処理進行状況
+		{
+			UINT value = (UINT)lparam;
+			if (m_pProgress != nullptr) {
+				int min, max;
+				m_pProgress->getRange(min, max);
+				double per = (double)value / (double)((__int64)max - min);
+				CString str, fmt;
+				if (!fmt.LoadString(IDM_INVERSING)) {
+					fmt = _T("変換中：%d/%d (%.2lf[%%])");
+				}
+				str.Format(fmt, value, (max - min), per * 100);
+				m_pProgress->setlabel(str);
+				m_pProgress->setPosition(value);
+				m_pProgress->UpdateWindow();
+			}
+		}
+		break;
+	case	PROGRESS_STOP:		// 処理停止リクエスト
+		{
+			CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
+			pDoc->CalcResultStopRequest();
+			break;
+		}
+	case	PROGRESS_END:		// 処理終了
+		{
+			m_pProgress->DestroyWindow();
+			if (m_pProgress) {
+				delete m_pProgress;
+				m_pProgress = nullptr;
+			}
+		}
+		break;
+	}
+return 0;
 }
 
 /// <summary>
@@ -2471,10 +2559,10 @@ LRESULT CWeldEvaluationView::OnReadResultFileStatus(WPARAM wparam, LPARAM lparam
 	UINT type = (UINT)wparam;
 	UINT value = (UINT)lparam;
 	switch(type) {
-	case	READ_RESULT_INIT	:		// 処理開始
+	case	PROGRESS_INIT:		// 処理開始
 		{
 			if (m_pProgress == nullptr) {
-				m_pProgress = new CProgressDlg(this);
+				m_pProgress = new CProgressDlg(true,this);
 			}
 			CString str;
 			if (!str.LoadString(IDM_RESULT_READ_TITLE)) {
@@ -2492,7 +2580,7 @@ LRESULT CWeldEvaluationView::OnReadResultFileStatus(WPARAM wparam, LPARAM lparam
 			m_pProgress->UpdateWindow();
 		}
 		break;
-	case	READ_RESULT_READ	:		// 処理進行状況
+	case	PROGRESS_UPDATE:		// 処理進行状況
 		{
 			if (m_pProgress != nullptr) {
 				int min,max;
@@ -2509,13 +2597,13 @@ LRESULT CWeldEvaluationView::OnReadResultFileStatus(WPARAM wparam, LPARAM lparam
 			}
 		}
 		break;
-	case	READ_RESULT_STOP	:		// 処理停止リクエスト
+	case	PROGRESS_STOP:		// 処理停止リクエスト
 		{
 			CWeldEvaluationDoc *pDoc = (CWeldEvaluationDoc *)GetDocument();
 			pDoc->CalcResultStopRequest();
 			break;
 		}
-	case	READ_RESULT_END		:		// 処理終了
+	case	PROGRESS_END:		// 処理終了
 		{
 			m_pProgress->DestroyWindow();
 			if (m_pProgress) {

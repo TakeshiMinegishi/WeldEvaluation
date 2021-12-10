@@ -18,6 +18,7 @@ private:
 	UINT			m_rangeMax;			///< プログレスバー最大値
 	UINT			m_pos;				///< プログレスバー位置
 	double			m_resolution;		///< プログレスバー解像度
+	bool			m_bEnableCancel;	///< キャンセル可否フラグ
 
 public:
 	CString			m_stcStatusLabel;	///< ステータスメッセージ
@@ -25,7 +26,7 @@ public:
 	CWnd			*m_pParentWnd;		///< 親ウインドへのポインタ
 
 public:
-	CProgressDlg(CWnd* pParent = NULL);   // 標準コンストラクター
+	CProgressDlg(bool bEnableCancel = true, CWnd* pParent = NULL);   // 標準コンストラクター
 	virtual ~CProgressDlg();
 
 // ダイアログ データ

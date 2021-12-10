@@ -35,6 +35,7 @@
 #define IDD_PROGRESS_DLG                321
 #define IDD_SPECTRAL_DLG                324
 #define IDR_POPUP_MENU                  329
+#define IDD_SPLASH_DLG                  332
 #define IDM_PROPUPDATE                  500
 #define IDM_OPRTUPDATE                  501
 #define IDM_CHECKOFUPDATE               502
@@ -60,6 +61,9 @@
 #define IDM_INVERS_SUCCESS              522
 #define IDM_DELETED_ANALIZEDATA         523
 #define IDM_REANALIZE_REQUEST           524
+#define IDM_INVERS_SCANDATA_TITLE       525
+#define IDM_INVERS_INIT                 526
+#define IDM_INVERSING                   527
 #define IDM_ERR_NOTOPEN_REGTEST         700
 #define IDM_ERR_SCAN                    701
 #define IDM_ERR_PROJECT_SAVE            702
@@ -153,6 +157,7 @@
 #define IDC_MSG_FEILD                   1082
 #define IDC_BTN_INVERS                  1083
 #define IDC_BUTTON1                     1084
+#define IDC_PRG_STATUS                  1085
 #define ID_32771                        32771
 #define ID_32772                        32772
 #define ID_PROJECT_DELETE               32773
@@ -164,9 +169,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        332
+#define _APS_NEXT_RESOURCE_VALUE        335
 #define _APS_NEXT_COMMAND_VALUE         32777
-#define _APS_NEXT_CONTROL_VALUE         1085
+#define _APS_NEXT_CONTROL_VALUE         1086
 #define _APS_NEXT_SYMED_VALUE           310
 #endif
 #endif

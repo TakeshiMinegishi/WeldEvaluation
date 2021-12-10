@@ -144,6 +144,7 @@ public:
 	LRESULT OnWBScanRequest(WPARAM wparam, LPARAM lparam);
 	bool ScanImage(CStatusDlgThread* pStatus, int ScanID);
 	LRESULT OnInversRequest(WPARAM wparam, LPARAM lparam);
+	LRESULT OnInversStatus(WPARAM wparam, LPARAM lparam);
 
 	bool ViewChangeRequest(int ScanID, int DisplayMode, bool renew=false);
 	LRESULT OnViewChangeRequest(WPARAM wparam, LPARAM lparam);

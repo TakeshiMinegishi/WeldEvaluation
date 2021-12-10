@@ -1,10 +1,11 @@
 #ifndef __Message
 #define __Message	1
 
-#define READ_RESULT_INIT	0		// 処理開始メッセージ
-#define READ_RESULT_READ	1		// 処理進捗メッセージ
-#define READ_RESULT_STOP	2		// 処理停止リクエストメッセージ
-#define READ_RESULT_END		3		// 処理終了メッセージ
+#define PROGRESS_INIT		0		// 処理開始メッセージ
+#define PROGRESS_UPDATE		1		// 処理進捗メッセージ
+#define PROGRESS_STOP		2		// 処理停止リクエストメッセージ
+#define PROGRESS_END		3		// 処理終了メッセージ
+#define PROGRESS_SET_TITLE	4		// タイトルの設定
 
 
 #define WM_UPDATEREQUEST_PROPPAGE		(WM_USER + 200)
@@ -25,6 +26,7 @@
 #define WM_SPECTRUME_CLOSE_REQUEST		(WM_AREA_SPECTRUM_GRAPH_REQUEST+1)
 #define WM_AREA_SPECTRUM_GRAPH_SET		(WM_SPECTRUME_CLOSE_REQUEST+1)
 #define WM_VIEW_CLER					(WM_AREA_SPECTRUM_GRAPH_SET+1)
-#define WM_INVERS_REQUEST				(WM_VIEW_CLER+1)	
+#define WM_INVERS_REQUEST				(WM_VIEW_CLER+1)
+#define WM_INVERS_STATUS				(WM_INVERS_REQUEST+1)
 
 #endif

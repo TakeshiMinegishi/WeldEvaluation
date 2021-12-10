@@ -3,6 +3,7 @@
 #include "FileUtil.h"
 #include <iostream>
 #include <vector>
+#include "message.h"
 
 #ifndef _DEBUG
 #pragma warning(disable:6001)
@@ -537,7 +538,7 @@ double CScanDataIO::getWaveLength(int index)
 /// スキャンデータの反転
 /// </summary>
 /// <returns>成功の場合はtrue、失敗の場合はfalseを返す</returns>
-bool CScanDataIO::InversData()
+bool CScanDataIO::InversData(CWnd *pWnd/*=nullptr*/)
 {
 	if (m_o_p_cube == nullptr) {
 		CString msg;
@@ -567,6 +568,8 @@ bool CScanDataIO::InversData()
 #else	// 180度回転
 	float ***dst = (float***)nullptr;
 	double **mat = MatrixInit();
+	int pos = 0, retio = 0;
+	double base = 2 * band * height;
 	try {
 		dst = new float**[band]();
 		for (int b = 0; b < band; b++) {
@@ -586,6 +589,13 @@ bool CScanDataIO::InversData()
 			for (int b = 0; b < band; b++) {
 				for (int h = 0; h < height; h++) {
 					memcpy(m_o_p_cube->ppp_data[b][h], dst[b][h], sizeof(float)*width);
+					if (pWnd) {
+						if (retio != (int)(((double)pos / base) * 100.0)) {
+							retio = (int)(((double)pos / base) * 100.0);
+							pWnd->SendMessage(WM_INVERS_STATUS, PROGRESS_UPDATE, retio);
+						}
+						pos++;
+					}
 				}
 			}
 		}
@@ -604,6 +614,13 @@ bool CScanDataIO::InversData()
 					if (dst[b][h]) {
 						delete [] dst[b][h];
 						dst[b][h] = nullptr;
+					}
+					if (pWnd) {
+						if (retio != (int)(((double)pos / base) * 100.0)) {
+							retio = (int)(((double)pos / base) * 100.0);
+							pWnd->SendMessage(WM_INVERS_STATUS, PROGRESS_UPDATE, retio);
+						}
+						pos++;
 					}
 				}
 				delete [] dst[b];
