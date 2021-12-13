@@ -1,12 +1,19 @@
 <map id="CWeldEvaluationDoc::GetSpectrumData" name="CWeldEvaluationDoc::GetSpectrumData">
-<area shape="rect" id="node1" title="指定位置スペクトル群の取得" alt="" coords="5,35,148,76"/>
-<area shape="rect" id="node2" href="$class_c_scan_data_i_o.html#a74d0fa98822d49575c08acb1e72c128c" title="指定位置スペクトル群の取得" alt="" coords="196,13,409,39"/>
-<area shape="rect" id="node3" href="$class_c_weld_evaluation_doc.html#ab9b811efdecb8b32d42d8eaeba752b23" title="ワークプロジェクトパスの取得" alt="" coords="227,64,378,105"/>
-<area shape="rect" id="node4" href="$class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="699,69,878,95"/>
-<area shape="rect" id="node5" href="$class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="457,123,644,164"/>
-<area shape="rect" id="node10" href="$class_c_weld_evaluation_doc.html#a827c581753a1e8dab5c6a6437e8d1696" title="プロジェクトステータス取得" alt="" coords="470,5,631,47"/>
-<area shape="rect" id="node6" href="$class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="933,127,1105,154"/>
-<area shape="rect" id="node9" href="$class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="692,120,885,161"/>
-<area shape="rect" id="node7" href="$class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="1153,127,1299,154"/>
-<area shape="rect" id="node8" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1347,127,1479,154"/>
+<area shape="rect" id="node1" title="指定位置スペクトル群の取得" alt="" coords="5,107,148,149"/>
+<area shape="rect" id="node2" href="$class_c_scan_data_i_o.html#a74d0fa98822d49575c08acb1e72c128c" title="指定位置スペクトル群の取得" alt="" coords="196,89,409,116"/>
+<area shape="rect" id="node11" href="$class_c_weld_evaluation_doc.html#ab9b811efdecb8b32d42d8eaeba752b23" title="ワークプロジェクトパスの取得" alt="" coords="663,137,813,178"/>
+<area shape="rect" id="node3" href="$class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="457,73,615,100"/>
+<area shape="rect" id="node4" href="$class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="684,56,792,83"/>
+<area shape="rect" id="node5" href="$class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="875,56,1035,83"/>
+<area shape="rect" id="node10" href="$class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf" title=" " alt="" coords="899,5,1010,32"/>
+<area shape="rect" id="node6" href="$class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="1103,165,1282,192"/>
+<area shape="rect" id="node7" href="$class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="1126,9,1259,36"/>
+<area shape="rect" id="node9" href="$class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="1129,60,1256,87"/>
+<area shape="rect" id="node8" href="$class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="1357,9,1489,36"/>
+<area shape="rect" id="node12" href="$class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="861,225,1048,266"/>
+<area shape="rect" id="node17" href="$class_c_weld_evaluation_doc.html#a827c581753a1e8dab5c6a6437e8d1696" title="プロジェクトステータス取得" alt="" coords="874,107,1035,149"/>
+<area shape="rect" id="node13" href="$class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="1337,216,1509,243"/>
+<area shape="rect" id="node16" href="$class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="1096,267,1289,309"/>
+<area shape="rect" id="node14" href="$class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="1557,216,1703,243"/>
+<area shape="rect" id="node15" href="$class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1751,216,1883,243"/>
 </map>

@@ -13,4 +13,20 @@ digraph "CScanDataIO::open"
   Node4 [label="CScanDataIO::close",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_scan_data_i_o.html#ae8fcb4c73d65ae2bcdff6f833fc93e29",tooltip="CubeFloatのクローズ"];
   Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node5 [label="CFileUtil::splitPath",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_file_util.html#acd0ab529d0f67b3a1d783e9b954c5576",tooltip="フィルパスを分解する"];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="CScanDataIO::writeLog",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061",tooltip="ログ出力"];
+  Node6 -> Node7 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="CLog::logWrite",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70",tooltip="ログの出力"];
+  Node7 -> Node8 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="CLog::getLogPathName",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_log.html#ab9c474897ca906770f57d5da2feefa6d",tooltip="ログファイルフルパス名の取得"];
+  Node8 -> Node9 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="CFileUtil::FilePathCombine",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7",tooltip="ファイルパスの作成"];
+  Node8 -> Node10 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="CLog::getLogName",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_log.html#a65d2c4306ed1a9d777c08caff941e776",tooltip="ログファイル名の取得"];
+  Node10 -> Node11 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="CLog::getFilePrefix",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee",tooltip="ファイル名プレフィックスの取得"];
+  Node8 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="CLog::getLogPath",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_log.html#a27df84a7db3c444addee476022bfc5ae",tooltip="ログファイル出力ディレクトリの取得"];
+  Node7 -> Node13 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="CLog::writeLine",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf",tooltip=" "];
 }

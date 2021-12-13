@@ -9,4 +9,6 @@ digraph "CWeldEvaluationDoc::IsOpen"
   Node2 [label="COprtTabPageScan::OnBnClicked\lBtnInvers",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_oprt_tab_page_scan.html#a6b87d0ef6afcfc5a37e5bfa25d13c06d",tooltip="「上下反転」ボタン押下時処理"];
   Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 [label="COprtTabPageScan::OnBnClicked\lBtnScan",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_oprt_tab_page_scan.html#a325bd4d3b6c573140e8b23f901378767",tooltip="スキャンボタン押下時処理"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="CMainFrame::OnWindowPosChanged",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_main_frame.html#ab355432ce1eeb28a99d16e2452129f08",tooltip="ウインドの位置、サイズが変更された時の処理"];
 }

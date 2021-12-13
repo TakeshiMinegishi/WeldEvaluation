@@ -1,0 +1,5 @@
+<map id="CMainFrame::OnWindowPosChanged" name="CMainFrame::OnWindowPosChanged">
+<area shape="rect" id="node1" title="ウインドの位置、サイズが変更された時の処理" alt="" coords="5,46,247,73"/>
+<area shape="rect" id="node2" href="$class_c_weld_evaluation_doc.html#a31cda5ced4a1f67350be5d355ba62c6c" title="プロジェクトの新規判定" alt="" coords="295,5,437,47"/>
+<area shape="rect" id="node3" href="$class_c_weld_evaluation_doc.html#af0d45ea32d1fc8484f440049e8135fcc" title="プロジェクトのオープン判定" alt="" coords="295,71,437,112"/>
+</map>

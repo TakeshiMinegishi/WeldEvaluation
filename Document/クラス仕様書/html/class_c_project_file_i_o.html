@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -51,23 +47,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('class_c_project_file_i_o.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -82,6 +61,7 @@ $(document).ready(function(){initNavTree('class_c_project_file_i_o.html',''); in
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-types">公開型</a> &#124;
@@ -114,6 +94,12 @@ $(document).ready(function(){initNavTree('class_c_project_file_i_o.html',''); in
 <tr class="memitem:a19976c153c46b2d471d2b8024fab7ef4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a19976c153c46b2d471d2b8024fab7ef4">~CProjectFileIO</a> (void)</td></tr>
 <tr class="memdesc:a19976c153c46b2d471d2b8024fab7ef4"><td class="mdescLeft">&#160;</td><td class="mdescRight">デストラクタ  <a href="class_c_project_file_i_o.html#a19976c153c46b2d471d2b8024fab7ef4">[詳解]</a><br /></td></tr>
 <tr class="separator:a19976c153c46b2d471d2b8024fab7ef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab970390e382105359481be3b4b534311"><td class="memItemLeft" align="right" valign="top">CString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#ab970390e382105359481be3b4b534311">GetVersion</a> ()</td></tr>
+<tr class="memdesc:ab970390e382105359481be3b4b534311"><td class="mdescLeft">&#160;</td><td class="mdescRight">バージョンの取得の取得  <a href="class_c_project_file_i_o.html#ab970390e382105359481be3b4b534311">[詳解]</a><br /></td></tr>
+<tr class="separator:ab970390e382105359481be3b4b534311"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1249b885accbfc82c6b2c41f6e956894"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a1249b885accbfc82c6b2c41f6e956894">SetVersion</a> (CString version)</td></tr>
+<tr class="memdesc:a1249b885accbfc82c6b2c41f6e956894"><td class="mdescLeft">&#160;</td><td class="mdescRight">バージョンの設定  <a href="class_c_project_file_i_o.html#a1249b885accbfc82c6b2c41f6e956894">[詳解]</a><br /></td></tr>
+<tr class="separator:a1249b885accbfc82c6b2c41f6e956894"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4be8e2c3ecdc21cd9528a2913b76a8ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_project_file_i_o.html#a4be8e2c3ecdc21cd9528a2913b76a8ce">Initialze</a> ()</td></tr>
 <tr class="memdesc:a4be8e2c3ecdc21cd9528a2913b76a8ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">プロジェクトの初期化  <a href="class_c_project_file_i_o.html#a4be8e2c3ecdc21cd9528a2913b76a8ce">[詳解]</a><br /></td></tr>
 <tr class="separator:a4be8e2c3ecdc21cd9528a2913b76a8ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -462,18 +448,6 @@ $(document).ready(function(){initNavTree('class_c_project_file_i_o.html',''); in
 
 <p>イメージデータへのルートパスの取得 </p>
 <dl class="section return"><dt>戻り値</dt><dd>イメージデータへのルートパスを返す</dd></dl>
-<div class="dynheader">
-被呼び出し関係図:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_c_project_file_i_o_aa55eac2bd7d274c475a9afe818283837_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_aa55eac2bd7d274c475a9afe818283837_icgraph" alt=""/></div>
-<map name="aclass_c_project_file_i_o_aa55eac2bd7d274c475a9afe818283837_icgraph" id="aclass_c_project_file_i_o_aa55eac2bd7d274c475a9afe818283837_icgraph">
-<area shape="rect" title="イメージデータへのルートパスの取得" alt="" coords="631,39,801,80"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="440,39,583,80"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,5,377,47"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="219,71,392,112"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,5,171,47"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -610,32 +584,33 @@ $(document).ready(function(){initNavTree('class_c_project_file_i_o.html',''); in
 <div class="dyncontent">
 <div class="center"><img src="class_c_project_file_i_o_a9b2b2b42f5c25ec3e352dd5b2226b8a2_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a9b2b2b42f5c25ec3e352dd5b2226b8a2_icgraph" alt=""/></div>
 <map name="aclass_c_project_file_i_o_a9b2b2b42f5c25ec3e352dd5b2226b8a2_icgraph" id="aclass_c_project_file_i_o_a9b2b2b42f5c25ec3e352dd5b2226b8a2_icgraph">
-<area shape="rect" title="金属面スキャン画像ファイル名の取得" alt="" coords="1205,428,1372,469"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a41aafce3ebbfa44a9741100ed1134583" title="スキャンファイルの設定有無判定" alt="" coords="819,283,961,324"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a18363dcc891c5e076681195958f7ab18" title="スキャンファイルパス取得（拡張子なし）" alt="" coords="1015,457,1157,499"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#a6b87d0ef6afcfc5a37e5bfa25d13c06d" title="「上下反転」ボタン押下時処理" alt="" coords="544,5,765,47"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#a325bd4d3b6c573140e8b23f901378767" title="スキャンボタン押下時処理" alt="" coords="5,312,227,353"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="581,421,729,463"/>
-<area shape="rect" href="class_c_prop_tab_page_parameter.html#a14f7d8b2d5db7edb3211c6c969dd4701" title="タイマー" alt="" coords="570,253,739,295"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#ad0d522b4950e2d288d1ad4aaf9d9a7ec" title="「上下反転」ボタンの状態更新" alt="" coords="561,188,748,229"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="310,421,461,463"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="314,487,457,528"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#a5d3d95517a402ff2a779ab4a4770a80a" title="アイテムのアクティブ/ディアクティブ化" alt="" coords="283,319,488,346"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#a1736e8cd2fe121b17a05a8017b11c3f1" title="ウインドアクティブ時処理" alt="" coords="281,370,489,397"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#abbc7af9bda32c6f7a780ddb615f6184b" title="「金属面」ラジオボタンボタン押下時処理" alt="" coords="275,123,496,164"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#a55515cc27a1271c4095fcd2aff4bb152" title="「樹脂面」ラジオボタンボタン押下時処理" alt="" coords="275,188,496,229"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#aa1589d572bfefc5cec4e460ea04080de" title="「接合結果」ラジオボタンボタン押下時処理" alt="" coords="275,253,496,295"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="31,487,201,528"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a21fcb772f7329ee52b9b1922b133eca0" title="スキャン情報の削除" alt="" coords="819,541,961,583"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a20f4912ddc5aef772cd12ec334e55f04" title="スキャンデータファイルパス取得" alt="" coords="813,609,967,651"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの上下反転" alt="" coords="819,457,961,499"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="816,392,964,433"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#aec529b21bcd80053e9ace596cc28ee56" title="解析の実施" alt="" coords="583,729,726,771"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8" title="解析実施要求" alt="" coords="311,735,459,776"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b289ccf358a0ad255596c59196a3bd0" title="スキャンデータイメージの取得" alt="" coords="583,487,726,528"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="583,609,726,651"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="294,604,477,645"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="311,669,459,711"/>
+<area shape="rect" title="金属面スキャン画像ファイル名の取得" alt="" coords="1396,515,1563,557"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a41aafce3ebbfa44a9741100ed1134583" title="スキャンファイルの設定有無判定" alt="" coords="813,481,956,522"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a18363dcc891c5e076681195958f7ab18" title="スキャンファイルパス取得（拡張子なし）" alt="" coords="1205,545,1348,586"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#a6b87d0ef6afcfc5a37e5bfa25d13c06d" title="「上下反転」ボタン押下時処理" alt="" coords="544,421,765,462"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#a325bd4d3b6c573140e8b23f901378767" title="スキャンボタン押下時処理" alt="" coords="5,297,227,338"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="581,669,729,710"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#a14f7d8b2d5db7edb3211c6c969dd4701" title="タイマー" alt="" coords="570,355,739,397"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#ad0d522b4950e2d288d1ad4aaf9d9a7ec" title="「上下反転」ボタンの状態更新" alt="" coords="561,154,748,195"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="579,603,730,645"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="583,538,726,579"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#a5d3d95517a402ff2a779ab4a4770a80a" title="アイテムのアクティブ/ディアクティブ化" alt="" coords="283,5,488,32"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#a1736e8cd2fe121b17a05a8017b11c3f1" title="ウインドアクティブ時処理" alt="" coords="281,253,489,280"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#abbc7af9bda32c6f7a780ddb615f6184b" title="「金属面」ラジオボタンボタン押下時処理" alt="" coords="275,57,496,98"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#a55515cc27a1271c4095fcd2aff4bb152" title="「樹脂面」ラジオボタンボタン押下時処理" alt="" coords="275,122,496,163"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#aa1589d572bfefc5cec4e460ea04080de" title="「接合結果」ラジオボタンボタン押下時処理" alt="" coords="275,187,496,229"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="301,538,470,579"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a21fcb772f7329ee52b9b1922b133eca0" title="スキャン情報の削除" alt="" coords="1009,361,1152,402"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a20f4912ddc5aef772cd12ec334e55f04" title="スキャンデータファイルパス取得" alt="" coords="1004,707,1157,749"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの反転" alt="" coords="1009,613,1152,654"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="1007,545,1155,586"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aec529b21bcd80053e9ace596cc28ee56" title="解析の実施" alt="" coords="813,803,956,845"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8" title="解析実施要求" alt="" coords="581,865,729,906"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a068a746e175823fe05268b96ca2207a5" title="解析データの反転" alt="" coords="813,671,956,713"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b289ccf358a0ad255596c59196a3bd0" title="スキャンデータイメージの取得" alt="" coords="813,554,956,595"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="813,737,956,778"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="563,799,746,841"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="581,734,729,775"/>
 </map>
 </div>
 
@@ -867,6 +842,18 @@ $(document).ready(function(){initNavTree('class_c_project_file_i_o.html',''); in
 
 <p>プロジェクトファイルパスの取得 </p>
 <dl class="section return"><dt>戻り値</dt><dd>プロジェクトファイルパスを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a7a202239b515e5f244f93e9747ac0a82_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a7a202239b515e5f244f93e9747ac0a82_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a7a202239b515e5f244f93e9747ac0a82_icgraph" id="aclass_c_project_file_i_o_a7a202239b515e5f244f93e9747ac0a82_icgraph">
+<area shape="rect" title="プロジェクトファイルパスの取得" alt="" coords="617,39,793,80"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a326d3e3001da0baf7b878f1a10cf9836" title="プロジェクトの更新" alt="" coords="427,39,569,80"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="236,39,379,80"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="5,5,188,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="23,71,171,112"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -1003,32 +990,33 @@ $(document).ready(function(){initNavTree('class_c_project_file_i_o.html',''); in
 <div class="dyncontent">
 <div class="center"><img src="class_c_project_file_i_o_a4c86e9e72a5fdb38be8698a214f4a21e_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a4c86e9e72a5fdb38be8698a214f4a21e_icgraph" alt=""/></div>
 <map name="aclass_c_project_file_i_o_a4c86e9e72a5fdb38be8698a214f4a21e_icgraph" id="aclass_c_project_file_i_o_a4c86e9e72a5fdb38be8698a214f4a21e_icgraph">
-<area shape="rect" title="樹脂面スキャン画像ファイル名の取得" alt="" coords="1205,428,1373,469"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a41aafce3ebbfa44a9741100ed1134583" title="スキャンファイルの設定有無判定" alt="" coords="819,283,961,324"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a18363dcc891c5e076681195958f7ab18" title="スキャンファイルパス取得（拡張子なし）" alt="" coords="1015,457,1157,499"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#a6b87d0ef6afcfc5a37e5bfa25d13c06d" title="「上下反転」ボタン押下時処理" alt="" coords="544,5,765,47"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#a325bd4d3b6c573140e8b23f901378767" title="スキャンボタン押下時処理" alt="" coords="5,312,227,353"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="581,421,729,463"/>
-<area shape="rect" href="class_c_prop_tab_page_parameter.html#a14f7d8b2d5db7edb3211c6c969dd4701" title="タイマー" alt="" coords="570,253,739,295"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#ad0d522b4950e2d288d1ad4aaf9d9a7ec" title="「上下反転」ボタンの状態更新" alt="" coords="561,188,748,229"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="310,421,461,463"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="314,487,457,528"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#a5d3d95517a402ff2a779ab4a4770a80a" title="アイテムのアクティブ/ディアクティブ化" alt="" coords="283,319,488,346"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#a1736e8cd2fe121b17a05a8017b11c3f1" title="ウインドアクティブ時処理" alt="" coords="281,370,489,397"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#abbc7af9bda32c6f7a780ddb615f6184b" title="「金属面」ラジオボタンボタン押下時処理" alt="" coords="275,123,496,164"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#a55515cc27a1271c4095fcd2aff4bb152" title="「樹脂面」ラジオボタンボタン押下時処理" alt="" coords="275,188,496,229"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#aa1589d572bfefc5cec4e460ea04080de" title="「接合結果」ラジオボタンボタン押下時処理" alt="" coords="275,253,496,295"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="31,487,201,528"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a21fcb772f7329ee52b9b1922b133eca0" title="スキャン情報の削除" alt="" coords="819,541,961,583"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a20f4912ddc5aef772cd12ec334e55f04" title="スキャンデータファイルパス取得" alt="" coords="813,609,967,651"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの上下反転" alt="" coords="819,457,961,499"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="816,392,964,433"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#aec529b21bcd80053e9ace596cc28ee56" title="解析の実施" alt="" coords="583,729,726,771"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8" title="解析実施要求" alt="" coords="311,735,459,776"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b289ccf358a0ad255596c59196a3bd0" title="スキャンデータイメージの取得" alt="" coords="583,487,726,528"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="583,609,726,651"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="294,604,477,645"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="311,669,459,711"/>
+<area shape="rect" title="樹脂面スキャン画像ファイル名の取得" alt="" coords="1396,515,1564,557"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a41aafce3ebbfa44a9741100ed1134583" title="スキャンファイルの設定有無判定" alt="" coords="813,481,956,522"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a18363dcc891c5e076681195958f7ab18" title="スキャンファイルパス取得（拡張子なし）" alt="" coords="1205,545,1348,586"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#a6b87d0ef6afcfc5a37e5bfa25d13c06d" title="「上下反転」ボタン押下時処理" alt="" coords="544,421,765,462"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#a325bd4d3b6c573140e8b23f901378767" title="スキャンボタン押下時処理" alt="" coords="5,297,227,338"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="581,669,729,710"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#a14f7d8b2d5db7edb3211c6c969dd4701" title="タイマー" alt="" coords="570,355,739,397"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#ad0d522b4950e2d288d1ad4aaf9d9a7ec" title="「上下反転」ボタンの状態更新" alt="" coords="561,154,748,195"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="579,603,730,645"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="583,538,726,579"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#a5d3d95517a402ff2a779ab4a4770a80a" title="アイテムのアクティブ/ディアクティブ化" alt="" coords="283,5,488,32"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#a1736e8cd2fe121b17a05a8017b11c3f1" title="ウインドアクティブ時処理" alt="" coords="281,253,489,280"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#abbc7af9bda32c6f7a780ddb615f6184b" title="「金属面」ラジオボタンボタン押下時処理" alt="" coords="275,57,496,98"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#a55515cc27a1271c4095fcd2aff4bb152" title="「樹脂面」ラジオボタンボタン押下時処理" alt="" coords="275,122,496,163"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#aa1589d572bfefc5cec4e460ea04080de" title="「接合結果」ラジオボタンボタン押下時処理" alt="" coords="275,187,496,229"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="301,538,470,579"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a21fcb772f7329ee52b9b1922b133eca0" title="スキャン情報の削除" alt="" coords="1009,361,1152,402"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a20f4912ddc5aef772cd12ec334e55f04" title="スキャンデータファイルパス取得" alt="" coords="1004,707,1157,749"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの反転" alt="" coords="1009,613,1152,654"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="1007,545,1155,586"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aec529b21bcd80053e9ace596cc28ee56" title="解析の実施" alt="" coords="813,803,956,845"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8" title="解析実施要求" alt="" coords="581,865,729,906"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a068a746e175823fe05268b96ca2207a5" title="解析データの反転" alt="" coords="813,671,956,713"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b289ccf358a0ad255596c59196a3bd0" title="スキャンデータイメージの取得" alt="" coords="813,554,956,595"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="813,737,956,778"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="563,799,746,841"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="581,734,729,775"/>
 </map>
 </div>
 
@@ -1167,32 +1155,33 @@ $(document).ready(function(){initNavTree('class_c_project_file_i_o.html',''); in
 <div class="dyncontent">
 <div class="center"><img src="class_c_project_file_i_o_ae329fa86b9074317f82eb6fb80d03f37_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_ae329fa86b9074317f82eb6fb80d03f37_icgraph" alt=""/></div>
 <map name="aclass_c_project_file_i_o_ae329fa86b9074317f82eb6fb80d03f37_icgraph" id="aclass_c_project_file_i_o_ae329fa86b9074317f82eb6fb80d03f37_icgraph">
-<area shape="rect" title="接合結果画像スキャン画像ファイル名の取得" alt="" coords="1205,428,1377,469"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a41aafce3ebbfa44a9741100ed1134583" title="スキャンファイルの設定有無判定" alt="" coords="819,283,961,324"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a18363dcc891c5e076681195958f7ab18" title="スキャンファイルパス取得（拡張子なし）" alt="" coords="1015,457,1157,499"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#a6b87d0ef6afcfc5a37e5bfa25d13c06d" title="「上下反転」ボタン押下時処理" alt="" coords="544,5,765,47"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#a325bd4d3b6c573140e8b23f901378767" title="スキャンボタン押下時処理" alt="" coords="5,312,227,353"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="581,421,729,463"/>
-<area shape="rect" href="class_c_prop_tab_page_parameter.html#a14f7d8b2d5db7edb3211c6c969dd4701" title="タイマー" alt="" coords="570,253,739,295"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#ad0d522b4950e2d288d1ad4aaf9d9a7ec" title="「上下反転」ボタンの状態更新" alt="" coords="561,188,748,229"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="310,421,461,463"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="314,487,457,528"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#a5d3d95517a402ff2a779ab4a4770a80a" title="アイテムのアクティブ/ディアクティブ化" alt="" coords="283,319,488,346"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#a1736e8cd2fe121b17a05a8017b11c3f1" title="ウインドアクティブ時処理" alt="" coords="281,370,489,397"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#abbc7af9bda32c6f7a780ddb615f6184b" title="「金属面」ラジオボタンボタン押下時処理" alt="" coords="275,123,496,164"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#a55515cc27a1271c4095fcd2aff4bb152" title="「樹脂面」ラジオボタンボタン押下時処理" alt="" coords="275,188,496,229"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#aa1589d572bfefc5cec4e460ea04080de" title="「接合結果」ラジオボタンボタン押下時処理" alt="" coords="275,253,496,295"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="31,487,201,528"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a21fcb772f7329ee52b9b1922b133eca0" title="スキャン情報の削除" alt="" coords="819,541,961,583"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a20f4912ddc5aef772cd12ec334e55f04" title="スキャンデータファイルパス取得" alt="" coords="813,609,967,651"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの上下反転" alt="" coords="819,457,961,499"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="816,392,964,433"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#aec529b21bcd80053e9ace596cc28ee56" title="解析の実施" alt="" coords="583,729,726,771"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8" title="解析実施要求" alt="" coords="311,735,459,776"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b289ccf358a0ad255596c59196a3bd0" title="スキャンデータイメージの取得" alt="" coords="583,487,726,528"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="583,609,726,651"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="294,604,477,645"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="311,669,459,711"/>
+<area shape="rect" title="接合結果画像スキャン画像ファイル名の取得" alt="" coords="1396,515,1568,557"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a41aafce3ebbfa44a9741100ed1134583" title="スキャンファイルの設定有無判定" alt="" coords="813,481,956,522"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a18363dcc891c5e076681195958f7ab18" title="スキャンファイルパス取得（拡張子なし）" alt="" coords="1205,545,1348,586"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#a6b87d0ef6afcfc5a37e5bfa25d13c06d" title="「上下反転」ボタン押下時処理" alt="" coords="544,421,765,462"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#a325bd4d3b6c573140e8b23f901378767" title="スキャンボタン押下時処理" alt="" coords="5,297,227,338"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="581,669,729,710"/>
+<area shape="rect" href="class_c_prop_tab_page_parameter.html#a14f7d8b2d5db7edb3211c6c969dd4701" title="タイマー" alt="" coords="570,355,739,397"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#ad0d522b4950e2d288d1ad4aaf9d9a7ec" title="「上下反転」ボタンの状態更新" alt="" coords="561,154,748,195"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="579,603,730,645"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="583,538,726,579"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#a5d3d95517a402ff2a779ab4a4770a80a" title="アイテムのアクティブ/ディアクティブ化" alt="" coords="283,5,488,32"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#a1736e8cd2fe121b17a05a8017b11c3f1" title="ウインドアクティブ時処理" alt="" coords="281,253,489,280"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#abbc7af9bda32c6f7a780ddb615f6184b" title="「金属面」ラジオボタンボタン押下時処理" alt="" coords="275,57,496,98"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#a55515cc27a1271c4095fcd2aff4bb152" title="「樹脂面」ラジオボタンボタン押下時処理" alt="" coords="275,122,496,163"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#aa1589d572bfefc5cec4e460ea04080de" title="「接合結果」ラジオボタンボタン押下時処理" alt="" coords="275,187,496,229"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="301,538,470,579"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a21fcb772f7329ee52b9b1922b133eca0" title="スキャン情報の削除" alt="" coords="1009,361,1152,402"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a20f4912ddc5aef772cd12ec334e55f04" title="スキャンデータファイルパス取得" alt="" coords="1004,707,1157,749"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの反転" alt="" coords="1009,613,1152,654"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="1007,545,1155,586"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aec529b21bcd80053e9ace596cc28ee56" title="解析の実施" alt="" coords="813,803,956,845"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8" title="解析実施要求" alt="" coords="581,865,729,906"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a068a746e175823fe05268b96ca2207a5" title="解析データの反転" alt="" coords="813,671,956,713"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b289ccf358a0ad255596c59196a3bd0" title="スキャンデータイメージの取得" alt="" coords="813,554,956,595"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="813,737,956,778"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="563,799,746,841"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="581,734,729,775"/>
 </map>
 </div>
 
@@ -1238,14 +1227,17 @@ $(document).ready(function(){initNavTree('class_c_project_file_i_o.html',''); in
 <div class="dyncontent">
 <div class="center"><img src="class_c_project_file_i_o_a8edee7c70a837ef023b2356cf41f1055_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a8edee7c70a837ef023b2356cf41f1055_icgraph" alt=""/></div>
 <map name="aclass_c_project_file_i_o_a8edee7c70a837ef023b2356cf41f1055_icgraph" id="aclass_c_project_file_i_o_a8edee7c70a837ef023b2356cf41f1055_icgraph">
-<area shape="rect" title="スキャンデータのサイズ取得" alt="" coords="832,50,1051,77"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#aec529b21bcd80053e9ace596cc28ee56" title="解析の実施" alt="" coords="641,8,784,49"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a8af3aff5f5a24234512bb784fc4df822" title="プロジェクトからスキャンデータの縦横サイズの取得" alt="" coords="641,75,784,116"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8" title="解析実施要求" alt="" coords="433,5,581,47"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a8cccd8cb66df552066d96c31b9255389" title="分類結果の画像データ取得" alt="" coords="421,71,593,127"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="223,45,373,87"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="227,111,369,152"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="5,111,175,152"/>
+<area shape="rect" title="スキャンデータのサイズ取得" alt="" coords="832,49,1051,75"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aec529b21bcd80053e9ace596cc28ee56" title="解析の実施" alt="" coords="436,5,579,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a8af3aff5f5a24234512bb784fc4df822" title="プロジェクトからスキャンデータの縦横サイズの取得" alt="" coords="641,71,784,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8" title="解析実施要求" alt="" coords="224,5,372,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a068a746e175823fe05268b96ca2207a5" title="解析データの反転" alt="" coords="436,71,579,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ab977a07fd8cef7e3f230d11aa6130800" title="解析データの反転可否判定" alt="" coords="436,136,579,177"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a8cccd8cb66df552066d96c31b9255389" title="分類結果の画像データ取得" alt="" coords="421,202,593,258"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="224,91,372,132"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="223,176,373,217"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="227,241,369,283"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="5,241,175,283"/>
 </map>
 </div>
 
@@ -1472,6 +1464,38 @@ $(document).ready(function(){initNavTree('class_c_project_file_i_o.html',''); in
 
 </div>
 </div>
+<a id="ab970390e382105359481be3b4b534311"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab970390e382105359481be3b4b534311">&#9670;&nbsp;</a></span>GetVersion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">CString CProjectFileIO::GetVersion </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>バージョンの取得の取得 </p>
+<dl class="section return"><dt>戻り値</dt><dd>バージョンを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_ab970390e382105359481be3b4b534311_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_ab970390e382105359481be3b4b534311_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_ab970390e382105359481be3b4b534311_icgraph" id="aclass_c_project_file_i_o_ab970390e382105359481be3b4b534311_icgraph">
+<area shape="rect" title="バージョンの取得の取得" alt="" coords="617,46,796,73"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a326d3e3001da0baf7b878f1a10cf9836" title="プロジェクトの更新" alt="" coords="427,39,569,80"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="236,39,379,80"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="5,5,188,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="23,71,171,112"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a4be8e2c3ecdc21cd9528a2913b76a8ce"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4be8e2c3ecdc21cd9528a2913b76a8ce">&#9670;&nbsp;</a></span>Initialze()</h2>
 
@@ -1522,16 +1546,19 @@ $(document).ready(function(){initNavTree('class_c_project_file_i_o.html',''); in
 <div class="dyncontent">
 <div class="center"><img src="class_c_project_file_i_o_a4be8e2c3ecdc21cd9528a2913b76a8ce_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a4be8e2c3ecdc21cd9528a2913b76a8ce_icgraph" alt=""/></div>
 <map name="aclass_c_project_file_i_o_a4be8e2c3ecdc21cd9528a2913b76a8ce_icgraph" id="aclass_c_project_file_i_o_a4be8e2c3ecdc21cd9528a2913b76a8ce_icgraph">
-<area shape="rect" title="プロジェクトの初期化" alt="" coords="843,46,1001,73"/>
-<area shape="rect" href="class_c_project_file_i_o.html#ab84fd188aba5023e2f25dfa3f2e142c9" title="コンストラクタ" alt="" coords="631,5,795,47"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="641,71,784,112"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#acceb13e1dba62f59383094194ecf9774" title="プロジェクトの削除" alt="" coords="440,5,583,47"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547" title="新規プロジェクト作成" alt="" coords="440,71,583,112"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="440,136,583,177"/>
+<area shape="rect" title="プロジェクトの初期化" alt="" coords="883,113,1041,139"/>
+<area shape="rect" href="class_c_project_file_i_o.html#ab84fd188aba5023e2f25dfa3f2e142c9" title="コンストラクタ" alt="" coords="671,40,835,81"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="681,105,824,147"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="681,200,824,241"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#acceb13e1dba62f59383094194ecf9774" title="プロジェクトの削除" alt="" coords="460,9,603,51"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547" title="新規プロジェクト作成" alt="" coords="234,71,377,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="460,135,603,176"/>
 <area shape="rect" href="class_c_weld_evaluation_view.html#a1c8f728724d0615945c96bc74bf24e76" title="プロジェクト削除" alt="" coords="231,5,379,47"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,100,171,141"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,129,377,171"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="219,195,392,236"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,104,171,145"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,136,377,177"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="219,201,392,243"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="440,200,623,241"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="457,265,605,307"/>
 </map>
 </div>
 
@@ -1715,11 +1742,11 @@ $(document).ready(function(){initNavTree('class_c_project_file_i_o.html',''); in
 <div class="dyncontent">
 <div class="center"><img src="class_c_project_file_i_o_a75d0972c4de362586eed671a1471fd57_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a75d0972c4de362586eed671a1471fd57_icgraph" alt=""/></div>
 <map name="aclass_c_project_file_i_o_a75d0972c4de362586eed671a1471fd57_icgraph" id="aclass_c_project_file_i_o_a75d0972c4de362586eed671a1471fd57_icgraph">
-<area shape="rect" title="イメージデータへのルートパスの設定" alt="" coords="821,104,991,145"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="631,73,773,115"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="440,136,583,177"/>
+<area shape="rect" title="イメージデータへのルートパスの設定" alt="" coords="821,71,991,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="631,71,773,112"/>
 <area shape="rect" href="class_c_weld_evaluation_doc.html#acceb13e1dba62f59383094194ecf9774" title="プロジェクトの削除" alt="" coords="440,5,583,47"/>
 <area shape="rect" href="class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547" title="新規プロジェクト作成" alt="" coords="440,71,583,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="440,136,583,177"/>
 <area shape="rect" href="class_c_weld_evaluation_view.html#a1c8f728724d0615945c96bc74bf24e76" title="プロジェクト削除" alt="" coords="231,5,379,47"/>
 <area shape="rect" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,100,171,141"/>
 <area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,129,377,171"/>
@@ -1840,16 +1867,15 @@ $(document).ready(function(){initNavTree('class_c_project_file_i_o.html',''); in
 <div class="dyncontent">
 <div class="center"><img src="class_c_project_file_i_o_a72febda46d46ce0a691c704a6b1c0e22_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a72febda46d46ce0a691c704a6b1c0e22_icgraph" alt=""/></div>
 <map name="aclass_c_project_file_i_o_a72febda46d46ce0a691c704a6b1c0e22_icgraph" id="aclass_c_project_file_i_o_a72febda46d46ce0a691c704a6b1c0e22_icgraph">
-<area shape="rect" title="金属画像表示タイプの設定" alt="" coords="687,235,853,276"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a8c3734ada4777e97073fd72a094bf46f" title="表示モードの設定" alt="" coords="496,235,639,276"/>
+<area shape="rect" title="金属画像表示タイプの設定" alt="" coords="687,201,853,243"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a8c3734ada4777e97073fd72a094bf46f" title="表示モードの設定" alt="" coords="496,201,639,243"/>
 <area shape="rect" href="class_c_oprt_tab_page_analize.html#adee2f539754700ef37d0e306b728e4d6" title="接合結果表示タイプ分類結果選択時処理" alt="" coords="204,5,448,47"/>
 <area shape="rect" href="class_c_oprt_tab_page_analize.html#a6e4c0695d90711c7c02c0dd2ea31ca71" title="接合結果表示タイプスキャン選択時処理" alt="" coords="218,71,434,112"/>
 <area shape="rect" href="class_c_oprt_tab_page_analize.html#ac82359ab4f3766594ccb083a112e9fe8" title="金属面表示タイプ分類結果選択時処理" alt="" coords="217,136,435,177"/>
 <area shape="rect" href="class_c_oprt_tab_page_analize.html#a13d39220b8346972e4eae2f1bc1ced22" title="金属面表示タイプスキャン選択時処理" alt="" coords="231,201,421,243"/>
 <area shape="rect" href="class_c_oprt_tab_page_analize.html#ae9f8a7e416776fe6187673306e5d3a85" title="樹脂面表示タイプ分類結果選択時処理" alt="" coords="217,267,435,308"/>
 <area shape="rect" href="class_c_oprt_tab_page_analize.html#ae69d1c504a694b6b61840b1fe377e601" title="樹脂面表示タイプスキャン選択時処理" alt="" coords="231,332,421,373"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="252,397,400,439"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="251,463,401,504"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="251,397,401,439"/>
 <area shape="rect" href="class_c_oprt_tab_page_analize.html#ad026ecbbc983699be043cf39cf611383" title="表示方法の設定" alt="" coords="5,201,156,243"/>
 </map>
 </div>
@@ -2335,16 +2361,15 @@ $(document).ready(function(){initNavTree('class_c_project_file_i_o.html',''); in
 <div class="dyncontent">
 <div class="center"><img src="class_c_project_file_i_o_a3423e2b69573bdb6fbcb3378eab42d18_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a3423e2b69573bdb6fbcb3378eab42d18_icgraph" alt=""/></div>
 <map name="aclass_c_project_file_i_o_a3423e2b69573bdb6fbcb3378eab42d18_icgraph" id="aclass_c_project_file_i_o_a3423e2b69573bdb6fbcb3378eab42d18_icgraph">
-<area shape="rect" title="樹脂画像表示タイプの設定" alt="" coords="687,235,853,276"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a8c3734ada4777e97073fd72a094bf46f" title="表示モードの設定" alt="" coords="496,235,639,276"/>
+<area shape="rect" title="樹脂画像表示タイプの設定" alt="" coords="687,201,853,243"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a8c3734ada4777e97073fd72a094bf46f" title="表示モードの設定" alt="" coords="496,201,639,243"/>
 <area shape="rect" href="class_c_oprt_tab_page_analize.html#adee2f539754700ef37d0e306b728e4d6" title="接合結果表示タイプ分類結果選択時処理" alt="" coords="204,5,448,47"/>
 <area shape="rect" href="class_c_oprt_tab_page_analize.html#a6e4c0695d90711c7c02c0dd2ea31ca71" title="接合結果表示タイプスキャン選択時処理" alt="" coords="218,71,434,112"/>
 <area shape="rect" href="class_c_oprt_tab_page_analize.html#ac82359ab4f3766594ccb083a112e9fe8" title="金属面表示タイプ分類結果選択時処理" alt="" coords="217,136,435,177"/>
 <area shape="rect" href="class_c_oprt_tab_page_analize.html#a13d39220b8346972e4eae2f1bc1ced22" title="金属面表示タイプスキャン選択時処理" alt="" coords="231,201,421,243"/>
 <area shape="rect" href="class_c_oprt_tab_page_analize.html#ae9f8a7e416776fe6187673306e5d3a85" title="樹脂面表示タイプ分類結果選択時処理" alt="" coords="217,267,435,308"/>
 <area shape="rect" href="class_c_oprt_tab_page_analize.html#ae69d1c504a694b6b61840b1fe377e601" title="樹脂面表示タイプスキャン選択時処理" alt="" coords="231,332,421,373"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="252,397,400,439"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="251,463,401,504"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="251,397,401,439"/>
 <area shape="rect" href="class_c_oprt_tab_page_analize.html#ad026ecbbc983699be043cf39cf611383" title="表示方法の設定" alt="" coords="5,201,156,243"/>
 </map>
 </div>
@@ -2550,16 +2575,15 @@ $(document).ready(function(){initNavTree('class_c_project_file_i_o.html',''); in
 <div class="dyncontent">
 <div class="center"><img src="class_c_project_file_i_o_a4d14fb09609fb48e540cb7851daccedc_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a4d14fb09609fb48e540cb7851daccedc_icgraph" alt=""/></div>
 <map name="aclass_c_project_file_i_o_a4d14fb09609fb48e540cb7851daccedc_icgraph" id="aclass_c_project_file_i_o_a4d14fb09609fb48e540cb7851daccedc_icgraph">
-<area shape="rect" title="接合結果画像表示タイプの設定" alt="" coords="687,235,857,276"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a8c3734ada4777e97073fd72a094bf46f" title="表示モードの設定" alt="" coords="496,235,639,276"/>
+<area shape="rect" title="接合結果画像表示タイプの設定" alt="" coords="687,201,857,243"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a8c3734ada4777e97073fd72a094bf46f" title="表示モードの設定" alt="" coords="496,201,639,243"/>
 <area shape="rect" href="class_c_oprt_tab_page_analize.html#adee2f539754700ef37d0e306b728e4d6" title="接合結果表示タイプ分類結果選択時処理" alt="" coords="204,5,448,47"/>
 <area shape="rect" href="class_c_oprt_tab_page_analize.html#a6e4c0695d90711c7c02c0dd2ea31ca71" title="接合結果表示タイプスキャン選択時処理" alt="" coords="218,71,434,112"/>
 <area shape="rect" href="class_c_oprt_tab_page_analize.html#ac82359ab4f3766594ccb083a112e9fe8" title="金属面表示タイプ分類結果選択時処理" alt="" coords="217,136,435,177"/>
 <area shape="rect" href="class_c_oprt_tab_page_analize.html#a13d39220b8346972e4eae2f1bc1ced22" title="金属面表示タイプスキャン選択時処理" alt="" coords="231,201,421,243"/>
 <area shape="rect" href="class_c_oprt_tab_page_analize.html#ae9f8a7e416776fe6187673306e5d3a85" title="樹脂面表示タイプ分類結果選択時処理" alt="" coords="217,267,435,308"/>
 <area shape="rect" href="class_c_oprt_tab_page_analize.html#ae69d1c504a694b6b61840b1fe377e601" title="樹脂面表示タイプスキャン選択時処理" alt="" coords="231,332,421,373"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="252,397,400,439"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="251,463,401,504"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="251,397,401,439"/>
 <area shape="rect" href="class_c_oprt_tab_page_analize.html#ad026ecbbc983699be043cf39cf611383" title="表示方法の設定" alt="" coords="5,201,156,243"/>
 </map>
 </div>
@@ -2954,6 +2978,53 @@ $(document).ready(function(){initNavTree('class_c_project_file_i_o.html',''); in
 
 </div>
 </div>
+<a id="a1249b885accbfc82c6b2c41f6e956894"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1249b885accbfc82c6b2c41f6e956894">&#9670;&nbsp;</a></span>SetVersion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CProjectFileIO::SetVersion </td>
+          <td>(</td>
+          <td class="paramtype">CString&#160;</td>
+          <td class="paramname"><em>version</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>バージョンの設定 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">version</td><td>バージョン</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功場合はtrue、失敗場合はfalseを返す</dd></dl>
+<div class="dynheader">
+被呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_project_file_i_o_a1249b885accbfc82c6b2c41f6e956894_icgraph.png" border="0" usemap="#aclass_c_project_file_i_o_a1249b885accbfc82c6b2c41f6e956894_icgraph" alt=""/></div>
+<map name="aclass_c_project_file_i_o_a1249b885accbfc82c6b2c41f6e956894_icgraph" id="aclass_c_project_file_i_o_a1249b885accbfc82c6b2c41f6e956894_icgraph">
+<area shape="rect" title="バージョンの設定" alt="" coords="831,170,1009,197"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="640,104,783,145"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a326d3e3001da0baf7b878f1a10cf9836" title="プロジェクトの更新" alt="" coords="640,195,783,236"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#acceb13e1dba62f59383094194ecf9774" title="プロジェクトの削除" alt="" coords="449,5,592,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547" title="新規プロジェクト作成" alt="" coords="449,71,592,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="449,136,592,177"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1c8f728724d0615945c96bc74bf24e76" title="プロジェクト削除" alt="" coords="236,5,384,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,96,171,137"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="239,125,381,167"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="223,191,397,232"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="449,256,592,297"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="219,256,401,297"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="236,321,384,363"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="aa9685ab0e4adf6c717aab36e761cde3d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa9685ab0e4adf6c717aab36e761cde3d">&#9670;&nbsp;</a></span>Str2Date()</h2>
 
@@ -3037,18 +3108,10 @@ $(document).ready(function(){initNavTree('class_c_project_file_i_o.html',''); in
 
 </div>
 </div>
-<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
-<li>C:/Users/kaneko/OneDrive/Project/JointAutomaticEvaluationSystem/WeldEvaluation/src/WeldEvaluation/WeldEvaluation/<a class="el" href="_project_file_i_o_8h_source.html">ProjectFileIO.h</a></li>
-<li>C:/Users/kaneko/OneDrive/Project/JointAutomaticEvaluationSystem/WeldEvaluation/src/WeldEvaluation/WeldEvaluation/ProjectFileIO.cpp</li>
-</ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></li>
-    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

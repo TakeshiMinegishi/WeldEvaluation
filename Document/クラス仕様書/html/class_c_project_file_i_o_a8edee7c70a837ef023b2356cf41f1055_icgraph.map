@@ -1,10 +1,13 @@
 <map id="CProjectFileIO::GetScanDataSize" name="CProjectFileIO::GetScanDataSize">
-<area shape="rect" id="node1" title="スキャンデータのサイズ取得" alt="" coords="832,50,1051,77"/>
-<area shape="rect" id="node2" href="$class_c_weld_evaluation_doc.html#aec529b21bcd80053e9ace596cc28ee56" title="解析の実施" alt="" coords="641,8,784,49"/>
-<area shape="rect" id="node4" href="$class_c_weld_evaluation_doc.html#a8af3aff5f5a24234512bb784fc4df822" title="プロジェクトからスキャンデータの縦横サイズの取得" alt="" coords="641,75,784,116"/>
-<area shape="rect" id="node3" href="$class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8" title="解析実施要求" alt="" coords="433,5,581,47"/>
-<area shape="rect" id="node5" href="$class_c_weld_evaluation_doc.html#a8cccd8cb66df552066d96c31b9255389" title="分類結果の画像データ取得" alt="" coords="421,71,593,127"/>
-<area shape="rect" id="node6" href="$class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="223,45,373,87"/>
-<area shape="rect" id="node7" href="$class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="227,111,369,152"/>
-<area shape="rect" id="node8" href="$class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="5,111,175,152"/>
+<area shape="rect" id="node1" title="スキャンデータのサイズ取得" alt="" coords="832,49,1051,75"/>
+<area shape="rect" id="node2" href="$class_c_weld_evaluation_doc.html#aec529b21bcd80053e9ace596cc28ee56" title="解析の実施" alt="" coords="436,5,579,47"/>
+<area shape="rect" id="node4" href="$class_c_weld_evaluation_doc.html#a8af3aff5f5a24234512bb784fc4df822" title="プロジェクトからスキャンデータの縦横サイズの取得" alt="" coords="641,71,784,112"/>
+<area shape="rect" id="node3" href="$class_c_weld_evaluation_view.html#a1a9fb7c6caa1412479781ba074a64dc8" title="解析実施要求" alt="" coords="224,5,372,47"/>
+<area shape="rect" id="node5" href="$class_c_weld_evaluation_doc.html#a068a746e175823fe05268b96ca2207a5" title="解析データの反転" alt="" coords="436,71,579,112"/>
+<area shape="rect" id="node7" href="$class_c_weld_evaluation_doc.html#ab977a07fd8cef7e3f230d11aa6130800" title="解析データの反転可否判定" alt="" coords="436,136,579,177"/>
+<area shape="rect" id="node8" href="$class_c_weld_evaluation_doc.html#a8cccd8cb66df552066d96c31b9255389" title="分類結果の画像データ取得" alt="" coords="421,202,593,258"/>
+<area shape="rect" id="node6" href="$class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="224,91,372,132"/>
+<area shape="rect" id="node9" href="$class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="223,176,373,217"/>
+<area shape="rect" id="node10" href="$class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="227,241,369,283"/>
+<area shape="rect" id="node11" href="$class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="5,241,175,283"/>
 </map>

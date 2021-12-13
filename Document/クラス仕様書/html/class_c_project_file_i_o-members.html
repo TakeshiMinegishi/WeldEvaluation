@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -51,23 +47,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('class_c_project_file_i_o.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -82,6 +61,7 @@ $(document).ready(function(){initNavTree('class_c_project_file_i_o.html',''); in
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">CProjectFileIO メンバ一覧</div>  </div>
@@ -126,50 +106,49 @@ $(document).ready(function(){initNavTree('class_c_project_file_i_o.html',''); in
   <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#acbb94052951e330c8cb39897e54ba4a0">GetSpectralGraphSectionStartPosition</a>(int &amp;holizontal, int &amp;bvertical)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a70748a36f8ea3d405495dbf6b03c0d43">GetSpectralGraphSectionTarget</a>()</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#aaf99e8084287e91dc479bfdd99175b34">GetUpdateDay</a>()</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a4be8e2c3ecdc21cd9528a2913b76a8ce">Initialze</a>()</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a659e5931885ed15759f868773e07d47d">Read</a>(CString path=_T(&quot;&quot;))</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a5d17a1a5554d49705db9a462536d437f">Save</a>(bool bUpdate=true, CString path=_T(&quot;&quot;))</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a0093e512c08df1a77eefb0cea07eb6d1">SetCreateDay</a>(COleDateTime date)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a75d0972c4de362586eed671a1471fd57">SetImageDataRootPath</a>(CString rootPath)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a0171cd0011459cd17b7ef064bf82b43e">SetMetalAnalizeMethod</a>(int method)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a87d2c57b9dab248bfe0d4c8cbbf0fc08">SetMetalDendrogramClassFile</a>(CString fileName)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a72febda46d46ce0a691c704a6b1c0e22">SetMetalDisplayType</a>(int displayType)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a913ede70b8ff723115802ddde4a8bcfc">SetMetalKmeansClassFile</a>(CString fileName)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#acfecde3135f2edba90dc45c2df2f9d2f">SetMetalScanImageFile</a>(CString fileName)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#afca60f6ab0cd03984ed31d9748d2c40c">SetNumbetOfMetalDendrogramClassificationClass</a>(int nClass)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a29406d5c5257125f37cc8570c6925085">SetNumbetOfMetalKMeansClassificationClass</a>(int nClass)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a04f2933cae1ff9e3a08415659c5fadd6">SetNumbetOfResinDendrogramClassificationClass</a>(int nClass)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#ab4a20cfe0a148a81e85160f76cb20928">SetNumbetOfResinKMeansClassificationClass</a>(int nClass)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a2dff18744914d9c6de7ee826b12dd08a">SetNumbetOfResultDendrogramClassificationClass</a>(int nClass)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a960936d797d0c1f6b30cec94aa57e241">SetNumbetOfResultKMeansClassificationClass</a>(int nClass)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a6f6f9e4209cde2d4786f4ec7db1cd0a2">SetProjectFilePath</a>(CString path)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a69adb6cfa350af3852dc6538d41608ea">SetResinAnalizeMethod</a>(int method)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#ade11085a24593f7bd7068fcaca7ebfbf">SetResinDendrogramClassFile</a>(CString fileName)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a3423e2b69573bdb6fbcb3378eab42d18">SetResinDisplayType</a>(int displayType)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#af243b766788b82ae92f56ade82816a02">SetResinKmeansClassFile</a>(CString fileName)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#ac9d388f1b406dc039232bba05e0f0710">SetResinScanImageFile</a>(CString fileName)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#af1277da325faaf62f616034734290e46">SetResultAnalizeMethod</a>(int method)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a5f2c6155e7ef10a8fe31f2f5257936ec">SetResultDendrogramClassFile</a>(CString fileName)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a4d14fb09609fb48e540cb7851daccedc">SetResultDisplayType</a>(int displayType)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#ab30e01036cf75b63c1de3f3b2f5129bb">SetResultKmeansClassFile</a>(CString fileName)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#aa8efda1ffb2c625303783594afde887e">SetResultScanImageFile</a>(CString fileName)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#aac679c944c7b5335fa5910645461c5ef">SetScanDataSize</a>(int holizontal, int vertical)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a1930679a997bd4fc4ea6ca681f07c321">SetSpectralGraphPointPosition</a>(int holizontal, int bvertical)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#ad40104bda14b608c02afe06c9b676f02">SetSpectralGraphPointTarget</a>(UINT targetID)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a078a206d26ee0fed722770eabf39cd5f">SetSpectralGraphSectionEndPosition</a>(int holizontal, int bvertical)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a8e8ad8dfb8991f249dee7e4015b47c6a">SetSpectralGraphSectionStartPosition</a>(int holizontal, int bvertical)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a4cf2f4915e54c9527b5a65c24bc1f594">SetSpectralGraphSectionTarget</a>(UINT targetID)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a971f5f23c04ddb91dc03b10aeb6e58ab">SetUpdateDay</a>(COleDateTime date)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#ab970390e382105359481be3b4b534311">GetVersion</a>()</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a4be8e2c3ecdc21cd9528a2913b76a8ce">Initialze</a>()</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a659e5931885ed15759f868773e07d47d">Read</a>(CString path=_T(&quot;&quot;))</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a5d17a1a5554d49705db9a462536d437f">Save</a>(bool bUpdate=true, CString path=_T(&quot;&quot;))</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a0093e512c08df1a77eefb0cea07eb6d1">SetCreateDay</a>(COleDateTime date)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a75d0972c4de362586eed671a1471fd57">SetImageDataRootPath</a>(CString rootPath)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a0171cd0011459cd17b7ef064bf82b43e">SetMetalAnalizeMethod</a>(int method)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a87d2c57b9dab248bfe0d4c8cbbf0fc08">SetMetalDendrogramClassFile</a>(CString fileName)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a72febda46d46ce0a691c704a6b1c0e22">SetMetalDisplayType</a>(int displayType)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a913ede70b8ff723115802ddde4a8bcfc">SetMetalKmeansClassFile</a>(CString fileName)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#acfecde3135f2edba90dc45c2df2f9d2f">SetMetalScanImageFile</a>(CString fileName)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#afca60f6ab0cd03984ed31d9748d2c40c">SetNumbetOfMetalDendrogramClassificationClass</a>(int nClass)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a29406d5c5257125f37cc8570c6925085">SetNumbetOfMetalKMeansClassificationClass</a>(int nClass)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a04f2933cae1ff9e3a08415659c5fadd6">SetNumbetOfResinDendrogramClassificationClass</a>(int nClass)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#ab4a20cfe0a148a81e85160f76cb20928">SetNumbetOfResinKMeansClassificationClass</a>(int nClass)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a2dff18744914d9c6de7ee826b12dd08a">SetNumbetOfResultDendrogramClassificationClass</a>(int nClass)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a960936d797d0c1f6b30cec94aa57e241">SetNumbetOfResultKMeansClassificationClass</a>(int nClass)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a6f6f9e4209cde2d4786f4ec7db1cd0a2">SetProjectFilePath</a>(CString path)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a69adb6cfa350af3852dc6538d41608ea">SetResinAnalizeMethod</a>(int method)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#ade11085a24593f7bd7068fcaca7ebfbf">SetResinDendrogramClassFile</a>(CString fileName)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a3423e2b69573bdb6fbcb3378eab42d18">SetResinDisplayType</a>(int displayType)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#af243b766788b82ae92f56ade82816a02">SetResinKmeansClassFile</a>(CString fileName)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#ac9d388f1b406dc039232bba05e0f0710">SetResinScanImageFile</a>(CString fileName)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#af1277da325faaf62f616034734290e46">SetResultAnalizeMethod</a>(int method)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a5f2c6155e7ef10a8fe31f2f5257936ec">SetResultDendrogramClassFile</a>(CString fileName)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a4d14fb09609fb48e540cb7851daccedc">SetResultDisplayType</a>(int displayType)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#ab30e01036cf75b63c1de3f3b2f5129bb">SetResultKmeansClassFile</a>(CString fileName)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#aa8efda1ffb2c625303783594afde887e">SetResultScanImageFile</a>(CString fileName)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#aac679c944c7b5335fa5910645461c5ef">SetScanDataSize</a>(int holizontal, int vertical)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a1930679a997bd4fc4ea6ca681f07c321">SetSpectralGraphPointPosition</a>(int holizontal, int bvertical)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#ad40104bda14b608c02afe06c9b676f02">SetSpectralGraphPointTarget</a>(UINT targetID)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a078a206d26ee0fed722770eabf39cd5f">SetSpectralGraphSectionEndPosition</a>(int holizontal, int bvertical)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a8e8ad8dfb8991f249dee7e4015b47c6a">SetSpectralGraphSectionStartPosition</a>(int holizontal, int bvertical)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a4cf2f4915e54c9527b5a65c24bc1f594">SetSpectralGraphSectionTarget</a>(UINT targetID)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a971f5f23c04ddb91dc03b10aeb6e58ab">SetUpdateDay</a>(COleDateTime date)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a1249b885accbfc82c6b2c41f6e956894">SetVersion</a>(CString version)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#aa9685ab0e4adf6c717aab36e761cde3d">Str2Date</a>(CString str, COleDateTime &amp;date)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_c_project_file_i_o.html#aa5d060e8199f9b13ff223b568b855621">Str2Pos</a>(CString str, int &amp;holizontal, int &amp;bvertical)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_c_project_file_i_o.html#a19976c153c46b2d471d2b8024fab7ef4">~CProjectFileIO</a>(void)</td><td class="entry"><a class="el" href="class_c_project_file_i_o.html">CProjectFileIO</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

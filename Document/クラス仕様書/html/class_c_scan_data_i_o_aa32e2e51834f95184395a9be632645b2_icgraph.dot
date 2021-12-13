@@ -6,7 +6,7 @@ digraph "CScanDataIO::readRawData"
   rankdir="RL";
   Node1 [label="CScanDataIO::readRawData",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="RAWデータの読み込み"];
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node2 [label="CWeldEvaluationDoc\l::InversScanData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e",tooltip="スキャンデータの上下反転"];
+  Node2 [label="CWeldEvaluationDoc\l::InversScanData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e",tooltip="スキャンデータの反転"];
   Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node3 [label="CWeldEvaluationView\l::OnInversRequest",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594",tooltip="データ反転の要求"];
 }

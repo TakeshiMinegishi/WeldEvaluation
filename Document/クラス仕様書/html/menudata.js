@@ -74,6 +74,4 @@ var menudata={children:[
 {text:"変数",url:"functions_vars.html",children:[
 {text:"m",url:"functions_vars.html#index_m"}]},
 {text:"列挙型",url:"functions_enum.html"},
-{text:"列挙値",url:"functions_eval.html"}]}]},
-{text:"ファイル",url:"files.html",children:[
-{text:"ファイル一覧",url:"files.html"}]}]}
+{text:"列挙値",url:"functions_eval.html"}]}]}]}

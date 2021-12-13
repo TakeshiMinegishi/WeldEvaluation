@@ -24,7 +24,5 @@ digraph "CProjectFileIO::SetMetalDisplayType"
   Node9 [label="COprtTabPageAnalize\l::OnBnClickedRdoResinscan",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_oprt_tab_page_analize.html#ae69d1c504a694b6b61840b1fe377e601",tooltip="樹脂面表示タイプスキャン選択時処理"];
   Node9 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node10 [label="CWeldEvaluationView\l::OnInversRequest",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594",tooltip="データ反転の要求"];
-  Node2 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
-  Node11 [label="CWeldEvaluationView\l::ViewChangeRequest",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd",tooltip="表示変更リクエスト"];
+  Node10 [label="CWeldEvaluationView\l::ViewChangeRequest",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd",tooltip="表示変更リクエスト"];
 }

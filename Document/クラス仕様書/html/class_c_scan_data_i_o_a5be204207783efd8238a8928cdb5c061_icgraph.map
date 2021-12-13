@@ -1,15 +1,39 @@
 <map id="CScanDataIO::writeLog" name="CScanDataIO::writeLog">
-<area shape="rect" id="node1" title="ログ出力" alt="" coords="919,132,1076,159"/>
-<area shape="rect" id="node2" href="$class_c_camera_i_o.html#a1730843fe81498de96623f8669cdefc5" title="リファレンス（ホワイトバランス）の取得" alt="" coords="672,5,871,32"/>
-<area shape="rect" id="node4" href="$class_c_scan_data_i_o.html#a3be95afdfa7914f7a2acbc003048e3ff" title="画像データ取得" alt="" coords="685,260,857,287"/>
-<area shape="rect" id="node9" href="$class_c_camera_i_o.html#ac592e3623be0dba68f4db806da652cba" title="カメラのオープン" alt="" coords="459,104,587,131"/>
-<area shape="rect" id="node11" href="$class_c_camera_i_o.html#aa4c14720243ce00bb95950a601327637" title="フォーマットの設定" alt="" coords="693,107,849,133"/>
-<area shape="rect" id="node12" href="$class_c_camera_i_o.html#a81016636faf8f4329a1a664716c17de9" title="IntegrationTimeの設定" alt="" coords="421,155,624,181"/>
-<area shape="rect" id="node13" href="$class_c_camera_i_o.html#a366c8cfc6c2492079e3d7a63fffb076c" title="スキャンの開始" alt="" coords="445,205,600,232"/>
-<area shape="rect" id="node3" href="$class_c_weld_evaluation_view.html#a2b69faf84702201cc5dbfe3fcd202b32" title="ホワイトバランススキャンの要求" alt="" coords="224,97,372,138"/>
-<area shape="rect" id="node5" href="$class_c_weld_evaluation_doc.html#a7b289ccf358a0ad255596c59196a3bd0" title="スキャンデータイメージの取得" alt="" coords="451,257,594,298"/>
-<area shape="rect" id="node6" href="$class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="223,242,373,283"/>
-<area shape="rect" id="node7" href="$class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="227,307,369,349"/>
-<area shape="rect" id="node8" href="$class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="5,307,175,349"/>
-<area shape="rect" id="node10" href="$class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="224,162,372,203"/>
+<area shape="rect" id="node1" title="ログ出力" alt="" coords="995,396,1152,423"/>
+<area shape="rect" id="node2" href="$class_c_camera_i_o.html#a1730843fe81498de96623f8669cdefc5" title="リファレンス（ホワイトバランス）の取得" alt="" coords="479,21,678,48"/>
+<area shape="rect" id="node4" href="$class_c_scan_data_i_o.html#a12aa5b6bf1c179fa351e419d34921157" title="各バンドのスペクトル値取得" alt="" coords="731,257,944,284"/>
+<area shape="rect" id="node5" href="$class_c_scan_data_i_o.html#ae3dff6661c7012b259b38910f3b3dbdb" title="ヘッダファイルから幅、高さを取得" alt="" coords="729,308,945,335"/>
+<area shape="rect" id="node11" href="$class_c_scan_data_i_o.html#a62c2f84aedf058ffe1370ee67e7fb2dc" title="ホモグラフィーマトリックス取得" alt="" coords="736,359,939,401"/>
+<area shape="rect" id="node12" href="$class_c_scan_data_i_o.html#a09a161f191779097aa003676ecb22714" title="バンド数の取得" alt="" coords="728,425,947,452"/>
+<area shape="rect" id="node16" href="$class_c_scan_data_i_o.html#a74d0fa98822d49575c08acb1e72c128c" title="指定位置スペクトル群の取得" alt="" coords="731,527,944,553"/>
+<area shape="rect" id="node18" href="$class_c_scan_data_i_o.html#a2e23bb8cbebd5d51292726ee0238adec" title="バンドのスペクトル値取得" alt="" coords="738,476,937,503"/>
+<area shape="rect" id="node19" href="$class_c_scan_data_i_o.html#ab4e6effbecff1531d50b31163c6363fc" title="スキャンデータの反転" alt="" coords="753,577,922,604"/>
+<area shape="rect" id="node22" href="$class_c_scan_data_i_o.html#a3be95afdfa7914f7a2acbc003048e3ff" title="画像データ取得" alt="" coords="751,729,923,756"/>
+<area shape="rect" id="node27" href="$class_c_scan_data_i_o.html#ae86f36b123901fbe038ff0f1669192bd" title="オープン" alt="" coords="769,780,906,807"/>
+<area shape="rect" id="node31" href="$class_c_camera_i_o.html#ac592e3623be0dba68f4db806da652cba" title="カメラのオープン" alt="" coords="515,85,643,112"/>
+<area shape="rect" id="node33" href="$class_c_scan_data_i_o.html#aa32e2e51834f95184395a9be632645b2" title="RAWデータの読み込み" alt="" coords="744,628,931,655"/>
+<area shape="rect" id="node34" href="$class_c_scan_data_i_o.html#a2dac09e00376d629d1b43de3434633d6" title="RAWデータの保存" alt="" coords="744,679,931,705"/>
+<area shape="rect" id="node35" href="$class_c_camera_i_o.html#aa4c14720243ce00bb95950a601327637" title="フォーマットの設定" alt="" coords="759,105,915,132"/>
+<area shape="rect" id="node36" href="$class_c_camera_i_o.html#a81016636faf8f4329a1a664716c17de9" title="IntegrationTimeの設定" alt="" coords="477,143,680,169"/>
+<area shape="rect" id="node37" href="$class_c_camera_i_o.html#a366c8cfc6c2492079e3d7a63fffb076c" title="スキャンの開始" alt="" coords="501,193,656,220"/>
+<area shape="rect" id="node3" href="$class_c_weld_evaluation_view.html#a2b69faf84702201cc5dbfe3fcd202b32" title="ホワイトバランススキャンの要求" alt="" coords="252,74,400,115"/>
+<area shape="rect" id="node6" href="$class_c_oprt_tab_page_initialize.html#a39a52da491a71f8afec8c1366284227a" title="パラメータの読み込み" alt="" coords="501,301,656,342"/>
+<area shape="rect" id="node7" href="$class_c_oprt_tab_page_initialize.html#ad26437c34391f67b3546182071900642" title="アイテムのアクティブ/ディアクティブ化" alt="" coords="249,401,403,442"/>
+<area shape="rect" id="node8" href="$class_c_oprt_tab_page_initialize.html#a51b47e6f52aacb9733fdc52ac320f573" title="アクティブ時処理" alt="" coords="249,205,403,246"/>
+<area shape="rect" id="node9" href="$class_c_oprt_tab_page_initialize.html#ab94bb92896d005e2ea95e3f7fe4f49e8" title="ホワイトバランスボタン押下時処理" alt="" coords="223,270,429,311"/>
+<area shape="rect" id="node10" href="$class_c_weld_evaluation_view.html#ae4f218a4e70e08689a0532384eb86fe5" title="設定ページの再読込" alt="" coords="252,335,400,377"/>
+<area shape="rect" id="node13" href="$class_c_weld_evaluation_doc.html#a482c242e79c4b82b34d23794280649b0" title="スペクトルレンジの取得" alt="" coords="507,466,651,507"/>
+<area shape="rect" id="node14" href="$class_c_weld_evaluation_view.html#acb9374b4f62b3b67625526f4b5d493b4" title="区間スペクトル表示ダイアログの設定" alt="" coords="230,531,422,573"/>
+<area shape="rect" id="node15" href="$class_c_weld_evaluation_view.html#a8805e4c9d110a33112c8b5e7af294f9e" title="スペクトルグラフの表示" alt="" coords="233,466,419,507"/>
+<area shape="rect" id="node17" href="$class_c_weld_evaluation_doc.html#ad49fe5bd6a5dbd63b150bde87a194a10" title="指定位置スペクトル群の取得" alt="" coords="507,531,650,573"/>
+<area shape="rect" id="node20" href="$class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの反転" alt="" coords="507,606,650,647"/>
+<area shape="rect" id="node21" href="$class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="252,599,400,641"/>
+<area shape="rect" id="node23" href="$class_c_weld_evaluation_doc.html#a7b289ccf358a0ad255596c59196a3bd0" title="スキャンデータイメージの取得" alt="" coords="507,727,650,769"/>
+<area shape="rect" id="node24" href="$class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="251,730,401,771"/>
+<area shape="rect" id="node25" href="$class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="255,665,397,706"/>
+<area shape="rect" id="node26" href="$class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="5,665,175,706"/>
+<area shape="rect" id="node28" href="$class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="507,795,650,837"/>
+<area shape="rect" id="node29" href="$class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="235,861,417,902"/>
+<area shape="rect" id="node30" href="$class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="252,795,400,837"/>
+<area shape="rect" id="node32" href="$class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="252,139,400,181"/>
 </map>

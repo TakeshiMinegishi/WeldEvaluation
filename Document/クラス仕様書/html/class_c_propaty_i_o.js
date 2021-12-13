@@ -6,7 +6,9 @@ var class_c_propaty_i_o =
     [ "GetParamaterFilePath", "class_c_propaty_i_o.html#a5a93a2a9b306fc8bbcd305cfd47fe3fc", null ],
     [ "GetProjectName", "class_c_propaty_i_o.html#a63d5f780046e125660e2e9b51e754ad5", null ],
     [ "GetTestName", "class_c_propaty_i_o.html#adcab3ae7a0b14e93b5b7c781d4025986", null ],
+    [ "GetVersion", "class_c_propaty_i_o.html#acbaaba08a3cf1caa9d3a5a7b74ff890d", null ],
     [ "GetVerticalResolution", "class_c_propaty_i_o.html#a6cc4479cfd0b46ed6189985fcf02bbad", null ],
+    [ "Initialze", "class_c_propaty_i_o.html#ad897f9626d7ca690598d8b6c06107dea", null ],
     [ "MakeProjectName", "class_c_propaty_i_o.html#aa7e8f1b21cb5a383aaf1bce0ce518417", null ],
     [ "MetalGetAnalysisMethod", "class_c_propaty_i_o.html#aaae96a2403eedacf849805121c1b9ae1", null ],
     [ "MetalGetJointColor", "class_c_propaty_i_o.html#a50ade1ca7090d25d15b77806756afc6e", null ],
@@ -40,5 +42,6 @@ var class_c_propaty_i_o =
     [ "SetParamaterFilePath", "class_c_propaty_i_o.html#a10776a11f9db9cd8257bbbed3cfa432d", null ],
     [ "SetProjectName", "class_c_propaty_i_o.html#a7ef9f7c0f443cfe414f2476af98d5200", null ],
     [ "SetTestName", "class_c_propaty_i_o.html#a6105272d1341dff46162a302c8408e89", null ],
+    [ "SetVersion", "class_c_propaty_i_o.html#a84c66efac31212daceb07676efeac6e3", null ],
     [ "SetVerticalResolution", "class_c_propaty_i_o.html#a5cd21ed2fe9256877c4421dc644665c2", null ]
 ];

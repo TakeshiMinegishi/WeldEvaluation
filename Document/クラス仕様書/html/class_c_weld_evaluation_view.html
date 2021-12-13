@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -51,23 +47,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('class_c_weld_evaluation_view.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -82,6 +61,7 @@ $(document).ready(function(){initNavTree('class_c_weld_evaluation_view.html','')
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-types">公開型</a> &#124;
@@ -106,7 +86,7 @@ CWeldEvaluationView の継承関係図</div>
 <area shape="rect" title="表示フォームクラス" alt="" coords="5,80,153,107"/>
 <area shape="rect" title=" " alt="" coords="35,5,124,32"/>
 </map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">凡例</a>]</span></center></div>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
 <div class="dynheader">
 CWeldEvaluationView 連携図</div>
 <div class="dyncontent">
@@ -115,7 +95,7 @@ CWeldEvaluationView 連携図</div>
 <area shape="rect" title="表示フォームクラス" alt="" coords="5,80,153,107"/>
 <area shape="rect" title=" " alt="" coords="35,5,124,32"/>
 </map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">凡例</a>]</span></center></div>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 公開型</h2></td></tr>
@@ -206,6 +186,9 @@ CWeldEvaluationView 連携図</div>
 <tr class="memitem:ae4f218a4e70e08689a0532384eb86fe5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_view.html#ae4f218a4e70e08689a0532384eb86fe5">ReloadSetting</a> (int settingID)</td></tr>
 <tr class="memdesc:ae4f218a4e70e08689a0532384eb86fe5"><td class="mdescLeft">&#160;</td><td class="mdescRight">設定ページの再読込  <a href="class_c_weld_evaluation_view.html#ae4f218a4e70e08689a0532384eb86fe5">[詳解]</a><br /></td></tr>
 <tr class="separator:ae4f218a4e70e08689a0532384eb86fe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec5bfe82f606153480c342be4a3c3738"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_view.html#aec5bfe82f606153480c342be4a3c3738">EnableOperation</a> (bool bActive)</td></tr>
+<tr class="memdesc:aec5bfe82f606153480c342be4a3c3738"><td class="mdescLeft">&#160;</td><td class="mdescRight">オペレーションタブの有効化  <a href="class_c_weld_evaluation_view.html#aec5bfe82f606153480c342be4a3c3738">[詳解]</a><br /></td></tr>
+<tr class="separator:aec5bfe82f606153480c342be4a3c3738"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9384bbeab5745f5806acd59d1e1fb84c"><td class="memItemLeft" align="right" valign="top">LRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_view.html#a9384bbeab5745f5806acd59d1e1fb84c">OnScanRequest</a> (WPARAM wparam, LPARAM lparam)</td></tr>
 <tr class="memdesc:a9384bbeab5745f5806acd59d1e1fb84c"><td class="mdescLeft">&#160;</td><td class="mdescRight">スキャンの要求  <a href="class_c_weld_evaluation_view.html#a9384bbeab5745f5806acd59d1e1fb84c">[詳解]</a><br /></td></tr>
 <tr class="separator:a9384bbeab5745f5806acd59d1e1fb84c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -221,6 +204,9 @@ CWeldEvaluationView 連携図</div>
 <tr class="memitem:a64432e2c0e21d161465fb28eb9e71594"><td class="memItemLeft" align="right" valign="top">LRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594">OnInversRequest</a> (WPARAM wparam, LPARAM lparam)</td></tr>
 <tr class="memdesc:a64432e2c0e21d161465fb28eb9e71594"><td class="mdescLeft">&#160;</td><td class="mdescRight">データ反転の要求  <a href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594">[詳解]</a><br /></td></tr>
 <tr class="separator:a64432e2c0e21d161465fb28eb9e71594"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2a780dea4e0df6b42d21188edda9dfc"><td class="memItemLeft" align="right" valign="top">LRESULT&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_view.html#ac2a780dea4e0df6b42d21188edda9dfc">OnInversStatus</a> (WPARAM wparam, LPARAM lparam)</td></tr>
+<tr class="memdesc:ac2a780dea4e0df6b42d21188edda9dfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">データ反転状態通知  <a href="class_c_weld_evaluation_view.html#ac2a780dea4e0df6b42d21188edda9dfc">[詳解]</a><br /></td></tr>
+<tr class="separator:ac2a780dea4e0df6b42d21188edda9dfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50da59446b116e48eb00b4ccc6074cdd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd">ViewChangeRequest</a> (int ScanID, int DisplayMode, bool renew=false)</td></tr>
 <tr class="memdesc:a50da59446b116e48eb00b4ccc6074cdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">表示変更リクエスト  <a href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd">[詳解]</a><br /></td></tr>
 <tr class="separator:a50da59446b116e48eb00b4ccc6074cdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -471,6 +457,32 @@ CButton&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 </div>
 </div>
+<a id="aec5bfe82f606153480c342be4a3c3738"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec5bfe82f606153480c342be4a3c3738">&#9670;&nbsp;</a></span>EnableOperation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CWeldEvaluationView::EnableOperation </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>bActive</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>オペレーションタブの有効化 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bActive</td><td>有効フラグ</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="a3c8b6c70bf6b3ea9c6c67df092b398f6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3c8b6c70bf6b3ea9c6c67df092b398f6">&#9670;&nbsp;</a></span>EnablePropaty()</h2>
 
@@ -707,56 +719,56 @@ CButton&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <div class="dyncontent">
 <div class="center"><img src="class_c_weld_evaluation_view_a1a9fb7c6caa1412479781ba074a64dc8_cgraph.png" border="0" usemap="#aclass_c_weld_evaluation_view_a1a9fb7c6caa1412479781ba074a64dc8_cgraph" alt=""/></div>
 <map name="aclass_c_weld_evaluation_view_a1a9fb7c6caa1412479781ba074a64dc8_cgraph" id="aclass_c_weld_evaluation_view_a1a9fb7c6caa1412479781ba074a64dc8_cgraph">
-<area shape="rect" title="解析実施要求" alt="" coords="5,1318,153,1359"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#aec529b21bcd80053e9ace596cc28ee56" title="解析の実施" alt="" coords="201,734,344,775"/>
-<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="2105,612,2237,639"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a20f4912ddc5aef772cd12ec334e55f04" title="スキャンデータファイルパス取得" alt="" coords="441,1377,595,1418"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#aa3188290e41d704b8c34cb8dfd8f2a1d" title="解析方法の設定" alt="" coords="201,1474,344,1515"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#aacd463c0c66894d78faa479f9cf975f8" title="プロジェクトの更新ステータス設定" alt="" coords="696,1326,891,1367"/>
-<area shape="rect" href="class_c_file_util.html#a390bb140d44dcbd206497e5efe5a76a8" title="ファイルを削除する" alt="" coords="1712,215,1844,241"/>
-<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="1458,1325,1637,1352"/>
-<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="979,1011,1131,1037"/>
-<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="1692,1267,1864,1293"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a8edee7c70a837ef023b2356cf41f1055" title="スキャンデータのサイズ取得" alt="" coords="409,392,627,419"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a16a55c3db357af77e875c008c5837dee" title="金属面の分類数の取得" alt="" coords="696,751,891,793"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a3f5f6a5e4e73e405f35dfd789d004e67" title="金属面の分類数の取得" alt="" coords="431,873,605,914"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a282b2232f82ad37165b305e66daf7066" title="金属面の接合割合の設定" alt="" coords="447,326,589,367"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a0e15acb901cceb99e15113ca5d239e13" title="重なりピクセル数の取得" alt="" coords="692,817,895,858"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a4ccce7edae07c0d331960ca1104aa375" title="樹脂面の分類数の取得" alt="" coords="695,947,891,989"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ab2690e8124c3eed981a213ad89ec2c6f" title="樹脂面の分類数の取得" alt="" coords="431,1107,605,1149"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a556e5795142b2a57d1f35f71809875cf" title="樹脂面の接合割合の設定" alt="" coords="447,195,589,237"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a3c255aa66e4a529223b8fc4dcaf4df18" title="接合結果の分類数の取得" alt="" coords="693,882,893,923"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a1f6b84e20d4bedc5ceea6d96e9982cec" title="接合結果の分類数の取得" alt="" coords="429,990,607,1031"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a3adb6695516f8c519543b29bdcef8f05" title="接合結果の接合割合の設定" alt="" coords="446,261,590,302"/>
-<area shape="rect" href="class_c_project_file_i_o.html#afca60f6ab0cd03984ed31d9748d2c40c" title="作成された金属面階層クラスタリング解析のクラス数の取得" alt="" coords="395,443,641,485"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a29406d5c5257125f37cc8570c6925085" title="作成された金属面K&#45;Means解析のクラス数の取得" alt="" coords="943,267,1168,309"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a04f2933cae1ff9e3a08415659c5fadd6" title="作成された樹脂面階層クラスタリング解析のクラス数の取得" alt="" coords="394,509,642,550"/>
-<area shape="rect" href="class_c_project_file_i_o.html#ab4a20cfe0a148a81e85160f76cb20928" title="作成された樹脂面K&#45;Means解析のクラス数の取得" alt="" coords="405,574,631,615"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a2dff18744914d9c6de7ee826b12dd08a" title="作成された接合結果階層クラスタリング解析のクラス数の取得" alt="" coords="392,639,644,681"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a960936d797d0c1f6b30cec94aa57e241" title="作成された接合結果K&#45;Means解析のクラス数の取得" alt="" coords="403,705,633,746"/>
-<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="1912,1011,2057,1037"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a18363dcc891c5e076681195958f7ab18" title="スキャンファイルパス取得（拡張子なし）" alt="" coords="722,1459,865,1501"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a9b2b2b42f5c25ec3e352dd5b2226b8a2" title="金属面スキャン画像ファイル名の取得" alt="" coords="972,1623,1139,1665"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a4c86e9e72a5fdb38be8698a214f4a21e" title="樹脂面スキャン画像ファイル名の取得" alt="" coords="971,1493,1139,1534"/>
-<area shape="rect" href="class_c_project_file_i_o.html#ae329fa86b9074317f82eb6fb80d03f37" title="接合結果画像スキャン画像ファイル名の取得" alt="" coords="969,1558,1141,1599"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ab9b811efdecb8b32d42d8eaeba752b23" title="ワークプロジェクトパスの取得" alt="" coords="980,1427,1131,1469"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="1216,1427,1403,1469"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="1451,1427,1644,1469"/>
-<area shape="rect" href="class_c_configration_i_o.html#a502e7c8a4d1a173bf0637e9704ebd980" title="指定セクションのキーにを削除" alt="" coords="966,788,1145,815"/>
-<area shape="rect" href="class_c_propaty_i_o.html#ab263d6b737c5fb9a6a75a8319506cddb" title="金属面の分類数の設定" alt="" coords="958,605,1153,646"/>
-<area shape="rect" href="class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="1233,725,1385,752"/>
-<area shape="rect" href="class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="1474,725,1621,752"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a4696f24d77def8e3b9d206b351c8ad66" title="金属面の接合割合の設定" alt="" coords="705,326,881,367"/>
-<area shape="rect" href="class_c_configration_i_o.html#a535689b2c4df043a729548de99f72a4a" title="指定セクションのキーに浮動小数点値を設定" alt="" coords="966,333,1145,360"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a6a2f279575582b3b5fd0fc78d44313bf" title="樹脂面の分類数の設定" alt="" coords="958,839,1153,881"/>
-<area shape="rect" href="class_c_propaty_i_o.html#ab16492fd229e0e2ccf188fae8ca7f726" title="樹脂面の接合割合の設定" alt="" coords="705,195,882,237"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a5d8a3b2d8be1e1c95293c525278ccc4b" title="接合結果の分類数の設定" alt="" coords="956,722,1155,763"/>
-<area shape="rect" href="class_c_propaty_i_o.html#ab5d3cd61f8af29747e644c8891163c28" title="接合結果の接合割合の設定" alt="" coords="703,261,884,302"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a5c053cec7083e77d1f285f262f4ddbd1" title="金属面の解析方法の設定" alt="" coords="419,1573,617,1614"/>
-<area shape="rect" href="class_c_propaty_i_o.html#ac179aa732fd5e8373f6deeb918367fdc" title="樹脂面の解析方法の設定" alt="" coords="418,1442,618,1483"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a80b10d181a91d1536e78be10dcf4e50c" title="接合結果の解析方法の設定" alt="" coords="416,1507,620,1549"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a7e566eb5b56caf422a7b530513bb1f0a" title="プロジェクトステータス設定" alt="" coords="975,1209,1135,1250"/>
-<area shape="rect" href="class_c_configration_i_o.html#a0fb34e01af48df8da81d80108ffa3d03" title="指定セクションのキーに文字列を設定" alt="" coords="1223,1087,1395,1113"/>
+<area shape="rect" title="解析実施要求" alt="" coords="5,891,153,933"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aec529b21bcd80053e9ace596cc28ee56" title="解析の実施" alt="" coords="201,891,344,933"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="2121,883,2253,909"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a20f4912ddc5aef772cd12ec334e55f04" title="スキャンデータファイルパス取得" alt="" coords="441,225,595,266"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aa3188290e41d704b8c34cb8dfd8f2a1d" title="解析方法の設定" alt="" coords="201,1722,344,1763"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aacd463c0c66894d78faa479f9cf975f8" title="プロジェクトの更新ステータス設定" alt="" coords="974,1534,1169,1575"/>
+<area shape="rect" href="class_c_file_util.html#a390bb140d44dcbd206497e5efe5a76a8" title="ファイルを削除する" alt="" coords="1728,391,1860,417"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="1474,723,1653,749"/>
+<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="995,857,1147,884"/>
+<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="1708,824,1880,851"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a8edee7c70a837ef023b2356cf41f1055" title="スキャンデータのサイズ取得" alt="" coords="692,1355,911,1381"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a8af3aff5f5a24234512bb784fc4df822" title="プロジェクトからスキャンデータの縦横サイズの取得" alt="" coords="447,1377,589,1418"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a16a55c3db357af77e875c008c5837dee" title="金属面の分類数の取得" alt="" coords="704,1077,899,1118"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a3f5f6a5e4e73e405f35dfd789d004e67" title="金属面の分類数の取得" alt="" coords="431,923,605,965"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a282b2232f82ad37165b305e66daf7066" title="金属面の接合割合の設定" alt="" coords="447,1573,589,1614"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a0e15acb901cceb99e15113ca5d239e13" title="重なりピクセル数の取得" alt="" coords="700,639,903,681"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a4ccce7edae07c0d331960ca1104aa375" title="樹脂面の分類数の取得" alt="" coords="703,1169,899,1210"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ab2690e8124c3eed981a213ad89ec2c6f" title="樹脂面の分類数の取得" alt="" coords="431,1041,605,1082"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a556e5795142b2a57d1f35f71809875cf" title="樹脂面の接合割合の設定" alt="" coords="447,1507,589,1549"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a3c255aa66e4a529223b8fc4dcaf4df18" title="接合結果の分類数の取得" alt="" coords="701,1010,901,1051"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a1f6b84e20d4bedc5ceea6d96e9982cec" title="接合結果の分類数の取得" alt="" coords="429,858,607,899"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a3adb6695516f8c519543b29bdcef8f05" title="接合結果の接合割合の設定" alt="" coords="446,1442,590,1483"/>
+<area shape="rect" href="class_c_project_file_i_o.html#afca60f6ab0cd03984ed31d9748d2c40c" title="作成された金属面階層クラスタリング解析のクラス数の取得" alt="" coords="395,393,641,434"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a29406d5c5257125f37cc8570c6925085" title="作成された金属面K&#45;Means解析のクラス数の取得" alt="" coords="959,1311,1184,1353"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a04f2933cae1ff9e3a08415659c5fadd6" title="作成された樹脂面階層クラスタリング解析のクラス数の取得" alt="" coords="394,458,642,499"/>
+<area shape="rect" href="class_c_project_file_i_o.html#ab4a20cfe0a148a81e85160f76cb20928" title="作成された樹脂面K&#45;Means解析のクラス数の取得" alt="" coords="405,523,631,565"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a2dff18744914d9c6de7ee826b12dd08a" title="作成された接合結果階層クラスタリング解析のクラス数の取得" alt="" coords="392,589,644,630"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a960936d797d0c1f6b30cec94aa57e241" title="作成された接合結果K&#45;Means解析のクラス数の取得" alt="" coords="403,1158,633,1199"/>
+<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="1928,824,2073,851"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a18363dcc891c5e076681195958f7ab18" title="スキャンファイルパス取得（拡張子なし）" alt="" coords="730,225,873,266"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a9b2b2b42f5c25ec3e352dd5b2226b8a2" title="金属面スキャン画像ファイル名の取得" alt="" coords="988,174,1155,215"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a4c86e9e72a5fdb38be8698a214f4a21e" title="樹脂面スキャン画像ファイル名の取得" alt="" coords="987,43,1155,85"/>
+<area shape="rect" href="class_c_project_file_i_o.html#ae329fa86b9074317f82eb6fb80d03f37" title="接合結果画像スキャン画像ファイル名の取得" alt="" coords="985,109,1157,150"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ab9b811efdecb8b32d42d8eaeba752b23" title="ワークプロジェクトパスの取得" alt="" coords="996,690,1147,731"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="1232,850,1419,891"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="1467,875,1660,917"/>
+<area shape="rect" href="class_c_configration_i_o.html#a502e7c8a4d1a173bf0637e9704ebd980" title="指定セクションのキーにを削除" alt="" coords="982,1143,1161,1169"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ab263d6b737c5fb9a6a75a8319506cddb" title="金属面の分類数の設定" alt="" coords="974,1077,1169,1118"/>
+<area shape="rect" href="class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="1249,1100,1401,1127"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a4696f24d77def8e3b9d206b351c8ad66" title="金属面の接合割合の設定" alt="" coords="713,1573,889,1614"/>
+<area shape="rect" href="class_c_configration_i_o.html#a535689b2c4df043a729548de99f72a4a" title="指定セクションのキーに浮動小数点値を設定" alt="" coords="982,1483,1161,1509"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a6a2f279575582b3b5fd0fc78d44313bf" title="樹脂面の分類数の設定" alt="" coords="974,1194,1169,1235"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ab16492fd229e0e2ccf188fae8ca7f726" title="樹脂面の接合割合の設定" alt="" coords="713,1507,890,1549"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a5d8a3b2d8be1e1c95293c525278ccc4b" title="接合結果の分類数の設定" alt="" coords="972,959,1171,1001"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ab5d3cd61f8af29747e644c8891163c28" title="接合結果の接合割合の設定" alt="" coords="711,1442,892,1483"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a5c053cec7083e77d1f285f262f4ddbd1" title="金属面の解析方法の設定" alt="" coords="419,1821,617,1862"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ac179aa732fd5e8373f6deeb918367fdc" title="樹脂面の解析方法の設定" alt="" coords="418,1690,618,1731"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a80b10d181a91d1536e78be10dcf4e50c" title="接合結果の解析方法の設定" alt="" coords="416,1755,620,1797"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7e566eb5b56caf422a7b530513bb1f0a" title="プロジェクトステータス設定" alt="" coords="1245,1463,1405,1505"/>
+<area shape="rect" href="class_c_configration_i_o.html#a0fb34e01af48df8da81d80108ffa3d03" title="指定セクションのキーに文字列を設定" alt="" coords="1477,1471,1649,1497"/>
 </map>
 </div>
 
@@ -802,20 +814,27 @@ CButton&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <div class="dyncontent">
 <div class="center"><img src="class_c_weld_evaluation_view_acb9374b4f62b3b67625526f4b5d493b4_cgraph.png" border="0" usemap="#aclass_c_weld_evaluation_view_acb9374b4f62b3b67625526f4b5d493b4_cgraph" alt=""/></div>
 <map name="aclass_c_weld_evaluation_view_acb9374b4f62b3b67625526f4b5d493b4_cgraph" id="aclass_c_weld_evaluation_view_acb9374b4f62b3b67625526f4b5d493b4_cgraph">
-<area shape="rect" title="区間スペクトル表示ダイアログの設定" alt="" coords="5,96,197,137"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad49fe5bd6a5dbd63b150bde87a194a10" title="指定位置スペクトル群の取得" alt="" coords="246,63,389,104"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a482c242e79c4b82b34d23794280649b0" title="スペクトルレンジの取得" alt="" coords="245,128,389,169"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a74d0fa98822d49575c08acb1e72c128c" title="指定位置スペクトル群の取得" alt="" coords="440,13,653,39"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ab9b811efdecb8b32d42d8eaeba752b23" title="ワークプロジェクトパスの取得" alt="" coords="471,64,622,105"/>
-<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="946,69,1125,95"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="704,123,891,164"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a827c581753a1e8dab5c6a6437e8d1696" title="プロジェクトステータス取得" alt="" coords="717,5,878,47"/>
-<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="1180,127,1352,154"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="939,120,1132,161"/>
-<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="1400,127,1545,154"/>
-<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1593,127,1725,154"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a09a161f191779097aa003676ecb22714" title="バンド数の取得" alt="" coords="437,133,656,159"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a2e23bb8cbebd5d51292726ee0238adec" title="バンドのスペクトル値取得" alt="" coords="447,183,646,210"/>
+<area shape="rect" title="区間スペクトル表示ダイアログの設定" alt="" coords="5,161,197,203"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad49fe5bd6a5dbd63b150bde87a194a10" title="指定位置スペクトル群の取得" alt="" coords="246,128,389,169"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a482c242e79c4b82b34d23794280649b0" title="スペクトルレンジの取得" alt="" coords="245,193,389,235"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a74d0fa98822d49575c08acb1e72c128c" title="指定位置スペクトル群の取得" alt="" coords="440,139,653,166"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ab9b811efdecb8b32d42d8eaeba752b23" title="ワークプロジェクトパスの取得" alt="" coords="909,77,1060,119"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="704,199,861,226"/>
+<area shape="rect" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="931,201,1039,227"/>
+<area shape="rect" href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="1121,201,1281,227"/>
+<area shape="rect" href="class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf" title=" " alt="" coords="1146,251,1257,278"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="1350,91,1529,118"/>
+<area shape="rect" href="class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="1373,197,1506,223"/>
+<area shape="rect" href="class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="1376,247,1503,274"/>
+<area shape="rect" href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="1604,197,1736,223"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="1108,17,1295,59"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a827c581753a1e8dab5c6a6437e8d1696" title="プロジェクトステータス取得" alt="" coords="1121,135,1282,176"/>
+<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="1584,33,1756,59"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="1343,25,1536,67"/>
+<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="1804,33,1949,59"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1997,33,2129,59"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a09a161f191779097aa003676ecb22714" title="バンド数の取得" alt="" coords="437,197,656,223"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a2e23bb8cbebd5d51292726ee0238adec" title="バンドのスペクトル値取得" alt="" coords="447,247,646,274"/>
 </map>
 </div>
 
@@ -880,56 +899,56 @@ CButton&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <div class="dyncontent">
 <div class="center"><img src="class_c_weld_evaluation_view_ae37e8e96f656ee1e5ac50c77258dcd91_cgraph.png" border="0" usemap="#aclass_c_weld_evaluation_view_ae37e8e96f656ee1e5ac50c77258dcd91_cgraph" alt=""/></div>
 <map name="aclass_c_weld_evaluation_view_ae37e8e96f656ee1e5ac50c77258dcd91_cgraph" id="aclass_c_weld_evaluation_view_ae37e8e96f656ee1e5ac50c77258dcd91_cgraph">
-<area shape="rect" title="「新規検査」ボタン押下時処理" alt="" coords="5,2205,171,2246"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="219,1614,361,1655"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a6d85514e7850edc2d4dc4c007445bb17" title="プロジェクトの更新判定" alt="" coords="631,2446,791,2487"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547" title="新規プロジェクト作成" alt="" coords="409,2205,552,2246"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="409,1137,552,1178"/>
-<area shape="rect" href="class_c_file_util.html#a390bb140d44dcbd206497e5efe5a76a8" title="ファイルを削除する" alt="" coords="645,199,777,225"/>
-<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1169,725,1301,752"/>
-<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="1383,2127,1562,2153"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a39ef807cadcf61a48b387e47ca5bdfde" title="横方向の解像度の取得" alt="" coords="623,301,799,342"/>
-<area shape="rect" href="class_c_project_file_i_o.html#aa55eac2bd7d274c475a9afe818283837" title="イメージデータへのルートパスの取得" alt="" coords="626,1221,797,1262"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a63d5f780046e125660e2e9b51e754ad5" title="プロジェクト名の取得" alt="" coords="615,1287,808,1313"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad3746774f32e3fa3fc4ebc4d4510d0ee" title="登録済み試験格納フォルダの取得" alt="" coords="911,1802,1053,1843"/>
-<area shape="rect" href="class_c_propaty_i_o.html#adcab3ae7a0b14e93b5b7c781d4025986" title="名称の取得" alt="" coords="623,1388,800,1415"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a6cc4479cfd0b46ed6189985fcf02bbad" title="縦方向の解像度の取得" alt="" coords="600,367,823,393"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="1141,2203,1328,2245"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a827c581753a1e8dab5c6a6437e8d1696" title="プロジェクトステータス取得" alt="" coords="901,2355,1063,2397"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a939aaef4c4b84ea0ea2add3357e0f4de" title="金属面の接合割合の取得" alt="" coords="623,418,800,459"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a16a55c3db357af77e875c008c5837dee" title="金属面の分類数の取得" alt="" coords="614,601,809,642"/>
-<area shape="rect" href="class_c_propaty_i_o.html#ab263d6b737c5fb9a6a75a8319506cddb" title="金属面の分類数の設定" alt="" coords="885,659,1079,701"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a4696f24d77def8e3b9d206b351c8ad66" title="金属面の接合割合の設定" alt="" coords="894,902,1070,943"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="640,1642,783,1683"/>
-<area shape="rect" href="class_c_propaty_i_o.html#ab16492fd229e0e2ccf188fae8ca7f726" title="樹脂面の接合割合の設定" alt="" coords="893,967,1071,1009"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a6a2f279575582b3b5fd0fc78d44313bf" title="樹脂面の分類数の設定" alt="" coords="885,77,1079,118"/>
-<area shape="rect" href="class_c_propaty_i_o.html#ab5d3cd61f8af29747e644c8891163c28" title="接合結果の接合割合の設定" alt="" coords="891,1033,1073,1074"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a5d8a3b2d8be1e1c95293c525278ccc4b" title="接合結果の分類数の設定" alt="" coords="883,542,1081,583"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a5d17a1a5554d49705db9a462536d437f" title="パラメータファイルの書き込み" alt="" coords="911,1099,1053,1125"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a5e99e08fd35c3598db64ec2925ec1f98" title="パラメータファイルの書き込み" alt="" coords="919,1216,1045,1243"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b7dd9ce24a05331154febb0c6fe0295" title="分類結果の保存" alt="" coords="885,1150,1079,1191"/>
-<area shape="rect" href="class_c_propaty_i_o.html#af898ffdeaebe21dc351bd176911b5dde" title="横方向の解像度の設定" alt="" coords="895,1333,1069,1374"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a75d0972c4de362586eed671a1471fd57" title="イメージデータへのルートパスの設定" alt="" coords="897,1267,1067,1309"/>
-<area shape="rect" href="class_c_propaty_i_o.html#ae0321a185c5ac13df27d1041ed2716bb" title="重なりピクセル数の設定" alt="" coords="885,1685,1079,1726"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a10776a11f9db9cd8257bbbed3cfa432d" title="パラメータファイルパスの設定" alt="" coords="893,2021,1071,2062"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a6f6f9e4209cde2d4786f4ec7db1cd0a2" title="プロジェクトファイルパスの設定" alt="" coords="895,2086,1069,2127"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a5cd21ed2fe9256877c4421dc644665c2" title="縦方向の解像度の設定" alt="" coords="871,1751,1093,1777"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a0e15acb901cceb99e15113ca5d239e13" title="重なりピクセル数の取得" alt="" coords="610,718,813,759"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad97fb1fff98c1ec282fed06254c44e4f" title="ワークからプロジェクトへ移動" alt="" coords="640,2122,783,2163"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a75dffdbfb7f4a76575bc2acf30a272e7" title="樹脂面の接合割合の取得" alt="" coords="622,1002,801,1043"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a4ccce7edae07c0d331960ca1104aa375" title="樹脂面の分類数の取得" alt="" coords="613,15,809,57"/>
-<area shape="rect" href="class_c_propaty_i_o.html#ad2e31b8ac94a89d82b456db42206807d" title="接合結果の接合割合の取得" alt="" coords="620,133,803,174"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a3c255aa66e4a529223b8fc4dcaf4df18" title="接合結果の分類数の取得" alt="" coords="611,483,811,525"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#aabe96759afcb4dd3eca9e96f158bc7ae" title="スキャンデータの保存" alt="" coords="640,783,783,825"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a0093e512c08df1a77eefb0cea07eb6d1" title="作成日の設定" alt="" coords="614,849,809,876"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a7ef9f7c0f443cfe414f2476af98d5200" title="プロジェクト名の設定" alt="" coords="615,900,807,927"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a971f5f23c04ddb91dc03b10aeb6e58ab" title="更新日の設定" alt="" coords="612,951,811,977"/>
-<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="1617,2177,1789,2204"/>
-<area shape="rect" href="class_c_configration_i_o.html#a0fb34e01af48df8da81d80108ffa3d03" title="指定セクションのキーに文字列を設定" alt="" coords="1149,1817,1321,1844"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="1376,2229,1569,2270"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a03be4072859f974c141dc3bd06b64614" title="射影変換" alt="" coords="882,1450,1082,1491"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#ae8fcb4c73d65ae2bcdff6f833fc93e29" title="CubeFloatのクローズ" alt="" coords="912,1516,1052,1543"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a66c4a406f8a43359ced44c21e974cb90" title="ワークプロジェクトの削除" alt="" coords="911,1567,1053,1609"/>
+<area shape="rect" title="「新規検査」ボタン押下時処理" alt="" coords="5,2326,171,2367"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="219,1672,361,1714"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a6d85514e7850edc2d4dc4c007445bb17" title="プロジェクトの更新判定" alt="" coords="620,2467,780,2508"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547" title="新規プロジェクト作成" alt="" coords="409,2326,552,2367"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="409,1050,552,1091"/>
+<area shape="rect" href="class_c_file_util.html#a390bb140d44dcbd206497e5efe5a76a8" title="ファイルを削除する" alt="" coords="1164,54,1296,81"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1420,812,1552,838"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="1397,2305,1575,2332"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a39ef807cadcf61a48b387e47ca5bdfde" title="横方向の解像度の取得" alt="" coords="1142,1142,1318,1183"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad3746774f32e3fa3fc4ebc4d4510d0ee" title="登録済み試験格納フォルダの取得" alt="" coords="888,1964,1031,2006"/>
+<area shape="rect" href="class_c_propaty_i_o.html#adcab3ae7a0b14e93b5b7c781d4025986" title="名称の取得" alt="" coords="611,1326,789,1353"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a6cc4479cfd0b46ed6189985fcf02bbad" title="縦方向の解像度の取得" alt="" coords="1119,1090,1341,1117"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="1137,2323,1323,2364"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a827c581753a1e8dab5c6a6437e8d1696" title="プロジェクトステータス取得" alt="" coords="879,2568,1040,2610"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a939aaef4c4b84ea0ea2add3357e0f4de" title="金属面の接合割合の取得" alt="" coords="611,250,789,291"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a16a55c3db357af77e875c008c5837dee" title="金属面の分類数の取得" alt="" coords="603,519,797,560"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ab263d6b737c5fb9a6a75a8319506cddb" title="金属面の分類数の設定" alt="" coords="862,628,1057,670"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a4696f24d77def8e3b9d206b351c8ad66" title="金属面の接合割合の設定" alt="" coords="871,1248,1047,1290"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="629,1530,771,1571"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ab16492fd229e0e2ccf188fae8ca7f726" title="樹脂面の接合割合の設定" alt="" coords="871,1314,1048,1355"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a6a2f279575582b3b5fd0fc78d44313bf" title="樹脂面の分類数の設定" alt="" coords="862,460,1057,502"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ab5d3cd61f8af29747e644c8891163c28" title="接合結果の接合割合の設定" alt="" coords="869,1379,1050,1420"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a5d8a3b2d8be1e1c95293c525278ccc4b" title="接合結果の分類数の設定" alt="" coords="860,847,1059,888"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a5d17a1a5554d49705db9a462536d437f" title="パラメータファイルの書き込み" alt="" coords="888,745,1031,772"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a5e99e08fd35c3598db64ec2925ec1f98" title="パラメータファイルの書き込み" alt="" coords="897,913,1022,940"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b7dd9ce24a05331154febb0c6fe0295" title="分類結果の保存" alt="" coords="863,1444,1056,1486"/>
+<area shape="rect" href="class_c_propaty_i_o.html#af898ffdeaebe21dc351bd176911b5dde" title="横方向の解像度の設定" alt="" coords="872,964,1047,1006"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a10776a11f9db9cd8257bbbed3cfa432d" title="パラメータファイルパスの設定" alt="" coords="871,2183,1048,2224"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a6f6f9e4209cde2d4786f4ec7db1cd0a2" title="プロジェクトファイルパスの設定" alt="" coords="872,2248,1047,2290"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a5cd21ed2fe9256877c4421dc644665c2" title="縦方向の解像度の設定" alt="" coords="848,1030,1071,1057"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad97fb1fff98c1ec282fed06254c44e4f" title="ワークからプロジェクトへ移動" alt="" coords="629,2299,771,2340"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a75dffdbfb7f4a76575bc2acf30a272e7" title="樹脂面の接合割合の取得" alt="" coords="611,315,789,356"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a4ccce7edae07c0d331960ca1104aa375" title="樹脂面の分類数の取得" alt="" coords="602,402,798,443"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ad2e31b8ac94a89d82b456db42206807d" title="接合結果の接合割合の取得" alt="" coords="609,184,791,226"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a3c255aa66e4a529223b8fc4dcaf4df18" title="接合結果の分類数の取得" alt="" coords="600,687,800,728"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aabe96759afcb4dd3eca9e96f158bc7ae" title="スキャンデータの保存" alt="" coords="629,1210,771,1251"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a0093e512c08df1a77eefb0cea07eb6d1" title="作成日の設定" alt="" coords="603,956,797,982"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a7ef9f7c0f443cfe414f2476af98d5200" title="プロジェクト名の設定" alt="" coords="604,1006,796,1033"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a971f5f23c04ddb91dc03b10aeb6e58ab" title="更新日の設定" alt="" coords="601,1057,799,1084"/>
+<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="1410,1120,1562,1146"/>
+<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="1631,2246,1803,2273"/>
+<area shape="rect" href="class_c_configration_i_o.html#a0fb34e01af48df8da81d80108ffa3d03" title="指定セクションのキーに文字列を設定" alt="" coords="1144,1964,1316,1990"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="1389,2239,1583,2280"/>
+<area shape="rect" href="class_c_configration_i_o.html#a460fe4c9b31d05649b998bcf78f2568d" title="指定セクションのキー値（浮動小数点）を取得" alt="" coords="870,257,1049,284"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a03be4072859f974c141dc3bd06b64614" title="射影変換" alt="" coords="859,1796,1059,1838"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ae8fcb4c73d65ae2bcdff6f833fc93e29" title="CubeFloatのクローズ" alt="" coords="889,1862,1029,1889"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a66c4a406f8a43359ced44c21e974cb90" title="ワークプロジェクトの削除" alt="" coords="888,1679,1031,1720"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a79efcba4f34fdb1de1c05ec081c0a376" title="射影変換用頂点の取得" alt="" coords="1153,1259,1307,1300"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad48d4a00fc87bf6e0e8efab2c1e1279f" title="横方向の解像度の取得" alt="" coords="874,1562,1045,1603"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#acdf5f510e085ec177dc0a70d9b4ab986" title="スキャンデータ名の取得" alt="" coords="888,1183,1031,1224"/>
 </map>
 </div>
 
@@ -1224,56 +1243,56 @@ CButton&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <div class="dyncontent">
 <div class="center"><img src="class_c_weld_evaluation_view_a1b8f0add672d4bc0d3e561c7f61e649f_cgraph.png" border="0" usemap="#aclass_c_weld_evaluation_view_a1b8f0add672d4bc0d3e561c7f61e649f_cgraph" alt=""/></div>
 <map name="aclass_c_weld_evaluation_view_a1b8f0add672d4bc0d3e561c7f61e649f_cgraph" id="aclass_c_weld_evaluation_view_a1b8f0add672d4bc0d3e561c7f61e649f_cgraph">
-<area shape="rect" title="画像出力要求" alt="" coords="5,955,175,997"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a3a1305db13ed5cb73a6debfd0b67c89a" title="プロジェクトからのスキャンイメージファイルパス取得" alt="" coords="227,897,370,938"/>
-<area shape="rect" href="class_c_file_util.html#addb1b54c1b8a2a289da96fc5c7705a21" title="フォルダ選択" alt="" coords="223,963,375,989"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="227,1014,370,1055"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a41aafce3ebbfa44a9741100ed1134583" title="スキャンファイルの設定有無判定" alt="" coords="893,1098,1035,1139"/>
-<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="2283,743,2415,769"/>
-<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="1567,1235,1746,1261"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a8cccd8cb66df552066d96c31b9255389" title="分類結果の画像データ取得" alt="" coords="1318,552,1490,608"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b289ccf358a0ad255596c59196a3bd0" title="スキャンデータイメージの取得" alt="" coords="423,1319,565,1361"/>
-<area shape="rect" href="class_c_file_util.html#acd0ab529d0f67b3a1d783e9b954c5576" title="フィルパスを分解する" alt="" coords="899,1613,1029,1640"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a9b2b2b42f5c25ec3e352dd5b2226b8a2" title="金属面スキャン画像ファイル名の取得" alt="" coords="1093,1163,1260,1205"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a4c86e9e72a5fdb38be8698a214f4a21e" title="樹脂面スキャン画像ファイル名の取得" alt="" coords="1093,1098,1261,1139"/>
-<area shape="rect" href="class_c_project_file_i_o.html#ae329fa86b9074317f82eb6fb80d03f37" title="接合結果画像スキャン画像ファイル名の取得" alt="" coords="1091,1229,1263,1270"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ab9b811efdecb8b32d42d8eaeba752b23" title="ワークプロジェクトパスの取得" alt="" coords="1101,1294,1252,1335"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="1311,1345,1497,1386"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a827c581753a1e8dab5c6a6437e8d1696" title="プロジェクトステータス取得" alt="" coords="1323,1177,1485,1218"/>
-<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="1839,1235,2011,1261"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="1560,1337,1753,1378"/>
-<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="2086,1116,2231,1143"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#aa987b313bea18fb37c1b7b7c778c0e71" title="クラスに対応する色の取得" alt="" coords="1585,593,1728,634"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a39ef807cadcf61a48b387e47ca5bdfde" title="横方向の解像度の取得" alt="" coords="1569,658,1745,699"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a8af3aff5f5a24234512bb784fc4df822" title="プロジェクトからスキャンデータの縦横サイズの取得" alt="" coords="1585,829,1728,870"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a6cc4479cfd0b46ed6189985fcf02bbad" title="縦方向の解像度の取得" alt="" coords="1545,724,1768,751"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a16a55c3db357af77e875c008c5837dee" title="金属面の分類数の取得" alt="" coords="1559,397,1754,438"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a0dcfe2f1565b1e4cea83f0ba1deb540c" title="金属面の接合色の設定" alt="" coords="1585,309,1728,350"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a4ccce7edae07c0d331960ca1104aa375" title="樹脂面の分類数の取得" alt="" coords="1559,527,1755,569"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#aaf723bdc82ec7ede125b473a0ba36672" title="樹脂面の接合色の設定" alt="" coords="1585,62,1728,103"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a3c255aa66e4a529223b8fc4dcaf4df18" title="接合結果の分類数の取得" alt="" coords="1557,462,1757,503"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a0f2821f9a37db33b82a9d9dccda92c81" title="接合結果の接合色の設定" alt="" coords="1585,166,1729,207"/>
-<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="1849,641,2001,668"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a8edee7c70a837ef023b2356cf41f1055" title="スキャンデータのサイズ取得" alt="" coords="1816,844,2035,871"/>
-<area shape="rect" href="class_c_configration_i_o.html#a502e7c8a4d1a173bf0637e9704ebd980" title="指定セクションのキーにを削除" alt="" coords="1836,473,2015,500"/>
-<area shape="rect" href="class_c_propaty_i_o.html#ab263d6b737c5fb9a6a75a8319506cddb" title="金属面の分類数の設定" alt="" coords="1828,239,2023,281"/>
-<area shape="rect" href="class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="2083,213,2235,240"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a51608d8b45c5cc2bb21e34b6677244f0" title="金属面の接合色の設定" alt="" coords="1837,174,2013,215"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a6a2f279575582b3b5fd0fc78d44313bf" title="樹脂面の分類数の設定" alt="" coords="1828,525,2023,566"/>
+<area shape="rect" title="画像出力要求" alt="" coords="5,766,175,807"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a3a1305db13ed5cb73a6debfd0b67c89a" title="プロジェクトからのスキャンイメージファイルパス取得" alt="" coords="227,707,370,749"/>
+<area shape="rect" href="class_c_file_util.html#addb1b54c1b8a2a289da96fc5c7705a21" title="フォルダ選択" alt="" coords="223,773,375,800"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="227,825,370,866"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a41aafce3ebbfa44a9741100ed1134583" title="スキャンファイルの設定有無判定" alt="" coords="893,1191,1035,1233"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="2283,793,2415,820"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="1567,1149,1746,1176"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a8cccd8cb66df552066d96c31b9255389" title="分類結果の画像データ取得" alt="" coords="1318,467,1490,523"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b289ccf358a0ad255596c59196a3bd0" title="スキャンデータイメージの取得" alt="" coords="423,901,565,942"/>
+<area shape="rect" href="class_c_file_util.html#acd0ab529d0f67b3a1d783e9b954c5576" title="フィルパスを分解する" alt="" coords="899,1127,1029,1153"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a9b2b2b42f5c25ec3e352dd5b2226b8a2" title="金属面スキャン画像ファイル名の取得" alt="" coords="1093,1061,1260,1102"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a4c86e9e72a5fdb38be8698a214f4a21e" title="樹脂面スキャン画像ファイル名の取得" alt="" coords="1093,1191,1261,1233"/>
+<area shape="rect" href="class_c_project_file_i_o.html#ae329fa86b9074317f82eb6fb80d03f37" title="接合結果画像スキャン画像ファイル名の取得" alt="" coords="1091,1126,1263,1167"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ab9b811efdecb8b32d42d8eaeba752b23" title="ワークプロジェクトパスの取得" alt="" coords="1101,1309,1252,1350"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="1311,1309,1497,1350"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a827c581753a1e8dab5c6a6437e8d1696" title="プロジェクトステータス取得" alt="" coords="1323,1243,1485,1285"/>
+<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="1839,1232,2011,1259"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="1560,1309,1753,1350"/>
+<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="2086,945,2231,972"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aa987b313bea18fb37c1b7b7c778c0e71" title="クラスに対応する色の取得" alt="" coords="1585,186,1728,227"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a39ef807cadcf61a48b387e47ca5bdfde" title="横方向の解像度の取得" alt="" coords="1569,665,1745,706"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a8af3aff5f5a24234512bb784fc4df822" title="プロジェクトからスキャンデータの縦横サイズの取得" alt="" coords="1585,251,1728,293"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a6cc4479cfd0b46ed6189985fcf02bbad" title="縦方向の解像度の取得" alt="" coords="1545,731,1768,757"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a16a55c3db357af77e875c008c5837dee" title="金属面の分類数の取得" alt="" coords="1559,447,1754,489"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0dcfe2f1565b1e4cea83f0ba1deb540c" title="金属面の接合色の設定" alt="" coords="1585,382,1728,423"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a4ccce7edae07c0d331960ca1104aa375" title="樹脂面の分類数の取得" alt="" coords="1559,513,1755,554"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aaf723bdc82ec7ede125b473a0ba36672" title="樹脂面の接合色の設定" alt="" coords="1585,81,1728,122"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a3c255aa66e4a529223b8fc4dcaf4df18" title="接合結果の分類数の取得" alt="" coords="1557,578,1757,619"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0f2821f9a37db33b82a9d9dccda92c81" title="接合結果の接合色の設定" alt="" coords="1585,317,1729,358"/>
+<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="1849,692,2001,719"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a8edee7c70a837ef023b2356cf41f1055" title="スキャンデータのサイズ取得" alt="" coords="1816,109,2035,136"/>
+<area shape="rect" href="class_c_configration_i_o.html#a502e7c8a4d1a173bf0637e9704ebd980" title="指定セクションのキーにを削除" alt="" coords="1836,524,2015,551"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ab263d6b737c5fb9a6a75a8319506cddb" title="金属面の分類数の設定" alt="" coords="1828,291,2023,333"/>
+<area shape="rect" href="class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="2083,267,2235,293"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a51608d8b45c5cc2bb21e34b6677244f0" title="金属面の接合色の設定" alt="" coords="1837,226,2013,267"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a6a2f279575582b3b5fd0fc78d44313bf" title="樹脂面の分類数の設定" alt="" coords="1828,357,2023,398"/>
 <area shape="rect" href="class_c_propaty_i_o.html#a7d32eed90f0a3eab1ae76df4c2d0c643" title="樹脂面の接合色の設定" alt="" coords="1837,43,2014,85"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a5d8a3b2d8be1e1c95293c525278ccc4b" title="接合結果の分類数の設定" alt="" coords="1826,357,2025,398"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a16b3e539746c24e961b939c92634938c" title="接合結果の接合色の設定" alt="" coords="1835,109,2016,150"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ae577258982004882884d764ae48164eb" title="RGBに対応する波長の取得" alt="" coords="1583,1402,1730,1443"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a20f4912ddc5aef772cd12ec334e55f04" title="スキャンデータファイルパス取得" alt="" coords="649,1319,802,1361"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a3be95afdfa7914f7a2acbc003048e3ff" title="画像データ取得" alt="" coords="639,1461,811,1488"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#ae86f36b123901fbe038ff0f1669192bd" title="オープン" alt="" coords="657,1524,794,1551"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a3ba9d84a8f4d7ee6c78590ac210f41a4" title="カラー波長の設定" alt="" coords="613,1268,837,1295"/>
-<area shape="rect" href="class_c_configration_i_o.html#a460fe4c9b31d05649b998bcf78f2568d" title="指定セクションのキー値（浮動小数点）を取得" alt="" coords="1836,1304,2015,1331"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a18363dcc891c5e076681195958f7ab18" title="スキャンファイルパス取得（拡張子なし）" alt="" coords="893,1262,1035,1303"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="885,1461,1043,1488"/>
-<area shape="rect" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="1123,1461,1231,1488"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a74d77b0c697e9eab35f6f233be162c27" title="CubeFloatの解放" alt="" coords="889,1512,1039,1539"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#ae8fcb4c73d65ae2bcdff6f833fc93e29" title="CubeFloatのクローズ" alt="" coords="1107,1512,1247,1539"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a5d8a3b2d8be1e1c95293c525278ccc4b" title="接合結果の分類数の設定" alt="" coords="1826,575,2025,617"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a16b3e539746c24e961b939c92634938c" title="接合結果の接合色の設定" alt="" coords="1835,161,2016,202"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ae577258982004882884d764ae48164eb" title="RGBに対応する波長の取得" alt="" coords="1583,946,1730,987"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a20f4912ddc5aef772cd12ec334e55f04" title="スキャンデータファイルパス取得" alt="" coords="649,1061,802,1102"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a3be95afdfa7914f7a2acbc003048e3ff" title="画像データ取得" alt="" coords="639,908,811,935"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ae86f36b123901fbe038ff0f1669192bd" title="オープン" alt="" coords="657,1009,794,1036"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a3ba9d84a8f4d7ee6c78590ac210f41a4" title="カラー波長の設定" alt="" coords="613,959,837,985"/>
+<area shape="rect" href="class_c_configration_i_o.html#a460fe4c9b31d05649b998bcf78f2568d" title="指定セクションのキー値（浮動小数点）を取得" alt="" coords="1836,945,2015,972"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a18363dcc891c5e076681195958f7ab18" title="スキャンファイルパス取得（拡張子なし）" alt="" coords="893,1061,1035,1102"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="885,908,1043,935"/>
+<area shape="rect" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="1123,908,1231,935"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a74d77b0c697e9eab35f6f233be162c27" title="CubeFloatの解放" alt="" coords="889,984,1039,1011"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ae8fcb4c73d65ae2bcdff6f833fc93e29" title="CubeFloatのクローズ" alt="" coords="1107,959,1247,985"/>
 </map>
 </div>
 
@@ -1412,34 +1431,97 @@ CButton&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <div class="dyncontent">
 <div class="center"><img src="class_c_weld_evaluation_view_a64432e2c0e21d161465fb28eb9e71594_cgraph.png" border="0" usemap="#aclass_c_weld_evaluation_view_a64432e2c0e21d161465fb28eb9e71594_cgraph" alt=""/></div>
 <map name="aclass_c_weld_evaluation_view_a64432e2c0e21d161465fb28eb9e71594_cgraph" id="aclass_c_weld_evaluation_view_a64432e2c0e21d161465fb28eb9e71594_cgraph">
-<area shape="rect" title="データ反転の要求" alt="" coords="5,231,153,273"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a41aafce3ebbfa44a9741100ed1134583" title="スキャンファイルの設定有無判定" alt="" coords="414,319,557,361"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの上下反転" alt="" coords="201,173,344,214"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a8c3734ada4777e97073fd72a094bf46f" title="表示モードの設定" alt="" coords="1360,135,1503,177"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#aacd463c0c66894d78faa479f9cf975f8" title="プロジェクトの更新ステータス設定" alt="" coords="627,458,821,499"/>
-<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1804,295,1936,321"/>
-<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="1111,291,1290,317"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a9b2b2b42f5c25ec3e352dd5b2226b8a2" title="金属面スキャン画像ファイル名の取得" alt="" coords="641,210,807,251"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a4c86e9e72a5fdb38be8698a214f4a21e" title="樹脂面スキャン画像ファイル名の取得" alt="" coords="640,341,808,382"/>
-<area shape="rect" href="class_c_project_file_i_o.html#ae329fa86b9074317f82eb6fb80d03f37" title="接合結果画像スキャン画像ファイル名の取得" alt="" coords="638,145,810,186"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ab9b811efdecb8b32d42d8eaeba752b23" title="ワークプロジェクトパスの取得" alt="" coords="649,275,799,317"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="869,393,1056,434"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a827c581753a1e8dab5c6a6437e8d1696" title="プロジェクトステータス取得" alt="" coords="882,225,1043,266"/>
-<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="1345,349,1517,376"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="1104,342,1297,383"/>
-<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="1578,349,1723,376"/>
-<area shape="rect" href="class_c_file_util.html#a390bb140d44dcbd206497e5efe5a76a8" title="ファイルを削除する" alt="" coords="1365,233,1497,260"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a18363dcc891c5e076681195958f7ab18" title="スキャンファイルパス取得（拡張子なし）" alt="" coords="414,202,557,243"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#ac825d0592b26302e385508e7f97db658" title="スキャンデータの上下反転" alt="" coords="401,100,570,127"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#aa32e2e51834f95184395a9be632645b2" title="RAWデータの読み込み" alt="" coords="392,151,579,177"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a2dac09e00376d629d1b43de3434633d6" title="RAWデータの保存" alt="" coords="392,268,579,295"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a72febda46d46ce0a691c704a6b1c0e22" title="金属画像表示タイプの設定" alt="" coords="1567,167,1734,209"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a3423e2b69573bdb6fbcb3378eab42d18" title="樹脂画像表示タイプの設定" alt="" coords="1567,233,1734,274"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a4d14fb09609fb48e540cb7851daccedc" title="接合結果画像表示タイプの設定" alt="" coords="1565,102,1736,143"/>
-<area shape="rect" href="class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="1794,208,1946,235"/>
-<area shape="rect" href="class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="2004,348,2151,375"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a7e566eb5b56caf422a7b530513bb1f0a" title="プロジェクトステータス設定" alt="" coords="883,458,1043,499"/>
-<area shape="rect" href="class_c_configration_i_o.html#a0fb34e01af48df8da81d80108ffa3d03" title="指定セクションのキーに文字列を設定" alt="" coords="1784,403,1956,429"/>
+<area shape="rect" title="データ反転の要求" alt="" coords="5,357,153,398"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a273fbe855a9b6565dddbc8e1043ad82a" title="解析データの削除" alt="" coords="201,95,344,137"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a41aafce3ebbfa44a9741100ed1134583" title="スキャンファイルの設定有無判定" alt="" coords="665,326,807,367"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a068a746e175823fe05268b96ca2207a5" title="解析データの反転" alt="" coords="201,618,344,659"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの反転" alt="" coords="201,218,344,259"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ab977a07fd8cef7e3f230d11aa6130800" title="解析データの反転可否判定" alt="" coords="201,806,344,847"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aacd463c0c66894d78faa479f9cf975f8" title="プロジェクトの更新ステータス設定" alt="" coords="907,509,1101,550"/>
+<area shape="rect" href="class_c_file_util.html#a390bb140d44dcbd206497e5efe5a76a8" title="ファイルを削除する" alt="" coords="419,103,551,129"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="2052,392,2184,419"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="1405,333,1583,360"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a9b2b2b42f5c25ec3e352dd5b2226b8a2" title="金属面スキャン画像ファイル名の取得" alt="" coords="921,391,1087,433"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a4c86e9e72a5fdb38be8698a214f4a21e" title="樹脂面スキャン画像ファイル名の取得" alt="" coords="920,195,1088,237"/>
+<area shape="rect" href="class_c_project_file_i_o.html#ae329fa86b9074317f82eb6fb80d03f37" title="接合結果画像スキャン画像ファイル名の取得" alt="" coords="918,261,1090,302"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ab9b811efdecb8b32d42d8eaeba752b23" title="ワークプロジェクトパスの取得" alt="" coords="929,326,1079,367"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="1163,443,1349,485"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a827c581753a1e8dab5c6a6437e8d1696" title="プロジェクトステータス取得" alt="" coords="1175,206,1337,247"/>
+<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="1639,392,1811,419"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="1397,385,1591,426"/>
+<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="1859,392,2004,419"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a60ac88e1227491f029d2712fb3b34453" title="アファイン変換" alt="" coords="667,828,805,855"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a20f4912ddc5aef772cd12ec334e55f04" title="スキャンデータファイルパス取得" alt="" coords="409,357,562,398"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a8af3aff5f5a24234512bb784fc4df822" title="プロジェクトからスキャンデータの縦横サイズの取得" alt="" coords="414,930,557,971"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a604a2f1e09bc8c6bcbad00c82b19a893" title="マトリックス初期化" alt="" coords="923,727,1085,753"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a84e33245e08bae869355778b20225bd2" title="マトリックス逆行列" alt="" coords="647,524,825,551"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#adb7babb36596d23134297e99d174156d" title="マトリックス移動" alt="" coords="649,625,823,652"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a0040aa2a3b7efdff821a2e6e4bbbfa48" title="マトリックス開放" alt="" coords="908,625,1100,652"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a7f8cf7712af2ca79d83943ed25922491" title="マトリックス回転" alt="" coords="645,676,827,703"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ac2db55ecbcb4a44780c8a551cc6ef66a" title="線形補間" alt="" coords="929,828,1079,855"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a18363dcc891c5e076681195958f7ab18" title="スキャンファイルパス取得（拡張子なし）" alt="" coords="665,261,807,302"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a8edee7c70a837ef023b2356cf41f1055" title="スキャンデータのサイズ取得" alt="" coords="627,937,845,964"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a44d75ac4205c85d7a1fc1fee5674ea26" title="マトリックスかけ算" alt="" coords="893,676,1115,703"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ab4e6effbecff1531d50b31163c6363fc" title="スキャンデータの反転" alt="" coords="401,575,570,601"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#aa32e2e51834f95184395a9be632645b2" title="RAWデータの読み込み" alt="" coords="392,153,579,180"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a2dac09e00376d629d1b43de3434633d6" title="RAWデータの保存" alt="" coords="392,204,579,231"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="657,179,815,205"/>
+<area shape="rect" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="950,93,1058,120"/>
+<area shape="rect" href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="1176,93,1336,120"/>
+<area shape="rect" href="class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf" title=" " alt="" coords="1201,144,1311,171"/>
+<area shape="rect" href="class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="1427,144,1561,171"/>
+<area shape="rect" href="class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="1431,93,1557,120"/>
+<area shape="rect" href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="1659,144,1791,171"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7e566eb5b56caf422a7b530513bb1f0a" title="プロジェクトステータス設定" alt="" coords="1176,509,1336,550"/>
+<area shape="rect" href="class_c_configration_i_o.html#a0fb34e01af48df8da81d80108ffa3d03" title="指定セクションのキーに文字列を設定" alt="" coords="1408,516,1580,543"/>
+<area shape="rect" href="class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="1651,516,1798,543"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac2a780dea4e0df6b42d21188edda9dfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2a780dea4e0df6b42d21188edda9dfc">&#9670;&nbsp;</a></span>OnInversStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">LRESULT CWeldEvaluationView::OnInversStatus </td>
+          <td>(</td>
+          <td class="paramtype">WPARAM&#160;</td>
+          <td class="paramname"><em>wparam</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">LPARAM&#160;</td>
+          <td class="paramname"><em>lparam</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>データ反転状態通知 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">wparam</td><td>メッセージタイプ</td></tr>
+    <tr><td class="paramname">lparam</td><td>状態の値</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>成功した場合は0、失敗した場合はそれ以外を返す</dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_weld_evaluation_view_ac2a780dea4e0df6b42d21188edda9dfc_cgraph.png" border="0" usemap="#aclass_c_weld_evaluation_view_ac2a780dea4e0df6b42d21188edda9dfc_cgraph" alt=""/></div>
+<map name="aclass_c_weld_evaluation_view_ac2a780dea4e0df6b42d21188edda9dfc_cgraph" id="aclass_c_weld_evaluation_view_ac2a780dea4e0df6b42d21188edda9dfc_cgraph">
+<area shape="rect" title="データ反転状態通知" alt="" coords="5,5,153,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a4de63aca3396663c6ca1ff89496e44c0" title="解析処理中止リクエスト" alt="" coords="201,5,369,47"/>
 </map>
 </div>
 
@@ -1524,50 +1606,56 @@ CButton&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <div class="dyncontent">
 <div class="center"><img src="class_c_weld_evaluation_view_a407de32087c90c2e33915da88a6cc911_cgraph.png" border="0" usemap="#aclass_c_weld_evaluation_view_a407de32087c90c2e33915da88a6cc911_cgraph" alt=""/></div>
 <map name="aclass_c_weld_evaluation_view_a407de32087c90c2e33915da88a6cc911_cgraph" id="aclass_c_weld_evaluation_view_a407de32087c90c2e33915da88a6cc911_cgraph">
-<area shape="rect" title="登録済み検査選択時処理" alt="" coords="5,256,188,297"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a66c4a406f8a43359ced44c21e974cb90" title="ワークプロジェクトの削除" alt="" coords="961,168,1103,209"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a6fb9f31759c4175b40446be90447a42f" title="表示モードの取得" alt="" coords="1199,81,1342,123"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a4d73aeb4901a8e64596b44084254800b" title="プロジェクトからのスペクトルグラフ（点指定）の位置の取得" alt="" coords="236,227,447,268"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a6d85514e7850edc2d4dc4c007445bb17" title="プロジェクトの更新判定" alt="" coords="952,233,1112,275"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="270,867,413,908"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#aacd463c0c66894d78faa479f9cf975f8" title="プロジェクトの更新ステータス設定" alt="" coords="935,351,1129,392"/>
-<area shape="rect" href="class_c_file_util.html#a1a5b66b44b29a8777c94cf89f960323d" title="ファイルを削除する（ディレクトリを含むリーカーシブル削除）" alt="" coords="1197,241,1345,267"/>
-<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="2067,550,2199,577"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="1177,292,1364,333"/>
-<area shape="rect" href="class_c_file_util.html#a390bb140d44dcbd206497e5efe5a76a8" title="ファイルを削除する" alt="" coords="1673,318,1805,345"/>
-<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="1419,474,1598,501"/>
-<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="1653,395,1825,422"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="1412,355,1605,396"/>
-<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="1873,395,2019,422"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a01bc129069b3ba05ed979729f88be551" title="金属画像表示タイプの取得" alt="" coords="1425,136,1592,177"/>
-<area shape="rect" href="class_c_project_file_i_o.html#ae824553dca5d5e1f69ea7e4687dd1588" title="樹脂画像表示タイプの取得" alt="" coords="1425,5,1593,47"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a3ff4f09ff5ba28cac5284611c2f4a628" title="接合結果画像表示タイプの取得" alt="" coords="1423,71,1595,112"/>
-<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="1663,114,1815,141"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a49c7cd445cbff3f5e962fd19dee36cd2" title="スペクトルグラフ（点指定）の位置の取得" alt="" coords="500,227,683,268"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a827c581753a1e8dab5c6a6437e8d1696" title="プロジェクトステータス取得" alt="" coords="1190,357,1351,399"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#ae8fcb4c73d65ae2bcdff6f833fc93e29" title="CubeFloatのクローズ" alt="" coords="962,1143,1102,1170"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a63d5f780046e125660e2e9b51e754ad5" title="プロジェクト名の取得" alt="" coords="495,962,688,989"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad3746774f32e3fa3fc4ebc4d4510d0ee" title="登録済み試験格納フォルダの取得" alt="" coords="1199,904,1342,945"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a20f4912ddc5aef772cd12ec334e55f04" title="スキャンデータファイルパス取得" alt="" coords="515,896,668,937"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ab9b811efdecb8b32d42d8eaeba752b23" title="ワークプロジェクトパスの取得" alt="" coords="957,416,1107,457"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#ae86f36b123901fbe038ff0f1669192bd" title="オープン" alt="" coords="523,1169,660,1195"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a051b247732fab46470782bf66c3cf332" title="プロジェクトをワークへ移動" alt="" coords="740,481,883,523"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a659e5931885ed15759f868773e07d47d" title="パラメータファイルの読み込み" alt="" coords="1874,845,2018,871"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a4b1875f347bb78719ec500d3576cc8da" title="パラメータファイルの読み込み" alt="" coords="1883,1295,2009,1322"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a10776a11f9db9cd8257bbbed3cfa432d" title="パラメータファイルパスの設定" alt="" coords="503,561,680,603"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a6f6f9e4209cde2d4786f4ec7db1cd0a2" title="プロジェクトファイルパスの設定" alt="" coords="504,627,679,668"/>
-<area shape="rect" href="class_c_configration_i_o.html#a0fb34e01af48df8da81d80108ffa3d03" title="指定セクションのキーに文字列を設定" alt="" coords="1423,895,1595,922"/>
-<area shape="rect" href="class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="1666,895,1813,922"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a18363dcc891c5e076681195958f7ab18" title="スキャンファイルパス取得（拡張子なし）" alt="" coords="740,896,883,937"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a9b2b2b42f5c25ec3e352dd5b2226b8a2" title="金属面スキャン画像ファイル名の取得" alt="" coords="949,896,1115,937"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a4c86e9e72a5fdb38be8698a214f4a21e" title="樹脂面スキャン画像ファイル名の取得" alt="" coords="948,961,1116,1003"/>
-<area shape="rect" href="class_c_project_file_i_o.html#ae329fa86b9074317f82eb6fb80d03f37" title="接合結果画像スキャン画像ファイル名の取得" alt="" coords="946,1027,1118,1068"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a74d77b0c697e9eab35f6f233be162c27" title="CubeFloatの解放" alt="" coords="736,1143,887,1170"/>
-<area shape="rect" href="class_c_file_util.html#acd0ab529d0f67b3a1d783e9b954c5576" title="フィルパスを分解する" alt="" coords="1443,1095,1574,1122"/>
-<area shape="rect" href="class_c_file_util.html#a3e7c1a5aac6ffb5357485b2a97c8b233" title="ファイルのコピー" alt="" coords="1216,575,1325,602"/>
-<area shape="rect" href="class_c_file_util.html#af931a05d8c01e5609eb3f6e0a18244c9" title="ディレクトリの作成" alt="" coords="969,794,1095,821"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a7e566eb5b56caf422a7b530513bb1f0a" title="プロジェクトステータス設定" alt="" coords="1191,627,1351,668"/>
-<area shape="rect" href="class_c_file_util.html#a1308760e07cde212bd7ee59ae99fbf99" title="ファイルパスからディレクトリを取得する" alt="" coords="1214,987,1327,1014"/>
+<area shape="rect" title="登録済み検査選択時処理" alt="" coords="5,1243,188,1285"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a66c4a406f8a43359ced44c21e974cb90" title="ワークプロジェクトの削除" alt="" coords="762,855,905,897"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a6fb9f31759c4175b40446be90447a42f" title="表示モードの取得" alt="" coords="987,406,1130,447"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a4d73aeb4901a8e64596b44084254800b" title="プロジェクトからのスペクトルグラフ（点指定）の位置の取得" alt="" coords="236,1595,447,1637"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a6d85514e7850edc2d4dc4c007445bb17" title="プロジェクトの更新判定" alt="" coords="979,1529,1139,1570"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="270,999,413,1041"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aacd463c0c66894d78faa479f9cf975f8" title="プロジェクトの更新ステータス設定" alt="" coords="736,1295,931,1337"/>
+<area shape="rect" href="class_c_file_util.html#a1a5b66b44b29a8777c94cf89f960323d" title="ファイルを削除する（ディレクトリを含むリーカーシブル削除）" alt="" coords="985,855,1133,881"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1452,753,1584,780"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="1187,1463,1373,1505"/>
+<area shape="rect" href="class_c_file_util.html#a390bb140d44dcbd206497e5efe5a76a8" title="ファイルを削除する" alt="" coords="1214,855,1346,881"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="1429,1357,1607,1384"/>
+<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="1663,1416,1835,1443"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="1421,1409,1615,1450"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a01bc129069b3ba05ed979729f88be551" title="金属画像表示タイプの取得" alt="" coords="1197,354,1363,395"/>
+<area shape="rect" href="class_c_project_file_i_o.html#ae824553dca5d5e1f69ea7e4687dd1588" title="樹脂画像表示タイプの取得" alt="" coords="1196,419,1364,461"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a3ff4f09ff5ba28cac5284611c2f4a628" title="接合結果画像表示タイプの取得" alt="" coords="1194,485,1366,526"/>
+<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="1442,492,1594,519"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a49c7cd445cbff3f5e962fd19dee36cd2" title="スペクトルグラフ（点指定）の位置の取得" alt="" coords="500,1595,683,1637"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a827c581753a1e8dab5c6a6437e8d1696" title="プロジェクトステータス取得" alt="" coords="1199,1529,1361,1570"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ae8fcb4c73d65ae2bcdff6f833fc93e29" title="CubeFloatのクローズ" alt="" coords="989,652,1129,679"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a63d5f780046e125660e2e9b51e754ad5" title="プロジェクト名の取得" alt="" coords="495,905,688,932"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad3746774f32e3fa3fc4ebc4d4510d0ee" title="登録済み試験格納フォルダの取得" alt="" coords="987,1026,1130,1067"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a20f4912ddc5aef772cd12ec334e55f04" title="スキャンデータファイルパス取得" alt="" coords="515,1241,668,1282"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ab9b811efdecb8b32d42d8eaeba752b23" title="ワークプロジェクトパスの取得" alt="" coords="983,1463,1134,1505"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a4be8e2c3ecdc21cd9528a2913b76a8ce" title="プロジェクトの初期化" alt="" coords="512,956,671,983"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ad897f9626d7ca690598d8b6c06107dea" title="パラメータの初期化" alt="" coords="521,1007,662,1033"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ae86f36b123901fbe038ff0f1669192bd" title="オープン" alt="" coords="523,601,660,628"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a326d3e3001da0baf7b878f1a10cf9836" title="プロジェクトの更新" alt="" coords="1209,274,1351,315"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a051b247732fab46470782bf66c3cf332" title="プロジェクトをワークへ移動" alt="" coords="520,1175,663,1217"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a659e5931885ed15759f868773e07d47d" title="パラメータファイルの読み込み" alt="" coords="987,703,1131,729"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a4b1875f347bb78719ec500d3576cc8da" title="パラメータファイルの読み込み" alt="" coords="770,804,897,831"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a10776a11f9db9cd8257bbbed3cfa432d" title="パラメータファイルパスの設定" alt="" coords="503,1058,680,1099"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a6f6f9e4209cde2d4786f4ec7db1cd0a2" title="プロジェクトファイルパスの設定" alt="" coords="504,1306,679,1347"/>
+<area shape="rect" href="class_c_configration_i_o.html#a0fb34e01af48df8da81d80108ffa3d03" title="指定セクションのキーに文字列を設定" alt="" coords="1194,1260,1366,1287"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a18363dcc891c5e076681195958f7ab18" title="スキャンファイルパス取得（拡張子なし）" alt="" coords="762,1413,905,1454"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a74d77b0c697e9eab35f6f233be162c27" title="CubeFloatの解放" alt="" coords="758,652,909,679"/>
+<area shape="rect" href="class_c_file_util.html#acd0ab529d0f67b3a1d783e9b954c5576" title="フィルパスを分解する" alt="" coords="768,500,899,527"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="755,551,912,577"/>
+<area shape="rect" href="class_c_configration_i_o.html#a502e7c8a4d1a173bf0637e9704ebd980" title="指定セクションのキーにを削除" alt="" coords="1429,157,1607,184"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a5a93a2a9b306fc8bbcd305cfd47fe3fc" title="パラメータファイルパスの取得" alt="" coords="1429,209,1607,250"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a7a202239b515e5f244f93e9747ac0a82" title="プロジェクトファイルパスの取得" alt="" coords="1430,274,1606,315"/>
+<area shape="rect" href="class_c_project_file_i_o.html#ab970390e382105359481be3b4b534311" title="バージョンの取得の取得" alt="" coords="1429,340,1607,367"/>
+<area shape="rect" href="class_c_propaty_i_o.html#acbaaba08a3cf1caa9d3a5a7b74ff890d" title="バージョンの取得の取得" alt="" coords="1437,391,1599,417"/>
+<area shape="rect" href="class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="1442,5,1594,32"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a1249b885accbfc82c6b2c41f6e956894" title="バージョンの設定" alt="" coords="1429,56,1607,83"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a84c66efac31212daceb07676efeac6e3" title="バージョンの設定" alt="" coords="1437,107,1599,133"/>
+<area shape="rect" href="class_c_file_util.html#a3e7c1a5aac6ffb5357485b2a97c8b233" title="ファイルのコピー" alt="" coords="1225,1159,1335,1185"/>
+<area shape="rect" href="class_c_file_util.html#af931a05d8c01e5609eb3f6e0a18244c9" title="ディレクトリの作成" alt="" coords="770,921,897,948"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7e566eb5b56caf422a7b530513bb1f0a" title="プロジェクトステータス設定" alt="" coords="979,1194,1139,1235"/>
 </map>
 </div>
 
@@ -1631,55 +1719,55 @@ CButton&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <div class="dyncontent">
 <div class="center"><img src="class_c_weld_evaluation_view_a1c8f728724d0615945c96bc74bf24e76_cgraph.png" border="0" usemap="#aclass_c_weld_evaluation_view_a1c8f728724d0615945c96bc74bf24e76_cgraph" alt=""/></div>
 <map name="aclass_c_weld_evaluation_view_a1c8f728724d0615945c96bc74bf24e76_cgraph" id="aclass_c_weld_evaluation_view_a1c8f728724d0615945c96bc74bf24e76_cgraph">
-<area shape="rect" title="プロジェクト削除" alt="" coords="5,2482,153,2523"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#acceb13e1dba62f59383094194ecf9774" title="プロジェクトの削除" alt="" coords="201,2330,344,2371"/>
+<area shape="rect" title="プロジェクト削除" alt="" coords="5,2398,153,2439"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#acceb13e1dba62f59383094194ecf9774" title="プロジェクトの削除" alt="" coords="201,2162,344,2203"/>
 <area shape="rect" href="class_c_weld_evaluation_doc.html#ad9712f68619dcab924e5c06b439e1c75" title="名称の取得" alt="" coords="201,2634,344,2675"/>
-<area shape="rect" href="class_c_file_util.html#a1a5b66b44b29a8777c94cf89f960323d" title="ファイルを削除する（ディレクトリを含むリーカーシブル削除）" alt="" coords="1113,891,1261,917"/>
-<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1593,841,1725,868"/>
-<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="1339,2245,1518,2272"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad3746774f32e3fa3fc4ebc4d4510d0ee" title="登録済み試験格納フォルダの取得" alt="" coords="648,2490,791,2531"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="1093,2322,1280,2363"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="409,1267,552,1309"/>
-<area shape="rect" href="class_c_file_util.html#a390bb140d44dcbd206497e5efe5a76a8" title="ファイルを削除する" alt="" coords="1363,875,1495,901"/>
-<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="1573,2489,1745,2516"/>
-<area shape="rect" href="class_c_configration_i_o.html#a0fb34e01af48df8da81d80108ffa3d03" title="指定セクションのキーに文字列を設定" alt="" coords="869,2540,1041,2567"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="1332,2322,1525,2363"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a03be4072859f974c141dc3bd06b64614" title="射影変換" alt="" coords="619,1209,819,1250"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#ae8fcb4c73d65ae2bcdff6f833fc93e29" title="CubeFloatのクローズ" alt="" coords="649,1275,789,1301"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a66c4a406f8a43359ced44c21e974cb90" title="ワークプロジェクトの削除" alt="" coords="884,1091,1027,1133"/>
-<area shape="rect" href="class_c_configration_i_o.html#a460fe4c9b31d05649b998bcf78f2568d" title="指定セクションのキー値（浮動小数点）を取得" alt="" coords="630,1325,809,1352"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a62c2f84aedf058ffe1370ee67e7fb2dc" title="ホモグラフィーマトリックス取得" alt="" coords="618,1377,821,1418"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad48d4a00fc87bf6e0e8efab2c1e1279f" title="横方向の解像度の取得" alt="" coords="634,145,805,186"/>
-<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="879,337,1031,364"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#acdf5f510e085ec177dc0a70d9b4ab986" title="スキャンデータ名の取得" alt="" coords="648,1507,791,1549"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#acb185b5cb5f8e080c3e082e6def82cb6" title="縦方向の解像度の取得" alt="" coords="641,393,797,434"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ab9b811efdecb8b32d42d8eaeba752b23" title="ワークプロジェクトパスの取得" alt="" coords="880,2271,1031,2313"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a4be8e2c3ecdc21cd9528a2913b76a8ce" title="プロジェクトの初期化" alt="" coords="640,1573,799,1600"/>
-<area shape="rect" href="class_c_file_util.html#af931a05d8c01e5609eb3f6e0a18244c9" title="ディレクトリの作成" alt="" coords="892,692,1019,719"/>
-<area shape="rect" href="class_c_propaty_i_o.html#aa7e8f1b21cb5a383aaf1bce0ce518417" title="パラメータファイル名の作成" alt="" coords="617,1675,821,1701"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a5c053cec7083e77d1f285f262f4ddbd1" title="金属面の解析方法の設定" alt="" coords="620,1726,819,1767"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a4696f24d77def8e3b9d206b351c8ad66" title="金属面の接合割合の設定" alt="" coords="631,1791,807,1833"/>
-<area shape="rect" href="class_c_propaty_i_o.html#ab263d6b737c5fb9a6a75a8319506cddb" title="金属面の分類数の設定" alt="" coords="622,1857,817,1898"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#af0dd89540e9d6522bc50cf1b1e2aef42" title="重なりピクセル数の取得" alt="" coords="637,458,801,499"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a2892a7fb2783d6eb6808c35c620a200d" title="射影先点の取得" alt="" coords="636,1923,803,1949"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a051b247732fab46470782bf66c3cf332" title="プロジェクトをワークへ移動" alt="" coords="648,1442,791,1483"/>
-<area shape="rect" href="class_c_propaty_i_o.html#ac179aa732fd5e8373f6deeb918367fdc" title="樹脂面の解析方法の設定" alt="" coords="619,1974,819,2015"/>
-<area shape="rect" href="class_c_propaty_i_o.html#ab16492fd229e0e2ccf188fae8ca7f726" title="樹脂面の接合割合の設定" alt="" coords="631,2039,808,2081"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a6a2f279575582b3b5fd0fc78d44313bf" title="樹脂面の分類数の設定" alt="" coords="1089,1085,1284,1126"/>
-<area shape="rect" href="class_c_propaty_i_o.html#ab5d3cd61f8af29747e644c8891163c28" title="接合結果の接合割合の設定" alt="" coords="629,2105,810,2146"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a5d8a3b2d8be1e1c95293c525278ccc4b" title="接合結果の分類数の設定" alt="" coords="620,2170,819,2211"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a5d17a1a5554d49705db9a462536d437f" title="パラメータファイルの書き込み" alt="" coords="1357,1475,1500,1501"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a5e99e08fd35c3598db64ec2925ec1f98" title="パラメータファイルの書き込み" alt="" coords="1124,279,1249,305"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b7dd9ce24a05331154febb0c6fe0295" title="分類結果の保存" alt="" coords="623,210,816,251"/>
-<area shape="rect" href="class_c_propaty_i_o.html#af898ffdeaebe21dc351bd176911b5dde" title="横方向の解像度の設定" alt="" coords="1341,517,1516,558"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a75d0972c4de362586eed671a1471fd57" title="イメージデータへのルートパスの設定" alt="" coords="635,327,804,369"/>
-<area shape="rect" href="class_c_project_file_i_o.html#acfecde3135f2edba90dc45c2df2f9d2f" title="金属面スキャン画像ファイル名の設定" alt="" coords="636,677,803,718"/>
-<area shape="rect" href="class_c_propaty_i_o.html#ae0321a185c5ac13df27d1041ed2716bb" title="重なりピクセル数の設定" alt="" coords="1090,601,1283,642"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a10776a11f9db9cd8257bbbed3cfa432d" title="パラメータファイルパスの設定" alt="" coords="631,794,808,835"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a6f6f9e4209cde2d4786f4ec7db1cd0a2" title="プロジェクトファイルパスの設定" alt="" coords="632,859,807,901"/>
-<area shape="rect" href="class_c_project_file_i_o.html#ac9d388f1b406dc039232bba05e0f0710" title="樹脂面スキャン画像ファイル名の設定" alt="" coords="636,925,803,966"/>
-<area shape="rect" href="class_c_project_file_i_o.html#aa8efda1ffb2c625303783594afde887e" title="接合結果画像スキャン画像ファイル名の設定" alt="" coords="634,990,805,1031"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a6105272d1341dff46162a302c8408e89" title="名称の設定" alt="" coords="631,1056,807,1083"/>
+<area shape="rect" href="class_c_file_util.html#a1a5b66b44b29a8777c94cf89f960323d" title="ファイルを削除する（ディレクトリを含むリーカーシブル削除）" alt="" coords="1113,1881,1261,1908"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1595,1121,1727,1148"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="1340,2093,1519,2120"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad3746774f32e3fa3fc4ebc4d4510d0ee" title="登録済み試験格納フォルダの取得" alt="" coords="649,2439,791,2481"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="1094,2271,1281,2313"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="409,1215,552,1257"/>
+<area shape="rect" href="class_c_file_util.html#a390bb140d44dcbd206497e5efe5a76a8" title="ファイルを削除する" alt="" coords="1363,1739,1495,1765"/>
+<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="1575,2489,1747,2516"/>
+<area shape="rect" href="class_c_configration_i_o.html#a0fb34e01af48df8da81d80108ffa3d03" title="指定セクションのキーに文字列を設定" alt="" coords="871,2489,1043,2516"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="1333,2373,1526,2414"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a03be4072859f974c141dc3bd06b64614" title="射影変換" alt="" coords="620,575,820,617"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ae8fcb4c73d65ae2bcdff6f833fc93e29" title="CubeFloatのクローズ" alt="" coords="650,641,790,668"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a66c4a406f8a43359ced44c21e974cb90" title="ワークプロジェクトの削除" alt="" coords="885,1870,1028,1911"/>
+<area shape="rect" href="class_c_configration_i_o.html#a460fe4c9b31d05649b998bcf78f2568d" title="指定セクションのキー値（浮動小数点）を取得" alt="" coords="631,743,809,769"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a79efcba4f34fdb1de1c05ec081c0a376" title="射影変換用頂点の取得" alt="" coords="643,1055,797,1097"/>
+<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="881,867,1033,893"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad48d4a00fc87bf6e0e8efab2c1e1279f" title="横方向の解像度の取得" alt="" coords="635,794,805,835"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#acdf5f510e085ec177dc0a70d9b4ab986" title="スキャンデータ名の取得" alt="" coords="649,990,791,1031"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#acb185b5cb5f8e080c3e082e6def82cb6" title="縦方向の解像度の取得" alt="" coords="642,859,798,901"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ab9b811efdecb8b32d42d8eaeba752b23" title="ワークプロジェクトパスの取得" alt="" coords="881,2271,1032,2313"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a4be8e2c3ecdc21cd9528a2913b76a8ce" title="プロジェクトの初期化" alt="" coords="641,1172,799,1199"/>
+<area shape="rect" href="class_c_file_util.html#af931a05d8c01e5609eb3f6e0a18244c9" title="ディレクトリの作成" alt="" coords="893,2337,1020,2364"/>
+<area shape="rect" href="class_c_propaty_i_o.html#aa7e8f1b21cb5a383aaf1bce0ce518417" title="パラメータファイル名の作成" alt="" coords="618,1273,822,1300"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a5c053cec7083e77d1f285f262f4ddbd1" title="金属面の解析方法の設定" alt="" coords="621,1325,819,1366"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a4696f24d77def8e3b9d206b351c8ad66" title="金属面の接合割合の設定" alt="" coords="632,1390,808,1431"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ab263d6b737c5fb9a6a75a8319506cddb" title="金属面の分類数の設定" alt="" coords="623,1455,817,1497"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#af0dd89540e9d6522bc50cf1b1e2aef42" title="重なりピクセル数の取得" alt="" coords="638,925,802,966"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a2892a7fb2783d6eb6808c35c620a200d" title="射影先点の取得" alt="" coords="637,1521,803,1548"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#aa39614b53408689ab3187d7a78948ac9" title="射影変換の移動元取得" alt="" coords="617,1572,823,1599"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a051b247732fab46470782bf66c3cf332" title="プロジェクトをワークへ移動" alt="" coords="649,2221,791,2262"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ac179aa732fd5e8373f6deeb918367fdc" title="樹脂面の解析方法の設定" alt="" coords="620,1674,820,1715"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ab16492fd229e0e2ccf188fae8ca7f726" title="樹脂面の接合割合の設定" alt="" coords="631,1739,809,1781"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a6a2f279575582b3b5fd0fc78d44313bf" title="樹脂面の分類数の設定" alt="" coords="1332,166,1527,207"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ab5d3cd61f8af29747e644c8891163c28" title="接合結果の接合割合の設定" alt="" coords="629,1805,811,1846"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a5d8a3b2d8be1e1c95293c525278ccc4b" title="接合結果の分類数の設定" alt="" coords="621,1870,819,1911"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a5d17a1a5554d49705db9a462536d437f" title="パラメータファイルの書き込み" alt="" coords="1116,256,1259,283"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a5e99e08fd35c3598db64ec2925ec1f98" title="パラメータファイルの書き込み" alt="" coords="1367,597,1492,624"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b7dd9ce24a05331154febb0c6fe0295" title="分類結果の保存" alt="" coords="623,1987,817,2029"/>
+<area shape="rect" href="class_c_propaty_i_o.html#af898ffdeaebe21dc351bd176911b5dde" title="横方向の解像度の設定" alt="" coords="1100,645,1275,686"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a75d0972c4de362586eed671a1471fd57" title="イメージデータへのルートパスの設定" alt="" coords="635,2053,805,2094"/>
+<area shape="rect" href="class_c_project_file_i_o.html#acfecde3135f2edba90dc45c2df2f9d2f" title="金属面スキャン画像ファイル名の設定" alt="" coords="637,94,803,135"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ae0321a185c5ac13df27d1041ed2716bb" title="重なりピクセル数の設定" alt="" coords="1091,1114,1284,1155"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a10776a11f9db9cd8257bbbed3cfa432d" title="パラメータファイルパスの設定" alt="" coords="631,211,809,253"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a6f6f9e4209cde2d4786f4ec7db1cd0a2" title="プロジェクトファイルパスの設定" alt="" coords="633,277,807,318"/>
+<area shape="rect" href="class_c_project_file_i_o.html#ac9d388f1b406dc039232bba05e0f0710" title="樹脂面スキャン画像ファイル名の設定" alt="" coords="637,342,803,383"/>
+<area shape="rect" href="class_c_project_file_i_o.html#aa8efda1ffb2c625303783594afde887e" title="接合結果画像スキャン画像ファイル名の設定" alt="" coords="635,407,805,449"/>
 <area shape="rect" href="class_c_propaty_i_o.html#adcab3ae7a0b14e93b5b7c781d4025986" title="名称の取得" alt="" coords="392,2692,569,2719"/>
 </map>
 </div>
@@ -1726,50 +1814,56 @@ CButton&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <div class="dyncontent">
 <div class="center"><img src="class_c_weld_evaluation_view_a78595107782d434cd4840b1c98585867_cgraph.png" border="0" usemap="#aclass_c_weld_evaluation_view_a78595107782d434cd4840b1c98585867_cgraph" alt=""/></div>
 <map name="aclass_c_weld_evaluation_view_a78595107782d434cd4840b1c98585867_cgraph" id="aclass_c_weld_evaluation_view_a78595107782d434cd4840b1c98585867_cgraph">
-<area shape="rect" title="プロジェクトのオープン" alt="" coords="5,256,153,297"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a66c4a406f8a43359ced44c21e974cb90" title="ワークプロジェクトの削除" alt="" coords="926,168,1069,209"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a6fb9f31759c4175b40446be90447a42f" title="表示モードの取得" alt="" coords="1165,81,1307,123"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a4d73aeb4901a8e64596b44084254800b" title="プロジェクトからのスペクトルグラフ（点指定）の位置の取得" alt="" coords="201,227,412,268"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a6d85514e7850edc2d4dc4c007445bb17" title="プロジェクトの更新判定" alt="" coords="917,233,1077,275"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="235,867,378,908"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#aacd463c0c66894d78faa479f9cf975f8" title="プロジェクトの更新ステータス設定" alt="" coords="900,351,1095,392"/>
-<area shape="rect" href="class_c_file_util.html#a1a5b66b44b29a8777c94cf89f960323d" title="ファイルを削除する（ディレクトリを含むリーカーシブル削除）" alt="" coords="1162,241,1310,267"/>
-<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="2032,550,2164,577"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="1143,292,1329,333"/>
-<area shape="rect" href="class_c_file_util.html#a390bb140d44dcbd206497e5efe5a76a8" title="ファイルを削除する" alt="" coords="1639,318,1771,345"/>
-<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="1385,474,1563,501"/>
-<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="1619,395,1791,422"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="1377,355,1571,396"/>
-<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="1839,395,1984,422"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a01bc129069b3ba05ed979729f88be551" title="金属画像表示タイプの取得" alt="" coords="1391,136,1557,177"/>
-<area shape="rect" href="class_c_project_file_i_o.html#ae824553dca5d5e1f69ea7e4687dd1588" title="樹脂画像表示タイプの取得" alt="" coords="1390,5,1558,47"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a3ff4f09ff5ba28cac5284611c2f4a628" title="接合結果画像表示タイプの取得" alt="" coords="1388,71,1560,112"/>
-<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="1629,114,1781,141"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a49c7cd445cbff3f5e962fd19dee36cd2" title="スペクトルグラフ（点指定）の位置の取得" alt="" coords="465,227,648,268"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a827c581753a1e8dab5c6a6437e8d1696" title="プロジェクトステータス取得" alt="" coords="1155,357,1317,399"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#ae8fcb4c73d65ae2bcdff6f833fc93e29" title="CubeFloatのクローズ" alt="" coords="927,1143,1067,1170"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a63d5f780046e125660e2e9b51e754ad5" title="プロジェクト名の取得" alt="" coords="460,962,653,989"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad3746774f32e3fa3fc4ebc4d4510d0ee" title="登録済み試験格納フォルダの取得" alt="" coords="1165,904,1307,945"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a20f4912ddc5aef772cd12ec334e55f04" title="スキャンデータファイルパス取得" alt="" coords="480,896,633,937"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ab9b811efdecb8b32d42d8eaeba752b23" title="ワークプロジェクトパスの取得" alt="" coords="922,416,1073,457"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#ae86f36b123901fbe038ff0f1669192bd" title="オープン" alt="" coords="488,1169,625,1195"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a051b247732fab46470782bf66c3cf332" title="プロジェクトをワークへ移動" alt="" coords="705,481,848,523"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a659e5931885ed15759f868773e07d47d" title="パラメータファイルの読み込み" alt="" coords="1839,845,1983,871"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a4b1875f347bb78719ec500d3576cc8da" title="パラメータファイルの読み込み" alt="" coords="1848,1295,1975,1322"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a10776a11f9db9cd8257bbbed3cfa432d" title="パラメータファイルパスの設定" alt="" coords="468,561,645,603"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a6f6f9e4209cde2d4786f4ec7db1cd0a2" title="プロジェクトファイルパスの設定" alt="" coords="469,627,644,668"/>
-<area shape="rect" href="class_c_configration_i_o.html#a0fb34e01af48df8da81d80108ffa3d03" title="指定セクションのキーに文字列を設定" alt="" coords="1388,895,1560,922"/>
-<area shape="rect" href="class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="1631,895,1778,922"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a18363dcc891c5e076681195958f7ab18" title="スキャンファイルパス取得（拡張子なし）" alt="" coords="705,896,848,937"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a9b2b2b42f5c25ec3e352dd5b2226b8a2" title="金属面スキャン画像ファイル名の取得" alt="" coords="914,896,1081,937"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a4c86e9e72a5fdb38be8698a214f4a21e" title="樹脂面スキャン画像ファイル名の取得" alt="" coords="913,961,1081,1003"/>
-<area shape="rect" href="class_c_project_file_i_o.html#ae329fa86b9074317f82eb6fb80d03f37" title="接合結果画像スキャン画像ファイル名の取得" alt="" coords="911,1027,1083,1068"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a74d77b0c697e9eab35f6f233be162c27" title="CubeFloatの解放" alt="" coords="701,1143,852,1170"/>
-<area shape="rect" href="class_c_file_util.html#acd0ab529d0f67b3a1d783e9b954c5576" title="フィルパスを分解する" alt="" coords="1409,1095,1539,1122"/>
-<area shape="rect" href="class_c_file_util.html#a3e7c1a5aac6ffb5357485b2a97c8b233" title="ファイルのコピー" alt="" coords="1181,575,1291,602"/>
-<area shape="rect" href="class_c_file_util.html#af931a05d8c01e5609eb3f6e0a18244c9" title="ディレクトリの作成" alt="" coords="934,794,1061,821"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a7e566eb5b56caf422a7b530513bb1f0a" title="プロジェクトステータス設定" alt="" coords="1156,627,1316,668"/>
-<area shape="rect" href="class_c_file_util.html#a1308760e07cde212bd7ee59ae99fbf99" title="ファイルパスからディレクトリを取得する" alt="" coords="1179,987,1293,1014"/>
+<area shape="rect" title="プロジェクトのオープン" alt="" coords="5,1243,153,1285"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a66c4a406f8a43359ced44c21e974cb90" title="ワークプロジェクトの削除" alt="" coords="727,855,870,897"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a6fb9f31759c4175b40446be90447a42f" title="表示モードの取得" alt="" coords="953,406,1095,447"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a4d73aeb4901a8e64596b44084254800b" title="プロジェクトからのスペクトルグラフ（点指定）の位置の取得" alt="" coords="201,1595,412,1637"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a6d85514e7850edc2d4dc4c007445bb17" title="プロジェクトの更新判定" alt="" coords="944,1529,1104,1570"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="235,999,378,1041"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aacd463c0c66894d78faa479f9cf975f8" title="プロジェクトの更新ステータス設定" alt="" coords="701,1295,896,1337"/>
+<area shape="rect" href="class_c_file_util.html#a1a5b66b44b29a8777c94cf89f960323d" title="ファイルを削除する（ディレクトリを含むリーカーシブル削除）" alt="" coords="950,855,1098,881"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1417,753,1549,780"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="1152,1463,1339,1505"/>
+<area shape="rect" href="class_c_file_util.html#a390bb140d44dcbd206497e5efe5a76a8" title="ファイルを削除する" alt="" coords="1179,855,1311,881"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="1394,1357,1573,1384"/>
+<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="1628,1416,1800,1443"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="1387,1409,1580,1450"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a01bc129069b3ba05ed979729f88be551" title="金属画像表示タイプの取得" alt="" coords="1162,354,1329,395"/>
+<area shape="rect" href="class_c_project_file_i_o.html#ae824553dca5d5e1f69ea7e4687dd1588" title="樹脂画像表示タイプの取得" alt="" coords="1161,419,1329,461"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a3ff4f09ff5ba28cac5284611c2f4a628" title="接合結果画像表示タイプの取得" alt="" coords="1159,485,1331,526"/>
+<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="1407,492,1559,519"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a49c7cd445cbff3f5e962fd19dee36cd2" title="スペクトルグラフ（点指定）の位置の取得" alt="" coords="465,1595,648,1637"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a827c581753a1e8dab5c6a6437e8d1696" title="プロジェクトステータス取得" alt="" coords="1165,1529,1326,1570"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ae8fcb4c73d65ae2bcdff6f833fc93e29" title="CubeFloatのクローズ" alt="" coords="954,652,1094,679"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a63d5f780046e125660e2e9b51e754ad5" title="プロジェクト名の取得" alt="" coords="460,905,653,932"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad3746774f32e3fa3fc4ebc4d4510d0ee" title="登録済み試験格納フォルダの取得" alt="" coords="953,1026,1095,1067"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a20f4912ddc5aef772cd12ec334e55f04" title="スキャンデータファイルパス取得" alt="" coords="480,1241,633,1282"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ab9b811efdecb8b32d42d8eaeba752b23" title="ワークプロジェクトパスの取得" alt="" coords="949,1463,1099,1505"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a4be8e2c3ecdc21cd9528a2913b76a8ce" title="プロジェクトの初期化" alt="" coords="477,956,636,983"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ad897f9626d7ca690598d8b6c06107dea" title="パラメータの初期化" alt="" coords="486,1007,627,1033"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ae86f36b123901fbe038ff0f1669192bd" title="オープン" alt="" coords="488,601,625,628"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a326d3e3001da0baf7b878f1a10cf9836" title="プロジェクトの更新" alt="" coords="1174,274,1317,315"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a051b247732fab46470782bf66c3cf332" title="プロジェクトをワークへ移動" alt="" coords="485,1175,628,1217"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a659e5931885ed15759f868773e07d47d" title="パラメータファイルの読み込み" alt="" coords="952,703,1096,729"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a4b1875f347bb78719ec500d3576cc8da" title="パラメータファイルの読み込み" alt="" coords="735,804,862,831"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a10776a11f9db9cd8257bbbed3cfa432d" title="パラメータファイルパスの設定" alt="" coords="468,1058,645,1099"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a6f6f9e4209cde2d4786f4ec7db1cd0a2" title="プロジェクトファイルパスの設定" alt="" coords="469,1306,644,1347"/>
+<area shape="rect" href="class_c_configration_i_o.html#a0fb34e01af48df8da81d80108ffa3d03" title="指定セクションのキーに文字列を設定" alt="" coords="1159,1260,1331,1287"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a18363dcc891c5e076681195958f7ab18" title="スキャンファイルパス取得（拡張子なし）" alt="" coords="727,1413,870,1454"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a74d77b0c697e9eab35f6f233be162c27" title="CubeFloatの解放" alt="" coords="723,652,874,679"/>
+<area shape="rect" href="class_c_file_util.html#acd0ab529d0f67b3a1d783e9b954c5576" title="フィルパスを分解する" alt="" coords="733,500,864,527"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="720,551,877,577"/>
+<area shape="rect" href="class_c_configration_i_o.html#a502e7c8a4d1a173bf0637e9704ebd980" title="指定セクションのキーにを削除" alt="" coords="1394,157,1573,184"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a5a93a2a9b306fc8bbcd305cfd47fe3fc" title="パラメータファイルパスの取得" alt="" coords="1394,209,1573,250"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a7a202239b515e5f244f93e9747ac0a82" title="プロジェクトファイルパスの取得" alt="" coords="1395,274,1571,315"/>
+<area shape="rect" href="class_c_project_file_i_o.html#ab970390e382105359481be3b4b534311" title="バージョンの取得の取得" alt="" coords="1394,340,1573,367"/>
+<area shape="rect" href="class_c_propaty_i_o.html#acbaaba08a3cf1caa9d3a5a7b74ff890d" title="バージョンの取得の取得" alt="" coords="1402,391,1565,417"/>
+<area shape="rect" href="class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="1407,5,1559,32"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a1249b885accbfc82c6b2c41f6e956894" title="バージョンの設定" alt="" coords="1394,56,1573,83"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a84c66efac31212daceb07676efeac6e3" title="バージョンの設定" alt="" coords="1403,107,1564,133"/>
+<area shape="rect" href="class_c_file_util.html#a3e7c1a5aac6ffb5357485b2a97c8b233" title="ファイルのコピー" alt="" coords="1191,1159,1300,1185"/>
+<area shape="rect" href="class_c_file_util.html#af931a05d8c01e5609eb3f6e0a18244c9" title="ディレクトリの作成" alt="" coords="735,921,862,948"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7e566eb5b56caf422a7b530513bb1f0a" title="プロジェクトステータス設定" alt="" coords="944,1194,1104,1235"/>
 </map>
 </div>
 
@@ -1815,56 +1909,56 @@ CButton&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <div class="dyncontent">
 <div class="center"><img src="class_c_weld_evaluation_view_ab8be50e0c7eeb845227827a2c0e99342_cgraph.png" border="0" usemap="#aclass_c_weld_evaluation_view_ab8be50e0c7eeb845227827a2c0e99342_cgraph" alt=""/></div>
 <map name="aclass_c_weld_evaluation_view_ab8be50e0c7eeb845227827a2c0e99342_cgraph" id="aclass_c_weld_evaluation_view_ab8be50e0c7eeb845227827a2c0e99342_cgraph">
-<area shape="rect" title="プロジェクトの更新要求" alt="" coords="5,585,179,627"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad9712f68619dcab924e5c06b439e1c75" title="名称の取得" alt="" coords="227,35,369,76"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="227,1109,369,1151"/>
-<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="1200,959,1372,986"/>
-<area shape="rect" href="class_c_propaty_i_o.html#adcab3ae7a0b14e93b5b7c781d4025986" title="名称の取得" alt="" coords="440,42,617,69"/>
-<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="1420,677,1565,703"/>
-<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1613,803,1745,830"/>
-<area shape="rect" href="class_c_file_util.html#a390bb140d44dcbd206497e5efe5a76a8" title="ファイルを削除する" alt="" coords="1220,246,1352,273"/>
-<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="966,1298,1145,1325"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a39ef807cadcf61a48b387e47ca5bdfde" title="横方向の解像度の取得" alt="" coords="441,611,617,652"/>
-<area shape="rect" href="class_c_project_file_i_o.html#aa55eac2bd7d274c475a9afe818283837" title="イメージデータへのルートパスの取得" alt="" coords="443,2199,614,2240"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a63d5f780046e125660e2e9b51e754ad5" title="プロジェクト名の取得" alt="" coords="432,2265,625,2291"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad3746774f32e3fa3fc4ebc4d4510d0ee" title="登録済み試験格納フォルダの取得" alt="" coords="728,1036,871,1077"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a6cc4479cfd0b46ed6189985fcf02bbad" title="縦方向の解像度の取得" alt="" coords="417,677,640,703"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="706,1232,893,1273"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a827c581753a1e8dab5c6a6437e8d1696" title="プロジェクトステータス取得" alt="" coords="719,905,880,947"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a939aaef4c4b84ea0ea2add3357e0f4de" title="金属面の接合割合の取得" alt="" coords="440,261,617,303"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a16a55c3db357af77e875c008c5837dee" title="金属面の分類数の取得" alt="" coords="431,793,626,835"/>
-<area shape="rect" href="class_c_propaty_i_o.html#ab263d6b737c5fb9a6a75a8319506cddb" title="金属面の分類数の設定" alt="" coords="702,971,897,1012"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a4696f24d77def8e3b9d206b351c8ad66" title="金属面の接合割合の設定" alt="" coords="711,2164,887,2205"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="457,1519,600,1560"/>
-<area shape="rect" href="class_c_propaty_i_o.html#ab16492fd229e0e2ccf188fae8ca7f726" title="樹脂面の接合割合の設定" alt="" coords="711,2229,888,2271"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a6a2f279575582b3b5fd0fc78d44313bf" title="樹脂面の分類数の設定" alt="" coords="702,1101,897,1143"/>
-<area shape="rect" href="class_c_propaty_i_o.html#ab5d3cd61f8af29747e644c8891163c28" title="接合結果の接合割合の設定" alt="" coords="709,1785,890,1827"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a5d8a3b2d8be1e1c95293c525278ccc4b" title="接合結果の分類数の設定" alt="" coords="700,1167,899,1208"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a5d17a1a5554d49705db9a462536d437f" title="パラメータファイルの書き込み" alt="" coords="728,1450,871,1477"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a5e99e08fd35c3598db64ec2925ec1f98" title="パラメータファイルの書き込み" alt="" coords="737,1501,862,1527"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b7dd9ce24a05331154febb0c6fe0295" title="分類結果の保存" alt="" coords="703,1851,896,1892"/>
-<area shape="rect" href="class_c_propaty_i_o.html#af898ffdeaebe21dc351bd176911b5dde" title="横方向の解像度の設定" alt="" coords="712,1603,887,1644"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a75d0972c4de362586eed671a1471fd57" title="イメージデータへのルートパスの設定" alt="" coords="715,1916,884,1957"/>
-<area shape="rect" href="class_c_propaty_i_o.html#ae0321a185c5ac13df27d1041ed2716bb" title="重なりピクセル数の設定" alt="" coords="703,1668,896,1709"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a10776a11f9db9cd8257bbbed3cfa432d" title="パラメータファイルパスの設定" alt="" coords="711,1981,888,2023"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a6f6f9e4209cde2d4786f4ec7db1cd0a2" title="プロジェクトファイルパスの設定" alt="" coords="712,2099,887,2140"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a5cd21ed2fe9256877c4421dc644665c2" title="縦方向の解像度の設定" alt="" coords="688,1734,911,1761"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a0e15acb901cceb99e15113ca5d239e13" title="重なりピクセル数の取得" alt="" coords="427,728,630,769"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad97fb1fff98c1ec282fed06254c44e4f" title="ワークからプロジェクトへ移動" alt="" coords="457,1980,600,2021"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a75dffdbfb7f4a76575bc2acf30a272e7" title="樹脂面の接合割合の取得" alt="" coords="439,480,618,521"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a4ccce7edae07c0d331960ca1104aa375" title="樹脂面の分類数の取得" alt="" coords="431,859,627,900"/>
-<area shape="rect" href="class_c_propaty_i_o.html#ad2e31b8ac94a89d82b456db42206807d" title="接合結果の接合割合の取得" alt="" coords="437,545,620,587"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a3c255aa66e4a529223b8fc4dcaf4df18" title="接合結果の分類数の取得" alt="" coords="429,924,629,965"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#aabe96759afcb4dd3eca9e96f158bc7ae" title="スキャンデータの保存" alt="" coords="457,144,600,185"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a0093e512c08df1a77eefb0cea07eb6d1" title="作成日の設定" alt="" coords="431,210,626,237"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a7ef9f7c0f443cfe414f2476af98d5200" title="プロジェクト名の設定" alt="" coords="433,327,625,354"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a971f5f23c04ddb91dc03b10aeb6e58ab" title="更新日の設定" alt="" coords="429,378,628,405"/>
-<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="723,651,875,678"/>
-<area shape="rect" href="class_c_configration_i_o.html#a0fb34e01af48df8da81d80108ffa3d03" title="指定セクションのキーに文字列を設定" alt="" coords="969,1010,1141,1037"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="959,1061,1152,1103"/>
-<area shape="rect" href="class_c_configration_i_o.html#a460fe4c9b31d05649b998bcf78f2568d" title="指定セクションのキー値（浮動小数点）を取得" alt="" coords="710,398,889,425"/>
-<area shape="rect" href="class_c_configration_i_o.html#a502e7c8a4d1a173bf0637e9704ebd980" title="指定セクションのキーにを削除" alt="" coords="710,803,889,830"/>
-<area shape="rect" href="class_c_configration_i_o.html#a535689b2c4df043a729548de99f72a4a" title="指定セクションのキーに浮動小数点値を設定" alt="" coords="966,2171,1145,2198"/>
+<area shape="rect" title="プロジェクトの更新要求" alt="" coords="5,493,179,534"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad9712f68619dcab924e5c06b439e1c75" title="名称の取得" alt="" coords="227,25,369,66"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="227,956,369,997"/>
+<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="1412,963,1584,990"/>
+<area shape="rect" href="class_c_propaty_i_o.html#adcab3ae7a0b14e93b5b7c781d4025986" title="名称の取得" alt="" coords="429,32,606,59"/>
+<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="1632,783,1777,810"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1825,846,1957,872"/>
+<area shape="rect" href="class_c_file_util.html#a390bb140d44dcbd206497e5efe5a76a8" title="ファイルを削除する" alt="" coords="1432,187,1564,214"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="1178,1771,1357,1798"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a39ef807cadcf61a48b387e47ca5bdfde" title="横方向の解像度の取得" alt="" coords="689,230,865,272"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad3746774f32e3fa3fc4ebc4d4510d0ee" title="登録済み試験格納フォルダの取得" alt="" coords="705,956,848,997"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a6cc4479cfd0b46ed6189985fcf02bbad" title="縦方向の解像度の取得" alt="" coords="665,296,888,323"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="936,1486,1123,1528"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a827c581753a1e8dab5c6a6437e8d1696" title="プロジェクトステータス取得" alt="" coords="949,897,1110,938"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a939aaef4c4b84ea0ea2add3357e0f4de" title="金属面の接合割合の取得" alt="" coords="429,454,606,496"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a16a55c3db357af77e875c008c5837dee" title="金属面の分類数の取得" alt="" coords="420,708,615,749"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ab263d6b737c5fb9a6a75a8319506cddb" title="金属面の分類数の設定" alt="" coords="679,1021,874,1062"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a4696f24d77def8e3b9d206b351c8ad66" title="金属面の接合割合の設定" alt="" coords="689,2188,865,2229"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="446,1572,589,1613"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ab16492fd229e0e2ccf188fae8ca7f726" title="樹脂面の接合割合の設定" alt="" coords="688,2005,865,2046"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a6a2f279575582b3b5fd0fc78d44313bf" title="樹脂面の分類数の設定" alt="" coords="679,1086,874,1128"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ab5d3cd61f8af29747e644c8891163c28" title="接合結果の接合割合の設定" alt="" coords="686,2122,867,2164"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a5d8a3b2d8be1e1c95293c525278ccc4b" title="接合結果の分類数の設定" alt="" coords="677,1152,876,1193"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a5d17a1a5554d49705db9a462536d437f" title="パラメータファイルの書き込み" alt="" coords="705,1268,848,1295"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a5e99e08fd35c3598db64ec2925ec1f98" title="パラメータファイルの書き込み" alt="" coords="714,1319,839,1346"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b7dd9ce24a05331154febb0c6fe0295" title="分類結果の保存" alt="" coords="680,1940,873,1981"/>
+<area shape="rect" href="class_c_propaty_i_o.html#af898ffdeaebe21dc351bd176911b5dde" title="横方向の解像度の設定" alt="" coords="689,1822,864,1864"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a10776a11f9db9cd8257bbbed3cfa432d" title="パラメータファイルパスの設定" alt="" coords="688,2253,865,2294"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a6f6f9e4209cde2d4786f4ec7db1cd0a2" title="プロジェクトファイルパスの設定" alt="" coords="689,2318,864,2360"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a5cd21ed2fe9256877c4421dc644665c2" title="縦方向の解像度の設定" alt="" coords="665,1888,888,1915"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad97fb1fff98c1ec282fed06254c44e4f" title="ワークからプロジェクトへ移動" alt="" coords="446,2374,589,2416"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a75dffdbfb7f4a76575bc2acf30a272e7" title="樹脂面の接合割合の取得" alt="" coords="428,520,607,561"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a4ccce7edae07c0d331960ca1104aa375" title="樹脂面の分類数の取得" alt="" coords="419,773,615,814"/>
+<area shape="rect" href="class_c_propaty_i_o.html#ad2e31b8ac94a89d82b456db42206807d" title="接合結果の接合割合の取得" alt="" coords="426,585,609,626"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a3c255aa66e4a529223b8fc4dcaf4df18" title="接合結果の分類数の取得" alt="" coords="417,838,617,880"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aabe96759afcb4dd3eca9e96f158bc7ae" title="スキャンデータの保存" alt="" coords="446,134,589,176"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a0093e512c08df1a77eefb0cea07eb6d1" title="作成日の設定" alt="" coords="420,656,615,683"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a7ef9f7c0f443cfe414f2476af98d5200" title="プロジェクト名の設定" alt="" coords="421,302,613,328"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a971f5f23c04ddb91dc03b10aeb6e58ab" title="更新日の設定" alt="" coords="418,352,617,379"/>
+<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="953,724,1105,751"/>
+<area shape="rect" href="class_c_configration_i_o.html#a0fb34e01af48df8da81d80108ffa3d03" title="指定セクションのキーに文字列を設定" alt="" coords="943,1014,1115,1040"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="1171,1318,1364,1360"/>
+<area shape="rect" href="class_c_configration_i_o.html#a460fe4c9b31d05649b998bcf78f2568d" title="指定セクションのキー値（浮動小数点）を取得" alt="" coords="687,448,866,475"/>
+<area shape="rect" href="class_c_configration_i_o.html#a502e7c8a4d1a173bf0637e9704ebd980" title="指定セクションのキーにを削除" alt="" coords="687,752,866,779"/>
+<area shape="rect" href="class_c_configration_i_o.html#ae2b2f069a5eb2e6e40db50c09d6f71a5" title="指定セクションのキーに整数値を設定" alt="" coords="953,1166,1105,1192"/>
+<area shape="rect" href="class_c_configration_i_o.html#a535689b2c4df043a729548de99f72a4a" title="指定セクションのキーに浮動小数点値を設定" alt="" coords="940,2130,1119,2156"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a03be4072859f974c141dc3bd06b64614" title="射影変換" alt="" coords="677,1604,877,1645"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ae8fcb4c73d65ae2bcdff6f833fc93e29" title="CubeFloatのクローズ" alt="" coords="707,1720,847,1747"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a66c4a406f8a43359ced44c21e974cb90" title="ワークプロジェクトの削除" alt="" coords="705,1538,848,1580"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a79efcba4f34fdb1de1c05ec081c0a376" title="射影変換用頂点の取得" alt="" coords="699,1421,854,1462"/>
 </map>
 </div>
 
@@ -2115,20 +2209,27 @@ CButton&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <div class="dyncontent">
 <div class="center"><img src="class_c_weld_evaluation_view_a8805e4c9d110a33112c8b5e7af294f9e_cgraph.png" border="0" usemap="#aclass_c_weld_evaluation_view_a8805e4c9d110a33112c8b5e7af294f9e_cgraph" alt=""/></div>
 <map name="aclass_c_weld_evaluation_view_a8805e4c9d110a33112c8b5e7af294f9e_cgraph" id="aclass_c_weld_evaluation_view_a8805e4c9d110a33112c8b5e7af294f9e_cgraph">
-<area shape="rect" title="スペクトルグラフの表示" alt="" coords="5,96,192,137"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad49fe5bd6a5dbd63b150bde87a194a10" title="指定位置スペクトル群の取得" alt="" coords="241,63,383,104"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a482c242e79c4b82b34d23794280649b0" title="スペクトルレンジの取得" alt="" coords="240,128,384,169"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a74d0fa98822d49575c08acb1e72c128c" title="指定位置スペクトル群の取得" alt="" coords="435,13,648,39"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ab9b811efdecb8b32d42d8eaeba752b23" title="ワークプロジェクトパスの取得" alt="" coords="466,64,617,105"/>
-<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="941,69,1119,95"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="699,123,885,164"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a827c581753a1e8dab5c6a6437e8d1696" title="プロジェクトステータス取得" alt="" coords="711,5,873,47"/>
-<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="1175,127,1347,154"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="933,120,1127,161"/>
-<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="1395,127,1540,154"/>
-<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1588,127,1720,154"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a09a161f191779097aa003676ecb22714" title="バンド数の取得" alt="" coords="432,133,651,159"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a2e23bb8cbebd5d51292726ee0238adec" title="バンドのスペクトル値取得" alt="" coords="442,183,641,210"/>
+<area shape="rect" title="スペクトルグラフの表示" alt="" coords="5,161,192,203"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad49fe5bd6a5dbd63b150bde87a194a10" title="指定位置スペクトル群の取得" alt="" coords="241,128,383,169"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a482c242e79c4b82b34d23794280649b0" title="スペクトルレンジの取得" alt="" coords="240,193,384,235"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a74d0fa98822d49575c08acb1e72c128c" title="指定位置スペクトル群の取得" alt="" coords="435,139,648,166"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ab9b811efdecb8b32d42d8eaeba752b23" title="ワークプロジェクトパスの取得" alt="" coords="904,77,1055,119"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="699,199,856,226"/>
+<area shape="rect" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="925,201,1033,227"/>
+<area shape="rect" href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="1116,201,1276,227"/>
+<area shape="rect" href="class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf" title=" " alt="" coords="1141,251,1251,278"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="1345,91,1523,118"/>
+<area shape="rect" href="class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="1367,197,1501,223"/>
+<area shape="rect" href="class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="1371,247,1497,274"/>
+<area shape="rect" href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="1599,197,1731,223"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad87e80d1bd51455408e6b782912c3036" title="ワークプロジェクトのルートパス取得" alt="" coords="1103,17,1289,59"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a827c581753a1e8dab5c6a6437e8d1696" title="プロジェクトステータス取得" alt="" coords="1115,135,1277,176"/>
+<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="1579,33,1751,59"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a257f53f62470c8a5bde34819d1843362" title="ワークプロジェクト名の取得" alt="" coords="1337,25,1531,67"/>
+<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="1799,33,1944,59"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1992,33,2124,59"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a09a161f191779097aa003676ecb22714" title="バンド数の取得" alt="" coords="432,197,651,223"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a2e23bb8cbebd5d51292726ee0238adec" title="バンドのスペクトル値取得" alt="" coords="442,247,641,274"/>
 </map>
 </div>
 
@@ -2378,42 +2479,44 @@ CButton&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <div class="dyncontent">
 <div class="center"><img src="class_c_weld_evaluation_view_a2b69faf84702201cc5dbfe3fcd202b32_cgraph.png" border="0" usemap="#aclass_c_weld_evaluation_view_a2b69faf84702201cc5dbfe3fcd202b32_cgraph" alt=""/></div>
 <map name="aclass_c_weld_evaluation_view_a2b69faf84702201cc5dbfe3fcd202b32_cgraph" id="aclass_c_weld_evaluation_view_a2b69faf84702201cc5dbfe3fcd202b32_cgraph">
-<area shape="rect" title="ホワイトバランススキャンの要求" alt="" coords="5,599,153,641"/>
-<area shape="rect" href="class_c_camera_i_o.html#a1730843fe81498de96623f8669cdefc5" title="リファレンス（ホワイトバランス）の取得" alt="" coords="427,259,626,285"/>
+<area shape="rect" title="ホワイトバランススキャンの要求" alt="" coords="5,631,153,673"/>
+<area shape="rect" href="class_c_camera_i_o.html#a1730843fe81498de96623f8669cdefc5" title="リファレンス（ホワイトバランス）の取得" alt="" coords="427,309,626,336"/>
 <area shape="rect" href="class_c_camera_i_o.html#a5aeea6f7c98f556616525063d302d720" title="カメラのクローズ" alt="" coords="461,5,592,32"/>
-<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="881,717,1013,744"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a7e533454b41c09a29279af6de516c913" title="デバイス名の取得" alt="" coords="218,469,361,510"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#aee173a16c4edff26f7f7f0bd15c1c671" title="Integration_time_msの取得" alt="" coords="211,861,368,902"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad3746774f32e3fa3fc4ebc4d4510d0ee" title="登録済み試験格納フォルダの取得" alt="" coords="218,338,361,379"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a55485766139b9685d1ed9a5e61a06e7b" title="撮影高さの取得" alt="" coords="218,730,361,771"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a9ef01c2fd9ec8ef296388a8048fe32fa" title="撮影幅の取得" alt="" coords="218,795,361,837"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a152e6527d44932f0c75c0eeda8b7cc29" title="スナップスキャンファイルパスの取得" alt="" coords="218,534,361,575"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a999ae33c47280fcd8d7a759b0de05c2a" title="ホワイトバランスファイル名の取得" alt="" coords="218,403,361,445"/>
-<area shape="rect" href="class_c_device_i_o.html#ab26f463bba0e20cbf0074700f5923b69" title="機器の初期化" alt="" coords="236,977,343,1004"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a7aff2c8f3a98f64977aad4f698b46cf1" title="カメラダミーモジュール使用有無判定" alt="" coords="215,665,364,706"/>
-<area shape="rect" href="class_c_device_i_o.html#afe3dcac15255e9b9658926a5db7c9220" title="カメラの移動" alt="" coords="467,1053,587,1080"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#aabcea1b96c3d5701c9fb0f3408b1cc7a" title="バンド数の取得" alt="" coords="218,599,361,641"/>
-<area shape="rect" href="class_c_camera_i_o.html#ac592e3623be0dba68f4db806da652cba" title="カメラのオープン" alt="" coords="225,171,353,197"/>
-<area shape="rect" href="class_c_camera_i_o.html#a81016636faf8f4329a1a664716c17de9" title="IntegrationTimeの設定" alt="" coords="425,56,628,83"/>
-<area shape="rect" href="class_c_camera_i_o.html#a366c8cfc6c2492079e3d7a63fffb076c" title="スキャンの開始" alt="" coords="449,309,604,336"/>
-<area shape="rect" href="class_c_device_i_o.html#ac3903acef20f20748a63c76239df005a" title="カメラをホームポジションへ移動" alt="" coords="220,1079,359,1105"/>
-<area shape="rect" href="class_c_status_dlg_thread.html#a5b12b4fbcef88da4d589d79a521eb1a1" title="ステータスの更新" alt="" coords="201,1130,377,1171"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#abfa111bff1b107f9615bf57d5014f7f4" title="エラーログ出力" alt="" coords="677,157,833,184"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="676,208,833,235"/>
-<area shape="rect" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="893,183,1001,209"/>
-<area shape="rect" href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="1061,157,1221,184"/>
-<area shape="rect" href="class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf" title=" " alt="" coords="1086,208,1197,235"/>
-<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="1269,107,1448,133"/>
-<area shape="rect" href="class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="1292,157,1425,184"/>
-<area shape="rect" href="class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="1295,208,1422,235"/>
-<area shape="rect" href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="1496,157,1628,184"/>
-<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="441,476,613,503"/>
-<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="682,717,827,744"/>
-<area shape="rect" href="class_c_configration_i_o.html#a460fe4c9b31d05649b998bcf78f2568d" title="指定セクションのキー値（浮動小数点）を取得" alt="" coords="437,783,616,809"/>
-<area shape="rect" href="class_c_configration_i_o.html#a0fb34e01af48df8da81d80108ffa3d03" title="指定セクションのキーに文字列を設定" alt="" coords="441,411,613,437"/>
-<area shape="rect" href="class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="681,411,828,437"/>
-<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="451,717,603,744"/>
-<area shape="rect" href="class_c_camera_i_o.html#aa4c14720243ce00bb95950a601327637" title="フォーマットの設定" alt="" coords="449,157,605,184"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0da31b2f65ebdcc0fa233216ce2b570e" title="ホワイトバランスファイルの削除" alt="" coords="218,894,361,935"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1111,745,1243,772"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad3746774f32e3fa3fc4ebc4d4510d0ee" title="登録済み試験格納フォルダの取得" alt="" coords="455,785,598,826"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a999ae33c47280fcd8d7a759b0de05c2a" title="ホワイトバランスファイル名の取得" alt="" coords="455,719,598,761"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7e533454b41c09a29279af6de516c913" title="デバイス名の取得" alt="" coords="218,661,361,702"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aee173a16c4edff26f7f7f0bd15c1c671" title="Integration_time_msの取得" alt="" coords="448,551,605,593"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a55485766139b9685d1ed9a5e61a06e7b" title="撮影高さの取得" alt="" coords="218,413,361,454"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a9ef01c2fd9ec8ef296388a8048fe32fa" title="撮影幅の取得" alt="" coords="218,478,361,519"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a152e6527d44932f0c75c0eeda8b7cc29" title="スナップスキャンファイルパスの取得" alt="" coords="218,726,361,767"/>
+<area shape="rect" href="class_c_device_i_o.html#ab26f463bba0e20cbf0074700f5923b69" title="機器の初期化" alt="" coords="236,1011,343,1037"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7aff2c8f3a98f64977aad4f698b46cf1" title="カメラダミーモジュール使用有無判定" alt="" coords="215,543,364,585"/>
+<area shape="rect" href="class_c_device_i_o.html#afe3dcac15255e9b9658926a5db7c9220" title="カメラの移動" alt="" coords="467,1087,587,1113"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#aabcea1b96c3d5701c9fb0f3408b1cc7a" title="バンド数の取得" alt="" coords="218,347,361,389"/>
+<area shape="rect" href="class_c_camera_i_o.html#ac592e3623be0dba68f4db806da652cba" title="カメラのオープン" alt="" coords="225,119,353,145"/>
+<area shape="rect" href="class_c_camera_i_o.html#a81016636faf8f4329a1a664716c17de9" title="IntegrationTimeの設定" alt="" coords="425,259,628,285"/>
+<area shape="rect" href="class_c_camera_i_o.html#a366c8cfc6c2492079e3d7a63fffb076c" title="スキャンの開始" alt="" coords="449,208,604,235"/>
+<area shape="rect" href="class_c_device_i_o.html#ac3903acef20f20748a63c76239df005a" title="カメラをホームポジションへ移動" alt="" coords="220,1112,359,1139"/>
+<area shape="rect" href="class_c_status_dlg_thread.html#a5b12b4fbcef88da4d589d79a521eb1a1" title="ステータスの更新" alt="" coords="201,1163,377,1205"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#abfa111bff1b107f9615bf57d5014f7f4" title="エラーログ出力" alt="" coords="687,183,843,209"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="687,233,844,260"/>
+<area shape="rect" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="922,233,1030,260"/>
+<area shape="rect" href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="1097,233,1257,260"/>
+<area shape="rect" href="class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf" title=" " alt="" coords="1122,284,1233,311"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="1305,587,1484,613"/>
+<area shape="rect" href="class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="1328,259,1461,285"/>
+<area shape="rect" href="class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="1331,208,1458,235"/>
+<area shape="rect" href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="1532,259,1664,285"/>
+<area shape="rect" href="class_c_file_util.html#a390bb140d44dcbd206497e5efe5a76a8" title="ファイルを削除する" alt="" coords="910,901,1042,928"/>
+<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="679,668,851,695"/>
+<area shape="rect" href="class_c_configration_i_o.html#a0fb34e01af48df8da81d80108ffa3d03" title="指定セクションのキーに文字列を設定" alt="" coords="679,796,851,823"/>
+<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="903,639,1049,665"/>
+<area shape="rect" href="class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="903,796,1049,823"/>
+<area shape="rect" href="class_c_configration_i_o.html#a460fe4c9b31d05649b998bcf78f2568d" title="指定セクションのキー値（浮動小数点）を取得" alt="" coords="676,615,855,641"/>
+<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="451,485,603,512"/>
+<area shape="rect" href="class_c_camera_i_o.html#aa4c14720243ce00bb95950a601327637" title="フォーマットの設定" alt="" coords="449,107,605,133"/>
 </map>
 </div>
 
@@ -2565,33 +2668,40 @@ CButton&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 <div class="dyncontent">
 <div class="center"><img src="class_c_weld_evaluation_view_ae4f218a4e70e08689a0532384eb86fe5_cgraph.png" border="0" usemap="#aclass_c_weld_evaluation_view_ae4f218a4e70e08689a0532384eb86fe5_cgraph" alt=""/></div>
 <map name="aclass_c_weld_evaluation_view_ae4f218a4e70e08689a0532384eb86fe5_cgraph" id="aclass_c_weld_evaluation_view_ae4f218a4e70e08689a0532384eb86fe5_cgraph">
-<area shape="rect" title="設定ページの再読込" alt="" coords="5,589,153,631"/>
+<area shape="rect" title="設定ページの再読込" alt="" coords="5,588,153,629"/>
 <area shape="rect" href="class_c_oprt_tab_page_analize.html#a84d0a276b8897ee23001945ec1620d63" title="パラメータの読み込み" alt="" coords="243,267,393,308"/>
-<area shape="rect" href="class_c_oprt_tab_page_initialize.html#a39a52da491a71f8afec8c1366284227a" title="パラメータの読み込み" alt="" coords="483,560,637,601"/>
-<area shape="rect" href="class_c_oprt_tab_page_scan.html#af326f804c5356d546158c0a53d242238" title="パラメータの読み込み" alt="" coords="201,685,435,711"/>
-<area shape="rect" href="class_c_oprt_tab_page_setting.html#a435aa7bd1f703c116dd18e3135dc5e19" title="パラメータの取得" alt="" coords="244,619,392,660"/>
+<area shape="rect" href="class_c_oprt_tab_page_initialize.html#a39a52da491a71f8afec8c1366284227a" title="パラメータの読み込み" alt="" coords="483,559,637,600"/>
+<area shape="rect" href="class_c_oprt_tab_page_scan.html#af326f804c5356d546158c0a53d242238" title="パラメータの読み込み" alt="" coords="201,683,435,710"/>
+<area shape="rect" href="class_c_oprt_tab_page_setting.html#a435aa7bd1f703c116dd18e3135dc5e19" title="パラメータの取得" alt="" coords="244,617,392,659"/>
 <area shape="rect" href="class_c_weld_evaluation_doc.html#ab81bb09791e3edcf133e9bc0321cd4a1" title="解析方法の取得" alt="" coords="488,104,632,145"/>
 <area shape="rect" href="class_c_weld_evaluation_doc.html#a6fb9f31759c4175b40446be90447a42f" title="表示モードの取得" alt="" coords="489,267,631,308"/>
-<area shape="rect" href="class_c_propaty_i_o.html#aaae96a2403eedacf849805121c1b9ae1" title="金属面の解析方法の取得" alt="" coords="688,5,888,47"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a46c9543b5945bbe938d772d62a95028c" title="樹脂面の解析方法の取得" alt="" coords="687,71,889,112"/>
-<area shape="rect" href="class_c_propaty_i_o.html#a7760f6ded7e2fcb8a413d39a1d8e77b9" title="接合結果の解析方法の取得" alt="" coords="685,136,891,177"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a01bc129069b3ba05ed979729f88be551" title="金属画像表示タイプの取得" alt="" coords="705,201,871,243"/>
-<area shape="rect" href="class_c_project_file_i_o.html#ae824553dca5d5e1f69ea7e4687dd1588" title="樹脂画像表示タイプの取得" alt="" coords="704,267,872,308"/>
-<area shape="rect" href="class_c_project_file_i_o.html#a3ff4f09ff5ba28cac5284611c2f4a628" title="接合結果画像表示タイプの取得" alt="" coords="702,332,874,373"/>
-<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1428,393,1560,419"/>
-<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="951,401,1103,427"/>
-<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="1199,461,1345,487"/>
-<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="699,659,877,686"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#ae3dff6661c7012b259b38910f3b3dbdb" title="ヘッダファイルから幅、高さを取得" alt="" coords="1164,641,1380,667"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad3746774f32e3fa3fc4ebc4d4510d0ee" title="登録済み試験格納フォルダの取得" alt="" coords="717,528,859,569"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a55485766139b9685d1ed9a5e61a06e7b" title="撮影高さの取得" alt="" coords="717,463,859,504"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a9ef01c2fd9ec8ef296388a8048fe32fa" title="撮影幅の取得" alt="" coords="717,397,859,439"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a999ae33c47280fcd8d7a759b0de05c2a" title="ホワイトバランスファイル名の取得" alt="" coords="717,593,859,635"/>
-<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="941,590,1113,617"/>
-<area shape="rect" href="class_c_configration_i_o.html#a0fb34e01af48df8da81d80108ffa3d03" title="指定セクションのキーに文字列を設定" alt="" coords="941,463,1113,490"/>
-<area shape="rect" href="class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="1199,410,1345,437"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#ad9712f68619dcab924e5c06b439e1c75" title="名称の取得" alt="" coords="717,761,859,803"/>
-<area shape="rect" href="class_c_propaty_i_o.html#adcab3ae7a0b14e93b5b7c781d4025986" title="名称の取得" alt="" coords="939,769,1116,795"/>
+<area shape="rect" href="class_c_propaty_i_o.html#aaae96a2403eedacf849805121c1b9ae1" title="金属面の解析方法の取得" alt="" coords="693,5,893,47"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a46c9543b5945bbe938d772d62a95028c" title="樹脂面の解析方法の取得" alt="" coords="693,71,894,112"/>
+<area shape="rect" href="class_c_propaty_i_o.html#a7760f6ded7e2fcb8a413d39a1d8e77b9" title="接合結果の解析方法の取得" alt="" coords="691,136,896,177"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a01bc129069b3ba05ed979729f88be551" title="金属画像表示タイプの取得" alt="" coords="710,201,877,243"/>
+<area shape="rect" href="class_c_project_file_i_o.html#ae824553dca5d5e1f69ea7e4687dd1588" title="樹脂画像表示タイプの取得" alt="" coords="709,267,877,308"/>
+<area shape="rect" href="class_c_project_file_i_o.html#a3ff4f09ff5ba28cac5284611c2f4a628" title="接合結果画像表示タイプの取得" alt="" coords="707,332,879,373"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="1383,365,1515,391"/>
+<area shape="rect" href="class_c_configration_i_o.html#a60d2dbaa282946adcc42ebd04fc08805" title="指定セクションのキー値（整数）を取得" alt="" coords="962,390,1114,417"/>
+<area shape="rect" href="class_c_configration_i_o.html#a73ecbb6f7141bad005e290e9f48c576f" title="指定セクションのキー値を取得" alt="" coords="1175,390,1321,417"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="1577,765,1756,791"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ae3dff6661c7012b259b38910f3b3dbdb" title="ヘッダファイルから幅、高さを取得" alt="" coords="685,659,901,686"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad3746774f32e3fa3fc4ebc4d4510d0ee" title="登録済み試験格納フォルダの取得" alt="" coords="722,593,865,635"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a55485766139b9685d1ed9a5e61a06e7b" title="撮影高さの取得" alt="" coords="722,397,865,439"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a9ef01c2fd9ec8ef296388a8048fe32fa" title="撮影幅の取得" alt="" coords="722,463,865,504"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a999ae33c47280fcd8d7a759b0de05c2a" title="ホワイトバランスファイル名の取得" alt="" coords="722,528,865,569"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="959,689,1117,715"/>
+<area shape="rect" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="1194,689,1302,715"/>
+<area shape="rect" href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="1369,689,1529,715"/>
+<area shape="rect" href="class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf" title=" " alt="" coords="1394,739,1505,766"/>
+<area shape="rect" href="class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="1600,702,1733,729"/>
+<area shape="rect" href="class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="1603,651,1730,678"/>
+<area shape="rect" href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="1804,702,1936,729"/>
+<area shape="rect" href="class_c_configration_i_o.html#a1c72779785c9de9ab2525d7320d12658" title="指定セクションのキー値（文字列）を取得" alt="" coords="952,486,1124,513"/>
+<area shape="rect" href="class_c_configration_i_o.html#a0fb34e01af48df8da81d80108ffa3d03" title="指定セクションのキーに文字列を設定" alt="" coords="952,587,1124,614"/>
+<area shape="rect" href="class_c_configration_i_o.html#aa05f2d3bee4d0f39715b3e41429cdfd2" title="指定セクションのキーに値を設定" alt="" coords="1175,587,1321,614"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad9712f68619dcab924e5c06b439e1c75" title="名称の取得" alt="" coords="722,711,865,752"/>
+<area shape="rect" href="class_c_propaty_i_o.html#adcab3ae7a0b14e93b5b7c781d4025986" title="名称の取得" alt="" coords="949,739,1127,766"/>
 </map>
 </div>
 
@@ -2924,18 +3034,10 @@ CButton&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 </div>
 </div>
-<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
-<li>C:/Users/kaneko/OneDrive/Project/JointAutomaticEvaluationSystem/WeldEvaluation/src/WeldEvaluation/WeldEvaluation/<a class="el" href="_weld_evaluation_view_8h_source.html">WeldEvaluationView.h</a></li>
-<li>C:/Users/kaneko/OneDrive/Project/JointAutomaticEvaluationSystem/WeldEvaluation/src/WeldEvaluation/WeldEvaluation/WeldEvaluationView.cpp</li>
-</ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="class_c_weld_evaluation_view.html">CWeldEvaluationView</a></li>
-    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

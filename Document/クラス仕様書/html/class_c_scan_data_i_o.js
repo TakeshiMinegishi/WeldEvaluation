@@ -12,7 +12,7 @@ var class_c_scan_data_i_o =
     [ "GetNumberOfBand", "class_c_scan_data_i_o.html#a09a161f191779097aa003676ecb22714", null ],
     [ "GetSpectrumData", "class_c_scan_data_i_o.html#a74d0fa98822d49575c08acb1e72c128c", null ],
     [ "getWaveLength", "class_c_scan_data_i_o.html#a2e23bb8cbebd5d51292726ee0238adec", null ],
-    [ "InversData", "class_c_scan_data_i_o.html#ac825d0592b26302e385508e7f97db658", null ],
+    [ "InversData", "class_c_scan_data_i_o.html#ab4e6effbecff1531d50b31163c6363fc", null ],
     [ "LoadImage", "class_c_scan_data_i_o.html#a3be95afdfa7914f7a2acbc003048e3ff", null ],
     [ "matinv", "class_c_scan_data_i_o.html#adfccaf34324ec4409764e689ab839661", null ],
     [ "MatrixInit", "class_c_scan_data_i_o.html#a604a2f1e09bc8c6bcbad00c82b19a893", null ],

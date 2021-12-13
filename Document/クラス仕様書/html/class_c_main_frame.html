@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -51,23 +47,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('class_c_main_frame.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -82,6 +61,7 @@ $(document).ready(function(){initNavTree('class_c_main_frame.html',''); initResi
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">公開メンバ関数</a> &#124;
@@ -105,7 +85,7 @@ CMainFrame の継承関係図</div>
 <area shape="rect" title="CMainFrame クラス" alt="" coords="5,80,101,107"/>
 <area shape="rect" title=" " alt="" coords="6,5,101,32"/>
 </map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">凡例</a>]</span></center></div>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
 <div class="dynheader">
 CMainFrame 連携図</div>
 <div class="dyncontent">
@@ -114,7 +94,7 @@ CMainFrame 連携図</div>
 <area shape="rect" title="CMainFrame クラス" alt="" coords="5,80,101,107"/>
 <area shape="rect" title=" " alt="" coords="6,5,101,32"/>
 </map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">凡例</a>]</span></center></div>
+<center><span class="legend">[<a href="graph_legend.html">凡例</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 公開メンバ関数</h2></td></tr>
@@ -124,6 +104,9 @@ CMainFrame 連携図</div>
 <tr class="memitem:ad68d347c88110b21ddc25227c70e9230"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_main_frame.html#ad68d347c88110b21ddc25227c70e9230">OnGetMinMaxInfo</a> (MINMAXINFO *lpMMI)</td></tr>
 <tr class="memdesc:ad68d347c88110b21ddc25227c70e9230"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウインドの最大最小値の取得  <a href="class_c_main_frame.html#ad68d347c88110b21ddc25227c70e9230">[詳解]</a><br /></td></tr>
 <tr class="separator:ad68d347c88110b21ddc25227c70e9230"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ae6b4d5a97d9ed15972e01f5bce7de7"><td class="memItemLeft" align="right" valign="top">virtual BOOL&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_main_frame.html#a3ae6b4d5a97d9ed15972e01f5bce7de7">PreTranslateMessage</a> (MSG *pMsg)</td></tr>
+<tr class="memdesc:a3ae6b4d5a97d9ed15972e01f5bce7de7"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウインドメッセージディスパッチ前の処理  <a href="class_c_main_frame.html#a3ae6b4d5a97d9ed15972e01f5bce7de7">[詳解]</a><br /></td></tr>
+<tr class="separator:a3ae6b4d5a97d9ed15972e01f5bce7de7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ae555f23fdf97edb4feb4d3e1bfa4ee"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_main_frame.html#a8ae555f23fdf97edb4feb4d3e1bfa4ee">~CMainFrame</a> ()</td></tr>
 <tr class="memdesc:a8ae555f23fdf97edb4feb4d3e1bfa4ee"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_c_main_frame.html" title="CMainFrame クラス">CMainFrame</a> デストラクション  <a href="class_c_main_frame.html#a8ae555f23fdf97edb4feb4d3e1bfa4ee">[詳解]</a><br /></td></tr>
 <tr class="separator:a8ae555f23fdf97edb4feb4d3e1bfa4ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -139,6 +122,21 @@ CMainFrame 連携図</div>
 <tr class="memitem:a1d2d2b0b5a12fa591dcbf41ec0368cc9"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_main_frame.html#a1d2d2b0b5a12fa591dcbf41ec0368cc9">OnClose</a> ()</td></tr>
 <tr class="memdesc:a1d2d2b0b5a12fa591dcbf41ec0368cc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">クローズ処理  <a href="class_c_main_frame.html#a1d2d2b0b5a12fa591dcbf41ec0368cc9">[詳解]</a><br /></td></tr>
 <tr class="separator:a1d2d2b0b5a12fa591dcbf41ec0368cc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a378f2299529208da2f09c985b126f197"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_main_frame.html#a378f2299529208da2f09c985b126f197">OnNcLButtonDblClk</a> (UINT nHitTest, CPoint point)</td></tr>
+<tr class="memdesc:a378f2299529208da2f09c985b126f197"><td class="mdescLeft">&#160;</td><td class="mdescRight">非クライアント領域内左ボタンダブルクリック時の処理  <a href="class_c_main_frame.html#a378f2299529208da2f09c985b126f197">[詳解]</a><br /></td></tr>
+<tr class="separator:a378f2299529208da2f09c985b126f197"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add80153e82d5a4df3c1787290c5dfc61"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_main_frame.html#add80153e82d5a4df3c1787290c5dfc61">OnNcMouseMove</a> (UINT nHitTest, CPoint point)</td></tr>
+<tr class="memdesc:add80153e82d5a4df3c1787290c5dfc61"><td class="mdescLeft">&#160;</td><td class="mdescRight">非クライアント領域内マウス移動時の処理  <a href="class_c_main_frame.html#add80153e82d5a4df3c1787290c5dfc61">[詳解]</a><br /></td></tr>
+<tr class="separator:add80153e82d5a4df3c1787290c5dfc61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7004d2e968e3432e712c907e1337cca"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_main_frame.html#ab7004d2e968e3432e712c907e1337cca">OnNcLButtonUp</a> (UINT nHitTest, CPoint point)</td></tr>
+<tr class="memdesc:ab7004d2e968e3432e712c907e1337cca"><td class="mdescLeft">&#160;</td><td class="mdescRight">非クライアント領域内マウス左ボタン押下時の処理  <a href="class_c_main_frame.html#ab7004d2e968e3432e712c907e1337cca">[詳解]</a><br /></td></tr>
+<tr class="separator:ab7004d2e968e3432e712c907e1337cca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85fc3e2a76cb425a7926421eaa89f869"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_main_frame.html#a85fc3e2a76cb425a7926421eaa89f869">OnNcLButtonDown</a> (UINT nHitTest, CPoint point)</td></tr>
+<tr class="memdesc:a85fc3e2a76cb425a7926421eaa89f869"><td class="mdescLeft">&#160;</td><td class="mdescRight">非クライアント領域内マウス左ボタン押上時の処理  <a href="class_c_main_frame.html#a85fc3e2a76cb425a7926421eaa89f869">[詳解]</a><br /></td></tr>
+<tr class="separator:a85fc3e2a76cb425a7926421eaa89f869"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab355432ce1eeb28a99d16e2452129f08"><td class="memItemLeft" align="right" valign="top">afx_msg void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_main_frame.html#ab355432ce1eeb28a99d16e2452129f08">OnWindowPosChanged</a> (WINDOWPOS *lpwndpos)</td></tr>
+<tr class="memdesc:ab355432ce1eeb28a99d16e2452129f08"><td class="mdescLeft">&#160;</td><td class="mdescRight">ウインドの位置、サイズが変更された時の処理  <a href="class_c_main_frame.html#ab355432ce1eeb28a99d16e2452129f08">[詳解]</a><br /></td></tr>
+<tr class="separator:ab355432ce1eeb28a99d16e2452129f08"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 限定公開変数類</h2></td></tr>
@@ -321,6 +319,230 @@ CStatusBar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 
 </div>
 </div>
+<a id="a378f2299529208da2f09c985b126f197"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a378f2299529208da2f09c985b126f197">&#9670;&nbsp;</a></span>OnNcLButtonDblClk()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CMainFrame::OnNcLButtonDblClk </td>
+          <td>(</td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>nHitTest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CPoint&#160;</td>
+          <td class="paramname"><em>point</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>非クライアント領域内左ボタンダブルクリック時の処理 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nHitTest</td><td>ヒットテストコード</td></tr>
+    <tr><td class="paramname">point</td><td>カーソル位置</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a85fc3e2a76cb425a7926421eaa89f869"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85fc3e2a76cb425a7926421eaa89f869">&#9670;&nbsp;</a></span>OnNcLButtonDown()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CMainFrame::OnNcLButtonDown </td>
+          <td>(</td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>nHitTest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CPoint&#160;</td>
+          <td class="paramname"><em>point</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>非クライアント領域内マウス左ボタン押上時の処理 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nHitTest</td><td>ヒットテストコード</td></tr>
+    <tr><td class="paramname">point</td><td>カーソル位置</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab7004d2e968e3432e712c907e1337cca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7004d2e968e3432e712c907e1337cca">&#9670;&nbsp;</a></span>OnNcLButtonUp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CMainFrame::OnNcLButtonUp </td>
+          <td>(</td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>nHitTest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CPoint&#160;</td>
+          <td class="paramname"><em>point</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>非クライアント領域内マウス左ボタン押下時の処理 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nHitTest</td><td>ヒットテストコード</td></tr>
+    <tr><td class="paramname">point</td><td>カーソル位置</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="add80153e82d5a4df3c1787290c5dfc61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add80153e82d5a4df3c1787290c5dfc61">&#9670;&nbsp;</a></span>OnNcMouseMove()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CMainFrame::OnNcMouseMove </td>
+          <td>(</td>
+          <td class="paramtype">UINT&#160;</td>
+          <td class="paramname"><em>nHitTest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CPoint&#160;</td>
+          <td class="paramname"><em>point</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>非クライアント領域内マウス移動時の処理 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nHitTest</td><td>ヒットテストコード</td></tr>
+    <tr><td class="paramname">point</td><td>カーソル位置</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab355432ce1eeb28a99d16e2452129f08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab355432ce1eeb28a99d16e2452129f08">&#9670;&nbsp;</a></span>OnWindowPosChanged()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CMainFrame::OnWindowPosChanged </td>
+          <td>(</td>
+          <td class="paramtype">WINDOWPOS *&#160;</td>
+          <td class="paramname"><em>lpwndpos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ウインドの位置、サイズが変更された時の処理 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lpwndpos</td><td>WINDOWPOS構造体へのポインタ</td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_main_frame_ab355432ce1eeb28a99d16e2452129f08_cgraph.png" border="0" usemap="#aclass_c_main_frame_ab355432ce1eeb28a99d16e2452129f08_cgraph" alt=""/></div>
+<map name="aclass_c_main_frame_ab355432ce1eeb28a99d16e2452129f08_cgraph" id="aclass_c_main_frame_ab355432ce1eeb28a99d16e2452129f08_cgraph">
+<area shape="rect" title="ウインドの位置、サイズが変更された時の処理" alt="" coords="5,46,247,73"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a31cda5ced4a1f67350be5d355ba62c6c" title="プロジェクトの新規判定" alt="" coords="295,5,437,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#af0d45ea32d1fc8484f440049e8135fcc" title="プロジェクトのオープン判定" alt="" coords="295,71,437,112"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a549bf677c955c2898c3c683321633c16"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a549bf677c955c2898c3c683321633c16">&#9670;&nbsp;</a></span>PreCreateWindow()</h2>
 
@@ -356,18 +578,45 @@ CStatusBar&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href
 
 </div>
 </div>
-<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
-<li>C:/Users/kaneko/OneDrive/Project/JointAutomaticEvaluationSystem/WeldEvaluation/src/WeldEvaluation/WeldEvaluation/<a class="el" href="_main_frm_8h_source.html">MainFrm.h</a></li>
-<li>C:/Users/kaneko/OneDrive/Project/JointAutomaticEvaluationSystem/WeldEvaluation/src/WeldEvaluation/WeldEvaluation/MainFrm.cpp</li>
-</ul>
-</div><!-- contents -->
-</div><!-- doc-content -->
-<!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="class_c_main_frame.html">CMainFrame</a></li>
-    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
+<a id="a3ae6b4d5a97d9ed15972e01f5bce7de7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ae6b4d5a97d9ed15972e01f5bce7de7">&#9670;&nbsp;</a></span>PreTranslateMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">BOOL CMainFrame::PreTranslateMessage </td>
+          <td>(</td>
+          <td class="paramtype">MSG *&#160;</td>
+          <td class="paramname"><em>pMsg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>ウインドメッセージディスパッチ前の処理 </p>
+<dl class="params"><dt>引数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pMsg</td><td>メッセージ</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>戻り値</dt><dd>ディスパッチすべきでない場合はtrue、ディスパッチが必要な場合はfalseを返す</dd></dl>
+
 </div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

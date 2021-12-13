@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -51,23 +47,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('class_c_oprt_tab_page_analize.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -82,6 +61,7 @@ $(document).ready(function(){initNavTree('class_c_oprt_tab_page_analize.html',''
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">COprtTabPageAnalize メンバ一覧</div>  </div>
@@ -95,11 +75,11 @@ $(document).ready(function(){initNavTree('class_c_oprt_tab_page_analize.html',''
   <tr class="even"><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html#a6e27aa12b2e92630bb049895397c109c">DoDataExchange</a>(CDataExchange *pDX)</td><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">virtual</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html#a5fb4d38b9f1ebfc342b00317c80f5536">GetAnalizeType</a>(int ItemID)</td><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>IDD</b> 列挙値 (定義場所: <a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a>)</td><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html#aa71ab5bde07cddec6be91eb07639ce64">IsChangedAnalizeType</a>()</td><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html#a8df982190d6e511cf9bcc2a07b03b898">IsChangedAnalize</a>()</td><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html#a4428b3f5ac057074fd04960274404020">IsChangedDisplayMode</a>()</td><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html#a0e3e758966fef9cf2d85e8ed278466c4">ItemActive</a>(bool bActive)</td><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html#a84d0a276b8897ee23001945ec1620d63">LoadParamater</a>()</td><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html#aa2759b61ec453642304d2a90614cd7f1">m_bChangedAnalizeType</a></td><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html#a31177d3a5f794a44625f48478d01cc8e">m_bChangedAnalize</a></td><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html#a5f20d30f347480409ca438f38a980999">m_bChangedDisplayMode</a></td><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html#aae01090a96e9d553a8a3797a3fdb36fd">m_JointAnalizeType</a></td><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html#adcb494958b1a9e72594f19076c815662">m_MetalAnalizeType</a></td><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></td><td class="entry"></td></tr>
@@ -123,16 +103,14 @@ $(document).ready(function(){initNavTree('class_c_oprt_tab_page_analize.html',''
   <tr class="even"><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html#a62f06351ba5608c0c52bca42a913833b">OnBnClickedRdoResinMethod1</a>()</td><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html#a8f016c43a40aea8aebe54cf5ea5e98e3">OnBnClickedRdoResinMethod2</a>()</td><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html#ae69d1c504a694b6b61840b1fe377e601">OnBnClickedRdoResinscan</a>()</td><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html#ad026ecbbc983699be043cf39cf611383">SetDisplayMode</a>(int ScanID, int mode)</td><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html#a38f8d98173effda10dafceec403207ee">ViewModeReset</a>(void)</td><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html#a043e5c88a84364d4554e684ba1b20ecd">~COprtTabPageAnalize</a>()</td><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html#a005f1d0b1d8100a5d818c5a0d6da5ba9">SetChangedAnalizeFlag</a>(bool bFlag)</td><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html#ad026ecbbc983699be043cf39cf611383">SetDisplayMode</a>(int ScanID, int mode)</td><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html#a38f8d98173effda10dafceec403207ee">ViewModeReset</a>(void)</td><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html#a043e5c88a84364d4554e684ba1b20ecd">~COprtTabPageAnalize</a>()</td><td class="entry"><a class="el" href="class_c_oprt_tab_page_analize.html">COprtTabPageAnalize</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
 </table></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

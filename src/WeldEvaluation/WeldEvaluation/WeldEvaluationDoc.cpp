@@ -3620,7 +3620,7 @@ bool CWeldEvaluationDoc::InversAnalizeData(int ScanID)
 			}
 		}
 
-		double base = cnt * 2 * height * width;
+		double base = (double)cnt * 2.0 * (double)height * (double)width;
 		for (int metodID = 0; metodID < 2; metodID++) {
 			ClassificationDataFilePath = getClassificationDataFilePath(ScanID, method[metodID]);
 			if (!CFileUtil::fileExists(ClassificationDataFilePath)) {

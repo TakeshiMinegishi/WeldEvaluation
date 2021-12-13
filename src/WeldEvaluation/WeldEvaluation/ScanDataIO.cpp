@@ -569,7 +569,7 @@ bool CScanDataIO::InversData(CWnd *pWnd/*=nullptr*/)
 	float ***dst = (float***)nullptr;
 	double **mat = MatrixInit();
 	int pos = 0, retio = 0;
-	double base = 2 * band * height;
+	double base = 2.0 * (double)band * (double)height;
 	try {
 		dst = new float**[band]();
 		for (int b = 0; b < band; b++) {

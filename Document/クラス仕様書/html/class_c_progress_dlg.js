@@ -1,6 +1,6 @@
 var class_c_progress_dlg =
 [
-    [ "CProgressDlg", "class_c_progress_dlg.html#a797f8a3bb1a36d7f79f6b947e6efd97e", null ],
+    [ "CProgressDlg", "class_c_progress_dlg.html#a7d051a37fd00c2db2d0dace67bd4acbf", null ],
     [ "~CProgressDlg", "class_c_progress_dlg.html#aa5f1a49eb43d79eedfb1f65eaf226389", null ],
     [ "DoDataExchange", "class_c_progress_dlg.html#a09c84623ac549005927f901e745da480", null ],
     [ "getRange", "class_c_progress_dlg.html#aad1a178d26efb840a28db3aedb8ed1db", null ],

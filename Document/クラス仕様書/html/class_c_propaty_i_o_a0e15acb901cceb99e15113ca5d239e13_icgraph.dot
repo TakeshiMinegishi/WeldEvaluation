@@ -40,5 +40,4 @@ digraph "CPropatyIO::NumberOfOverridePixel"
   Node17 [label="CPropTabPageSetting\l::Update",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_prop_tab_page_setting.html#acefe73a52687d98a8a6e6f01ef270b01",tooltip="更新処理"];
   Node17 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node18 [label="CWeldEvaluationView\l::UpdatePropaty",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_weld_evaluation_view.html#a82f4afb7916eedf21101d656e8377367",tooltip="プロパティページの更新"];
-  Node1 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
 }

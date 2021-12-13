@@ -1,0 +1,19 @@
+<map id="CScanDataIO::InversData" name="CScanDataIO::InversData">
+<area shape="rect" id="node1" title="スキャンデータの反転" alt="" coords="5,157,175,184"/>
+<area shape="rect" id="node2" href="$class_c_scan_data_i_o.html#a60ac88e1227491f029d2712fb3b34453" title="アファイン変換" alt="" coords="245,5,383,32"/>
+<area shape="rect" id="node4" href="$class_c_scan_data_i_o.html#a604a2f1e09bc8c6bcbad00c82b19a893" title="マトリックス初期化" alt="" coords="483,81,645,108"/>
+<area shape="rect" id="node5" href="$class_c_scan_data_i_o.html#a84e33245e08bae869355778b20225bd2" title="マトリックス逆行列" alt="" coords="225,259,403,285"/>
+<area shape="rect" id="node6" href="$class_c_scan_data_i_o.html#adb7babb36596d23134297e99d174156d" title="マトリックス移動" alt="" coords="227,157,401,184"/>
+<area shape="rect" id="node8" href="$class_c_scan_data_i_o.html#a0040aa2a3b7efdff821a2e6e4bbbfa48" title="マトリックス開放" alt="" coords="468,183,660,209"/>
+<area shape="rect" id="node9" href="$class_c_scan_data_i_o.html#a7f8cf7712af2ca79d83943ed25922491" title="マトリックス回転" alt="" coords="223,107,405,133"/>
+<area shape="rect" id="node10" href="$class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="235,309,393,336"/>
+<area shape="rect" id="node3" href="$class_c_scan_data_i_o.html#ac2db55ecbcb4a44780c8a551cc6ef66a" title="線形補間" alt="" coords="489,5,639,32"/>
+<area shape="rect" id="node7" href="$class_c_scan_data_i_o.html#a44d75ac4205c85d7a1fc1fee5674ea26" title="マトリックスかけ算" alt="" coords="453,132,675,159"/>
+<area shape="rect" id="node11" href="$class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="510,309,618,336"/>
+<area shape="rect" id="node12" href="$class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="723,284,883,311"/>
+<area shape="rect" id="node17" href="$class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf" title=" " alt="" coords="747,335,858,361"/>
+<area shape="rect" id="node13" href="$class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="931,233,1109,260"/>
+<area shape="rect" id="node14" href="$class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="953,284,1087,311"/>
+<area shape="rect" id="node16" href="$class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="957,335,1083,361"/>
+<area shape="rect" id="node15" href="$class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="1157,284,1289,311"/>
+</map>

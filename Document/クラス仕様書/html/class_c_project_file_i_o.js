@@ -34,6 +34,7 @@ var class_c_project_file_i_o =
     [ "GetSpectralGraphSectionStartPosition", "class_c_project_file_i_o.html#acbb94052951e330c8cb39897e54ba4a0", null ],
     [ "GetSpectralGraphSectionTarget", "class_c_project_file_i_o.html#a70748a36f8ea3d405495dbf6b03c0d43", null ],
     [ "GetUpdateDay", "class_c_project_file_i_o.html#aaf99e8084287e91dc479bfdd99175b34", null ],
+    [ "GetVersion", "class_c_project_file_i_o.html#ab970390e382105359481be3b4b534311", null ],
     [ "Initialze", "class_c_project_file_i_o.html#a4be8e2c3ecdc21cd9528a2913b76a8ce", null ],
     [ "Read", "class_c_project_file_i_o.html#a659e5931885ed15759f868773e07d47d", null ],
     [ "Save", "class_c_project_file_i_o.html#a5d17a1a5554d49705db9a462536d437f", null ],
@@ -68,6 +69,7 @@ var class_c_project_file_i_o =
     [ "SetSpectralGraphSectionStartPosition", "class_c_project_file_i_o.html#a8e8ad8dfb8991f249dee7e4015b47c6a", null ],
     [ "SetSpectralGraphSectionTarget", "class_c_project_file_i_o.html#a4cf2f4915e54c9527b5a65c24bc1f594", null ],
     [ "SetUpdateDay", "class_c_project_file_i_o.html#a971f5f23c04ddb91dc03b10aeb6e58ab", null ],
+    [ "SetVersion", "class_c_project_file_i_o.html#a1249b885accbfc82c6b2c41f6e956894", null ],
     [ "Str2Date", "class_c_project_file_i_o.html#aa9685ab0e4adf6c717aab36e761cde3d", null ],
     [ "Str2Pos", "class_c_project_file_i_o.html#aa5d060e8199f9b13ff223b568b855621", null ]
 ];

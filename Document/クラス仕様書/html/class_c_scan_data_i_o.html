@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -51,23 +47,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -82,6 +61,7 @@ $(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initR
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">クラス</a> &#124;
@@ -184,9 +164,9 @@ $(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initR
 <tr class="memitem:aa39614b53408689ab3187d7a78948ac9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_scan_data_i_o.html#aa39614b53408689ab3187d7a78948ac9">ProjectionInvPos</a> (int DstX, int DstY, double prm[], double &amp;SrcX, double &amp;SrcY)</td></tr>
 <tr class="memdesc:aa39614b53408689ab3187d7a78948ac9"><td class="mdescLeft">&#160;</td><td class="mdescRight">射影変換の移動元取得  <a href="class_c_scan_data_i_o.html#aa39614b53408689ab3187d7a78948ac9">[詳解]</a><br /></td></tr>
 <tr class="separator:aa39614b53408689ab3187d7a78948ac9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac825d0592b26302e385508e7f97db658"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_scan_data_i_o.html#ac825d0592b26302e385508e7f97db658">InversData</a> ()</td></tr>
-<tr class="memdesc:ac825d0592b26302e385508e7f97db658"><td class="mdescLeft">&#160;</td><td class="mdescRight">スキャンデータの上下反転  <a href="class_c_scan_data_i_o.html#ac825d0592b26302e385508e7f97db658">[詳解]</a><br /></td></tr>
-<tr class="separator:ac825d0592b26302e385508e7f97db658"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4e6effbecff1531d50b31163c6363fc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_scan_data_i_o.html#ab4e6effbecff1531d50b31163c6363fc">InversData</a> (CWnd *pWnd=nullptr)</td></tr>
+<tr class="memdesc:ab4e6effbecff1531d50b31163c6363fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">スキャンデータの反転  <a href="class_c_scan_data_i_o.html#ab4e6effbecff1531d50b31163c6363fc">[詳解]</a><br /></td></tr>
+<tr class="separator:ab4e6effbecff1531d50b31163c6363fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2dac09e00376d629d1b43de3434633d6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_c_scan_data_i_o.html#a2dac09e00376d629d1b43de3434633d6">saveRawData</a> (CString pathName)</td></tr>
 <tr class="memdesc:a2dac09e00376d629d1b43de3434633d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">RAWデータの保存  <a href="class_c_scan_data_i_o.html#a2dac09e00376d629d1b43de3434633d6">[詳解]</a><br /></td></tr>
 <tr class="separator:a2dac09e00376d629d1b43de3434633d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -358,9 +338,13 @@ $(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initR
 <div class="dyncontent">
 <div class="center"><img src="class_c_scan_data_i_o_a60ac88e1227491f029d2712fb3b34453_icgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_a60ac88e1227491f029d2712fb3b34453_icgraph" alt=""/></div>
 <map name="aclass_c_scan_data_i_o_a60ac88e1227491f029d2712fb3b34453_icgraph" id="aclass_c_scan_data_i_o_a60ac88e1227491f029d2712fb3b34453_icgraph">
-<area shape="rect" title="アファイン変換" alt="" coords="459,13,597,39"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a89ce5196b4c620e4bc204d585204cd43" title="スキャンデータ変換" alt="" coords="201,13,411,39"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="5,5,153,47"/>
+<area shape="rect" title="アファイン変換" alt="" coords="655,78,793,105"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a068a746e175823fe05268b96ca2207a5" title="解析データの反転" alt="" coords="204,5,347,47"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ab4e6effbecff1531d50b31163c6363fc" title="スキャンデータの反転" alt="" coords="417,78,587,105"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a89ce5196b4c620e4bc204d585204cd43" title="スキャンデータ変換" alt="" coords="397,135,607,162"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="5,39,153,80"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの反転" alt="" coords="204,71,347,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="201,136,349,177"/>
 </map>
 </div>
 
@@ -441,10 +425,14 @@ $(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initR
 <div class="dyncontent">
 <div class="center"><img src="class_c_scan_data_i_o_ac2db55ecbcb4a44780c8a551cc6ef66a_icgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_ac2db55ecbcb4a44780c8a551cc6ef66a_icgraph" alt=""/></div>
 <map name="aclass_c_scan_data_i_o_ac2db55ecbcb4a44780c8a551cc6ef66a_icgraph" id="aclass_c_scan_data_i_o_ac2db55ecbcb4a44780c8a551cc6ef66a_icgraph">
-<area shape="rect" title="線形補間" alt="" coords="645,31,796,57"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a60ac88e1227491f029d2712fb3b34453" title="アファイン変換" alt="" coords="459,5,597,32"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="5,23,153,65"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a89ce5196b4c620e4bc204d585204cd43" title="スキャンデータ変換" alt="" coords="201,5,411,32"/>
+<area shape="rect" title="線形補間" alt="" coords="841,150,992,177"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a60ac88e1227491f029d2712fb3b34453" title="アファイン変換" alt="" coords="655,99,793,126"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="201,147,349,188"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a068a746e175823fe05268b96ca2207a5" title="解析データの反転" alt="" coords="204,5,347,47"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ab4e6effbecff1531d50b31163c6363fc" title="スキャンデータの反転" alt="" coords="417,74,587,101"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a89ce5196b4c620e4bc204d585204cd43" title="スキャンデータ変換" alt="" coords="397,125,607,151"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="5,39,153,80"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの反転" alt="" coords="204,71,347,112"/>
 </map>
 </div>
 
@@ -730,6 +718,22 @@ $(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initR
   </dd>
 </dl>
 <dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_scan_data_i_o_a12aa5b6bf1c179fa351e419d34921157_cgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_a12aa5b6bf1c179fa351e419d34921157_cgraph" alt=""/></div>
+<map name="aclass_c_scan_data_i_o_a12aa5b6bf1c179fa351e419d34921157_cgraph" id="aclass_c_scan_data_i_o_a12aa5b6bf1c179fa351e419d34921157_cgraph">
+<area shape="rect" title="各バンドのスペクトル値取得" alt="" coords="5,81,219,108"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="267,81,424,108"/>
+<area shape="rect" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="472,81,580,108"/>
+<area shape="rect" href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="628,56,788,83"/>
+<area shape="rect" href="class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf" title=" " alt="" coords="653,107,763,133"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="836,5,1015,32"/>
+<area shape="rect" href="class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="859,56,992,83"/>
+<area shape="rect" href="class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="862,107,989,133"/>
+<area shape="rect" href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="1063,56,1195,83"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -788,8 +792,16 @@ $(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initR
 <div class="dyncontent">
 <div class="center"><img src="class_c_scan_data_i_o_ae3dff6661c7012b259b38910f3b3dbdb_cgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_ae3dff6661c7012b259b38910f3b3dbdb_cgraph" alt=""/></div>
 <map name="aclass_c_scan_data_i_o_ae3dff6661c7012b259b38910f3b3dbdb_cgraph" id="aclass_c_scan_data_i_o_ae3dff6661c7012b259b38910f3b3dbdb_cgraph">
-<area shape="rect" title="ヘッダファイルから幅、高さを取得" alt="" coords="5,5,221,32"/>
-<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="269,5,401,32"/>
+<area shape="rect" title="ヘッダファイルから幅、高さを取得" alt="" coords="5,56,221,83"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="282,31,414,57"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="269,81,427,108"/>
+<area shape="rect" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="475,81,583,108"/>
+<area shape="rect" href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="631,56,791,83"/>
+<area shape="rect" href="class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf" title=" " alt="" coords="655,107,766,133"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="839,5,1017,32"/>
+<area shape="rect" href="class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="861,56,995,83"/>
+<area shape="rect" href="class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="865,107,991,133"/>
+<area shape="rect" href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="1065,56,1197,83"/>
 </map>
 </div>
 <div class="dynheader">
@@ -851,19 +863,19 @@ $(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initR
 </dl>
 <dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
 <div class="dynheader">
-被呼び出し関係図:</div>
+呼び出し関係図:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_c_scan_data_i_o_a62c2f84aedf058ffe1370ee67e7fb2dc_icgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_a62c2f84aedf058ffe1370ee67e7fb2dc_icgraph" alt=""/></div>
-<map name="aclass_c_scan_data_i_o_a62c2f84aedf058ffe1370ee67e7fb2dc_icgraph" id="aclass_c_scan_data_i_o_a62c2f84aedf058ffe1370ee67e7fb2dc_icgraph">
-<area shape="rect" title="ホモグラフィーマトリックス取得" alt="" coords="821,71,1024,112"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="631,71,773,112"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#acceb13e1dba62f59383094194ecf9774" title="プロジェクトの削除" alt="" coords="440,5,583,47"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547" title="新規プロジェクト作成" alt="" coords="440,71,583,112"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="440,136,583,177"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a1c8f728724d0615945c96bc74bf24e76" title="プロジェクト削除" alt="" coords="231,5,379,47"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,100,171,141"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,129,377,171"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="219,195,392,236"/>
+<div class="center"><img src="class_c_scan_data_i_o_a62c2f84aedf058ffe1370ee67e7fb2dc_cgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_a62c2f84aedf058ffe1370ee67e7fb2dc_cgraph" alt=""/></div>
+<map name="aclass_c_scan_data_i_o_a62c2f84aedf058ffe1370ee67e7fb2dc_cgraph" id="aclass_c_scan_data_i_o_a62c2f84aedf058ffe1370ee67e7fb2dc_cgraph">
+<area shape="rect" title="ホモグラフィーマトリックス取得" alt="" coords="5,74,208,115"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="256,81,413,108"/>
+<area shape="rect" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="461,81,569,108"/>
+<area shape="rect" href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="617,56,777,83"/>
+<area shape="rect" href="class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf" title=" " alt="" coords="642,107,753,133"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="825,5,1004,32"/>
+<area shape="rect" href="class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="848,56,981,83"/>
+<area shape="rect" href="class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="851,107,978,133"/>
+<area shape="rect" href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="1052,56,1184,83"/>
 </map>
 </div>
 
@@ -886,6 +898,22 @@ $(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initR
 
 <p>バンド数の取得 </p>
 <dl class="section return"><dt>戻り値</dt><dd>バンド数を返す</dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_scan_data_i_o_a09a161f191779097aa003676ecb22714_cgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_a09a161f191779097aa003676ecb22714_cgraph" alt=""/></div>
+<map name="aclass_c_scan_data_i_o_a09a161f191779097aa003676ecb22714_cgraph" id="aclass_c_scan_data_i_o_a09a161f191779097aa003676ecb22714_cgraph">
+<area shape="rect" title="バンド数の取得" alt="" coords="5,81,224,108"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="272,81,429,108"/>
+<area shape="rect" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="477,81,585,108"/>
+<area shape="rect" href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="633,56,793,83"/>
+<area shape="rect" href="class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf" title=" " alt="" coords="658,107,769,133"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="841,5,1020,32"/>
+<area shape="rect" href="class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="864,56,997,83"/>
+<area shape="rect" href="class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="867,107,994,133"/>
+<area shape="rect" href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="1068,56,1200,83"/>
+</map>
+</div>
 <div class="dynheader">
 被呼び出し関係図:</div>
 <div class="dyncontent">
@@ -936,6 +964,22 @@ $(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initR
 </dl>
 <dl class="section return"><dt>戻り値</dt><dd>成功した場合はtrue、失敗した場合はfalseを返す</dd></dl>
 <div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_scan_data_i_o_a74d0fa98822d49575c08acb1e72c128c_cgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_a74d0fa98822d49575c08acb1e72c128c_cgraph" alt=""/></div>
+<map name="aclass_c_scan_data_i_o_a74d0fa98822d49575c08acb1e72c128c_cgraph" id="aclass_c_scan_data_i_o_a74d0fa98822d49575c08acb1e72c128c_cgraph">
+<area shape="rect" title="指定位置スペクトル群の取得" alt="" coords="5,81,219,108"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="267,81,424,108"/>
+<area shape="rect" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="472,81,580,108"/>
+<area shape="rect" href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="628,56,788,83"/>
+<area shape="rect" href="class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf" title=" " alt="" coords="653,107,763,133"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="836,5,1015,32"/>
+<area shape="rect" href="class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="859,56,992,83"/>
+<area shape="rect" href="class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="862,107,989,133"/>
+<area shape="rect" href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="1063,56,1195,83"/>
+</map>
+</div>
+<div class="dynheader">
 被呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_c_scan_data_i_o_a74d0fa98822d49575c08acb1e72c128c_icgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_a74d0fa98822d49575c08acb1e72c128c_icgraph" alt=""/></div>
@@ -974,6 +1018,22 @@ $(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initR
 </dl>
 <dl class="section return"><dt>戻り値</dt><dd>スペクトル値を返す</dd></dl>
 <div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_scan_data_i_o_a2e23bb8cbebd5d51292726ee0238adec_cgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_a2e23bb8cbebd5d51292726ee0238adec_cgraph" alt=""/></div>
+<map name="aclass_c_scan_data_i_o_a2e23bb8cbebd5d51292726ee0238adec_cgraph" id="aclass_c_scan_data_i_o_a2e23bb8cbebd5d51292726ee0238adec_cgraph">
+<area shape="rect" title="バンドのスペクトル値取得" alt="" coords="5,81,204,108"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="252,81,409,108"/>
+<area shape="rect" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="457,81,565,108"/>
+<area shape="rect" href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="613,56,773,83"/>
+<area shape="rect" href="class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf" title=" " alt="" coords="638,107,749,133"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="821,5,1000,32"/>
+<area shape="rect" href="class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="844,56,977,83"/>
+<area shape="rect" href="class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="847,107,974,133"/>
+<area shape="rect" href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="1048,56,1180,83"/>
+</map>
+</div>
+<div class="dynheader">
 被呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_c_scan_data_i_o_a2e23bb8cbebd5d51292726ee0238adec_icgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_a2e23bb8cbebd5d51292726ee0238adec_icgraph" alt=""/></div>
@@ -987,8 +1047,8 @@ $(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initR
 
 </div>
 </div>
-<a id="ac825d0592b26302e385508e7f97db658"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac825d0592b26302e385508e7f97db658">&#9670;&nbsp;</a></span>InversData()</h2>
+<a id="ab4e6effbecff1531d50b31163c6363fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4e6effbecff1531d50b31163c6363fc">&#9670;&nbsp;</a></span>InversData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -996,21 +1056,46 @@ $(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initR
         <tr>
           <td class="memname">bool CScanDataIO::InversData </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">CWnd *&#160;</td>
+          <td class="paramname"><em>pWnd</em> = <code>nullptr</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>スキャンデータの上下反転 </p>
+<p>スキャンデータの反転 </p>
 <dl class="section return"><dt>戻り値</dt><dd>成功の場合はtrue、失敗の場合はfalseを返す</dd></dl>
+<div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_scan_data_i_o_ab4e6effbecff1531d50b31163c6363fc_cgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_ab4e6effbecff1531d50b31163c6363fc_cgraph" alt=""/></div>
+<map name="aclass_c_scan_data_i_o_ab4e6effbecff1531d50b31163c6363fc_cgraph" id="aclass_c_scan_data_i_o_ab4e6effbecff1531d50b31163c6363fc_cgraph">
+<area shape="rect" title="スキャンデータの反転" alt="" coords="5,157,175,184"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a60ac88e1227491f029d2712fb3b34453" title="アファイン変換" alt="" coords="245,5,383,32"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a604a2f1e09bc8c6bcbad00c82b19a893" title="マトリックス初期化" alt="" coords="483,81,645,108"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a84e33245e08bae869355778b20225bd2" title="マトリックス逆行列" alt="" coords="225,259,403,285"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#adb7babb36596d23134297e99d174156d" title="マトリックス移動" alt="" coords="227,157,401,184"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a0040aa2a3b7efdff821a2e6e4bbbfa48" title="マトリックス開放" alt="" coords="468,183,660,209"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a7f8cf7712af2ca79d83943ed25922491" title="マトリックス回転" alt="" coords="223,107,405,133"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="235,309,393,336"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ac2db55ecbcb4a44780c8a551cc6ef66a" title="線形補間" alt="" coords="489,5,639,32"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a44d75ac4205c85d7a1fc1fee5674ea26" title="マトリックスかけ算" alt="" coords="453,132,675,159"/>
+<area shape="rect" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="510,309,618,336"/>
+<area shape="rect" href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="723,284,883,311"/>
+<area shape="rect" href="class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf" title=" " alt="" coords="747,335,858,361"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="931,233,1109,260"/>
+<area shape="rect" href="class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="953,284,1087,311"/>
+<area shape="rect" href="class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="957,335,1083,361"/>
+<area shape="rect" href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="1157,284,1289,311"/>
+</map>
+</div>
 <div class="dynheader">
 被呼び出し関係図:</div>
 <div class="dyncontent">
-<div class="center"><img src="class_c_scan_data_i_o_ac825d0592b26302e385508e7f97db658_icgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_ac825d0592b26302e385508e7f97db658_icgraph" alt=""/></div>
-<map name="aclass_c_scan_data_i_o_ac825d0592b26302e385508e7f97db658_icgraph" id="aclass_c_scan_data_i_o_ac825d0592b26302e385508e7f97db658_icgraph">
-<area shape="rect" title="スキャンデータの上下反転" alt="" coords="392,13,561,39"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの上下反転" alt="" coords="201,5,344,47"/>
+<div class="center"><img src="class_c_scan_data_i_o_ab4e6effbecff1531d50b31163c6363fc_icgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_ab4e6effbecff1531d50b31163c6363fc_icgraph" alt=""/></div>
+<map name="aclass_c_scan_data_i_o_ab4e6effbecff1531d50b31163c6363fc_icgraph" id="aclass_c_scan_data_i_o_ab4e6effbecff1531d50b31163c6363fc_icgraph">
+<area shape="rect" title="スキャンデータの反転" alt="" coords="392,13,561,39"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの反転" alt="" coords="201,5,344,47"/>
 <area shape="rect" href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="5,5,153,47"/>
 </map>
 </div>
@@ -1176,12 +1261,16 @@ $(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initR
 <div class="dyncontent">
 <div class="center"><img src="class_c_scan_data_i_o_a604a2f1e09bc8c6bcbad00c82b19a893_icgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_a604a2f1e09bc8c6bcbad00c82b19a893_icgraph" alt=""/></div>
 <map name="aclass_c_scan_data_i_o_a604a2f1e09bc8c6bcbad00c82b19a893_icgraph" id="aclass_c_scan_data_i_o_a604a2f1e09bc8c6bcbad00c82b19a893_icgraph">
-<area shape="rect" title="マトリックス初期化" alt="" coords="689,81,852,108"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#adb7babb36596d23134297e99d174156d" title="マトリックス移動" alt="" coords="463,5,637,32"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a89ce5196b4c620e4bc204d585204cd43" title="スキャンデータ変換" alt="" coords="201,81,411,108"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a7f8cf7712af2ca79d83943ed25922491" title="マトリックス回転" alt="" coords="459,107,641,133"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a0ee71c72d008ff044f4f0d001bc78c36" title="マトリックス拡縮" alt="" coords="461,157,639,184"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="5,74,153,115"/>
+<area shape="rect" title="マトリックス初期化" alt="" coords="885,111,1048,138"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a068a746e175823fe05268b96ca2207a5" title="解析データの反転" alt="" coords="431,83,573,124"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ab4e6effbecff1531d50b31163c6363fc" title="スキャンデータの反転" alt="" coords="417,31,587,58"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#adb7babb36596d23134297e99d174156d" title="マトリックス移動" alt="" coords="659,137,833,163"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a89ce5196b4c620e4bc204d585204cd43" title="スキャンデータ変換" alt="" coords="397,149,607,175"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a7f8cf7712af2ca79d83943ed25922491" title="マトリックス回転" alt="" coords="655,35,837,62"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a0ee71c72d008ff044f4f0d001bc78c36" title="マトリックス拡縮" alt="" coords="657,238,835,265"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="5,53,153,95"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの反転" alt="" coords="204,24,347,65"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="201,141,349,183"/>
 </map>
 </div>
 
@@ -1215,9 +1304,13 @@ $(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initR
 <div class="dyncontent">
 <div class="center"><img src="class_c_scan_data_i_o_a84e33245e08bae869355778b20225bd2_icgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_a84e33245e08bae869355778b20225bd2_icgraph" alt=""/></div>
 <map name="aclass_c_scan_data_i_o_a84e33245e08bae869355778b20225bd2_icgraph" id="aclass_c_scan_data_i_o_a84e33245e08bae869355778b20225bd2_icgraph">
-<area shape="rect" title="マトリックス逆行列" alt="" coords="459,13,637,39"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a89ce5196b4c620e4bc204d585204cd43" title="スキャンデータ変換" alt="" coords="201,13,411,39"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="5,5,153,47"/>
+<area shape="rect" title="マトリックス逆行列" alt="" coords="655,78,833,105"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a068a746e175823fe05268b96ca2207a5" title="解析データの反転" alt="" coords="204,5,347,47"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ab4e6effbecff1531d50b31163c6363fc" title="スキャンデータの反転" alt="" coords="417,78,587,105"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a89ce5196b4c620e4bc204d585204cd43" title="スキャンデータ変換" alt="" coords="397,135,607,162"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="5,39,153,80"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの反転" alt="" coords="204,71,347,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="201,136,349,177"/>
 </map>
 </div>
 
@@ -1324,9 +1417,13 @@ $(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initR
 <div class="dyncontent">
 <div class="center"><img src="class_c_scan_data_i_o_adb7babb36596d23134297e99d174156d_icgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_adb7babb36596d23134297e99d174156d_icgraph" alt=""/></div>
 <map name="aclass_c_scan_data_i_o_adb7babb36596d23134297e99d174156d_icgraph" id="aclass_c_scan_data_i_o_adb7babb36596d23134297e99d174156d_icgraph">
-<area shape="rect" title="マトリックス移動" alt="" coords="459,13,633,39"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a89ce5196b4c620e4bc204d585204cd43" title="スキャンデータ変換" alt="" coords="201,13,411,39"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="5,5,153,47"/>
+<area shape="rect" title="マトリックス移動" alt="" coords="655,78,829,105"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a068a746e175823fe05268b96ca2207a5" title="解析データの反転" alt="" coords="204,5,347,47"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ab4e6effbecff1531d50b31163c6363fc" title="スキャンデータの反転" alt="" coords="417,78,587,105"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a89ce5196b4c620e4bc204d585204cd43" title="スキャンデータ変換" alt="" coords="397,135,607,162"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="5,39,153,80"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの反転" alt="" coords="204,71,347,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="201,136,349,177"/>
 </map>
 </div>
 
@@ -1371,12 +1468,16 @@ $(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initR
 <div class="dyncontent">
 <div class="center"><img src="class_c_scan_data_i_o_a44d75ac4205c85d7a1fc1fee5674ea26_icgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_a44d75ac4205c85d7a1fc1fee5674ea26_icgraph" alt=""/></div>
 <map name="aclass_c_scan_data_i_o_a44d75ac4205c85d7a1fc1fee5674ea26_icgraph" id="aclass_c_scan_data_i_o_a44d75ac4205c85d7a1fc1fee5674ea26_icgraph">
-<area shape="rect" title="マトリックスかけ算" alt="" coords="689,56,911,83"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#adb7babb36596d23134297e99d174156d" title="マトリックス移動" alt="" coords="463,5,637,32"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a7f8cf7712af2ca79d83943ed25922491" title="マトリックス回転" alt="" coords="459,56,641,83"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a0ee71c72d008ff044f4f0d001bc78c36" title="マトリックス拡縮" alt="" coords="461,107,639,133"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a89ce5196b4c620e4bc204d585204cd43" title="スキャンデータ変換" alt="" coords="201,56,411,83"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="5,49,153,90"/>
+<area shape="rect" title="マトリックスかけ算" alt="" coords="885,71,1107,98"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#adb7babb36596d23134297e99d174156d" title="マトリックス移動" alt="" coords="659,71,833,98"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a7f8cf7712af2ca79d83943ed25922491" title="マトリックス回転" alt="" coords="655,21,837,47"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a0ee71c72d008ff044f4f0d001bc78c36" title="マトリックス拡縮" alt="" coords="657,122,835,149"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a068a746e175823fe05268b96ca2207a5" title="解析データの反転" alt="" coords="431,5,573,47"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ab4e6effbecff1531d50b31163c6363fc" title="スキャンデータの反転" alt="" coords="417,71,587,98"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a89ce5196b4c620e4bc204d585204cd43" title="スキャンデータ変換" alt="" coords="397,122,607,149"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="5,35,153,76"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの反転" alt="" coords="204,64,347,105"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="201,129,349,171"/>
 </map>
 </div>
 
@@ -1410,12 +1511,16 @@ $(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initR
 <div class="dyncontent">
 <div class="center"><img src="class_c_scan_data_i_o_a0040aa2a3b7efdff821a2e6e4bbbfa48_icgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_a0040aa2a3b7efdff821a2e6e4bbbfa48_icgraph" alt=""/></div>
 <map name="aclass_c_scan_data_i_o_a0040aa2a3b7efdff821a2e6e4bbbfa48_icgraph" id="aclass_c_scan_data_i_o_a0040aa2a3b7efdff821a2e6e4bbbfa48_icgraph">
-<area shape="rect" title="マトリックス開放" alt="" coords="689,81,881,108"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#adb7babb36596d23134297e99d174156d" title="マトリックス移動" alt="" coords="463,5,637,32"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a89ce5196b4c620e4bc204d585204cd43" title="スキャンデータ変換" alt="" coords="201,81,411,108"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a7f8cf7712af2ca79d83943ed25922491" title="マトリックス回転" alt="" coords="459,107,641,133"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a0ee71c72d008ff044f4f0d001bc78c36" title="マトリックス拡縮" alt="" coords="461,157,639,184"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="5,74,153,115"/>
+<area shape="rect" title="マトリックス開放" alt="" coords="885,110,1077,136"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a068a746e175823fe05268b96ca2207a5" title="解析データの反転" alt="" coords="431,81,573,122"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ab4e6effbecff1531d50b31163c6363fc" title="スキャンデータの反転" alt="" coords="417,30,587,56"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#adb7babb36596d23134297e99d174156d" title="マトリックス移動" alt="" coords="659,135,833,162"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a89ce5196b4c620e4bc204d585204cd43" title="スキャンデータ変換" alt="" coords="397,147,607,174"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a7f8cf7712af2ca79d83943ed25922491" title="マトリックス回転" alt="" coords="655,34,837,60"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a0ee71c72d008ff044f4f0d001bc78c36" title="マトリックス拡縮" alt="" coords="657,236,835,263"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="5,52,153,93"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの反転" alt="" coords="204,22,347,64"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="201,140,349,181"/>
 </map>
 </div>
 
@@ -1471,9 +1576,13 @@ $(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initR
 <div class="dyncontent">
 <div class="center"><img src="class_c_scan_data_i_o_a7f8cf7712af2ca79d83943ed25922491_icgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_a7f8cf7712af2ca79d83943ed25922491_icgraph" alt=""/></div>
 <map name="aclass_c_scan_data_i_o_a7f8cf7712af2ca79d83943ed25922491_icgraph" id="aclass_c_scan_data_i_o_a7f8cf7712af2ca79d83943ed25922491_icgraph">
-<area shape="rect" title="マトリックス回転" alt="" coords="459,13,641,39"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a89ce5196b4c620e4bc204d585204cd43" title="スキャンデータ変換" alt="" coords="201,13,411,39"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="5,5,153,47"/>
+<area shape="rect" title="マトリックス回転" alt="" coords="655,78,837,105"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a068a746e175823fe05268b96ca2207a5" title="解析データの反転" alt="" coords="204,5,347,47"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ab4e6effbecff1531d50b31163c6363fc" title="スキャンデータの反転" alt="" coords="417,78,587,105"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a89ce5196b4c620e4bc204d585204cd43" title="スキャンデータ変換" alt="" coords="397,135,607,162"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="5,39,153,80"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの反転" alt="" coords="204,71,347,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="201,136,349,177"/>
 </map>
 </div>
 
@@ -1585,11 +1694,19 @@ $(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initR
 <div class="dyncontent">
 <div class="center"><img src="class_c_scan_data_i_o_ae86f36b123901fbe038ff0f1669192bd_cgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_ae86f36b123901fbe038ff0f1669192bd_cgraph" alt=""/></div>
 <map name="aclass_c_scan_data_i_o_ae86f36b123901fbe038ff0f1669192bd_cgraph" id="aclass_c_scan_data_i_o_ae86f36b123901fbe038ff0f1669192bd_cgraph">
-<area shape="rect" title="オープン" alt="" coords="5,56,143,83"/>
-<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="200,5,332,32"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a74d77b0c697e9eab35f6f233be162c27" title="CubeFloatの解放" alt="" coords="191,56,341,83"/>
-<area shape="rect" href="class_c_file_util.html#acd0ab529d0f67b3a1d783e9b954c5576" title="フィルパスを分解する" alt="" coords="201,107,331,133"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#ae8fcb4c73d65ae2bcdff6f833fc93e29" title="CubeFloatのクローズ" alt="" coords="389,56,529,83"/>
+<area shape="rect" title="オープン" alt="" coords="5,81,143,108"/>
+<area shape="rect" href="class_c_file_util.html#a9a8b3e89af30c1826d518719aad2c3df" title="ファイルが存在するかを確認する" alt="" coords="203,5,335,32"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a74d77b0c697e9eab35f6f233be162c27" title="CubeFloatの解放" alt="" coords="194,56,345,83"/>
+<area shape="rect" href="class_c_file_util.html#acd0ab529d0f67b3a1d783e9b954c5576" title="フィルパスを分解する" alt="" coords="204,107,335,133"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="191,157,348,184"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ae8fcb4c73d65ae2bcdff6f833fc93e29" title="CubeFloatのクローズ" alt="" coords="396,56,536,83"/>
+<area shape="rect" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="412,157,520,184"/>
+<area shape="rect" href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="584,132,744,159"/>
+<area shape="rect" href="class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf" title=" " alt="" coords="609,183,719,209"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="792,81,971,108"/>
+<area shape="rect" href="class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="815,132,948,159"/>
+<area shape="rect" href="class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="818,183,945,209"/>
+<area shape="rect" href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="1019,132,1151,159"/>
 </map>
 </div>
 <div class="dynheader">
@@ -1745,8 +1862,16 @@ $(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initR
 <div class="dyncontent">
 <div class="center"><img src="class_c_scan_data_i_o_aa39614b53408689ab3187d7a78948ac9_icgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_aa39614b53408689ab3187d7a78948ac9_icgraph" alt=""/></div>
 <map name="aclass_c_scan_data_i_o_aa39614b53408689ab3187d7a78948ac9_icgraph" id="aclass_c_scan_data_i_o_aa39614b53408689ab3187d7a78948ac9_icgraph">
-<area shape="rect" title="射影変換の移動元取得" alt="" coords="201,13,407,39"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="5,5,153,47"/>
+<area shape="rect" title="射影変換の移動元取得" alt="" coords="827,111,1032,138"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a0aec3875f86f89c63daf5161cfded60d" title="新規プロジェクトの構築" alt="" coords="633,71,776,112"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="631,136,779,177"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#acceb13e1dba62f59383094194ecf9774" title="プロジェクトの削除" alt="" coords="440,5,583,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a2e500461803db9361e0e0c86bc549547" title="新規プロジェクト作成" alt="" coords="440,71,583,112"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a92d375305f80e0626001ab1b3c8d75a0" title="プロジェクトの保存" alt="" coords="440,136,583,177"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1c8f728724d0615945c96bc74bf24e76" title="プロジェクト削除" alt="" coords="231,5,379,47"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae37e8e96f656ee1e5ac50c77258dcd91" title="「新規検査」ボタン押下時処理" alt="" coords="5,100,171,141"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a848f1a59f54ec2dccf6b874e3371c0a8" title="プロジェクトの終了" alt="" coords="234,129,377,171"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ab8be50e0c7eeb845227827a2c0e99342" title="プロジェクトの更新要求" alt="" coords="219,195,392,236"/>
 </map>
 </div>
 
@@ -1777,12 +1902,28 @@ $(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initR
 </dl>
 <dl class="section return"><dt>戻り値</dt><dd>成功の場合はtrue、失敗の場合はfalseを返す</dd></dl>
 <div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_scan_data_i_o_aa32e2e51834f95184395a9be632645b2_cgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_aa32e2e51834f95184395a9be632645b2_cgraph" alt=""/></div>
+<map name="aclass_c_scan_data_i_o_aa32e2e51834f95184395a9be632645b2_cgraph" id="aclass_c_scan_data_i_o_aa32e2e51834f95184395a9be632645b2_cgraph">
+<area shape="rect" title="RAWデータの読み込み" alt="" coords="5,81,192,108"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="240,81,397,108"/>
+<area shape="rect" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="445,81,553,108"/>
+<area shape="rect" href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="601,56,761,83"/>
+<area shape="rect" href="class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf" title=" " alt="" coords="626,107,737,133"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="809,5,988,32"/>
+<area shape="rect" href="class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="832,56,965,83"/>
+<area shape="rect" href="class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="835,107,962,133"/>
+<area shape="rect" href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="1036,56,1168,83"/>
+</map>
+</div>
+<div class="dynheader">
 被呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_c_scan_data_i_o_aa32e2e51834f95184395a9be632645b2_icgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_aa32e2e51834f95184395a9be632645b2_icgraph" alt=""/></div>
 <map name="aclass_c_scan_data_i_o_aa32e2e51834f95184395a9be632645b2_icgraph" id="aclass_c_scan_data_i_o_aa32e2e51834f95184395a9be632645b2_icgraph">
 <area shape="rect" title="RAWデータの読み込み" alt="" coords="392,13,579,39"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの上下反転" alt="" coords="201,5,344,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの反転" alt="" coords="201,5,344,47"/>
 <area shape="rect" href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="5,5,153,47"/>
 </map>
 </div>
@@ -1860,12 +2001,28 @@ $(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initR
 </dl>
 <dl class="section return"><dt>戻り値</dt><dd>成功の場合はtrue、失敗の場合はfalseを返す</dd></dl>
 <div class="dynheader">
+呼び出し関係図:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_c_scan_data_i_o_a2dac09e00376d629d1b43de3434633d6_cgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_a2dac09e00376d629d1b43de3434633d6_cgraph" alt=""/></div>
+<map name="aclass_c_scan_data_i_o_a2dac09e00376d629d1b43de3434633d6_cgraph" id="aclass_c_scan_data_i_o_a2dac09e00376d629d1b43de3434633d6_cgraph">
+<area shape="rect" title="RAWデータの保存" alt="" coords="5,81,192,108"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a5be204207783efd8238a8928cdb5c061" title="ログ出力" alt="" coords="240,81,397,108"/>
+<area shape="rect" href="class_c_log.html#ac31d4dac2937ba01a36d1a3b44b83d70" title="ログの出力" alt="" coords="445,81,553,108"/>
+<area shape="rect" href="class_c_log.html#ab9c474897ca906770f57d5da2feefa6d" title="ログファイルフルパス名の取得" alt="" coords="601,56,761,83"/>
+<area shape="rect" href="class_c_log.html#ae51a9a6b80711b7a6f5088c61eb346cf" title=" " alt="" coords="626,107,737,133"/>
+<area shape="rect" href="class_c_file_util.html#abc548d0aa8583bfd6f185c08711b1ec7" title="ファイルパスの作成" alt="" coords="809,5,988,32"/>
+<area shape="rect" href="class_c_log.html#a65d2c4306ed1a9d777c08caff941e776" title="ログファイル名の取得" alt="" coords="832,56,965,83"/>
+<area shape="rect" href="class_c_log.html#a27df84a7db3c444addee476022bfc5ae" title="ログファイル出力ディレクトリの取得" alt="" coords="835,107,962,133"/>
+<area shape="rect" href="class_c_log.html#a70464aa2d7a0a10825a9f7f7b7adf2ee" title="ファイル名プレフィックスの取得" alt="" coords="1036,56,1168,83"/>
+</map>
+</div>
+<div class="dynheader">
 被呼び出し関係図:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_c_scan_data_i_o_a2dac09e00376d629d1b43de3434633d6_icgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_a2dac09e00376d629d1b43de3434633d6_icgraph" alt=""/></div>
 <map name="aclass_c_scan_data_i_o_a2dac09e00376d629d1b43de3434633d6_icgraph" id="aclass_c_scan_data_i_o_a2dac09e00376d629d1b43de3434633d6_icgraph">
 <area shape="rect" title="RAWデータの保存" alt="" coords="392,13,579,39"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの上下反転" alt="" coords="201,5,344,47"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの反転" alt="" coords="201,5,344,47"/>
 <area shape="rect" href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="5,5,153,47"/>
 </map>
 </div>
@@ -2124,36 +2281,52 @@ $(document).ready(function(){initNavTree('class_c_scan_data_i_o.html',''); initR
 <div class="dyncontent">
 <div class="center"><img src="class_c_scan_data_i_o_a5be204207783efd8238a8928cdb5c061_icgraph.png" border="0" usemap="#aclass_c_scan_data_i_o_a5be204207783efd8238a8928cdb5c061_icgraph" alt=""/></div>
 <map name="aclass_c_scan_data_i_o_a5be204207783efd8238a8928cdb5c061_icgraph" id="aclass_c_scan_data_i_o_a5be204207783efd8238a8928cdb5c061_icgraph">
-<area shape="rect" title="ログ出力" alt="" coords="919,132,1076,159"/>
-<area shape="rect" href="class_c_camera_i_o.html#a1730843fe81498de96623f8669cdefc5" title="リファレンス（ホワイトバランス）の取得" alt="" coords="672,5,871,32"/>
-<area shape="rect" href="class_c_scan_data_i_o.html#a3be95afdfa7914f7a2acbc003048e3ff" title="画像データ取得" alt="" coords="685,260,857,287"/>
-<area shape="rect" href="class_c_camera_i_o.html#ac592e3623be0dba68f4db806da652cba" title="カメラのオープン" alt="" coords="459,104,587,131"/>
-<area shape="rect" href="class_c_camera_i_o.html#aa4c14720243ce00bb95950a601327637" title="フォーマットの設定" alt="" coords="693,107,849,133"/>
-<area shape="rect" href="class_c_camera_i_o.html#a81016636faf8f4329a1a664716c17de9" title="IntegrationTimeの設定" alt="" coords="421,155,624,181"/>
-<area shape="rect" href="class_c_camera_i_o.html#a366c8cfc6c2492079e3d7a63fffb076c" title="スキャンの開始" alt="" coords="445,205,600,232"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a2b69faf84702201cc5dbfe3fcd202b32" title="ホワイトバランススキャンの要求" alt="" coords="224,97,372,138"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b289ccf358a0ad255596c59196a3bd0" title="スキャンデータイメージの取得" alt="" coords="451,257,594,298"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="223,242,373,283"/>
-<area shape="rect" href="class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="227,307,369,349"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="5,307,175,349"/>
-<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="224,162,372,203"/>
+<area shape="rect" title="ログ出力" alt="" coords="995,396,1152,423"/>
+<area shape="rect" href="class_c_camera_i_o.html#a1730843fe81498de96623f8669cdefc5" title="リファレンス（ホワイトバランス）の取得" alt="" coords="479,21,678,48"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a12aa5b6bf1c179fa351e419d34921157" title="各バンドのスペクトル値取得" alt="" coords="731,257,944,284"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ae3dff6661c7012b259b38910f3b3dbdb" title="ヘッダファイルから幅、高さを取得" alt="" coords="729,308,945,335"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a62c2f84aedf058ffe1370ee67e7fb2dc" title="ホモグラフィーマトリックス取得" alt="" coords="736,359,939,401"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a09a161f191779097aa003676ecb22714" title="バンド数の取得" alt="" coords="728,425,947,452"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a74d0fa98822d49575c08acb1e72c128c" title="指定位置スペクトル群の取得" alt="" coords="731,527,944,553"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a2e23bb8cbebd5d51292726ee0238adec" title="バンドのスペクトル値取得" alt="" coords="738,476,937,503"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ab4e6effbecff1531d50b31163c6363fc" title="スキャンデータの反転" alt="" coords="753,577,922,604"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a3be95afdfa7914f7a2acbc003048e3ff" title="画像データ取得" alt="" coords="751,729,923,756"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#ae86f36b123901fbe038ff0f1669192bd" title="オープン" alt="" coords="769,780,906,807"/>
+<area shape="rect" href="class_c_camera_i_o.html#ac592e3623be0dba68f4db806da652cba" title="カメラのオープン" alt="" coords="515,85,643,112"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#aa32e2e51834f95184395a9be632645b2" title="RAWデータの読み込み" alt="" coords="744,628,931,655"/>
+<area shape="rect" href="class_c_scan_data_i_o.html#a2dac09e00376d629d1b43de3434633d6" title="RAWデータの保存" alt="" coords="744,679,931,705"/>
+<area shape="rect" href="class_c_camera_i_o.html#aa4c14720243ce00bb95950a601327637" title="フォーマットの設定" alt="" coords="759,105,915,132"/>
+<area shape="rect" href="class_c_camera_i_o.html#a81016636faf8f4329a1a664716c17de9" title="IntegrationTimeの設定" alt="" coords="477,143,680,169"/>
+<area shape="rect" href="class_c_camera_i_o.html#a366c8cfc6c2492079e3d7a63fffb076c" title="スキャンの開始" alt="" coords="501,193,656,220"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a2b69faf84702201cc5dbfe3fcd202b32" title="ホワイトバランススキャンの要求" alt="" coords="252,74,400,115"/>
+<area shape="rect" href="class_c_oprt_tab_page_initialize.html#a39a52da491a71f8afec8c1366284227a" title="パラメータの読み込み" alt="" coords="501,301,656,342"/>
+<area shape="rect" href="class_c_oprt_tab_page_initialize.html#ad26437c34391f67b3546182071900642" title="アイテムのアクティブ/ディアクティブ化" alt="" coords="249,401,403,442"/>
+<area shape="rect" href="class_c_oprt_tab_page_initialize.html#a51b47e6f52aacb9733fdc52ac320f573" title="アクティブ時処理" alt="" coords="249,205,403,246"/>
+<area shape="rect" href="class_c_oprt_tab_page_initialize.html#ab94bb92896d005e2ea95e3f7fe4f49e8" title="ホワイトバランスボタン押下時処理" alt="" coords="223,270,429,311"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#ae4f218a4e70e08689a0532384eb86fe5" title="設定ページの再読込" alt="" coords="252,335,400,377"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a482c242e79c4b82b34d23794280649b0" title="スペクトルレンジの取得" alt="" coords="507,466,651,507"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#acb9374b4f62b3b67625526f4b5d493b4" title="区間スペクトル表示ダイアログの設定" alt="" coords="230,531,422,573"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a8805e4c9d110a33112c8b5e7af294f9e" title="スペクトルグラフの表示" alt="" coords="233,466,419,507"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#ad49fe5bd6a5dbd63b150bde87a194a10" title="指定位置スペクトル群の取得" alt="" coords="507,531,650,573"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b5e52d33a0ce7e1fd3e55d6558c553e" title="スキャンデータの反転" alt="" coords="507,606,650,647"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a64432e2c0e21d161465fb28eb9e71594" title="データ反転の要求" alt="" coords="252,599,400,641"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a7b289ccf358a0ad255596c59196a3bd0" title="スキャンデータイメージの取得" alt="" coords="507,727,650,769"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a50da59446b116e48eb00b4ccc6074cdd" title="表示変更リクエスト" alt="" coords="251,730,401,771"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#a898813fc506ac6765717271c8d944663" title="スキャンイメージの保存" alt="" coords="255,665,397,706"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a1b8f0add672d4bc0d3e561c7f61e649f" title="画像出力要求" alt="" coords="5,665,175,706"/>
+<area shape="rect" href="class_c_weld_evaluation_doc.html#abd81887407c6ef8abfb6beed49309aab" title="既存プロジェクトのオープン" alt="" coords="507,795,650,837"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a407de32087c90c2e33915da88a6cc911" title="登録済み検査選択時処理" alt="" coords="235,861,417,902"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#a78595107782d434cd4840b1c98585867" title="プロジェクトのオープン" alt="" coords="252,795,400,837"/>
+<area shape="rect" href="class_c_weld_evaluation_view.html#af36ee74161f90ac2fe30337a0fe1fb9d" title="スキャンの実施" alt="" coords="252,139,400,181"/>
 </map>
 </div>
 
 </div>
 </div>
-<hr/>このクラス詳解は次のファイルから抽出されました:<ul>
-<li>C:/Users/kaneko/OneDrive/Project/JointAutomaticEvaluationSystem/WeldEvaluation/src/WeldEvaluation/WeldEvaluation/<a class="el" href="_scan_data_i_o_8h_source.html">ScanDataIO.h</a></li>
-<li>C:/Users/kaneko/OneDrive/Project/JointAutomaticEvaluationSystem/WeldEvaluation/src/WeldEvaluation/WeldEvaluation/ScanDataIO.cpp</li>
-</ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="class_c_scan_data_i_o.html">CScanDataIO</a></li>
-    <li class="footer">構築: <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+構築:&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

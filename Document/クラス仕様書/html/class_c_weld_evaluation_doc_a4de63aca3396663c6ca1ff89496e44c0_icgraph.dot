@@ -1,0 +1,12 @@
+digraph "CWeldEvaluationDoc::CalcResultStopRequest"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="RL";
+  Node1 [label="CWeldEvaluationDoc\l::CalcResultStopRequest",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="解析処理中止リクエスト"];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="CWeldEvaluationView\l::OnInversStatus",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_weld_evaluation_view.html#ac2a780dea4e0df6b42d21188edda9dfc",tooltip="データ反転状態通知"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="CWeldEvaluationView\l::OnReadResultFileStatus",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_c_weld_evaluation_view.html#ad0fe518870f876e7c21ac2f5dfd139e0",tooltip="解析結果ファイル読み込み状態通知"];
+}

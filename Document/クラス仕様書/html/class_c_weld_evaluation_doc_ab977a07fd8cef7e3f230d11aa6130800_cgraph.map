@@ -1,0 +1,5 @@
+<map id="CWeldEvaluationDoc::IsInversAnalizeData" name="CWeldEvaluationDoc::IsInversAnalizeData">
+<area shape="rect" id="node1" title="解析データの反転可否判定" alt="" coords="5,5,148,47"/>
+<area shape="rect" id="node2" href="$class_c_weld_evaluation_doc.html#a8af3aff5f5a24234512bb784fc4df822" title="プロジェクトからスキャンデータの縦横サイズの取得" alt="" coords="196,5,339,47"/>
+<area shape="rect" id="node3" href="$class_c_project_file_i_o.html#a8edee7c70a837ef023b2356cf41f1055" title="スキャンデータのサイズ取得" alt="" coords="387,13,605,39"/>
+</map>

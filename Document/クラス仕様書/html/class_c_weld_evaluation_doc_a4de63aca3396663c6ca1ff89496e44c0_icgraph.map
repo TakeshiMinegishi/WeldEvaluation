@@ -1,4 +1,5 @@
 <map id="CWeldEvaluationDoc::CalcResultStopRequest" name="CWeldEvaluationDoc::CalcResultStopRequest">
-<area shape="rect" id="node1" title="解析処理中止リクエスト" alt="" coords="227,5,395,47"/>
-<area shape="rect" id="node2" href="$class_c_weld_evaluation_view.html#ad0fe518870f876e7c21ac2f5dfd139e0" title="解析結果ファイル読み込み状態通知" alt="" coords="5,5,179,47"/>
+<area shape="rect" id="node1" title="解析処理中止リクエスト" alt="" coords="227,39,395,80"/>
+<area shape="rect" id="node2" href="$class_c_weld_evaluation_view.html#ac2a780dea4e0df6b42d21188edda9dfc" title="データ反転状態通知" alt="" coords="18,5,166,47"/>
+<area shape="rect" id="node3" href="$class_c_weld_evaluation_view.html#ad0fe518870f876e7c21ac2f5dfd139e0" title="解析結果ファイル読み込み状態通知" alt="" coords="5,71,179,112"/>
 </map>

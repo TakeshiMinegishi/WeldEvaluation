@@ -1727,10 +1727,6 @@ SCanFinalize:
 		outData = nullptr;
 	}
 
-//	if (cube) {
-//		delete cube;
-//		cube = nullptr;
-//	}
 	return bResult;
 }
 
@@ -1810,6 +1806,12 @@ LRESULT CWeldEvaluationView::OnInversRequest(WPARAM wparam, LPARAM lparam)
 	return 0;
 }
 
+/// <summary>
+/// データ反転状態通知
+/// </summary>
+/// <param name="wparam">メッセージタイプ</param>
+/// <param name="lparam">状態の値</param>
+/// <returns>成功した場合は0、失敗した場合はそれ以外を返す</returns>
 LRESULT CWeldEvaluationView::OnInversStatus(WPARAM wparam, LPARAM lparam)
 {
 	// メッセージがキューにたまってしまうのでメッセージポンプして処理を通す
