@@ -3304,7 +3304,7 @@ bool CWeldEvaluationDoc::Analize(int ScanID, int AnalysisMethodID)
 
 	// ‰ğÍÀ{î•ñ‚Ì•Û‘¶
 	if (SetNumbetOfClass) {
-		if ((m_ProjectIO.*SetNumbetOfClass)(nClass)) {
+		if (!(m_ProjectIO.*SetNumbetOfClass)(nClass)) {
 			CString msg;
 			msg.Format(_T("‰ğÍÀ{î•ñ‚Ì•Û‘¶‚É¸”s‚µ‚Ü‚µ‚½B:ScanID=%d,‰ğÍ•û–@=%d"), ScanID, AnalysisMethodID);
 			writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
