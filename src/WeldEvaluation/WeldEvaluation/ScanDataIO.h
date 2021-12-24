@@ -75,6 +75,7 @@ public:
 	void ProjectionInvPos(int DstX, int DstY, double prm[], double &SrcX, double &SrcY);
 
 	bool InversData(CWnd *pWnd=nullptr);
+	bool FlipUpsideDown(int width, int height, int band, float ***data);
 	bool saveRawData(CString pathName);
 	bool readRawData(CString pathName);
 };

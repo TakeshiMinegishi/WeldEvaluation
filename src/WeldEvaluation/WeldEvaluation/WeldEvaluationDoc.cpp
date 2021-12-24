@@ -2966,12 +2966,12 @@ void CWeldEvaluationDoc::CalcResultStopRequest()
 /// <summary>
 /// 接合率を求める
 /// </summary>
-/// <param name="buff">データ</param>
-/// <param name="ndata">データ数</param>
+/// <param name="ScanID">判定素材ID</param>
+/// <param name="data">データ</param>
 /// <param name="nClass">分類数</param>
 /// <param name="retio">接合率</param>
 /// <returns>成功の場合はtrue、失敗の場合はfalseを返す</returns>
-bool CWeldEvaluationDoc::CalcJoJointRetio(vector<int> data, int nClass, vector<double> &retio)
+bool CWeldEvaluationDoc::CalcJoJointRetio(int ScanID, vector<int> data, int nClass, vector<double> &retio)
 {
 	retio.clear();
 	retio.resize(nClass);
@@ -2987,7 +2987,7 @@ bool CWeldEvaluationDoc::CalcJoJointRetio(vector<int> data, int nClass, vector<d
 	}
 	CPoint AnzLTPos;
 	CSize AnzSize;
-	if (!getAnalizeArea(AnzLTPos, AnzSize)) {
+	if (!getAnalizeArea(ScanID,AnzLTPos, AnzSize)) {
 		CString msg;
 		msg.Format(_T("解析エリアが取得できませんでした。"));
 		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
@@ -3041,7 +3041,7 @@ bool CWeldEvaluationDoc::CalcJoJointRetio(vector<int> data, int nClass, vector<d
 	return true;
 }
 
-bool CWeldEvaluationDoc::getAnalizeArea(CPoint &tlPos, CSize &size)
+bool CWeldEvaluationDoc::getAnalizeArea(int ScanID, CPoint &tlPos, CSize &size)
 {
 	CConfigrationIO sys(m_SystemFilePathName);
 	int AnalysisAreaTLPointX = sys.getInt(_T("System"), _T("AnalysisAreaTLPointX"));
@@ -3072,11 +3072,19 @@ bool CWeldEvaluationDoc::getAnalizeArea(CPoint &tlPos, CSize &size)
 	if ((AnalysisAreaTLPointY + AnalysisAreaHeight) > datah) {
 		AnalysisAreaHeight = datah - AnalysisAreaTLPointY;
 	}
-
-	tlPos.x = AnalysisAreaTLPointX;
-	tlPos.y = AnalysisAreaTLPointY;
-	size.cx = AnalysisAreaWidth;
-	size.cy = AnalysisAreaHeight;
+	// 解析が金属面の場合は領域の上下を反転
+	if (ScanID == eMetalSurface) {
+		tlPos.x = AnalysisAreaTLPointX;
+		tlPos.y = datah - (AnalysisAreaTLPointY + AnalysisAreaHeight);
+		size.cx = AnalysisAreaWidth;
+		size.cy = AnalysisAreaHeight;
+	}
+	else {
+		tlPos.x = AnalysisAreaTLPointX;
+		tlPos.y = AnalysisAreaTLPointY;
+		size.cx = AnalysisAreaWidth;
+		size.cy = AnalysisAreaHeight;
+	}
 	return true;
 }
 
@@ -3200,7 +3208,7 @@ bool CWeldEvaluationDoc::Analize(int ScanID, int AnalysisMethodID)
 #else
 	CPoint AnalizetlPos;
 	CSize AnalizeSze;
-	if (!getAnalizeArea(AnalizetlPos, AnalizeSze)) {
+	if (!getAnalizeArea(ScanID,AnalizetlPos, AnalizeSze)) {
 		CString msg;
 		msg.Format(_T("解析エリアの値が正しくありません"));
 		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
@@ -3343,7 +3351,7 @@ bool CWeldEvaluationDoc::Analize(int ScanID, int AnalysisMethodID)
 			return false;
 		}
 
-		if (!CalcJoJointRetio(data, nClass, retio)) {
+		if (!CalcJoJointRetio(ScanID, data, nClass, retio)) {
 			CString msg;
 			msg.Format(_T("接合率の取得に失敗しました。:ScanID=%d,解析方法=%d"), ScanID, AnalysisMethodID);
 			writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
@@ -3748,7 +3756,7 @@ bool CWeldEvaluationDoc::IsInversAnalizeData(int ScanID)
 	GetScanDataSize(width, height);
 	CPoint tlPos;
 	CSize size;
-	if (!getAnalizeArea(tlPos, size)) {
+	if (!getAnalizeArea(ScanID,tlPos, size)) {
 		return false;
 	}
 

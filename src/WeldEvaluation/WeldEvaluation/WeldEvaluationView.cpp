@@ -1609,7 +1609,14 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 			jointPos += dstW - offset;
 		}
 		commonDeallocateCube(cube_corrected);
-//		commonDeallocateCube(cube);
+
+#if 0
+		if (ScanID == CWeldEvaluationDoc::eMetalSurface) {
+			if (!scn.FlipUpsideDown(outW, outH, band, outData)) {
+				bResult = false;
+			}
+		}
+#endif
 	}
 
 SCanFinalize:

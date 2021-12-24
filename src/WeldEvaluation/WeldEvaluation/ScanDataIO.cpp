@@ -638,6 +638,68 @@ bool CScanDataIO::InversData(CWnd *pWnd/*=nullptr*/)
 }
 
 /// <summary>
+/// データの上下反転
+/// </summary>
+/// <param name="height">データのライン数</param>
+/// <param name="width">データのサンプリング数</param>
+/// <param name="bands">データのバンド数</param>
+/// <param name="ppp_data">データ</param>
+/// <returns>成功した場合はtrue、失敗した場合はfalseを返す</returns>
+bool CScanDataIO::FlipUpsideDown(int width, int height, int band, float ***ppp_data)
+{
+	bool bResult = true;
+	if ((width <= 0) || (height <= 0) || (band <= 0)) {
+		CString msg;
+		msg.Format(_T("CScanDataIO::FlipUpsideDown():パラメータが正しくありません。width=%d, height=%d, band=%d"), width, height, band);
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
+		return false;
+	}
+	if (ppp_data == nullptr) {
+		CString msg;
+		msg.Format(_T("CScanDataIO::FlipUpsideDown():パラメータが正しくありません。ppp_data=nullptr"));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
+		return false;
+	}
+	if (height == 1) {
+		return true;
+	}
+
+	int hheight = height / 2;
+	try {
+		float  *buff = new float[width];
+
+		for (int h = 0; h < hheight; h++) {
+			for (int b = 0; b < band; b++) {
+				if ((ppp_data[b] == nullptr) || (ppp_data[b][h] == nullptr)) {
+					CString msg;
+					msg.Format(_T("CScanDataIO::FlipUpsideDown():パラメータが正しくありません。ppp_data=nullptr"));
+					writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
+					if (buff) {
+						delete[] buff;
+					}
+					return false;
+				}
+				memcpy(buff, ppp_data[b][h], sizeof(float)*width);
+				memcpy(ppp_data[b][h], ppp_data[b][height - 1 - h], sizeof(float)*width);
+				memcpy(ppp_data[b][height - 1 - h], buff, sizeof(float)*width);
+			}
+		}
+		if (buff) {
+			delete[] buff;
+		}
+
+	}
+	catch (CException *e) {
+		e->Delete();
+		bResult = false;
+		CString msg;
+		msg.Format(_T("CScanDataIO::FlipUpsideDown():メモリ領域が確保できませんでした。"));
+		writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
+	}
+	return bResult;
+}
+
+/// <summary>
 /// RAWデータの保存
 /// </summary>
 /// <param name="pathName">パス名</param>

@@ -108,7 +108,7 @@ void CPropTabPageParameter::ItemActive(bool bActive)
 	ItemEnable(IDC_STC_JOINRATIO_TARGET_LABEL,bActive);
 	ItemEnable(IDC_CMB_JOINRATIO_TARGET_LABEL,bActive);
 
-	ItemEnable(IDC_STC_IDCOLOR, bActive);
+//	ItemEnable(IDC_STC_IDCOLOR, bActive);
 
 	UpdateCmbJoinratioTargetLabel(true);
 

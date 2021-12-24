@@ -100,11 +100,11 @@ private:
 	CString getScanImageFilePath(int ScanID);
 	CString getClassificationDataFilePath(int ScanID, int type);
 	CString getClassificationImageFilePath(int ScanID, int type);
-	bool CalcJoJointRetio(std::vector<int>data, int nClass, std::vector<double> &retio);
+	bool CalcJoJointRetio(int ScanID, std::vector<int>data, int nClass, std::vector<double> &retio);
 	std::vector<int> CWeldEvaluationDoc::split(std::string& input, char delimiter, int size= 0);
 	void H2RGB(int h, BYTE &r, BYTE &g, BYTE &b);
 	void writeLog(CLog::LOGLEVEL level, CString filePath, long lineNo, CString msg);
-	bool getAnalizeArea(CPoint &tlPos, CSize &size);
+	bool getAnalizeArea(int ScanID, CPoint &tlPos, CSize &size);
 
 
 public:
