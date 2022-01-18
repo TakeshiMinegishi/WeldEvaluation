@@ -99,19 +99,32 @@ bool CConfigrationIO::write(CString section, CString key, CString value, CString
 /// </summary>
 /// <param name="section">セクション名</param>
 /// <param name="key">キー名</param>
+/// <param name="default">デフォルト値</param>
 /// <param name="filePath">データパス名</param>
 /// <returns>値を返す</returns>
-int CConfigrationIO::getInt(CString section, CString key, CString filePath)
+int CConfigrationIO::getInt(CString section, CString key, int default, CString filePath)
 {
 	if (filePath == _T("")) {
 		filePath = m_DataPath;
 	}
-	CString str = read(section,key,filePath);
-	int iVal = 0;
+	CString str = read(section, key, filePath);
+	int iVal = default;
 	if (str != _T("")) {
-		iVal =_ttol(str);
+		iVal = _ttol(str);
 	}
 	return iVal;
+}
+
+/// <summary>
+/// 指定セクションのキー値（整数）を取得
+/// </summary>
+/// <param name="section">セクション名</param>
+/// <param name="key">キー名</param>
+/// <param name="filePath">データパス名</param>
+/// <returns>値を返す</returns>
+int CConfigrationIO::getInt(CString section, CString key, CString filePath)
+{
+	return getInt(section,key, 0, filePath);
 }
 
 /// <summary>

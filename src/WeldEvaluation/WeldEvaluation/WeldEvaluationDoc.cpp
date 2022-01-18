@@ -2572,6 +2572,28 @@ int	CWeldEvaluationDoc::GetDivisionNumber()
 }
 
 /// <summary>
+/// スキャン開始IDの取得
+/// </summary>
+/// <returns>スキャンの開始IDを返す（ゼロオリジン）</returns>
+int	CWeldEvaluationDoc::GetScanStartID()
+{
+	CConfigrationIO sys(m_SystemFilePathName);
+	int ScanStartID = sys.getInt(_T("System"), _T("ScanStartID"),0);
+	return ScanStartID;
+}
+
+/// <summary>
+/// スキャン終了IDの取得
+/// </summary>
+/// <returns>スキャンの終了IDを返す（ゼロオリジン）</returns>
+int	CWeldEvaluationDoc::GetScanEndID()
+{
+	CConfigrationIO sys(m_SystemFilePathName);
+	int ScanEndID = sys.getInt(_T("System"), _T("ScanEndID"), GetDivisionNumber()-1);
+	return ScanEndID;
+}
+
+/// <summary>
 /// 解析結果ファイルの読み込み
 /// </summary>
 /// <param name="path">解析ファイルパス</param>
@@ -3087,6 +3109,64 @@ bool CWeldEvaluationDoc::getAnalizeArea(int ScanID, CPoint &tlPos, CSize &size)
 	}
 	return true;
 }
+
+#if false	// 2022.01.18 S.Kaneko
+bool CWeldEvaluationDoc::getAnalizeArea(int ScanID, CRect &area)
+{
+	bool bResult = m_PropatyIO.GetAnalizeArea(area);
+
+	if ((!bResult) || (area.Width() <= 0) || (area.Height() <= 0)) {
+		CPoint tlPos;
+		CSize size;
+		if (!getAnalizeArea(ScanID, tlPos, size)) {
+			return false;
+		}
+		else {
+			area = CRect(tlPos.x, tlPos.y, tlPos.x + size.cx, tlPos.y + size.cy);
+		}
+	}
+	else {
+		if (ScanID == eMetalSurface) {	//金属面なら反転
+			int dataw, datah;
+			m_ProjectIO.GetScanDataSize(dataw, datah);
+			if ((dataw == 0) || (datah == 0)) {
+				CString msg;
+				msg.Format(_T("結合されたスキャンデータのサイズが正しくありません。Width=%d Height=%d"), dataw, datah);
+				writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
+				return false;
+			}
+			int top = datah - (area.top + area.Height());
+			int bottom = area.top + area.Height();
+			area.top = top;
+			area.bottom = bottom;
+		}
+	}
+
+	return true;
+}
+
+bool CWeldEvaluationDoc::setAnalizeArea(int ScanID, CRect &area)
+{
+	bool bResult = true;
+	if (ScanID == eMetalSurface) {
+		int dataw, datah;
+		m_ProjectIO.GetScanDataSize(dataw, datah);
+		if ((dataw == 0) || (datah == 0)) {
+			CString msg;
+			msg.Format(_T("結合されたスキャンデータのサイズが正しくありません。Width=%d Height=%d"), dataw, datah);
+			writeLog(CLog::Error, CString(__FILE__), __LINE__, msg);
+			return false;
+		}
+		int top = datah - (area.top + area.Height());
+		int bottom = area.top + area.Height();
+		area.top = top;
+		area.bottom = bottom;
+	}
+
+	bResult = m_PropatyIO.SetAnalizeArea(area);
+	return bResult;
+}
+#endif
 
 /// <summary>
 /// 解析の実施

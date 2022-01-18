@@ -775,6 +775,19 @@ void CWeldEvaluationView::OnTcnSelchangeTabOperation(NMHDR *pNMHDR, LRESULT *pRe
 			}
 		}
 	} else {
+#if false	// 2022.01.18 S.Kaneko
+		if (m_SelOprtPageId == 3) {
+			if (m_OprtAnalize.IsSettingAnalizeArea()) {
+				CString msg;
+				if (!msg.LoadString(IDM_ERR_ENDANALIZEAREASETTING)) {
+					msg = _T("解析領域の設定を終了してください。");
+				}
+				AfxMessageBox(msg, MB_OK | MB_ICONSTOP);
+				m_tabOperation.SetCurSel(m_SelOprtPageId);
+				return;
+			}
+		}
+#endif
 		iCnt = (int)m_OprtTab.GetSize();
 		for (int i = 0; i < iCnt; i++) {
 			pDlg = m_OprtTab.GetAt(i);
@@ -1381,6 +1394,19 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 	//////////////////////////////////////////////////////////////////////////////
 //	cube = new CubeFloat();
 	int DivisionNumber = pDoc->GetDivisionNumber();
+	int ScanStartID = pDoc->GetScanStartID();
+	int ScanEndID = pDoc->GetScanEndID();
+
+	if ((ScanStartID < 0) || (ScanEndID < ScanStartID) || (ScanEndID >= DivisionNumber)) {
+		CString msg;
+		msg.Format(_T("ScanImage():分割数(%d)、スキャン開始ID(%d)、スキャン終了ID(%d)のいずれかに不正な値が設定されています"), DivisionNumber, ScanStartID, ScanEndID);
+		logOut(CString(__FILE__), __LINE__, msg);
+
+		cam.StopScan();
+		bResult = false;
+		goto SCanFinalize;
+	}
+
 	outH = dstH;
 	if (dstW < offset) {
 		return false;
@@ -1436,7 +1462,13 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 		}
 	}
 
-	for (int pos = 0; pos < DivisionNumber; pos++) {
+	if (ScanStartID > 0) {
+		// スキャン開始IDが0で無い場合は結合位置を調整
+		jointPos = (dstW - offset) * ScanStartID;
+	}
+
+//	for (int pos = 0; pos < DivisionNumber; pos++) {
+	for (int pos = ScanStartID; pos <= ScanEndID; pos++) {
 		// キャンセルのチェック
 		if (!pStatus->m_Valid) {
 			cam.StopScan();
@@ -1507,10 +1539,17 @@ bool CWeldEvaluationView::ScanImage(CStatusDlgThread* pStatus, int ScanID)
 					else if (sy >= dstH) {
 						sy = (double)((__int64)dstH - 1);
 					}
+					// @note #要検討
+					// ScanStartID==0でない場合、ScanStartIDのブロックは線形補間は不要か？
 					if (bBicubic) {
 						scn.bicubic(pTmp, dstW, dstH, band, (float)sx, (float)sy, p);
 						for (int b = 0; b < band; b++) {
 							dst[b][h][w] = p[b];
+						}
+					}
+					else {
+						for (int b = 0; b < band; b++) {
+							dst[b][h][w] = pTmp[b][(int)sy][(int)sx];
 						}
 					}
 				}
@@ -2762,7 +2801,9 @@ LRESULT CWeldEvaluationView::OnAreaSpectrumGraphRequest(WPARAM wparam, LPARAM lp
 	m_pReginWnd->setMode(1);
 	m_pMetalWnd->setMode(1);
 	m_pResultWnd->setMode(1);
-
+#if false	// 2022.01.18 S.Kaneko
+	m_OprtAnalize.EnableSetAnalizeArea(false);
+#endif
 	return 0;
 }
 
@@ -2787,7 +2828,9 @@ LRESULT CWeldEvaluationView::OnSpectrumeCloseRequest(WPARAM wparam, LPARAM lpara
 	m_pReginWnd->setMode(0);
 	m_pMetalWnd->setMode(0);
 	m_pResultWnd->setMode(0);
-
+#if false	// 2022.01.18 S.Kaneko
+	m_OprtAnalize.EnableSetAnalizeArea(true);
+#endif
 	return 0;
 }
 

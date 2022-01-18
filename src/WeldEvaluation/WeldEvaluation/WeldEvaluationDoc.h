@@ -104,7 +104,6 @@ private:
 	std::vector<int> CWeldEvaluationDoc::split(std::string& input, char delimiter, int size= 0);
 	void H2RGB(int h, BYTE &r, BYTE &g, BYTE &b);
 	void writeLog(CLog::LOGLEVEL level, CString filePath, long lineNo, CString msg);
-	bool getAnalizeArea(int ScanID, CPoint &tlPos, CSize &size);
 
 
 public:
@@ -168,6 +167,7 @@ public:
 
 	int		GetAnalysisMethod(int targetID);
 	bool	SetAnalysisMethod(int targetID, int AnalysisMethodID);
+	bool	getAnalizeArea(int ScanID, CPoint &tlPos, CSize &size);
 
 	//////////////////////////////////////////////////////////////////////////////////
 	// プロジェクトデータIO
@@ -222,6 +222,8 @@ public:
 	bool	IsCameraDummyApi();
 	CString getSnapscanFile();
 	int		GetDivisionNumber();
+	int		GetScanStartID();
+	int		GetScanEndID();
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//
@@ -258,5 +260,8 @@ public:
 	void DeleteContents(int ScanID);
 	void DeleteWBFile(CString title=_T(""));
 	bool DeleteProject(CString ProjentName);
+
+	bool getAnalizeArea(int ScanID, CRect &area);
+	bool setAnalizeArea(int ScanID, CRect &area);
 
 };

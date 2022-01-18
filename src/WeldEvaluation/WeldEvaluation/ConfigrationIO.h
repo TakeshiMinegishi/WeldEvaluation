@@ -23,6 +23,7 @@ public:
 	CString getFilePath(void);
 
 	int getInt(CString section, CString key, CString filePath=_T(""));
+	int getInt(CString section, CString key, int default, CString filePath = _T(""));
 	bool setInt(CString section, CString key, int value, CString filePath=_T(""));
 	double getDouble(CString section, CString key, CString filePath=_T(""));
 	bool setDouble(CString section, CString key, double value, CString filePath=_T(""));
