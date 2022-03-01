@@ -228,7 +228,8 @@ BOOL CMainFrame::PreTranslateMessage(MSG* pMsg)
 	case WM_SYSCOMMAND:
 		{
 			int command = (__int32)(pMsg->wParam) & 0xfff0;
-			if (command == SC_MOVE || command == SC_TASKLIST || command == SC_RESTORE || command == SC_VSCROLL || command == SC_HSCROLL) {
+			// ç≈è¨âªÇ©ÇÁñﬂÇÁÇ»Ç¢ïsãÔçáèCê≥Åhcommand == SC_RESTOREÅhÇÉRÉÅÉìÉgâª
+			if (command == SC_MOVE || command == SC_TASKLIST ||/* command == SC_RESTORE ||*/ command == SC_VSCROLL || command == SC_HSCROLL) {
 				return true;
 			}
 		}
