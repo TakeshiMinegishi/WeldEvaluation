@@ -352,8 +352,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,0,1
- PRODUCTVERSION 1,0,0,1
+ FILEVERSION 1,0,0,2
+ PRODUCTVERSION 1,0,0,2
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -370,12 +370,12 @@ BEGIN
         BEGIN
             VALUE "CompanyName", "ARK INFORMATION SYSTEMS,INC"
             VALUE "FileDescription", "WeldEvaluation"
-            VALUE "FileVersion", "1.0.0.1"
+            VALUE "FileVersion", "1.0.0.2"
             VALUE "InternalName", "WeldEvaluation.exe"
             VALUE "LegalCopyright", "Copyright  2021 ARK INFORMATION SYSTEMS,INC.  All rights reserved."
             VALUE "OriginalFilename", "WeldEvaluation.exe"
             VALUE "ProductName", "WeldEvaluation"
-            VALUE "ProductVersion", "1.0.0.1"
+            VALUE "ProductVersion", "1.0.0.2"
         END
     END
     BLOCK "VarFileInfo"
