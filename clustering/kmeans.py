@@ -7,7 +7,7 @@ import random
 from sklearn.cluster import KMeans
 import numpy as np
 
-from utils import get_data, get_bndata, get_fileinfo
+from utils import get_data, get_bndata, get_fileinfo, sort_data
 
 # 乱数のシードを設定
 random.seed(42)
@@ -58,6 +58,7 @@ if __name__ == "__main__":
         cls = KMeans(n_clusters = args.num_classes)
         #どのクラスに属すのかをリストで取得
         predict = cls.fit_predict(bdata)
+        predict = sort_data(predict)
 
         #分類させた情報を(height,width)の形に整形
         predict_out = predict.reshape(valid_height,valid_width)

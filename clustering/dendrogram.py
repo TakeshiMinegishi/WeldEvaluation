@@ -8,7 +8,7 @@ import numpy as np
 from scipy.cluster.hierarchy import dendrogram, linkage, fcluster
 from sklearn.ensemble import RandomForestClassifier
 
-from utils import get_data, get_bndata, get_fileinfo, get_sumple
+from utils import get_data, get_bndata, get_fileinfo, get_sumple, sort_data
 
 # 乱数のシードを設定
 random.seed(42)
@@ -70,6 +70,7 @@ if __name__ == "__main__":
 
         #全データの結果を予測
         predict_all = model.predict(valid_data)
+        predict_all = sort_data(predict_all)
 
         #分類させた情報を(height,width)の形に整形
         predict_out = predict_all.reshape(valid_height,valid_width)

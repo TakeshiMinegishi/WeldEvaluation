@@ -73,3 +73,17 @@ def get_sumple(data, num_sample):
     new_data = shuffle_data[:end,:]
     return new_data
 
+
+#データをソートし番号を振りなおす.
+def sort_data(data):
+    # それぞれの個数を数える
+    u, counts = np.unique(data, return_counts=True)
+    # 大きい順に並び変える
+    index = np.argsort(counts)[::-1]
+    # 置き換える
+    id = 0
+    new_data = data
+    for i in index:
+        new_data = np.where(data==i,id,new_data)
+        id += 1
+    return new_data
